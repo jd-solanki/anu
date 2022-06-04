@@ -1,0 +1,13 @@
+{
+  "name": "anu",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "cd packages/docs && nr dev",
+    "dev": "cd packages/anu-vue && nr dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

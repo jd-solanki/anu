@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "mgmcdermott.vscode-language-babel",
+        "editorconfig.editorconfig",
+        "xabikos.javascriptsnippets",
+        "vue.volar"
+    ]
+}

@@ -1,0 +1,20 @@
+@import '@unocss/reset/tailwind.css';
+
+:root {
+    --primary: 261.4, 97.7%, 66.3%;
+    --success: 94.5, 100%, 39.6%;
+    --info: 200.1, 100%, 54.3%;
+    --warning: 42.4, 100%, 50%;
+    --danger: 358.3, 100%, 64.9%;
+
+    --on-primary: 0, 0%, 100%;
+    --on-success: 0, 0%, 100%;
+    --on-info: 0, 0%, 100%;
+    --on-warning: 0, 0%, 100%;
+    --on-danger: 0, 0%, 100%;
+}
+
+[class^="i-bx"] {
+    /* This is according to line height of text. */
+    height: 1.5em !important;
+}
