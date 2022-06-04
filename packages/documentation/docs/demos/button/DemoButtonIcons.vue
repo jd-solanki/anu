@@ -1,47 +1,65 @@
 <template>
-  <!-- Star -->
+  <!-- 👉 Star -->
   <div class="flex gap-x-4 gap-y-2">
     <ABtn>
       <i class="i-bx-star" />
       <span>Primary</span>
     </ABtn>
+
     <ABtn variant="outline">
       <i class="i-bx-star" />
       <span>Primary</span>
     </ABtn>
+
     <ABtn variant="light">
       <i class="i-bx-star" />
       <span>Primary</span>
     </ABtn>
   </div>
 
-  <!-- Dollar Circle -->
+  <!-- 👉 Dollar Circle -->
   <div class="mt-8 flex gap-x-4 gap-y-2">
     <ABtn color="success">
       <i class="i-bx-dollar-circle" />
       <span>Success</span>
     </ABtn>
-    <ABtn color="success" variant="outline">
+
+    <ABtn
+      color="success"
+      variant="outline"
+    >
       <i class="i-bx-dollar-circle" />
       <span>Success</span>
     </ABtn>
-    <ABtn color="success" variant="light">
+
+    <ABtn
+      color="success"
+      variant="light"
+    >
       <i class="i-bx-dollar-circle" />
       <span>Success</span>
     </ABtn>
   </div>
 
-  <!-- Heart -->
+  <!-- 👉 Heart -->
   <div class="mt-8 flex gap-x-4 gap-y-2">
     <ABtn color="danger">
       <i class="i-bx-heart" />
       <span>Danger</span>
     </ABtn>
-    <ABtn color="danger" variant="outline">
+
+    <ABtn
+      color="danger"
+      variant="outline"
+    >
       <i class="i-bx-heart" />
       <span>Danger</span>
     </ABtn>
-    <ABtn color="danger" variant="light">
+
+    <ABtn
+      color="danger"
+      variant="light"
+    >
       <i class="i-bx-heart" />
       <span>Danger</span>
     </ABtn>

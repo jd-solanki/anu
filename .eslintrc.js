@@ -5,13 +5,17 @@ module.exports = {
   },
   extends: [
     // 'airbnb-base',
-    'plugin:vue/vue3-recommended',
     '@antfu/eslint-config-vue',
+    'plugin:vue/vue3-recommended',
   ],
+  parser: 'vue-eslint-parser',
   parserOptions: {
     ecmaVersion: 'latest',
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   plugins: [
     'vue',

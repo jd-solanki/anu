@@ -2,6 +2,8 @@ import { anu } from 'anu-vue'
 import 'anu-vue/dist/style.css'
 import 'uno.css'
 import DefaultTheme from 'vitepress/theme'
+import Demo from '../../components/Demo.vue'
+import { extractFileNameFromPath } from '../../utils'
 
 export default {
   ...DefaultTheme,
@@ -11,6 +13,8 @@ export default {
     const demos = import.meta.globEager('../../demos/**/*.vue')
 
     for (const path in demos)
-      app.component(path.split('/').at(-1).split('.')[0], demos[path].default)
+      app.component(extractFileNameFromPath(path), demos[path].default)
+
+    app.component('Demo', Demo)
   },
 }

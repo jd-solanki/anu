@@ -4,11 +4,20 @@
       <i class="i-bx-star" />
       <span>Fruitcake I love liquorice apple pie croissant.</span>
     </AAlert>
-    <AAlert variant="outline" color="success">
+
+    <AAlert
+      variant="outline"
+      color="success"
+    >
       <i class="i-bx-dollar-circle" />
       <span>Fruitcake I love liquorice apple pie croissant.</span>
     </AAlert>
-    <AAlert variant="light" color="danger">
+
+    <AAlert
+      variant="light"
+      color="danger"
+      data-id="a"
+    >
       <i class="i-bx-heart" />
       <span>Tiramisu gingerbread halvah powder gummi bears. Apple pie brownie apple pie biscuit chocolate cake.
         Pudding

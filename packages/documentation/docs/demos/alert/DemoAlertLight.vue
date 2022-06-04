@@ -1,18 +1,22 @@
 <template>
   <div class="flex flex-col gap-y-4">
-    <AAlert variant="light">
+    <AAlert>
       Fruitcake I love liquorice apple pie croissant.
     </AAlert>
-    <AAlert color="success" variant="light">
+
+    <AAlert color="success">
       Fruitcake I love liquorice apple pie croissant.
     </AAlert>
-    <AAlert color="info" variant="light">
+
+    <AAlert color="info">
       Fruitcake I love liquorice apple pie croissant.
     </AAlert>
-    <AAlert color="warning" variant="light">
+
+    <AAlert color="warning">
       Fruitcake I love liquorice apple pie croissant.
     </AAlert>
-    <AAlert color="danger" variant="light">
+
+    <AAlert color="danger">
       Fruitcake I love liquorice apple pie croissant.
     </AAlert>
   </div>

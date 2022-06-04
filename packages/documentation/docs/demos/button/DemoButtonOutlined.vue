@@ -3,16 +3,32 @@
     <ABtn variant="outline">
       Primary
     </ABtn>
-    <ABtn color="success" variant="outline">
+
+    <ABtn
+      color="success"
+      variant="outline"
+    >
       Success
     </ABtn>
-    <ABtn color="info" variant="outline">
+
+    <ABtn
+      color="info"
+      variant="outline"
+    >
       Info
     </ABtn>
-    <ABtn color="warning" variant="outline">
+
+    <ABtn
+      color="warning"
+      variant="outline"
+    >
       Warning
     </ABtn>
-    <ABtn color="danger" variant="outline">
+
+    <ABtn
+      color="danger"
+      variant="outline"
+    >
       Danger
     </ABtn>
   </div>

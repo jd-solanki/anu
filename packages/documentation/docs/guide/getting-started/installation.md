@@ -1,4 +1,8 @@
-# Installation
+# Anu
+
+> Anu means [Atom](https://en.wikipedia.org/wiki/Atom) in [Sanskrit](https://en.wikipedia.org/wiki/Sanskrit) ⚛️
+
+## Installation
 
 Add `anu-vue` and its supporting libraries
 
