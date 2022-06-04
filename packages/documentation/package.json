@@ -1,0 +1,24 @@
+{
+  "name": "@anu-vue/documentation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@iconify-json/bx": "^1.1.2",
+    "@unocss/preset-icons": "^0.37.4",
+    "@unocss/preset-uno": "^0.37.4",
+    "unocss": "^0.37.3",
+    "vitepress": "1.0.0-alpha.1"
+  },
+  "dependencies": {
+    "anu-vue": "workspace:*"
+  }
+}

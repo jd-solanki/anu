@@ -4,22 +4,22 @@
 
 `light` is default variant for alert.
 
-:demo-alert-light
+<DemoAlertLight />
 
 ## Solid
 
 You can use `variant="fill"` to create alert with filled background.
 
-:demo-alert-colors
+<DemoAlertColors />
 
 ## Outlined
 
 You can use `variant="outline"` to create outlined alert.
 
-:demo-alert-outlined
+<DemoAlertOutlined />
 
 ## Icons
 
 You can use default slot to render icon in alert.
 
-:demo-alert-icons
+<DemoAlertIcons />
