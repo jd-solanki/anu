@@ -18,7 +18,7 @@ export default defineConfig({
     presetCore(),
     presetThemeDefault()
   ],
-  safelist: presetThemeDefault().safelist,
+  configDeps: ['../anu-vue/src/presets/theme-default/index.ts'],
   transformers: [
     transformerDirectives(),
   ],

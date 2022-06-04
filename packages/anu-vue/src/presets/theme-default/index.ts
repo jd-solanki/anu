@@ -22,6 +22,7 @@ export function presetThemeDefault(): Preset {
       ...colors.map((c) => `shadow-${c}`),
     ],
     rules: [
+      ['rounded-inherit', { 'border-radius': 'inherit' }],
       [
         /^s-(\w+)$/,
         ([, c]: string[]) => ({
@@ -42,8 +43,21 @@ export function presetThemeDefault(): Preset {
     ],
     shortcuts: [
       {
-        btn: "py-2 px-4 font-semibold rounded-lg transition duration-200 ease-in-out",
-        states: "relative after:overlay hover:after:opacity-25",
+        btn: "px-4 font-semibold rounded-lg gap-x-2 h-[40px]",
+        states: "\
+        relative \
+        before:content-empty \
+        before:absolute \
+        before:inset-0 \
+        before:rounded-inherit \
+        before:bg-current-color \
+        before:opacity-0 \
+        \
+        before:transition \
+        before:duration-200 \
+        before:ease-in-out \
+        \
+        hover:before:opacity-15"
       },
     ],
   };

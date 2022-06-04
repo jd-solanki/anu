@@ -1,22 +1,23 @@
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer';
 import { defineComponent } from "vue";
-
-// const makeColorProps = () => {
-//     return {
-//         color: {
-//             type: String,
-//             validator: val => ["primary", "success", "info", "warning", "danger"].includes(val)
-//         }
-//     }
-// }
 
 export const ABtn = defineComponent({
     name: 'ABtn',
-    // props: {
-    //     ...makeColorProps()
-    // },
-    setup(props) {
-        return () => <button class={['btn']}>
-            Button
+    props: {
+        ...useLayerProps({
+            color: {
+                default: 'primary',
+            },
+            variant: {
+                default: 'fill'
+            }
+        })
+    },
+    setup(props, { slots }) {
+        const { getLayerClasses } = useLayer()
+
+        return () => <button class={['btn flex items-center', ...getLayerClasses(props)]}>
+            {slots.default?.()}
         </button>
 
     }
