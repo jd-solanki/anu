@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "vite build --watch",
-    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "build": "vite build && vue-tsc --emitDeclarationOnly --declaration",
     "preview": "vite preview"
   },
   "dependencies": {

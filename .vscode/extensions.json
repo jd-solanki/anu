@@ -3,6 +3,8 @@
         "mgmcdermott.vscode-language-babel",
         "editorconfig.editorconfig",
         "xabikos.javascriptsnippets",
-        "vue.volar"
+        "vue.volar",
+        "dbaeumer.vscode-eslint",
+        "usernamehw.errorlens"
     ]
 }

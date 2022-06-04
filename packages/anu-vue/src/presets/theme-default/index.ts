@@ -1,50 +1,51 @@
-import type { Preset } from "@unocss/core";
-export const colors = ["primary", "success", "info", "warning", "danger"];
+import type { Preset } from '@unocss/core'
+
+export const colors = ['primary', 'success', 'info', 'warning', 'danger']
 
 export function presetThemeDefault(): Preset {
   return {
-    name: "@anu-vue/preset-theme-default",
+    name: '@anu-vue/preset-theme-default',
     theme: {
       colors: {
-        primary: "hsl(var(--primary))",
-        success: "hsl(var(--success))",
-        info: "hsl(var(--info))",
-        warning: "hsl(var(--warning))",
-        danger: "hsl(var(--danger))",
+        primary: 'hsl(var(--primary))',
+        success: 'hsl(var(--success))',
+        info: 'hsl(var(--info))',
+        warning: 'hsl(var(--warning))',
+        danger: 'hsl(var(--danger))',
       },
     },
     safelist: [
-      ...colors.map((c) => `bg-${c}`),
-      ...colors.map((c) => `hover:bg-${c}`),
+      ...colors.map(c => `bg-${c}`),
+      ...colors.map(c => `hover:bg-${c}`),
 
-      ...colors.map((c) => `border-${c}`),
-      ...colors.map((c) => `text-${c}`),
-      ...colors.map((c) => `shadow-${c}`),
+      ...colors.map(c => `border-${c}`),
+      ...colors.map(c => `text-${c}`),
+      ...colors.map(c => `shadow-${c}`),
     ],
     rules: [
       ['rounded-inherit', { 'border-radius': 'inherit' }],
       [
         /^s-(\w+)$/,
         ([, c]: string[]) => ({
-          "background-color": `hsl(var(--${c}))`,
-          color: `hsl(var(--on-${c}))`,
+          'background-color': `hsl(var(--${c}))`,
+          'color': `hsl(var(--on-${c}))`,
         }),
       ],
       [
-        "overlay",
+        'overlay',
         {
-          position: "absolute",
+          position: 'absolute',
           inset: 0,
-          content: "''",
-          background: "currentColor",
+          content: '\'\'',
+          background: 'currentColor',
           opacity: 0,
         },
       ],
     ],
     shortcuts: [
       {
-        btn: "px-4 font-semibold rounded-lg gap-x-2 h-[40px]",
-        states: "\
+        btn: 'px-4 font-semibold rounded-lg gap-x-2 h-[40px]',
+        states: '\
         relative \
         before:content-empty \
         before:absolute \
@@ -57,8 +58,8 @@ export function presetThemeDefault(): Preset {
         before:duration-200 \
         before:ease-in-out \
         \
-        hover:before:opacity-15"
+        hover:before:opacity-15',
       },
     ],
-  };
+  }
 }
