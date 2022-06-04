@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@iconify-json/bx": "^1.1.2",
+    "@nuxt/content": "^2.0.1",
     "@unocss/nuxt": "^0.37.3",
     "@unocss/preset-icons": "^0.37.3",
     "@unocss/preset-uno": "^0.37.3",

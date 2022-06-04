@@ -9,8 +9,8 @@ import { defineComponent } from "vue";
 //     }
 // }
 
-export const AButton = defineComponent({
-    name: 'AButton',
+export const ABtn = defineComponent({
+    name: 'ABtn',
     // props: {
     //     ...makeColorProps()
     // },

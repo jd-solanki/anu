@@ -1,8 +1,6 @@
 <template>
   <div>
-    <p class="text-red">Awesome</p>
-    <div class="i-bx-home"></div>
-    <AButton>Button</AButton>
+    <NuxtPage />
   </div>
 </template>
 
