@@ -10,6 +10,10 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
       type: String,
       validator: (value: string) => ['fill', 'outline', 'light'].includes(value),
     },
+    states: {
+      type: Boolean,
+      default: false,
+    },
   }
 
   // Add `defaults` property in `props` if it is provided via `defaults` argument
@@ -21,15 +25,15 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
 
 export const useLayer = () => {
   const getLayerClasses = (props: ComponentObjectPropsOptions) => {
-    const classes: string[] = []
+    const classes: string[] = [props.states ? 'states' : '']
 
     if (props.color) {
       if (props.variant === 'fill')
-        classes.push(`bg-${props.color} text-white states`)
+        classes.push(`bg-${props.color} text-white`)
       if (props.variant === 'outline')
-        classes.push(`border border-solid border-${props.color} text-${props.color} states`)
+        classes.push(`border border-solid border-${props.color} text-${props.color}`)
       if (props.variant === 'light')
-        classes.push(`bg-${props.color} bg-opacity-15 text-${props.color} states`)
+        classes.push(`bg-${props.color} bg-opacity-15 text-${props.color}`)
     }
 
     return classes

@@ -16,4 +16,10 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxt/content',
   ],
+  content: {
+    highlight: {
+      preload: ['js', 'vue', 'vue-html', 'ts'],
+      theme: 'dracula',
+    },
+  },
 })

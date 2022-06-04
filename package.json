@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cd packages/anu-vue && nr dev",
     "build": "cd packages/anu-vue && nr build",
-    "docs:dev": "cd packages/docs && nr dev"
+    "docs:dev": "cd packages/docs && nr dev",
+    "clean": "rm -rf node_modules && cd packages/anu-vue && rm -rf node_modules dist && cd ../docs && rm -rf node_modules .nuxt"
   },
   "keywords": [],
   "author": "",

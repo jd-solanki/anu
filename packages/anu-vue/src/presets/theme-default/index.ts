@@ -44,7 +44,8 @@ export function presetThemeDefault(): Preset {
     ],
     shortcuts: [
       {
-        btn: 'px-4 font-semibold rounded-lg gap-x-2 h-[40px]',
+        btn: 'px-4 font-medium rounded-lg gap-x-2 h-[40px]',
+        alert: 'p-4 font-medium rounded-lg w-full gap-x-2',
         states: '\
         relative \
         before:content-empty \

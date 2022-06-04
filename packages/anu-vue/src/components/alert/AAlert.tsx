@@ -1,28 +1,25 @@
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { defineComponent } from 'vue'
 
-export const ABtn = defineComponent({
-  name: 'ABtn',
+export const AAlert = defineComponent({
+  name: 'AAlert',
   props: {
     ...useLayerProps({
       color: {
         default: 'primary',
       },
       variant: {
-        default: 'fill',
-      },
-      states: {
-        default: true,
+        default: 'light',
       },
     }),
   },
   setup(props, { slots }) {
     const { getLayerClasses } = useLayer()
 
-    return () => <button class={['btn flex items-center', ...getLayerClasses(props)]}>
+    return () => <div class={['alert flex items-start i:flex-shrink-0', ...getLayerClasses(props)]}>
             {slots.default?.()}
-        </button>
+        </div>
   },
 })
 
-export type ABtn = InstanceType<typeof ABtn>
+export type AAlert = InstanceType<typeof AAlert>
