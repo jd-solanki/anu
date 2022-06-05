@@ -1,0 +1,24 @@
+{
+    "Demo component": {
+        "prefix": "demo",
+        "body": [
+            "<!-- 👉 ${1:Basic} -->",
+            "<Demo>",
+            "",
+            "## $1",
+            "",
+            "description",
+            "",
+            "<DemoInput$1 />",
+            "",
+            "<template #code>",
+            "",
+            "<<< @/demos/input/DemoInput$1.vue",
+            "",
+            "</template>",
+            "",
+            "</Demo>"
+        ],
+        "description": "Demo component"
+    }
+}

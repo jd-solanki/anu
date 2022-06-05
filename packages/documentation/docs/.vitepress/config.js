@@ -21,6 +21,7 @@ export default defineConfig({
           items: [
             { text: 'Alert', link: '/guide/components/alert' },
             { text: 'Button', link: '/guide/components/button' },
+            { text: 'Input', link: '/guide/components/input' },
           ],
         },
         {

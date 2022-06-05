@@ -2,12 +2,53 @@
 
 Stay tuned...
 
+## Label
+
+Label via prop & slot
+
+<div class="grid grid-cols-2 gap-x-6">
+    <div>
+        <ABaseInput label="Label">
+            <template #default="props">
+                <input type="text" v-bind="props" />
+            </template>
+        </ABaseInput>
+    </div>
+    <div>
+        <ABaseInput id="form-x">
+            <template #label>
+                <label for="a-input-form-x">
+                    <span>Awesome </span>
+                    <span class="text-red">*</span>
+                </label>
+            </template>
+            <template #default="props">
+                <input type="text" v-bind="props" />
+            </template>
+        </ABaseInput>
+    </div>
+</div>
+
+## Placeholder
+
+placeholder
+
+<div class="grid grid-cols-2">
+    <div>
+        <ABaseInput placeholder="Enter your email">
+            <template #default="props">
+                <input type="text" v-bind="props" />
+            </template>
+        </ABaseInput>
+    </div>
+</div>
+
 
 ## Outer Slots
 
 Default slot
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="text" v-bind="props" />
 </template>
@@ -15,7 +56,7 @@ Default slot
 
 Prepend slot
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #prepend>
 <i class="i-bx-info-circle"></i>
 </template>
@@ -26,7 +67,7 @@ Prepend slot
 
 Append slot
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="text" v-bind="props" />
 </template>
@@ -37,7 +78,7 @@ Append slot
 
 Prepend & Append slot
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #prepend>
 <i class="i-bx-info-circle"></i>
 </template>
@@ -54,7 +95,7 @@ Prepend & Append slot
 
 Prepend inner slot
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #prepend-inner>
 <i class="i-bx-dollar"></i>
 </template>
@@ -65,7 +106,7 @@ Prepend inner slot
 
 Append inner slot
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="text" v-bind="props" />
 </template>
@@ -76,7 +117,7 @@ Append inner slot
 
 Prepend & Append inner slot
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #prepend-inner>
 <i class="i-bx-dollar"></i>
 </template>
@@ -92,7 +133,7 @@ Prepend & Append inner slot
 
 Hint
 
-<ABaseInput class="w-64" hint="We never share your email with anyone">
+<ABaseInput hint="We never share your email with anyone">
 <template #prepend-inner>
 <i class="i-bx-at"></i>
 </template>
@@ -104,7 +145,7 @@ Hint
 Bottom slot
 
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="text" v-bind="props" />
 </template>
@@ -115,7 +156,7 @@ Bottom slot
 
 Error
 
-<ABaseInput class="w-64" error="This field is required">
+<ABaseInput error="This field is required">
 <template #prepend-inner>
 <i class="i-bx-at"></i>
 </template>
@@ -128,7 +169,7 @@ Error
 
 Text
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="text" v-bind="props" />
 </template>
@@ -136,7 +177,7 @@ Text
 
 Password
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="password" v-bind="props" />
 </template>
@@ -144,7 +185,7 @@ Password
 
 Search
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="search" v-bind="props" />
 </template>
@@ -152,7 +193,7 @@ Search
 
 url
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="url" v-bind="props" />
 </template>
@@ -160,7 +201,7 @@ url
 
 number
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="number" v-bind="props" />
 </template>
@@ -168,7 +209,7 @@ number
 
 Date
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="date" v-bind="props" />
 </template>
@@ -176,7 +217,7 @@ Date
 
 time
 
-<ABaseInput class="w-64">
+<ABaseInput>
 <template #default="props">
 <input type="time" v-bind="props" />
 </template>
