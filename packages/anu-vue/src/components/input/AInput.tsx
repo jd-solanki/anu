@@ -9,7 +9,7 @@ export const AInput = defineComponent({
     setup(props, { slots, emit, attrs }) {
         const isInputTypeFile = attrs.type && attrs.type === 'file'
 
-        return () => <ABaseInput {...attrs} input-wrapper-classes={isInputTypeFile ? '!px-0' : null}>
+        return () => <ABaseInput {...attrs}>
             {{
                 // Recursively pass down slots
                 ...slots,
@@ -18,7 +18,7 @@ export const AInput = defineComponent({
                         {...slotProps}
                         value={props.modelValue}
                         onInput={(event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).value)}
-                        class={isInputTypeFile ? "file:rounded-lg file:border-none file:mr-4 file:px-4 file:py-3 file:text-gray-500 file:rounded-r-none file:bg-gray-100" : null}
+                        class={isInputTypeFile ? "file:rounded-lg file:border-none file:mr-4 file:px-4 file:py-3 file:text-gray-500 file:rounded-r-none file:bg-gray-100 !px-0" : null}
                     />
             }}
         </ABaseInput >

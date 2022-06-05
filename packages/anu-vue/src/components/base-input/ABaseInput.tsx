@@ -14,9 +14,10 @@ export const ABaseInput = defineComponent({
         appendInnerIcon: String,
     },
     setup(props, { slots, attrs }) {
+        const iconTransition = "transition duration-150 ease -in"
         const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}` : undefined
 
-        return () => <div class={["flex flex-col gap-y-1", props.inputContainerClasses]}>
+        return () => <div class={["i:children:focus-within:text-primary flex flex-col gap-y-1", props.inputContainerClasses]}>
             {/* 👉 Label */}
             {
                 slots.label
@@ -32,25 +33,28 @@ export const ABaseInput = defineComponent({
                     slots.prepend
                         ? slots.prepend?.()
                         : props.prependIcon
-                            ? <i class={props.prependIcon} />
+                            ? <i class={[iconTransition, props.prependIcon]} />
                             : null
                 }
 
                 {/* SECTION Input wrapper */}
-                <div class={['focus-within:border-primary transition duration-250 ease-out flex i:flex-shrink-0 i:w-5 i:h-5 gap-x-2 items-center h-12 border border-solid border-[hsl(var(--border-color))] w-full rounded-lg', slots['prepend-inner'] ? 'pl-3' : 'pl-4', slots['append-inner'] ? 'pr-3' : 'pr-4', props.inputWrapperClasses]}>
+                <div class={[
+                    'relative focus-within:border-primary i:focus-within:text-primary transition duration-250 ease-out flex i:flex-shrink-0 i:w-5 i:h-5 gap-x-2 items-center h-12 border border-solid border-[hsl(var(--border-color))] w-full rounded-lg',
+                    props.inputWrapperClasses
+                ]}>
 
                     {/* 👉 Slot: Prepend Inner */}
                     {
                         slots['prepend-inner']
                             ? slots['prepend-inner']?.()
                             : props.prependInnerIcon
-                                ? <i class={props.prependInnerIcon} />
+                                ? <i class={['inline-block ml-3 z-1', iconTransition, props.prependInnerIcon]} />
                                 : null
                     }
 
                     {/* 👉 Slot: Default */}
                     {slots.default?.({
-                        class: `w-full h-full ${attrs.hasOwnProperty('disabled') ? 'bg-gray-200 opacity-50' : ''}`,
+                        class: ["absolute inset-0 rounded-inherit placeholder:transition placeholder:duration-250 placeholder:ease  focus:placeholder:translate-x-1", slots['prepend-inner'] || props.prependInnerIcon ? 'pl-10' : 'pl-4', slots['append-inner'] || props.appendInnerIcon ? 'pr-10' : 'pr-4', `${attrs.hasOwnProperty('disabled') ? 'bg-gray-200 opacity-50' : ''}`],
                         ...attrs,
                         id: elementId,
                     })}
@@ -60,7 +64,7 @@ export const ABaseInput = defineComponent({
                         slots['append-inner']
                             ? slots['append-inner']?.()
                             : props.appendInnerIcon
-                                ? <i class={props.appendInnerIcon} />
+                                ? <i class={['inline-block mr-3 ml-auto', iconTransition, props.appendInnerIcon]} />
                                 : null
                     }
                 </div>
@@ -71,7 +75,7 @@ export const ABaseInput = defineComponent({
                     slots.append
                         ? slots.append?.()
                         : props.appendIcon
-                            ? <i class={props.appendIcon} />
+                            ? <i class={[iconTransition, props.appendIcon]} />
                             : null
                 }
             </div>
