@@ -23,6 +23,12 @@ export default defineConfig({
             { text: 'Button', link: '/guide/components/button' },
           ],
         },
+        {
+          text: 'Base Components',
+          items: [
+            { text: 'Base Input', link: '/guide/base-components/base-input' },
+          ],
+        },
       ],
     },
   },
