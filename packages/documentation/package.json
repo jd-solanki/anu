@@ -19,6 +19,7 @@
     "vitepress": "1.0.0-alpha.1"
   },
   "dependencies": {
-    "anu-vue": "workspace:*"
+    "anu-vue": "workspace:*",
+    "vee-validate": "^4.5.11"
   }
 }

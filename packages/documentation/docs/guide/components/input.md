@@ -138,3 +138,24 @@ Use `disabled` attribute to make input disabled.
 </template>
 
 </Demo>
+
+<!-- 👉 Validation -->
+<Demo>
+
+## Validation
+
+Anu do not provide any validation mechanism at the moment as it assume it's better handled by third-party libraries like [VeeValidate](https://vee-validate.logaretm.com/)
+
+<div class="grid grid-cols-2">
+    <div>
+        <DemoInputValidation />
+    </div>
+</div>
+
+<template #code>
+
+<<< @/demos/input/DemoInputValidation.vue
+
+</template>
+
+</Demo>

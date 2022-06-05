@@ -23,7 +23,7 @@ export const ABaseInput = defineComponent({
                 slots.label
                     ? slots.label?.()
                     : props.label
-                        ? <label for={elementId}>{props.label}</label>
+                        ? <label for={elementId} class={['a-base-input-label', props.error ? 'text-danger' : null]}>{props.label}</label>
                         : null
             }
 
@@ -39,7 +39,8 @@ export const ABaseInput = defineComponent({
 
                 {/* SECTION Input wrapper */}
                 <div class={[
-                    'relative focus-within:border-primary i:focus-within:text-primary transition duration-250 ease-out flex i:flex-shrink-0 i:w-5 i:h-5 gap-x-2 items-center h-12 border border-solid border-[hsl(var(--border-color))] w-full rounded-lg',
+                    `${props.error ? 'border-danger' : 'focus-within:border-primary'}`,
+                    'relative i:focus-within:text-primary transition duration-250 ease-out flex i:flex-shrink-0 i:w-5 i:h-5 gap-x-2 items-center h-12 border border-solid border-[hsl(var(--border-color))] w-full rounded-lg',
                     props.inputWrapperClasses
                 ]}>
 

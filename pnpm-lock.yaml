@@ -9,9 +9,11 @@ importers:
       '@unocss/preset-uno': ^0.37.4
       anu-vue: workspace:*
       unocss: ^0.37.3
+      vee-validate: ^4.5.11
       vitepress: 1.0.0-alpha.1
     dependencies:
       anu-vue: link:../anu-vue
+      vee-validate: 4.5.11
     devDependencies:
       '@iconify-json/bx': 1.1.2
       '@unocss/preset-icons': 0.37.4
@@ -437,6 +439,10 @@ packages:
       '@vue/compiler-dom': 3.2.36
       '@vue/shared': 3.2.36
     dev: true
+
+  /@vue/devtools-api/6.1.4:
+    resolution: {integrity: sha512-IiA0SvDrJEgXvVxjNkHPFfDx6SXw0b/TUkqMcDZWNg9fnCAHbTpoo59YfJ9QLFkwa3raau5vSlRVzMSLDnfdtQ==}
+    dev: false
 
   /@vue/reactivity-transform/3.2.36:
     resolution: {integrity: sha512-Jk5o2BhpODC9XTA7o4EL8hSJ4JyrFWErLtClG3NH8wDS7ri9jBDWxI7/549T7JY9uilKsaNM+4pJASLj5dtRwA==}
@@ -1293,6 +1299,14 @@ packages:
       - supports-color
       - vite
     dev: true
+
+  /vee-validate/4.5.11:
+    resolution: {integrity: sha512-bNF2TtuRnLnPsw6+Q/P3bMx8c2iJbvQmyikTr9r65PLAdqtdhQxnsIS3ayYNIzNWZ50sysv01DteN9h3XT/gFg==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vue/devtools-api': 6.1.4
+    dev: false
 
   /vite/2.9.9:
     resolution: {integrity: sha512-ffaam+NgHfbEmfw/Vuh6BHKKlI/XIAhxE5QSS7gFLIngxg171mg1P3a4LSRME0z2ZU1ScxoKzphkipcYwSD5Ew==}
