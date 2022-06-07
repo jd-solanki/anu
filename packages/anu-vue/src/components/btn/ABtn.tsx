@@ -20,8 +20,8 @@ export const ABtn = defineComponent({
     const { getLayerClasses } = useLayer()
 
     return () => <button class={['btn flex items-center', ...getLayerClasses(props)]}>
-            {slots.default?.()}
-        </button>
+      {slots.default?.()}
+    </button>
   },
 })
 

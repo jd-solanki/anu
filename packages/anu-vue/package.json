@@ -17,6 +17,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@floating-ui/dom": "^0.5.2",
     "vue": "^3.2.25"
   },
   "devDependencies": {

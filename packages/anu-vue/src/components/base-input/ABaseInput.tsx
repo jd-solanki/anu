@@ -1,10 +1,10 @@
+import { isEleDisabled, isEleInteractive } from '@/utils/dom';
 import { defineComponent, PropType } from 'vue';
-
 export const ABaseInput = defineComponent({
     name: 'ABaseInput',
     props: {
-        inputContainerClasses: [Array, String, Object] as PropType<string | string[] | object>,
         inputWrapperClasses: [Array, String, Object] as PropType<string | string[] | object>,
+        inputContainerAttrs: Object,
         hint: String,
         error: String,
         label: String,
@@ -14,10 +14,11 @@ export const ABaseInput = defineComponent({
         appendInnerIcon: String,
     },
     setup(props, { slots, attrs }) {
+        console.log('attrs :>> ', attrs);
         const iconTransition = "transition duration-150 ease -in"
         const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}` : undefined
 
-        return () => <div class={["i:children:focus-within:text-primary flex flex-col gap-y-1", props.inputContainerClasses]}>
+        return () => <div class={["i:children:focus-within:text-primary flex flex-col gap-y-1"]}>
             {/* 👉 Label */}
             {
                 slots.label
@@ -27,7 +28,7 @@ export const ABaseInput = defineComponent({
                         : null
             }
 
-            <div class="flex i:flex-shrink-0 i:w-6 i:h-6 gap-x-3 items-center">
+            <div class="flex i:flex-shrink-0 i:w-6 i:h-6 gap-x-3 items-center" {...props.inputContainerAttrs}>
                 {/* 👉 Slot: Prepend */}
                 {
                     slots.prepend
@@ -41,7 +42,7 @@ export const ABaseInput = defineComponent({
                 <div class={[
                     `${props.error ? 'border-danger' : 'focus-within:border-primary'}`,
                     'relative i:focus-within:text-primary transition duration-250 ease-out flex i:flex-shrink-0 i:w-5 i:h-5 gap-x-2 items-center h-12 border border-solid border-[hsl(var(--border-color))] w-full rounded-lg',
-                    props.inputWrapperClasses
+                    props.inputWrapperClasses,
                 ]}>
 
                     {/* 👉 Slot: Prepend Inner */}
@@ -55,7 +56,13 @@ export const ABaseInput = defineComponent({
 
                     {/* 👉 Slot: Default */}
                     {slots.default?.({
-                        class: ["absolute inset-0 rounded-inherit placeholder:transition placeholder:duration-250 placeholder:ease  focus:placeholder:translate-x-1", slots['prepend-inner'] || props.prependInnerIcon ? 'pl-10' : 'pl-4', slots['append-inner'] || props.appendInnerIcon ? 'pr-10' : 'pr-4', `${attrs.hasOwnProperty('disabled') ? 'bg-gray-200 opacity-50' : ''}`],
+                        class: [
+                            "absolute inset-0 rounded-inherit",
+                            slots['prepend-inner'] || props.prependInnerIcon ? 'pl-10' : 'pl-4',
+                            slots['append-inner'] || props.appendInnerIcon ? 'pr-10' : 'pr-4',
+                            `${isEleDisabled(attrs) ? 'bg-gray-200 opacity-50' : ''}`,
+                            `${isEleInteractive(attrs) ? 'placeholder:transition placeholder:duration-250 placeholder:ease  focus:placeholder:translate-x-1' : ''}`
+                        ],
                         ...attrs,
                         id: elementId,
                     })}
