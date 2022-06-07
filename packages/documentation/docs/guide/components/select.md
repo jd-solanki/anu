@@ -7,7 +7,11 @@
 
 You can use `ASelect` component to render basic select.
 
-<DemoSelectBasic />
+<div class="grid grid-cols-2">
+    <div>
+        <DemoSelectBasic />
+    </div>
+</div>
 
 <template #code>
 

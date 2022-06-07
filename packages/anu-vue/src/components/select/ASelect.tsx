@@ -17,7 +17,7 @@ export const ASelect = defineComponent({
         const isOptionsVisible = ref(false)
 
         const calculateFloatingPosition = async () => {
-            const { x, y } = await computePosition(refReference.value.$el, refFloating.value, {
+            const { x, y } = await computePosition(refReference.value.refInputContainer, refFloating.value, {
                 placement: 'bottom-start',
                 middleware: [
                     offset(6),
@@ -43,7 +43,7 @@ export const ASelect = defineComponent({
 
         let floatingUiCleanup: Function = () => { }
         onMounted(() => {
-            floatingUiCleanup = autoUpdate(refReference.value.$el, refFloating.value, calculateFloatingPosition)
+            floatingUiCleanup = autoUpdate(refReference.value.refInputContainer, refFloating.value, calculateFloatingPosition)
         })
         onBeforeUnmount(() => floatingUiCleanup())
 
@@ -69,7 +69,6 @@ export const ASelect = defineComponent({
         // TODO: You can use it as utility in another components
         const isEleInteractive = Object.prototype.hasOwnProperty.call(attrs, 'disabled') || Object.prototype.hasOwnProperty.call(attrs, 'readonly')
         const openOptions = (e: Event) => {
-            console.log('object', e);
             if (!isEleInteractive) isOptionsVisible.value = !isOptionsVisible.value
         }
 

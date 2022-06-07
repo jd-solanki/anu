@@ -1,5 +1,6 @@
 import { isEleDisabled, isEleInteractive } from '@/utils/dom';
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
+
 export const ABaseInput = defineComponent({
     name: 'ABaseInput',
     props: {
@@ -13,12 +14,18 @@ export const ABaseInput = defineComponent({
         prependInnerIcon: String,
         appendInnerIcon: String,
     },
-    setup(props, { slots, attrs }) {
-        console.log('attrs :>> ', attrs);
+    setup(props, { slots, attrs, expose }) {
         const iconTransition = "transition duration-150 ease -in"
         const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}` : undefined
 
-        return () => <div class={["i:children:focus-within:text-primary flex flex-col gap-y-1"]}>
+        const refRoot = ref()
+        const refInputContainer = ref()
+        expose({
+            refRoot: refRoot,
+            refInputContainer: refInputContainer,
+        })
+
+        return () => <div class={["i:children:focus-within:text-primary flex flex-col gap-y-1"]} ref={refRoot}>
             {/* 👉 Label */}
             {
                 slots.label
@@ -28,7 +35,7 @@ export const ABaseInput = defineComponent({
                         : null
             }
 
-            <div class="flex i:flex-shrink-0 i:w-6 i:h-6 gap-x-3 items-center" {...props.inputContainerAttrs}>
+            <div ref={refInputContainer} class="flex i:flex-shrink-0 i:w-6 i:h-6 gap-x-3 items-center" {...props.inputContainerAttrs}>
                 {/* 👉 Slot: Prepend */}
                 {
                     slots.prepend
