@@ -74,7 +74,7 @@ export const ASelect = defineComponent({
 
         return () => <>
             {/* TODO: Make sure we don't bind input's `type` attr here */}
-            <ABaseInput {...attrs} appendInnerIcon="i-bx-chevron-down" ref={refReference} inputContainerAttrs={{
+            <ABaseInput appendInnerIcon="i-bx-chevron-down" {...attrs} ref={refReference} inputContainerAttrs={{
                 onClick: openOptions,
             }}>
                 {{
@@ -86,7 +86,6 @@ export const ASelect = defineComponent({
                             value={props.modelValue}
                             onInput={(event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).value)}
                             readonly
-                            placeholder="Please select"
                         />
                 }}
             </ABaseInput>
