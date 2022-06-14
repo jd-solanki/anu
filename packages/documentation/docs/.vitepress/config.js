@@ -23,6 +23,7 @@ export default defineConfig({
             { text: 'Button', link: '/guide/components/button' },
             { text: 'Input', link: '/guide/components/input' },
             { text: 'Select', link: '/guide/components/select' },
+            { text: 'Textarea', link: '/guide/components/textarea' },
           ],
         },
         {

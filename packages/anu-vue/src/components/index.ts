@@ -4,4 +4,5 @@ export { ABtn } from './btn'
 export { ADrawer } from './drawer'
 export { AInput } from './input'
 export { ASelect } from './select'
+export { ATextarea } from './textarea'
 
