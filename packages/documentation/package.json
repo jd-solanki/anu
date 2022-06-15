@@ -13,10 +13,10 @@
   "license": "ISC",
   "devDependencies": {
     "@iconify-json/bx": "^1.1.2",
-    "@unocss/preset-icons": "^0.37.4",
-    "@unocss/preset-uno": "^0.37.4",
-    "unocss": "^0.37.3",
-    "vitepress": "1.0.0-alpha.1"
+    "@unocss/preset-icons": "^0.39.0",
+    "@unocss/preset-uno": "0.28.1",
+    "unocss": "^0.39.0",
+    "vitepress": "1.0.0-alpha.2"
   },
   "dependencies": {
     "anu-vue": "workspace:*",

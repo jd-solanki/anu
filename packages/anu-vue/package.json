@@ -17,16 +17,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@floating-ui/dom": "^0.5.2",
-    "vue": "^3.2.25"
+    "@floating-ui/dom": "^0.5.3",
+    "vue": "^3.2.37"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
     "@vitejs/plugin-vue-jsx": "^1.3.10",
-    "sass": "^1.52.2",
+    "sass": "^1.52.3",
     "typescript": "^4.5.4",
-    "unocss": "^0.37.3",
-    "vite": "^2.9.9",
-    "vue-tsc": "^0.34.7"
+    "unocss": "^0.39.0",
+    "vite": "^2.9.12",
+    "vue-tsc": "^0.37.8"
   }
 }
