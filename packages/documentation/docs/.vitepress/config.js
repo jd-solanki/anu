@@ -25,6 +25,7 @@ export default defineConfig({
             { text: 'Select', link: '/guide/components/select' },
             { text: 'Textarea', link: '/guide/components/textarea' },
             { text: 'Checkbox', link: '/guide/components/checkbox' },
+            { text: 'Radio', link: '/guide/components/radio' },
           ],
         },
         {

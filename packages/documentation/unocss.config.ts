@@ -2,7 +2,8 @@ import { presetCore, presetThemeDefault } from 'anu-vue'
 import {
   defineConfig,
   presetIcons,
-  presetUno
+  presetUno,
+  transformerVariantGroup,
 } from 'unocss'
 
 export default defineConfig({
@@ -18,6 +19,9 @@ export default defineConfig({
     // anu-vue presets
     presetCore(),
     presetThemeDefault(),
+  ],
+  transformers: [
+    transformerVariantGroup(),
   ],
   configDeps: ['../anu-vue/src/presets/theme-default/index.ts'],
   include: [/.*\/anu-vue\.mjs(.*)?$/, './**/*.vue', './**/*.md'],

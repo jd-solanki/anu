@@ -21,6 +21,7 @@ export function presetThemeDefault(): Preset {
       ...colors.map(c => `border-${c}`),
       ...colors.map(c => `text-${c}`),
       ...colors.map(c => `shadow-${c}`),
+      ...colors.map(c => `after:bg-${c}`),
       ...colors.map(c => `next:checked:bg-${c}`),
       ...colors.map(c => `next:checked:border-${c}`),
     ],
