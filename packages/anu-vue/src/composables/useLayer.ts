@@ -1,11 +1,9 @@
 import type { ComponentObjectPropsOptions } from 'vue'
+import { color } from '@/composables/useProps'
 
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
-    color: {
-      type: String,
-      validator: (value: string) => ['primary', 'success', 'info', 'warning', 'danger'].includes(value),
-    },
+    color,
     variant: {
       type: String,
       validator: (value: string) => ['fill', 'outline', 'light'].includes(value),
