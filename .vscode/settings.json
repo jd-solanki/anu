@@ -1,5 +1,5 @@
 {
     "[markdown]": {
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-    }
+    },
 }
