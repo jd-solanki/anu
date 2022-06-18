@@ -9,23 +9,27 @@ const data = ref([])
     <ACheckbox
       v-model="data"
       value="apple"
-    >
-      Apple
-    </ACheckbox>
+      label="Apple"
+    />
 
     <ACheckbox
       v-model="data"
       value="banana"
-    >
-      Banana
-    </ACheckbox>
+      label="Banana"
+    />
 
     <ACheckbox
       v-model="data"
       value="watermelon"
-    >
-      Watermelon
-    </ACheckbox>
+      label="Watermelon"
+    />
+
+    <ACheckbox
+      v-model="data"
+      value="orange"
+      disabled
+      label="Orange"
+    />
 
     <p>Selected: {{ data }}</p>
   </div>

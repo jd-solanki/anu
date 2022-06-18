@@ -32,7 +32,7 @@ export const ACheckbox = defineComponent({
             />
             <div class={[
                 "h-5 w-5 border-(2 [hsl(var(--border-color))] rounded)  flex items-center justify-center shrink-0 transition transition-border duration-200 mr-2",
-                `${isEleDisabled(attrs) ? 'border-dotted opacity-50' : 'border-solid'}`,
+                `${isEleDisabled(attrs) ? 'border-dashed' : 'border-solid'}`,
             ]}>
                 <i class={[props.icon, "shrink-0 scale-0 transition duration-150 delay-100 ease-[cubic-bezier(.57,1.48,.87,1.09)] text-white"]} />
             </div>
