@@ -51,6 +51,23 @@ You can use `variant="light"` to create button with light background _(Backgroun
 
 </Demo>
 
+<!-- 👉 Text -->
+<Demo>
+
+## Text
+
+Use `variant="text"` to create a text button.
+
+<DemoButtonText />
+
+<template #code>
+
+<<< @/demos/button/DemoButtonText.vue
+
+</template>
+
+</Demo>
+
 <!-- 👉 Icons -->
 <Demo>
 
@@ -60,9 +77,98 @@ You can use default slot to render icon in button.
 
 <DemoButtonIcons />
 
+:::details You can also use default slot to render icon.
+
+```vue
+<template>
+  <ABtn>
+    <i class="i-bx-star" />
+    <span>Primary</span>
+  </ABtn>
+</template>
+```
+
+:::
+
 <template #code>
 
 <<< @/demos/button/DemoButtonIcons.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Block -->
+<Demo>
+
+## Block
+
+Add `w-full` class to make block button.
+
+<DemoButtonBlock />
+
+:::info
+In above code example, block with take full width even if we don't give `w-full` class.
+:::
+
+<template #code>
+
+<<< @/demos/button/DemoButtonBlock.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Icon Only -->
+<Demo>
+
+## Icon Only
+
+Use `icon-only` prop to render icon with icon only button.
+
+<DemoButtonIconOnly />
+
+<template #code>
+
+<<< @/demos/button/DemoButtonIconOnly.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Sizing -->
+<Demo>
+
+## Sizing
+
+You can use font-size utility to adjust the size of button.
+
+<DemoButtonSizing />
+
+:::tip
+If you have container with bigger font size and need default sized button use `text-base` class.
+:::
+
+<template #code>
+
+<<< @/demos/button/DemoButtonSizing.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Roundness -->
+<Demo>
+
+## Roundness
+
+You can adjust button roundness using border-radius utilities.
+
+<DemoButtonRoundness />
+
+<template #code>
+
+<<< @/demos/button/DemoButtonRoundness.vue
 
 </template>
 

@@ -34,6 +34,7 @@ importers:
       unocss: ^0.39.0
       vite: ^2.9.12
       vue: ^3.2.37
+      vue-router: '4'
       vue-tsc: ^0.37.8
     dependencies:
       '@floating-ui/dom': 0.5.3
@@ -45,6 +46,7 @@ importers:
       typescript: 4.7.3
       unocss: 0.39.0_vite@2.9.12
       vite: 2.9.12_sass@1.52.3
+      vue-router: 4.0.16_vue@3.2.37
       vue-tsc: 0.37.8_typescript@4.7.3
 
   packages/documentation:
@@ -3749,6 +3751,15 @@ packages:
       semver: 7.3.7
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vue-router/4.0.16_vue@3.2.37:
+    resolution: {integrity: sha512-JcO7cb8QJLBWE+DfxGUL3xUDOae/8nhM1KVdnudadTAORbuxIC/xAydC5Zr/VLHUDQi1ppuTF5/rjBGzgzrJNA==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.1.4
+      vue: 3.2.37
     dev: true
 
   /vue-tsc/0.37.8_typescript@4.7.3:

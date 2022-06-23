@@ -29,6 +29,7 @@ export default defineConfig({
       scale: 1.2,
       extraProperties: {
         height: '24px',
+        'flex-shrink': '0',
       },
     }),
 

@@ -27,6 +27,10 @@
     "typescript": "^4.5.4",
     "unocss": "^0.39.0",
     "vite": "^2.9.12",
+    "vue-router": "4",
     "vue-tsc": "^0.37.8"
+  },
+  "peerDependencies": {
+    "vue-router": "4"
   }
 }

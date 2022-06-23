@@ -15,12 +15,19 @@ export const ABtn = defineComponent({
         default: true,
       },
     }),
+    icon: {
+      type: String,
+    },
+    iconOnly: {
+      type: Boolean,
+      default: false,
+    }
   },
   setup(props, { slots }) {
     const { getLayerClasses } = useLayer()
 
-    return () => <button class={['btn flex items-center', ...getLayerClasses(props)]}>
-      {slots.default?.()}
+    return () => <button class={[props.iconOnly ? 'btn-icon-only' : 'btn', 'inline-flex justify-center items-center', ...getLayerClasses(props)]}>
+      {props.icon ? <i class={props.icon}></i> : null}{slots.default?.()}
     </button>
   },
 })
