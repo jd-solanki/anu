@@ -1,5 +1,5 @@
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
-import { defineComponent } from 'vue'
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer';
+import { defineComponent, ref, watch } from 'vue';
 
 export const AAlert = defineComponent({
   name: 'AAlert',
@@ -12,13 +12,49 @@ export const AAlert = defineComponent({
         default: 'light',
       },
     }),
+    icon: {
+      type: String,
+    },
+    appendIcon: {
+      type: String,
+    },
+    dismissible: {
+      type: Boolean,
+      default: false,
+    },
+    modelValue: {
+      type: Boolean,
+      default: null,
+    },
   },
-  setup(props, { slots }) {
+  setup(props, { slots, emit }) {
     const { getLayerClasses } = useLayer()
 
-    return () => <div class={['alert flex items-start i:flex-shrink-0', ...getLayerClasses(props)]}>
-            {slots.default?.()}
-        </div>
+    const isAlertVisible = ref(props.modelValue ?? true)
+    watch(isAlertVisible, val => {
+      emit('update:modelValue', val)
+    })
+
+    // 👉 Append icon
+    const appendIcon = props.appendIcon || (props.dismissible ? "i-bx-x" : null)
+    const handleAppendIconClick = (e: Event) => {
+      // If alert is dismissible remove/close alert
+      if (props.dismissible) isAlertVisible.value = false
+
+      // Emit append icon click event
+      emit('click:appendIcon')
+    }
+
+    // TODO: Omit writing `props.modelValue ??` multiple times
+    return () => <div class={['alert items-start i:flex-shrink-0', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...getLayerClasses(props)]}>
+      {props.icon ? <i class={props.icon}></i> : null}
+      <div class="flex-grow">{slots.default?.()}{isAlertVisible.value.toString()}</div>
+      {
+        appendIcon
+          ? <i class={[appendIcon, { 'cursor-pointer': props.dismissible }]} onClick={handleAppendIconClick}></i>
+          : null
+      }
+    </div>
   },
 })
 
