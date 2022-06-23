@@ -73,7 +73,9 @@ Use `variant="text"` to create a text button.
 
 ## Icons
 
-You can use default slot to render icon in button.
+You can use `icon` prop to render icon in button.
+
+Use `append-icon` prop to render icon after default slot.
 
 <DemoButtonIcons />
 
