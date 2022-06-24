@@ -109,10 +109,6 @@ Add `w-full` class to make block button.
 
 <DemoButtonBlock />
 
-:::info
-In above code example, block with take full width even if we don't give `w-full` class.
-:::
-
 <template #code>
 
 <<< @/demos/button/DemoButtonBlock.vue

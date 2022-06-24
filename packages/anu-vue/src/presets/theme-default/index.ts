@@ -47,7 +47,8 @@ export function presetThemeDefault(): Preset {
     ],
     shortcuts: [
       {
-        'btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em]',
+        'grid-row': 'grid gap-4 place-items-start',
+        'btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em] whitespace-nowrap',
         'btn-icon-only': 'font-medium rounded-lg h-[40px] w-[40px] i:text-xl',
         'alert': 'p-4 font-medium rounded-lg w-full gap-x-2',
         'states': '\

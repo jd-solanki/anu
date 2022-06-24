@@ -5,7 +5,7 @@ const isVisible = ref(true)
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-4">
+  <div class="grid-row">
     <AAlert v-model="isVisible">
       <span>Fruitcake I love liquorice apple pie croissant.</span>
     </AAlert>

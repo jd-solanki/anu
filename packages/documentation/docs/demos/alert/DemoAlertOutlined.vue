@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-y-4">
+  <div class="grid-row">
     <AAlert variant="outline">
       Fruitcake I love liquorice apple pie croissant.
     </AAlert>

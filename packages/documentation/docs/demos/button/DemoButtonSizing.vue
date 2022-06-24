@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-4">
+  <div class="flex flex-wrap gap-4">
     <!-- 👉 xs -->
     <ABtn class="text-xs">
       text-xs

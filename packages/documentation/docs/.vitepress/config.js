@@ -14,6 +14,7 @@ export default defineConfig({
           text: 'Getting Started',
           items: [
             { text: 'Installation', link: '/guide/getting-started/installation' },
+            { text: 'Grid', link: '/guide/getting-started/grid' },
           ],
         },
         {

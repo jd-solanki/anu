@@ -1,6 +1,6 @@
 <template>
   <!-- 👉 Star -->
-  <div class="flex gap-x-4 gap-y-2">
+  <div class="flex gap-x-4 flex-wrap gap-y-2">
     <ABtn icon="i-bx-star">
       <span>Primary</span>
     </ABtn>
@@ -27,7 +27,7 @@
   </div>
 
   <!-- 👉 Dollar Circle -->
-  <div class="mt-8 flex gap-x-4 gap-y-2">
+  <div class="mt-8 flex gap-x-4 flex-wrap gap-y-2">
     <ABtn
       color="success"
       icon="i-bx-dollar-circle"
@@ -61,7 +61,7 @@
   </div>
 
   <!-- 👉 Heart -->
-  <div class="mt-8 flex gap-x-4 gap-y-2">
+  <div class="mt-8 flex gap-x-4 flex-wrap gap-y-2">
     <ABtn
       color="danger"
       icon="i-bx-heart"

@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 gap-x-4">
+  <div class="grid-row grid-cols-2">
     <ABtn class="w-full">
       Primary
     </ABtn>
