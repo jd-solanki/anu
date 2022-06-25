@@ -44,7 +44,7 @@
       />
     </div>
 
-    <!-- 👉 Customer -->
+    <!-- 👉 Returns -->
     <div class="flex gap-x-3 items-center">
       <ABtn
         icon-only
