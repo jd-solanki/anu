@@ -28,7 +28,7 @@ export default defineConfig({
     presetIcons({
       scale: 1.2,
       extraProperties: {
-        height: '24px',
+        height: '1.5em',
         'flex-shrink': '0',
       },
     }),
@@ -43,9 +43,9 @@ export default defineConfig({
 ```
 
 :::warning
-Update highlighted line in above code snippet according line height if your app.
+Update highlighted line in above code snippet according line height if your app using `em` unit.
 
-e.g. For VitePress line height of paragraph is `24px`. Hence, we have height of `24px` in docs.
+e.g. For VitePress line height of paragraph is `24px`. Hence, we have height of `1.5em` in docs.
 :::
 
 Update your `main.ts` file like below:

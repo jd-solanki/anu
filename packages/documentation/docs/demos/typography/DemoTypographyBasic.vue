@@ -1,5 +1,5 @@
 <template>
-  <AHeading
+  <ATypography
     title="Title"
     subtitle="This is subtitle"
   />

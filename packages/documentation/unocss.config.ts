@@ -11,8 +11,9 @@ export default defineConfig({
     presetUno(),
     presetIcons({
       scale: 1.2,
+      unit: 'em',
       extraProperties: {
-        'height': '24px',
+        'height': '1.5em',
         'flex-shrink': '0',
       },
     }),

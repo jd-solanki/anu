@@ -13,6 +13,21 @@ export function presetThemeDefault(): Preset {
         warning: 'hsl(var(--warning))',
         danger: 'hsl(var(--danger))',
       },
+      fontSize: {
+        rxs: ['0.75em', '1em'],
+        rsm: ['0.875em', '1.25em'],
+        rbase: ['1em', '1.5em'],
+        rlg: ['1.125em', '1.75em'],
+        rxl: ['1.25em', '1.75em'],
+        r2xl: ['1.5em', '2em'],
+        r3xl: ['1.875em', '2.25em'],
+        r4xl: ['2.25em', '2.5em'],
+        r5xl: ['3em', '1em'],
+        r6xl: ['3.75em', '1em'],
+        r7xl: ['4.5em', '1em'],
+        r8xl: ['6em', '1em'],
+        r9xl: ['8em', '1em'],
+      },
     },
     safelist: [
       ...colors.map(c => `bg-${c}`),
@@ -49,7 +64,7 @@ export function presetThemeDefault(): Preset {
       {
         'grid-row': 'grid gap-4 place-items-start',
         'btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em] whitespace-nowrap',
-        'btn-icon-only': 'font-medium rounded-lg h-[40px] w-[40px] i:text-xl',
+        'btn-icon-only': 'font-medium rounded-lg h-[2.5em] w-[2.5em] i:text-rxl',
         'alert': 'p-4 font-medium rounded-lg w-full gap-x-2',
         'states': '\
         relative \

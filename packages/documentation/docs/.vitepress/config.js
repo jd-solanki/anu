@@ -33,7 +33,7 @@ export default defineConfig({
           text: 'Base Components',
           items: [
             { text: 'Base Input', link: '/guide/base-components/base-input' },
-            { text: 'Heading', link: '/guide/base-components/heading' },
+            { text: 'Typography', link: '/guide/base-components/typography' },
           ],
         },
       ],

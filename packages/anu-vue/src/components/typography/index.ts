@@ -1,0 +1,2 @@
+export { ATypography } from './ATypography'
+
