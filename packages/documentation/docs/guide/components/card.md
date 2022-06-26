@@ -53,18 +53,18 @@ Card component uses layer composable as it's base. You can use `variant` prop to
 
 </Demo>
 
-<!-- 👉 Actions -->
+<!-- 👉 Slot -->
 <Demo>
 
-## Actions
+## Slot
 
 You can use `ATypography` slots to render custom content in header.
 
-<DemoCardActions />
+<DemoCardSlot />
 
 <template #code>
 
-<<< @/demos/card/DemoCardActions.vue
+<<< @/demos/card/DemoCardSlot.vue
 
 </template>
 
