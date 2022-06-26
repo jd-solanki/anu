@@ -4,6 +4,7 @@ import 'uno.css'
 import DefaultTheme from 'vitepress/theme'
 import Demo from '../../components/Demo.vue'
 import { extractFileNameFromPath } from '../../utils'
+import './style.css'
 
 export default {
   ...DefaultTheme,

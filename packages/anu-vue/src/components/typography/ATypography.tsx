@@ -1,25 +1,10 @@
-import { defineComponent, PropType } from 'vue'
+import { useTypographyProps } from '@/composables/useTypography';
+import { defineComponent } from 'vue';
 
 export const ATypography = defineComponent({
     name: 'ATypography',
     props: {
-        title: [String, Array] as PropType<string | string[]>,
-        subtitle: [String, Array],
-        text: [String, Array],
-        tag: {
-            type: String,
-            default: 'span',
-            // default: 'h4',
-        },
-        subtitleTag: {
-            type: String,
-            default: 'span',
-            // default: 'p',
-        },
-        textTag: {
-            type: String,
-            default: 'span',
-        }
+        ...useTypographyProps(),
     },
     setup(props, { slots }) {
 
@@ -42,20 +27,22 @@ export const ATypography = defineComponent({
                 : props.text
 
         // TODO: Remove class block and use commented tag defaults instead of span once VitePress allow style isolation
-        return () => <div>
-            {
-                slots.title || props.title
-                    ? <props.tag class={["block text-rlg", titleClasses]}>{slots.title ? slots.title() : titleContent}</props.tag>
-                    : null
-            }
-            {
-                slots.subtitle || props.subtitle
-                    ? <props.subtitleTag class={["block text-rsm text-gray-400", subtitleClasses]}>{slots.subtitle ? slots.subtitle() : subtitleContent}</props.subtitleTag>
-                    : null
-            }
+        return () => <div class="uno-layer-base-text-base gap-4 flex flex-col">
+            <div>
+                {
+                    slots.title || props.title
+                        ? <props.titleTag class={["block uno-layer-base-text-rlg", titleClasses]}>{slots.title ? slots.title() : titleContent}</props.titleTag>
+                        : null
+                }
+                {
+                    slots.subtitle || props.subtitle
+                        ? <props.subtitleTag class={["block uno-layer-base-text-rsm text-gray-400", subtitleClasses]}>{slots.subtitle ? slots.subtitle() : subtitleContent}</props.subtitleTag>
+                        : null
+                }
+            </div>
             {
                 slots.default || props.text
-                    ? <props.textTag class={["text-rbase", textClasses]}>{slots.default ? slots.default() : textContent}</props.textTag>
+                    ? <props.textTag class={["uno-layer-base-text-rbase", textClasses]}>{slots.default ? slots.default() : textContent}</props.textTag>
                     : null
             }
         </div>

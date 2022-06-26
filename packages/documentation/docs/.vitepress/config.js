@@ -22,6 +22,7 @@ export default defineConfig({
           items: [
             { text: 'Alert', link: '/guide/components/alert' },
             { text: 'Button', link: '/guide/components/button' },
+            { text: 'Card', link: '/guide/components/card' },
             { text: 'Input', link: '/guide/components/input' },
             { text: 'Select', link: '/guide/components/select' },
             { text: 'Textarea', link: '/guide/components/textarea' },

@@ -62,10 +62,22 @@ export function presetThemeDefault(): Preset {
     ],
     shortcuts: [
       {
+        // Grid
         'grid-row': 'grid gap-4 place-items-start',
+
+        // Button
         'btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em] whitespace-nowrap',
         'btn-icon-only': 'font-medium rounded-lg h-[2.5em] w-[2.5em] i:text-rxl',
+
+        // Alert
         'alert': 'p-4 font-medium rounded-lg w-full gap-x-2',
+
+        // Card
+        'card-spacer': 'p-5',
+        'card-content-spacer': 'flex flex-col items-start gap-y-4',
+        'card-body': 'card-spacer card-content-spacer',
+
+        // States
         'states': '\
         relative \
         before:content-empty \
