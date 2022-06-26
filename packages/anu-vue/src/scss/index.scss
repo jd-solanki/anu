@@ -1,6 +1,8 @@
 @import '@unocss/reset/tailwind.css';
 
 :root {
+    --base-color: 0, 0%, 0%;
+
     --primary: 261.4, 97.7%, 66.3%;
     --success: 94.5, 100%, 39.6%;
     --info: 200.1, 100%, 54.3%;
@@ -13,7 +15,20 @@
     --on-warning: 0, 0%, 100%;
     --on-danger: 0, 0%, 100%;
 
-    --border-color: 0, 0%, 88%;
+    // text emphasis
+    --text-emphasis-high-opacity: 0.87;
+    --text-emphasis-medium-opacity: 0.68;
+    --text-emphasis-light-opacity: 0.38;
+
+    // Typography
+    --typography-title-color: var(--base-color);
+    --typography-subtitle-color: var(--base-color);
+    --typography-text-color: var(--base-color);
+    --typography-title-opacity: var(--text-emphasis-high-opacity);
+    --typography-subtitle-opacity: var(--text-emphasis-light-opacity);
+    --typography-text-opacity: var(--text-emphasis-medium-opacity);
+
+    --border-opacity: 0.12;
 
     --layer: 0, 0%, 100%;
 }

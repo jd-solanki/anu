@@ -16,6 +16,7 @@
       text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
       variant="light"
       color="primary"
+      class="shadow-none"
     />
 
     <!-- 👉 Outline -->
@@ -25,6 +26,7 @@
       text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
       variant="outline"
       color="primary"
+      class="shadow-none"
     />
 
     <!-- 👉 Text -->

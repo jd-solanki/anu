@@ -31,18 +31,18 @@ export const ATypography = defineComponent({
             <div>
                 {
                     slots.title || props.title
-                        ? <props.titleTag class={["block uno-layer-base-text-rlg", titleClasses]}>{slots.title ? slots.title() : titleContent}</props.titleTag>
+                        ? <props.titleTag class={["block uno-layer-base-text-rlg uno-layer-base-text-[hsla(var(--typography-title-color),var(--typography-title-opacity))]", titleClasses]}>{slots.title ? slots.title() : titleContent}</props.titleTag>
                         : null
                 }
                 {
                     slots.subtitle || props.subtitle
-                        ? <props.subtitleTag class={["block uno-layer-base-text-rsm text-gray-400", subtitleClasses]}>{slots.subtitle ? slots.subtitle() : subtitleContent}</props.subtitleTag>
+                        ? <props.subtitleTag class={["block uno-layer-base-text-rsm uno-layer-base-text-[hsla(var(--typography-subtitle-color),var(--typography-subtitle-opacity))]", subtitleClasses]}>{slots.subtitle ? slots.subtitle() : subtitleContent}</props.subtitleTag>
                         : null
                 }
             </div>
             {
                 slots.default || props.text
-                    ? <props.textTag class={["uno-layer-base-text-rbase", textClasses]}>{slots.default ? slots.default() : textContent}</props.textTag>
+                    ? <props.textTag class={["uno-layer-base-text-rbase uno-layer-base-text-[hsla(var(--typography-text-color),var(--typography-text-opacity))]", textClasses]}>{slots.default ? slots.default() : textContent}</props.textTag>
                     : null
             }
         </div>

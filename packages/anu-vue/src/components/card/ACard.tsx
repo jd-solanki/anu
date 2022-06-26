@@ -46,7 +46,9 @@ export const ACard = defineComponent({
         _isTypographyUsed
           // `not-last:pb-4` will set bottom padding to 1 rem instead of 1.5 if card-spacer is not last of type
           ? <div class="card-spacer next:pt-0 not-last:pb-4">
-            <ATypography {...typographyProps}></ATypography>
+            <ATypography {...typographyProps}>
+              {{ ...slots, default: null }}
+            </ATypography>
           </div>
           : null
       }

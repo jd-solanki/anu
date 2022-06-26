@@ -39,16 +39,29 @@ export function presetThemeDefault(): Preset {
       ...colors.map(c => `after:bg-${c}`),
       ...colors.map(c => `next:checked:bg-${c}`),
       ...colors.map(c => `next:checked:border-${c}`),
+
+      // Typography
+      ...colors.map(c => `typography-title-${c}`),
+      ...colors.map(c => `typography-subtitle-${c}`),
+      ...colors.map(c => `typography-text-${c}`),
     ],
     rules: [
       ['rounded-inherit', { 'border-radius': 'inherit' }],
+
+      // Typography
       [
-        /^s-(\w+)$/,
-        ([, c]: string[]) => ({
-          'background-color': `hsl(var(--${c}))`,
-          'color': `hsl(var(--on-${c}))`,
+        /^typography-(\w+)-(\w+)$/,
+        ([, type, c]: string[]) => ({
+          [`--typography-${type}-color`]: `var(--${c})`,
         }),
       ],
+      [
+        /^typography-(\w+)-opacity-(\d+)$/,
+        ([, type, o]: string[]) => ({
+          [`--typography-${type}-opacity`]: `${Number(o) * 0.01}`,
+        }),
+      ],
+
       [
         'overlay',
         {
@@ -59,6 +72,14 @@ export function presetThemeDefault(): Preset {
           opacity: 0,
         },
       ],
+
+      // [
+      //   'card-heading', {
+      //     '--typography-title-color': 'var(--base-color)',
+      //     '--typography-subtitle-color': 'var(--base-color)',
+      //     '--typography-text-color': 'var(--base-color)',
+      //   },
+      // ],
     ],
     shortcuts: [
       {
@@ -76,6 +97,10 @@ export function presetThemeDefault(): Preset {
         'card-spacer': 'p-5',
         'card-content-spacer': 'flex flex-col items-start gap-y-4',
         'card-body': 'card-spacer card-content-spacer',
+
+        'text-high-emphasis': 'text-[hsla(var(--base-color),var(--text-emphasis-high-opacity))]',
+        'text-medium-emphasis': 'text-[hsla(var(--base-color),var(--text-emphasis-medium-opacity))]',
+        'text-light-emphasis': 'text-[hsla(var(--base-color),var(--text-emphasis-light-opacity))]',
 
         // States
         'states': '\

@@ -1,3 +1,13 @@
 :root {
     --vp-c-bg: #f8f8f8;
+    --vp-c-text-1: hsla(var(--base-color), 0.68)
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: hsla(var(--base-color), 0.87)
 }
