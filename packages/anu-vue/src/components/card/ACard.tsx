@@ -7,9 +7,6 @@ export const ACard = defineComponent({
   name: 'ACard',
   props: {
     ...useLayerProps({
-      color: {
-        // default: 'primary',
-      },
       variant: {
         default: 'light',
       },
@@ -23,7 +20,6 @@ export const ACard = defineComponent({
 
     // TODO [v0.2.0]: Find another way to check typography component usage
     const _isTypographyUsed = isTypographyUsed(props)
-    console.log('_isTypographyUsed :>> ', _isTypographyUsed);
 
 
     // Modify text prop to have `text-sm`

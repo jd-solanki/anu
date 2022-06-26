@@ -23,6 +23,7 @@ export default defineConfig({
             { text: 'Alert', link: '/guide/components/alert' },
             { text: 'Button', link: '/guide/components/button' },
             { text: 'Card', link: '/guide/components/card' },
+            { text: 'Dialog', link: '/guide/components/dialog' },
             { text: 'Input', link: '/guide/components/input' },
             { text: 'Select', link: '/guide/components/select' },
             { text: 'Textarea', link: '/guide/components/textarea' },
@@ -35,6 +36,12 @@ export default defineConfig({
           items: [
             { text: 'Base Input', link: '/guide/base-components/base-input' },
             { text: 'Typography', link: '/guide/base-components/typography' },
+          ],
+        },
+        {
+          text: 'Other',
+          items: [
+            { text: 'Scrollbar hack', link: '/guide/other/scrollbar-hack' },
           ],
         },
       ],
