@@ -60,7 +60,7 @@ html[style~="hidden;"] {
         content: '';
         display: block;
         height: 100%;
-        width: 15px;
+        width: var(--scrollbar-width);
       }
     }
   }

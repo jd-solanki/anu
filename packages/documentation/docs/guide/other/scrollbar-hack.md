@@ -33,6 +33,7 @@ First of all add below styles to your app:
 ```scss
 html[style~="hidden;"] {  
   .extender-container {
+    // You might not need below line
     min-width: calc(100% - var(--scrollbar-width));
 
     .extender-content {
@@ -40,7 +41,7 @@ html[style~="hidden;"] {
         content: '';
         display: block;
         height: 100%;
-        width: 15px;
+        width: var(--scrollbar-width);
       }
     }
   }
@@ -70,6 +71,7 @@ Hence, my style should be:
 ```scss
 html[style~="hidden;"] {
   .VPNav {
+    // You might not need below line
     min-width: calc(100% - var(--scrollbar-width));
 
     > .VPNavBar > .container > .content {
@@ -77,7 +79,7 @@ html[style~="hidden;"] {
         content: '';
         display: block;
         height: 100%;
-        width: 15px;
+        width: var(--scrollbar-width);
       }
     }
   }
