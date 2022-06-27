@@ -46,22 +46,15 @@
     animation-duration: 0.35s;
 }
 
-// TODO: Decide should I move this in docs styles
-html[style~="hidden;"] {
-  body {
-    padding-right: var(--scrollbar-width);
-  }
-
-  .VPNav {
-    min-width: calc(100% - var(--scrollbar-width));
-
-    > .VPNavBar > .container > .content {
-      &::after {
-        content: '';
-        display: block;
-        height: 100%;
-        width: var(--scrollbar-width);
-      }
-    }
-  }
+/*
+  Prevent scroll lock
+  
+  Thanks: Quasar.
+  I have also taken inspiration from Quasar framework which makes it super easy to handle scrollbar jerk
+*/
+html.scroll-lock {
+  position: fixed;
+  overflow-y: scroll;
+  top: var(--window-scroll-top);
+  width: 100%;
 }
