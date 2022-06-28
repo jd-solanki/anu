@@ -38,12 +38,6 @@ export default defineConfig({
             { text: 'Typography', link: '/guide/base-components/typography' },
           ],
         },
-        {
-          text: 'Other',
-          items: [
-            { text: 'Scrollbar hack', link: '/guide/other/scrollbar-hack' },
-          ],
-        },
       ],
     },
   },
