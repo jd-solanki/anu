@@ -49,7 +49,7 @@ export const AAlert = defineComponent({
     // TODO: Remove usage of `i:flex-shrink-0` from everywhere because icons now have flex-shrink 0 by default
     return () => <div class={['alert items-start i:flex-shrink-0', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...getLayerClasses(props)]}>
       {props.icon ? <i class={props.icon}></i> : null}
-      <div class="flex-grow">{slots.default?.()}{isAlertVisible.value.toString()}</div>
+      <div class="flex-grow">{slots.default?.()}</div>
       {
         appendIcon
           ? <i class={[appendIcon, { 'cursor-pointer': props.dismissible }]} onClick={handleAppendIconClick}></i>
