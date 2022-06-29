@@ -2,6 +2,7 @@ import { isEleDisabled, isEleInteractive } from '@/utils/dom';
 import { defineComponent, PropType, ref } from 'vue';
 
 export const ABaseInput = defineComponent({
+    inheritAttrs: false,
     name: 'ABaseInput',
     props: {
         inputWrapperClasses: [Array, String, Object] as PropType<string | string[] | object>,
@@ -25,7 +26,7 @@ export const ABaseInput = defineComponent({
             refInputContainer: refInputContainer,
         })
 
-        return () => <div class={["i:children:focus-within:text-primary flex flex-col gap-y-1"]} ref={refRoot}>
+        return () => <div class={["i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0 gap-y-1"]} ref={refRoot}>
             {/* 👉 Label */}
             {
                 slots.label
