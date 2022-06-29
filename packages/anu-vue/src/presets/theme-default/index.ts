@@ -119,5 +119,26 @@ export function presetThemeDefault(): Preset {
         hover:before:opacity-15',
       },
     ],
+    variants: [
+      // `em:` variant converts rem unit into em
+      (matcher: string) => {
+        if (!matcher.startsWith('em:'))
+          return matcher
+
+        return {
+          // slice `em:` prefix and passed to the next variants and rules
+          matcher: matcher.slice(3),
+          body: (body: unknown[][]) => {
+            body.forEach(v => {
+              // v[1] can also be number
+              if (typeof v[1] === 'string' && v[1].endsWith('rem'))
+                v[1] = `${v[1].slice(0, -3)}em`
+            })
+
+            return body
+          },
+        }
+      },
+    ],
   }
 }
