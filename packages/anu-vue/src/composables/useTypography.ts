@@ -1,4 +1,4 @@
-import type { ComponentObjectPropsOptions, PropType } from 'vue'
+import type { ComponentObjectPropsOptions, PropType, Slots } from 'vue'
 
 export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
@@ -39,7 +39,7 @@ export const extractTypographyProp = (props: ComponentObjectPropsOptions) => Obj
 )
 
 // TODO [v0.2.0]: Find another way to check typography component usage
-export const isTypographyUsed = (props: ComponentObjectPropsOptions) => {
+export const isTypographyUsed = (props: ComponentObjectPropsOptions, slots: Slots) => {
   const { title, subtitle, text } = props
 
   const validateProp = (prop: string | string[] | undefined): boolean => {
@@ -52,5 +52,5 @@ export const isTypographyUsed = (props: ComponentObjectPropsOptions) => {
     return false
   }
 
-  return validateProp(title) || validateProp(subtitle) || validateProp(text)
+  return validateProp(title) || validateProp(subtitle) || validateProp(text) || slots.title || slots.subtitle || slots.default
 }
