@@ -52,5 +52,5 @@ export const isTypographyUsed = (props: ComponentObjectPropsOptions, slots: Slot
     return false
   }
 
-  return validateProp(title) || validateProp(subtitle) || validateProp(text) || slots.title || slots.subtitle || slots.default
+  return validateProp(title) || validateProp(subtitle) || validateProp(text) || slots.title || slots.subtitle
 }
