@@ -26,6 +26,7 @@ export default defineConfig({
             { text: 'Dialog', link: '/guide/components/dialog' },
             { text: 'Input', link: '/guide/components/input' },
             { text: 'Select', link: '/guide/components/select' },
+            { text: 'Table', link: '/guide/components/table' },
             { text: 'Textarea', link: '/guide/components/textarea' },
             { text: 'Checkbox', link: '/guide/components/checkbox' },
             { text: 'Radio', link: '/guide/components/radio' },

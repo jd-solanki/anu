@@ -8,6 +8,7 @@ export { ADrawer } from './drawer'
 export { AInput } from './input'
 export { ARadio } from './radio'
 export { ASelect } from './select'
+export { ATable } from './table'
 export { ATextarea } from './textarea'
 export { ATypography } from './typography'
 

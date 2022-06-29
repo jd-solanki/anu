@@ -32,7 +32,7 @@ export const ACard = defineComponent({
       }
     }
 
-    return () => <div class={['overflow-hidden text-sm rounded-lg uno-layer-base-bg-[hsl(var(--layer))] shadow-lg', getLayerClasses(props)]}>
+    return () => <div class={['text-sm rounded-lg uno-layer-base-bg-[hsl(var(--layer))] shadow-lg', getLayerClasses(props)]}>
       {/* 👉 Image */}
       {props.img ? <img src={props.img} alt="card-img"></img> : null}
 

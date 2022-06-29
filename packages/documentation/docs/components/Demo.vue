@@ -6,6 +6,10 @@ const showCode = ref(false)
 <template>
   <slot />
 
+  <div class="vp-raw">
+    <slot name="demo" />
+  </div>
+
   <div
     class="flex items-center justify-end mt-6 text-gray-300 dark:text-gray-600"
     :class="{ '!text-primary': showCode }"
