@@ -4,6 +4,14 @@ import { isEmpty, isObject } from '@/utils/helpers';
 import { MaybeRef } from '@vueuse/core';
 import { defineComponent, PropType, ref, unref } from 'vue';
 
+type CustomFilter = ((val: unknown, q: string, item: unknown) => boolean)
+
+interface Column {
+  name: string,
+  isFilterable: boolean
+  filterBy: CustomFilter
+}
+
 export const ATable = defineComponent({
   name: 'ATable',
   props: {
@@ -12,7 +20,10 @@ export const ATable = defineComponent({
       type: [Array] as PropType<Object[]>,
       required: true,
     },
-    columns: [Array] as PropType<{ name: string, isFilterable: boolean }[]>,
+    columns: {
+      type: [Array] as PropType<Column[]>,
+      default: [],
+    },
     search: {
       type: [Boolean, String],
       default: false,
@@ -38,16 +49,20 @@ export const ATable = defineComponent({
 
     const handleInputSearch = (q: string) => {
       // Filter out columns that is searchable based on isFilterable property
-      const searchableCols = _columns.filter(col => col.isFilterable)
-      filteredRows.value = useSearch<Object>(q, props.rows, searchableCols.map(col => col.name));
+      const searchableCols = _columns.filter(col => col.isFilterable || col.filterBy)
+      filteredRows.value = useSearch<Object>(
+        q,
+        props.rows,
+        searchableCols.map(col => col.filterBy ? { name: col.name, filterBy: col.filterBy } : col.name)
+      );
     }
 
     type typeFilterBy = string
       | (
         string
-        | ({ name: string, filterBy: (val: unknown) => boolean })
+        | ({ name: string, filterBy: CustomFilter })
       )[]
-      | ((item: unknown, q: string) => boolean)
+      | ((q: string, item: unknown) => boolean)
 
     /*
       👉 useSearch
@@ -93,7 +108,7 @@ export const ATable = defineComponent({
       return data.filter(item => {
 
         // If filterBy function is provided => Use it
-        if (typeof filterBy === 'function') return filterBy(item, q)
+        if (typeof filterBy === 'function') return filterBy(q, item)
 
         // Else use our filter
 
@@ -124,17 +139,18 @@ export const ATable = defineComponent({
             Hence, filterBy is array.
           */
           else {
-            // k => string | { name: string, filterBy: (val) => boolean }
+            // k => string | { name: string, filterBy: (val, q) => boolean }
+            // console.log('filterBy :>> ', filterBy);
             return filterBy.some(k => {
+              // console.log('k :>> ', k);
 
               // If k is string
               if (typeof k === 'string') return filterObjectViaProperty(item, k)
 
-              // Else k is of type { name: string, filterBy: (val) => boolean }
+              // Else k is of type { name: string, filterBy: (val, q) => boolean }
               else {
-                const { name, filterBy } = k as { name: string, filterBy: (val: unknown) => boolean }
-                if (typeof filterBy === 'function') return filterBy(item[name])
-                else console.warn("Please provide custom filter function to query complex data")
+                const { name, filterBy } = k
+                return filterBy(item[name], q, item)
               }
             })
           }
