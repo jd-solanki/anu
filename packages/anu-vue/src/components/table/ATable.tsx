@@ -47,7 +47,7 @@ export const ATable = defineComponent({
         string
         | ({ name: string, filterBy: (val: unknown) => boolean })
       )[]
-      | ((item: unknown) => boolean)
+      | ((item: unknown, q: string) => boolean)
 
     /*
       👉 useSearch
@@ -93,7 +93,7 @@ export const ATable = defineComponent({
       return data.filter(item => {
 
         // If filterBy function is provided => Use it
-        if (typeof filterBy === 'function') return filterBy(item)
+        if (typeof filterBy === 'function') return filterBy(item, q)
 
         // Else use our filter
 
