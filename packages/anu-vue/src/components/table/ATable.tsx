@@ -12,7 +12,7 @@ export const ATable = defineComponent({
       type: [Array] as PropType<Object[]>,
       required: true,
     },
-    columns: Array,
+    columns: [Array] as PropType<{ name: string, isFilterable: boolean }[]>,
     search: {
       type: [Boolean, String],
       default: false,
@@ -24,19 +24,30 @@ export const ATable = defineComponent({
   },
   setup(props, { slots, emit, attrs }) {
 
-    const { columns, rows, search, ...cardProps } = props
-    const filteredRows = ref(rows)
+    // ℹ️ I used destructing to extract card props from table props. Moreover,I didn't wanted to use destructured props hence I omitted them
+    const { columns: _, rows: __, search: ___, ...cardProps } = props
+
+    const filteredRows = ref(props.rows)
+
 
     const columnDefaults = {
       isFilterable: true
     }
 
-    const _columns = props.columns || props.rows.length ? Object.keys(props.rows[0]).map(k => ({ name: k, ...columnDefaults })) : []
-
+    const _columns = props.columns || (props.rows.length ? Object.keys(props.rows[0]).map(k => ({ name: k, ...columnDefaults })) : [])
 
     const handleInputSearch = (q: string) => {
-      filteredRows.value = useSearch<Object>(q, props.rows, 'name');
+      // Filter out columns that is searchable based on isFilterable property
+      const searchableCols = _columns.filter(col => col.isFilterable)
+      filteredRows.value = useSearch<Object>(q, props.rows, searchableCols.map(col => col.name));
     }
+
+    type typeFilterBy = string
+      | (
+        string
+        | ({ name: string, filterBy: (val: unknown) => boolean })
+      )[]
+      | ((item: unknown) => boolean)
 
     /*
       👉 useSearch
@@ -48,10 +59,32 @@ export const ATable = defineComponent({
       
       For cases other than mentioned above you need to pass custom filter via filterBy param
     */
-    const useSearch = <T,>(search: MaybeRef<string> | undefined | null, data: T[], filterBy: string | ((item: unknown) => boolean)): T[] => {
+    const useSearch = <T,>(search: MaybeRef<string> | undefined | null, data: T[], filterBy: typeFilterBy): T[] => {
 
       // If search is empty return all data
       if (isEmpty(search)) return data
+
+      const showUnexpectedStructureWarning = () => {
+        console.warn("Please provide custom filter function to query complex data")
+      }
+
+      const extractStringValueFromObj = (obj: Record<string, unknown>, key: string): string | null => {
+        const extractedVal = obj[key]
+
+        if (typeof extractedVal !== 'string') {
+          showUnexpectedStructureWarning()
+          return null
+        }
+
+        return extractedVal
+      }
+
+      const filterObjectViaProperty = (obj: Record<string, unknown>, propertyName: string): boolean => {
+        const extractedVal = extractStringValueFromObj(obj, propertyName)
+        if (extractedVal) return extractedVal.toLowerCase().includes(q)
+
+        return false
+      }
 
       // lowercase search query
       const q = unref(search as MaybeRef<string>).toLowerCase()
@@ -63,28 +96,50 @@ export const ATable = defineComponent({
         if (typeof filterBy === 'function') return filterBy(item)
 
         // Else use our filter
-        else {
 
-          // If iterating item is string
-          if (typeof item === 'string') return item.toLowerCase().includes(q)
+        // If iterating item is string (Means: data => string[])
+        if (typeof item === 'string') return item.toLowerCase().includes(q)
 
-          // If iterating item is object
-          else if (isObject(item)) {
+        // If iterating item is object (Means: data => Object[])
+        else if (isObject(item)) {
 
-            // Extract using filterBy param (key) from iterating item
-            const val = item[filterBy]
+          /*
+            From here, we will handle filterBy types other than custom filter function
+            1) string
+            2) Array of string or { name: string, filterBy: function }
+          */
 
-            // If retrieved val is string
-            if (typeof val === 'string') return val.toLowerCase().includes(q)
+          // Type 1): Extract val from Object and filter it
+          if (typeof filterBy === 'string') return filterObjectViaProperty(item, filterBy)
 
-            // If val is other than string => Let user define the custom filter function
-            else console.warn("Please provide custom filter function to query complex data")
-          }
+          /*
+            Type 2): Loop over each filterBy element
+              filterBy can be ['username', 'email'] | ['username', { name: 'email', filterBy: (val): boolean => { ... } }] | ...
+              and perform filter based on filter element type
+
+              el: string => Extract val from Object and filter it
+              el: obj => Extract val via obj.name from iterating item and execute obj.filterBy on it
+
+            We don't have to check for Array.isArray(filterBy) because of type guard.
+            Hence, filterBy is array.
+          */
           else {
-            // If val is other than object => Let user define the custom filter function
-            console.warn('If cell value is not string you need to pass custom filter function in filterBy')
+            // k => string | { name: string, filterBy: (val) => boolean }
+            return filterBy.some(k => {
+
+              // If k is string
+              if (typeof k === 'string') return filterObjectViaProperty(item, k)
+
+              // Else k is of type { name: string, filterBy: (val) => boolean }
+              else {
+                const { name, filterBy } = k as { name: string, filterBy: (val: unknown) => boolean }
+                if (typeof filterBy === 'function') return filterBy(item[name])
+                else console.warn("Please provide custom filter function to query complex data")
+              }
+            })
           }
         }
+        else { showUnexpectedStructureWarning() }
       })
     }
 
