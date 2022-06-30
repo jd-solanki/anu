@@ -4,6 +4,7 @@ import { defineComponent, PropType, ref } from 'vue';
 export const ABaseInput = defineComponent({
     inheritAttrs: false,
     name: 'ABaseInput',
+    inheritAttrs: false,
     props: {
         inputWrapperClasses: [Array, String, Object] as PropType<string | string[] | object>,
         inputContainerAttrs: Object,
