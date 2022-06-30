@@ -28,17 +28,20 @@ export const ATypography = defineComponent({
 
         // TODO: Remove class block and use commented tag defaults instead of span once VitePress allow style isolation
         return () => <div class="uno-layer-base-text-base gap-4 flex flex-col">
-            <div>
-                {
-                    slots.title || props.title
-                        ? <props.titleTag class={["block uno-layer-base-text-rlg uno-layer-base-text-[hsla(var(--typography-title-color),var(--typography-title-opacity))]", titleClasses]}>{slots.title ? slots.title() : titleContent}</props.titleTag>
-                        : null
-                }
-                {
-                    slots.subtitle || props.subtitle
-                        ? <props.subtitleTag class={["block uno-layer-base-text-rsm uno-layer-base-text-[hsla(var(--typography-subtitle-color),var(--typography-subtitle-opacity))]", subtitleClasses]}>{slots.subtitle ? slots.subtitle() : subtitleContent}</props.subtitleTag>
-                        : null
-                }
+            <div class="flex justify-between">
+                <div class="flex-grow">
+                    {
+                        slots.title || props.title
+                            ? <props.titleTag class={["block uno-layer-base-text-rlg uno-layer-base-text-[hsla(var(--typography-title-color),var(--typography-title-opacity))]", titleClasses]}>{slots.title ? slots.title() : titleContent}</props.titleTag>
+                            : null
+                    }
+                    {
+                        slots.subtitle || props.subtitle
+                            ? <props.subtitleTag class={["block uno-layer-base-text-rsm uno-layer-base-text-[hsla(var(--typography-subtitle-color),var(--typography-subtitle-opacity))]", subtitleClasses]}>{slots.subtitle ? slots.subtitle() : subtitleContent}</props.subtitleTag>
+                            : null
+                    }
+                </div>
+                {slots.headerRight?.()}
             </div>
             {
                 slots.default || props.text
