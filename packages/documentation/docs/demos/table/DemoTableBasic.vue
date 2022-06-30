@@ -64,5 +64,8 @@ const rows = [
 </script>
 
 <template>
-  <ATable :rows="rows" />
+  <ATable
+    :rows="rows"
+    search
+  />
 </template>
