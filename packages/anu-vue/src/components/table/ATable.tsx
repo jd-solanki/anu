@@ -17,7 +17,7 @@ export const ATable = defineComponent({
       type: [Boolean, String],
       default: false,
     },
-    noDataText: {
+    noResultsText: {
       type: String,
       default: 'No matching results found!!'
     }
@@ -90,10 +90,10 @@ export const ATable = defineComponent({
 
 
     return () => {
-      // No data text/content
-      const noDataTr = <tr>
+      // 👉 No results
+      const noResultsTr = <tr>
         <td colspan={_columns.length} class="px-4 h-12 whitespace-nowrap text-center font-medium">
-          {slots.noData ? slots.noData() : <span>{props.noDataText}</span>}
+          {slots.noResults ? slots.noResults() : <span>{props.noResultsText}</span>}
         </td>
       </tr>
 
@@ -123,7 +123,7 @@ export const ATable = defineComponent({
                   })}
                 </tr>
               })
-              : noDataTr
+              : noResultsTr
           }
         </tbody>
       </table>
