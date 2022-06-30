@@ -29,6 +29,7 @@ export const ATypography = defineComponent({
         // TODO: Remove class block and use commented tag defaults instead of span once VitePress allow style isolation
         return () => <div class="uno-layer-base-text-base gap-4 flex flex-col">
             <div class="flex justify-between">
+                {/* Only render this header div if required */}
                 <div class="flex-grow">
                     {
                         slots.title || props.title

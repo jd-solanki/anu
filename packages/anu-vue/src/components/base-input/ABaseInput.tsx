@@ -26,7 +26,9 @@ export const ABaseInput = defineComponent({
             refInputContainer: refInputContainer,
         })
 
-        return () => <div class={["i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0 gap-y-1"]} ref={refRoot}>
+        const { class: rootClasses, ...inputAttrs } = attrs
+
+        return () => <div class={["i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0 gap-y-1", rootClasses ?? []]} ref={refRoot}>
             {/* 👉 Label */}
             {
                 slots.label
@@ -71,7 +73,7 @@ export const ABaseInput = defineComponent({
                             `${isEleDisabled(attrs) ? 'bg-gray-200 opacity-50' : ''}`,
                             `${isEleInteractive(attrs) ? 'placeholder:transition placeholder:duration-250 placeholder:ease  focus:placeholder:translate-x-1' : ''}`
                         ],
-                        ...attrs,
+                        ...inputAttrs,
                         id: elementId,
                     })}
 
