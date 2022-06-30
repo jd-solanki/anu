@@ -67,5 +67,16 @@ const rows = [
   <ATable
     :rows="rows"
     search
-  />
+    no-data-text="fuck..."
+  >
+    <template #noData>
+      <div class="p-8 flex flex-col items-center">
+        <i class="i-bx-ghost text-4xl opacity-50" />
+        <ATypography
+          title="No results found"
+          subtitle="Try searching for something else"
+        />
+      </div>
+    </template>
+  </ATable>
 </template>

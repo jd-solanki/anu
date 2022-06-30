@@ -17,6 +17,10 @@ export const ATable = defineComponent({
       type: [Boolean, String],
       default: false,
     },
+    noDataText: {
+      type: String,
+      default: 'No matching results found!!'
+    }
   },
   setup(props, { slots, emit, attrs }) {
 
@@ -86,6 +90,13 @@ export const ATable = defineComponent({
 
 
     return () => {
+      // No data text/content
+      const noDataTr = <tr>
+        <td colspan={_columns.length} class="px-4 h-12 whitespace-nowrap text-center font-medium">
+          {slots.noData ? slots.noData() : <span>{props.noDataText}</span>}
+        </td>
+      </tr>
+
       /*
          ℹ️ We need to assign table to const because card have default slots which render table and we also want to allow rendering
             text via default text just above the table
@@ -103,20 +114,32 @@ export const ATable = defineComponent({
 
         {/* 👉 tbody */}
         <tbody>
-          {filteredRows.value.map(row => {
-            return <tr>
-              {Object.entries(row).map(([columnName, columnValue]) => {
-                return <td class="px-4 h-12 whitespace-nowrap">{columnValue}</td>
-              })}
-            </tr>
-          })}
+          {
+            filteredRows.value.length
+              ? filteredRows.value.map(row => {
+                return <tr>
+                  {Object.entries(row).map(([columnName, columnValue]) => {
+                    return <td class="px-4 h-12 whitespace-nowrap">{columnValue}</td>
+                  })}
+                </tr>
+              })
+              : noDataTr
+          }
         </tbody>
       </table>
 
       const searchInput = () => <AInput prepend-inner-icon="i-bx-search" placeholder="search..." class="max-w-48" onInput={handleInputSearch}></AInput>
 
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
-      return <ACard class="overflow-auto" {...cardProps} v-slots={{ ...slots, default: () => [slots.default?.(), table], headerRight: typeof props.search === 'boolean' && props.search ? searchInput : null }} />
+      return <ACard
+        {...cardProps}
+        class="overflow-auto"
+        v-slots={{
+          ...slots,
+          default: () => [slots.default?.(), table],
+          headerRight: typeof props.search === 'boolean' && props.search ? searchInput : null
+        }}
+      />
     }
   },
 })
