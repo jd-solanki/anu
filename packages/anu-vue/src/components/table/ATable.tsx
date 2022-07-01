@@ -1,13 +1,17 @@
 import { ACard, useCardProps } from '@/components/card';
 import { AInput } from '@/components/input';
 import { CustomFilter, useSearch } from '@/composables/useSearch';
-import { defineComponent, PropType, ref } from 'vue';
+import { CustomSort, useSort } from '@/composables/useSort';
+// import { controlledComputed } from '@vueuse/core';
+import { computed, defineComponent, PropType, ref } from 'vue';
 
 
 interface Column {
   name: string,
-  isFilterable: boolean
-  filterBy?: CustomFilter
+  isFilterable?: boolean
+  filterBy?: CustomFilter,
+  isSortable?: boolean
+  sortBy?: CustomSort
 }
 
 export const ATable = defineComponent({
@@ -41,11 +45,16 @@ export const ATable = defineComponent({
 
 
     const columnDefaults = {
-      isFilterable: true
+      isFilterable: true,
+      isSortable: true,
     }
 
+    // If columns are provided via prop
     const _columns: Column[] = props.columns.length
-      ? props.columns
+      // Inject column defaults by iterating over each col
+      ? props.columns.map(c => ({ ...columnDefaults, ...c }))
+
+      // Else generate columns from first row
       : (props.rows.length
         ? Object.keys(props.rows[0])
           .map(k => ({
@@ -56,8 +65,48 @@ export const ATable = defineComponent({
 
     // Filter out columns that is searchable based on isFilterable property
     const searchableCols = _columns.filter(col => col.isFilterable || col.filterBy)
+    const sortableCols = _columns.filter(col => col.isSortable || col.sortBy)
+    const sortedCols = ref<Column[]>([])
 
-    const { results: filteredRows } = useSearch(_search, props.rows, searchableCols.map(col => col.filterBy ? { name: col.name, filterBy: col.filterBy } : col.name))
+    const { results: filteredRows } = useSearch(
+      _search,
+      props.rows,
+      searchableCols
+        .map(col => col.filterBy
+          ? { name: col.name, filterBy: col.filterBy }
+          : col.name)
+    )
+
+    console.log(sortedCols.value.map(col => col.sortBy ? { name: col.name, sortBy: col.sortBy } : col.name));
+
+    // const x = computed(() => {
+    //   console.log('sortedCols :>> ', sortedCols);
+    //   return sortedCols.value.map(col => col.sortBy ? { name: col.name, sortBy: col.sortBy } : col.name)
+    // })
+
+    // watch(x, (val) => {
+    //   console.log('xxx', val);
+    // }, { deep: true })
+
+    const { results: sortedRows } = useSort(
+      filteredRows,
+      computed(() => sortedCols.value.map(col => col.sortBy ? { name: col.name, sortBy: col.sortBy } : col.name))
+    )
+
+    // const isColSorted = (col: Column) => {
+    //   return sortedCols.value.indexOf(sortedCol => {
+    //     sortedCol.name == col.name
+    //   })
+    // }
+
+    const handleHeaderClick = (col: Column) => {
+      const index = sortedCols.value.indexOf(col)
+
+      console.log('index :>> ', index);
+
+      if (index > -1) sortedCols.value.splice(index, 1)
+      else sortedCols.value.push(col)
+    }
 
 
     return () => {
@@ -79,15 +128,15 @@ export const ATable = defineComponent({
         {/* 👉 thead */}
         <thead>
           <tr>
-            {_columns.map(column => <th class="px-4 h-12 text-left whitespace-nowrap">{column.name}</th>)}
+            {_columns.map(column => <th class="px-4 h-12 text-left whitespace-nowrap cursor-pointer" onClick={() => handleHeaderClick(column)}>{column.name}</th>)}
           </tr>
         </thead>
 
         {/* 👉 tbody */}
         <tbody>
           {
-            filteredRows.value.length
-              ? filteredRows.value.map(row => {
+            sortedRows.value.length
+              ? sortedRows.value.map(row => {
                 return <tr>
                   {Object.entries(row).map(([columnName, columnValue]) => {
                     return <td class="px-4 h-12 whitespace-nowrap">{columnValue}</td>

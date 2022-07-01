@@ -12,16 +12,16 @@ export type typeFilterBy = string
 | ((q: string, item: unknown) => boolean)
 
 /*
-      👉 useSearch
+  👉 useSearch
 
-      This composable returns filtered data based on query.
-      It assumes data is array of object or strings.
-        If data is array of object then it allows filtering that object via filterBy param assuming it's object property.
-        Moreover, it assumes returning value of someObject[filterBy] is string
+  This composable returns filtered data based on query.
+  It assumes data is array of object or strings.
+    If data is array of object then it allows filtering that object via filterBy param assuming it's object property.
+    Moreover, it assumes returning value of someObject[filterBy] is string
 
-      For cases other than mentioned above you need to pass custom filter via filterBy param
-    */
-export const useSearch = <T>(search: Ref<string> | undefined | null, data: T[], filterBy: typeFilterBy): { results: ComputedRef<T[]> | Ref<T[]> } => {
+  For cases other than mentioned above you need to pass custom filter via filterBy param
+*/
+export const useSearch = <T>(search: Ref<string>, data: T[], filterBy: typeFilterBy): { results: ComputedRef<T[]> | Ref<T[]> } => {
   // If search is empty return all data
   if (isEmpty(search))
     return { results: ref(data) as Ref<T[]> }
@@ -67,25 +67,25 @@ export const useSearch = <T>(search: Ref<string> | undefined | null, data: T[], 
       // If iterating item is object (Means: data => Object[])
       else if (isObject(item)) {
         /*
-            From here, we will handle filterBy types other than custom filter function
-            1) string
-            2) Array of string or { name: string, filterBy: function }
-          */
+          From here, we will handle filterBy types other than custom filter function
+          1) string
+          2) Array of string or { name: string, filterBy: function }
+        */
 
         // Type 1): Extract val from Object and filter it
         if (typeof filterBy === 'string') { return filterObjectViaProperty(item, filterBy, q) }
 
         /*
-            Type 2): Loop over each filterBy element
-              filterBy can be ['username', 'email'] | ['username', { name: 'email', filterBy: (val): boolean => { ... } }] | ...
-              and perform filter based on filter element type
+          Type 2): Loop over each filterBy element
+            filterBy can be ['username', 'email'] | ['username', { name: 'email', filterBy: (val): boolean => { ... } }] | ...
+            and perform filter based on filter element type
 
-              el: string => Extract val from Object and filter it
-              el: obj => Extract val via obj.name from iterating item and execute obj.filterBy on it
+            el: string => Extract val from Object and filter it
+            el: obj => Extract val via obj.name from iterating item and execute obj.filterBy on it
 
-            We don't have to check for Array.isArray(filterBy) because of type guard.
-            Hence, filterBy is array.
-          */
+          We don't have to check for Array.isArray(filterBy) because of type guard.
+          Hence, filterBy is array.
+        */
         else {
           // k => string | { name: string, filterBy: (val, q) => boolean }
           // console.log('filterBy :>> ', filterBy);
