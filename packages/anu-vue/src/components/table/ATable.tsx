@@ -45,7 +45,8 @@ export const ATable = defineComponent({
       isFilterable: true
     }
 
-    const _columns = props.columns || (props.rows.length ? Object.keys(props.rows[0]).map(k => ({ name: k, ...columnDefaults })) : [])
+    const _columns = props.columns.length ? props.columns : (props.rows.length ? Object.keys(props.rows[0]).map(k => ({ name: k, ...columnDefaults })) : [])
+
 
     const handleInputSearch = (q: string) => {
       // Filter out columns that is searchable based on isFilterable property
