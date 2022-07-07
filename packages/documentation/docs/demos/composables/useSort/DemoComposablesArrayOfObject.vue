@@ -71,6 +71,8 @@ const data = [
   },
 ]
 
+const isAsc = ref(false)
+
 const sortBy = ref<any>('name')
 const sortByOptions = [
   undefined,
@@ -87,7 +89,7 @@ const sortByOptions = [
   ],
 ]
 
-const { results } = useSort(data, sortBy)
+const { results } = useSort(data, sortBy, isAsc)
 </script>
 
 <template>
@@ -106,5 +108,11 @@ const { results } = useSort(data, sortBy)
       {{ JSON.stringify(op) || typeof op }}
     </li>
   </ASelect>
+  <ACheckbox
+    v-model="isAsc"
+    class="mb-6 mt-2"
+  >
+    is ascending
+  </ACheckbox>
   <ATable :rows="results" />
 </template>

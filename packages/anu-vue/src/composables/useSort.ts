@@ -11,7 +11,7 @@ export type typeSortBy = string
   | ({ name: string; sortBy: CustomSort })
 )[]
 
-export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | undefined = undefined): { results: ComputedRef<T[]> | Ref<T[]> } => {
+export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | undefined = undefined, isAsc: MaybeRef<boolean> = true): { results: ComputedRef<T[]> | Ref<T[]> } => {
   const showUnexpectedStructureWarning = () => {
     console.warn('Please provide custom filter function to query complex data')
   }
@@ -32,10 +32,12 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
   const results = computed(() => {
     const _data = JSON.parse(JSON.stringify(unref(data)))
     const _sortBy = unref(sortBy)
+    const _isAsc = unref(isAsc)
+    const modifier = _isAsc ? 1 : -1
 
     const sortedData = _data.sort((a: unknown, b: unknown) => {
       // If sortable item is string (Means: data => string[])
-      if (typeof a === 'string' && typeof b === 'string') { return a.localeCompare(b) }
+      if (typeof a === 'string' && typeof b === 'string') { return a.localeCompare(b) * modifier }
 
       // If sortable item is object (Means: data => Object[])
       else if (isObject(a) && isObject(b)) {
@@ -59,7 +61,7 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
           if (!(extractedValOfA && extractedValOfB))
             return 0
 
-          return extractedValOfA.localeCompare(extractedValOfB)
+          return extractedValOfA.localeCompare(extractedValOfB) * modifier
         }
 
         /*
@@ -74,9 +76,13 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
         Hence, sortBy is array.
     */
         else {
+          console.log('_sortBy :>> ', _sortBy)
+
           // k => string | { name: string, sortBy: (a, b) => number }
           const _sorted = _sortBy.map(k => {
-          // If k is string
+            console.log('k :>> ', k)
+
+            // If k is string
             if (typeof k === 'string') {
               const extractedValOfA = extractStringValueFromObj(a, k)
               const extractedValOfB = extractStringValueFromObj(b, k)
@@ -85,7 +91,7 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
               if (!(extractedValOfA && extractedValOfB))
                 return 0
 
-              return extractedValOfA.localeCompare(extractedValOfB)
+              return extractedValOfA.localeCompare(extractedValOfB) * modifier
             }
 
             // Else k is of type { name: string, sortBy: (a, b) => number, type: unknown }
