@@ -33,8 +33,8 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
     const _data = JSON.parse(JSON.stringify(unref(data)))
     const _sortBy = unref(sortBy)
 
-    const sortedData = _data.sort((a, b) => {
-    // If sortable item is string (Means: data => string[])
+    const sortedData = _data.sort((a: unknown, b: unknown) => {
+      // If sortable item is string (Means: data => string[])
       if (typeof a === 'string' && typeof b === 'string') { return a.localeCompare(b) }
 
       // If sortable item is object (Means: data => Object[])
@@ -91,18 +91,10 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
             // Else k is of type { name: string, sortBy: (a, b) => number, type: unknown }
             else {
               const { name, sortBy } = k
-              console.log('name :>> ', name)
-              console.log('a[name] :>> ', a[name])
-              console.log('b[name] :>> ', b[name])
-              console.log('sortBy :>> ', sortBy)
-              console.log(sortBy(a[name], b[name]))
-              console.log('----')
 
               return sortBy(a[name], b[name])
             }
           })
-
-          console.log('_sorted :>> ', _sorted, _sorted.reduce((a, b) => a || b))
 
           return _sorted.reduce((a, b) => a || b)
         }

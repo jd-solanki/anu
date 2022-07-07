@@ -1,7 +1,5 @@
 # useSort
 
-## Array of string
-
 <!-- 👉 Array Of String -->
 <Demo>
 

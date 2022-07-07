@@ -78,23 +78,12 @@ const sortByOptions = [
   ['name', 'username'],
   [
     {
-      name: 'name',
-      sortBy: (a: string, b: string) => {
-        // console.log('a :>> ', a)
-        // console.log('b :>> ', b)
-        // console.log('xxx :>> ', a.startsWith('L'))
-        // console.log('yy :>> ', a.localeCompare(b))
-        // console.log('Final :>> ', a.startsWith('L') ? 1 : a.localeCompare(b))
-
-        return a.startsWith('L') ? 1 : a.localeCompare(b)
+      name: 'id',
+      sortBy: (a: number, b: number) => {
+        return a - b
       },
     },
-
-    // 'username',
-    // {
-    //   name: 'website',
-    //   sortBy: (a: string, b: string) => a.localeCompare(b),
-    // },
+    'username',
   ],
 ]
 
