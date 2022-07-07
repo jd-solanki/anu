@@ -5,10 +5,14 @@ import { isObject } from '@/utils/helpers'
 
 export type CustomSort = ((a: unknown, b: unknown) => number)
 
+// Thanks: https://stackoverflow.com/a/60617060/10796681
 export type typeSortBy = string
 | (
   string
-  | ({ name: string; sortBy: CustomSort })
+  | ({ name: string } & (
+    | { sortBy: CustomSort; isAsc?: never }
+    | { sortBy?: never; isAsc: boolean }
+  ))
 )[]
 
 export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | undefined = undefined, isAsc: MaybeRef<boolean> = true): { results: ComputedRef<T[]> | Ref<T[]> } => {
@@ -26,6 +30,17 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
     }
 
     return extractedVal
+  }
+
+  const sortObjectsUsingKey = (objA: Record<string, unknown>, objB: Record<string, unknown>, key: string) => {
+    const extractedValOfA = extractStringValueFromObj(objA, key)
+    const extractedValOfB = extractStringValueFromObj(objB, key)
+
+    // If can't get extracted value => return 0 <= Don't do sorting
+    if (!(extractedValOfA && extractedValOfB))
+      return 0
+
+    return extractedValOfA.localeCompare(extractedValOfB)
   }
 
   // sortable item can be string | Object
@@ -54,14 +69,7 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
 
         // Type 1): Extract val from Object and sort it
         if (typeof _sortBy === 'string') {
-          const extractedValOfA = extractStringValueFromObj(a, _sortBy)
-          const extractedValOfB = extractStringValueFromObj(b, _sortBy)
-
-          // If can't get extracted value => return 0 <= Don't do sorting
-          if (!(extractedValOfA && extractedValOfB))
-            return 0
-
-          return extractedValOfA.localeCompare(extractedValOfB) * modifier
+          return sortObjectsUsingKey(a, b, _sortBy) * modifier
         }
 
         /*
@@ -80,21 +88,23 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
           const _sorted = _sortBy.map(k => {
             // If k is string
             if (typeof k === 'string') {
-              const extractedValOfA = extractStringValueFromObj(a, k)
-              const extractedValOfB = extractStringValueFromObj(b, k)
-
-              // If can't get extracted value return 0 => Don't do sorting
-              if (!(extractedValOfA && extractedValOfB))
-                return 0
-
-              return extractedValOfA.localeCompare(extractedValOfB) * modifier
+              return sortObjectsUsingKey(a, b, k) * modifier
             }
 
             // Else k is of type { name: string, sortBy: (a, b) => number, type: unknown }
             else {
-              const { name, sortBy } = k
+              const { name, sortBy, isAsc: __isAsc } = k
 
-              return sortBy(a[name], b[name])
+              if (sortBy)
+                return sortBy(a[name], b[name])
+
+              if (__isAsc !== undefined) {
+                const _modifier = __isAsc ? 1 : -1
+
+                return sortObjectsUsingKey(a, b, name) * _modifier
+              }
+
+              return 0
             }
           })
 

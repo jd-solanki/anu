@@ -78,6 +78,7 @@ const sortByOptions = [
   undefined,
   'name',
   ['name', 'username'],
+  [{ name: 'name', isAsc: true }, { name: 'username', isAsc: true }],
   [
     {
       name: 'id',
