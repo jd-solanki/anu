@@ -76,12 +76,8 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
         Hence, sortBy is array.
     */
         else {
-          console.log('_sortBy :>> ', _sortBy)
-
           // k => string | { name: string, sortBy: (a, b) => number }
           const _sorted = _sortBy.map(k => {
-            console.log('k :>> ', k)
-
             // If k is string
             if (typeof k === 'string') {
               const extractedValOfA = extractStringValueFromObj(a, k)
