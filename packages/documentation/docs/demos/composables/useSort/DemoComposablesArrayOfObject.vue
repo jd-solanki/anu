@@ -1,0 +1,121 @@
+<script lang="ts" setup>
+import { useSort } from 'anu-vue'
+import { ref } from 'vue'
+
+const data = [
+  {
+    id: 1,
+    name: 'Leanne Graham',
+    username: 'Bret',
+    website: 'hildegard.org',
+  },
+  {
+    id: 2,
+    name: 'Ervin Howell',
+    username: 'Antonette',
+    website: 'anastasia.net',
+  },
+  {
+    id: 3,
+    name: 'Clementine Bauch',
+    username: 'Samantha',
+    website: 'ramiro.info',
+  },
+  {
+    id: 4,
+    name: 'Patricia Lebsack',
+    username: 'Karianne',
+    website: 'kale.biz',
+  },
+  {
+    id: 5,
+    name: 'Chelsey Dietrich',
+    username: 'Kamren',
+    website: 'demarco.info',
+  },
+  {
+    id: 6,
+    name: 'Mrs. Dennis Schulist',
+    username: 'Leopoldo_Corkery',
+    website: 'ola.org',
+  },
+  {
+    id: 7,
+    name: 'Kurtis Weissnat',
+    username: 'Elwyn.Skiles',
+    website: 'elvis.io',
+  },
+  {
+    id: 8,
+    name: 'Nicholas Runolfsdottir V',
+    username: 'Maxime_Nienow',
+    website: 'jacynthe.com',
+  },
+  {
+    id: 9,
+    name: 'Glenna Reichert',
+    username: 'Delphine',
+    website: 'conrad.com',
+  },
+  {
+    id: 10,
+    name: 'Clementina DuBuque',
+    username: 'Moriah.Stanton',
+    website: 'ambrose.net',
+  },
+  {
+    id: 11,
+    name: 'Leanne Graham',
+    username: 'awesome_Leanne',
+    website: 'meetleanne.me.',
+  },
+]
+
+const sortBy = ref<any>('name')
+const sortByOptions = [
+  undefined,
+  'name',
+  ['name', 'username'],
+  [
+    {
+      name: 'name',
+      sortBy: (a: string, b: string) => {
+        // console.log('a :>> ', a)
+        // console.log('b :>> ', b)
+        // console.log('xxx :>> ', a.startsWith('L'))
+        // console.log('yy :>> ', a.localeCompare(b))
+        // console.log('Final :>> ', a.startsWith('L') ? 1 : a.localeCompare(b))
+
+        return a.startsWith('L') ? 1 : a.localeCompare(b)
+      },
+    },
+
+    // 'username',
+    // {
+    //   name: 'website',
+    //   sortBy: (a: string, b: string) => a.localeCompare(b),
+    // },
+  ],
+]
+
+const { results } = useSort(data, sortBy)
+</script>
+
+<template>
+  <ASelect
+    v-slot="{ attrs }"
+    v-model="sortBy"
+    :hint="`value: ${sortBy}`"
+    label="Sort by"
+  >
+    <li
+      v-for="op in sortByOptions"
+      v-bind="attrs"
+      :key="op"
+      @click="sortBy = op"
+    >
+      {{ JSON.stringify(op) || typeof op }}
+    </li>
+  </ASelect>
+  <ATable :rows="results" />
+</template>

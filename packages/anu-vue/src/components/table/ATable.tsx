@@ -1,15 +1,18 @@
-import { ACard, useCardProps } from '@/components/card';
-import { AInput } from '@/components/input';
-import { CustomFilter, useSearch } from '@/composables/useSearch';
-import { CustomSort, useSort } from '@/composables/useSort';
-// import { controlledComputed } from '@vueuse/core';
-import { computed, defineComponent, PropType, ref } from 'vue';
+import { ACard, useCardProps } from '@/components/card'
+import { AInput } from '@/components/input'
+import type { CustomFilter } from '@/composables/useSearch'
+import { useSearch } from '@/composables/useSearch'
+import type { CustomSort } from '@/composables/useSort'
+import { useSort } from '@/composables/useSort'
+import type { PropType } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 
+// import { controlledComputed } from '@vueuse/core';
 
 interface Column {
-  name: string,
+  name: string
   isFilterable?: boolean
-  filterBy?: CustomFilter,
+  filterBy?: CustomFilter
   isSortable?: boolean
   sortBy?: CustomSort
 }
@@ -32,17 +35,18 @@ export const ATable = defineComponent({
     },
     noResultsText: {
       type: String,
-      default: 'No matching results found!!'
-    }
+      default: 'No matching results found!!',
+    },
+    multiSort: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { slots, emit, attrs }) {
-
     // ℹ️ I used destructing to extract card props from table props. Moreover,I didn't wanted to use destructured props hence I omitted them
     const { columns: _, rows: __, search: ___, ...cardProps } = props
 
     const _search = ref('')
-
-
 
     const columnDefaults = {
       isFilterable: true,
@@ -51,21 +55,21 @@ export const ATable = defineComponent({
 
     // If columns are provided via prop
     const _columns: Column[] = props.columns.length
+
       // Inject column defaults by iterating over each col
       ? props.columns.map(c => ({ ...columnDefaults, ...c }))
 
       // Else generate columns from first row
       : (props.rows.length
-        ? Object.keys(props.rows[0])
-          .map(k => ({
-            ...columnDefaults,
-            name: k,
-          }))
-        : [])
+          ? Object.keys(props.rows[0])
+            .map(k => ({
+              ...columnDefaults,
+              name: k,
+            }))
+          : [])
 
     // Filter out columns that is searchable based on isFilterable property
     const searchableCols = _columns.filter(col => col.isFilterable || col.filterBy)
-    const sortableCols = _columns.filter(col => col.isSortable || col.sortBy)
     const sortedCols = ref<Column[]>([])
 
     const { results: filteredRows } = useSearch(
@@ -74,40 +78,28 @@ export const ATable = defineComponent({
       searchableCols
         .map(col => col.filterBy
           ? { name: col.name, filterBy: col.filterBy }
-          : col.name)
+          : col.name),
     )
-
-    console.log(sortedCols.value.map(col => col.sortBy ? { name: col.name, sortBy: col.sortBy } : col.name));
-
-    // const x = computed(() => {
-    //   console.log('sortedCols :>> ', sortedCols);
-    //   return sortedCols.value.map(col => col.sortBy ? { name: col.name, sortBy: col.sortBy } : col.name)
-    // })
-
-    // watch(x, (val) => {
-    //   console.log('xxx', val);
-    // }, { deep: true })
 
     const { results: sortedRows } = useSort(
       filteredRows,
-      computed(() => sortedCols.value.map(col => col.sortBy ? { name: col.name, sortBy: col.sortBy } : col.name))
+      computed(() => sortedCols.value.map(col => col.sortBy ? { name: col.name, sortBy: col.sortBy } : col.name)),
     )
 
-    // const isColSorted = (col: Column) => {
-    //   return sortedCols.value.indexOf(sortedCol => {
-    //     sortedCol.name == col.name
-    //   })
-    // }
-
     const handleHeaderClick = (col: Column) => {
+      if (!props.multiSort) {
+        sortedCols.value = [col]
+
+        return
+      }
+
+      // If multiSort is enabled
       const index = sortedCols.value.indexOf(col)
 
-      console.log('index :>> ', index);
-
-      if (index > -1) sortedCols.value.splice(index, 1)
+      if (index > -1)
+        sortedCols.value.splice(index, 1)
       else sortedCols.value.push(col)
     }
-
 
     return () => {
       // 👉 No results
@@ -123,7 +115,7 @@ export const ATable = defineComponent({
 
             Later on, we will merge both default slots and will pass as single slot content to card
       */
-      {/* TODO(refactor): Use variant group here */ }
+      { /* TODO(refactor): Use variant group here */ }
       const table = <table class="w-full max-w-full all-[tr]-border-b all-[tr]-border-[hsla(var(--base-color),var(--border-opacity))]">
         {/* 👉 thead */}
         <thead>
@@ -135,8 +127,8 @@ export const ATable = defineComponent({
         {/* 👉 tbody */}
         <tbody>
           {
-            sortedRows.value.length
-              ? sortedRows.value.map(row => {
+            props.rows.length
+              ? props.rows.map(row => {
                 return <tr>
                   {Object.entries(row).map(([columnName, columnValue]) => {
                     return <td class="px-4 h-12 whitespace-nowrap">{columnValue}</td>
@@ -157,7 +149,7 @@ export const ATable = defineComponent({
         v-slots={{
           ...slots,
           default: () => [slots.default?.(), table],
-          headerRight: typeof props.search === 'boolean' && props.search ? searchInput : null
+          headerRight: typeof props.search === 'boolean' && props.search ? searchInput : null,
         }}
       />
     }

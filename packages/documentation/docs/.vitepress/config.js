@@ -39,6 +39,13 @@ export default defineConfig({
             { text: 'Typography', link: '/guide/base-components/typography' },
           ],
         },
+        {
+          text: 'Composables',
+          items: [
+            { text: 'useSearch', link: '/guide/composables/useSearch' },
+            { text: 'useSort', link: '/guide/composables/useSort' },
+          ],
+        },
       ],
     },
   },

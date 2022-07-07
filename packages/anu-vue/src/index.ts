@@ -15,6 +15,7 @@ const plugin = {
 
 // export { default as nuxt } from "./nuxt";
 // presets
+export * from './composables'
 export { presetCore } from './presets/core'
 export {
   colors as defaultThemeColors, presetThemeDefault,

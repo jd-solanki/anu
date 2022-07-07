@@ -1,6 +1,7 @@
+import type { MaybeRef } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
-import { computed, watch } from 'vue'
-import { isEmpty, isObject } from '@/utils/helpers'
+import { computed, unref } from 'vue'
+import { isObject } from '@/utils/helpers'
 
 export type CustomSort = ((a: unknown, b: unknown) => number)
 
@@ -10,16 +11,7 @@ export type typeSortBy = string
   | ({ name: string; sortBy: CustomSort })
 )[]
 
-export const useSort = <T>(data: Ref<T[]>, sortBy: Ref<typeSortBy>): { results: ComputedRef<T[]> | Ref<T[]> } => {
-  console.log('sortBy :>> ', sortBy.value)
-
-  if (isEmpty(sortBy.value))
-    return { results: data }
-
-  watch(sortBy, val => {
-    console.log('val :>> ', val)
-  }, { deep: true })
-
+export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | undefined = undefined): { results: ComputedRef<T[]> | Ref<T[]> } => {
   const showUnexpectedStructureWarning = () => {
     console.warn('Please provide custom filter function to query complex data')
   }
@@ -37,31 +29,40 @@ export const useSort = <T>(data: Ref<T[]>, sortBy: Ref<typeSortBy>): { results: 
   }
 
   // sortable item can be string | Object
-  const sortedData = computed(() => data.value.sort((a, b) => {
-    // If sortable item is string (Means: data => string[])
-    if (typeof a === 'string' && typeof b === 'string') { return a.localeCompare(b) }
+  const results = computed(() => {
+    const _data = JSON.parse(JSON.stringify(unref(data)))
+    const _sortBy = unref(sortBy)
 
-    // If sortable item is object (Means: data => Object[])
-    else if (isObject(a) && isObject(b)) {
-      /*
+    const sortedData = _data.sort((a, b) => {
+    // If sortable item is string (Means: data => string[])
+      if (typeof a === 'string' && typeof b === 'string') { return a.localeCompare(b) }
+
+      // If sortable item is object (Means: data => Object[])
+      else if (isObject(a) && isObject(b)) {
+      // ℹ️ sortBy is required from here
+
+        if (!_sortBy)
+          return 0
+
+        /*
             From here, we will handle sortBy types other than custom filter function
             1) string
             2) Array of string or { name: string, sortBy: function, type: any }
         */
 
-      // Type 1): Extract val from Object and sort it
-      if (typeof sortBy.value === 'string') {
-        const extractedValOfA = extractStringValueFromObj(a, sortBy.value)
-        const extractedValOfB = extractStringValueFromObj(b, sortBy.value)
+        // Type 1): Extract val from Object and sort it
+        if (typeof _sortBy === 'string') {
+          const extractedValOfA = extractStringValueFromObj(a, _sortBy)
+          const extractedValOfB = extractStringValueFromObj(b, _sortBy)
 
-        // If can't get extracted value => return 0 <= Don't do sorting
-        if (!(extractedValOfA && extractedValOfB))
-          return 0
+          // If can't get extracted value => return 0 <= Don't do sorting
+          if (!(extractedValOfA && extractedValOfB))
+            return 0
 
-        return extractedValOfA.localeCompare(extractedValOfB)
-      }
+          return extractedValOfA.localeCompare(extractedValOfB)
+        }
 
-      /*
+        /*
         Type 2): Loop over each sortBy element
             sortBy can be ['username', 'email'] | ['username', { name: 'email', sortBy: (a,b): number => { ... }, type: unknown }] | ...
             and perform sort based on sort element type
@@ -72,38 +73,51 @@ export const useSort = <T>(data: Ref<T[]>, sortBy: Ref<typeSortBy>): { results: 
         We don't have to check for Array.isArray(sortBy) because of type guard.
         Hence, sortBy is array.
     */
-      else {
-        // k => string | { name: string, sortBy: (a, b) => number }
-        return sortBy.value.map(k => {
+        else {
+          // k => string | { name: string, sortBy: (a, b) => number }
+          const _sorted = _sortBy.map(k => {
           // If k is string
-          if (typeof k === 'string') {
-            const extractedValOfA = extractStringValueFromObj(a, k)
-            const extractedValOfB = extractStringValueFromObj(b, k)
+            if (typeof k === 'string') {
+              const extractedValOfA = extractStringValueFromObj(a, k)
+              const extractedValOfB = extractStringValueFromObj(b, k)
 
-            // If can't get extracted value return 0 => Don't do sorting
-            if (!(extractedValOfA && extractedValOfB))
-              return 0
+              // If can't get extracted value return 0 => Don't do sorting
+              if (!(extractedValOfA && extractedValOfB))
+                return 0
 
-            return extractedValOfA.localeCompare(extractedValOfB)
-          }
+              return extractedValOfA.localeCompare(extractedValOfB)
+            }
 
-          // Else k is of type { name: string, sortBy: (a, b) => number, type: unknown }
-          else {
-            const { name, sortBy } = k
+            // Else k is of type { name: string, sortBy: (a, b) => number, type: unknown }
+            else {
+              const { name, sortBy } = k
+              console.log('name :>> ', name)
+              console.log('a[name] :>> ', a[name])
+              console.log('b[name] :>> ', b[name])
+              console.log('sortBy :>> ', sortBy)
+              console.log(sortBy(a[name], b[name]))
+              console.log('----')
 
-            return sortBy(a[name], b[name])
-          }
-        }).reduce((a, b) => a || b)
+              return sortBy(a[name], b[name])
+            }
+          })
+
+          console.log('_sorted :>> ', _sorted, _sorted.reduce((a, b) => a || b))
+
+          return _sorted.reduce((a, b) => a || b)
+        }
       }
-    }
-    else {
-      showUnexpectedStructureWarning()
+      else {
+        showUnexpectedStructureWarning()
 
-      return 0
-    }
-  }))
+        return 0
+      }
+    })
+
+    return sortedData
+  })
 
   return {
-    results: sortedData,
+    results,
   }
 }

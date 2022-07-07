@@ -2,4 +2,7 @@
     "[markdown]": {
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
+    "cSpell.words": [
+        "composables"
+    ],
 }
