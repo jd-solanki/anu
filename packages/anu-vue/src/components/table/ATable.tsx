@@ -184,7 +184,7 @@ export const ATable = defineComponent({
     return () => {
       // 👉 No results
       const noResultsTr = <tr>
-        <td colspan={_columns.value.length} class="px-4 h-12 whitespace-nowrap text-center font-medium">
+        <td colspan={_columns.value.length} class="em:px-[1.15rem] em:h-14 whitespace-nowrap text-center font-medium">
           {slots.noResults ? slots.noResults() : <span>{props.noResultsText}</span>}
         </td>
       </tr>
@@ -203,7 +203,7 @@ export const ATable = defineComponent({
           <tr>
             {_columns.value.map(column =>
               <th
-                class="select-none px-4 h-12 text-left whitespace-nowrap cursor-pointer"
+                class="select-none em:px-[1.15rem] em:h-14 text-left whitespace-nowrap cursor-pointer"
                 onClick={() => handleHeaderClick(column)}
               >
                 <div class="inline-flex items-center">
@@ -223,7 +223,7 @@ export const ATable = defineComponent({
               ? sortedRows.value.map(row => {
                 return <tr>
                   {Object.entries(row).map(([_, columnValue]) => {
-                    return <td class="px-4 h-12 whitespace-nowrap">{columnValue}</td>
+                    return <td class="em:px-[1.15rem] em:h-14 whitespace-nowrap">{columnValue}</td>
                   })}
                 </tr>
               })
@@ -234,15 +234,14 @@ export const ATable = defineComponent({
 
       const searchInput = () => <AInput prepend-inner-icon="i-bx-search" placeholder="search..." class="max-w-48" v-model={_search.value}></AInput>
 
-      const temp = <pre>{JSON.stringify(_columns.value, null, 2)}</pre>
-
+      // TODO: noresultstext is represented as attrs of card
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
       return <ACard
         {...cardProps}
         class="overflow-auto"
         v-slots={{
           ...slots,
-          default: () => [slots.default?.(), temp, table],
+          default: () => [slots.default?.(), table],
           headerRight: typeof props.search === 'boolean' && props.search ? searchInput : null,
         }}
       />
