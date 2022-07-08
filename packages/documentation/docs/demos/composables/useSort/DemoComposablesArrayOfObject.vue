@@ -77,6 +77,7 @@ const sortBy = ref<any>('name')
 const sortByOptions = [
   undefined,
   'name',
+  'id',
   ['name', 'username'],
   [{ name: 'name', isAsc: true }, { name: 'username', isAsc: true }],
   [
