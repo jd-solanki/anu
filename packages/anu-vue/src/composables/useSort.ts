@@ -91,7 +91,7 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
               return sortObjectsUsingKey(a, b, k) * modifier
             }
 
-            // Else k is of type { name: string, sortBy: (a, b) => number, type: unknown }
+            // Else k is of type { name: string, sortBy: (a, b) => number, isAsc: boolean, type: unknown }
             else {
               const { name, sortBy, isAsc: __isAsc } = k
 
