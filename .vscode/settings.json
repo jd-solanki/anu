@@ -5,4 +5,5 @@
     "cSpell.words": [
         "composables"
     ],
+    "unocss.root": "packages/documentation"
 }

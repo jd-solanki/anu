@@ -5,6 +5,8 @@
         "xabikos.javascriptsnippets",
         "vue.volar",
         "dbaeumer.vscode-eslint",
-        "usernamehw.errorlens"
+        "usernamehw.errorlens",
+        "antfu.unocss",
+        "antfu.iconify"
     ]
 }
