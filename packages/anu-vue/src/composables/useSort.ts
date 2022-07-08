@@ -2,7 +2,7 @@ import type { MaybeRef } from '@vueuse/core'
 import { isNumber } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, unref } from 'vue'
-import { isObject } from '@/utils/helpers'
+import { isEmpty, isObject } from '@/utils/helpers'
 
 export type CustomSort = ((a: unknown, b: unknown) => number)
 
@@ -81,6 +81,9 @@ export const useSort = <T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
         Hence, sortBy is array.
     */
         else {
+          if (isEmpty(_sortBy))
+            return 0
+
           // k => string | { name: string, sortBy: (a, b) => number }
           const _sorted = _sortBy.map(k => {
             // If k is string

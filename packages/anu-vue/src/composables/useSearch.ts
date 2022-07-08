@@ -1,6 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
-import { computed, ref, unref } from 'vue'
+import { computed, unref } from 'vue'
 import { isEmpty, isObject } from '@/utils/helpers'
 
 export type CustomFilter = ((val: unknown, q: string, item: unknown) => boolean)
@@ -22,12 +22,7 @@ export type typeFilterBy = string
 
   For cases other than mentioned above you need to pass custom filter via filterBy param
 */
-export const useSearch = <T>(search: Ref<string>, data: T[], filterBy: MaybeRef<typeFilterBy> | undefined = undefined, strict: MaybeRef<boolean> = false): { results: ComputedRef<T[]> | Ref<T[]> } => {
-  // TODO: Below line is not correct
-  // If search is empty return all data
-  if (isEmpty(search))
-    return { results: ref(data) as Ref<T[]> }
-
+export const useSearch = <T>(search: Ref<string>, data: MaybeRef<T[]>, filterBy: MaybeRef<typeFilterBy> | undefined = undefined, strict: MaybeRef<boolean> = false): { results: ComputedRef<T[]> | Ref<T[]> } => {
   const extractStringValueFromObj = (obj: Record<string, unknown>, key: string, strict: boolean): string | null => {
     const extractedVal = obj[key]
 
@@ -52,12 +47,18 @@ export const useSearch = <T>(search: Ref<string>, data: T[], filterBy: MaybeRef<
   }
 
   const results = computed(() => {
+    const _data = unref(data)
+
     // lowercase search query
     const q = search.value.toLocaleLowerCase()
+
     const _filterBy = filterBy ? unref(filterBy) : filterBy
     const _strict = unref(strict)
 
-    return data.filter(item => {
+    if (isEmpty(q))
+      return _data
+
+    return _data.filter(item => {
       // If filterBy function is provided => Use it
       if (typeof _filterBy === 'function')
         return _filterBy(search.value, item)

@@ -5,7 +5,7 @@ import { useSearch } from '@/composables/useSearch'
 import type { CustomSort } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
 import type { PropType } from 'vue'
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, toRef } from 'vue'
 
 // import { controlledComputed } from '@vueuse/core';
 
@@ -27,7 +27,7 @@ export const ATable = defineComponent({
     },
     columns: {
       type: [Array] as PropType<Column[]>,
-      default: [],
+      default: () => [],
     },
     search: {
       type: [Boolean, String],
@@ -42,8 +42,9 @@ export const ATable = defineComponent({
       default: false,
     },
   },
-  setup(props, { slots, emit, attrs }) {
+  setup(props, { slots }) {
     // ℹ️ I used destructing to extract card props from table props. Moreover,I didn't wanted to use destructured props hence I omitted them
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { columns: _, rows: __, search: ___, ...cardProps } = props
 
     const _search = ref('')
@@ -74,7 +75,7 @@ export const ATable = defineComponent({
 
     const { results: filteredRows } = useSearch(
       _search,
-      props.rows,
+      toRef(props, 'rows'),
       searchableCols
         .map(col => col.filterBy
           ? { name: col.name, filterBy: col.filterBy }
@@ -114,8 +115,9 @@ export const ATable = defineComponent({
             text via default text just above the table
 
             Later on, we will merge both default slots and will pass as single slot content to card
+
+          TODO(refactor): Use variant group here
       */
-      { /* TODO(refactor): Use variant group here */ }
       const table = <table class="w-full max-w-full all-[tr]-border-b all-[tr]-border-[hsla(var(--base-color),var(--border-opacity))]">
         {/* 👉 thead */}
         <thead>
@@ -127,10 +129,10 @@ export const ATable = defineComponent({
         {/* 👉 tbody */}
         <tbody>
           {
-            props.rows.length
-              ? props.rows.map(row => {
+            sortedRows.value.length
+              ? sortedRows.value.map(row => {
                 return <tr>
-                  {Object.entries(row).map(([columnName, columnValue]) => {
+                  {Object.entries(row).map(([_, columnValue]) => {
                     return <td class="px-4 h-12 whitespace-nowrap">{columnValue}</td>
                   })}
                 </tr>
