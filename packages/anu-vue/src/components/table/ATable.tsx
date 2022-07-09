@@ -51,7 +51,7 @@ export const ATable = defineComponent({
     },
     pageSize: {
       type: Number,
-      default: 5,
+      default: 10,
     },
   },
   setup(props, { slots }) {
