@@ -1,9 +1,13 @@
+import { ABtn } from '@/components/btn'
 import { ACard, useCardProps } from '@/components/card'
 import { AInput } from '@/components/input'
+import { ASelect } from '@/components/select'
+import { ATypography } from '@/components/typography'
 import type { CustomFilter } from '@/composables/useSearch'
 import { useSearch } from '@/composables/useSearch'
 import type { CustomSort, typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
+import { useOffsetPagination } from '@vueuse/core'
 import type { PropType, Ref } from 'vue'
 import { computed, defineComponent, ref, toRef } from 'vue'
 
@@ -45,6 +49,10 @@ export const ATable = defineComponent({
       type: Boolean,
       default: false,
     },
+    pageSize: {
+      type: Number,
+      default: 5,
+    },
   },
   setup(props, { slots }) {
     // ℹ️ I used destructing to extract card props from table props. Moreover,I didn't wanted to use destructured props hence I omitted them
@@ -76,8 +84,11 @@ export const ATable = defineComponent({
 
     // Filter out columns that is searchable based on isFilterable property
     const searchableCols = _columns.value.filter(col => col.isFilterable || col.filterBy)
+
+    // TODO(v0.2.0) Try to use _columns for sorting
     const sortedCols = ref <TableColumn[]>([])
 
+    // 👉 Filtered Rows
     const { results: filteredRows } = useSearch(
       _search,
       toRef(props, 'rows'),
@@ -87,6 +98,8 @@ export const ATable = defineComponent({
           : col.name),
     )
 
+    // TODO: If we sort second col after selecting any first and set order to desc on first clicked row then its err
+    // 👉 Sorted Rows
     const { results: sortedRows } = useSort(
       filteredRows,
       computed(() => {
@@ -103,12 +116,38 @@ export const ATable = defineComponent({
       }),
     )
 
+    const fetchData = () => {}
+
+    // 👉 Paginated Rows
+    const currentPageSize = ref(props.pageSize)
+    const {
+      currentPage,
+
+      // currentPageSize,
+      // pageCount,
+      isFirstPage,
+      isLastPage,
+      prev: goToPreviousPage,
+      next: goToNextPage,
+    } = useOffsetPagination({
+      total: computed(() => sortedRows.value.length),
+      page: 1,
+      pageSize: currentPageSize,
+      onPageChange: fetchData,
+      onPageSizeChange: fetchData,
+    })
+    const paginatedRows = computed(() => {
+      const start = (currentPage.value - 1) * currentPageSize.value
+      const end = currentPage.value * currentPageSize.value
+
+      return sortedRows.value.slice(start, end)
+    })
+
+    // 👉 Handle header click
     const handleHeaderClick = (col: TableColumn) => {
-      // console.log('col :>> ', col)
+      const index = sortedCols.value.findIndex(c => c.name === col.name)
 
-      const index = sortedCols.value.indexOf(col)
-
-      // console.log('index :>> ', index)
+      console.log('index :>> ', index)
 
       /*
         If col exist in arr
@@ -161,7 +200,10 @@ export const ATable = defineComponent({
         if (!props.multiSort)
           sortedCols.value = [col]
         else
+        if (col.shallSortByAsc)
           sortedCols.value.push(col)
+        else
+          sortedCols.value.splice(index, 1, { ...col })
       }
 
       // console.log('col :>> ', col)
@@ -180,6 +222,14 @@ export const ATable = defineComponent({
       //   sortedCols.value.splice(index, 1)
       // else sortedCols.value.push(col)
     }
+
+    const getShallSortByAsc = computed(() => (col: TableColumn) => {
+      const _col = sortedCols.value.find(sortedCol => sortedCol.name === col.name)
+
+      if (!_col)
+        return null
+      else return _col.shallSortByAsc
+    })
 
     return () => {
       // 👉 No results
@@ -208,8 +258,8 @@ export const ATable = defineComponent({
               >
                 <div class="inline-flex items-center">
                     <span>{column.name}</span>
-                    <div v-show={column.shallSortByAsc === true} class="i-bx-up-arrow-alt"></div>
-                    <div v-show={column.shallSortByAsc === false} class="i-bx-down-arrow-alt"></div>
+                  <div v-show={getShallSortByAsc.value(column) === true} class="i-bx-up-arrow-alt"></div>
+                  <div v-show={getShallSortByAsc.value(column) === false} class="i-bx-down-arrow-alt"></div>
                   </div>
               </th>,
             )}
@@ -219,8 +269,8 @@ export const ATable = defineComponent({
         {/* 👉 tbody */}
         <tbody>
           {
-            sortedRows.value.length
-              ? sortedRows.value.map(row => {
+            paginatedRows.value.length
+              ? paginatedRows.value.map(row => {
                 return <tr>
                   {Object.entries(row).map(([_, columnValue]) => {
                     return <td class="em:px-[1.15rem] em:h-14 whitespace-nowrap">{columnValue}</td>
@@ -234,6 +284,32 @@ export const ATable = defineComponent({
 
       const searchInput = () => <AInput prepend-inner-icon="i-bx-search" placeholder="search..." class="max-w-48" v-model={_search.value}></AInput>
 
+      // 👉 Footer
+      // TODO: create PR for useOffsetPagination metadata
+      // TODO: currentPage is 0 when total is 0 => bug in vueuse
+      const tableFooter = <div class="em:px-[1.15rem] em:h-14 flex items-center gap-x-4">
+        <ATypography class="text-size-[inherit]" v-slots={{
+          subtitle: () => <>
+            {(currentPage.value - 1) * currentPageSize.value + 1} - {sortedRows.value.length - currentPage.value * currentPageSize.value > 0 ? currentPage.value * currentPageSize.value : sortedRows.value.length} of {sortedRows.value.length}
+          </>,
+        }}></ATypography>
+        <div class="flex-grow"></div>
+        <div class="em:text-sm flex items-center gap-x-2">
+          <span>per page</span>
+          {/* <ABtn class="text-sm" onClick={() => { currentPageSize.value = 10 }}>10</ABtn> */}
+          <ASelect class="text-sm w-16 text-xs" inputWrapperClasses="em:h-9 rounded-0 !border-transparent !border-b-(thin [hsla(var(--base-color),var(--border-opacity))])" v-model={currentPageSize.value} v-slots={{
+            default: ({ attrs }: any) => [5, 10, 15, 20].map(perPageOption => <li class="em:text-sm" {...attrs} onClick={() => { currentPageSize.value = perPageOption }}>{perPageOption}</li>,
+            ),
+          }}></ASelect>
+        </div>
+        <div>
+          <ABtn icon-only class="rounded-full text-xs me-2" icon="i-bx-left-arrow-alt" variant="default" onClick={goToPreviousPage} {...(isFirstPage.value && { disabled: true })}></ABtn>
+          <ABtn icon-only class="rounded-full text-xs" icon="i-bx-right-arrow-alt" variant="default" onClick={goToNextPage} {...(isLastPage.value && { disabled: true })}></ABtn>
+        </div>
+      </div>
+
+      const x = <pre>{String(isFirstPage.value)} - {String(isLastPage.value)} - {String(currentPage.value)}</pre>
+
       // TODO: noresultstext is represented as attrs of card
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
       return <ACard
@@ -241,7 +317,7 @@ export const ATable = defineComponent({
         class="overflow-auto"
         v-slots={{
           ...slots,
-          default: () => [slots.default?.(), table],
+          default: () => [slots.default?.(), table, tableFooter],
           headerRight: typeof props.search === 'boolean' && props.search ? searchInput : null,
         }}
       />
