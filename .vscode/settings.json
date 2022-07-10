@@ -3,7 +3,8 @@
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
     "cSpell.words": [
-        "composables"
+        "composables",
+        "Vite"
     ],
     "unocss.root": "packages/documentation"
 }

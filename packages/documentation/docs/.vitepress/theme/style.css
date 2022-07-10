@@ -1,13 +1,79 @@
+/* Styles adjusting VitePress according to theme */
 :root {
-    --vp-c-bg: #f8f8f8;
-    --vp-c-text-1: hsla(var(--base-color), 0.68)
+    --vp-c-text-1: hsla(var(--base-color), var(--text-emphasis-medium-opacity));
+    --vp-c-bg: hsl(var(--a-background));
+    --vp-c-bg-alt: hsl(var(--a-background));
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: hsla(var(--base-color), 0.87)
+/* ==========================
+SECTION VitePress
+========================== */
+
+#VPSidebarNav .group+.group {
+    border-top: none !important;
 }
+
+.VPNavBarTitle.has-sidebar {
+    border-bottom: none !important;
+}
+
+.VPNavBar.has-sidebar .container {
+    border-bottom: thin solid hsla(var(--base-color), var(--border-opacity));
+}
+
+.VPNavBar.has-sidebar .content {
+    /* background: hsla(250, 10%, 6%, .7) !important; */
+    background: hsla(var(--a-background), 0.7) !important;
+}
+
+/* ==========================
+👉 Sidebar scrollbar style
+========================== */
+
+.VPSidebar::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none;
+}
+
+/*
+    Enable below style for styled scrollbar
+*/
+/* .VPSidebar::-webkit-scrollbar {
+    background: rgb(var(--layer));
+    block-size: 8px;
+    border-end-end-radius: 14px;
+    border-start-end-radius: 14px;
+    inline-size: 8px;
+} */
+
+/* Track */
+/* .VPSidebar::-webkit-scrollbar-track {
+    background: transparent;
+} */
+
+/* Handle */
+/* .VPSidebar::-webkit-scrollbar-thumb {
+    background: hsl(0, 0%, 10%);
+    border-radius: 0.5rem;
+} */
+
+/* .VPSidebar::-webkit-scrollbar-corner {
+    display: none;
+} */
+
+
+/* ==========================
+👉 Dark
+========================== */
+
+:root.dark {
+    --vp-c-bg-alt: hsl(var(--a-base-hue), 0%, 6%);
+    --vp-code-line-highlight-color: hsl(0, 0%, 12%);
+}
+
+/* code blocks */
+.vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
+    border: 1px solid hsla(var(--base-color), var(--border-opacity));
+}
+
+/* !SECTION */

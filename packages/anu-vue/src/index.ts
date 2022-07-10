@@ -1,5 +1,6 @@
 import type { App } from 'vue'
 import * as components from './components'
+import './presets/theme-default/scss/index.scss'
 import './scss/index.scss'
 
 const plugin = {

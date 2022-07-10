@@ -1,0 +1,79 @@
+@import '@unocss/reset/tailwind.css';
+
+:root {
+    --a-base-hue: 265;
+
+    // --base-color: 0, 0%, 0%;
+    --base-color: var(--a-base-hue), 10%, 20%;
+    --a-background: 0 , 0%, 97%;
+    --layer: 0, 0%, 100%;
+    --border-opacity: 0.12;
+
+    --primary: var(--a-base-hue), 97.7%, 66.3%;
+    --success: 94.5, 100%, 39.6%;
+    --info: 200.1, 100%, 54.3%;
+    --warning: 42.4, 100%, 50%;
+    --danger: 358.3, 100%, 64.9%;
+
+    --on-primary: 0, 0%, 100%;
+    --on-success: 0, 0%, 100%;
+    --on-info: 0, 0%, 100%;
+    --on-warning: 0, 0%, 100%;
+    --on-danger: 0, 0%, 100%;
+
+    // text emphasis
+    --text-emphasis-high-opacity: 0.87;
+    --text-emphasis-medium-opacity: 0.68;
+    --text-emphasis-light-opacity: 0.38;
+
+    // Typography
+    --typography-title-color: var(--base-color);
+    --typography-subtitle-color: var(--base-color);
+    --typography-text-color: var(--base-color);
+    --typography-title-opacity: var(--text-emphasis-high-opacity);
+    --typography-subtitle-opacity: var(--text-emphasis-light-opacity);
+    --typography-text-opacity: var(--text-emphasis-medium-opacity);
+}
+
+:root.dark {
+  --a-base-hue: 261;
+
+  --base-color: var(--a-base-hue), 0%, 94%;
+  --a-background: var(--a-base-hue), 0%, 6%;
+  --layer: var(--a-base-hue), 0%, 12%;
+
+  --primary: var(--a-base-hue), 73%, 66.3%;
+  --success: 94.5, 73%, 39.6%;
+  --info: 200.1, 73%, 54.3%;
+  --warning: 42.4, 73%, 50%;
+  --danger: 358.3, 73%, 64.9%;
+}
+
+// 👉 Typography
+
+html, body {
+  color: hsla(var(--base-color), 0.68);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: hsla(var(--base-color), 0.87)
+}
+
+// 👉 Misc
+
+@keyframes shake {
+  0%   {transform: translateX(0);}
+  25%  {transform: translateX(1px);}
+  50%  {transform: translateX(-1px);}
+  100% {transform: translateX(0);}
+}
+
+.a-base-input-label.text-danger {
+    animation-name: shake;
+    animation-duration: 0.35s;
+}
