@@ -46,8 +46,6 @@ export function presetThemeDefault(): Preset {
       ...colors.map(c => `typography-text-${c}`),
     ],
     rules: [
-      ['rounded-inherit', { 'border-radius': 'inherit' }],
-
       // Typography
       [
         /^typography-(\w+)-(\w+)$/,
