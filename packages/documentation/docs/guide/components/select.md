@@ -7,11 +7,7 @@
 
 You can use `ASelect` component to render basic select.
 
-<div class="grid grid-cols-2">
-    <div>
-        <DemoSelectBasic />
-    </div>
-</div>
+<DemoSelectBasic />
 
 <template #code>
 
@@ -100,6 +96,23 @@ Moreover, you can also use `append-icon` & `prepend-icon` prop to add icon outsi
 <template #code>
 
 <<< @/demos/select/DemoSelectIcons.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Slots -->
+<Demo>
+
+## Slot
+
+You can use default slot to render the `ASelect` options. Don't forget to bind `attrs` from [slotProps](https://vuejs.org/guide/components/slots.html#scoped-slots) to looping element.
+
+<DemoSelectSlot />
+
+<template #code>
+
+<<< @/demos/select/DemoSelectSlot.vue
 
 </template>
 

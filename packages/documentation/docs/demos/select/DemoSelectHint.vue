@@ -1,22 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-const fruits = ['banana', 'apple', 'watermelon', 'orange']
+import { ref } from 'vue'
+
 const selected = ref()
+const fruits = ['banana', 'apple', 'watermelon', 'orange']
 </script>
 
 <template>
   <ASelect
-    v-slot="{ attrs }"
     v-model="selected"
     hint="We will deliver it shortly"
-  >
-    <li
-      v-for="fruit in fruits"
-      v-bind="attrs"
-      :key="fruit"
-      @click="selected = fruit"
-    >
-      {{ fruit }}
-    </li>
-  </ASelect>
+    :options="fruits"
+  />
 </template>

@@ -1,13 +1,24 @@
 import { ABaseInput } from '@/components/base-input'
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { onClickOutside } from '@vueuse/core'
+import type { PropType } from 'vue'
 import { defineComponent, onBeforeUnmount, onMounted, ref, Teleport, watch } from 'vue'
+
+type SelectOptions = string[] | ({ label: string; value: unknown } & Record<string | number | symbol, unknown>)[]
 
 export const ASelect = defineComponent({
   name: 'ASelect',
   props: {
-    modelValue: String,
+    modelValue: {
+      type: String,
+      default: '',
+    },
+    options: {
+      type: Array as PropType<SelectOptions>,
+      default: undefined,
+    },
   },
+  emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
     // SECTION Floating
     // Template refs
@@ -69,11 +80,15 @@ export const ASelect = defineComponent({
     )
 
     // TODO: You can use it as utility in another components
+    // TODO: Add some style to indicate currently selected item
     const isEleInteractive = Object.prototype.hasOwnProperty.call(attrs, 'disabled') || Object.prototype.hasOwnProperty.call(attrs, 'readonly')
     const openOptions = () => {
       if (!isEleInteractive)
         isOptionsVisible.value = !isOptionsVisible.value
     }
+
+    // 👉 Options
+    const optionClasses = 'em:px-4 em:py-1 hover:bg-gray-100 cursor-pointer text-ellipsis overflow-hidden'
 
     // TODO: If we click on arrow down icon then select don't get primary border
     return () => <>
@@ -87,7 +102,7 @@ export const ASelect = defineComponent({
                   default: (slotProps: any) =>
                         <input
                             {...slotProps}
-                            value={props.modelValue}
+                            value={typeof props.modelValue === 'string' ? props.modelValue : (props.modelValue.label)}
                             onInput={(event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).value)}
                             readonly
                         />,
@@ -98,11 +113,17 @@ export const ASelect = defineComponent({
                     v-show={isOptionsVisible.value}
                     ref={refFloating}
                     class="z-10 g-select-options absolute bg-white border border-solid border-gray-200 m-0 rounded-lg em:py-3 shadow-lg">
-                    {slots.default?.({
-                      attrs: {
-                        class: 'em:px-4 em:py-1 hover:bg-gray-100 cursor-pointer text-ellipsis overflow-hidden',
-                      },
-                    })}
+                    {
+                      slots.default
+                        ? slots.default?.({
+                          attrs: {
+                            class: optionClasses,
+                          },
+                        })
+                        : props.options?.map(option => <li class={optionClasses} onClick={() => emit('update:modelValue', option)}>
+                          {typeof option === 'string' ? option : option.label}
+                        </li>)
+                    }
                 </ul>
             </Teleport>
         </>
