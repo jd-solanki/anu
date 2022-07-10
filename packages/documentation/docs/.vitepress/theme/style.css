@@ -74,6 +74,8 @@ SECTION VitePress
 /* code blocks */
 .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
     border: 1px solid hsla(var(--base-color), var(--border-opacity));
+    opacity: 0.85;
+    font-weight: 500;
 }
 
 /* !SECTION */
