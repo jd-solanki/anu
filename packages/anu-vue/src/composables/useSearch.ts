@@ -3,14 +3,14 @@ import type { ComputedRef, Ref } from 'vue'
 import { computed, unref } from 'vue'
 import { isEmpty, isObject } from '@/utils/helpers'
 
-export type CustomFilter = ((val: unknown, q: string, item: unknown) => boolean)
+export type CustomFilter<T> = ((val: keyof T, q: string, item: T) => boolean)
 
-export type typeFilterBy = string
+export type typeFilterBy<T> = (string
 | (
   string
-  | ({ name: string; filterBy: CustomFilter })
-)[]
-| ((q: string, item: unknown) => boolean)
+  | ({ name: string; filterBy: CustomFilter<T> })
+))[]
+| ((q: string, item: T) => boolean)
 
 /*
   👉 useSearch
@@ -22,7 +22,7 @@ export type typeFilterBy = string
 
   For cases other than mentioned above you need to pass custom filter via filterBy param
 */
-export const useSearch = <T>(search: Ref<string>, data: MaybeRef<T[]>, filterBy: MaybeRef<typeFilterBy> | undefined = undefined, strict: MaybeRef<boolean> = false): { results: ComputedRef<T[]> | Ref<T[]> } => {
+export const useSearch = <T>(search: MaybeRef<string>, data: MaybeRef<T[]>, filterBy: MaybeRef<typeFilterBy<T>> | undefined = undefined, strict: MaybeRef<boolean> = false): { results: ComputedRef<T[]> | Ref<T[]> } => {
   const extractStringValueFromObj = (obj: Record<string, unknown>, key: string, strict: boolean): string | null => {
     const extractedVal = obj[key]
 
@@ -50,7 +50,7 @@ export const useSearch = <T>(search: Ref<string>, data: MaybeRef<T[]>, filterBy:
     const _data = unref(data)
 
     // lowercase search query
-    const q = search.value.toLocaleLowerCase()
+    const q = unref(search).toLocaleLowerCase()
 
     const _filterBy = filterBy ? unref(filterBy) : filterBy
     const _strict = unref(strict)
@@ -61,7 +61,7 @@ export const useSearch = <T>(search: Ref<string>, data: MaybeRef<T[]>, filterBy:
     return _data.filter(item => {
       // If filterBy function is provided => Use it
       if (typeof _filterBy === 'function')
-        return _filterBy(search.value, item)
+        return _filterBy(unref(search), item)
 
       // Else use our filter
 
@@ -141,7 +141,7 @@ export const useSearch = <T>(search: Ref<string>, data: MaybeRef<T[]>, filterBy:
             else {
               const { name, filterBy } = k
 
-              return filterBy(item[name], search.value, item)
+              return filterBy(item[name], unref(search), item)
             }
           })
         }

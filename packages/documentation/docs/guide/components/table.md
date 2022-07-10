@@ -1,16 +1,33 @@
 # Table
 
-<!-- 👉 Basic -->
+<!-- 👉 Server Side Pagination -->
 <Demo>
+
+## Server Side Pagination
+
+description
+
+<template #demo>
+    <DemoTableServerSidePagination />
+</template>
+
+<template #code>
+
+<<< @/demos/table/DemoTableServerSidePagination.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Basic -->
+<!-- <Demo>
 
 ## Basic
 
 description
 
 <template #demo>
-
-<DemoTableBasic />
-
+    <DemoTableBasic />
 </template>
 
 <template #code>
@@ -19,4 +36,4 @@ description
 
 </template>
 
-</Demo>
+</Demo> -->

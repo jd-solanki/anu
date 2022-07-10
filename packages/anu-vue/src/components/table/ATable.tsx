@@ -7,22 +7,36 @@ import type { CustomFilter } from '@/composables/useSearch'
 import { useSearch } from '@/composables/useSearch'
 import type { CustomSort, typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
-import { useOffsetPagination } from '@vueuse/core'
+import { computedEager, useOffsetPagination } from '@vueuse/core'
 import type { PropType, Ref } from 'vue'
-import { computed, defineComponent, ref, toRef } from 'vue'
+import { computed, defineComponent, ref, toRaw, watch } from 'vue'
 
 // import { controlledComputed } from '@vueuse/core';
 
-interface PropColumn {
+export type ShallSortByAsc = boolean | null
+
+export interface PropColumn {
   name: string
   isFilterable?: boolean
   filterBy?: CustomFilter
   isSortable?: boolean
   sortBy?: CustomSort
+  formatter?: (val: unknown) => unknown
 }
 
-interface TableColumn extends PropColumn {
-  shallSortByAsc: boolean | null
+export interface TableColumn extends PropColumn {
+  shallSortByAsc: ShallSortByAsc
+}
+
+export interface ItemsFunctionParams {
+  q: string
+  currentPage: number
+  rowsPerPage: number
+  sortedCols: TableColumn[]
+}
+
+export interface ItemsFunction {
+  (props: ItemsFunctionParams): Promise<unknown[]>
 }
 
 export const ATable = defineComponent({
@@ -30,7 +44,7 @@ export const ATable = defineComponent({
   props: {
     ...useCardProps(),
     rows: {
-      type: [Array] as PropType<Object[]>,
+      type: [Array, Function] as PropType<Object[] | ItemsFunction>,
       required: true,
     },
     columns: {
@@ -59,14 +73,47 @@ export const ATable = defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { columns: _, rows: __, search: ___, ...cardProps } = props
 
+    // 👉 isSST
+    const isSST = computedEager(() => !Array.isArray(props.rows))
+
+    // 👉 _rows
+    // If rows prop is array directly set it else table data comes from server hence we will assign blank array as initial rows data
+    const _rows = computed(() => isSST.value ? [] : props.rows)
+
+    // 👉 Server rows
+    const _serverRows = ref([])
+
+    const fetchRows = () => {
+      // _search.value, currentPage.value, currentPageSize.value, sortedCols.value
+
+      (props.rows as ItemsFunction)({
+        q: _search.value,
+        currentPage: currentPage.value,
+        rowsPerPage: currentPageSize.value,
+        sortedCols: toRaw(sortedCols.value),
+      })
+        .then(data => {
+          _serverRows.value = data
+
+          // console.log('data :>> ', data)
+        })
+        .catch(err => {
+          // console.log('err :>> ', err)
+        })
+    }
+
+    // 👉 Search
+    // TODO: Check using custom input for SST
     const _search = ref('')
 
+    // 👉 Column defaults
     const columnDefaults = {
       isFilterable: true,
       isSortable: true,
       shallSortByAsc: null,
     }
 
+    // 👉 _columns
     // If columns are provided via prop
     const _columns: Ref<TableColumn[]> = computed(() => props.columns.length
 
@@ -74,24 +121,27 @@ export const ATable = defineComponent({
       ? props.columns.map(c => ({ ...columnDefaults, ...c }))
 
       // Else generate columns from first row
-      : (props.rows.length
-          ? Object.keys(props.rows[0])
+      : (rowsToRender.value.length
+          ? Object.keys(rowsToRender.value[0])
             .map(k => ({
               ...columnDefaults,
               name: k,
             }))
           : []))
 
+    // console.log('_columns :>> ', _columns.value)
+
     // Filter out columns that is searchable based on isFilterable property
     const searchableCols = _columns.value.filter(col => col.isFilterable || col.filterBy)
 
+    // 👉 sortedCols
     // TODO(v0.2.0) Try to use _columns for sorting
-    const sortedCols = ref <TableColumn[]>([])
+    const sortedCols = ref<TableColumn[]>([])
 
     // 👉 Filtered Rows
     const { results: filteredRows } = useSearch(
       _search,
-      toRef(props, 'rows'),
+      _rows,
       searchableCols
         .map(col => col.filterBy
           ? { name: col.name, filterBy: col.filterBy }
@@ -116,10 +166,32 @@ export const ATable = defineComponent({
       }),
     )
 
-    const fetchData = () => {}
-
     // 👉 Paginated Rows
+    const paginatedRows = ref(sortedRows.value)
+
+    // TODO: Check passing toRef(props, 'pageSize') to useOffsetPagination and use returned `currentPageSize` for reactive pgeSize prop
     const currentPageSize = ref(props.pageSize)
+    const paginateRows = ({ currentPage, currentPageSize }: { currentPage: number; currentPageSize: number }) => {
+      const start = (currentPage - 1) * currentPageSize
+      const end = currentPage * currentPageSize
+
+      paginatedRows.value = sortedRows.value.slice(start, end)
+    }
+
+    watch(isSST.value, val => {
+      console.log('-=-=-=-=-=-=-=-=-isSST.value :>> ', val)
+    })
+
+    watch(_serverRows, val => {
+      console.log('-=-=-=-=-=-=-=-=-_serverRows :>> ', val)
+    })
+
+    watch(sortedRows, val => {
+      console.log('-=-=-=-=-=-=-=-=-sortedRows :>> ', val)
+    })
+
+    // paginateRows({ currentPage: 1, currentPageSize: currentPageSize.value })
+    // 👉 useOffsetPagination
     const {
       currentPage,
 
@@ -130,24 +202,40 @@ export const ATable = defineComponent({
       prev: goToPreviousPage,
       next: goToNextPage,
     } = useOffsetPagination({
+      // total: computed(() => isSST.value ? _serverRows.value.length : sortedRows.value.length),
       total: computed(() => sortedRows.value.length),
       page: 1,
       pageSize: currentPageSize,
-      onPageChange: fetchData,
-      onPageSizeChange: fetchData,
-    })
-    const paginatedRows = computed(() => {
-      const start = (currentPage.value - 1) * currentPageSize.value
-      const end = currentPage.value * currentPageSize.value
 
-      return sortedRows.value.slice(start, end)
+      // onPageChange: paginateRows,
+      // onPageSizeChange: paginateRows,
     })
+    watch([_search, sortedCols, currentPage, currentPageSize], ([...changes]) => {
+      console.log('xx=xx=xx', changes)
+      if (isSST.value)
+        fetchRows()
+      else
+        paginateRows({ currentPage: currentPage.value, currentPageSize: currentPageSize.value })
+    }, { deep: true, immediate: true })
+
+    // const paginatedRows = computed(() => {
+    //   const start = (currentPage.value - 1) * currentPageSize.value
+    //   const end = currentPage.value * currentPageSize.value
+
+    //   return sortedRows.value.slice(start, end)
+    // })
+
+    // 👉 rowsToRender
+    const rowsToRender = computed(() => isSST.value ? _serverRows.value : paginatedRows.value)
+
+    // 👉 onRequest
+    // watch([_search, currentPage, sortedCols], fetchRows, { deep: true, immediate: true })
 
     // 👉 Handle header click
     const handleHeaderClick = (col: TableColumn) => {
       const index = sortedCols.value.findIndex(c => c.name === col.name)
 
-      console.log('index :>> ', index)
+      // console.log('index :>> ', index)
 
       /*
         If col exist in arr
@@ -232,6 +320,7 @@ export const ATable = defineComponent({
     })
 
     return () => {
+      // TODO: There should be no data as well and it should be rendered only when data is filtered and there's no resulting rows
       // 👉 No results
       const noResultsTr = <tr>
         <td colspan={_columns.value.length} class="em:px-[1.15rem] em:h-14 whitespace-nowrap text-center font-medium">
@@ -269,11 +358,20 @@ export const ATable = defineComponent({
         {/* 👉 tbody */}
         <tbody>
           {
-            paginatedRows.value.length
-              ? paginatedRows.value.map(row => {
+            rowsToRender.value.length
+              ? rowsToRender.value.map(row => {
                 return <tr>
-                  {Object.entries(row).map(([_, columnValue]) => {
-                    return <td class="em:px-[1.15rem] em:h-14 whitespace-nowrap">{columnValue}</td>
+                  {/* <pre>{JSON.stringify(Object.entries(row), null, 2)}</pre>
+                  <hr />
+                  <hr />
+                  <hr />
+                  <pre>{JSON.stringify(Object.entries(Object.values(row)), null, 2)}</pre>
+                  <hr />
+                  <hr />
+                  <hr />
+                  <pre>{JSON.stringify(Object.values(row), null, 2)}</pre> */}
+                  {Object.entries(Object.values(row)).map(([index, columnValue]) => {
+                    return <td class="em:px-[1.15rem] em:h-14 whitespace-nowrap">{_columns.value[index].formatter ? _columns.value[index].formatter?.(row) : columnValue}</td>
                   })}
                 </tr>
               })
