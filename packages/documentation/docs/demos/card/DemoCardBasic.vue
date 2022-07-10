@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-row sm:grid-cols-2">
+  <div class="grid-row sm:grid-cols-2 cards-demo-container">
     <!-- 👉 Using props -->
     <ACard
       title="Card title"

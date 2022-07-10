@@ -1,5 +1,6 @@
 /* Styles adjusting VitePress according to theme */
 :root {
+    --a-background: 0, 0%, 100%;
     --vp-c-text-1: hsla(var(--base-color), var(--text-emphasis-medium-opacity));
     --vp-c-bg: hsl(var(--a-background));
     --vp-c-bg-alt: hsl(var(--a-background));
@@ -73,9 +74,23 @@ SECTION VitePress
 
 /* code blocks */
 .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
+    border: 1px solid transparent;
+}
+
+.dark .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
     border: 1px solid hsla(var(--base-color), var(--border-opacity));
     opacity: 0.85;
     font-weight: 500;
+}
+
+/* ==========================
+👉 Demo
+========================== */
+
+.cards-demo-container {
+    /* rounded-lg border-dashed border border-app p-8 bg-[hsla(var(--base-color), .05)] */
+    @apply rounded-lg border-dashed border border-app p-8;
+    background: hsla(var(--base-color), 0.05);
 }
 
 /* !SECTION */

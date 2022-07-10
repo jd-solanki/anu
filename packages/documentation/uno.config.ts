@@ -3,6 +3,7 @@ import {
   defineConfig,
   presetIcons,
   presetUno,
+  transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
 
@@ -24,6 +25,7 @@ export default defineConfig({
   ],
   transformers: [
     transformerVariantGroup(),
+    transformerDirectives(),
   ],
   configDeps: ['../anu-vue/src/presets/theme-default/index.ts'],
   include: [/.*\/anu-vue\.mjs(.*)?$/, './**/*.vue', './**/*.md'],

@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-row sm:grid-cols-2">
+  <div class="grid-row sm:grid-cols-2 cards-demo-container">
     <ACard
       title="Card title"
       subtitle="Chocolate cake tiramisu donut"

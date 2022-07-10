@@ -84,7 +84,7 @@ export function presetThemeDefault(): Preset {
     shortcuts: [
       {
         // Grid
-        'grid-row': 'grid gap-4 place-items-start',
+        'grid-row': 'grid gap-4 place-items-start w-full',
 
         // Button
         'btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em] whitespace-nowrap',
