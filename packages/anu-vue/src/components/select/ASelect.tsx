@@ -18,7 +18,7 @@ export const ASelect = defineComponent({
       default: undefined,
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['input', 'update:modelValue'],
   setup(props, { slots, emit, attrs }) {
     // SECTION Floating
     // Template refs
@@ -89,6 +89,10 @@ export const ASelect = defineComponent({
 
     // 👉 Options
     const optionClasses = 'em:px-4 em:py-1 hover:bg-gray-100 cursor-pointer text-ellipsis overflow-hidden'
+    const handleOptionClick = (option: unknown) => {
+      emit('input', option)
+      emit('update:modelValue', option)
+    }
 
     // TODO: If we click on arrow down icon then select don't get primary border
     return () => <>
@@ -103,7 +107,6 @@ export const ASelect = defineComponent({
                         <input
                             {...slotProps}
                             value={typeof props.modelValue === 'string' ? props.modelValue : (props.modelValue.label)}
-                            onInput={(event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).value)}
                             readonly
                         />,
                 }}
@@ -120,7 +123,7 @@ export const ASelect = defineComponent({
                             class: optionClasses,
                           },
                         })
-                        : props.options?.map(option => <li class={optionClasses} onClick={() => emit('update:modelValue', option)}>
+                        : props.options?.map(option => <li class={optionClasses} onClick={() => handleOptionClick(option)}>
                           {typeof option === 'string' ? option : option.label}
                         </li>)
                     }

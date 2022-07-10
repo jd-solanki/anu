@@ -21,12 +21,12 @@ const frameworks = [
     <ASelect
       v-model="selectedFruit"
       :options="fruits"
-      :hint="`value: ${selected}`"
+      :hint="`value: ${selectedFruit}`"
     />
     <ASelect
       v-model="selectedFramework"
       :options="frameworks"
-      :hint="`value: ${selected}`"
+      :hint="`value: ${JSON.stringify(selectedFramework)}`"
     />
   </div>
 </template>
