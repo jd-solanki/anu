@@ -336,7 +336,7 @@ export const ATable = defineComponent({
 
           TODO(refactor): Use variant group here
       */
-      const table = <table class="w-full max-w-full all-[tr]-border-b all-[tr]-border-[hsla(var(--base-color),var(--border-opacity))]">
+      const table = <table class="w-full max-w-full all-[tr]-border-b all-[tr]-border-app">
         {/* 👉 thead */}
         <thead>
           <tr>
@@ -395,7 +395,7 @@ export const ATable = defineComponent({
         <div class="em:text-sm flex items-center gap-x-2">
           <span>per page</span>
           {/* <ABtn class="text-sm" onClick={() => { currentPageSize.value = 10 }}>10</ABtn> */}
-          <ASelect class="text-sm w-16 text-xs" inputWrapperClasses="em:h-9 rounded-0 !border-transparent !border-b-(thin [hsla(var(--base-color),var(--border-opacity))])" v-model={currentPageSize.value} v-slots={{
+          <ASelect class="text-sm w-16 text-xs" inputWrapperClasses="em:h-9 rounded-0 !border-transparent !border-b-(thin app)" v-model={currentPageSize.value} v-slots={{
             default: ({ attrs }: any) => [5, 10, 15, 20].map(perPageOption => <li class="em:text-sm" {...attrs} onClick={() => { currentPageSize.value = perPageOption }}>{perPageOption}</li>,
             ),
           }}></ASelect>

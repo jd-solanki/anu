@@ -46,6 +46,8 @@ export function presetThemeDefault(): Preset {
       ...colors.map(c => `typography-text-${c}`),
     ],
     rules: [
+      ['border-app', { 'border-color': 'hsla(var(--base-color),var(--border-opacity))' }],
+
       // Typography
       [
         /^typography-(\w+)-(\w+)$/,

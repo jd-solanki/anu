@@ -88,7 +88,7 @@ export const ASelect = defineComponent({
     }
 
     // 👉 Options
-    const optionClasses = 'em:px-4 em:py-1 hover:bg-gray-100 cursor-pointer text-ellipsis overflow-hidden'
+    const optionClasses = 'em:px-4 em:py-1 states before:transition-none cursor-pointer text-ellipsis overflow-hidden'
     const handleOptionClick = (option: unknown) => {
       emit('input', option)
       emit('update:modelValue', option)
@@ -115,7 +115,7 @@ export const ASelect = defineComponent({
                 <ul
                     v-show={isOptionsVisible.value}
                     ref={refFloating}
-                    class="z-10 g-select-options absolute bg-white border border-solid border-gray-200 m-0 rounded-lg em:py-3 shadow-lg">
+                    class="z-10 g-select-options absolute bg-[hsl(var(--layer))] border border-solid border-app m-0 rounded-lg em:py-3 shadow-lg">
                     {
                       slots.default
                         ? slots.default?.({
