@@ -17,11 +17,15 @@ For columns you can use utility classes according to your column needs.
 
 <template #code>
 
-<<< @/demos/grid/DemoGridRow.vue
+<<< @/demos/grid/DemoGridRow.vue{2}
 
 </template>
 
 </Demo>
+
+:::tip
+With CSS grid you don't have to add `col` related classes like `col-6` to children of row, You can set amount of columns along with `grid-row` using grid column classes like `grid-cols-4`.
+:::
 
 <!-- 👉 Responsive Grid -->
 <Demo>
@@ -46,8 +50,35 @@ You can use responsive variants to create responsive grid.
 
 <template #code>
 
-<<< @/demos/grid/DemoGridResponsiveGrid.vue
+<<< @/demos/grid/DemoGridResponsiveGrid.vue{2}
 
 </template>
 
 </Demo>
+
+:::tip
+Previously with flex based grid, if you want column content to expand full width you have to write `w-full` to each column children.
+
+```html{3,6}
+<div class="row">
+    <div class="col-6">
+        <div class="w-full"></div>
+    </div>
+    <div class="col-6">
+        <div class="w-full"></div>
+    </div>
+</div>
+```
+
+However, with our grid, you can achieve the same by adding `justify-items-stretch` class to grid itself.
+
+```html{1}
+<div class="grid-row grid-cols-2 justify-items-stretch">
+    <div></div>
+    <div></div>
+</div>
+```
+
+<p class="!mt-4">OMG! How much boilerplate code we removed 😎🥳</p>
+
+:::
