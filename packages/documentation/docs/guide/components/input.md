@@ -120,6 +120,23 @@ You can use font-size utility to adjust the size of input.
 
 </Demo>
 
+<!-- 👉 Roundness -->
+<Demo>
+
+## Roundness
+
+You can adjust input roundness by providing border-radius utilities to `input-wrapper-classes` prop.
+
+<DemoInputRoundness />
+
+<template #code>
+
+<<< @/demos/input/DemoInputRoundness.vue
+
+</template>
+
+</Demo>
+
 <!-- 👉 Types -->
 <Demo>
 
