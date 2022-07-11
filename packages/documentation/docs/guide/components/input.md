@@ -120,6 +120,10 @@ You can use font-size utility to adjust the size of input.
 
 </Demo>
 
+:::tip
+Like `AInput`, `ASelect` & `ATextarea` also built on top of `ABaseInput` base component. Hence, This demo also applies to `ASelect` & `ATextarea`.
+:::
+
 <!-- 👉 Roundness -->
 <Demo>
 
@@ -136,6 +140,10 @@ You can adjust input roundness by providing border-radius utilities to `input-wr
 </template>
 
 </Demo>
+
+:::tip
+Like `AInput`, `ASelect` & `ATextarea` also built on top of `ABaseInput` base component. Hence, This demo also applies to `ASelect` & `ATextarea`.
+:::
 
 <!-- 👉 Types -->
 <Demo>
