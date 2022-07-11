@@ -103,6 +103,23 @@ You can use various icon location prop to add icon to the input.
 
 </Demo>
 
+<!-- 👉 Sizing -->
+<Demo>
+
+## Sizing
+
+You can use font-size utility to adjust the size of input.
+
+<DemoInputSizing />
+
+<template #code>
+
+<<< @/demos/input/DemoInputSizing.vue
+
+</template>
+
+</Demo>
+
 <!-- 👉 Types -->
 <Demo>
 
