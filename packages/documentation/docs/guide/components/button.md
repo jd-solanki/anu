@@ -1,17 +1,17 @@
 # Button
 
-<!-- 👉 Solid -->
+<!-- 👉 Filled -->
 <Demo>
 
-## Solid
+## Filled
 
 `fill` is default variant for button.
 
-<DemoButtonColors />
+<DemoButtonFilled />
 
 <template #code>
 
-<<< @/demos/button/DemoButtonColors.vue
+<<< @/demos/button/DemoButtonFilled.vue
 
 </template>
 

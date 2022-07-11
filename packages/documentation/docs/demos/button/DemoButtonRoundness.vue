@@ -1,35 +1,35 @@
 <template>
   <div class="flex flex-wrap gap-4">
     <ABtn class="rounded-0">
-      Primary
+      rounded-0
     </ABtn>
 
     <ABtn
       color="success"
       class="rounded"
     >
-      Success
+      rounded
     </ABtn>
 
     <ABtn
       color="info"
       class="rounded-lg"
     >
-      Info
+      rounded-lg
     </ABtn>
 
     <ABtn
       color="warning"
       class="rounded-xl"
     >
-      Warning
+      rounded-xl
     </ABtn>
 
     <ABtn
       color="danger"
       class="rounded-2xl"
     >
-      Danger
+      rounded-2xl
     </ABtn>
   </div>
 </template>

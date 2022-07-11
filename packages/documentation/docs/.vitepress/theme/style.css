@@ -93,4 +93,8 @@ SECTION VitePress
     background: hsla(var(--base-color), 0.05);
 }
 
+.dark .cards-demo-container {
+    background: hsla(var(--base-color), 0.01);
+}
+
 /* !SECTION */

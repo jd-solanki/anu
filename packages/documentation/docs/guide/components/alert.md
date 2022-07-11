@@ -17,18 +17,18 @@
 
 </Demo>
 
-<!-- 👉 Solid -->
+<!-- 👉 Filled -->
 <Demo>
 
-## Solid
+## Filled
 
 You can use `variant="fill"` to create alert with filled background.
 
-<DemoAlertColors />
+<DemoAlertFilled />
 
 <template #code>
 
-<<< @/demos/alert/DemoAlertColors.vue
+<<< @/demos/alert/DemoAlertFilled.vue
 
 </template>
 
