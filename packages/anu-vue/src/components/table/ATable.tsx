@@ -114,6 +114,7 @@ export const ATable = defineComponent({
     }
 
     // 👉 _columns
+    // TODO: Improve _columns computation
     // If columns are provided via prop
     const _columns: Ref<TableColumn[]> = computed(() => props.columns.length
 
@@ -121,13 +122,22 @@ export const ATable = defineComponent({
       ? props.columns.map(c => ({ ...columnDefaults, ...c }))
 
       // Else generate columns from first row
-      : (rowsToRender.value.length
-          ? Object.keys(rowsToRender.value[0])
+      : isSST.value
+        ? (rowsToRender.value.length
+            ? Object.keys(rowsToRender.value[0])
+              .map(k => ({
+                ...columnDefaults,
+                name: k,
+              }))
+            : [])
+        : props.rows.length
+          ? Object.keys((props.rows as Object[])[0])
             .map(k => ({
               ...columnDefaults,
               name: k,
             }))
-          : []))
+          : [],
+    )
 
     // console.log('_columns :>> ', _columns.value)
 
@@ -178,17 +188,17 @@ export const ATable = defineComponent({
       paginatedRows.value = sortedRows.value.slice(start, end)
     }
 
-    watch(isSST.value, val => {
-      console.log('-=-=-=-=-=-=-=-=-isSST.value :>> ', val)
-    })
+    // watch(isSST, val => {
+    //   console.log('-=-=-=-=-=-=-=-=-isSST.value :>> ', val)
+    // })
 
-    watch(_serverRows, val => {
-      console.log('-=-=-=-=-=-=-=-=-_serverRows :>> ', val)
-    })
+    // watch(_serverRows, val => {
+    //   console.log('-=-=-=-=-=-=-=-=-_serverRows :>> ', val)
+    // })
 
-    watch(sortedRows, val => {
-      console.log('-=-=-=-=-=-=-=-=-sortedRows :>> ', val)
-    })
+    // watch(sortedRows, val => {
+    //   console.log('-=-=-=-=-=-=-=-=-sortedRows :>> ', val)
+    // })
 
     // paginateRows({ currentPage: 1, currentPageSize: currentPageSize.value })
     // 👉 useOffsetPagination
@@ -336,7 +346,7 @@ export const ATable = defineComponent({
 
           TODO(refactor): Use variant group here
       */
-      const table = <table class="w-full max-w-full all-[tr]-border-b all-[tr]-border-app">
+      const table = <table class="w-full max-w-full all-[tr]-border-b all-[tr]-border-a-border">
         {/* 👉 thead */}
         <thead>
           <tr>
@@ -395,10 +405,12 @@ export const ATable = defineComponent({
         <div class="em:text-sm flex items-center gap-x-2">
           <span>per page</span>
           {/* <ABtn class="text-sm" onClick={() => { currentPageSize.value = 10 }}>10</ABtn> */}
-          <ASelect class="text-sm w-16 text-xs" inputWrapperClasses="em:h-9 rounded-0 !border-transparent !border-b-(thin app)" v-model={currentPageSize.value} v-slots={{
-            default: ({ attrs }: any) => [5, 10, 15, 20].map(perPageOption => <li class="em:text-sm" {...attrs} onClick={() => { currentPageSize.value = perPageOption }}>{perPageOption}</li>,
-            ),
-          }}></ASelect>
+          <ASelect
+            class="text-sm w-16 text-xs min-w-auto"
+            inputWrapperClasses="em:h-9 rounded-0 !border-transparent !border-b-(thin a-border)"
+            v-model={currentPageSize.value}
+            options={[5, 10, 15, 20]}>
+          </ASelect>
         </div>
         <div>
           <ABtn icon-only class="rounded-full text-xs me-2" icon="i-bx-left-arrow-alt" variant="default" onClick={goToPreviousPage} {...(isFirstPage.value && { disabled: true })}></ABtn>

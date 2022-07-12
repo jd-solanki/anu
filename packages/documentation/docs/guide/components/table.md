@@ -1,5 +1,24 @@
 # Table
 
+<!-- 👉 Basic -->
+<Demo>
+
+## Basic
+
+<template #demo>
+    <div class="cards-demo-container">
+        <DemoTableBasic />
+    </div>
+</template>
+
+<template #code>
+
+<<< @/demos/table/DemoTableBasic.vue
+
+</template>
+
+</Demo>
+
 <!-- 👉 Server Side Pagination -->
 <Demo>
 
@@ -18,22 +37,3 @@ description
 </template>
 
 </Demo>
-
-<!-- 👉 Basic -->
-<!-- <Demo>
-
-## Basic
-
-description
-
-<template #demo>
-    <DemoTableBasic />
-</template>
-
-<template #code>
-
-<<< @/demos/table/DemoTableBasic.vue
-
-</template>
-
-</Demo> -->

@@ -61,31 +61,8 @@ const rows = [
     website: 'ambrose.net',
   },
 ]
-
-const columns = [
-  {
-    name: 'id',
-    isFilterable: false,
-  },
-  {
-    name: 'name',
-    isFilterable: true,
-  },
-  {
-    name: 'username',
-    isFilterable: true,
-  },
-  {
-    name: 'website',
-    isFilterable: false,
-  },
-]
 </script>
 
 <template>
-  <ATable
-    :rows="rows"
-    :columns="columns"
-    search
-  />
+  <ATable :rows="rows" />
 </template>
