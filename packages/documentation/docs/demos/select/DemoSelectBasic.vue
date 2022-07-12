@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-// Fruits
+// Fruit
 const selectedFruit = ref()
 const fruits = ['banana', 'apple', 'watermelon', 'orange']
 
@@ -18,11 +18,14 @@ const frameworks = [
 
 <template>
   <div class="grid-row grid-cols-2 justify-items-stretch">
+    <!-- Fruits -->
     <ASelect
       v-model="selectedFruit"
       :options="fruits"
       :hint="`value: ${selectedFruit}`"
     />
+
+    <!-- Framework -->
     <ASelect
       v-model="selectedFramework"
       :options="frameworks"
