@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: Anu
-  text: Atomic Vue Component Library
-  tagline: Build on top of powerful tools like UnoCSS, VueUse, etc.
+  text: Build better interfaces faster
+  tagline: DX focused utility based component library
   actions:
     - theme: brand
       text: Get Started
@@ -12,5 +12,4 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/jd-solanki/anu
----
 ---

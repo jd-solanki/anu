@@ -4,6 +4,13 @@
     --vp-c-text-1: hsla(var(--base-color), var(--text-emphasis-medium-opacity));
     --vp-c-bg: hsl(var(--a-background));
     --vp-c-bg-alt: hsl(var(--a-background));
+
+    /* Branding */
+    --vp-c-brand-lighter: hsl(265, 97%, 75%);
+    --vp-c-brand-light: hsl(265, 97%, 70%);
+    --vp-c-brand: hsl(265, 97%, 66%);
+    --vp-c-brand-dark: hsl(265, 97%, 60%);
+    --vp-c-brand-darker: hsl(265, 97%, 55%);
 }
 
 /* ==========================
