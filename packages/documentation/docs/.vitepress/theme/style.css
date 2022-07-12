@@ -88,8 +88,8 @@ SECTION VitePress
 ========================== */
 
 .cards-demo-container {
-    /* rounded-lg border-dashed border border-app p-8 bg-[hsla(var(--base-color), .05)] */
-    @apply rounded-lg border-dashed border border-app p-8;
+    /* rounded-lg border-dashed border border-a-border p-8 bg-[hsla(var(--base-color), .05)] */
+    @apply rounded-lg border-dashed border border-a-border p-8;
     background: hsla(var(--base-color), 0.05);
 }
 

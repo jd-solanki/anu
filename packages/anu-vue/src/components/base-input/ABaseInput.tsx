@@ -55,7 +55,7 @@ export const ABaseInput = defineComponent({
                 {/* SECTION Input wrapper */}
                 <div class={[
                     `${props.error ? 'border-danger' : 'focus-within:border-primary'}`,
-                    'relative i:focus-within:text-primary transition duration-250 ease-out flex i:flex-shrink-0 i:em:w-5 i:em:h-5 gap-x-2 items-center em:h-12 border border-solid border-app w-full em:rounded-lg',
+                    'relative i:focus-within:text-primary transition duration-250 ease-out flex i:flex-shrink-0 i:em:w-5 i:em:h-5 gap-x-2 items-center em:h-12 border border-solid border-a-border w-full em:rounded-lg',
                     props.inputWrapperClasses,
                 ]}>
 

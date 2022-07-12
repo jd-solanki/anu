@@ -12,6 +12,7 @@ export function presetThemeDefault(): Preset {
         info: 'hsl(var(--info))',
         warning: 'hsl(var(--warning))',
         danger: 'hsl(var(--danger))',
+        a: { border: 'hsla(var(--base-color),var(--border-opacity))' },
       },
       fontSize: {
         rxs: ['0.75em', '1em'],
@@ -46,8 +47,6 @@ export function presetThemeDefault(): Preset {
       ...colors.map(c => `typography-text-${c}`),
     ],
     rules: [
-      ['border-app', { 'border-color': 'hsla(var(--base-color),var(--border-opacity))' }],
-
       // Typography
       [
         /^typography-(\w+)-(\w+)$/,
