@@ -1,17 +1,17 @@
 import { ABaseInput } from '@/components/base-input'
+import { isObject } from '@/utils/helpers'
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { onClickOutside } from '@vueuse/core'
 import type { PropType } from 'vue'
 import { defineComponent, onBeforeUnmount, onMounted, ref, Teleport, watch } from 'vue'
 
-type SelectOptions = string[] | ({ label: string; value: unknown } & Record<string | number | symbol, unknown>)[]
+type SelectOptions = unknown[] | ({ label: string; value: unknown } & Record<string | number | symbol, unknown>)[]
 
 export const ASelect = defineComponent({
   name: 'ASelect',
   props: {
     modelValue: {
-      type: String,
-      default: '',
+      required: false,
     },
     options: {
       type: Array as PropType<SelectOptions>,
@@ -106,7 +106,7 @@ export const ASelect = defineComponent({
                   default: (slotProps: any) =>
                         <input
                             {...slotProps}
-                            value={typeof props.modelValue === 'string' ? props.modelValue : (props.modelValue.label)}
+                            value={isObject(props.modelValue) && 'label' in props.modelValue && 'value' in props.modelValue ? (props.modelValue.label) : props.modelValue }
                             readonly
                         />,
                 }}
@@ -115,7 +115,7 @@ export const ASelect = defineComponent({
                 <ul
                     v-show={isOptionsVisible.value}
                     ref={refFloating}
-                    class="z-10 g-select-options absolute bg-[hsl(var(--layer))] border border-solid border-app m-0 rounded-lg em:py-3 shadow-lg">
+                    class="z-10 g-select-options absolute bg-[hsl(var(--layer))] border border-solid border-a-border m-0 rounded-lg em:py-3 shadow-lg">
                     {
                       slots.default
                         ? slots.default?.({
@@ -124,7 +124,7 @@ export const ASelect = defineComponent({
                           },
                         })
                         : props.options?.map(option => <li class={optionClasses} onClick={() => handleOptionClick(option)}>
-                          {typeof option === 'string' ? option : option.label}
+                          {isObject(option) && 'label' in option && 'value' in option ? option.label : option}
                         </li>)
                     }
                 </ul>
