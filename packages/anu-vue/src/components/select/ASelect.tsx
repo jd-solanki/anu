@@ -17,6 +17,10 @@ export const ASelect = defineComponent({
       type: Array as PropType<SelectOptions>,
       default: undefined,
     },
+    optionsWrapperClasses: {
+      type: [Array, String, Object] as PropType<string | string[] | object>,
+      default: '',
+    },
   },
   emits: ['input', 'update:modelValue'],
   setup(props, { slots, emit, attrs }) {
@@ -115,7 +119,7 @@ export const ASelect = defineComponent({
                 <ul
                     v-show={isOptionsVisible.value}
                     ref={refFloating}
-                    class="z-10 g-select-options absolute bg-[hsl(var(--layer))] border border-solid border-a-border m-0 rounded-lg em:py-3 shadow-lg">
+                    class={['z-10 g-select-options absolute bg-[hsl(var(--layer))] border border-solid border-a-border m-0 rounded-lg em:py-3 shadow-lg', props.optionsWrapperClasses]}>
                     {
                       slots.default
                         ? slots.default?.({
