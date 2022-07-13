@@ -59,6 +59,10 @@ export const ATable = defineComponent({
       type: String,
       default: 'No matching results found!!',
     },
+    isSortable: {
+      type: Boolean,
+      default: true,
+    },
     multiSort: {
       type: Boolean,
       default: false,
@@ -243,6 +247,10 @@ export const ATable = defineComponent({
 
     // 👉 Handle header click
     const handleHeaderClick = (col: TableColumn) => {
+      // If table is not sortable don't sort the table
+      if (!props.isSortable)
+        return
+
       const index = sortedCols.value.findIndex(c => c.name === col.name)
 
       // console.log('index :>> ', index)
@@ -352,7 +360,7 @@ export const ATable = defineComponent({
           <tr>
             {_columns.value.map(column =>
               <th
-                class="select-none em:px-[1.15rem] em:h-14 text-left whitespace-nowrap cursor-pointer"
+                class={['capitalize em:px-[1.15rem] em:h-14 text-left whitespace-nowrap', props.isSortable && 'cursor-pointer select-none']}
                 onClick={() => handleHeaderClick(column)}
               >
                 <div class="inline-flex items-center">
@@ -371,17 +379,16 @@ export const ATable = defineComponent({
             rowsToRender.value.length
               ? rowsToRender.value.map(row => {
                 return <tr>
-                  {/* <pre>{JSON.stringify(Object.entries(row), null, 2)}</pre>
-                  <hr />
-                  <hr />
-                  <hr />
-                  <pre>{JSON.stringify(Object.entries(Object.values(row)), null, 2)}</pre>
-                  <hr />
-                  <hr />
-                  <hr />
-                  <pre>{JSON.stringify(Object.values(row), null, 2)}</pre> */}
                   {Object.entries(Object.values(row)).map(([index, columnValue]) => {
-                    return <td class="em:px-[1.15rem] em:h-14 whitespace-nowrap">{_columns.value[index].formatter ? _columns.value[index].formatter?.(row) : columnValue}</td>
+                    return <td class="em:px-[1.15rem] em:h-14 whitespace-nowrap">
+                      {
+                        slots[`row-${_columns.value[index].name}`]
+                          ? slots[`row-${_columns.value[index].name}`]?.({ row })
+                          : _columns.value[index].formatter
+                            ? _columns.value[index].formatter?.(row)
+                            : columnValue
+                      }
+                    </td>
                   })}
                 </tr>
               })
@@ -390,7 +397,7 @@ export const ATable = defineComponent({
         </tbody>
       </table>
 
-      const searchInput = () => <AInput prepend-inner-icon="i-bx-search" placeholder="search..." class="max-w-48" v-model={_search.value}></AInput>
+      const searchInput = () => <AInput prepend-inner-icon="i-bx-search" placeholder="search..." class="max-w-48 text-sm" v-model={_search.value}></AInput>
 
       // 👉 Footer
       // TODO: create PR for useOffsetPagination metadata

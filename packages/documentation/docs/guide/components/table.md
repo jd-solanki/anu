@@ -63,6 +63,96 @@ Use `formatter` property while defining column to format the column text.
 
 </Demo>
 
+<!-- 👉 Column Slot -->
+<Demo>
+
+## Column Slot
+
+`ATable` generates scoped slot based on your column name. If your column name is `website` then you can use `row-website` scoped slot to render custom content in your column.
+
+<template #demo>
+    <div class="cards-demo-container">
+        <DemoTableColumnSlot />
+    </div>
+</template>
+
+<template #code>
+
+<<< @/demos/table/DemoTableColumnSlot.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Filtering -->
+<Demo>
+
+## Filtering
+
+Set `search` prop to `true` to enable table filtering.
+
+Search will respect the column's `isFilterable` property to include or exclude the column from searching. If you don't specify column defination all columns will be filterable.
+
+<template #demo>
+    <div class="cards-demo-container">
+        <DemoTableFiltering />
+    </div>
+</template>
+
+<template #code>
+
+<<< @/demos/table/DemoTableFiltering.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Sorting -->
+<Demo>
+
+## Sorting
+
+Sorting is enable by default and will respect the column's `isSortable` property. If you don't specify column definition all columns will be sortable.
+
+To disable sorting on table use set `isSortable` prop to `false` on `ATable`.
+
+Moreover, You can also sort multiple columns at once. You can enable it by setting `multiSort` prop to `true` on `ATable`.
+
+<template #demo>
+    <div class="cards-demo-container">
+        <DemoTableSorting />
+    </div>
+</template>
+
+<template #code>
+
+<<< @/demos/table/DemoTableSorting.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Extra Column -->
+<Demo>
+
+## Extra Column
+
+description
+
+<template #demo>
+    <div class="cards-demo-container">
+        <DemoTableExtraColumn />
+    </div>
+</template>
+
+<template #code>
+
+<<< @/demos/table/DemoTableExtraColumn.vue
+
+</template>
+
+</Demo>
+
 <!-- 👉 Server Side Pagination -->
 <Demo>
 
