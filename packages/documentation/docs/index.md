@@ -41,7 +41,7 @@ hero:
   <div>
     <div class="i-ph-pen-nib-duotone text-primary text-2xl inline-flex shrink-0 p-2"></div>
     <p class="text-high-emphasis font-semibold text-xl">Design</p>
-    <span class="text-sm">Anu's provides neat & carefully crafted UI components to build stunning & professional looking UIs.</span>
+    <span class="text-sm">Anu provides neat & carefully crafted UI components to build stunning & professional looking UIs.</span>
   </div>
 
   <!-- Powerful tools -->
