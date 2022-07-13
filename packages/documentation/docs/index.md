@@ -8,10 +8,10 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/components/alert
+      link: /guide/getting-started/
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/jd-solanki/anu
+      text: View components
+      link: /guide/components/alert
 ---
 
 <div class="px-16">
