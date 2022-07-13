@@ -377,19 +377,22 @@ export const ATable = defineComponent({
         <tbody>
           {
             rowsToRender.value.length
-              ? rowsToRender.value.map(row => {
+              ? rowsToRender.value.map((row, rowIndex) => {
+                const colValues = Object.values(row)
+
                 return <tr>
-                  {Object.entries(Object.values(row)).map(([index, columnValue]) => {
-                    return <td class="em:px-[1.15rem] em:h-14 whitespace-nowrap">
-                      {
-                        slots[`row-${_columns.value[index].name}`]
-                          ? slots[`row-${_columns.value[index].name}`]?.({ row })
-                          : _columns.value[index].formatter
-                            ? _columns.value[index].formatter?.(row)
-                            : columnValue
-                      }
-                    </td>
-                  })}
+                  {
+                      _columns.value.map(col => <td class="em:px-[1.15rem] em:h-14 whitespace-nowrap">
+                          {
+                            slots[`row-${col.name}`]
+                              ? slots[`row-${col.name}`]?.({ row })
+                              : col.formatter
+                                ? col.formatter?.(row)
+                                : row[col.name]
+                          }
+                        </td>,
+                      )
+                  }
                 </tr>
               })
               : noResultsTr

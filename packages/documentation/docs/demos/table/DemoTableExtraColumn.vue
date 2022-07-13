@@ -30,7 +30,6 @@ const rows = [
 const columns = [
   { name: 'name' },
   { name: 'username' },
-  { name: 'website', isFilterable: false, isSortable: false },
   { name: 'actions' },
 ]
 </script>
@@ -41,7 +40,29 @@ const columns = [
     :columns="columns"
   >
     <template #row-actions>
-      <ABtn>Update</ABtn>
+      <div class="flex items-center">
+        <ABtn
+          class="text-xs"
+          icon="i-bx-link-external"
+          icon-only
+          color="default"
+          variant="text"
+        />
+        <ABtn
+          class="text-xs"
+          icon="i-bx-edit-alt"
+          icon-only
+          variant="text"
+          color="default"
+        />
+        <ABtn
+          class="text-xs"
+          icon="i-bx-trash"
+          icon-only
+          variant="text"
+          color="default"
+        />
+      </div>
     </template>
   </ATable>
 </template>

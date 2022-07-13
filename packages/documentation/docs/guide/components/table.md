@@ -137,7 +137,9 @@ Moreover, You can also sort multiple columns at once. You can enable it by setti
 
 ## Extra Column
 
-description
+Define extra column in column definition to add column to table. Later, you can use column slot `row-<name>` to render your custom content.
+
+Moreover, you can also omit the column definition to omit rendering the specific column.
 
 <template #demo>
     <div class="cards-demo-container">
