@@ -406,8 +406,9 @@ export const ATable = defineComponent({
           <span>per page</span>
           {/* <ABtn class="text-sm" onClick={() => { currentPageSize.value = 10 }}>10</ABtn> */}
           <ASelect
-            class="text-sm w-16 text-xs min-w-auto"
+            class="text-xs w-16 min-w-auto"
             inputWrapperClasses="em:h-9 rounded-0 !border-transparent !border-b-(thin a-border)"
+            optionsWrapperClasses="text-xs"
             v-model={currentPageSize.value}
             options={[5, 10, 15, 20]}>
           </ASelect>

@@ -26,8 +26,17 @@ const rows = [
     website: 'demarco.info',
   },
 ]
+
+const columns = [
+  { name: 'name' },
+  { name: 'username', formatter: row => `@${row.username}` },
+  { name: 'website' },
+]
 </script>
 
 <template>
-  <ATable :rows="rows" />
+  <ATable
+    :rows="rows"
+    :columns="columns"
+  />
 </template>
