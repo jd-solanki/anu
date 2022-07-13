@@ -93,8 +93,12 @@ Set `search` prop to `true` to enable table filtering.
 
 Search will respect the column's `isFilterable` property to include or exclude the column from searching. If you don't specify column defination all columns will be filterable.
 
+:::info
+Waiting for upstream fix [#1802](https://github.com/vueuse/vueuse/issues/1802)
+:::
+
 <template #demo>
-    <div class="cards-demo-container">
+    <div class="cards-demo-container opacity-50 pointer-events-none">
         <DemoTableFiltering />
     </div>
 </template>
@@ -155,20 +159,37 @@ Moreover, you can also omit the column definition to omit rendering the specific
 
 </Demo>
 
-<!-- 👉 Server Side Pagination -->
+<!-- 👉 Server Side Table -->
 <Demo>
 
-## Server Side Pagination
+## Server Side Table
 
-description
+If your table data is coming from API/backend you can pass async function to `rows` prop which should resolve the rows.
+
+```ts{6}
+const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
+  // You can use => q, currentPage, rowsPerPage, sortedCols
+  return new Promise((resolve, reject) => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => resolve(json))
+  })
+}
+```
+
+:::info
+Waiting for upstream fix [#1802](https://github.com/vueuse/vueuse/issues/1802)
+:::
 
 <template #demo>
-    <DemoTableServerSidePagination />
+    <div class="cards-demo-container opacity-50 pointer-events-none">
+        <DemoTableServerSideTable />
+    </div>
 </template>
 
 <template #code>
 
-<<< @/demos/table/DemoTableServerSidePagination.vue
+<<< @/demos/table/DemoTableServerSideTable.vue
 
 </template>
 
