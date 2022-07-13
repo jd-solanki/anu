@@ -54,7 +54,7 @@ export const ATypography = defineComponent({
                 <div class="flex-grow">
                     {
                         slots.title || props.title
-                          ? <props.titleTag class={['block uno-layer-base-text-rlg uno-layer-base-text-[hsla(var(--typography-title-color),var(--typography-title-opacity))]', title.value.titleClasses]}>{slots.title ? slots.title() : title.value.titleContent}</props.titleTag>
+                          ? <props.titleTag class={['font-medium block uno-layer-base-text-rlg uno-layer-base-text-[hsla(var(--typography-title-color),var(--typography-title-opacity))]', title.value.titleClasses]}>{slots.title ? slots.title() : title.value.titleContent}</props.titleTag>
                           : null
                     }
                     {

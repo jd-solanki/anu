@@ -10,7 +10,7 @@
       />
       <ATypography
         class="!children:leading-tight"
-        :title="['Sales', 'text-sm text-gray-500']"
+        :title="['Sales', 'text-sm text-gray-500 font-normal']"
         :subtitle="['2.5k', 'text-xl font-bold text-gray-700']"
       />
     </div>
@@ -24,7 +24,7 @@
       />
       <ATypography
         class="!children:leading-tight"
-        :title="['Revenue', 'text-sm text-gray-500']"
+        :title="['Revenue', 'text-sm text-gray-500 font-normal']"
         :subtitle="['$816', 'text-xl font-bold text-gray-700']"
       />
     </div>
@@ -39,7 +39,7 @@
       />
       <ATypography
         class="!children:leading-tight"
-        :title="['Customers', 'text-sm text-gray-500']"
+        :title="['Customers', 'text-sm text-gray-500 font-normal']"
         :subtitle="['1.5', 'text-xl font-bold text-gray-700']"
       />
     </div>
@@ -54,7 +54,7 @@
       />
       <ATypography
         class="!children:leading-tight"
-        :title="['Returns', 'text-sm text-gray-500']"
+        :title="['Returns', 'text-sm text-gray-500 font-normal']"
         :subtitle="['1.5', 'text-xl font-bold text-gray-700']"
       />
     </div>
