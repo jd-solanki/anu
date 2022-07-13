@@ -105,3 +105,15 @@ SECTION VitePress
 }
 
 /* !SECTION */
+
+/* SECTION Home */
+.VPHome {
+    padding-bottom: 0 !important;
+}
+
+.VPHero.VPHomeHero .text {
+    color: hsla(var(--base-color), 0.87)
+}
+
+
+/* !SECTION */

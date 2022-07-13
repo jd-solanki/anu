@@ -35,17 +35,18 @@ export default defineConfig({
         {
           text: 'Base Components',
           items: [
-            { text: 'Base Input', link: '/guide/base-components/base-input' },
+            // { text: 'Base Input', link: '/guide/base-components/base-input' },
             { text: 'Typography', link: '/guide/base-components/typography' },
           ],
         },
-        {
-          text: 'Composables',
-          items: [
-            { text: 'useSearch', link: '/guide/composables/useSearch' },
-            { text: 'useSort', link: '/guide/composables/useSort' },
-          ],
-        },
+
+        // {
+        //   text: 'Composables',
+        //   items: [
+        //     { text: 'useSearch', link: '/guide/composables/useSearch' },
+        //     { text: 'useSort', link: '/guide/composables/useSort' },
+        //   ],
+        // },
       ],
     },
   },
