@@ -14,6 +14,7 @@ export default defineConfig({
           text: 'Getting Started',
           items: [
             { text: 'Introduction', link: '/guide/getting-started/' },
+            { text: 'Customization', link: '/guide/getting-started/customization' },
             { text: 'Grid', link: '/guide/getting-started/grid' },
           ],
         },
@@ -23,13 +24,13 @@ export default defineConfig({
             { text: 'Alert', link: '/guide/components/alert' },
             { text: 'Button', link: '/guide/components/button' },
             { text: 'Card', link: '/guide/components/card' },
+            { text: 'Checkbox', link: '/guide/components/checkbox' },
             { text: 'Dialog', link: '/guide/components/dialog' },
             { text: 'Input', link: '/guide/components/input' },
+            { text: 'Radio', link: '/guide/components/radio' },
             { text: 'Select', link: '/guide/components/select' },
             { text: 'Table', link: '/guide/components/table' },
             { text: 'Textarea', link: '/guide/components/textarea' },
-            { text: 'Checkbox', link: '/guide/components/checkbox' },
-            { text: 'Radio', link: '/guide/components/radio' },
           ],
         },
         {

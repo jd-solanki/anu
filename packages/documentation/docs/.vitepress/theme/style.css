@@ -6,11 +6,12 @@
     --vp-c-bg-alt: hsl(var(--a-background));
 
     /* Branding */
-    --vp-c-brand-lighter: hsl(265, 97%, 75%);
-    --vp-c-brand-light: hsl(265, 97%, 70%);
-    --vp-c-brand: hsl(265, 97%, 66%);
-    --vp-c-brand-dark: hsl(265, 97%, 60%);
-    --vp-c-brand-darker: hsl(265, 97%, 55%);
+    --vp-brand-hue: 265;
+    --vp-c-brand-lighter: hsl(var(--vp-brand-hue), 97%, 75%);
+    --vp-c-brand-light: hsl(var(--vp-brand-hue), 97%, 70%);
+    --vp-c-brand: hsl(var(--vp-brand-hue), 97%, 66%);
+    --vp-c-brand-dark: hsl(var(--vp-brand-hue), 97%, 60%);
+    --vp-c-brand-darker: hsl(var(--vp-brand-hue), 97%, 55%);
 }
 
 /* ==========================
