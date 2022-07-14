@@ -60,7 +60,7 @@ export default defineConfig({
 ```
 
 :::warning
-Update highlighted line in above code snippet according line height if your app using `em` unit.
+Update highlighted line in above code snippet according line height in your app using `em` unit.
 
 e.g. For VitePress line height of paragraph is `24px`. Hence, we have height of `1.5em` in docs.
 :::

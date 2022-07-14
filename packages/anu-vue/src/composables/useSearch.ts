@@ -141,7 +141,7 @@ export const useSearch = <T>(search: MaybeRef<string>, data: MaybeRef<T[]>, filt
             else {
               const { name, filterBy } = k
 
-              return filterBy(item[name], unref(search), item)
+              return filterBy(item[name] as keyof T, unref(search), item)
             }
           })
         }

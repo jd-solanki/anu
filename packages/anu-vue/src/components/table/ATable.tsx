@@ -8,7 +8,7 @@ import { useSearch } from '@/composables/useSearch'
 import type { CustomSort, typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
 import { computedEager, useOffsetPagination } from '@vueuse/core'
-import type { PropType, Ref } from 'vue'
+import type { ComputedRef, PropType, Ref } from 'vue'
 import { computed, defineComponent, ref, toRaw, watch } from 'vue'
 
 // import { controlledComputed } from '@vueuse/core';
@@ -18,7 +18,9 @@ export type ShallSortByAsc = boolean | null
 export interface PropColumn {
   name: string
   isFilterable?: boolean
-  filterBy?: CustomFilter
+
+  // TODO(TS): Improve typing
+  filterBy?: CustomFilter<any>
   isSortable?: boolean
   sortBy?: CustomSort
   formatter?: (val: unknown) => unknown
@@ -85,7 +87,7 @@ export const ATable = defineComponent({
     const _rows = computed(() => isSST.value ? [] : props.rows)
 
     // 👉 Server rows
-    const _serverRows = ref([])
+    const _serverRows = ref<Object[]>([])
 
     const fetchRows = () => {
       // _search.value, currentPage.value, currentPageSize.value, sortedCols.value
@@ -97,12 +99,7 @@ export const ATable = defineComponent({
         sortedCols: toRaw(sortedCols.value),
       })
         .then(data => {
-          _serverRows.value = data
-
-          // console.log('data :>> ', data)
-        })
-        .catch(err => {
-          // console.log('err :>> ', err)
+          _serverRows.value = data as Object[]
         })
     }
 
@@ -155,7 +152,9 @@ export const ATable = defineComponent({
     // 👉 Filtered Rows
     const { results: filteredRows } = useSearch(
       _search,
-      _rows,
+
+      // TODO(TS): Improve typing
+      (_rows as ComputedRef<Object[]>),
       searchableCols
         .map(col => col.filterBy
           ? { name: col.name, filterBy: col.filterBy }
@@ -388,7 +387,9 @@ export const ATable = defineComponent({
                               ? slots[`row-${col.name}`]?.({ row })
                               : col.formatter
                                 ? col.formatter?.(row)
-                                : row[col.name]
+
+                                // TODO(TS): Improve typing
+                                : row[col.name as keyof Object]
                           }
                         </td>,
                       )

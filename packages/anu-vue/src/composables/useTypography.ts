@@ -31,15 +31,17 @@ export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsO
 }
 
 // Thanks: https://masteringjs.io/tutorials/fundamentals/filter-object
-export const extractTypographyProp = (props: ComponentObjectPropsOptions) => Object.fromEntries(
+// TODO(TS): improve typing
+export const extractTypographyProp = (props: any) => Object.fromEntries(
   Object.entries(props)
     .filter(
       ([propName]) => Object.keys(useTypographyProps()).includes(propName),
     ),
 )
 
-// TODO [v0.2.0]: Find another way to check typography component usage
-export const isTypographyUsed = (props: ComponentObjectPropsOptions, slots: Slots) => {
+// TODO [v0.2.0]: Find another way to check typography component usage & improve typing
+// export const isTypographyUsed = (props: ComponentObjectPropsOptions, slots: Slots) => {
+export const isTypographyUsed = (props: any, slots: Slots) => {
   const { title, subtitle, text } = props
 
   const validateProp = (prop: string | string[] | undefined): boolean => {

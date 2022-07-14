@@ -14,7 +14,7 @@ export const ACard = defineComponent({
     ...useTypographyProps(),
     img: String,
   },
-  setup(props, { slots, emit }) {
+  setup(props, { slots }) {
     const { getLayerClasses } = useLayer()
     const typographyProps = extractTypographyProp(props)
 
@@ -26,7 +26,7 @@ export const ACard = defineComponent({
     if (propText) {
       if (typeof propText === 'string') { typographyProps.text = [propText, 'text-sm'] }
       else {
-        const [textContent, textClasses] = propText
+        const [textContent, textClasses] = propText as string[]
         typographyProps.text = [textContent, `${textClasses} text-sm`]
       }
     }

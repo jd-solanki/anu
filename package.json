@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cd packages/anu-vue && nr dev",
-    "build": "cd packages/anu-vue && nr build",
-    "docs:dev": "cd packages/documentation && nr dev",
-    "docs:build": "cd packages/documentation && nr build",
+    "dev": "nr --filter anu-vue dev",
+    "build": "nr --filter anu-vue build",
+    "docs:dev": "nr --filter @anu-vue/documentation dev",
+    "docs:build": "nr --filter anu-vue build && nr --filter @anu-vue/documentation build",
     "clean": "rm -rf node_modules && cd packages/anu-vue && rm -rf node_modules dist && cd ../documentation && rm -rf node_modules"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@antfu/ni": "^0.16.3",
+    "pnpm": "^7.5.0",
     "@antfu/eslint-config-vue": "^0.25.1",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
@@ -23,5 +25,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-unicorn": "^43.0.1",
     "eslint-plugin-vue": "^9.2.0"
-  }
+  },
+  "packageManager": "pnpm@7.1.7"
 }

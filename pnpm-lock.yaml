@@ -5,6 +5,7 @@ importers:
   .:
     specifiers:
       '@antfu/eslint-config-vue': ^0.25.1
+      '@antfu/ni': ^0.16.3
       '@typescript-eslint/eslint-plugin': ^5.30.5
       '@typescript-eslint/parser': ^5.30.5
       eslint: ^8.19.0
@@ -13,8 +14,10 @@ importers:
       eslint-plugin-import: ^2.26.0
       eslint-plugin-unicorn: ^43.0.1
       eslint-plugin-vue: ^9.2.0
+      pnpm: ^7.5.0
     devDependencies:
       '@antfu/eslint-config-vue': 0.25.2_e44yiuup6oq5s7hbs23gk7fhfy
+      '@antfu/ni': 0.16.3
       '@typescript-eslint/eslint-plugin': 5.30.5_iom7pm3yknyiblqpw2vvqvxs5i
       '@typescript-eslint/parser': 5.30.5_eslint@8.19.0
       eslint: 8.19.0
@@ -23,6 +26,7 @@ importers:
       eslint-plugin-import: 2.26.0_sz72bmkmcbuk5wwg3sr4g74xyi
       eslint-plugin-unicorn: 43.0.1_eslint@8.19.0
       eslint-plugin-vue: 9.2.0_eslint@8.19.0
+      pnpm: 7.5.1
 
   packages/anu-vue:
     specifiers:
@@ -250,6 +254,11 @@ packages:
     dependencies:
       execa: 5.1.1
       find-up: 5.0.0
+    dev: true
+
+  /@antfu/ni/0.16.3:
+    resolution: {integrity: sha512-/C1N/hORSJp1qJHr4oRqQzmWPqB6S42T4HV4dWhXOllPJkcqQA/L40U55Oc7Gq4Gm9pLeCNZn7YYU1kUK2Ekpg==}
+    hasBin: true
     dev: true
 
   /@antfu/utils/0.5.2:
@@ -3626,6 +3635,12 @@ packages:
   /pluralize/8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
+    dev: true
+
+  /pnpm/7.5.1:
+    resolution: {integrity: sha512-/WbI4+V4QLJvMn4mp6dw4q+fbvwIyLTr7qmkoCpqs/xIYMpVXA3wdkvI5I9O9k1DJfYNuH8yY7Uf4vCCEdObJw==}
+    engines: {node: '>=14.6'}
+    hasBin: true
     dev: true
 
   /postcss-prefix-selector/1.16.0:

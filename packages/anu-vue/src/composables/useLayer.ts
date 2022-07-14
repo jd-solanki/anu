@@ -23,7 +23,8 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
 }
 
 export const useLayer = () => {
-  const getLayerClasses = (props: ComponentObjectPropsOptions) => {
+  // TODO(TS): Improve typing
+  const getLayerClasses = (props: any) => {
     const classes: string[] = [props.states ? 'states' : '']
 
     if (props.color) {

@@ -1,4 +1,4 @@
-import type { Preset } from '@unocss/core'
+import type { CSSEntries, Preset } from 'unocss'
 
 export const colors = ['primary', 'success', 'info', 'warning', 'danger']
 
@@ -127,7 +127,7 @@ export function presetThemeDefault(): Preset {
         return {
           // slice `em:` prefix and passed to the next variants and rules
           matcher: matcher.slice(3),
-          body: (body: unknown[][]) => {
+          body: (body: CSSEntries) => {
             body.forEach(v => {
               // v[1] can also be number
               if (typeof v[1] === 'string' && v[1].endsWith('rem'))
