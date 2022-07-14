@@ -1,7 +1,7 @@
 {
   "name": "anu-vue",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DX focused utility based component library",
   "author": "JD Solanki <https://github.com/jd-solanki>",
   "funding": "https://github.com/sponsors/jd-solanki",
@@ -30,6 +30,9 @@
     },
     "./dist/style.css": "./dist/style.css"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build && vue-tsc --emitDeclarationOnly --declaration",
