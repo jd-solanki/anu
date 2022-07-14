@@ -32,7 +32,7 @@ export const ADialog = defineComponent({
     useDOMScrollLock(toRef(props, 'modelValue'))
 
     return () => <Teleport to="body">
-      <div {...attrs} class={[{ hidden: !props.modelValue }, 'dialog grid uno-layer-base-place-items-center mx-auto z-[51] fixed uno-layer-base-inset-0 after:(content-empty fixed inset-0 bg-[hsla(var(--base-color),0.22)] z-[51] backdrop-blur-[4px])']}>
+      <div {...attrs} class={[{ hidden: !props.modelValue }, 'dialog grid uno-layer-base-place-items-center mx-auto z-[51] fixed uno-layer-base-inset-0 after:(content-empty fixed inset-0 bg-[hsla(var(--a-base-color),0.22)] z-[51] backdrop-blur-[4px])']}>
         <ACard class="shadow-2xl uno-layer-base-w-[500px] z-[52]" ref={refCard} {...props}>{{ ...slots }}</ACard>
       </div>
     </Teleport>

@@ -54,12 +54,12 @@ export const ATypography = defineComponent({
                 <div class="flex-grow">
                     {
                         slots.title || props.title
-                          ? <props.titleTag class={['font-medium block uno-layer-base-text-rlg uno-layer-base-text-[hsla(var(--typography-title-color),var(--typography-title-opacity))]', title.value.titleClasses]}>{slots.title ? slots.title() : title.value.titleContent}</props.titleTag>
+                          ? <props.titleTag class={['font-medium block uno-layer-base-text-rlg uno-layer-base-text-[hsla(var(--a-typography-title-color),var(--a-typography-title-opacity))]', title.value.titleClasses]}>{slots.title ? slots.title() : title.value.titleContent}</props.titleTag>
                           : null
                     }
                     {
                         slots.subtitle || props.subtitle
-                          ? <props.subtitleTag class={['block em:uno-layer-base-text-sm uno-layer-base-text-[hsla(var(--typography-subtitle-color),var(--typography-subtitle-opacity))]', subtitle.value.subtitleClasses]}>{slots.subtitle ? slots.subtitle() : subtitle.value.subtitleContent}</props.subtitleTag>
+                          ? <props.subtitleTag class={['block em:uno-layer-base-text-sm uno-layer-base-text-[hsla(var(--a-typography-subtitle-color),var(--a-typography-subtitle-opacity))]', subtitle.value.subtitleClasses]}>{slots.subtitle ? slots.subtitle() : subtitle.value.subtitleContent}</props.subtitleTag>
                           : null
                     }
                 </div>
@@ -67,7 +67,7 @@ export const ATypography = defineComponent({
             </div>
             {
                 slots.default || props.text
-                  ? <props.textTag class={['em:uno-layer-base-text-base uno-layer-base-text-[hsla(var(--typography-text-color),var(--typography-text-opacity))]', text.value.textClasses]}>{slots.default ? slots.default() : text.value.textContent}</props.textTag>
+                  ? <props.textTag class={['em:uno-layer-base-text-base uno-layer-base-text-[hsla(var(--a-typography-text-color),var(--a-typography-text-opacity))]', text.value.textClasses]}>{slots.default ? slots.default() : text.value.textContent}</props.textTag>
                   : null
             }
         </div>

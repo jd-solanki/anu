@@ -7,12 +7,12 @@ export function presetThemeDefault(): Preset {
     name: '@anu-vue/preset-theme-default',
     theme: {
       colors: {
-        primary: 'hsl(var(--primary))',
-        success: 'hsl(var(--success))',
-        info: 'hsl(var(--info))',
-        warning: 'hsl(var(--warning))',
-        danger: 'hsl(var(--danger))',
-        a: { border: 'hsla(var(--base-color),var(--border-opacity))' },
+        primary: 'hsl(var(--a-primary))',
+        success: 'hsl(var(--a-success))',
+        info: 'hsl(var(--a-info))',
+        warning: 'hsl(var(--a-warning))',
+        danger: 'hsl(var(--a-danger))',
+        a: { border: 'hsla(var(--a-base-color),var(--a-border-opacity))' },
       },
       fontSize: {
         rxs: ['0.75em', '1em'],
@@ -74,9 +74,9 @@ export function presetThemeDefault(): Preset {
 
       // [
       //   'card-heading', {
-      //     '--typography-title-color': 'var(--base-color)',
-      //     '--typography-subtitle-color': 'var(--base-color)',
-      //     '--typography-text-color': 'var(--base-color)',
+      //     '--a-typography-title-color': 'var(--a-base-color)',
+      //     '--a-typography-subtitle-color': 'var(--a-base-color)',
+      //     '--a-typography-text-color': 'var(--a-base-color)',
       //   },
       // ],
     ],
@@ -97,9 +97,9 @@ export function presetThemeDefault(): Preset {
         'card-content-spacer': 'flex flex-col items-start gap-y-4',
         'card-body': 'card-spacer card-content-spacer',
 
-        'text-high-emphasis': 'text-[hsla(var(--base-color),var(--text-emphasis-high-opacity))]',
-        'text-medium-emphasis': 'text-[hsla(var(--base-color),var(--text-emphasis-medium-opacity))]',
-        'text-light-emphasis': 'text-[hsla(var(--base-color),var(--text-emphasis-light-opacity))]',
+        'text-high-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-high-opacity))]',
+        'text-medium-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-medium-opacity))]',
+        'text-light-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]',
 
         // States
         'states': '\

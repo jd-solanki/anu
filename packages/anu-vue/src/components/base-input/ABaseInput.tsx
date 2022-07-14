@@ -74,7 +74,7 @@ export const ABaseInput = defineComponent({
                         'absolute inset-0 rounded-inherit',
                         slots['prepend-inner'] || props.prependInnerIcon ? 'em:pl-10' : 'em:pl-4',
                         slots['append-inner'] || props.appendInnerIcon ? 'em:pr-10' : 'em:pr-4',
-                        `${isEleDisabled(attrs) ? 'bg-[hsla(var(--base-color),0.12)] opacity-50' : ''}`,
+                        `${isEleDisabled(attrs) ? 'bg-[hsla(var(--a-base-color),0.12)] opacity-50' : ''}`,
                         `${isEleInteractive(attrs) ? 'placeholder:transition placeholder:duration-250 placeholder:ease  focus:placeholder:translate-x-1' : ''}`,
                       ],
                       ...inputAttrs,

@@ -1,7 +1,7 @@
 /* Styles adjusting VitePress according to theme */
 :root {
     --a-background: 0, 0%, 100%;
-    --vp-c-text-1: hsla(var(--base-color), var(--text-emphasis-medium-opacity));
+    --vp-c-text-1: hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity));
     --vp-c-bg: hsl(var(--a-background));
     --vp-c-bg-alt: hsl(var(--a-background));
 
@@ -26,7 +26,7 @@ SECTION VitePress
 }
 
 .VPNavBar.has-sidebar .container {
-    border-bottom: thin solid hsla(var(--base-color), var(--border-opacity));
+    border-bottom: thin solid hsla(var(--a-base-color), var(--a-border-opacity));
 }
 
 .VPNavBar.has-sidebar .content {
@@ -47,7 +47,7 @@ SECTION VitePress
     Enable below style for styled scrollbar
 */
 /* .VPSidebar::-webkit-scrollbar {
-    background: rgb(var(--layer));
+    background: rgb(var(--a-layer));
     block-size: 8px;
     border-end-end-radius: 14px;
     border-start-end-radius: 14px;
@@ -85,7 +85,7 @@ SECTION VitePress
 }
 
 .dark .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
-    border: 1px solid hsla(var(--base-color), var(--border-opacity));
+    border: 1px solid hsla(var(--a-base-color), var(--a-border-opacity));
     opacity: 0.85;
     font-weight: 500;
 }
@@ -95,13 +95,13 @@ SECTION VitePress
 ========================== */
 
 .cards-demo-container {
-    /* rounded-lg border-dashed border border-a-border p-8 bg-[hsla(var(--base-color), .05)] */
+    /* rounded-lg border-dashed border border-a-border p-8 bg-[hsla(var(--a-base-color), .05)] */
     @apply rounded-lg border-dashed border border-a-border p-8;
-    background: hsla(var(--base-color), 0.05);
+    background: hsla(var(--a-base-color), 0.05);
 }
 
 .dark .cards-demo-container {
-    background: hsla(var(--base-color), 0.01);
+    background: hsla(var(--a-base-color), 0.01);
 }
 
 /* !SECTION */
@@ -112,7 +112,7 @@ SECTION VitePress
 }
 
 .VPHero.VPHomeHero .text {
-    color: hsla(var(--base-color), 0.87)
+    color: hsla(var(--a-base-color), 0.87)
 }
 
 

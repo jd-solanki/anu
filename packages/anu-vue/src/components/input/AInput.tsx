@@ -23,7 +23,7 @@ export const AInput = defineComponent({
               default: (slotProps: any) => <input
                     {...slotProps}
                     value={props.modelValue}
-                    class={isInputTypeFile ? 'file:rounded-lg file:border-none file:mr-4 file:px-4 file:py-3 file:text-gray-500 file:rounded-r-none file:bg-[hsla(var(--base-color),0.05)] !px-0' : null}
+                    class={isInputTypeFile ? 'file:rounded-lg file:border-none file:mr-4 file:px-4 file:py-3 file:text-gray-500 file:rounded-r-none file:bg-[hsla(var(--a-base-color),0.05)] !px-0' : null}
                     onInput={handleChange}
                 />,
             }}
