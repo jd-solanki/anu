@@ -50,7 +50,9 @@ _In future releases_
 :::info
 My main focus at the moment is to release this lib and checking its response. If I get enough stars on GitHub, I will devote more time to this lib.
 
-<ABtn class="text-sm my-2" icon="i-bx-star" variant="light">
-    <a class="!no-underline" href="https://github.com/jd-solanki/anu" rel="noopener noreferrer" target="_blank">Give a star</a>
-</ABtn>
+<a class="!hover:opacity-100 !no-underline" href="https://github.com/jd-solanki/anu" rel="noopener noreferrer" target="_blank">
+    <ABtn class="text-sm my-2" icon="i-bx-star" variant="light" href="https://github.com/jd-solanki/anu" tag="a">
+        Give a star
+    </ABtn>
+</a>
 :::
