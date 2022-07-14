@@ -1,7 +1,26 @@
 {
   "name": "anu-vue",
-  "private": true,
-  "version": "0.0.1",
+  "private": false,
+  "version": "0.1.0",
+  "description": "DX focused utility based component library",
+  "author": "JD Solanki <https://github.com/jd-solanki>",
+  "funding": "https://github.com/sponsors/jd-solanki",
+  "homepage": "https://anu-vue.netlify.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jd-solanki/anu.git",
+    "directory": "packages/anu-vue"
+  },
+  "bugs": {
+    "url": "https://github.com/jd-solanki/anu/issues"
+  },
+  "keywords": [
+    "component library",
+    "ui components",
+    "vuejs",
+    "vue"
+  ],
+  "license": "MIT",
   "main": "./dist/anu-vue.cjs",
   "module": "./dist/anu-vue.mjs",
   "exports": {

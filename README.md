@@ -4,7 +4,7 @@
    </a>
 </h1>
 
-<p align="center">Build better interfaces faster. DX focused utility based component library.</p>
+<p align="center">DX focused utility based component library.</p>
 
 <p align="center">
    <a href="https://github.com/jd-solanki/anu/blob/main/LICENSE">
