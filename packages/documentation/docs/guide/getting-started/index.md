@@ -25,12 +25,19 @@ UnoCSS will provide CSS utilities and more. Moreover, compared to TailwindCSS cr
 Add `anu-vue` and its supporting libraries
 
 ```bash
-yarn add anu-vue && yarn add -D unocss @unocss/preset-uno @unocss/preset-icons @iconify-json/bx
+#pnpm
+pnpm add anu-vue && pnpm add -D unocss @iconify-json/bx
+
+# yarn
+yarn add anu-vue && yarn add -D unocss @iconify-json/bx
+
+# npm
+npm install anu-vue && npm install -D unocss @iconify-json/bx
 ```
 
 ## Usage
 
-Create UnoCSS Config file `unocss.config.ts` in root of the project with below content:
+Create UnoCSS Config file `uno.config.ts` in root of the project with below content:
 
 ```ts{14}
 import { presetCore, presetThemeDefault } from 'anu-vue'
@@ -67,9 +74,10 @@ e.g. For VitePress line height of paragraph is `24px`. Hence, we have height of 
 
 Update your `main.ts` file like below:
 
-```js
-import { anu } from 'anu-vue'
+```js{3,5-6,8-9,14}
 import { createApp } from 'vue'
+import App from './App.vue'
+import { anu } from 'anu-vue'
 
 // UnoCSS import
 import 'uno.css'
@@ -77,12 +85,10 @@ import 'uno.css'
 // import styles
 import 'anu-vue/dist/style.css'
 
-const app = createApp({
-  /* ... */
-})
-
-// It will register all the components globally
-app.use(anu)
+// Using `app.use(anu)` will register all the components globally
+createApp(App)
+  .mount('#app')
+  .use(anu)
 ```
 
 You also follow À la carte fashion if you don't want to register all the components globally
