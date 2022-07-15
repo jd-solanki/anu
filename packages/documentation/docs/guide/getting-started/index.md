@@ -37,7 +37,19 @@ npm install anu-vue && npm install -D unocss @iconify-json/bx
 
 ## Usage
 
-Create UnoCSS Config file `uno.config.ts` in root of the project with below content:
+Add UnoCSS to `vite.config.js`
+
+```ts
+import Unocss from 'unocss/vite'
+
+export default {
+  plugins: [
+    Unocss(),
+  ],
+}
+```
+
+Create UnoCSS Config file `uno.config.js` in root of the project with below content:
 
 ```ts{14}
 import { presetCore, presetThemeDefault } from 'anu-vue'
@@ -72,7 +84,7 @@ Update highlighted line in above code snippet according line height in your app 
 e.g. For VitePress line height of paragraph is `24px`. Hence, we have height of `1.5em` in docs.
 :::
 
-Update your `main.ts` file like below:
+Update your `main.js` file like below:
 
 ```js{3,5-6,8-9,14}
 import { createApp } from 'vue'
