@@ -36,6 +36,19 @@ SECTION VitePress
 }
 
 /* ==========================
+👉 Algolia search
+========================== */
+
+.VPNavBarSearch.search {
+    flex-grow: unset;
+    margin-inline-end: 2rem;
+}
+
+.VPNavBarSearch .DocSearch.DocSearch-Button {
+    background-color: hsla(var(--a-base-color), 0.04) !important;
+}
+
+/* ==========================
 👉 Sidebar scrollbar style
 ========================== */
 

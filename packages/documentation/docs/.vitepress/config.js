@@ -51,6 +51,11 @@ export default defineConfig({
         // },
       ],
     },
+    algolia: {
+      appId: 'IYYYPJBRSZ',
+      apiKey: '98db25cb8cd2b378d151bfe73034f51a',
+      indexName: 'anu',
+    },
   },
   markdown: {
     theme: 'dracula',
