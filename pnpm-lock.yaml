@@ -33,6 +33,7 @@ importers:
   packages/anu-vue:
     specifiers:
       '@floating-ui/dom': ^0.5.4
+      '@unocss/core': ^0.44.3
       '@unocss/reset': ^0.44.2
       '@vitejs/plugin-vue': ^3.0.0
       '@vitejs/plugin-vue-jsx': ^2.0.0
@@ -51,6 +52,7 @@ importers:
       defu: 6.0.0
       vue: 3.2.37
     devDependencies:
+      '@unocss/core': 0.44.3
       '@unocss/reset': 0.44.2
       '@vitejs/plugin-vue': 3.0.0_vite@3.0.0+vue@3.2.37
       '@vitejs/plugin-vue-jsx': 2.0.0_vite@3.0.0+vue@3.2.37
@@ -1123,6 +1125,10 @@ packages:
 
   /@unocss/core/0.44.2:
     resolution: {integrity: sha512-u1P/IMU8axudO1Tao+Ow9fNyufcZvAnjAcCbRVFQH3grQGJwoqAgMyJDh4EZqpR/Xz8H8a43cNjIbBsa4BwBGQ==}
+    dev: true
+
+  /@unocss/core/0.44.3:
+    resolution: {integrity: sha512-UXKEefjIRqsGzd3IpsblCHv5udUuTRFrhg9sH6VCAgM+5D8vJwVkWJMcpnvKD9Bue915qFHqkXVc/A4DlUv5gw==}
     dev: true
 
   /@unocss/inspector/0.44.1:
