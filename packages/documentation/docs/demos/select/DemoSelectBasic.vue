@@ -17,7 +17,7 @@ const frameworks = [
 </script>
 
 <template>
-  <div class="grid-row grid-cols-2 justify-items-stretch">
+  <div class="grid-row sm:grid-cols-2 justify-items-stretch">
     <!-- Fruits -->
     <ASelect
       v-model="selectedFruit"

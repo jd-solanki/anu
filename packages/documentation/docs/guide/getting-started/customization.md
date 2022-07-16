@@ -4,7 +4,7 @@ import { computed, onMounted } from 'vue';
 
 const primaryColor = useCssVar('--a-primary')
 const vpBrandHue = useCssVar('--vp-brand-hue')
-const isPrimaryChanged = computed(() => !primaryColor.value.startsWith('265'))
+const isPrimaryChanged = computed(() => primaryColor.value.startsWith('235'))
 
 const updatePrimaryColor = () => {
     // To update the look & feel of whole template, update VitePress primary color as well
@@ -22,7 +22,7 @@ Anu uses [HSL](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl)
 
 To customize theme color, set CSS variable in your CSS with color name prefixed with `--a-` (_e.g. `--a-primary`_). Below is list of colors you can configure.
 
-<div class="flex all-me-6">
+<div class="flex gap-6 flex-wrap">
     <ACard variant="fill" color="primary" class="rounded-2xl shadow-2xl shadow-primary shadow-opacity-40 w-26 h-26 font-semibold grid place-items-center">Primary</ACard>
     <ACard variant="fill" color="success" class="rounded-2xl shadow-2xl shadow-success shadow-opacity-40 w-26 h-26 font-semibold grid place-items-center">Success</ACard>
     <ACard variant="fill" color="info" class="rounded-2xl shadow-2xl shadow-info shadow-opacity-40 w-26 h-26 font-semibold grid place-items-center">Info</ACard>

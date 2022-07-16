@@ -105,6 +105,16 @@ SECTION VitePress
     background: hsla(var(--a-base-color), 0.01);
 }
 
+/* ==========================
+👉 Code snippet styles
+========================== */
+
+.vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
+    border-radius: 8px !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
 /* !SECTION */
 
 /* SECTION Home */
@@ -115,6 +125,5 @@ SECTION VitePress
 .VPHero.VPHomeHero .text {
     color: hsla(var(--a-base-color), 0.87)
 }
-
 
 /* !SECTION */

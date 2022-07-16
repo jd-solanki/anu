@@ -24,7 +24,7 @@ You can use `ASelect` component to render basic select.
 
 You can use `placeholder` attribute to add placeholder to the select.
 
-<div class="grid grid-cols-2">
+<div class="grid-row sm:grid-cols-2 justify-items-stretch">
     <div>
         <DemoSelectPlaceholder />
     </div>
@@ -45,7 +45,7 @@ You can use `placeholder` attribute to add placeholder to the select.
 
 You can use `label` prop to add label to the select.
 
-<div class="grid grid-cols-2">
+<div class="grid-row sm:grid-cols-2 justify-items-stretch">
     <div>
         <DemoSelectLabel />
     </div>
@@ -66,7 +66,7 @@ You can use `label` prop to add label to the select.
 
 You can use `hint` prop to add hint to the select.
 
-<div class="grid grid-cols-2">
+<div class="grid-row sm:grid-cols-2 justify-items-stretch">
     <div>
         <DemoSelectHint />
     </div>

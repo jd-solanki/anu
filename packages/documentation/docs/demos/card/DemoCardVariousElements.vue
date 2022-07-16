@@ -26,8 +26,8 @@
       </div>
     </ACard>
 
-    <ACard class="col-span-2">
-      <div class="grid-row grid-cols-[2fr_5fr] gap-x-0 items-center">
+    <ACard class="sm:col-span-2">
+      <div class="grid-row sm:grid-cols-[2fr_5fr] gap-x-0 gap-0 items-center">
         <img
           src="/images/demo/minimal-3-1.png"
           alt="minimal-3"

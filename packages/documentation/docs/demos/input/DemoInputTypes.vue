@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 gap-6">
+  <div class="grid-row sm:grid-cols-2 place-items-stretch">
     <AInput
       type="text"
       label="Text"

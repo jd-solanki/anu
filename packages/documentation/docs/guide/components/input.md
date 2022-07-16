@@ -7,7 +7,7 @@
 
 You can use `AInput` component to render basic input.
 
-<div class="grid grid-cols-2">
+<div class="grid-row sm:grid-cols-2 place-items-stretch">
     <div>
         <DemoInputBasic />
     </div>
@@ -28,7 +28,7 @@ You can use `AInput` component to render basic input.
 
 You can use `placeholder` attribute to add placeholder to the input.
 
-<div class="grid grid-cols-2">
+<div class="grid-row sm:grid-cols-2 place-items-stretch">
     <div>
         <DemoInputPlaceholder />
     </div>
@@ -72,7 +72,7 @@ When you use **label slot**, Note that label's `for` attribute needs to prefix t
 
 You can use `hint` prop to add hint to the input.
 
-<div class="grid grid-cols-2">
+<div class="grid-row sm:grid-cols-2 place-items-stretch">
     <div>
         <DemoInputHint />
     </div>
@@ -188,7 +188,7 @@ Use `disabled` attribute to make input disabled.
 
 Anu do not provide any validation mechanism at the moment as it assume it's better handled by third-party libraries like [VeeValidate](https://vee-validate.logaretm.com/)
 
-<div class="grid grid-cols-2">
+<div class="grid-row sm:grid-cols-2 place-items-stretch">
     <div>
         <DemoInputValidation />
     </div>

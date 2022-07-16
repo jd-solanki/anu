@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-row grid-cols-4">
+  <div class="grid-row sm:grid-cols-4 grid-cols-2">
     <!-- 👉 Sales -->
     <div class="flex gap-x-3 items-center">
       <ABtn
@@ -10,8 +10,8 @@
       />
       <ATypography
         class="!children:leading-tight"
-        :title="['Sales', 'text-sm text-gray-500 font-normal']"
-        :subtitle="['2.5k', 'text-xl font-bold text-gray-700']"
+        :title="['Sales', 'text-sm font-normal !text-medium-emphasis']"
+        :subtitle="['2.5k', 'text-xl font-bold !text-high-emphasis']"
       />
     </div>
 
@@ -24,8 +24,8 @@
       />
       <ATypography
         class="!children:leading-tight"
-        :title="['Revenue', 'text-sm text-gray-500 font-normal']"
-        :subtitle="['$816', 'text-xl font-bold text-gray-700']"
+        :title="['Revenue', 'text-sm !text-medium-emphasis font-normal']"
+        :subtitle="['$816', 'text-xl font-bold !text-high-emphasis']"
       />
     </div>
 
@@ -39,8 +39,8 @@
       />
       <ATypography
         class="!children:leading-tight"
-        :title="['Customers', 'text-sm text-gray-500 font-normal']"
-        :subtitle="['1.5', 'text-xl font-bold text-gray-700']"
+        :title="['Customers', 'text-sm !text-medium-emphasis font-normal']"
+        :subtitle="['1.5', 'text-xl font-bold !text-high-emphasis']"
       />
     </div>
 
@@ -54,8 +54,8 @@
       />
       <ATypography
         class="!children:leading-tight"
-        :title="['Returns', 'text-sm text-gray-500 font-normal']"
-        :subtitle="['1.5', 'text-xl font-bold text-gray-700']"
+        :title="['Returns', 'text-sm !text-medium-emphasis font-normal']"
+        :subtitle="['1.5', 'text-xl font-bold !text-high-emphasis']"
       />
     </div>
   </div>

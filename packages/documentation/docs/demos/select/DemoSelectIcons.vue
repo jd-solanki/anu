@@ -6,7 +6,7 @@ const fruits = ['banana', 'apple', 'watermelon', 'orange']
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-6">
+  <div class="grid-row sm:grid-cols-2 justify-items-stretch">
     <ASelect
       v-model="selected"
       prepend-inner-icon="i-bx-heart"

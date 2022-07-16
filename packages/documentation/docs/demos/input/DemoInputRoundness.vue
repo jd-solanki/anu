@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-row grid-cols-2 place-items-stretch">
+  <div class="grid-row sm:grid-cols-2 place-items-stretch">
     <!-- 👉 rounded-0 -->
     <AInput
       input-wrapper-classes="rounded-0"
