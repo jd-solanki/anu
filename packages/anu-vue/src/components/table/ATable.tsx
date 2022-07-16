@@ -224,7 +224,7 @@ export const ATable = defineComponent({
       // onPageSizeChange: paginateRows,
     })
     watch([_search, sortedCols, currentPage, currentPageSize], ([...changes]) => {
-      console.log('xx=xx=xx', changes)
+      // console.log('xx=xx=xx', changes)
       if (isSST.value)
         fetchRows()
       else
@@ -353,7 +353,7 @@ export const ATable = defineComponent({
 
           TODO(refactor): Use variant group here
       */
-      const table = <table class="w-full max-w-full all-[tr]-border-b all-[tr]-border-a-border">
+      const table = <table class="overflow-x-auto block w-full max-w-full all-[tr]-border-b all-[tr]-border-a-border">
         {/* 👉 thead */}
         <thead>
           <tr>
@@ -414,7 +414,7 @@ export const ATable = defineComponent({
         }}></ATypography>
         <div class="flex-grow"></div>
         <div class="em:text-sm flex items-center gap-x-2">
-          <span>per page</span>
+          <span class="sm:inline hidden">per page</span>
           {/* <ABtn class="text-sm" onClick={() => { currentPageSize.value = 10 }}>10</ABtn> */}
           <ASelect
             class="text-xs w-16 min-w-auto"
@@ -436,7 +436,6 @@ export const ATable = defineComponent({
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
       return <ACard
         {...cardProps}
-        class="overflow-auto"
         v-slots={{
           ...slots,
           default: () => [slots.default?.(), table, tableFooter],
