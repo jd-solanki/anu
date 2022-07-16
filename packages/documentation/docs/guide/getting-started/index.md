@@ -6,7 +6,7 @@
 
 - Yes, there's UnoCSS, TailwindCSS, etc but they don't provide ready to use components
 - DX Focused. You will enjoy writing code 💯
-- [Configure UI](http://localhost:3000/guide/base-components/typography.html#config-array) using array instead of writing component's markup again to override
+- [Configure UI](/guide/base-components/typography.html#config-array) using array instead of writing component's markup again to override
 - It is for lazy people by lazy person
 - I co-authored premium templates like [Vuexy](https://themeforest.net/item/vuexy-vuejs-html-laravel-admin-dashboard-template/23328599), [Materio](https://themeselection.com/item/materio-vuetify-vuejs-admin-template), etc so you can expect neat & lovable UI from anu.
 - Thanks to UnoCSS, VueUse, etc You can build your desired UI  & functionalities in no time using battle tested features.
