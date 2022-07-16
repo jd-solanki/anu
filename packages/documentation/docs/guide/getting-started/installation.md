@@ -5,7 +5,7 @@
 Add `anu-vue` and its supporting libraries
 
 ```bash
-#pnpm
+# pnpm
 pnpm add anu-vue && pnpm add -D unocss @iconify-json/bx
 
 # yarn

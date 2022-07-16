@@ -22,11 +22,30 @@
 
 Add anu-vue and its supporting libraries
 
-```bash
-pnpm add anu-vue && pnpm add -D unocss @unocss/preset-uno @unocss/preset-icons @iconify-json/bx
+```shell
+# pnpm
+pnpm add anu-vue && pnpm add -D unocss @iconify-json/bx
+
+# yarn
+yarn add anu-vue && yarn add -D unocss @iconify-json/bx
+
+# npm
+npm install anu-vue && npm install -D unocss @iconify-json/bx
 ```
 
-Create UnoCSS Config file uno.config.ts in the root of the project with the below content:
+Add UnoCSS to vite.config.js
+
+```js
+import Unocss from 'unocss/vite'
+
+export default {
+  plugins: [
+    Unocss(),
+  ],
+}
+```
+
+Create UnoCSS Config file uno.config.js in the root of the project with the below content:
 
 ```ts
 import { presetCore, presetThemeDefault } from 'anu-vue'
@@ -51,7 +70,7 @@ export default defineConfig({
     presetCore(),
     presetThemeDefault(),
   ],
-  include: [/.*\/anu-vue\.mjs(.*)?$/, './**/*.vue', './**/*.md'],
+  include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
 })
 ```
 
@@ -60,11 +79,12 @@ export default defineConfig({
 
 e.g. For VitePress line height of paragraph is 24px. Hence, we have height of 1.5em in docs.
 
-Update your main.ts file like below
+Update your main.js file like below
 
 ```ts
-import { anu } from 'anu-vue'
 import { createApp } from 'vue'
+import { anu } from 'anu-vue'
+import App from './App.vue'
 
 // UnoCSS import
 import 'uno.css'
@@ -72,15 +92,27 @@ import 'uno.css'
 // import styles
 import 'anu-vue/dist/style.css'
 
-const app = createApp({
-  /* ... */
-})
-
-// It will register all the components globally
-app.use(anu)
+// Using `app.use(anu)` will register all the components globally
+createApp(App)
+  .use(anu)
+  .mount('#app')
 ```
 
+### Tree shaking
+
 You also follow À la carte fashion if you don't want to register all the components globally
+
+Remove anu plugin use in `main.js` file.
+
+```diff
+-  import { anu } from 'anu-vue'
+
+  createApp(App)
+-   .use(anu)
+    .mount('#app')
+```
+
+Now, import components individually from anu-vue
 
 ```vue
 <script setup>
@@ -92,6 +124,59 @@ import { ABtn } from 'anu-vue'
 </template>
 ```
 
+### Auto importing components
+
+[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) lets you auto import components on demand. With this, you can omit import statement and still get the benefits of tree shaking.
+
+Remove anu plugin use in `main.js` file if you haven't
+
+```diff
+-  import { anu } from 'anu-vue'
+
+  createApp(App)
+-   .use(anu)
+    .mount('#app')
+```
+
+Install unplugin-vue-components:
+
+```shell
+# pnpm
+pnpm add -D unplugin-vue-components
+
+# yarn
+pnpm add -D unplugin-vue-components
+
+# npm
+npm i -D unplugin-vue-components
+```
+
+Add following in `vite.config.js`:
+
+```js
+// other imports
+import Components from 'unplugin-vue-components/vite'
+
+export default defineConfig({
+  plugins: [
+    // other plugins
+    Components({
+      resolvers: [
+        {
+          type: 'component',
+          resolve: name => {
+            if (name.match(/^A[A-Z]/))
+              return { name, from: 'anu-vue' }
+          },
+        }
+      ]
+    }),
+  ],
+
+  // other config
+})
+```
+
 ## Future 🔮
 
 I will continue to develop this project if I get a positive response. I will introduce more components and amazing things like configurable array if I will be able to spend more time on OSS development.
@@ -100,16 +185,16 @@ When I will have:
 
 ### At least one sponsor
 
-- [ ] I will start sponsoring one of contributors of UnoCSS/VueUse.
+- [ ] I will start sponsoring one of the contributors of UnoCSS/VueUse.
 
-### 5 non doc contribution
+### 5 non-doc contribution
 
 - [ ] Write contribution guide
 
 ### Github stars
 
 - [ ] 100+
-  - [ ] More components like avatar, progress
+  - [ ] More components like avatar, progressbar
 - [ ] 500+
   - [ ] Write tests using [vitest](https://vitest.dev/)
 
@@ -118,5 +203,14 @@ Help me do full-time Open source by sponsoring me.
 If you like this lib do give it a star or spread some words on Twitter.
 
 Thanks 🙏
+
+## Credits
+
+- [UnoCSS](https://github.com/unocss/unocss) - Anu depends on it
+- [VueUse](https://github.com/vueuse/vueuse) - Anu depends on it
+- [Floating UI](https://github.com/floating-ui/floating-ui) - Anu depends on it
+- [Quasar](https://github.com/quasarframework/quasar) - Inspiration
+- [Vuetify](https://github.com/vuetifyjs/vuetify) - Inspiration
+- [Bootstrap](https://github.com/twbs/bootstrap) - Inspiration
 
 > NOTE: You might notice I need some help with TS with current codebase. This is because I have little experience with TS & I don't want to invest too much in it, at first I want to know how far anu can go.
