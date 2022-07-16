@@ -26,17 +26,21 @@ SECTION VitePress
     border-bottom: none !important;
 }
 
-.VPNavBar .container {
-    border-bottom: thin solid hsla(var(--a-base-color), var(--a-border-opacity));
+@media (min-width: 960px) {
+    .VPNavBar>.container {
+        border-bottom: thin solid hsla(var(--a-base-color), var(--a-border-opacity));
+    }
 }
 
 .no-sidebar .VPNavBar .container {
     border-bottom-color: transparent;
 }
 
-.VPNavBar .content {
-    /* background: hsla(250, 10%, 6%, .7) !important; */
-    background: hsla(var(--a-background), 0.7) !important;
+@media (min-width: 960px) {
+    .VPNavBar .content {
+        /* background: hsla(250, 10%, 6%, .7) !important; */
+        background: hsla(var(--a-background), 0.7) !important;
+    }
 }
 
 .dark .VPNav.no-sidebar {
@@ -52,8 +56,10 @@ SECTION VitePress
     margin-inline-end: 2rem;
 }
 
-.VPNavBarSearch .DocSearch.DocSearch-Button {
-    background-color: hsla(var(--a-base-color), 0.04) !important;
+@media (min-width: 768px) {
+    .VPNavBarSearch .DocSearch.DocSearch-Button {
+        background-color: hsla(var(--a-base-color), 0.04) !important;
+    }
 }
 
 /* ==========================
