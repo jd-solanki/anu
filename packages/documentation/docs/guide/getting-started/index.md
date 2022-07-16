@@ -86,7 +86,7 @@ e.g. For VitePress line height of paragraph is `24px`. Hence, we have height of 
 
 Update your `main.js` file like below:
 
-```js{3,5-6,8-9,14}
+```js{3,5-6,8-9,15}
 import { createApp } from 'vue'
 import App from './App.vue'
 import { anu } from 'anu-vue'
