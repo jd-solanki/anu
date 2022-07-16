@@ -34,11 +34,11 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
 
   // SECTION Components
   // 👉 Alert
-  'alert': 'p-4 font-medium rounded-lg gap-x-2',
+  'a-alert': 'p-4 font-medium rounded-lg gap-x-2',
 
   // 👉 Button
-  'btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em]',
-  'btn-icon-only': 'font-medium rounded-lg h-[2.5em] w-[2.5em] i:em:text-lg',
+  'a-btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em]',
+  'a-btn-icon-only': 'font-medium rounded-lg h-[2.5em] w-[2.5em] i:em:text-lg',
 
   // 👉 Base Input
   'a-base-input-root': 'min-w-[181px] gap-y-1',

@@ -31,7 +31,7 @@ export const ABtn = defineComponent({
     const { getLayerClasses } = useLayer()
 
     // FIX: ABtn gets full width if placed inside flex container
-    return () => <button class={[props.iconOnly ? 'btn-icon-only' : 'btn', 'uno-layer-base-text-base whitespace-nowrap inline-flex justify-center items-center', { 'opacity-50 pointer-events-none': isEleDisabled(attrs) }, ...getLayerClasses(props)]}>
+    return () => <button class={[props.iconOnly ? 'a-btn-icon-only' : 'a-btn', 'uno-layer-base-text-base whitespace-nowrap inline-flex justify-center items-center', { 'opacity-50 pointer-events-none': isEleDisabled(attrs) }, ...getLayerClasses(props)]}>
       {props.icon ? <i class={props.icon}></i> : null}{slots.default?.()}{props.appendIcon ? <i class={props.appendIcon}></i> : null}
     </button>
   },

@@ -47,7 +47,7 @@ export const AAlert = defineComponent({
     }
 
     // TODO: Omit writing `props.modelValue ??` multiple times
-    return () => <div class={['alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...getLayerClasses(props)]}>
+    return () => <div class={['a-alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...getLayerClasses(props)]}>
       {props.icon ? <i class={props.icon}></i> : null}
       <div class="flex-grow">{slots.default?.()}</div>
       {
