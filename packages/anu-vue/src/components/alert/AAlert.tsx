@@ -47,8 +47,7 @@ export const AAlert = defineComponent({
     }
 
     // TODO: Omit writing `props.modelValue ??` multiple times
-    // TODO: Remove usage of `i:flex-shrink-0` from everywhere because icons now have flex-shrink 0 by default
-    return () => <div class={['alert items-start i:flex-shrink-0 w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...getLayerClasses(props)]}>
+    return () => <div class={['alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...getLayerClasses(props)]}>
       {props.icon ? <i class={props.icon}></i> : null}
       <div class="flex-grow">{slots.default?.()}</div>
       {

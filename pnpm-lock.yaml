@@ -37,6 +37,7 @@ importers:
       '@vitejs/plugin-vue': ^3.0.0
       '@vitejs/plugin-vue-jsx': ^2.0.0
       '@vueuse/core': ^8.9.3
+      defu: ^6.0.0
       sass: ^1.53.0
       typescript: ^4.7.4
       unocss: ^0.44.2
@@ -47,6 +48,7 @@ importers:
       vue-tsc: ^0.38.5
     dependencies:
       '@floating-ui/dom': 0.5.4
+      defu: 6.0.0
       vue: 3.2.37
     devDependencies:
       '@unocss/reset': 0.44.2
@@ -2010,7 +2012,6 @@ packages:
 
   /defu/6.0.0:
     resolution: {integrity: sha512-t2MZGLf1V2rV4VBZbWIaXKdX/mUcYW0n2znQZoADBkGGxYL8EWqCuCZBmJPJ/Yy9fofJkyuuSuo5GSwo0XdEgw==}
-    dev: true
 
   /destr/1.1.1:
     resolution: {integrity: sha512-QqkneF8LrYmwATMdnuD2MLI3GHQIcBnG6qFC2q9bSH430VTCDAVjcspPmUaKhPGtAtPAftIUFqY1obQYQuwmbg==}

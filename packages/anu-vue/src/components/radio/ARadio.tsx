@@ -33,8 +33,8 @@ export const ARadio = defineComponent({
             <div class={[
                 `after:bg-${props.color}`,
                 isChecked.value ? `after:scale-full border-${props.color}` : 'after:scale-0 border-[hsla(var(--a-base-color),var(--a-border-opacity))]',
-                `${isEleDisabled(attrs) ? 'border-dashed' : 'border-solid'}`,
-                'h-5 w-5 border-(2 a-border) rounded-full mr-2 p-1 after:(w-full h-full rounded-full block content-empty transform transition transition-transform duration-250 ease-in-out)',
+                isEleDisabled(attrs) && 'a-radio-disabled-circle',
+                'a-radio-circle after:(w-full h-full rounded-full block content-empty transform transition transition-transform)',
             ]} />
             {slots.default ? slots.default() : props.label}
         </label>

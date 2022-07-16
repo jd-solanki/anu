@@ -31,10 +31,10 @@ export const ACheckbox = defineComponent({
                 class={['hidden children:next:checked:scale-full', `next:checked:bg-${props.color} next:checked:border-${props.color}`]}
             />
             <div class={[
-              'h-5 w-5 border-(2 a-border rounded)  flex items-center justify-center shrink-0 transition transition-border duration-200 mr-2',
-                `${isEleDisabled(attrs) ? 'border-dashed' : 'border-solid'}`,
+              'a-checkbox-box flex items-center justify-center shrink-0',
+              isEleDisabled(attrs) && 'a-checkbox-disabled-box',
             ]}>
-                <i class={[props.icon, 'shrink-0 scale-0 transition duration-150 delay-100 ease-[cubic-bezier(.57,1.48,.87,1.09)] text-white']} />
+                <i class={[props.icon, 'a-checkbox-icon scale-0 text-white']} />
             </div>
             {slots.default ? slots.default() : props.label}
         </label>

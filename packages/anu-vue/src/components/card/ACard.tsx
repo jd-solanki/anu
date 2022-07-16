@@ -31,7 +31,7 @@ export const ACard = defineComponent({
       }
     }
 
-    return () => <div class={['overflow-hidden uno-layer-base-text-sm rounded-lg uno-layer-base-bg-[hsl(var(--a-layer))] shadow-lg', getLayerClasses(props)]}>
+    return () => <div class={['a-card overflow-hidden uno-layer-base-text-sm uno-layer-base-bg-[hsl(var(--a-layer))]', getLayerClasses(props)]}>
       {/* 👉 Image */}
       {props.img ? <img src={props.img} alt="card-img"></img> : null}
 
@@ -41,7 +41,7 @@ export const ACard = defineComponent({
         _isTypographyUsed
 
           // `not-last:pb-4` will set bottom padding to 1 rem instead of 1.5 if card-spacer is not last of type
-          ? <div class="card-spacer next:pt-0 not-last:pb-4">
+          ? <div class="a-card-typography-wrapper">
             <ATypography {...typographyProps}>
               {{ ...slots, default: null }}
             </ATypography>

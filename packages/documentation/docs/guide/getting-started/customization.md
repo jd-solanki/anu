@@ -20,7 +20,7 @@ const updatePrimaryColor = () => {
 
 Anu uses [HSL](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl) color format to define colors. You can configure theme colors via [CSS variables(custom properties)](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
 
-To customize theme color, set CSS variable in your CSS with color name prefixed with `--a-` (_e.g. `--a-primary`_). Below is list of colors you can configure.
+To customize theme color, set CSS variable in your CSS with color name prefixed with `a-` (_e.g. `--a-primary`_). Below is list of colors you can configure.
 
 <div class="flex gap-6 flex-wrap">
     <ACard variant="fill" color="primary" class="rounded-2xl shadow-2xl shadow-primary shadow-opacity-40 w-26 h-26 font-semibold grid place-items-center">Primary</ACard>
@@ -34,25 +34,47 @@ To customize theme color, set CSS variable in your CSS with color name prefixed 
 
 ## CSS variables
 
-Besides colors, Anu uses CSS variables for other stuff like app background, typography customization, etc. Interesting ones are listed below:
+Besides colors, Anu uses CSS variables for other stuff like typography customization. All anu's CSS variables are prefixed with `a-`.
+
+Interesting ones are listed below:
 
 | CSS variables                      | Usage                        |
 | :--------------------------------- | :--------------------------- |
-| `--a-background`                   | App background               |
 | `--a-text-emphasis-high-opacity`   | High priority text opacity   |
 | `--a-text-emphasis-medium-opacity` | Medium priority text opacity |
 | `--a-text-emphasis-light-opacity`  | Low priority text opacity    |
 
 ## Component customization
 
-_In future releases_
+All UI configurable styles are applied using theme preset. If you have noticed in installation section there's preset `presetThemeDefault`.
 
-:::info
-My main focus at the moment is to release this lib and checking its response. If I get enough stars on GitHub, I will devote more time to this lib.
+`presetThemeDefault` have various shortcuts that styles the component. You can overrides these shortcuts to change the look & feel of the component.
+
+To override those shortcuts use `shortcutOverrides` option like below:
+
+```ts
+presetThemeDefault({
+  shortcutOverrides: {
+    btn: 'px-[0.75em] py-[0.375em] rounded-[0.375em] gap-x-[0.375em] whitespace-nowrap',
+  },
+})
+```
+
+Guess, how our button will look like?
+
+:::details View answer
+It's bootstrap button 🤯
+
+Just change the colors to Bootstrap's color and see the magic 😍
+![Bootstrap buttons using anu](/images/guide/anu-bootstrap-btns.png)
+:::
+
+You can refer to available shortcuts in [this](https://github.com/jd-solanki/anu/blob/main/packages/anu-vue/src/presets/theme-default/index.ts) file.
+
+If you like this simple customization don't forget to give a **star on Github**. If you don't like it give triple star 😉.
 
 <a class="!hover:opacity-100 !no-underline" href="https://github.com/jd-solanki/anu" rel="noopener noreferrer" target="_blank">
     <ABtn class="text-sm my-2" icon="i-bx-star" variant="light" href="https://github.com/jd-solanki/anu" tag="a">
         Give a star
     </ABtn>
 </a>
-:::

@@ -32,7 +32,7 @@ export const ABaseInput = defineComponent({
 
     // TODO(Enhancement): We might need to remove absolute added to html input element to retain width instead of providing min-w to below wrapper
     // TODO: We need to improve default slot implementation so that we can provide selected slot to selection component
-    return () => <div class={['min-w-[181px] i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0 gap-y-1', rootClasses ?? []]} ref={refRoot}>
+    return () => <div class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', rootClasses ?? []]} ref={refRoot}>
             {/* 👉 Label */}
             {
                 slots.label
@@ -42,7 +42,7 @@ export const ABaseInput = defineComponent({
                     : null
             }
 
-            <div ref={refInputContainer} class="flex i:flex-shrink-0 i:em:w-6 i:em:h-6 gap-x-3 items-center" {...props.inputContainerAttrs}>
+            <div ref={refInputContainer} class="a-base-input-input-container flex items-center" {...props.inputContainerAttrs}>
                 {/* 👉 Slot: Prepend */}
                 {
                     slots.prepend
@@ -55,7 +55,7 @@ export const ABaseInput = defineComponent({
                 {/* SECTION Input wrapper */}
                 <div class={[
                     `${props.error ? 'border-danger' : 'focus-within:border-primary'}`,
-                    'relative i:focus-within:text-primary transition duration-250 ease-out flex i:flex-shrink-0 i:em:w-5 i:em:h-5 gap-x-2 items-center em:h-12 border border-solid border-a-border w-full em:rounded-lg',
+                    'a-base-input-input-wrapper relative i:focus-within:text-primary items-center border border-solid border-a-border w-full',
                     props.inputWrapperClasses,
                 ]}>
 
@@ -64,7 +64,7 @@ export const ABaseInput = defineComponent({
                         slots['prepend-inner']
                           ? slots['prepend-inner']?.()
                           : props.prependInnerIcon
-                            ? <i class={['inline-block ml-3 z-1', iconTransition, props.prependInnerIcon]} />
+                            ? <i class={['a-base-input-prepend-inner-icon inline-block', iconTransition, props.prependInnerIcon]} />
                             : null
                     }
 
@@ -72,10 +72,10 @@ export const ABaseInput = defineComponent({
                     {slots.default?.({
                       class: [
                         'absolute inset-0 rounded-inherit',
-                        slots['prepend-inner'] || props.prependInnerIcon ? 'em:pl-10' : 'em:pl-4',
-                        slots['append-inner'] || props.appendInnerIcon ? 'em:pr-10' : 'em:pr-4',
-                        `${isEleDisabled(attrs) ? 'bg-[hsla(var(--a-base-color),0.12)] opacity-50' : ''}`,
-                        `${isEleInteractive(attrs) ? 'placeholder:transition placeholder:duration-250 placeholder:ease  focus:placeholder:translate-x-1' : ''}`,
+                        slots['prepend-inner'] || props.prependInnerIcon ? 'a-base-input-w-prepend-inner' : 'a-base-input-wo-prepend-inner',
+                        slots['append-inner'] || props.appendInnerIcon ? 'a-base-input-w-append-inner' : 'a-base-input-wo-append-inner',
+                        `${isEleDisabled(attrs) ? 'a-base-input-disabled' : ''}`,
+                        `${isEleInteractive(attrs) ? 'a-base-input-interactive' : ''}`,
                       ],
                       ...inputAttrs,
                       id: elementId,
@@ -86,7 +86,7 @@ export const ABaseInput = defineComponent({
                         slots['append-inner']
                           ? slots['append-inner']?.()
                           : props.appendInnerIcon
-                            ? <i class={['inline-block em:me-3 ml-auto', iconTransition, props.appendInnerIcon]} />
+                            ? <i class={['a-base-input-append-inner-icon inline-block ml-auto', iconTransition, props.appendInnerIcon]} />
                             : null
                     }
                 </div>
@@ -107,7 +107,7 @@ export const ABaseInput = defineComponent({
                   ? slots.bottom?.()
                   : <TransitionExpand>
                       <div class="h-8" v-show={props.error || props.hint}>
-                        <small class={`inline-block ${props.error ? 'text-danger' : 'text-gray-400'}`}>{props.error || props.hint}</small>
+                        <small class={`inline-block ${props.error ? 'text-danger' : 'text-light-emphasis'}`}>{props.error || props.hint}</small>
                     </div>
                   </TransitionExpand>
             }

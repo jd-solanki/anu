@@ -8,8 +8,6 @@ export const ATextarea = defineComponent({
     height: String,
   },
   setup(props, { slots, emit, attrs }) {
-    const isInputTypeFile = attrs.type && attrs.type === 'file'
-
     return () => <ABaseInput {...attrs} inputWrapperClasses={['min-h-32', props.height]}>
             {{
               // Recursively pass down slots
@@ -19,7 +17,7 @@ export const ATextarea = defineComponent({
                         {...slotProps}
                         value={props.modelValue}
                         onInput={(event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).value)}
-                        class="py-4 bg-transparent resize-none"
+                        class="a-textarea bg-transparent resize-none"
                     />,
             }}
         </ABaseInput >

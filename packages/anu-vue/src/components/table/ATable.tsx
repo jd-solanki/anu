@@ -353,13 +353,13 @@ export const ATable = defineComponent({
 
           TODO(refactor): Use variant group here
       */
-      const table = <table class="overflow-x-auto block w-full max-w-full all-[tr]-border-b all-[tr]-border-a-border">
+      const table = <table class="a-table-table overflow-x-auto block w-full max-w-full">
         {/* 👉 thead */}
         <thead>
           <tr>
             {_columns.value.map(column =>
               <th
-                class={['capitalize em:px-[1.15rem] em:h-14 text-left whitespace-nowrap', props.isSortable && 'cursor-pointer select-none']}
+                class={['a-table-table-th whitespace-nowrap', props.isSortable && 'cursor-pointer select-none']}
                 onClick={() => handleHeaderClick(column)}
               >
                 <div class="inline-flex items-center">
@@ -381,7 +381,7 @@ export const ATable = defineComponent({
 
                 return <tr>
                   {
-                      _columns.value.map(col => <td class="em:px-[1.15rem] em:h-14 whitespace-nowrap">
+                      _columns.value.map(col => <td class="a-table-table-td whitespace-nowrap">
                           {
                             slots[`row-${col.name}`]
                               ? slots[`row-${col.name}`]?.({ row })
@@ -406,27 +406,27 @@ export const ATable = defineComponent({
       // 👉 Footer
       // TODO: create PR for useOffsetPagination metadata
       // TODO: currentPage is 0 when total is 0 => bug in vueuse
-      const tableFooter = <div class="em:px-[1.15rem] em:h-14 flex items-center gap-x-4">
+      const tableFooter = <div class="a-table-footer flex items-center">
         <ATypography class="text-size-[inherit]" v-slots={{
           subtitle: () => <>
             {(currentPage.value - 1) * currentPageSize.value + 1} - {sortedRows.value.length - currentPage.value * currentPageSize.value > 0 ? currentPage.value * currentPageSize.value : sortedRows.value.length} of {sortedRows.value.length}
           </>,
         }}></ATypography>
         <div class="flex-grow"></div>
-        <div class="em:text-sm flex items-center gap-x-2">
+        <div class="a-table-footer-per-page-container flex items-center">
           <span class="sm:inline hidden">per page</span>
           {/* <ABtn class="text-sm" onClick={() => { currentPageSize.value = 10 }}>10</ABtn> */}
           <ASelect
-            class="text-xs w-16 min-w-auto"
-            inputWrapperClasses="em:h-9 rounded-0 !border-transparent !border-b-(thin a-border)"
-            optionsWrapperClasses="text-xs"
+            class="a-table-footer-per-page-select"
+            inputWrapperClasses="a-table-footer-per-page-select--input-wrapper-classes"
+            optionsWrapperClasses="a-table-footer-per-page-select--options-wrapper-classes"
             v-model={currentPageSize.value}
             options={[5, 10, 15, 20]}>
           </ASelect>
         </div>
         <div>
-          <ABtn icon-only class="rounded-full text-xs me-2" icon="i-bx-left-arrow-alt" variant="default" onClick={goToPreviousPage} {...(isFirstPage.value && { disabled: true })}></ABtn>
-          <ABtn icon-only class="rounded-full text-xs" icon="i-bx-right-arrow-alt" variant="default" onClick={goToNextPage} {...(isLastPage.value && { disabled: true })}></ABtn>
+          <ABtn icon-only class="a-table-footer-previous-page-btn" icon="i-bx-left-arrow-alt" variant="default" onClick={goToPreviousPage} {...(isFirstPage.value && { disabled: true })}></ABtn>
+          <ABtn icon-only class="a-table-footer-next-page-btn" icon="i-bx-right-arrow-alt" variant="default" onClick={goToNextPage} {...(isLastPage.value && { disabled: true })}></ABtn>
         </div>
       </div>
 
@@ -435,6 +435,7 @@ export const ATable = defineComponent({
       // TODO: noresultstext is represented as attrs of card
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
       return <ACard
+        class="a-table"
         {...cardProps}
         v-slots={{
           ...slots,

@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^0.5.4",
+    "defu": "^6.0.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
