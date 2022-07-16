@@ -22,17 +22,25 @@ SECTION VitePress
     border-top: none !important;
 }
 
-.VPNavBarTitle.has-sidebar {
+.VPNavBarTitle {
     border-bottom: none !important;
 }
 
-.VPNavBar.has-sidebar .container {
+.VPNavBar .container {
     border-bottom: thin solid hsla(var(--a-base-color), var(--a-border-opacity));
 }
 
-.VPNavBar.has-sidebar .content {
+.no-sidebar .VPNavBar .container {
+    border-bottom-color: transparent;
+}
+
+.VPNavBar .content {
     /* background: hsla(250, 10%, 6%, .7) !important; */
     background: hsla(var(--a-background), 0.7) !important;
+}
+
+.dark .VPNav.no-sidebar {
+    background-color: transparent !important;
 }
 
 /* ==========================
