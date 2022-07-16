@@ -10,3 +10,56 @@ html.scroll-lock {
   top: var(--window-scroll-top);
   width: 100%;
 }
+
+// SECTION Transitions
+
+// 👉 Fade
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.15s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+// 👉 Bg
+.bg-enter-active,
+.bg-leave-active {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.bg-enter-from,
+.bg-leave-to {
+  background-color: transparent !important;
+}
+
+// 👉 Slide up
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.15s ease-in-out;
+}
+
+.slide-up-enter-from,
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+// 👉 Scale
+.scale-enter-active {
+  transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), opacity .18s cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+.scale-leave-active {
+  transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), opacity .25s cubic-bezier(0, 0.55, 0.45, 1);
+} 
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.45) !important;
+}
+
+// !SECTION

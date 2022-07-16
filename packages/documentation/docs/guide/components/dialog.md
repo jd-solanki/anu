@@ -1,9 +1,5 @@
 # Dialog
 
-:::info
-Dialog component is made without any transition at the moment. Once I receive the **positive response or some more time** I will add transition and more options.
-:::
-
 <!-- 👉 Basic -->
 <Demo>
 
@@ -24,7 +20,7 @@ All props & slots available in `ACard` is available in `ADialog`.
 </Demo>
 
 <!-- 👉 Placement -->
-<Demo>
+<!-- <Demo>
 
 ## Placement
 
@@ -40,7 +36,7 @@ You can adjust dialog placement via `place-items-start top-16 justify-center` cl
 
 </template>
 
-</Demo>
+</Demo> -->
 
 <!-- 👉 Width -->
 <Demo>

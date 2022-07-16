@@ -1,7 +1,7 @@
 import { ACard, useCardProps } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { onClickOutside } from '@vueuse/core'
-import { defineComponent, ref, Teleport, toRef } from 'vue'
+import { defineComponent, ref, Teleport, toRef, Transition } from 'vue'
 
 export const ADialog = defineComponent({
   name: 'ADialog',
@@ -32,9 +32,13 @@ export const ADialog = defineComponent({
     useDOMScrollLock(toRef(props, 'modelValue'))
 
     return () => <Teleport to="body">
-      <div {...attrs} class={[{ hidden: !props.modelValue }, 'a-dialog-wrapper grid uno-layer-base-place-items-center mx-auto fixed uno-layer-base-inset-0 after:(content-empty fixed inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))] z-[51] backdrop-blur-[4px])']}>
-        <ACard class="a-dialog max-w-[calc(100vw-2rem)]" ref={refCard} {...props}>{{ ...slots }}</ACard>
-      </div>
+      <Transition name="bg">
+        <div {...attrs} v-show={props.modelValue} class={['a-dialog-wrapper grid uno-layer-base-place-items-center fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]']}>
+          <Transition name="scale">
+            <ACard v-show={props.modelValue} class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]" ref={refCard} {...props}>{{ ...slots }}</ACard>
+          </Transition>
+        </div>
+      </Transition>
     </Teleport>
   },
 })
