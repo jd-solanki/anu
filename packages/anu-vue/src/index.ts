@@ -14,8 +14,7 @@ const plugin = {
   },
 }
 
-// export { default as nuxt } from "./nuxt";
-// presets
+export * from './components'
 export * from './composables'
 export { presetCore } from './presets/core'
 export {

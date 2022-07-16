@@ -99,8 +99,8 @@ import 'anu-vue/dist/style.css'
 
 // Using `app.use(anu)` will register all the components globally
 createApp(App)
-  .mount('#app')
   .use(anu)
+  .mount('#app')
 ```
 
 You also follow À la carte fashion if you don't want to register all the components globally
