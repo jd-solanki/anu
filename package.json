@@ -9,7 +9,7 @@
     "docs:dev": "nr --filter @anu-vue/documentation dev",
     "docs:build": "nr --filter anu-vue build && nr --filter @anu-vue/documentation build",
     "clean": "rm -rf node_modules && cd packages/anu-vue && rm -rf node_modules dist && cd ../documentation && rm -rf node_modules",
-    "release": "nr --filter anu-vue bumpp --execute build && na --filter anu-vue publish --no-git-checks"
+    "release": "bumpp --execute nr --filter anu-vue build && na --filter anu-vue publish --no-git-checks"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
     "@antfu/eslint-config-vue": "^0.25.1",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
+    "bumpp": "^8.2.1",
     "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-typescript": "^3.2.5",
