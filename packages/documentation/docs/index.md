@@ -8,6 +8,9 @@ hero:
   actions:
     - theme: brand
       text: Get Started
+      link: /guide/getting-started/installation
+    - theme: alt
+      text: Why Anu?
       link: /guide/getting-started/
     - theme: alt
       text: View components
