@@ -7,7 +7,6 @@ interface PresetOptions {
 
 export const colors = ['primary', 'success', 'info', 'warning', 'danger']
 const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
-  // TODO: Prefix `a-` to component name
   // 👉 Grid
   'grid-row': 'grid gap-6 place-items-start w-full',
 
@@ -115,21 +114,6 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
         danger: 'hsl(var(--a-danger))',
         a: { border: 'hsla(var(--a-base-color),var(--a-border-opacity))' },
       },
-      fontSize: {
-        rxs: ['0.75em', '1em'],
-        rsm: ['0.875em', '1.25em'],
-        rbase: ['1em', '1.5em'],
-        rlg: ['1.125em', '1.75em'],
-        rxl: ['1.25em', '1.75em'],
-        r2xl: ['1.5em', '2em'],
-        r3xl: ['1.875em', '2.25em'],
-        r4xl: ['2.25em', '2.5em'],
-        r5xl: ['3em', '1em'],
-        r6xl: ['3.75em', '1em'],
-        r7xl: ['4.5em', '1em'],
-        r8xl: ['6em', '1em'],
-        r9xl: ['8em', '1em'],
-      },
     },
     safelist: [
       ...colors.map(c => `bg-${c}`),
@@ -172,14 +156,6 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
           opacity: 0,
         },
       ],
-
-      // [
-      //   'card-heading', {
-      //     '--a-typography-title-color': 'var(--a-base-color)',
-      //     '--a-typography-subtitle-color': 'var(--a-base-color)',
-      //     '--a-typography-text-color': 'var(--a-base-color)',
-      //   },
-      // ],
     ],
     shortcuts,
     variants: [
