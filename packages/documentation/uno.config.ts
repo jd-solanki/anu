@@ -28,5 +28,5 @@ export default defineConfig({
     transformerDirectives(),
   ],
   configDeps: ['../anu-vue/src/presets/theme-default/index.ts'],
-  include: [/.*\/anu-vue\.mjs(.*)?$/, './**/*.vue', './**/*.md'],
+  include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
 })

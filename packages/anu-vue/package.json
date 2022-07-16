@@ -2,6 +2,7 @@
   "name": "anu-vue",
   "private": false,
   "version": "0.1.1",
+  "type": "module",
   "description": "DX focused utility based component library",
   "author": "JD Solanki <https://github.com/jd-solanki>",
   "funding": "https://github.com/sponsors/jd-solanki",
@@ -21,12 +22,12 @@
     "vue"
   ],
   "license": "MIT",
-  "main": "./dist/anu-vue.cjs",
-  "module": "./dist/anu-vue.mjs",
+  "main": "./dist/anu-vue.umd.cjs",
+  "module": "./dist/anu-vue.js",
   "exports": {
     ".": {
-      "import": "./dist/anu-vue.mjs",
-      "require": "./dist/anu-vue.cjs"
+      "import": "./dist/anu-vue.js",
+      "require": "./dist/anu-vue.umd.cjs"
     },
     "./dist/style.css": "./dist/style.css"
   },
@@ -43,14 +44,14 @@
     "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@unocss/reset": "^0.44.1",
-    "@vitejs/plugin-vue": "^2.3.3",
-    "@vitejs/plugin-vue-jsx": "^1.3.10",
-    "@vueuse/core": "^8.9.2",
+    "@unocss/reset": "^0.44.2",
+    "@vitejs/plugin-vue": "^3.0.0",
+    "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "@vueuse/core": "^8.9.3",
     "sass": "^1.53.0",
     "typescript": "^4.7.4",
-    "unocss": "^0.44.1",
-    "vite": "^2.9.14",
+    "unocss": "^0.44.2",
+    "vite": "^3.0.0",
     "vue-router": "^4.1.2",
     "vue-tsc": "^0.38.5"
   },

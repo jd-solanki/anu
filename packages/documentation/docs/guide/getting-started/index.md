@@ -74,7 +74,7 @@ export default defineConfig({
     presetCore(),
     presetThemeDefault(),
   ],
-  include: [/.*\/anu-vue\.mjs(.*)?$/, './**/*.vue', './**/*.md'],
+  include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
 })
 ```
 

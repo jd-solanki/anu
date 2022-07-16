@@ -1,34 +1,29 @@
-
-  
-import vue from "@vitejs/plugin-vue";
-import vueJsx from "@vitejs/plugin-vue-jsx";
-import { fileURLToPath, URL } from "url";
-import { defineConfig } from "vite";
-const path = require("path");
+import { resolve } from 'path'
+import { URL, fileURLToPath } from 'url'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
     lib: {
-      formats: ["cjs", "es"],
-      entry: path.resolve(__dirname, "src/index.ts"),
-      name: "anu-vue",
-      fileName: (format) => `anu-vue.${format === "es" ? "mjs" : "cjs"}`,
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'anu-vue',
+      fileName: 'anu-vue',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
       external: [
-        "vue",
-        "@unocss/preset-icons",
-        "@unocss/preset-uno",
-        "@unocss/transformer-variant-group",
+        'vue',
+        '@floating-ui/dom',
       ],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          vue: "Vue",
+          vue: 'Vue',
         },
       },
     },
@@ -36,7 +31,7 @@ export default defineConfig({
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-});
+})
