@@ -22,6 +22,7 @@
     "vitepress": "1.0.0-alpha.4"
   },
   "dependencies": {
+    "@vueuse/core": "^8.9.2",
     "anu-vue": "workspace:*",
     "vee-validate": "^4.6.0"
   }
