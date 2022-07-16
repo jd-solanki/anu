@@ -7,10 +7,6 @@
     --a-overlay-color: 0, 0, 0%;
     --a-overlay-opacity: 0.15;
 
-    
-    // TODO: Remove this as this can be configured by user
-    --a-background: 0 , 0%, 97%;
-
     --a-primary: 265, 97.7%, 66.3%;
     --a-success: 94.5, 100%, 39.6%;
     --a-info: 200.1, 100%, 54.3%;
@@ -33,7 +29,6 @@
 
 :root.dark {
   --a-base-color: 0, 0%, 94%;
-  --a-background: 0, 0%, 6%;
   --a-layer: 0, 0%, 12%;
 
   --a-primary: 261, 73%, 66.3%;
