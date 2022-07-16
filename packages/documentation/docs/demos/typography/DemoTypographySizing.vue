@@ -6,6 +6,7 @@
       icon-only
       variant="light"
       color="success"
+      class="before:hidden cursor-auto"
     />
     <ATypography
       title="PayPal"
@@ -23,6 +24,7 @@
       icon-only
       variant="light"
       color="danger"
+      class="before:hidden cursor-auto"
     />
     <ATypography
       title="Credit card"
@@ -40,6 +42,7 @@
       icon-only
       variant="light"
       color="warning"
+      class="before:hidden cursor-auto"
     />
     <ATypography
       title="Server storage"

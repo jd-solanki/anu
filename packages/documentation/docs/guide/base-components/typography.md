@@ -2,13 +2,6 @@
 
 <!-- TODO: Replace ABtn with AAvatar when ready. -->
 
-:::info
-
-I am using button at them moment instead of avatar for showing stats icons which gives hover state.
-
-Once we have avatar available we will use avatar.
-:::
-
 <!-- 👉 Basic -->
 <Demo>
 

@@ -7,6 +7,7 @@
         icon="i-bx-trending-up"
         color="success"
         variant="light"
+        class="before:hidden cursor-auto"
       />
       <ATypography
         class="!children:leading-tight"
@@ -21,6 +22,7 @@
         icon-only
         icon="i-bx-dollar"
         variant="light"
+        class="before:hidden cursor-auto"
       />
       <ATypography
         class="!children:leading-tight"
@@ -36,6 +38,7 @@
         icon="i-bx-face"
         variant="light"
         color="info"
+        class="before:hidden cursor-auto"
       />
       <ATypography
         class="!children:leading-tight"
@@ -51,6 +54,7 @@
         icon="i-bx-navigation"
         variant="light"
         color="danger"
+        class="before:hidden cursor-auto"
       />
       <ATypography
         class="!children:leading-tight"
