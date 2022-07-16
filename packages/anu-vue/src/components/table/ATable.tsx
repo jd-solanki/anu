@@ -353,53 +353,55 @@ export const ATable = defineComponent({
 
           TODO(refactor): Use variant group here
       */
-      const table = <table class="a-table-table overflow-x-auto block w-full max-w-full">
-        {/* 👉 thead */}
-        <thead>
-          <tr>
-            {_columns.value.map(column =>
-              <th
-                class={['a-table-table-th whitespace-nowrap', props.isSortable && 'cursor-pointer select-none']}
-                onClick={() => handleHeaderClick(column)}
-              >
-                <div class="inline-flex items-center">
-                    <span>{column.name}</span>
-                  <div v-show={getShallSortByAsc.value(column) === true} class="i-bx-up-arrow-alt"></div>
-                  <div v-show={getShallSortByAsc.value(column) === false} class="i-bx-down-arrow-alt"></div>
-                  </div>
-              </th>,
-            )}
-          </tr>
-        </thead>
+      const table = <div class="overflow-x-auto">
+        <table class="a-table-table overflow-x-auto w-full max-w-full">
+          {/* 👉 thead */}
+          <thead>
+            <tr>
+              {_columns.value.map(column =>
+                <th
+                  class={['a-table-table-th whitespace-nowrap', props.isSortable && 'cursor-pointer select-none']}
+                  onClick={() => handleHeaderClick(column)}
+                >
+                  <div class="inline-flex items-center">
+                      <span>{column.name}</span>
+                    <div v-show={getShallSortByAsc.value(column) === true} class="i-bx-up-arrow-alt"></div>
+                    <div v-show={getShallSortByAsc.value(column) === false} class="i-bx-down-arrow-alt"></div>
+                    </div>
+                </th>,
+              )}
+            </tr>
+          </thead>
 
-        {/* 👉 tbody */}
-        <tbody>
-          {
-            rowsToRender.value.length
-              ? rowsToRender.value.map((row, rowIndex) => {
-                const colValues = Object.values(row)
+          {/* 👉 tbody */}
+          <tbody>
+            {
+              rowsToRender.value.length
+                ? rowsToRender.value.map((row, rowIndex) => {
+                  const colValues = Object.values(row)
 
-                return <tr>
-                  {
-                      _columns.value.map(col => <td class="a-table-table-td whitespace-nowrap">
-                          {
-                            slots[`row-${col.name}`]
-                              ? slots[`row-${col.name}`]?.({ row })
-                              : col.formatter
-                                ? col.formatter?.(row)
+                  return <tr>
+                    {
+                        _columns.value.map(col => <td class="a-table-table-td whitespace-nowrap">
+                            {
+                              slots[`row-${col.name}`]
+                                ? slots[`row-${col.name}`]?.({ row })
+                                : col.formatter
+                                  ? col.formatter?.(row)
 
-                                // TODO(TS): Improve typing
-                                : row[col.name as keyof Object]
-                          }
-                        </td>,
-                      )
-                  }
-                </tr>
-              })
-              : noResultsTr
-          }
-        </tbody>
-      </table>
+                                  // TODO(TS): Improve typing
+                                  : row[col.name as keyof Object]
+                            }
+                          </td>,
+                        )
+                    }
+                  </tr>
+                })
+                : noResultsTr
+            }
+          </tbody>
+        </table>
+      </div>
 
       const searchInput = () => <AInput prepend-inner-icon="i-bx-search" placeholder="search..." class="max-w-48 text-sm" v-model={_search.value}></AInput>
 
