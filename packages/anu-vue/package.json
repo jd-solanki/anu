@@ -1,7 +1,7 @@
 {
   "name": "anu-vue",
   "private": false,
-  "version": "0.1.4",
+  "version": "0.0.1",
   "type": "module",
   "description": "DX focused utility based component library",
   "author": "JD Solanki <https://github.com/jd-solanki>",
@@ -49,6 +49,7 @@
     "@vitejs/plugin-vue": "^3.0.0",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
     "@vueuse/core": "^8.9.3",
+    "bumpp": "^8.2.1",
     "sass": "^1.53.0",
     "typescript": "^4.7.4",
     "unocss": "^0.44.2",

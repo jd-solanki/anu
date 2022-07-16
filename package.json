@@ -9,7 +9,7 @@
     "docs:dev": "nr --filter @anu-vue/documentation dev",
     "docs:build": "nr --filter anu-vue build && nr --filter @anu-vue/documentation build",
     "clean": "rm -rf node_modules && cd packages/anu-vue && rm -rf node_modules dist && cd ../documentation && rm -rf node_modules",
-    "release": "nr --filter anu-vue build && na --filter anu-vue publish --no-git-checks"
+    "release": "nr --filter anu-vue bumpp --execute build && na --filter anu-vue publish --no-git-checks"
   },
   "keywords": [],
   "author": "",
