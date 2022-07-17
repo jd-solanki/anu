@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: 'Anu',
-  description: 'Atomic vue component library',
+  description: 'DX focused utility based vue component library',
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/jd-solanki/anu' },
