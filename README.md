@@ -209,23 +209,6 @@ You can also follow À la carte fashion if you don't want to register all the co
 
 I will continue to develop this project if I get a positive response. I will introduce more components and amazing things like configurable array if I will be able to spend more time on OSS development.
 
-When I will have:
-
-### At least one sponsor
-
-- [ ] I will start sponsoring one of the contributors of UnoCSS/VueUse.
-
-### 5 non-doc contribution
-
-- [ ] Write contribution guide
-
-### Github stars
-
-- [ ] 100+
-  - [ ] More components like avatar, progressbar
-- [ ] 500+
-  - [ ] Write tests using [vitest](https://vitest.dev/)
-
 Help me do full-time Open source by sponsoring me.
 
 If you like this lib do give it a star or spread some words on Twitter.
