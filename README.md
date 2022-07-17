@@ -209,23 +209,6 @@ You can also follow À la carte fashion if you don't want to register all the co
 
 I will continue to develop this project if I get a positive response. I will introduce more components and amazing things like configurable array if I will be able to spend more time on OSS development.
 
-When I will have:
-
-### At least one sponsor
-
-- [ ] I will start sponsoring one of the contributors of UnoCSS/VueUse.
-
-### 5 non-doc contribution
-
-- [ ] Write contribution guide
-
-### Github stars
-
-- [ ] 100+
-  - [ ] More components like avatar, progressbar
-- [ ] 500+
-  - [ ] Write tests using [vitest](https://vitest.dev/)
-
 Help me do full-time Open source by sponsoring me.
 
 If you like this lib do give it a star or spread some words on Twitter.
@@ -240,5 +223,3 @@ Thanks 🙏
 - [Quasar](https://github.com/quasarframework/quasar) - Inspiration
 - [Vuetify](https://github.com/vuetifyjs/vuetify) - Inspiration
 - [Bootstrap](https://github.com/twbs/bootstrap) - Inspiration
-
-> NOTE: You might notice I need some help with TS with current codebase. This is because I have little experience with TS & I don't want to invest too much in it, at first I want to know how far anu can go.
