@@ -240,5 +240,3 @@ Thanks 🙏
 - [Quasar](https://github.com/quasarframework/quasar) - Inspiration
 - [Vuetify](https://github.com/vuetifyjs/vuetify) - Inspiration
 - [Bootstrap](https://github.com/twbs/bootstrap) - Inspiration
-
-> NOTE: You might notice I need some help with TS with current codebase. This is because I have little experience with TS & I don't want to invest too much in it, at first I want to know how far anu can go.
