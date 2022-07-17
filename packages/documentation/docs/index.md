@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Anu
   text: Build better interfaces faster
-  tagline: DX focused utility based component library
+  tagline: DX focused utility based vue component library
   actions:
     - theme: brand
       text: Get Started
