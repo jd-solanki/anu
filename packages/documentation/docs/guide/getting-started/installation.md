@@ -161,19 +161,14 @@ You can also follow À la carte fashion if you don't want to register all the co
     ```js
     // other imports
     import Components from 'unplugin-vue-components/vite'
+    import { AnuComponentResolver } from 'anu-vue'
 
     export default defineConfig({
       plugins: [
         // other plugins
         Components({
           resolvers: [
-            {
-              type: 'component',
-              resolve: name => {
-                if (name.match(/^A[A-Z]/))
-                  return { name, from: 'anu-vue' }
-              },
-            }
+            AnuComponentResolver()
           ]
         }),
       ],

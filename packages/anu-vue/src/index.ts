@@ -14,6 +14,7 @@ const plugin = {
   },
 }
 
+export { AnuComponentResolver } from './componentResolver'
 export * from './components'
 export * from './composables'
 export { presetCore } from './presets/core'
