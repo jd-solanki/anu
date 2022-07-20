@@ -1,6 +1,7 @@
 // TODO: Define emits for all components
 
 export { AAlert } from './alert'
+export { AAvatar } from './avatar'
 export { ABaseInput } from './base-input'
 export { ABtn } from './btn'
 export { ACard } from './card'

@@ -23,6 +23,7 @@ export default defineConfig({
           text: 'Components',
           items: [
             { text: 'Alert', link: '/guide/components/alert' },
+            { text: 'Avatar', link: '/guide/components/avatar' },
             { text: 'Button', link: '/guide/components/button' },
             { text: 'Card', link: '/guide/components/card' },
             { text: 'Checkbox', link: '/guide/components/checkbox' },

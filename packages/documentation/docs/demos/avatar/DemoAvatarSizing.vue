@@ -1,0 +1,24 @@
+<template>
+  <div class="flex flex-wrap gap-4">
+    <AAvatar
+      icon="i-bx-star"
+      class="text-base"
+    />
+    <AAvatar
+      icon="i-bx-star"
+      class="text-lg"
+    />
+    <AAvatar
+      icon="i-bx-star"
+      class="text-xl"
+    />
+    <AAvatar
+      icon="i-bx-star"
+      class="text-2xl"
+    />
+    <AAvatar
+      icon="i-bx-star"
+      class="text-3xl"
+    />
+  </div>
+</template>
