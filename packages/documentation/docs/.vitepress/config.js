@@ -53,9 +53,9 @@ export default defineConfig({
       ],
     },
     algolia: {
-      appId: 'IYYYPJBRSZ',
-      apiKey: '98db25cb8cd2b378d151bfe73034f51a',
-      indexName: 'anu',
+      appId: 'ZIRXGNDXKY',
+      apiKey: '20424a4612bfde26fb4920f451c19cbc',
+      indexName: 'anu-vue',
     },
   },
   markdown: {
