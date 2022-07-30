@@ -1,9 +1,5 @@
 # useGroupModel
 
-:::warning
-API might change till I complete this composable
-:::
-
 <!-- 👉 Basic -->
 <Demo>
 
