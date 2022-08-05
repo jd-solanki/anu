@@ -93,12 +93,8 @@ Set `search` prop to `true` to enable table filtering.
 
 Search will respect the column's `isFilterable` property to include or exclude the column from searching. If you don't specify column defination all columns will be filterable.
 
-:::info
-Waiting for upstream fix [#1802](https://github.com/vueuse/vueuse/issues/1802)
-:::
-
 <template #demo>
-    <div class="cards-demo-container opacity-50 pointer-events-none">
+    <div class="cards-demo-container">
         <DemoTableFiltering />
     </div>
 </template>
@@ -177,12 +173,8 @@ const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
 }
 ```
 
-:::info
-Waiting for upstream fix [#1802](https://github.com/vueuse/vueuse/issues/1802)
-:::
-
 <template #demo>
-    <div class="cards-demo-container opacity-50 pointer-events-none">
+    <div class="cards-demo-container">
         <DemoTableServerSideTable />
     </div>
 </template>

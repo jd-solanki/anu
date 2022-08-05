@@ -1,3 +1,6 @@
+import { computedEager, useOffsetPagination } from '@vueuse/core'
+import type { ComputedRef, PropType, Ref } from 'vue'
+import { computed, defineComponent, ref, toRaw, watch } from 'vue'
 import { ABtn } from '@/components/btn'
 import { ACard, useCardProps } from '@/components/card'
 import { AInput } from '@/components/input'
@@ -7,9 +10,6 @@ import type { CustomFilter } from '@/composables/useSearch'
 import { useSearch } from '@/composables/useSearch'
 import type { CustomSort, typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
-import { computedEager, useOffsetPagination } from '@vueuse/core'
-import type { ComputedRef, PropType, Ref } from 'vue'
-import { computed, defineComponent, ref, toRaw, watch } from 'vue'
 
 // import { controlledComputed } from '@vueuse/core';
 
@@ -407,11 +407,10 @@ export const ATable = defineComponent({
 
       // 👉 Footer
       // TODO: create PR for useOffsetPagination metadata
-      // TODO: currentPage is 0 when total is 0 => bug in vueuse
       const tableFooter = <div class="a-table-footer flex items-center">
         <ATypography class="text-size-[inherit]" v-slots={{
           subtitle: () => <>
-            {(currentPage.value - 1) * currentPageSize.value + 1} - {sortedRows.value.length - currentPage.value * currentPageSize.value > 0 ? currentPage.value * currentPageSize.value : sortedRows.value.length} of {sortedRows.value.length}
+            {rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {rowsToRender.value.length - currentPage.value * currentPageSize.value > 0 ? currentPage.value * currentPageSize.value : rowsToRender.value.length} of {rowsToRender.value.length}
           </>,
         }}></ATypography>
         <div class="flex-grow"></div>

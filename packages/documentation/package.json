@@ -13,16 +13,16 @@
   "license": "ISC",
   "devDependencies": {
     "@iconify-json/bx": "^1.1.3",
-    "@iconify-json/logos": "^1.1.13",
+    "@iconify-json/logos": "^1.1.14",
     "@iconify-json/ph": "^1.1.2",
-    "@unocss/preset-icons": "^0.45.1",
-    "@unocss/preset-uno": "0.45.1",
+    "@unocss/preset-icons": "^0.45.5",
+    "@unocss/preset-uno": "0.45.5",
     "postcss-prefix-selector": "^1.16.0",
-    "unocss": "^0.45.1",
+    "unocss": "^0.45.5",
     "vitepress": "1.0.0-alpha.4"
   },
   "dependencies": {
-    "@vueuse/core": "^9.0.2",
+    "@vueuse/core": "^9.1.0",
     "anu-vue": "workspace:*",
     "vee-validate": "^4.6.2"
   }
