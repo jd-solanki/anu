@@ -6,5 +6,8 @@
         "composables",
         "Vite"
     ],
-    "unocss.root": "packages/documentation"
+    "unocss.root": "packages/documentation",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    }
 }
