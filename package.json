@@ -8,16 +8,15 @@
     "build": "nr --filter anu-vue build",
     "docs:dev": "nr --filter @anu-vue/documentation dev",
     "docs:build": "nr --filter anu-vue build && nr --filter @anu-vue/documentation build",
-    "clean": "rm -rf node_modules && cd packages/anu-vue && rm -rf node_modules dist && cd ../documentation && rm -rf node_modules",
+    "clean": "rimraf node_modules && cd packages/anu-vue && rimraf node_modules dist && cd ../documentation && rimraf node_modules",
     "release": "bumpp package.json packages/anu-vue/package.json --execute 'nr --filter anu-vue build' && na --filter anu-vue publish --no-git-checks"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@antfu/ni": "^0.16.3",
-    "pnpm": "^7.5.0",
     "@antfu/eslint-config-vue": "^0.25.1",
+    "@antfu/ni": "^0.16.3",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "bumpp": "^8.2.1",
@@ -26,7 +25,9 @@
     "eslint-import-resolver-typescript": "^3.2.5",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-unicorn": "^43.0.1",
-    "eslint-plugin-vue": "^9.2.0"
+    "eslint-plugin-vue": "^9.2.0",
+    "pnpm": "^7.5.0",
+    "rimraf": "^3.0.2"
   },
   "packageManager": "pnpm@7.1.7"
 }
