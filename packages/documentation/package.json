@@ -24,6 +24,7 @@
   "dependencies": {
     "@vueuse/core": "^9.1.0",
     "anu-vue": "workspace:*",
-    "vee-validate": "^4.6.2"
+    "vee-validate": "^4.6.2",
+    "vue": "^3.2.37"
   }
 }
