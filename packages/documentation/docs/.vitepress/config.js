@@ -5,6 +5,10 @@ export default defineConfig({
   title: 'Anu',
   description: 'DX focused utility based vue component library',
   themeConfig: {
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2022-present JD Solanki',
+    },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/jd-solanki/anu' },
     ],

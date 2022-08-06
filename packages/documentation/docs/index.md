@@ -65,9 +65,3 @@ hero:
   </div>
 </div>
 </div>
-
-<hr class="border-a-border border-solid my-6">
-
-<p class="text-center my-6">
-  <a href="https://github.com/jd-solanki/anu/blob/main/LICENSE">MIT</a> License &copy; 2021 - Present <a href="https://github.com/jd-solanki">JD Solanki</a>
-</p>
