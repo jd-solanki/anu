@@ -113,7 +113,7 @@ SECTION VitePress
 ========================== */
 
 :root.dark {
-    --vp-c-bg-alt: hsl(var(--a-base-hue), 0%, 6%);
+    --vp-c-bg-alt: hsl(var(--vp-brand-hue), 0%, 6%);
     --vp-code-line-highlight-color: hsl(0, 0%, 12%);
     --vp-background: 0, 0%, 6%;
 }
