@@ -7,6 +7,10 @@
         "dbaeumer.vscode-eslint",
         "usernamehw.errorlens",
         "antfu.unocss",
-        "antfu.iconify"
+        "antfu.iconify",
+        "exodiusstudios.comment-anchors",
+        "davidanson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        "streetsidesoftware.code-spell-checker"
     ]
 }
