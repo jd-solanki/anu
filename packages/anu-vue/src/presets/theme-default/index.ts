@@ -63,7 +63,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
   'card-body': 'card-spacer card-content-spacer',
 
   // 👉 Checkbox
-  'a-checkbox-box': 'border-solid h-5 w-5 border-(2 a-border rounded) transition transition-property-[border] duration-200 mr-2',
+  'a-checkbox-box': 'border-solid h-5 w-5 border-(2 a-border rounded) transition duration-200 mr-2',
   'a-checkbox-disabled-box': 'border-dashed',
   'a-checkbox-icon': 'transition duration-150 delay-100 ease-[cubic-bezier(.57,1.48,.87,1.09)]',
 
