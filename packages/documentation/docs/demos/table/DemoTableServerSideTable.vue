@@ -26,6 +26,7 @@ interface User {
   }
 }
 
+// 👉 Fake Data
 const fakeDatabase: User[] = [
   {
     id: 1,
@@ -259,21 +260,28 @@ const fakeDatabase: User[] = [
   },
 ]
 
+// 👉 Columns
 const cols = [
-  { name: 'id' },
+  // { name: 'id' },
   { name: 'name' },
   { name: 'username' },
   { name: 'email' },
-  { name: 'address', formatter: row => `${row.address.street} @${row.address.city}` },
-  { name: 'phone' },
-  { name: 'website' },
-  { name: 'company', formatter: row => `${row.company.name} - ${row.company.bs}` },
-]
-const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
-  // console.log({ q, currentPage, rowsPerPage, sortedCols })
 
-  return new Promise((resolve, reject) => {
+  // { name: 'address', formatter: row => `${row.address.street} @${row.address.city}` },
+  // { name: 'phone' },
+  // { name: 'website' },
+  // { name: 'company', formatter: row => `${row.company.name} - ${row.company.bs}` },
+]
+
+// 👉 rows function
+const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
+  // ℹ️ You can use q, currentPage, rowsPerPage, sortedCols to fetch data from API
+
+  // Return promise
+  return new Promise(resolve => {
+    // Added some timeout to delay the request response
     setTimeout(() => {
+      // Search logic
       const { results: filteredData } = useSearch<User>(q, fakeDatabase, [
         'id',
         'name',
@@ -298,6 +306,8 @@ const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPar
           },
         },
       ])
+
+      // Sorting logic
       const { results } = useSort<User>(
         filteredData.value,
         (() => {
@@ -318,7 +328,7 @@ const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPar
 
       const paginatedRows = results.value.slice((_currentPage - 1) * rowsPerPage, _currentPage * rowsPerPage)
 
-      resolve(paginatedRows)
+      resolve({ rows: paginatedRows, total: results.value.length })
     }, 150)
   })
 }

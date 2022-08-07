@@ -160,7 +160,14 @@ Moreover, you can also omit the column definition to omit rendering the specific
 
 ## Server Side Table
 
-If your table data is coming from API/backend you can pass async function to `rows` prop which should resolve the rows.
+If your table data is coming from API/backend you can pass async function to `rows` prop which should resolve the below type:
+
+```ts
+interface rowsFunctionReturn {
+  rows: unknown[]
+  total: number
+}
+```
 
 ```ts{6}
 const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
@@ -169,6 +176,8 @@ const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(json => resolve(json))
+
+      // resolve(json) => { rows: [...], total: 10 }
   })
 }
 ```

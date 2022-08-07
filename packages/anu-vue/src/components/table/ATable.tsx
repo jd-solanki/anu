@@ -38,7 +38,7 @@ export interface ItemsFunctionParams {
 }
 
 export interface ItemsFunction {
-  (props: ItemsFunctionParams): Promise<unknown[]>
+  (props: ItemsFunctionParams): Promise<{ rows: unknown[]; total: number }>
 }
 
 export const ATable = defineComponent({
@@ -88,6 +88,7 @@ export const ATable = defineComponent({
 
     // 👉 Server rows
     const _serverRows = ref<Object[]>([])
+    const _serverTotal = ref(0)
 
     const fetchRows = () => {
       // _search.value, currentPage.value, currentPageSize.value, sortedCols.value
@@ -99,7 +100,9 @@ export const ATable = defineComponent({
         sortedCols: toRaw(sortedCols.value),
       })
         .then(data => {
-          _serverRows.value = data as Object[]
+          const { rows, total } = data
+          _serverRows.value = rows as Object[]
+          _serverTotal.value = total
         })
     }
 
@@ -204,6 +207,8 @@ export const ATable = defineComponent({
     // })
 
     // paginateRows({ currentPage: 1, currentPageSize: currentPageSize.value })
+    const total = computed(() => isSST.value ? _serverTotal.value : sortedRows.value.length)
+
     // 👉 useOffsetPagination
     const {
       currentPage,
@@ -215,21 +220,24 @@ export const ATable = defineComponent({
       prev: goToPreviousPage,
       next: goToNextPage,
     } = useOffsetPagination({
-      // total: computed(() => isSST.value ? _serverRows.value.length : sortedRows.value.length),
-      total: computed(() => sortedRows.value.length),
+      total,
       page: 1,
       pageSize: currentPageSize,
 
-      // onPageChange: paginateRows,
-      // onPageSizeChange: paginateRows,
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      onPageChange: () => { recalculateCurrentPageData() },
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      onPageSizeChange: () => { recalculateCurrentPageData() },
     })
-    watch([_search, sortedCols, currentPage, currentPageSize], ([...changes]) => {
-      // console.log('xx=xx=xx', changes)
+
+    const recalculateCurrentPageData = () => {
       if (isSST.value)
         fetchRows()
       else
         paginateRows({ currentPage: currentPage.value, currentPageSize: currentPageSize.value })
-    }, { deep: true, immediate: true })
+    }
+
+    watch([_search, sortedCols], recalculateCurrentPageData, { deep: true, immediate: true })
 
     // const paginatedRows = computed(() => {
     //   const start = (currentPage.value - 1) * currentPageSize.value
@@ -410,7 +418,7 @@ export const ATable = defineComponent({
       const tableFooter = <div class="a-table-footer flex items-center">
         <ATypography class="text-size-[inherit]" v-slots={{
           subtitle: () => <>
-            {rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {isLastPage ? rowsToRender.value.length : currentPage.value * currentPageSize.value} of {rowsToRender.value.length}
+            {rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {isLastPage ? rowsToRender.value.length : currentPage.value * currentPageSize.value} of {total.value}
           </>,
         }}></ATypography>
         <div class="flex-grow"></div>
