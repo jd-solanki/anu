@@ -410,7 +410,7 @@ export const ATable = defineComponent({
       const tableFooter = <div class="a-table-footer flex items-center">
         <ATypography class="text-size-[inherit]" v-slots={{
           subtitle: () => <>
-            {rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {rowsToRender.value.length - currentPage.value * currentPageSize.value > 0 ? currentPage.value * currentPageSize.value : rowsToRender.value.length} of {rowsToRender.value.length}
+            {rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {isLastPage ? rowsToRender.value.length : currentPage.value * currentPageSize.value} of {rowsToRender.value.length}
           </>,
         }}></ATypography>
         <div class="flex-grow"></div>
