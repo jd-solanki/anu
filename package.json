@@ -3,6 +3,7 @@
   "version": "0.5.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "dev": "nr --filter anu-vue dev",
     "build": "nr --filter anu-vue build",
