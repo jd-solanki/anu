@@ -35,6 +35,7 @@ export default defineConfig({
             { text: 'Input', link: '/guide/components/input' },
             { text: 'Radio', link: '/guide/components/radio' },
             { text: 'Select', link: '/guide/components/select' },
+            { text: 'Switch', link: '/guide/components/switch' },
             { text: 'Table', link: '/guide/components/table' },
             { text: 'Textarea', link: '/guide/components/textarea' },
           ],

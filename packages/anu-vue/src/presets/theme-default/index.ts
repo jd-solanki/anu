@@ -82,6 +82,11 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
   'a-select-options-container': 'z-10 border border-solid border-a-border rounded-lg em:py-3 shadow-lg',
   'a-select-option': 'em:px-4 em:py-1',
 
+  // 👉 Switch
+  'a-switch-toggle': 'transition-colors transition-duration-100 ease-in-out',
+  'a-switch-dot': 'h-[1.18em] w-[1.18em] bg-white transition transition-duration-200 ease-[cubic-bezier(0.16, 1, 0.3, 1)]',
+  'a-switch-icon': 'em:text-xs',
+
   // 👉 Table
   'a-table-table': 'all-[tr]-border-b all-[tr]-border-a-border',
   'a-table-table-th': 'capitalize em:px-[1.15rem] em:h-14 text-left',
