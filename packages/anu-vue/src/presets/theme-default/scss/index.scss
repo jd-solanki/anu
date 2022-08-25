@@ -89,4 +89,14 @@ h6 {
   }
 }
 
+// 👉 Form Elements
+
+input,
+select,
+textarea {
+  &:focus {
+    outline: none;
+  }
+}
+
 // !SECTION
