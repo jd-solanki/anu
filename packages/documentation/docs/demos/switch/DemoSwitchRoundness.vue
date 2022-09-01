@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const md = ref(true)
 const full = ref(true)
@@ -9,7 +9,7 @@ const full = ref(true)
   <div class="flex flex-wrap gap-3">
     <ASwitch
       v-model="md"
-      class="rounded-md"
+      class="rounded-0"
     />
     <ASwitch
       v-model="full"
