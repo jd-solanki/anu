@@ -18,7 +18,7 @@ export const ACheckbox = defineComponent({
     disabled,
   },
   setup(props, { slots, attrs, emit }) {
-    const elementId = `a-checkbox-${attrs.id || attrs.value || Math.floor(Math.random() * 1000)}`
+    const elementId = `a-checkbox-${attrs.id || attrs.value || Math.random().toString(36).slice(2, 7)}`
     const data = useVModel(props, 'modelValue', emit)
 
     return () => <label class={['inline-flex items-center cursor-pointer', props.disabled && 'a-checkbox-disabled pointer-events-none']} for={elementId}>

@@ -31,7 +31,7 @@ export const ASwitch = defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { slots, attrs, emit }) {
-    const elementId = `a-switch-${attrs.id || attrs.value || Math.floor(Math.random() * 1000)}`
+    const elementId = `a-switch-${attrs.id || attrs.value || Math.random().toString(36).slice(2, 7)}`
     const data = useVModel(props, 'modelValue', emit)
 
     const dotPosition = computed(() => {

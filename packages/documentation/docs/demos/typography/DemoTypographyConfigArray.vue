@@ -2,12 +2,10 @@
   <div class="grid-row sm:grid-cols-4 grid-cols-2">
     <!-- 👉 Sales -->
     <div class="flex gap-x-3 items-center">
-      <ABtn
-        icon-only
+      <AAvatar
         icon="i-bx-trending-up"
         color="success"
-        variant="light"
-        class="before:hidden cursor-auto"
+        class="rounded-lg text-[1.25rem]"
       />
       <ATypography
         class="!children:leading-tight"
@@ -18,11 +16,9 @@
 
     <!-- 👉 Revenue -->
     <div class="flex gap-x-3 items-center">
-      <ABtn
-        icon-only
+      <AAvatar
         icon="i-bx-dollar"
-        variant="light"
-        class="before:hidden cursor-auto"
+        class="rounded-lg text-[1.25rem]"
       />
       <ATypography
         class="!children:leading-tight"
@@ -33,12 +29,10 @@
 
     <!-- 👉 Customer -->
     <div class="flex gap-x-3 items-center">
-      <ABtn
-        icon-only
+      <AAvatar
         icon="i-bx-face"
-        variant="light"
         color="info"
-        class="before:hidden cursor-auto"
+        class="rounded-lg text-[1.25rem]"
       />
       <ATypography
         class="!children:leading-tight"
@@ -49,12 +43,10 @@
 
     <!-- 👉 Returns -->
     <div class="flex gap-x-3 items-center">
-      <ABtn
-        icon-only
+      <AAvatar
         icon="i-bx-navigation"
-        variant="light"
         color="danger"
-        class="before:hidden cursor-auto"
+        class="rounded-lg text-[1.25rem]"
       />
       <ATypography
         class="!children:leading-tight"

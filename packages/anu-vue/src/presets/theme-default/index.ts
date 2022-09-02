@@ -85,7 +85,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
 
   // 👉 Switch
   'a-switch-toggle': 'transition-colors transition-duration-100 ease-in-out',
-  'a-switch-dot': 'h-[1.18em] w-[1.18em] bg-white transition transition-duration-200 ease-[cubic-bezier(0.16, 1, 0.3, 1)]',
+  'a-switch-dot': 'h-[1.18em] w-[1.18em] bg-white transition transition-duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]',
   'a-switch-icon': 'em:text-xs',
   'a-switch-disabled': 'children-[.a-switch-toggle]-opacity-50',
 

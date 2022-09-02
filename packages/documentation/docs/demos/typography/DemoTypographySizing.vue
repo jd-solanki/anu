@@ -1,13 +1,12 @@
 <template>
   <div class="grid-row items-center grid-cols-[auto_1fr_auto]">
     <!-- 👉 PayPal -->
-    <ABtn
+    <AAvatar
       icon="i-bx-dollar"
-      icon-only
-      variant="light"
       color="success"
-      class="before:hidden cursor-auto"
-    />
+      class="rounded-lg text-[1.25rem]"
+    >
+    </AAvatar>
     <ATypography
       title="PayPal"
       subtitle="last payment"
@@ -19,12 +18,10 @@
     />
 
     <!-- 👉 Credit card -->
-    <ABtn
+    <AAvatar
       icon="i-bx-credit-card"
-      icon-only
-      variant="light"
       color="danger"
-      class="before:hidden cursor-auto"
+      class="rounded-lg text-[1.25rem]"
     />
     <ATypography
       title="Credit card"
@@ -37,12 +34,10 @@
     />
 
     <!-- 👉 Server storage -->
-    <ABtn
+    <AAvatar
       icon="i-bx-server"
-      icon-only
-      variant="light"
       color="warning"
-      class="before:hidden cursor-auto"
+      class="rounded-lg text-[1.25rem]"
     />
     <ATypography
       title="Server storage"
