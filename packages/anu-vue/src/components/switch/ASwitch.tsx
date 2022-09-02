@@ -1,7 +1,6 @@
 import { useVModel } from '@vueuse/core'
 import { computed, defineComponent } from 'vue'
-import { color as colorProps } from '@/composables/useProps'
-import { isEleDisabled } from '@/utils/dom'
+import { color as colorProps, disabled } from '@/composables/useProps'
 
 export const ASwitch = defineComponent({
   name: 'ASwitch',
@@ -28,6 +27,7 @@ export const ASwitch = defineComponent({
       required: false,
       default: undefined,
     },
+    disabled,
   },
   emits: ['update:modelValue'],
   setup(props, { slots, attrs, emit }) {
@@ -40,7 +40,7 @@ export const ASwitch = defineComponent({
       else return { transform: 'translateX(calc(var(--a-switch-track-size) - 100% - (var(--a-switch-thumb-margin) *2 )))' }
     })
 
-    return () => <label class={[props.label || slots.default ? 'flex' : 'inline-flex', 'a-switch cursor-pointer uno-layer-base-rounded-full justify-between items-center', isEleDisabled(attrs) && 'pointer-events-none']} for={elementId}>
+    return () => <label class={[props.label || slots.default ? 'flex' : 'inline-flex', 'a-switch cursor-pointer uno-layer-base-rounded-full justify-between items-center', props.disabled && 'a-switch-disabled pointer-events-none']} for={elementId}>
         <input v-model={data.value} class="hidden" type="checkbox" role="switch" id={elementId} checked={data.value} />
 
         {/* 👉 Label */}
@@ -48,7 +48,7 @@ export const ASwitch = defineComponent({
 
         {/* 👉 Switch */}
         {/* min width should be double the dot size */}
-        <div class={[data.value ? `bg-${props.color}` : 'a-switch-toggle bg-[hsl(var(--a-switch-default-color))]', 'flex rounded-inherit min-w-[var(--a-switch-track-size)]', isEleDisabled(attrs) && 'a-switch-disabled opacity-50']}>
+        <div class={[data.value ? `bg-${props.color}` : 'bg-[hsl(var(--a-switch-default-color))]', 'a-switch-toggle flex rounded-inherit min-w-[var(--a-switch-track-size)]']}>
             <div class="a-switch-dot grid place-items-center rounded-inherit m-[var(--a-switch-thumb-margin)]" style={dotPosition.value}>
               <div class={[data.value ? `${props.onIcon} text-${props.color}` : props.offIcon, 'a-switch-icon color-[var(--a-switch-icon-color)]']}></div>
             </div>

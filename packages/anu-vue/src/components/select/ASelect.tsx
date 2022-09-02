@@ -1,15 +1,16 @@
-import { ABaseInput } from '@/components/base-input'
-import { isObject } from '@/utils/helpers'
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { onClickOutside } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { defineComponent, onBeforeUnmount, onMounted, ref, Teleport, watch } from 'vue'
+import { Teleport, defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { isObject } from '@/utils/helpers'
+import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
 type SelectOptions = unknown[] | ({ label: string; value: unknown } & Record<string | number | symbol, unknown>)[]
 
 export const ASelect = defineComponent({
   name: 'ASelect',
   props: {
+    ...useBaseInputProp(),
     modelValue: {
       required: false,
     },
@@ -85,9 +86,8 @@ export const ASelect = defineComponent({
 
     // TODO: You can use it as utility in another components
     // TODO: Add some style to indicate currently selected item
-    const isEleInteractive = Object.prototype.hasOwnProperty.call(attrs, 'disabled') || Object.prototype.hasOwnProperty.call(attrs, 'readonly')
     const openOptions = () => {
-      if (!isEleInteractive)
+      if (!(props.disabled || props.readonly))
         isOptionsVisible.value = !isOptionsVisible.value
     }
 
@@ -101,7 +101,7 @@ export const ASelect = defineComponent({
     // TODO: If we click on arrow down icon then select don't get primary border
     return () => <>
             {/* TODO: Make sure we don't bind input's `type` attr here */}
-            <ABaseInput appendInnerIcon="i-bx-chevron-down" {...attrs} ref={refReference} inputContainerAttrs={{
+            <ABaseInput disabled={props.disabled} readonly={props.readonly} appendInnerIcon="i-bx-chevron-down" {...attrs} ref={refReference} inputContainerAttrs={{
               onClick: openOptions,
             }}>
                 {{

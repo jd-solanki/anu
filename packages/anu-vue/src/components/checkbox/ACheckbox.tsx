@@ -1,7 +1,6 @@
-import { color } from '@/composables/useProps'
-import { isEleDisabled } from '@/utils/dom'
 import { useVModel } from '@vueuse/core'
 import { defineComponent } from 'vue'
+import { color, disabled } from '@/composables/useProps'
 
 export const ACheckbox = defineComponent({
   name: 'ACheckbox',
@@ -16,12 +15,13 @@ export const ACheckbox = defineComponent({
       type: String,
       default: 'i-bx-check',
     },
+    disabled,
   },
   setup(props, { slots, attrs, emit }) {
     const elementId = `a-checkbox-${attrs.id || attrs.value || Math.floor(Math.random() * 1000)}`
     const data = useVModel(props, 'modelValue', emit)
 
-    return () => <label class={['inline-flex items-center cursor-pointer']} for={elementId}>
+    return () => <label class={['inline-flex items-center cursor-pointer', props.disabled && 'a-checkbox-disabled pointer-events-none']} for={elementId}>
             {/* TODO: Once we support custom values and value related customization try to omit classes like next:checked:xxx so we can omit them in safelist */}
             <input
                 {...attrs}
@@ -30,10 +30,7 @@ export const ACheckbox = defineComponent({
                 v-model={data.value}
                 class={['hidden children:next:checked:scale-full', `next:checked:bg-${props.color} next:checked:border-${props.color}`]}
             />
-            <div class={[
-              'a-checkbox-box flex items-center justify-center shrink-0',
-              isEleDisabled(attrs) && 'a-checkbox-disabled-box',
-            ]}>
+            <div class={['a-checkbox-box flex items-center justify-center shrink-0']}>
                 <i class={[props.icon, 'a-checkbox-icon scale-0 text-white']} />
             </div>
             {slots.default ? slots.default() : props.label}

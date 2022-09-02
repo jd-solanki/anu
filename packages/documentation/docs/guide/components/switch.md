@@ -98,7 +98,7 @@ You can use font-size utility to adjust the size of switch
 
 ## States
 
-You can use `disabled` attribute to disable the switch
+You can use `disabled` prop to disable the switch
 
 <DemoSwitchStates />
 

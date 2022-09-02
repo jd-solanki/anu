@@ -167,9 +167,9 @@ You can use `type` attribute to add input type.
 
 ## States
 
-You can use `readonly` attribute to make input read only.
+You can use `readonly` prop to make input read only.
 
-Use `disabled` attribute to make input disabled.
+Use `disabled` prop to make input disabled.
 
 <DemoInputStates />
 

@@ -123,9 +123,9 @@ You can use default slot to render the `ASelect` options. Don't forget to bind `
 
 ## States
 
-You can use `readonly` attribute to make select read only.
+You can use `readonly` prop to make select read only.
 
-Use `disabled` attribute to make select disabled.
+Use `disabled` prop to make select disabled.
 
 <DemoSelectStates />
 

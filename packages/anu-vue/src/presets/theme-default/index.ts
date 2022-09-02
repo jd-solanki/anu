@@ -52,8 +52,9 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
   'a-base-input-w-append-inner': 'em:pr-10',
   'a-base-input-wo-append-inner': 'em:pr-4',
 
-  'a-base-input-disabled': 'bg-[hsla(var(--a-base-color),0.12)] opacity-50',
-  'a-base-input-interactive': 'placeholder:transition placeholder:duration-250 placeholder:ease focus:placeholder:translate-x-1',
+  // ℹ️ We have to add important before `bg-` because textarea has `bg-transparent` class
+  'a-base-input-disabled': '!bg-[hsla(var(--a-base-color),0.12)] opacity-50',
+  'a-base-input-interactive': 'all-[.a-base-input-child]-placeholder:transition all-[.a-base-input-child]-placeholder:duration-250 all-[.a-base-input-child]-placeholder:ease all-[.a-base-input-child:focus]-placeholder-translate-x-1',
 
   // 👉 Card
   'a-card': 'rounded-lg shadow-lg',
@@ -64,7 +65,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
 
   // 👉 Checkbox
   'a-checkbox-box': 'border-solid h-5 w-5 border-(2 a-border rounded) transition duration-200 mr-2',
-  'a-checkbox-disabled-box': 'border-dashed',
+  'a-checkbox-disabled': 'opacity-50',
   'a-checkbox-icon': 'transition duration-150 delay-100 ease-[cubic-bezier(.57,1.48,.87,1.09)]',
 
   // 👉 Dialog
@@ -76,7 +77,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
 
   // 👉 Radio
   'a-radio-circle': 'border-solid h-5 w-5 border-(2 a-border) rounded-full mr-2 p-1 after:(duration-250 ease-in-out)', // ℹ️ :after is inner dot
-  'a-radio-disabled-circle': 'border-dashed',
+  'a-radio-disabled': 'opacity-50',
 
   // 👉 Select
   'a-select-options-container': 'z-10 border border-solid border-a-border rounded-lg em:py-3 shadow-lg',
@@ -86,6 +87,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
   'a-switch-toggle': 'transition-colors transition-duration-100 ease-in-out',
   'a-switch-dot': 'h-[1.18em] w-[1.18em] bg-white transition transition-duration-200 ease-[cubic-bezier(0.16, 1, 0.3, 1)]',
   'a-switch-icon': 'em:text-xs',
+  'a-switch-disabled': 'children-[.a-switch-toggle]-opacity-50',
 
   // 👉 Table
   'a-table-table': 'all-[tr]-border-b all-[tr]-border-a-border',

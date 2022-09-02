@@ -1,6 +1,5 @@
-import { color } from '@/composables/useProps'
-import { isEleDisabled } from '@/utils/dom'
 import { computed, defineComponent } from 'vue'
+import { color, disabled } from '@/composables/useProps'
 
 export const ARadio = defineComponent({
   name: 'ARadio',
@@ -15,12 +14,13 @@ export const ARadio = defineComponent({
       type: String,
       default: 'i-bx-check',
     },
+    disabled,
   },
   setup(props, { slots, attrs, emit }) {
     const elementId = `a-checkbox-${attrs.id || attrs.value || Math.floor(Math.random() * 1000)}`
     const isChecked = computed(() => props.modelValue === attrs.value)
 
-    return () => <label class={['inline-flex items-center cursor-pointer']} for={elementId}>
+    return () => <label class={['inline-flex items-center cursor-pointer', props.disabled && 'a-radio-disabled pointer-events-none']} for={elementId}>
             {/* TODO: Try to avoid classes like next:checked:xxx so we can omit them in safelist */}
             <input
                 {...attrs}
@@ -33,7 +33,6 @@ export const ARadio = defineComponent({
             <div class={[
                 `after:bg-${props.color}`,
                 isChecked.value ? `after:scale-full border-${props.color}` : 'after:scale-0 border-[hsla(var(--a-base-color),var(--a-border-opacity))]',
-                isEleDisabled(attrs) && 'a-radio-disabled-circle',
                 'a-radio-circle after:(w-full h-full rounded-full block content-empty transform transition transition-transform)',
             ]} />
             {slots.default ? slots.default() : props.label}

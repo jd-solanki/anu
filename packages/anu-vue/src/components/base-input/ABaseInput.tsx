@@ -1,7 +1,7 @@
-import TransitionExpand from '@/transitions/TransitionExpand.vue'
-import { isEleDisabled, isEleInteractive } from '@/utils/dom'
 import type { PropType } from 'vue'
 import { defineComponent, ref } from 'vue'
+import { disabled, readonly } from '@/composables/useProps'
+import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
 export const ABaseInput = defineComponent({
   name: 'ABaseInput',
@@ -16,6 +16,8 @@ export const ABaseInput = defineComponent({
     appendIcon: String,
     prependInnerIcon: String,
     appendInnerIcon: String,
+    disabled,
+    readonly,
   },
   setup(props, { slots, attrs, expose }) {
     const iconTransition = 'transition duration-150 ease -in'
@@ -32,7 +34,7 @@ export const ABaseInput = defineComponent({
 
     // TODO(Enhancement): We might need to remove absolute added to html input element to retain width instead of providing min-w to below wrapper
     // TODO: We need to improve default slot implementation so that we can provide selected slot to selection component
-    return () => <div class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', rootClasses ?? []]} ref={refRoot}>
+    return () => <div class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', rootClasses ?? [], props.disabled && 'a-base-input-disabled', !(props.disabled || props.readonly) && 'a-base-input-interactive']} ref={refRoot}>
             {/* 👉 Label */}
             {
                 slots.label
@@ -71,11 +73,9 @@ export const ABaseInput = defineComponent({
                     {/* 👉 Slot: Default */}
                     {slots.default?.({
                       class: [
-                        'absolute inset-0 rounded-inherit',
+                        'a-base-input-child absolute inset-0 rounded-inherit',
                         slots['prepend-inner'] || props.prependInnerIcon ? 'a-base-input-w-prepend-inner' : 'a-base-input-wo-prepend-inner',
                         slots['append-inner'] || props.appendInnerIcon ? 'a-base-input-w-append-inner' : 'a-base-input-wo-append-inner',
-                        `${isEleDisabled(attrs) ? 'a-base-input-disabled' : ''}`,
-                        `${isEleInteractive(attrs) ? 'a-base-input-interactive' : ''}`,
                       ],
                       ...inputAttrs,
                       id: elementId,

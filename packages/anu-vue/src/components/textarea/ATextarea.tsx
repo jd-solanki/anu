@@ -1,14 +1,15 @@
-import { ABaseInput } from '@/components/base-input'
 import { defineComponent } from 'vue'
+import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
 export const ATextarea = defineComponent({
   name: 'ATextarea',
   props: {
     modelValue: String,
     height: String,
+    ...useBaseInputProp(),
   },
   setup(props, { slots, emit, attrs }) {
-    return () => <ABaseInput {...attrs} inputWrapperClasses={['min-h-32', props.height]}>
+    return () => <ABaseInput disabled={props.disabled} readonly={props.readonly} {...attrs} inputWrapperClasses={['min-h-32', props.height]}>
             {{
               // Recursively pass down slots
               ...slots,
