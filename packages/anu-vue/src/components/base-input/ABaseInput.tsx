@@ -34,7 +34,7 @@ export const ABaseInput = defineComponent({
 
     // TODO(Enhancement): We might need to remove absolute added to html input element to retain width instead of providing min-w to below wrapper
     // TODO: We need to improve default slot implementation so that we can provide selected slot to selection component
-    return () => <div class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', rootClasses ?? [], props.disabled && 'a-base-input-disabled', !(props.disabled || props.readonly) && 'a-base-input-interactive']} ref={refRoot}>
+    return () => <div class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', rootClasses ?? [], props.disabled && 'a-base-input-disabled ', (props.disabled || props.readonly) && 'pointer-events-none', !(props.disabled || props.readonly) && 'a-base-input-interactive']} ref={refRoot}>
             {/* 👉 Label */}
             {
                 slots.label

@@ -9,7 +9,7 @@
 
     <!-- 👉 Using custom content (without props) -->
     <ACard>
-      <div class="card-body">
+      <div class="card-body card-spacer">
         <ATypography
           title="Card title"
           subtitle="Chocolate cake tiramisu donut"

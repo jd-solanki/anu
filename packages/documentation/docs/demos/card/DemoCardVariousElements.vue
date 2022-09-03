@@ -1,5 +1,6 @@
 <template>
   <div class="grid-row sm:grid-cols-2 cards-demo-container">
+    <!-- 👉 1st card -->
     <ACard
       title="Card title"
       subtitle="Chocolate cake tiramisu donut"
@@ -9,12 +10,13 @@
         alt="girl"
       >
 
-      <div class="card-body">
-        <span>Macaroon cake powder pie cake cake gingerbread oat cake chocolate cake.</span>
+      <div class="card-body card-spacer">
+        <p>Macaroon cake powder pie cake cake gingerbread oat cake chocolate cake.</p>
         <ABtn>Read more</ABtn>
       </div>
     </ACard>
 
+    <!-- 👉 2nd card -->
     <ACard
       title="Card title"
       subtitle="Chocolate cake tiramisu donut"
@@ -26,18 +28,24 @@
       </div>
     </ACard>
 
+    <!-- 👉 Awesome mobile -->
     <ACard class="sm:col-span-2">
+      <!-- Grid -->
       <div class="grid-row sm:grid-cols-[2fr_5fr] gap-x-0 gap-0 items-center">
+        <!-- Image -->
         <img
           src="/images/demo/minimal-3-1.png"
           alt="minimal-3"
         >
-        <div class="card-body">
+        <!-- Information -->
+        <div class="card-body card-spacer">
           <ATypography
             title="Awesome mobile"
             subtitle="Biscuit liquorice apple pie candy canes"
             :text="['Donut jelly beans cake lollipop sweet biscuit. Pie apple pie powder apple pie gummi bears. Jelly apple pie croissant candy canes liquorice halvah.', 'text-sm']"
           />
+
+          <!-- Action buttons -->
           <div class="flex flex-wrap gap-x-4 gap-y-2">
             <ABtn icon="i-bx-cart">
               Add to cart

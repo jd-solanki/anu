@@ -9,6 +9,8 @@ Card component uses [`ATypography`](/guide/base-components/typography) component
 
 Moreover, you can also use `.card-body` in default slot to render card content.
 
+You can use `.card-spacer` helper class to add margin bottom to each of its children except last.
+
 <DemoCardBasic />
 
 <template #code>
@@ -19,6 +21,10 @@ Moreover, you can also use `.card-body` in default slot to render card content.
 
 </Demo>
 
+:::tip
+You can customize the applied `margin-bottom` by configuring `--a-card-spacer` CSS variable.
+:::
+
 <!-- 👉 Various Elements -->
 <Demo>
 
@@ -26,7 +32,9 @@ Moreover, you can also use `.card-body` in default slot to render card content.
 
 Mix and match the different components to achieve desired UI.
 
-<DemoCardVariousElements />
+<template #demo>
+    <DemoCardVariousElements />
+</template>
 
 <template #code>
 

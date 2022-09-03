@@ -25,6 +25,21 @@
     --a-typography-title-opacity: var(--a-text-emphasis-high-opacity);
     --a-typography-subtitle-opacity: var(--a-text-emphasis-light-opacity);
     --a-typography-text-opacity: var(--a-text-emphasis-medium-opacity);
+
+    // 👉 Components
+
+    // Card
+    --a-card-spacer: 1rem;
+
+    // Switch
+    --a-switch-track-size: 3em;
+    --a-switch-thumb-margin: .25em;
+    --a-switch-default-color: 220, 13%, 91%;
+    /*
+      ℹ️ Value of this property is => hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity)).
+      As this will be always on light background we will keep it static and choose color from light scheme
+    */
+    --a-switch-icon-color: hsla(0, 10%, 20%, 0.68);
 }
 
 :root.dark {
@@ -37,6 +52,10 @@
   --a-info: 200.1, 73%, 54.3%;
   --a-warning: 42.4, 73%, 50%;
   --a-danger: 358.3, 73%, 64.9%;
+
+  // 👉 Components
+  // Switch
+    --a-switch-default-color: 0, 0%, 16%;
 }
 
 // 👉 Typography
@@ -71,26 +90,9 @@ h6 {
     animation-duration: 0.35s;
 }
 
-// SECTION Components
+// Remove outline
 
-// 👉 Switch
-.a-switch {
-  --a-switch-track-size: 3em;
-  --a-switch-thumb-margin: .25em;
-  --a-switch-default-color: 220, 13%, 91%;
-  /*
-    ℹ️ Value of this property is => hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity)).
-    As this will be always on light background we will keep it static and choose color from light scheme
-  */
-  --a-switch-icon-color: hsla(0, 10%, 20%, 0.68);
-
-  .dark & {
-    --a-switch-default-color: 0, 0%, 16%;
-  }
-}
-
-// 👉 Form Elements
-
+.a-btn,
 input,
 select,
 textarea {
@@ -98,5 +100,3 @@ textarea {
     outline: none;
   }
 }
-
-// !SECTION

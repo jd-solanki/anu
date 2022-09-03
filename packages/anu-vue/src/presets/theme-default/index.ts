@@ -53,15 +53,15 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
   'a-base-input-wo-append-inner': 'em:pr-4',
 
   // ℹ️ We have to add important before `bg-` because textarea has `bg-transparent` class
-  'a-base-input-disabled': '!bg-[hsla(var(--a-base-color),0.12)] opacity-50',
+  'a-base-input-disabled': '!all-[.a-base-input-child]-bg-[hsla(var(--a-base-color),0.12)] opacity-50',
   'a-base-input-interactive': 'all-[.a-base-input-child]-placeholder:transition all-[.a-base-input-child]-placeholder:duration-250 all-[.a-base-input-child]-placeholder:ease all-[.a-base-input-child:focus]-placeholder-translate-x-1',
 
   // 👉 Card
   'a-card': 'rounded-lg shadow-lg',
-  'a-card-typography-wrapper': 'card-spacer next:pt-0 not-last:pb-4',
-  'card-spacer': 'p-5',
-  'card-content-spacer': 'flex flex-col items-start gap-y-4',
-  'card-body': 'card-spacer card-content-spacer',
+  'a-card-typography-wrapper': 'card-padding next:pt-0 not-last:pb-4',
+  'card-padding': 'p-5',
+  'card-spacer': 'not-last-children-mb-$a-card-spacer',
+  'card-body': 'card-padding',
 
   // 👉 Checkbox
   'a-checkbox-box': 'border-solid h-5 w-5 border-(2 a-border rounded) transition duration-200 mr-2',
@@ -87,7 +87,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
   'a-switch-toggle': 'transition-colors transition-duration-100 ease-in-out',
   'a-switch-dot': 'h-[1.18em] w-[1.18em] bg-white transition transition-duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]',
   'a-switch-icon': 'em:text-xs',
-  'a-switch-disabled': 'children-[.a-switch-toggle]-opacity-50',
+  'a-switch-disabled': 'opacity-50',
 
   // 👉 Table
   'a-table-table': 'all-[tr]-border-b all-[tr]-border-a-border',
