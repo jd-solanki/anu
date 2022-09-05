@@ -1,7 +1,7 @@
+import { onClickOutside } from '@vueuse/core'
+import { Teleport, Transition, defineComponent, ref, toRef } from 'vue'
 import { ACard, useCardProps } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
-import { onClickOutside } from '@vueuse/core'
-import { defineComponent, ref, Teleport, toRef, Transition } from 'vue'
 
 export const ADialog = defineComponent({
   name: 'ADialog',
