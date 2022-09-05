@@ -8,7 +8,7 @@ export { ACard } from './card'
 export { ACheckbox } from './checkbox'
 export { ADialog } from './dialog'
 
-// export { ADrawer } from './drawer'
+export { ADrawer } from './drawer'
 export { AInput } from './input'
 export { ARadio } from './radio'
 export { ASelect } from './select'
