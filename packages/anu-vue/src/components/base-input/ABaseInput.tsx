@@ -32,6 +32,7 @@ export const ABaseInput = defineComponent({
 
     const { class: rootClasses, ...inputAttrs } = attrs
 
+    // TODO(Enhancement): We might need to remove absolute added to html input element to retain width instead of providing min-w to below wrapper
     // TODO: We need to improve default slot implementation so that we can provide selected slot to selection component
     return () => <div class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', rootClasses ?? [], props.disabled && 'a-base-input-disabled ', (props.disabled || props.readonly) && 'pointer-events-none', !(props.disabled || props.readonly) && 'a-base-input-interactive']} ref={refRoot}>
             {/* 👉 Label */}
@@ -56,7 +57,7 @@ export const ABaseInput = defineComponent({
                 {/* SECTION Input wrapper */}
                 <div class={[
                     `${props.error ? 'border-danger' : 'focus-within:border-primary'}`,
-                    'a-base-input-input-wrapper relative i:focus-within:text-primary flex justify-center items-center border border-solid border-a-border w-full',
+                    'a-base-input-input-wrapper relative i:focus-within:text-primary items-center border border-solid border-a-border w-full',
                     props.inputWrapperClasses,
                 ]}>
 
@@ -72,7 +73,7 @@ export const ABaseInput = defineComponent({
                     {/* 👉 Slot: Default */}
                     {slots.default?.({
                       class: [
-                        'a-base-input-child w-full h-full rounded-inherit',
+                        'a-base-input-child w-full h-full absolute inset-0 rounded-inherit',
                         slots['prepend-inner'] || props.prependInnerIcon ? 'a-base-input-w-prepend-inner' : 'a-base-input-wo-prepend-inner',
                         slots['append-inner'] || props.appendInnerIcon ? 'a-base-input-w-append-inner' : 'a-base-input-wo-append-inner',
                       ],
