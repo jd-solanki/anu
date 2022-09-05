@@ -32,6 +32,7 @@ export default defineConfig({
             { text: 'Card', link: '/guide/components/card' },
             { text: 'Checkbox', link: '/guide/components/checkbox' },
             { text: 'Dialog', link: '/guide/components/dialog' },
+            { text: 'Drawer', link: '/guide/components/drawer' },
             { text: 'Input', link: '/guide/components/input' },
             { text: 'Radio', link: '/guide/components/radio' },
             { text: 'Select', link: '/guide/components/select' },
