@@ -74,9 +74,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
 
   // 👉 Drawer
   'a-drawer-wrapper': 'z-[51]',
-  'a-drawer': 'shadow-2xl uno-layer-base-w-[500px] z-[52]',
-  'a-drawer-wrapper-anchor-left': 'justify-start',
-  'a-drawer-wrapper-anchor-right': 'justify-end',
+  'a-drawer': 'shadow-2xl uno-layer-base-w-[300px] z-[52] rounded-none max-w-[calc(100vw-2rem)]',
 
   // 👉 Input
   'a-input-type-file': 'file:rounded-lg file:border-none file:mr-4 file:px-4 file:py-3 file:text-gray-500 file:rounded-r-none file:bg-[hsla(var(--a-base-color),0.05)] !px-0',
