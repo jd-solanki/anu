@@ -21,6 +21,7 @@ export const ADrawer = defineComponent({
       default: 'left',
     },
   },
+  emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
     const refCard = ref()
     if (!props.persistent) {
