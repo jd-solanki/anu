@@ -1,30 +1,34 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const isDrawerShown = ref(false)
-
-const selectedAnchor = ref('left')
-const drawerAnchors = ['left', 'right']
+const isDrawerLeftShown = ref(false)
+const isDrawerRightShown = ref(false)
 </script>
 
 <template>
-  <ASelect
-    v-model="selectedAnchor"
-    :options="drawerAnchors"
-    label="Anchor"
-  />
+  <ABtn
+    class="mr-4"
+    @click="isDrawerLeftShown = true"
+  >
+    Left
+  </ABtn>
+  <ABtn @click="isDrawerRightShown = true">
+    Right
+  </ABtn>
 
-  <br>
-
+  <!-- 👉 Left drawer -->
   <ADrawer
-    v-model="isDrawerShown"
-    :anchor="selectedAnchor"
+    v-model="isDrawerLeftShown"
+    anchor="left"
     title="Drawer title"
     subtitle="Chocolate cake tiramisu donut"
-    text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
   />
 
-  <ABtn @click="isDrawerShown = true">
-    Show drawer
-  </ABtn>
+  <!-- 👉 Right drawer -->
+  <ADrawer
+    v-model="isDrawerRightShown"
+    anchor="right"
+    title="Drawer title"
+    subtitle="Chocolate cake tiramisu donut"
+  />
 </template>

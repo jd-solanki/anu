@@ -13,7 +13,7 @@ All props & slots available in `ACard` is available in `ADrawer`.
 
 <template #code>
 
-<<< @/demos/drawer/DemoDrawerBasic.vue
+<<< @/demos/drawer/DemoDrawerBasic.vue{8-12}
 
 </template>
 
@@ -30,7 +30,7 @@ You can change the position of the drawer by providing the values `left` or `rig
 
 <template #code>
 
-<<< @/demos/drawer/DemoDrawerAnchor.vue
+<<< @/demos/drawer/DemoDrawerAnchor.vue{22,30}
 
 </template>
 
@@ -41,13 +41,13 @@ You can change the position of the drawer by providing the values `left` or `rig
 
 ## Width
 
-Use width utility classes with `children` variant to provide custom width to drawer. e.g. `children:w-[800px]`.
+Use width utility classes to provide custom width to drawer. e.g. `w-[400px]`.
 
 <DemoDrawerWidth />
 
 <template #code>
 
-<<< @/demos/drawer/DemoDrawerWidth.vue
+<<< @/demos/drawer/DemoDrawerWidth.vue{12}
 
 </template>
 
@@ -64,7 +64,7 @@ You can disable closing drawer on outside click via `persistent` prop.
 
 <template #code>
 
-<<< @/demos/drawer/DemoDrawerPersistent.vue
+<<< @/demos/drawer/DemoDrawerPersistent.vue{13}
 
 </template>
 

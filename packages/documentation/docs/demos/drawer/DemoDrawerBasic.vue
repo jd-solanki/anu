@@ -9,7 +9,6 @@ const isDrawerShown = ref(false)
     v-model="isDrawerShown"
     title="Drawer title"
     subtitle="Chocolate cake tiramisu donut"
-    text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
   />
 
   <ABtn @click="isDrawerShown = true">
