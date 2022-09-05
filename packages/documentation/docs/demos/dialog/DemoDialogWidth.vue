@@ -10,7 +10,7 @@ const isDialogShown = ref(false)
     title="Dialog title"
     subtitle="Chocolate cake tiramisu donut"
     text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
-    class="children:w-[800px]"
+    class="w-[800px]"
   />
 
   <ABtn @click="isDialogShown = true">

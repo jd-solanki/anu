@@ -33,9 +33,9 @@ export const ADialog = defineComponent({
 
     return () => <Teleport to="body">
       <Transition name="bg">
-        <div {...attrs} v-show={props.modelValue} class={['a-dialog-wrapper grid uno-layer-base-place-items-center fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]']}>
+        <div v-show={props.modelValue} class={['a-dialog-wrapper grid uno-layer-base-place-items-center fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]']}>
           <Transition name="scale">
-            <ACard v-show={props.modelValue} class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]" ref={refCard} {...props}>{{ ...slots }}</ACard>
+            <ACard {...attrs} v-show={props.modelValue} class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]" ref={refCard} {...props}>{{ ...slots }}</ACard>
           </Transition>
         </div>
       </Transition>

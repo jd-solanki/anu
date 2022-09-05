@@ -43,7 +43,7 @@ You can adjust dialog placement via `place-items-start top-16 justify-center` cl
 
 ## Width
 
-Use width utility classes with `children` variant to provide custom width to dialog. e.g. `children:w-[800px]`.
+Use width utility classes to provide custom width to dialog. e.g. `w-[800px]`.
 
 <DemoDialogWidth />
 
