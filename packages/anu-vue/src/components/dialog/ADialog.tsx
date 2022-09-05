@@ -16,6 +16,7 @@ export const ADialog = defineComponent({
       default: false,
     },
   },
+  emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
     const refCard = ref()
     if (!props.persistent) {
