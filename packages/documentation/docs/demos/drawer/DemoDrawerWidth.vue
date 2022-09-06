@@ -13,6 +13,6 @@ const isDrawerShown = ref(false)
   />
 
   <ABtn @click="isDrawerShown = true">
-    Show dialog
+    Show drawer
   </ABtn>
 </template>

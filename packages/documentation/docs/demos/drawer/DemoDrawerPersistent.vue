@@ -24,6 +24,6 @@ const isDrawerShown = ref(false)
   </ADrawer>
 
   <ABtn @click="isDrawerShown = true">
-    Show dialog
+    Show drawer
   </ABtn>
 </template>
