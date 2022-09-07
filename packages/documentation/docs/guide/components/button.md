@@ -34,6 +34,23 @@ You can use `variant="outline"` to create outlined button.
 
 </Demo>
 
+<!-- 👉 Outlined -->
+<Demo>
+
+## Dashed
+
+You can use `variant="dashed"` to create outlined button.
+
+<DemoButtonDashed />
+
+<template #code>
+
+<<< @/demos/button/DemoButtonDashed.vue
+
+</template>
+
+</Demo>
+
 <!-- 👉 Light -->
 <Demo>
 
