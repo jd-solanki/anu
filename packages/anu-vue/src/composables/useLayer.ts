@@ -6,7 +6,7 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
     color,
     variant: {
       type: String,
-      validator: (value: string) => ['fill', 'outline', 'dashed', 'light', 'text'].includes(value),
+      validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
       default: 'text',
     },
     states: {
@@ -42,7 +42,7 @@ export const useLayer = () => {
         if (props.variant === 'light')
           classes.push(`bg-${props.color} bg-opacity-15`)
         if (props.variant === 'outline')
-          classes.push(`border border-${props.color}`)
+          classes.push(`border-width-1 uno-layer-base-border-solid border-${props.color}`)
       }
     }
 
