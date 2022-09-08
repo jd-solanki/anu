@@ -14,7 +14,15 @@ interface OptionsOut<T> {
   isSelected: ComputedRef<boolean>
 }
 
-export const useGroupModel = <T>(params: ComposableParams<T>) => {
+// interface IOverload<T> {
+//   (param: ComposableParams<number>): { options: Ref<OptionsOut<number>[]>; value: number; select: (option: number) => void }
+//   (param: ComposableParams<T>): { options: Ref<OptionsOut<T>[]>; value: T; select: (option: T) => void }
+// }
+
+// TODO: Improve typing
+export function useGroupModel<T extends number>(param: ComposableParams<T>): { options: Ref<OptionsOut<T>[]>; value: T; select: (option: T) => void }
+export function useGroupModel<T>(param: ComposableParams<T>): { options: Ref<OptionsOut<T>[]>; value: T; select: (option: T) => void }
+export function useGroupModel<T>(params: ComposableParams<T>) {
   const { options, multi } = params
 
   const value = ref<T | number | Set<T | number> | undefined>()
@@ -43,11 +51,11 @@ export const useGroupModel = <T>(params: ComposableParams<T>) => {
     },
   )
 
-  const _options = ref([]) as Ref<OptionsOut<T | number>[]>
+  const _options = ref([]) as Ref<OptionsOut<T>[]>
 
   if (typeof options === 'number') {
     _options.value = [...Array(options)].map((_, i) => ({
-      value: i,
+      value: i as T,
       isSelected: computed(() => i === value.value),
     }))
   }
@@ -55,9 +63,16 @@ export const useGroupModel = <T>(params: ComposableParams<T>) => {
     _options.value = options.map(option => ({
       value: option,
       isSelected: computed(() => {
-        return unref(multi)
-          ? value.value instanceof Set ? value.value.has(option) : false
-          : option === toRaw(value.value)
+        // If multiple selection is enabled
+        if (unref(multi))
+
+          // If value is Set => if value exist in set then its Selected else not
+          return value.value instanceof Set ? value.value.has(option) : false
+
+        else
+
+          // If multiple selection is not enabled just compare the values
+          return option === toRaw(value.value)
       }),
     }))
   }
