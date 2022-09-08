@@ -19,7 +19,8 @@ export const ABaseInput = defineComponent({
     disabled,
     readonly,
   },
-  setup(props, { slots, attrs, expose }) {
+  setup(props, ctx) {
+    const { slots, attrs, expose } = ctx
     const iconTransition = 'transition duration-150 ease -in'
     const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}` : undefined
 
@@ -29,8 +30,6 @@ export const ABaseInput = defineComponent({
       refRoot,
       refInputContainer,
     })
-
-    const { class: rootClasses, ...inputAttrs } = attrs
 
     // TODO(Enhancement): We might need to remove absolute added to html input element to retain width instead of providing min-w to below wrapper
     // TODO: We need to improve default slot implementation so that we can provide selected slot to selection component
@@ -72,12 +71,12 @@ export const ABaseInput = defineComponent({
 
                     {/* 👉 Slot: Default */}
                     {slots.default?.({
+                      ...ctx.attrs,
                       class: [
                         'a-base-input-child w-full h-full absolute inset-0 rounded-inherit',
                         slots['prepend-inner'] || props.prependInnerIcon ? 'a-base-input-w-prepend-inner' : 'a-base-input-wo-prepend-inner',
                         slots['append-inner'] || props.appendInnerIcon ? 'a-base-input-w-append-inner' : 'a-base-input-wo-append-inner',
                       ],
-                      ...inputAttrs,
                       id: elementId,
                     })}
 
