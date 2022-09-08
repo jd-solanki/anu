@@ -34,6 +34,12 @@ You can use `variant="outline"` to create outlined button.
 
 </Demo>
 
+:::details Customize `border-style` of outlined buttons
+To create outlined button with different border style just add relevant class.
+
+e.g. To create outline button with dashed border, add `border-dashed` class.
+:::
+
 <!-- 👉 Light -->
 <Demo>
 
