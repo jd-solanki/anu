@@ -71,6 +71,17 @@ Since ESLint is already configured to format the code, there is no need to dupli
 
 If you have Prettier installed in your editor, we recommend you disable it when working on the project to avoid conflict.
 
+## Writing code ⌨️
+
+### Required
+
+- Anu provides preset named "Theme Default" where all appearance related classes should be written. Idea is someone can create his own preset to totally customize the look & feel of Anu.
+- For structural & functional styles, you better write them in component itself.
+
+### Optional
+
+- For dummy text instead of Lorem ipsum, you can use [cupcakeipsum](http://www.cupcakeipsum.com/) which is pretty sweet 😋
+
 ## 😍 Pull request
 
 ### Discuss first
