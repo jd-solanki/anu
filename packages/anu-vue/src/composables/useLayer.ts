@@ -42,9 +42,7 @@ export const useLayer = () => {
         if (props.variant === 'light')
           classes.push(`bg-${props.color} bg-opacity-15`)
         if (props.variant === 'outline')
-          classes.push(`border border-solid border-${props.color}`)
-        if (props.variant === 'dashed')
-          classes.push(`border border-dashed border-${props.color} `)
+          classes.push(`border border-${props.color}`)
       }
     }
 

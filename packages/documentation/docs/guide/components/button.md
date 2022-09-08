@@ -34,22 +34,11 @@ You can use `variant="outline"` to create outlined button.
 
 </Demo>
 
-<!-- 👉 Outlined -->
-<Demo>
+:::details Customize `border-style` of outlined buttons
+To create outlined button with different border style just add relevant class.
 
-## Dashed
-
-You can use `variant="dashed"` to create outlined button.
-
-<DemoButtonDashed />
-
-<template #code>
-
-<<< @/demos/button/DemoButtonDashed.vue
-
-</template>
-
-</Demo>
+e.g. To create outline button with dashed border, add `border-dashed` class.
+:::
 
 <!-- 👉 Light -->
 <Demo>
