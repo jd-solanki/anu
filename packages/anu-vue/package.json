@@ -1,7 +1,7 @@
 {
   "name": "anu-vue",
   "private": false,
-  "version": "0.7.1",
+  "version": "0.7.2",
   "type": "module",
   "description": "DX focused utility based component library",
   "author": "JD Solanki <https://github.com/jd-solanki>",
