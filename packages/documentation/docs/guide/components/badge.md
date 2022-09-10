@@ -22,7 +22,7 @@ Default variant for badge is `standard`
 
 ## Dot
 
-Variant for badge `dot`
+Use the prop `variant` to transform the badge into a `dot` 
 
 <DemoBadgeDot />
 
@@ -37,9 +37,9 @@ Variant for badge `dot`
 <!-- 👉 Anchor origin -->
 <Demo>
 
-## AnchorOrigin
+## Anchor origin
 
-Variant for badge `dot`
+Change the position of the badge by passing `horizontal` and `vertical` values to the `anchorOrigin` prop.
 
 <DemoBadgeAnchorOrigin />
 
