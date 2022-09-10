@@ -17,6 +17,23 @@ Default variant for badge is `standard`
 
 </Demo>
 
+<!-- 👉 Color -->
+<Demo>
+
+## Color
+
+You can use `color` prop to change the badge color.
+
+<DemoBadgeColor />
+
+<template #code>
+
+<<< @/demos/badge/DemoBadgeColor.vue
+
+</template>
+
+</Demo>
+
 <!-- 👉 Dot -->
 <Demo>
 
@@ -46,6 +63,40 @@ Change the position of the badge by passing `horizontal` and `vertical` values t
 <template #code>
 
 <<< @/demos/badge/DemoBadgeAnchorOrigin.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Max -->
+<Demo>
+
+## Max
+
+Change the `max` prop to cap the numeric value of the content
+
+<DemoBadgeMax />
+
+<template #code>
+
+<<< @/demos/badge/DemoBadgeMax.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Overlap -->
+<Demo>
+
+## Overlap
+
+Use the `overlap` prop to position the badge on the edge depending on the shape of the element.
+
+<DemoBadgeOverlap />
+
+<template #code>
+
+<<< @/demos/badge/DemoBadgeOverlap.vue
 
 </template>
 
