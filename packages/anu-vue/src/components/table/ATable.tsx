@@ -1,6 +1,6 @@
 import { computedEager, useOffsetPagination } from '@vueuse/core'
 import type { ComputedRef, PropType, Ref } from 'vue'
-import { computed, defineComponent, ref, toRaw, watch } from 'vue'
+import { computed, defineComponent, readonly, ref, toRaw, toRefs, watch } from 'vue'
 import { ABtn } from '@/components/btn'
 import { ACard, useCardProps } from '@/components/card'
 import { AInput } from '@/components/input'
@@ -41,43 +41,58 @@ export interface ItemsFunction {
   (props: ItemsFunctionParams): Promise<{ rows: unknown[]; total: number }>
 }
 
+const tableProps = {
+  rows: {
+    type: [Array, Function] as PropType<Object[] | ItemsFunction>,
+    required: true,
+  },
+  columns: {
+    type: [Array] as PropType<PropColumn[]>,
+    default: () => [],
+  },
+  search: {
+    type: [Boolean, String],
+    default: false,
+  },
+  noResultsText: {
+    type: String,
+    default: 'No matching results found!!',
+  },
+  isSortable: {
+    type: Boolean,
+    default: true,
+  },
+  multiSort: {
+    type: Boolean,
+    default: false,
+  },
+  pageSize: {
+    type: Number,
+    default: 10,
+  },
+}
+
 export const ATable = defineComponent({
   name: 'ATable',
   props: {
     ...useCardProps(),
-    rows: {
-      type: [Array, Function] as PropType<Object[] | ItemsFunction>,
-      required: true,
-    },
-    columns: {
-      type: [Array] as PropType<PropColumn[]>,
-      default: () => [],
-    },
-    search: {
-      type: [Boolean, String],
-      default: false,
-    },
-    noResultsText: {
-      type: String,
-      default: 'No matching results found!!',
-    },
-    isSortable: {
-      type: Boolean,
-      default: true,
-    },
-    multiSort: {
-      type: Boolean,
-      default: false,
-    },
-    pageSize: {
-      type: Number,
-      default: 10,
-    },
+    ...tableProps,
   },
   setup(props, { slots }) {
     // ℹ️ I used destructing to extract card props from table props. Moreover,I didn't wanted to use destructured props hence I omitted them
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { columns: _, rows: __, search: ___, ...cardProps } = props
+
+    const cardProps = computed(() => {
+      const tablePropsNames = Object.keys(tableProps)
+
+      const cardPropsEntries = Object.entries(props).map(([propName, propValue]) => {
+        if (!tablePropsNames.includes(propName))
+          return [propName, propValue]
+
+        return null
+      }).filter(i => i)
+
+      return toRefs(Object.fromEntries(cardPropsEntries))
+    })
 
     // 👉 isSST
     const isSST = computedEager(() => !Array.isArray(props.rows))
@@ -445,7 +460,7 @@ export const ATable = defineComponent({
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
       return <ACard
         class="a-table"
-        {...cardProps}
+        {...readonly(cardProps.value)}
         v-slots={{
           ...slots,
           default: () => [slots.default?.(), table, tableFooter],
