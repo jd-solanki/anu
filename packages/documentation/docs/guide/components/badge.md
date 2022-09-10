@@ -20,6 +20,23 @@ Default variant for badge is `standard`
 <!-- 👉 Color -->
 <Demo>
 
+## Content
+
+Use the prop `badgeContent` to pass numeric values, if you want to use other data different than a number use the slot `badgeContent` instead
+
+<DemoBadgeContent />
+
+<template #code>
+
+<<< @/demos/badge/DemoBadgeContent.vue
+
+</template>
+
+</Demo>
+
+<!-- 👉 Content -->
+<Demo>
+
 ## Color
 
 You can use `color` prop to change the badge color.
