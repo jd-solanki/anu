@@ -1,4 +1,4 @@
-import type { ComponentObjectPropsOptions, PropType, Slots } from 'vue'
+import type { ComponentObjectPropsOptions, PropType, Slots, ToRefs } from 'vue'
 
 export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
@@ -31,13 +31,15 @@ export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsO
 }
 
 // Thanks: https://masteringjs.io/tutorials/fundamentals/filter-object
-// TODO(TS): improve typing
-export const extractTypographyProp = (props: any) => Object.fromEntries(
-  Object.entries(props)
-    .filter(
-      ([propName]) => Object.keys(useTypographyProps()).includes(propName),
-    ),
-)
+// TODO(TS): improve typing so that it only returns the typography types. Omit using `Partial`
+export const extractTypographyProp = <T>(props: ToRefs<T>): Partial<ToRefs<T>> => {
+  return Object.fromEntries(
+    Object.entries(props)
+      .filter(
+        ([propName]) => Object.keys(useTypographyProps()).includes(propName),
+      ) as [keyof T, T[keyof T]][],
+  ) as Partial<ToRefs<T>>
+}
 
 // TODO [v0.2.0]: Find another way to check typography component usage & improve typing
 // export const isTypographyUsed = (props: ComponentObjectPropsOptions, slots: Slots) => {
