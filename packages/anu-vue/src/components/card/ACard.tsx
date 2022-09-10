@@ -19,6 +19,7 @@ export const ACard = defineComponent({
     const typographyProps = extractTypographyProp<typeof props>(toRefs(props))
 
     // TODO [v0.2.0]: Find another way to check typography component usage
+    // TODO: Check => Do we need to pass toRefs(props)
     const _isTypographyUsed = isTypographyUsed(props, slots)
 
     // Modify text prop to have `text-sm`
