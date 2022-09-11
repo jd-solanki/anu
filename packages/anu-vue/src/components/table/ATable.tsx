@@ -142,14 +142,16 @@ export const ATable = defineComponent({
 
       // Else generate columns from first row
       : isSST.value
+      /* eslint-disable @typescript-eslint/no-use-before-define */
         ? (rowsToRender.value.length
             ? Object.keys(rowsToRender.value[0])
+            /* eslint-enable @typescript-eslint/no-use-before-define */
               .map(k => ({
                 ...columnDefaults,
                 name: k,
               }))
             : [])
-        : props.rows.length
+        : props.rows?.length
           ? Object.keys((props.rows as Object[])[0])
             .map(k => ({
               ...columnDefaults,
