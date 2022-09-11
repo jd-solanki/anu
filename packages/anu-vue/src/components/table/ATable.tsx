@@ -1,5 +1,5 @@
 import { computedEager, useOffsetPagination } from '@vueuse/core'
-import type { ComputedRef, PropType, Ref } from 'vue'
+import type { ComputedRef, PropType, Ref, ToRefs } from 'vue'
 import { computed, defineComponent, readonly, ref, toRaw, toRefs, watch } from 'vue'
 import { ABtn } from '@/components/btn'
 import { ACard, useCardProps } from '@/components/card'
@@ -10,8 +10,6 @@ import type { CustomFilter } from '@/composables/useSearch'
 import { useSearch } from '@/composables/useSearch'
 import type { CustomSort, typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
-
-// import { controlledComputed } from '@vueuse/core';
 
 export type ShallSortByAsc = boolean | null
 
@@ -81,7 +79,7 @@ export const ATable = defineComponent({
   setup(props, { slots }) {
     // ℹ️ I used destructing to extract card props from table props. Moreover,I didn't wanted to use destructured props hence I omitted them
 
-    const cardProps = computed(() => {
+    const cardProps = computed<Partial<ToRefs<typeof props>>>(() => {
       const tablePropsNames = Object.keys(tableProps)
 
       const cardPropsEntries = Object.entries(props).map(([propName, propValue]) => {
@@ -89,7 +87,7 @@ export const ATable = defineComponent({
           return [propName, propValue]
 
         return null
-      }).filter(i => i)
+      }).filter(i => i) as [keyof typeof props, typeof props[keyof typeof props]][]
 
       return toRefs(Object.fromEntries(cardPropsEntries))
     })
@@ -109,10 +107,12 @@ export const ATable = defineComponent({
       // _search.value, currentPage.value, currentPageSize.value, sortedCols.value
 
       (props.rows as ItemsFunction)({
+        /* eslint-disable @typescript-eslint/no-use-before-define */
         q: _search.value,
         currentPage: currentPage.value,
         rowsPerPage: currentPageSize.value,
         sortedCols: toRaw(sortedCols.value),
+        /* eslint-enable @typescript-eslint/no-use-before-define */
       })
         .then(data => {
           const { rows, total } = data
