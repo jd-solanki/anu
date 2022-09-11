@@ -1,6 +1,6 @@
 import { computedEager, useOffsetPagination } from '@vueuse/core'
 import type { ComputedRef, PropType, Ref, ToRefs } from 'vue'
-import { computed, defineComponent, readonly, ref, toRaw, toRefs, watch } from 'vue'
+import { computed, defineComponent, reactive, ref, toRaw, toRefs, watch } from 'vue'
 import { ABtn } from '@/components/btn'
 import { ACard, useCardProps } from '@/components/card'
 import { AInput } from '@/components/input'
@@ -409,7 +409,7 @@ export const ATable = defineComponent({
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
       return <ACard
         class="a-table"
-        {...readonly(cardProps.value)}
+        {...reactive(cardProps.value)}
         v-slots={{
           ...slots,
           default: () => [slots.default?.(), table, tableFooter],
