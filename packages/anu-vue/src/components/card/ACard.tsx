@@ -36,8 +36,6 @@ export const ACard = defineComponent({
       {/* 👉 Image */}
       {props.img ? <img src={props.img} alt="card-img"></img> : null}
 
-      <p>{props.title}</p>
-
       {/* 👉 Typography */}
       {/* TODO: Improve usage of components inside another component */}
       {
