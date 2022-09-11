@@ -209,18 +209,6 @@ export const ATable = defineComponent({
       paginatedRows.value = sortedRows.value.slice(start, end)
     }
 
-    // watch(isSST, val => {
-    //   console.log('-=-=-=-=-=-=-=-=-isSST.value :>> ', val)
-    // })
-
-    // watch(_serverRows, val => {
-    //   console.log('-=-=-=-=-=-=-=-=-_serverRows :>> ', val)
-    // })
-
-    // watch(sortedRows, val => {
-    //   console.log('-=-=-=-=-=-=-=-=-sortedRows :>> ', val)
-    // })
-
     // paginateRows({ currentPage: 1, currentPageSize: currentPageSize.value })
     const total = computed(() => isSST.value ? _serverTotal.value : sortedRows.value.length)
 
@@ -253,13 +241,6 @@ export const ATable = defineComponent({
     }
 
     watch([_search, sortedCols], recalculateCurrentPageData, { deep: true, immediate: true })
-
-    // const paginatedRows = computed(() => {
-    //   const start = (currentPage.value - 1) * currentPageSize.value
-    //   const end = currentPage.value * currentPageSize.value
-
-    //   return sortedRows.value.slice(start, end)
-    // })
 
     // 👉 rowsToRender
     const rowsToRender = computed(() => isSST.value ? _serverRows.value : paginatedRows.value)
@@ -305,13 +286,7 @@ export const ATable = defineComponent({
         // Sorted by Desc
         else {
           col.shallSortByAsc = null
-
-          // console.log('in')
-          // console.log('sortedCols.value :>> ', sortedCols.value)
           sortedCols.value.splice(index, 1)
-
-          // console.log('sortedCols.value :>> ', sortedCols.value)
-          // console.log('out')
         }
       }
 
@@ -320,10 +295,7 @@ export const ATable = defineComponent({
         col.shallSortByAsc = true
       }
 
-      // console.log('col :>> ', col)
-
       // Handle Multi sort
-
       if (col.shallSortByAsc !== null) {
         if (!props.multiSort)
           sortedCols.value = [col]
@@ -333,30 +305,12 @@ export const ATable = defineComponent({
         else
           sortedCols.value.splice(index, 1, { ...col })
       }
-
-      // console.log('col :>> ', col)
-      // console.log('sortedCols :>> ', sortedCols.value)
-      // console.log('-----')
-
-      // -------------
-
-      // if (!props.multiSort) {
-      //   sortedCols.value = [col]
-
-      //   return
-      // }
-
-      // if (index > -1)
-      //   sortedCols.value.splice(index, 1)
-      // else sortedCols.value.push(col)
     }
 
     const getShallSortByAsc = computed(() => (col: TableColumn) => {
       const _col = sortedCols.value.find(sortedCol => sortedCol.name === col.name)
 
-      if (!_col)
-        return null
-      else return _col.shallSortByAsc
+      return !_col ? null : _col?.shallSortByAsc
     })
 
     return () => {
@@ -400,9 +354,7 @@ export const ATable = defineComponent({
           <tbody>
             {
               rowsToRender.value.length
-                ? rowsToRender.value.map((row, rowIndex) => {
-                  const colValues = Object.values(row)
-
+                ? rowsToRender.value.map((row, _) => {
                   return <tr>
                     {
                         _columns.value.map(col => <td class="a-table-table-td whitespace-nowrap">
@@ -439,7 +391,6 @@ export const ATable = defineComponent({
         <div class="flex-grow"></div>
         <div class="a-table-footer-per-page-container flex items-center">
           <span class="sm:inline hidden">per page</span>
-          {/* <ABtn class="text-sm" onClick={() => { currentPageSize.value = 10 }}>10</ABtn> */}
           <ASelect
             class="a-table-footer-per-page-select"
             inputWrapperClasses="a-table-footer-per-page-select--input-wrapper-classes"
@@ -453,8 +404,6 @@ export const ATable = defineComponent({
           <ABtn icon-only class="a-table-footer-next-page-btn" icon="i-bx-right-arrow-alt" variant="default" onClick={goToNextPage} {...(isLastPage.value && { disabled: true })}></ABtn>
         </div>
       </div>
-
-      const x = <pre>{String(isFirstPage.value)} - {String(isLastPage.value)} - {String(currentPage.value)}</pre>
 
       // TODO: noresultstext is represented as attrs of card
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
