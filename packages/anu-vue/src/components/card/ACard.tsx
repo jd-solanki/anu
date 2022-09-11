@@ -1,4 +1,4 @@
-import { defineComponent, readonly, toRefs } from 'vue'
+import { defineComponent, reactive, toRefs } from 'vue'
 import { ATypography } from '../typography'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { extractTypographyProp, isTypographyUsed, useTypographyProps } from '@/composables/useTypography'
@@ -43,7 +43,7 @@ export const ACard = defineComponent({
 
           // `not-last:pb-4` will set bottom padding to 1 rem instead of 1.5 if card-padding is not last of type
           ? <div class="a-card-typography-wrapper">
-            <ATypography {...readonly(typographyProps)}>
+            <ATypography {...reactive(typographyProps)}>
               {{ ...slots, default: null }}
             </ATypography>
           </div>
