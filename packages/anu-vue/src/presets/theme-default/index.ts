@@ -36,16 +36,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = {
   'a-alert': 'p-4 font-medium rounded-lg gap-x-2',
 
   // 👉 Badge
-  'a-badge-wrapper': 'relative',
-  'a-badge': 'px-1 rounded-full absolute h-5 min-w-[1.25rem] flex justify-center items-center text-white text-xs font-medium z-[1]',
-  'a-badge-rectangular-top-right': 'top-0 right-0 translate-x-1/2 -translate-y-1/2',
-  'a-badge-rectangular-top-left': 'top-0 left-0 -translate-x-1/2 -translate-y-1/2',
-  'a-badge-rectangular-bottom-left': 'bottom-0 left-0 -translate-x-1/2 translate-y-1/2',
-  'a-badge-rectangular-bottom-right': 'bottom-0 right-0 translate-x-1/2 translate-y-1/2',
-  'a-badge-circular-top-right': 'top-[14%] right-[14%] translate-x-1/2 -translate-y-1/2',
-  'a-badge-circular-top-left': 'top-[14%] left-[14%] -translate-x-1/2 -translate-y-1/2',
-  'a-badge-circular-bottom-left': 'bottom-[14%] left-[14%] -translate-x-1/2 translate-y-1/2',
-  'a-badge-circular-bottom-right': 'bottom-[14%] right-[14%] translate-x-1/2 translate-y-1/2',
+  'a-badge': 'px-1 rounded-full h-5 min-w-[1.25rem] flex justify-center items-center text-white text-xs font-medium z-[1] whitespace-nowrap',
   'a-badge-dot': 'min-w-[0.5rem] h-2',
 
   // 👉 Button
