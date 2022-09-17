@@ -1,12 +1,18 @@
 <template>
   <div class="flex flex-wrap gap-4">
-    <ABadge overlap="rectangular">
+    <ABadge>
       <AAvatar
         icon="i-bx-home"
         class="rounded-none"
       />
     </ABadge>
-    <ABadge overlap="circular">
+    <ABadge overlap>
+      <AAvatar icon="i-bx-home" />
+    </ABadge>
+    <ABadge
+      offset-x="16"
+      offset-y="16"
+    >
       <AAvatar icon="i-bx-home" />
     </ABadge>
   </div>

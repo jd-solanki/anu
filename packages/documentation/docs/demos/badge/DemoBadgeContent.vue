@@ -1,11 +1,23 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const badgeContent = ref('9')
+</script>
+
 <template>
-  <div class="flex flex-wrap gap-4">
-    <ABadge :badge-content="9">
+  <AInput
+    v-model="badgeContent"
+    label="Badge content"
+    placeholder="Write your badge content"
+  />
+  <br>
+  <div class="flex flex-wrap gap-8">
+    <ABadge :content="badgeContent">
       <i class="inline-block i-bx-bell w-6 h-6" />
     </ABadge>
     <ABadge>
-      <template #badgeContent>
-        <i class="inline-block i-bx-smile w-3 h-3" />
+      <template #content>
+        {{ badgeContent }}
       </template>
       <i class="inline-block i-bx-bell w-6 h-6" />
     </ABadge>

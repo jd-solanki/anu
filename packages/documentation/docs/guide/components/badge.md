@@ -73,13 +73,13 @@ Use the prop `variant` to transform the badge into a `dot`
 
 ## Anchor origin
 
-Change the position of the badge by passing `horizontal` and `vertical` values to the `anchorOrigin` prop.
+Change the position of the badge by passing `horizontal` and `vertical` values to the `anchor` prop.
 
-<DemoBadgeAnchorOrigin />
+<DemoBadgeAnchor />
 
 <template #code>
 
-<<< @/demos/badge/DemoBadgeAnchorOrigin.vue
+<<< @/demos/badge/DemoBadgeAnchor.vue
 
 </template>
 
@@ -107,7 +107,7 @@ Change the `max` prop to cap the numeric value of the content
 
 ## Overlap
 
-Use the `overlap` prop to position the badge on the edge depending on the shape of the element.
+Use the `overlap` prop to adjust the position of the badge, if you need more refined adjustments you can use the `offsetX` or `offsetY` props.
 
 <DemoBadgeOverlap />
 
