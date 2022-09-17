@@ -1,6 +1,6 @@
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer';
-import { disabled } from '@/composables/useProps';
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { disabled } from '@/composables/useProps'
 
 export const ABtn = defineComponent({
   name: 'ABtn',
@@ -28,7 +28,7 @@ export const ABtn = defineComponent({
     },
     disabled,
   },
-  setup(props, { slots, attrs }) {
+  setup(props, { slots, attrs: _ }) {
     const { getLayerClasses } = useLayer()
 
     // FIX: ABtn gets full width if placed inside flex container

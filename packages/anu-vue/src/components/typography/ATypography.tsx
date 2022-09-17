@@ -1,5 +1,5 @@
-import { useTypographyProps } from '@/composables/useTypography'
 import { computed, defineComponent } from 'vue'
+import { useTypographyProps } from '@/composables/useTypography'
 
 export const ATypography = defineComponent({
   name: 'ATypography',

@@ -1,5 +1,5 @@
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { defineComponent, ref, watch } from 'vue'
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 
 export const AAlert = defineComponent({
   name: 'AAlert',

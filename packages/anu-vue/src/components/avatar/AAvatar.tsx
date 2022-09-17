@@ -1,5 +1,5 @@
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { computed, defineComponent } from 'vue'
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 
 export const AAvatar = defineComponent({
   name: 'AAvatar',

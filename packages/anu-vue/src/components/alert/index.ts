@@ -1,2 +1,2 @@
-export { AAlert } from './AAlert';
+export { AAlert } from './AAlert'
 
