@@ -3,10 +3,11 @@ import { computed, defineComponent } from 'vue'
 import { color } from '@/composables/useProps'
 import { isNumeric } from '@/utils/helpers'
 
-export interface AnchorOrigin {
-  vertical: 'top' | 'bottom'
-  horizontal: 'left' | 'right'
-}
+export type VerticalAnchor = 'top' | 'bottom'
+export type HorizontalAnchor = 'left' | 'right'
+export type Anchor = `${VerticalAnchor} ${HorizontalAnchor}`
+
+const defaultOffset = 4
 
 export const ABadge = defineComponent({
   name: 'ABadge',
@@ -15,52 +16,78 @@ export const ABadge = defineComponent({
       ...color,
       default: 'primary',
     },
-    variant: {
-      type: String as PropType<'standard' | 'dot'>,
-      default: 'standard',
+    dot: {
+      type: Boolean,
+      default: false,
     },
     max: {
       type: Number,
       default: 99,
     },
-    badgeContent: {
-      type: Number,
+    content: {
+      type: [Number, String],
+      default: undefined,
     },
-    anchorOrigin: {
-      type: Object as PropType<AnchorOrigin>,
-      default: () => ({ vertical: 'top', horizontal: 'right' }),
+    anchor: {
+      type: String as PropType<Anchor>,
+      default: 'top right',
     },
     overlap: {
-      type: String as PropType<'rectangular' | 'circular'>,
-      default: 'rectangular',
+      type: Boolean,
+      default: false,
+    },
+    offsetX: {
+      type: [Number, String],
+      default: defaultOffset,
+    },
+    offsetY: {
+      type: [Number, String],
+      default: defaultOffset,
     },
   },
   setup(props, { slots }) {
-    const formatMaxBadgeContent = (badgeContent: unknown) => {
-      if (!isNumeric(badgeContent))
-        return badgeContent
+    const formatMaxContent = (content: unknown) => {
+      if (!isNumeric(content))
+        return content
 
-      const numericBadgeContent = Number(badgeContent)
-      if (numericBadgeContent > props.max)
+      const numericContent = Number(content)
+      if (numericContent > props.max)
         return `${props.max}+`
 
-      return numericBadgeContent
+      return numericContent
     }
 
     const badgeSlotContent = computed(() => {
-      if (props.variant === 'dot')
-        return ''
-      if (slots.badgeContent)
-        return formatMaxBadgeContent(slots.badgeContent?.())
-      if (props.badgeContent)
-        return formatMaxBadgeContent(props.badgeContent)
+      if (!props.dot && slots.content)
+        return formatMaxContent(slots.content?.()[0].children)
+
+      if (!props.dot && props.content)
+        return formatMaxContent(props.content)
 
       return ''
     })
 
-    return () => <div class={['a-badge-wrapper']}>
+    const anchorOffset = computed(() => {
+      const newOffsetY = props.overlap && defaultOffset === props.offsetY ? 12 : props.offsetY
+      const newOffsetX = props.overlap && defaultOffset === props.offsetX ? 12 : props.offsetX
+
+      return { offsetY: newOffsetY, offsetX: newOffsetX }
+    })
+
+    const positionStyles = computed(() => {
+      const [anchorY, anchorX] = props.anchor.split(' ')
+
+      return {
+        top: anchorY === 'top' ? 'auto' : `calc(100% - ${anchorOffset.value.offsetY}px)`,
+        bottom: anchorY === 'bottom' ? 'auto' : `calc(100% - ${anchorOffset.value.offsetY}px)`,
+        left: anchorX === 'left' ? 'auto' : `calc(100% - ${anchorOffset.value.offsetX}px)`,
+        right: anchorX === 'right' ? 'auto' : `calc(100% - ${anchorOffset.value.offsetX}px)`,
+      }
+    })
+
+    return () => <div class={['a-badge-wrapper relative']}>
       {slots.default?.()}
-      <div class={[`a-badge a-badge-${props.variant} a-badge-${props.overlap}-${props.anchorOrigin.vertical}-${props.anchorOrigin.horizontal} bg-${props.color}`]}>
+      <div class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }]} style={positionStyles.value}>
         {badgeSlotContent.value}
       </div>
     </div>

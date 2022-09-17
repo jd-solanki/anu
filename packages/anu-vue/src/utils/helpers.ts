@@ -22,4 +22,4 @@ export const isObject = (obj: unknown): obj is Record<string, unknown> =>
 
 // 👉 IsNumeric
 export const isNumeric = (value: unknown): boolean =>
-  (typeof value === 'string' || typeof value === 'number') && !isNaN(Number(value))
+  (typeof value === 'string' || typeof value === 'number') && value !== '' && !isNaN(Number(value))
