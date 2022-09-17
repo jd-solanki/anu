@@ -8,6 +8,7 @@ export type HorizontalAnchor = 'left' | 'right'
 export type Anchor = `${VerticalAnchor} ${HorizontalAnchor}`
 
 const defaultOffset = 4
+const defaultOverlapOffset = 12
 
 export const ABadge = defineComponent({
   name: 'ABadge',
@@ -68,20 +69,20 @@ export const ABadge = defineComponent({
     })
 
     const anchorOffset = computed(() => {
-      const newOffsetY = props.overlap && defaultOffset === props.offsetY ? 12 : props.offsetY
-      const newOffsetX = props.overlap && defaultOffset === props.offsetX ? 12 : props.offsetX
+      const newOffsetY = props.overlap && defaultOffset === props.offsetY ? defaultOverlapOffset : props.offsetY
+      const newOffsetX = props.overlap && defaultOffset === props.offsetX ? defaultOverlapOffset : props.offsetX
 
-      return { offsetY: newOffsetY, offsetX: newOffsetX }
+      return { y: newOffsetY, x: newOffsetX }
     })
 
     const positionStyles = computed(() => {
       const [anchorY, anchorX] = props.anchor.split(' ')
 
       return {
-        top: anchorY === 'top' ? 'auto' : `calc(100% - ${anchorOffset.value.offsetY}px)`,
-        bottom: anchorY === 'bottom' ? 'auto' : `calc(100% - ${anchorOffset.value.offsetY}px)`,
-        left: anchorX === 'left' ? 'auto' : `calc(100% - ${anchorOffset.value.offsetX}px)`,
-        right: anchorX === 'right' ? 'auto' : `calc(100% - ${anchorOffset.value.offsetX}px)`,
+        top: anchorY === 'top' ? 'auto' : `calc(100% - ${anchorOffset.value.y}px)`,
+        bottom: anchorY === 'bottom' ? 'auto' : `calc(100% - ${anchorOffset.value.y}px)`,
+        left: anchorX === 'left' ? 'auto' : `calc(100% - ${anchorOffset.value.x}px)`,
+        right: anchorX === 'right' ? 'auto' : `calc(100% - ${anchorOffset.value.x}px)`,
       }
     })
 
