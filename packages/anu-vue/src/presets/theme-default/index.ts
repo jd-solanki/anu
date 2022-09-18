@@ -140,22 +140,22 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       ...colors.map(c => `next:checked:border-${c}`),
 
       // Typography
-      ...colors.map(c => `typography-title-${c}`),
-      ...colors.map(c => `typography-subtitle-${c}`),
-      ...colors.map(c => `typography-text-${c}`),
+      ...[...colors, 'white'].map(c => `typography-title-${c}`),
+      ...[...colors, 'white'].map(c => `typography-subtitle-${c}`),
+      ...[...colors, 'white'].map(c => `typography-text-${c}`),
     ],
     rules: [
       // Typography
       [
-        /^typography-(\w+)-(\w+)$/,
+        /^typography-(\w+)-([\w]+)$/,
         ([, type, c]: string[]) => ({
-          [`--typography-${type}-color`]: `var(--${c})`,
+          [`--a-typography-${type}-color`]: `var(--a-${c})`,
         }),
       ],
       [
         /^typography-(\w+)-opacity-(\d+)$/,
         ([, type, o]: string[]) => ({
-          [`--typography-${type}-opacity`]: `${Number(o) * 0.01}`,
+          [`--a-typography-${type}-opacity`]: `${Number(o) * 0.01}`,
         }),
       ],
 
