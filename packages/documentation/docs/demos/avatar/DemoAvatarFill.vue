@@ -2,12 +2,12 @@
   <div class="flex flex-wrap gap-4">
     <AAvatar
       variant="fill"
-      text="A"
+      content="A"
     />
     <AAvatar
       variant="fill"
       color="success"
-      text="JD"
+      content="JD"
     />
     <AAvatar
       variant="fill"
