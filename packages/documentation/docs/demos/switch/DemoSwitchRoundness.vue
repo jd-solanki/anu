@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const md = ref(true)
 const full = ref(true)

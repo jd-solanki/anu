@@ -1,2 +1,2 @@
-export { ASelect } from './ASelect';
+export { ASelect } from './ASelect'
 

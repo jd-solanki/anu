@@ -66,7 +66,7 @@ export const ASelect = defineComponent({
 
     onClickOutside(
       refFloating,
-      event => {
+      _event => {
         if (isOptionsVisible.value)
           isOptionsVisible.value = false
       },
