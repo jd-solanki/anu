@@ -1,4 +1,5 @@
 import { computed, defineComponent } from 'vue'
+import { avatarOnlyProps } from '@/components/avatar/props'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 
 export const AAvatar = defineComponent({
@@ -12,26 +13,7 @@ export const AAvatar = defineComponent({
         default: 'light',
       },
     }),
-    icon: {
-      type: String,
-      required: false,
-      default: undefined,
-    },
-    content: {
-      type: String,
-      required: false,
-      default: undefined,
-    },
-    src: {
-      type: String,
-      required: false,
-      default: undefined,
-    },
-    alt: {
-      type: String,
-      required: false,
-      default: 'avatar',
-    },
+    ...avatarOnlyProps,
   },
   setup(props, { slots }) {
     const { getLayerClasses } = useLayer()
