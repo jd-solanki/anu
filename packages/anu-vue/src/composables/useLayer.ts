@@ -22,17 +22,27 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
   return props
 }
 
+interface UseLayerConfig {
+  statesClass?: string
+}
 export const useLayer = () => {
   // TODO(TS): Improve typing
-  const getLayerClasses = (props: any) => {
-    const classes: string[] = [props.states ? 'states' : '']
+  const getLayerClasses = (props: any, config?: UseLayerConfig) => {
+    const classes: string[] = [
+      props.states
+        ? (config && config.statesClass ? config.statesClass : 'states')
+        : '',
+    ]
 
     if (props.color) {
+      const color = props.variant === 'fill' ? 'white' : props.color
+      classes.push(`text-${color} typography-title-${color} typography-subtitle-${color} typography-text-${color}`)
+
+      // common classes
+      classes.push('typography-subtitle-opacity-100 typography-text-opacity-100')
+
       if (props.variant === 'text') { classes.push(`text-${props.color}`) }
       else {
-        // common classes
-        classes.push('typography-subtitle-opacity-100 typography-text-opacity-100')
-
         // TODO: Below typography colors are using `--white` CSS var which doesn't exist
         const color = props.variant === 'fill' ? 'white' : props.color
         classes.push(`text-${color} typography-title-${color} typography-subtitle-${color} typography-text-${color}`)

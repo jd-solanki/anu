@@ -26,12 +26,12 @@
     --a-typography-subtitle-opacity: var(--a-text-emphasis-light-opacity);
     --a-typography-text-opacity: var(--a-text-emphasis-medium-opacity);
 
-    // 👉 Components
+    // SECTION Components
 
-    // Card
+    // 👉 Card
     --a-card-spacer: 1rem;
 
-    // Switch
+    // 👉 Switch
     --a-switch-track-size: 3em;
     --a-switch-thumb-margin: .25em;
     --a-switch-default-color: 220, 13%, 91%;
@@ -40,6 +40,16 @@
       As this will be always on light background we will keep it static and choose color from light scheme
     */
     --a-switch-icon-color: hsla(0, 10%, 20%, 0.68);
+
+    // 👉 List
+    // ℹ️ We might not need `--a-list-gap` this if we are using just `AList`, however when we use list inside another component this will be helpful
+    --a-list-gap: 0rem;
+    --a-list-item-gap: 0.75rem;    
+    --a-list-item-padding: 0.5rem 1rem;
+    --a-list-item-margin: 0rem;
+    --a-list-item-min-height: 2.5rem;
+
+    // !SECTION
 }
 
 :root.dark {
@@ -53,9 +63,12 @@
   --a-warning: 42.4, 73%, 50%;
   --a-danger: 358.3, 73%, 64.9%;
 
-  // 👉 Components
-  // Switch
+  // SECTION Components
+
+  // 👉 Switch
     --a-switch-default-color: 0, 0%, 16%;
+    
+  // !SECTION
 }
 
 // 👉 Typography
@@ -90,8 +103,12 @@ h6 {
     animation-duration: 0.35s;
 }
 
-// Remove outline
+// Set default border-color for `hr` element for color scheme compatibility
+hr {
+  border-color: hsla(var(--a-base-color),var(--a-border-opacity))
+}
 
+// Remove outline
 .a-btn,
 input,
 select,

@@ -3,8 +3,8 @@ import type { ComponentObjectPropsOptions, PropType, Slots, ToRefs } from 'vue'
 export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
     title: [String, Array] as PropType<string | string[]>,
-    subtitle: [String, Array],
-    text: [String, Array],
+    subtitle: [String, Array] as PropType<string | string[]>,
+    text: [String, Array] as PropType<string | string[]>,
     titleTag: {
       type: String,
       default: 'span',
