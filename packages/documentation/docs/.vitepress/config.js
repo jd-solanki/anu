@@ -34,6 +34,7 @@ export default defineConfig({
             { text: 'Dialog', link: '/guide/components/dialog' },
             { text: 'Drawer', link: '/guide/components/drawer' },
             { text: 'Input', link: '/guide/components/input' },
+            { text: 'List', link: '/guide/components/list' },
             { text: 'Radio', link: '/guide/components/radio' },
             { text: 'Select', link: '/guide/components/select' },
             { text: 'Switch', link: '/guide/components/switch' },
