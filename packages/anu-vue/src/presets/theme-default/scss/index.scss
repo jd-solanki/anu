@@ -90,8 +90,12 @@ h6 {
     animation-duration: 0.35s;
 }
 
-// Remove outline
+// Set default border-color for `hr` element for color scheme compatibility
+hr {
+  border-color: hsla(var(--a-base-color),var(--a-border-opacity))
+}
 
+// Remove outline
 .a-btn,
 input,
 select,
