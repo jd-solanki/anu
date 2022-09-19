@@ -64,7 +64,7 @@ export const ABaseInput = defineComponent({
                         slots['prepend-inner']
                           ? slots['prepend-inner']?.()
                           : props.prependInnerIcon
-                            ? <i class={['a-base-input-prepend-inner-icon inline-block', iconTransition, props.prependInnerIcon]} />
+                            ? <i class={['a-base-input-prepend-inner-icon', iconTransition, props.prependInnerIcon]} />
                             : null
                     }
 
@@ -84,7 +84,7 @@ export const ABaseInput = defineComponent({
                         slots['append-inner']
                           ? slots['append-inner']?.()
                           : props.appendInnerIcon
-                            ? <i class={['a-base-input-append-inner-icon inline-block ml-auto', iconTransition, props.appendInnerIcon]} />
+                            ? <i class={['a-base-input-append-inner-icon ml-auto', iconTransition, props.appendInnerIcon]} />
                             : null
                     }
                 </div>
