@@ -61,25 +61,6 @@ export const AList = defineComponent({
       return isAvatarUsed(props.items[0])
     })
 
-    // ℹ️ [Configurable UI] This is helper function to extract the content & classes from prop/value
-    // TODO: We might need to move this to utils
-    const getArrayValue = computed(() => (val: string | string[] | Object[]) => {
-      const [content, classes] = val === undefined
-        ? []
-        : typeof val === 'string'
-          ? [val]
-          : val
-
-      return { content, classes }
-    })
-
-    // 👉 Icon renderer
-    const iconRenderer = (icon: string | string[] | Object[]) => {
-      const { content: iconClass, classes } = getArrayValue.value(icon)
-
-      return <i class={[iconClass, classes]}></i>
-    }
-
     // 👉 Avatar Renderer
     const avatarRenderer = (
       content: typeof props.items[number]['content'],
