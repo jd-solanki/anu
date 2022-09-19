@@ -21,6 +21,7 @@ export default defineConfig({
         // ℹ️ We also have to find a way to inject this without this config. (e.g. [class^=i-])
         'vertical-align': 'bottom',
         'flex-shrink': '0',
+        'display': 'inline-block',
 
         // We need to center the icon
         'margin-block': '0.15em',
