@@ -125,19 +125,16 @@ export const AList = defineComponent({
 
       const isActive = computed(() => options.value[itemIndex].isSelected)
 
-      const layerProps = computed(() => {
-        return {
-          states: props.states,
-          color: isActive.value ? props.color || 'primary' : undefined,
-          variant: isActive.value ? props.variant || 'light' : 'text',
-        }
-      })
+      const layerProps = computed(() => ({
+        states: props.states,
+        color: isActive.value ? props.color || 'primary' : undefined,
+        variant: isActive.value ? props.variant || 'light' : 'text',
+      }))
 
       return <li
         onClick={() => handleListItemClick(itemIndex)}
         class={[
           'a-list-item',
-          { 'a-layer-active': value.value === itemIndex },
           { 'opacity-50 pointer-events-none': listItem.disable },
           props.modelValue !== null
             ? [...getLayerClasses(layerProps.value, { statesClass: 'states:10' }), 'cursor-pointer']

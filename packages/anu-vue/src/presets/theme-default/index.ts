@@ -8,11 +8,7 @@ interface PresetOptions {
 export const colors = ['primary', 'success', 'info', 'warning', 'danger']
 const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
   // 👉 States
-  [/^states:?(\d+)?$/, ([, op]) => {
-    const stateSelector = `.states${op ? `\\:${op}` : ''}`
-    const _op = op || 15
-
-    return `\
+  [/^states:?(\d+)?$/, ([, op]) => `\
       relative \
       before:content-empty \
       before:absolute \
@@ -25,9 +21,8 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
       before:duration-200 \
       before:ease-in-out \
       \
-      hover:before:opacity-${_op} \
-      before:selector-[${stateSelector}.a-layer-active]-opacity-${_op}`
-  }],
+      hover:before:opacity-${op || 15}`,
+  ],
   {
   // 👉 Grid
     'grid-row': 'grid gap-6 place-items-start w-full',
