@@ -47,6 +47,7 @@
           extraProperties: {
             height: '1.5em',
             'flex-shrink': '0',
+            'display': 'inline-block',
           },
         }),
 
