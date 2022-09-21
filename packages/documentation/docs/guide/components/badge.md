@@ -56,7 +56,7 @@ You can use `color` prop to change the badge color.
 
 ## Dot
 
-Use the prop `variant` to transform the badge into a `dot` 
+Use the prop `variant` to transform the badge into a `dot`
 
 <DemoBadgeDot />
 
@@ -107,7 +107,9 @@ Change the `max` prop to cap the numeric value of the content
 
 ## Overlap
 
-Use the `overlap` prop to adjust the position of the badge, if you need more refined adjustments you can use the `offsetX` or `offsetY` props.
+Use `overlap` prop to adjust the position of the badge, if you need more refined adjustments you can use the `offsetX` or `offsetY` props.
+
+By default of `overlap` prop is `true`.
 
 <DemoBadgeOverlap />
 
