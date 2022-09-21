@@ -1,2 +1,2 @@
-export { ATextarea } from './ATextarea';
+export { ATextarea } from './ATextarea'
 

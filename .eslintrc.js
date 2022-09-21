@@ -22,6 +22,7 @@ module.exports = {
     '@typescript-eslint',
     'import',
   ],
+  ignorePatterns: ['node_modules/*', 'dist/*', '*.yaml', '*.yml', '*.json', '*.md'],
   rules: {
     // we don't want it
     'semi': ['error', 'never'],

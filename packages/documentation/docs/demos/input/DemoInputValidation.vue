@@ -1,5 +1,5 @@
 <script setup>
-import { useField } from 'vee-validate';
+import { useField } from 'vee-validate'
 
 const isRequired = val => (val && val.trim() ? true : 'This is required')
 

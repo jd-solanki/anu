@@ -1,7 +1,7 @@
 {
   "name": "anu-vue",
   "private": false,
-  "version": "0.7.2",
+  "version": "0.8.0",
   "type": "module",
   "description": "DX focused utility based component library",
   "author": "JD Solanki <https://github.com/jd-solanki>",
@@ -44,22 +44,22 @@
     "@floating-ui/dom": "^1.0.1",
     "defu": "^6.1.0",
     "dist": "link:/Users/jd/Projects/oss/anu/packages/anu-vue/dist",
-    "vue": "^3.2.38"
+    "vue": "^3.2.39"
   },
   "devDependencies": {
-    "@unocss/core": "^0.45.14",
-    "@unocss/reset": "^0.45.14",
-    "@vitejs/plugin-vue": "^3.0.1",
+    "@unocss/core": "^0.45.21",
+    "@unocss/reset": "^0.45.21",
+    "@vitejs/plugin-vue": "^3.1.0",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
-    "@vueuse/core": "^9.1.1",
-    "sass": "^1.54.8",
-    "typescript": "^4.8.2",
-    "unocss": "^0.45.14",
-    "unplugin-vue-components": "^0.22.4",
-    "vite": "^3.0.9",
-    "vite-plugin-dts": "^1.4.1",
+    "@vueuse/core": "^9.2.0",
+    "sass": "^1.54.9",
+    "typescript": "^4.8.3",
+    "unocss": "^0.45.21",
+    "unplugin-vue-components": "^0.22.7",
+    "vite": "^3.1.2",
+    "vite-plugin-dts": "^1.5.0",
     "vue-router": "^4.1.5",
-    "vue-tsc": "^0.40.5"
+    "vue-tsc": "^0.40.13"
   },
   "peerDependencies": {
     "@unocss/reset": "^0.41.1",

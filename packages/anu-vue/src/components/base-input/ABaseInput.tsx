@@ -19,10 +19,9 @@ export const ABaseInput = defineComponent({
     disabled,
     readonly,
   },
-  setup(props, ctx) {
-    const { expose } = ctx
+  setup(props, { attrs, slots, expose }) {
     const iconTransition = 'transition duration-150 ease -in'
-    const elementId = ctx.attrs.id || props.label ? `a-input-${ctx.attrs.id || props.label}` : undefined
+    const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}` : undefined
 
     const refRoot = ref()
     const refInputContainer = ref()
@@ -33,11 +32,11 @@ export const ABaseInput = defineComponent({
 
     // TODO(Enhancement): We might need to remove absolute added to html input element to retain width instead of providing min-w to below wrapper
     // TODO: We need to improve default slot implementation so that we can provide selected slot to selection component
-    return () => <div class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', ctx.attrs.class ?? [], props.disabled && 'a-base-input-disabled ', (props.disabled || props.readonly) && 'pointer-events-none', !(props.disabled || props.readonly) && 'a-base-input-interactive']} ref={refRoot}>
+    return () => <div class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', attrs.class ?? [], props.disabled && 'a-base-input-disabled ', (props.disabled || props.readonly) && 'pointer-events-none', !(props.disabled || props.readonly) && 'a-base-input-interactive']} ref={refRoot}>
             {/* 👉 Label */}
             {
-                ctx.slots.label
-                  ? ctx.slots.label?.()
+                slots.label
+                  ? slots.label?.()
                   : props.label
                     ? <label for={elementId} class={['a-base-input-label', props.error ? 'text-danger' : null]}>{props.label}</label>
                     : null
@@ -46,8 +45,8 @@ export const ABaseInput = defineComponent({
             <div ref={refInputContainer} class="a-base-input-input-container flex items-center" {...props.inputContainerAttrs}>
                 {/* 👉 Slot: Prepend */}
                 {
-                    ctx.slots.prepend
-                      ? ctx.slots.prepend?.()
+                    slots.prepend
+                      ? slots.prepend?.()
                       : props.prependIcon
                         ? <i class={[iconTransition, props.prependIcon]} />
                         : null
@@ -62,30 +61,30 @@ export const ABaseInput = defineComponent({
 
                     {/* 👉 Slot: Prepend Inner */}
                     {
-                        ctx.slots['prepend-inner']
-                          ? ctx.slots['prepend-inner']?.()
+                        slots['prepend-inner']
+                          ? slots['prepend-inner']?.()
                           : props.prependInnerIcon
-                            ? <i class={['a-base-input-prepend-inner-icon inline-block', iconTransition, props.prependInnerIcon]} />
+                            ? <i class={['a-base-input-prepend-inner-icon', iconTransition, props.prependInnerIcon]} />
                             : null
                     }
 
                     {/* 👉 Slot: Default */}
-                    {ctx.slots.default?.({
-                      ...ctx.attrs,
+                    {slots.default?.({
+                      ...attrs,
                       class: [
                         'a-base-input-child w-full h-full absolute inset-0 rounded-inherit',
-                        ctx.slots['prepend-inner'] || props.prependInnerIcon ? 'a-base-input-w-prepend-inner' : 'a-base-input-wo-prepend-inner',
-                        ctx.slots['append-inner'] || props.appendInnerIcon ? 'a-base-input-w-append-inner' : 'a-base-input-wo-append-inner',
+                        slots['prepend-inner'] || props.prependInnerIcon ? 'a-base-input-w-prepend-inner' : 'a-base-input-wo-prepend-inner',
+                        slots['append-inner'] || props.appendInnerIcon ? 'a-base-input-w-append-inner' : 'a-base-input-wo-append-inner',
                       ],
                       id: elementId,
                     })}
 
                     {/* 👉 Slot: Append Inner */}
                     {
-                        ctx.slots['append-inner']
-                          ? ctx.slots['append-inner']?.()
+                        slots['append-inner']
+                          ? slots['append-inner']?.()
                           : props.appendInnerIcon
-                            ? <i class={['a-base-input-append-inner-icon inline-block ml-auto', iconTransition, props.appendInnerIcon]} />
+                            ? <i class={['a-base-input-append-inner-icon ml-auto', iconTransition, props.appendInnerIcon]} />
                             : null
                     }
                 </div>
@@ -93,8 +92,8 @@ export const ABaseInput = defineComponent({
 
                 {/* 👉 Slot: Append */}
                 {
-                    ctx.slots.append
-                      ? ctx.slots.append?.()
+                    slots.append
+                      ? slots.append?.()
                       : props.appendIcon
                         ? <i class={[iconTransition, props.appendIcon]} />
                         : null
@@ -102,8 +101,8 @@ export const ABaseInput = defineComponent({
             </div>
             {/* 👉 Slot: Bottom */}
             {
-                ctx.slots.bottom
-                  ? ctx.slots.bottom?.()
+                slots.bottom
+                  ? slots.bottom?.()
                   : <TransitionExpand>
                       <div class="h-8" v-show={props.error || props.hint}>
                         <small class={`inline-block ${props.error ? 'text-danger' : 'text-light-emphasis'}`}>{props.error || props.hint}</small>

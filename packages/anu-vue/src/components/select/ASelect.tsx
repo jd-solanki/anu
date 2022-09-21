@@ -28,6 +28,7 @@ export const ASelect = defineComponent({
     // SECTION Floating
     // Template refs
     const refReference = ref()
+    const selectRef = ref<HTMLSelectElement>()
     const refFloating = ref()
 
     const isOptionsVisible = ref(false)
@@ -65,7 +66,7 @@ export const ASelect = defineComponent({
 
     onClickOutside(
       refFloating,
-      event => {
+      _event => {
         if (isOptionsVisible.value)
           isOptionsVisible.value = false
       },
@@ -86,9 +87,11 @@ export const ASelect = defineComponent({
 
     // TODO: You can use it as utility in another components
     // TODO: Add some style to indicate currently selected item
-    const openOptions = () => {
-      if (!(props.disabled || props.readonly))
+    const handleInputClick = () => {
+      if (!(props.disabled || props.readonly)) {
         isOptionsVisible.value = !isOptionsVisible.value
+        selectRef.value?.focus()
+      }
     }
 
     // 👉 Options
@@ -98,11 +101,10 @@ export const ASelect = defineComponent({
       emit('update:modelValue', option)
     }
 
-    // TODO: If we click on arrow down icon then select don't get primary border
     return () => <>
             {/* TODO: Make sure we don't bind input's `type` attr here */}
             <ABaseInput disabled={props.disabled} readonly={props.readonly} appendInnerIcon="i-bx-chevron-down" {...attrs} ref={refReference} inputContainerAttrs={{
-              onClick: openOptions,
+              onClick: handleInputClick,
             }}>
                 {{
                   // Recursively pass down slots
@@ -112,6 +114,7 @@ export const ASelect = defineComponent({
                             {...slotProps}
                             value={isObject(props.modelValue) && 'label' in props.modelValue && 'value' in props.modelValue ? (props.modelValue.label) : props.modelValue }
                             readonly
+                            ref={selectRef}
                         />,
                 }}
             </ABaseInput>

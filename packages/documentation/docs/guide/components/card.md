@@ -45,7 +45,7 @@ Mix and match the different components to achieve desired UI.
 </Demo>
 
 <!-- 👉 Variants -->
-<!-- <Demo>
+<Demo>
 
 ## Variants
 
@@ -59,7 +59,7 @@ Card component uses layer composable as it's base. You can use `variant` prop to
 
 </template>
 
-</Demo> -->
+</Demo>
 
 <!-- 👉 Slot -->
 <Demo>

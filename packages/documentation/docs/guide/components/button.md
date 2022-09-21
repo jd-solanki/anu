@@ -1,21 +1,14 @@
 # Button
 
 <!-- 👉 Filled -->
-<Demo>
-
-## Filled
+:::card Filled
 
 `fill` is default variant for button.
 
-<DemoButtonFilled />
-
-<template #code>
-
+:::code DemoButtonFilled
 <<< @/demos/button/DemoButtonFilled.vue
 
-</template>
-
-</Demo>
+:::
 
 <!-- 👉 Outlined -->
 <Demo>

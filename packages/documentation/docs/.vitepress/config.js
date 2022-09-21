@@ -1,5 +1,9 @@
+import MarkdownIt from 'markdown-it'
+import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
+
+md = new MarkdownIt()
 
 export default defineConfig({
   title: 'Anu',
@@ -35,6 +39,7 @@ export default defineConfig({
             { text: 'Dialog', link: '/guide/components/dialog' },
             { text: 'Drawer', link: '/guide/components/drawer' },
             { text: 'Input', link: '/guide/components/input' },
+            { text: 'List', link: '/guide/components/list' },
             { text: 'Radio', link: '/guide/components/radio' },
             { text: 'Select', link: '/guide/components/select' },
             { text: 'Switch', link: '/guide/components/switch' },
@@ -67,6 +72,31 @@ export default defineConfig({
   },
   markdown: {
     theme: 'dracula',
+    config: md => {
+      md.use(Container, 'card', {
+        render: (tokens, idx) => {
+          const token = tokens[idx]
+
+          // console.log('token :>> ', token)
+
+          const title = token.info.trim().slice(5).trim()
+          const titleHtml = md.render(`## ${title}`)
+
+          return token.nesting === 1 ? `<Demo>${titleHtml}` : '</Demo>\n'
+        },
+      })
+
+      md.use(Container, 'code', {
+        render: (tokens, idx) => {
+          const token = tokens[idx]
+
+          // console.log('token :>> ', token)
+          const demoName = token.info.trim().slice(5).trim()
+
+          return token.nesting === 1 ? `<template #demo><${demoName} /></template><template #code>` : '</template>\n'
+        },
+      })
+    },
   },
   vite: {
     plugins: [

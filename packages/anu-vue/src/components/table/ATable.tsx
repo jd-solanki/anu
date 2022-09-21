@@ -1,6 +1,6 @@
 import { computedEager, useOffsetPagination } from '@vueuse/core'
-import type { ComputedRef, PropType, Ref } from 'vue'
-import { computed, defineComponent, ref, toRaw, watch } from 'vue'
+import type { ComputedRef, PropType, Ref, ToRefs } from 'vue'
+import { computed, defineComponent, reactive, ref, toRaw, toRefs, watch } from 'vue'
 import { ABtn } from '@/components/btn'
 import { ACard, useCardProps } from '@/components/card'
 import { AInput } from '@/components/input'
@@ -10,8 +10,6 @@ import type { CustomFilter } from '@/composables/useSearch'
 import { useSearch } from '@/composables/useSearch'
 import type { CustomSort, typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
-
-// import { controlledComputed } from '@vueuse/core';
 
 export type ShallSortByAsc = boolean | null
 
@@ -41,43 +39,58 @@ export interface ItemsFunction {
   (props: ItemsFunctionParams): Promise<{ rows: unknown[]; total: number }>
 }
 
+const tableProps = {
+  rows: {
+    type: [Array, Function] as PropType<Object[] | ItemsFunction>,
+    required: true,
+  },
+  columns: {
+    type: [Array] as PropType<PropColumn[]>,
+    default: () => [],
+  },
+  search: {
+    type: [Boolean, String],
+    default: false,
+  },
+  noResultsText: {
+    type: String,
+    default: 'No matching results found!!',
+  },
+  isSortable: {
+    type: Boolean,
+    default: true,
+  },
+  multiSort: {
+    type: Boolean,
+    default: false,
+  },
+  pageSize: {
+    type: Number,
+    default: 10,
+  },
+}
+
 export const ATable = defineComponent({
   name: 'ATable',
   props: {
     ...useCardProps(),
-    rows: {
-      type: [Array, Function] as PropType<Object[] | ItemsFunction>,
-      required: true,
-    },
-    columns: {
-      type: [Array] as PropType<PropColumn[]>,
-      default: () => [],
-    },
-    search: {
-      type: [Boolean, String],
-      default: false,
-    },
-    noResultsText: {
-      type: String,
-      default: 'No matching results found!!',
-    },
-    isSortable: {
-      type: Boolean,
-      default: true,
-    },
-    multiSort: {
-      type: Boolean,
-      default: false,
-    },
-    pageSize: {
-      type: Number,
-      default: 10,
-    },
+    ...tableProps,
   },
   setup(props, { slots }) {
     // ℹ️ I used destructing to extract card props from table props. Moreover,I didn't wanted to use destructured props hence I omitted them
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { columns: _, rows: __, search: ___, ...cardProps } = props
+
+    const cardProps = computed<Partial<ToRefs<typeof props>>>(() => {
+      const tablePropsNames = Object.keys(tableProps)
+
+      const cardPropsEntries = Object.entries(props).map(([propName, propValue]) => {
+        if (!tablePropsNames.includes(propName))
+          return [propName, propValue]
+
+        return null
+      }).filter(i => i) as [keyof typeof props, typeof props[keyof typeof props]][]
+
+      return toRefs(Object.fromEntries(cardPropsEntries))
+    })
 
     // 👉 isSST
     const isSST = computedEager(() => !Array.isArray(props.rows))
@@ -94,10 +107,12 @@ export const ATable = defineComponent({
       // _search.value, currentPage.value, currentPageSize.value, sortedCols.value
 
       (props.rows as ItemsFunction)({
+        /* eslint-disable @typescript-eslint/no-use-before-define */
         q: _search.value,
         currentPage: currentPage.value,
         rowsPerPage: currentPageSize.value,
         sortedCols: toRaw(sortedCols.value),
+        /* eslint-enable @typescript-eslint/no-use-before-define */
       })
         .then(data => {
           const { rows, total } = data
@@ -127,14 +142,16 @@ export const ATable = defineComponent({
 
       // Else generate columns from first row
       : isSST.value
+      /* eslint-disable @typescript-eslint/no-use-before-define */
         ? (rowsToRender.value.length
             ? Object.keys(rowsToRender.value[0])
+            /* eslint-enable @typescript-eslint/no-use-before-define */
               .map(k => ({
                 ...columnDefaults,
                 name: k,
               }))
             : [])
-        : props.rows.length
+        : props.rows?.length
           ? Object.keys((props.rows as Object[])[0])
             .map(k => ({
               ...columnDefaults,
@@ -194,18 +211,6 @@ export const ATable = defineComponent({
       paginatedRows.value = sortedRows.value.slice(start, end)
     }
 
-    // watch(isSST, val => {
-    //   console.log('-=-=-=-=-=-=-=-=-isSST.value :>> ', val)
-    // })
-
-    // watch(_serverRows, val => {
-    //   console.log('-=-=-=-=-=-=-=-=-_serverRows :>> ', val)
-    // })
-
-    // watch(sortedRows, val => {
-    //   console.log('-=-=-=-=-=-=-=-=-sortedRows :>> ', val)
-    // })
-
     // paginateRows({ currentPage: 1, currentPageSize: currentPageSize.value })
     const total = computed(() => isSST.value ? _serverTotal.value : sortedRows.value.length)
 
@@ -238,13 +243,6 @@ export const ATable = defineComponent({
     }
 
     watch([_search, sortedCols], recalculateCurrentPageData, { deep: true, immediate: true })
-
-    // const paginatedRows = computed(() => {
-    //   const start = (currentPage.value - 1) * currentPageSize.value
-    //   const end = currentPage.value * currentPageSize.value
-
-    //   return sortedRows.value.slice(start, end)
-    // })
 
     // 👉 rowsToRender
     const rowsToRender = computed(() => isSST.value ? _serverRows.value : paginatedRows.value)
@@ -290,13 +288,7 @@ export const ATable = defineComponent({
         // Sorted by Desc
         else {
           col.shallSortByAsc = null
-
-          // console.log('in')
-          // console.log('sortedCols.value :>> ', sortedCols.value)
           sortedCols.value.splice(index, 1)
-
-          // console.log('sortedCols.value :>> ', sortedCols.value)
-          // console.log('out')
         }
       }
 
@@ -305,10 +297,7 @@ export const ATable = defineComponent({
         col.shallSortByAsc = true
       }
 
-      // console.log('col :>> ', col)
-
       // Handle Multi sort
-
       if (col.shallSortByAsc !== null) {
         if (!props.multiSort)
           sortedCols.value = [col]
@@ -318,30 +307,12 @@ export const ATable = defineComponent({
         else
           sortedCols.value.splice(index, 1, { ...col })
       }
-
-      // console.log('col :>> ', col)
-      // console.log('sortedCols :>> ', sortedCols.value)
-      // console.log('-----')
-
-      // -------------
-
-      // if (!props.multiSort) {
-      //   sortedCols.value = [col]
-
-      //   return
-      // }
-
-      // if (index > -1)
-      //   sortedCols.value.splice(index, 1)
-      // else sortedCols.value.push(col)
     }
 
     const getShallSortByAsc = computed(() => (col: TableColumn) => {
       const _col = sortedCols.value.find(sortedCol => sortedCol.name === col.name)
 
-      if (!_col)
-        return null
-      else return _col.shallSortByAsc
+      return !_col ? null : _col?.shallSortByAsc
     })
 
     return () => {
@@ -385,9 +356,7 @@ export const ATable = defineComponent({
           <tbody>
             {
               rowsToRender.value.length
-                ? rowsToRender.value.map((row, rowIndex) => {
-                  const colValues = Object.values(row)
-
+                ? rowsToRender.value.map((row, _) => {
                   return <tr>
                     {
                         _columns.value.map(col => <td class="a-table-table-td whitespace-nowrap">
@@ -424,7 +393,6 @@ export const ATable = defineComponent({
         <div class="flex-grow"></div>
         <div class="a-table-footer-per-page-container flex items-center">
           <span class="sm:inline hidden">per page</span>
-          {/* <ABtn class="text-sm" onClick={() => { currentPageSize.value = 10 }}>10</ABtn> */}
           <ASelect
             class="a-table-footer-per-page-select"
             inputWrapperClasses="a-table-footer-per-page-select--input-wrapper-classes"
@@ -439,13 +407,11 @@ export const ATable = defineComponent({
         </div>
       </div>
 
-      const x = <pre>{String(isFirstPage.value)} - {String(isLastPage.value)} - {String(currentPage.value)}</pre>
-
       // TODO: noresultstext is represented as attrs of card
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
       return <ACard
         class="a-table"
-        {...cardProps}
+        {...reactive(cardProps.value)}
         v-slots={{
           ...slots,
           default: () => [slots.default?.(), table, tableFooter],

@@ -1,0 +1,25 @@
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const items = [
+  { title: 'Donut jujubes' },
+  { title: 'Sesame snaps' },
+  { title: 'I love jelly' },
+  { title: 'Cake gummi', disable: true },
+]
+
+const selected = ref(0)
+</script>
+
+<template>
+  <div class="cards-demo-container">
+    <ACard>
+      <AList
+        v-model="selected"
+        :items="items"
+        variant="light"
+        class="a-list-items-pill"
+      />
+    </ACard>
+  </div>
+</template>

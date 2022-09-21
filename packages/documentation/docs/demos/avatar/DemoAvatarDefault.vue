@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-wrap gap-4">
-    <AAvatar text="A" />
+    <AAvatar content="A" />
     <AAvatar
       color="success"
-      text="JD"
+      content="JD"
     />
     <AAvatar
       color="info"
