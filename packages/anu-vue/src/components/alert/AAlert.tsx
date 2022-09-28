@@ -29,6 +29,7 @@ export const AAlert = defineComponent({
   },
   setup(props, { slots, emit }) {
     const { getLayerClasses } = useLayer()
+    const [style, classes] = getLayerClasses(props)
 
     const isAlertVisible = ref(props.modelValue ?? true)
     watch(isAlertVisible, val => {
@@ -47,7 +48,7 @@ export const AAlert = defineComponent({
     }
 
     // TODO: Omit writing `props.modelValue ??` multiple times
-    return () => <div class={['a-alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...getLayerClasses(props)]}>
+    return () => <div class={['a-alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...classes]} style={[...style]}>
       {props.icon ? <i class={props.icon}></i> : null}
       <div class="flex-grow">{slots.default?.()}</div>
       {

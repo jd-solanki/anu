@@ -137,25 +137,26 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       },
     },
     safelist: [
+      ...colors.map(c => `[--a-layer-color:hsla(var(--a-${c}),var(--un-bg-opacity,1))]`),
       ...colors.map(c => `bg-${c}`),
       ...colors.map(c => `hover:bg-${c}`),
 
       ...colors.map(c => `border-${c}`),
-      ...colors.map(c => `text-${c}`),
+      ...[...colors, '$a-layer-text'].map(c => `text-${c}`),
       ...colors.map(c => `shadow-${c}`),
       ...colors.map(c => `after:bg-${c}`),
       ...colors.map(c => `next:checked:bg-${c}`),
       ...colors.map(c => `next:checked:border-${c}`),
 
       // Typography
-      ...[...colors, 'white'].map(c => `typography-title-${c}`),
-      ...[...colors, 'white'].map(c => `typography-subtitle-${c}`),
-      ...[...colors, 'white'].map(c => `typography-text-${c}`),
+      ...[...colors, 'layer-text', 'white'].map(c => `typography-title-${c}`),
+      ...[...colors, 'layer-text', 'white'].map(c => `typography-subtitle-${c}`),
+      ...[...colors, 'layer-text', 'white'].map(c => `typography-text-${c}`),
     ],
     rules: [
       // Typography
       [
-        /^typography-(\w+)-([\w]+)$/,
+        /^typography-(\w+)-([-\w]+)$/,
         ([, type, c]: string[]) => ({
           [`--a-typography-${type}-color`]: `var(--a-${c})`,
         }),

@@ -1,5 +1,6 @@
 import type { ComponentObjectPropsOptions } from 'vue'
 import { color } from '@/composables/useProps'
+import { contrast } from '@/utils/color'
 
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
@@ -34,29 +35,49 @@ export const useLayer = () => {
         : '',
     ]
 
-    if (props.color) {
-      const color = props.variant === 'fill' ? 'white' : props.color
-      classes.push(`text-${color} typography-title-${color} typography-subtitle-${color} typography-text-${color}`)
+    const isThemeColor = ['primary', 'success', 'info', 'warning', 'danger'].includes(props.color)
+    const isHexColor = /^#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3}$/.test(props.color)
 
+    const style = []
+    if (!isThemeColor) {
+      style.push({ '--a-layer-color': props.color })
+      if (isHexColor) {
+        const contrastColor = contrast(props.color)
+
+        style.push(`--a-layer-text: ${contrastColor}`)
+      }
+    }
+    else {
+      style.push({ '--a-layer-color': `hsla(var(--a-${props.color}),var(--un-bg-opacity))` })
+
+      classes.push('[--un-bg-opacity:1]')
+    }
+
+    const color = isThemeColor
+      ? props.variant === 'fill' ? 'white' : props.color
+      : 'layer-text'
+
+    // ℹ️ `typography-title-${color}` does uses CSS variable however `text-${color}` don't so we need to attach the color our self
+    // TODO: Check is it convenient to add `typography-title-$color` like in above line to identify the color as CSS var 🤔
+    const textClasses = `text-${isThemeColor ? color : `\$a-${color}`} typography-title-${color} typography-subtitle-${color} typography-text-${color}`
+
+    if (props.color) {
       // common classes
+      classes.push(textClasses)
       classes.push('typography-subtitle-opacity-100 typography-text-opacity-100')
 
-      if (props.variant === 'text') { classes.push(`text-${props.color}`) }
+      if (props.variant === 'text') { classes.push('text-$a-layer-color') }
       else {
-        // TODO: Below typography colors are using `--white` CSS var which doesn't exist
-        const color = props.variant === 'fill' ? 'white' : props.color
-        classes.push(`text-${color} typography-title-${color} typography-subtitle-${color} typography-text-${color}`)
-
         if (props.variant === 'fill')
-          classes.push(`bg-${props.color}`)
+          classes.push('bg-$a-layer-color')
         if (props.variant === 'light')
-          classes.push(`bg-${props.color} bg-opacity-15`)
+          classes.push('bg-$a-layer-color bg-opacity-15')
         if (props.variant === 'outline')
-          classes.push(`border-width-1 uno-layer-base-border-solid border-${props.color}`)
+          classes.push('border-width-1 uno-layer-base-border-solid border-$a-layer-color')
       }
     }
 
-    return classes
+    return [style, classes]
   }
 
   return {

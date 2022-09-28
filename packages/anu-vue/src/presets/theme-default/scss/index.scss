@@ -13,6 +13,11 @@
     --a-warning: 42.4, 100%, 50%;
     --a-danger: 358.3, 100%, 64.9%;
 
+    // Contrast colors
+    // --a-contrast-dark: hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity));
+    --a-contrast-dark: #000;
+    --a-contrast-light: #fff;
+
     // text emphasis
     --a-text-emphasis-high-opacity: 0.87;
     --a-text-emphasis-medium-opacity: 0.68;

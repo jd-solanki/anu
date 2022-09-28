@@ -16,6 +16,8 @@ export const ACard = defineComponent({
   },
   setup(props, { slots }) {
     const { getLayerClasses } = useLayer()
+    const [style, classes] = getLayerClasses(props)
+
     const typographyProps = extractTypographyProp<typeof props>(toRefs(props))
 
     // TODO [v0.2.0]: Find another way to check typography component usage
@@ -32,7 +34,7 @@ export const ACard = defineComponent({
       }
     }
 
-    return () => <div class={['a-card overflow-hidden uno-layer-base-text-sm uno-layer-base-bg-[hsl(var(--a-layer))]', getLayerClasses(props)]}>
+    return () => <div class={['a-card overflow-hidden uno-layer-base-text-sm uno-layer-base-bg-[hsl(var(--a-layer))]', ...classes]} style={[...style]}>
       {/* 👉 Image */}
       {props.img ? <img src={props.img} alt="card-img"></img> : null}
 

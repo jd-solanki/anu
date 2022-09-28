@@ -53,6 +53,7 @@ export const AList = defineComponent({
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
     const { getLayerClasses } = useLayer()
+
     const { options, select: selectListItem, value } = useGroupModel({
       options: props.items[0].value ? props.items.map(i => i.value) : props.items.length,
       multi: props.multi,
@@ -112,13 +113,16 @@ export const AList = defineComponent({
         variant: isActive.value ? props.variant || 'light' : 'text',
       }))
 
+      const [style, classes] = getLayerClasses(layerProps.value, { statesClass: 'states:10' })
+
       return <li
         onClick={() => handleListItemClick(itemIndex)}
+        style={[...style]}
         class={[
           'a-list-item',
           { 'opacity-50 pointer-events-none': listItem.disable },
           props.modelValue !== null
-            ? [...getLayerClasses(layerProps.value, { statesClass: 'states:10' }), 'cursor-pointer']
+            ? [...classes, 'cursor-pointer']
             : '',
           'flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height',
         ]}>
