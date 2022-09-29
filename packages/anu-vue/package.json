@@ -41,23 +41,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.0.1",
+    "@floating-ui/dom": "^1.0.2",
     "defu": "^6.1.0",
     "dist": "link:/Users/jd/Projects/oss/anu/packages/anu-vue/dist",
-    "vue": "^3.2.39"
+    "vue": "^3.2.40"
   },
   "devDependencies": {
-    "@unocss/core": "^0.45.21",
-    "@unocss/reset": "^0.45.21",
+    "@unocss/core": "^0.45.26",
+    "@unocss/reset": "^0.45.26",
     "@vitejs/plugin-vue": "^3.1.0",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
-    "@vueuse/core": "^9.2.0",
-    "sass": "^1.54.9",
-    "typescript": "^4.8.3",
-    "unocss": "^0.45.21",
+    "@vueuse/core": "^9.3.0",
+    "sass": "^1.55.0",
+    "typescript": "^4.8.4",
+    "unocss": "^0.45.26",
     "unplugin-vue-components": "^0.22.7",
-    "vite": "^3.1.2",
-    "vite-plugin-dts": "^1.5.0",
+    "vite": "^3.1.4",
+    "vite-plugin-dts": "^1.6.1",
     "vue-router": "^4.1.5",
     "vue-tsc": "^0.40.13"
   },
