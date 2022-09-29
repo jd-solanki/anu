@@ -8,7 +8,7 @@ export const ACard = defineComponent({
   props: {
     ...useLayerProps({
       variant: {
-        default: 'light',
+        default: 'text',
       },
     }),
     ...useTypographyProps(),
