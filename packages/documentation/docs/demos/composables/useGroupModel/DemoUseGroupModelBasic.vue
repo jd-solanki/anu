@@ -14,7 +14,7 @@ const { options, select, value } = useGroupModel<string>({
     <div class="flex flex-wrap gap-6 mb-4">
       <ABtn
         v-for="option in options"
-        :key="option.value"
+        :key="option.value + option.isSelected"
         :variant="option.isSelected ? 'fill' : 'light'"
         @click="select(option.value)"
       >
