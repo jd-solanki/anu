@@ -1,203 +1,127 @@
 # Input
 
 <!-- 👉 Basic -->
-<Demo>
-
-## Basic
+::::card Basic
 
 You can use `AInput` component to render basic input.
 
-<div class="grid-row sm:grid-cols-2 place-items-stretch">
-    <div>
-        <DemoInputBasic />
-    </div>
-</div>
-
-<template #code>
-
+:::code DemoInputBasic
 <<< @/demos/input/DemoInputBasic.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Placeholder -->
-<Demo>
-
-## Placeholder
+::::card Placeholder
 
 You can use `placeholder` attribute to add placeholder to the input.
 
-<div class="grid-row sm:grid-cols-2 place-items-stretch">
-    <div>
-        <DemoInputPlaceholder />
-    </div>
-</div>
-
-<template #code>
-
+:::code DemoInputPlaceholder
 <<< @/demos/input/DemoInputPlaceholder.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Label -->
-<Demo>
-
-## Label
+::::card Label
 
 You can use `label` prop to add label to the input.
 
 For maximum flexibility you can use `label` slot.
 
-<DemoInputLabel />
+:::code DemoInputLabel
+<<< @/demos/input/DemoInputLabel.vue{11,16}
+:::
+
+::::
 
 :::warning
 When you use **label slot**, Note that label's `for` attribute needs to prefix the `a-input-` when binding it to input's `id` attribute.
 :::
 
-<template #code>
-
-<<< @/demos/input/DemoInputLabel.vue{11,16}
-
-</template>
-
-</Demo>
-
 <!-- 👉 Hint -->
-<Demo>
-
-## Hint
+::::card Hint
 
 You can use `hint` prop to add hint to the input.
 
-<div class="grid-row sm:grid-cols-2 place-items-stretch">
-    <div>
-        <DemoInputHint />
-    </div>
-</div>
-
-<template #code>
-
+:::code <
 <<< @/demos/input/DemoInputHint.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Icons -->
-<Demo>
-
-## Icons
+::::card Icons
 
 You can use various icon location prop to add icon to the input.
 
-<DemoInputIcons />
-
-<template #code>
-
+:::code DemoInputIcons
 <<< @/demos/input/DemoInputIcons.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Sizing -->
-<Demo>
-
-## Sizing
+::::card Sizing
 
 You can use font-size utility to adjust the size of input.
 
-<DemoInputSizing />
-
-<template #code>
-
+:::code DemoInputSizing
 <<< @/demos/input/DemoInputSizing.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 :::tip
 Like `AInput`, `ASelect` & `ATextarea` also built on top of `ABaseInput` base component. Hence, This demo also applies to `ASelect` & `ATextarea`.
 :::
 
 <!-- 👉 Roundness -->
-<Demo>
-
-## Roundness
+::::card Roundness
 
 You can adjust input roundness by providing border-radius utilities to `input-wrapper-classes` prop.
 
-<DemoInputRoundness />
-
-<template #code>
-
+:::code DemoInputRoundness
 <<< @/demos/input/DemoInputRoundness.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 :::tip
 Like `AInput`, `ASelect` & `ATextarea` also built on top of `ABaseInput` base component. Hence, This demo also applies to `ASelect` & `ATextarea`.
 :::
 
 <!-- 👉 Types -->
-<Demo>
-
-## Types
+::::card Types
 
 You can use `type` attribute to add input type.
 
-<DemoInputTypes />
-
-<template #code>
-
+:::code DemoInputTypes
 <<< @/demos/input/DemoInputTypes.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 States -->
-<Demo>
-
-## States
+::::card States
 
 You can use `readonly` prop to make input read only.
 
 Use `disabled` prop to make input disabled.
 
-<DemoInputStates />
-
-<template #code>
-
+:::code DemoInputStates
 <<< @/demos/input/DemoInputStates.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Validation -->
-<Demo>
-
-## Validation
+::::card Validation
 
 Anu do not provide any validation mechanism at the moment as it assume it's better handled by third-party libraries like [VeeValidate](https://vee-validate.logaretm.com/)
 
-<div class="grid-row sm:grid-cols-2 place-items-stretch">
-    <div>
-        <DemoInputValidation />
-    </div>
-</div>
-
-<template #code>
-
+:::code DemoInputValidation
 <<< @/demos/input/DemoInputValidation.vue
+:::
 
-</template>
-
-</Demo>
+::::

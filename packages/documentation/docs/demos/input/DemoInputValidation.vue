@@ -7,10 +7,14 @@ const { errorMessage, value } = useField('fieldName', isRequired)
 </script>
 
 <template>
-  <AInput
-    v-model="value"
-    :error="errorMessage"
-    label="Username"
-    hint="Error message will get displayed here"
-  />
+  <div class="grid-row sm:grid-cols-2 place-items-stretch">
+    <div>
+      <AInput
+        v-model="value"
+        :error="errorMessage"
+        label="Username"
+        hint="Error message will get displayed here"
+      />
+    </div>
+  </div>
 </template>
