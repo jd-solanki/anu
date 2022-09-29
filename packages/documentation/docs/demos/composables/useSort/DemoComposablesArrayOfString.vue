@@ -26,6 +26,8 @@ const toggleMango = () => {
       Toggle Asc ({{ isAsc }})
     </ABtn>
   </div>
+  <br>
   <p>Original: {{ fruits }}</p>
+  <br>
   <p>Sorted: {{ results }}</p>
 </template>

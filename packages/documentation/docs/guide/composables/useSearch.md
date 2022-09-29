@@ -1,24 +1,21 @@
-<script lang="ts" setup>
-import { useSearch } from 'anu-vue';
-import { ref } from 'vue';
-
-const q = ref('')
-const fruits = ['banana', 'apple', 'watermelon', 'orange']
-const { results } = useSearch(q, fruits)
-</script>
-
 # useSearch
 
-## Array of string
+::::card Array of string
 
 `useSearch`'s `filterBy` param is optional when filtering array of string.
 
-<AInput v-model="q" :hint="JSON.stringify(results)"></AInput>
+:::code DemoUseSearchArrayOfString
+<<< @/demos/composables/useSearch/DemoUseSearchArrayOfString.vue{7}
+:::
 
-## Array of objects
+::::
+
+::::card Array of objects
 
 when `strict` search is `true` it will only filter on string otherwise it can filter on boolean & number type as well.
 
-<div class="vp-raw">
-    <DemoUseSearchArrayOfObjects></DemoUseSearchArrayOfObjects>
-</div>
+:::code DemoUseSearchArrayOfObjects
+<<< @/demos/composables/useSearch/DemoUseSearchArrayOfObjects.vue
+:::
+
+::::

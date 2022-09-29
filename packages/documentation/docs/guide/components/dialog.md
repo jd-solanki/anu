@@ -14,23 +14,17 @@ All props & slots available in `ACard` is available in `ADialog`.
 ::::
 
 <!-- 👉 Placement -->
-<!-- <Demo>
-
-## Placement
+<!-- ::::card Placement
 
 You can adjust dialog placement via `place-items-start top-16 justify-center` classes.
 
 `place-items-start` will align dialog to top. `justify-center` will center dialog horizontally. Finally, add top utility class to adjust the placements.
 
-<DemoDialogPlacement />
-
-<template #code>
-
+:::code DemoDialogPlacement
 <<< @/demos/dialog/DemoDialogPlacement.vue
+:::
 
-</template>
-
-</Demo> -->
+:::: -->
 
 <!-- 👉 Width -->
 ::::card Width
