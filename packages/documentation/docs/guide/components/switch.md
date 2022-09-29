@@ -1,43 +1,29 @@
 # Switch
 
 <!-- 👉 Basic -->
-<Demo>
-
-## Basic
+::::card Basic
 
 Use `ASwitch` component to create toggle for boolean value.
 
-<DemoSwitchBasic />
-
-<template #code>
-
+:::code DemoSwitchBasic
 <<< @/demos/switch/DemoSwitchBasic.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Colors -->
-<Demo>
-
-## Colors
+::::card Colors
 
 You can use `color` prop to change the switch color
 
-<DemoSwitchColors />
-
-<template #code>
-
+:::code DemoSwitchColors
 <<< @/demos/switch/DemoSwitchColors.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Label -->
-<Demo>
-
-## Label
+::::card Label
 
 You can use `label` prop to add label to switch component.
 
@@ -45,84 +31,56 @@ Label and switch have `justify-between` added as this is how generally used but 
 
 <br>
 
-<DemoSwitchLabel />
-
-<template #code>
-
+:::code DemoSwitchLabel
 <<< @/demos/switch/DemoSwitchLabel.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 :::tip
 You can also use default slot to render the label
 :::
 
 <!-- 👉 Icons -->
-<Demo>
-
-## Icons
+::::card Icons
 
 Use `on-icon` & `off-icon` prop to render icons inside switch dot.
 
-<DemoSwitchIcons />
-
-<template #code>
-
+:::code DemoSwitchIcons
 <<< @/demos/switch/DemoSwitchIcons.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Sizing -->
-<Demo>
-
-## Sizing
+::::card Sizing
 
 You can use font-size utility to adjust the size of switch
 
-<DemoSwitchSizing />
-
-<template #code>
-
+:::code DemoSwitchSizing
 <<< @/demos/switch/DemoSwitchSizing.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 States -->
-<Demo>
-
-## States
+::::card States
 
 You can use `disabled` prop to disable the switch
 
-<DemoSwitchStates />
-
-<template #code>
-
+:::code DemoSwitchStates
 <<< @/demos/switch/DemoSwitchStates.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Roundness -->
-<Demo>
-
-## Roundness
+::::card Roundness
 
 You can adjust switch roundness using border-radius utilities
 
-<DemoSwitchRoundness />
-
-<template #code>
-
+:::code DemoSwitchRoundness
 <<< @/demos/switch/DemoSwitchRoundness.vue
+:::
 
-</template>
-
-</Demo>
+::::

@@ -1,67 +1,43 @@
 # Checkbox
 
 <!-- 👉 Basic -->
-<Demo>
+::::card Basic
 
-## Basic
-
-<DemoCheckboxBasic />
-
-<template #code>
-
+:::code DemoCheckboxBasic
 <<< @/demos/checkbox/DemoCheckboxBasic.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Icon -->
-<Demo>
-
-## Icon
+::::card Icon
 
 Use `icon` prop to change the checked icon.
 
-<DemoCheckboxIcon />
-
-<template #code>
-
+:::code DemoCheckboxIcon
 <<< @/demos/checkbox/DemoCheckboxIcon.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Array -->
-<Demo>
-
-## Array
+::::card Array
 
 `ACheckbox` also support arrays like a native checkbox.
 
-<DemoCheckboxArray />
-
-<template #code>
-
+:::code DemoCheckboxArray
 <<< @/demos/checkbox/DemoCheckboxArray.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Color -->
-<Demo>
-
-## Color
+::::card Color
 
 You can use `color` prop to change the checkbox color.
 
-<DemoCheckboxColor />
-
-<template #code>
-
+:::code DemoCheckboxColor
 <<< @/demos/checkbox/DemoCheckboxColor.vue
+:::
 
-</template>
-
-</Demo>
+::::
