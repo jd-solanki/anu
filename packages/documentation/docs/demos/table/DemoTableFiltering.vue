@@ -29,8 +29,10 @@ const rows = [
 </script>
 
 <template>
-  <ATable
-    :rows="rows"
-    search
-  />
+  <div class="cards-demo-container">
+    <ATable
+      :rows="rows"
+      search
+    />
+  </div>
 </template>

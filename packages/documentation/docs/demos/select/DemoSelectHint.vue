@@ -6,9 +6,13 @@ const fruits = ['banana', 'apple', 'watermelon', 'orange']
 </script>
 
 <template>
-  <ASelect
-    v-model="selected"
-    hint="We will deliver it shortly"
-    :options="fruits"
-  />
+  <div class="grid-row sm:grid-cols-2 justify-items-stretch">
+    <div>
+      <ASelect
+        v-model="selected"
+        hint="We will deliver it shortly"
+        :options="fruits"
+      />
+    </div>
+  </div>
 </template>

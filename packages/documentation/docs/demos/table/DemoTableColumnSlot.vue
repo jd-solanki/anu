@@ -29,20 +29,22 @@ const rows = [
 </script>
 
 <template>
-  <ATable :rows="rows">
-    <!-- Name -->
-    <template #row-name="{ row }">
-      <span class="text-primary">
-        {{ row.name }}
-      </span>
-    </template>
+  <div class="cards-demo-container">
+    <ATable :rows="rows">
+      <!-- Name -->
+      <template #row-name="{ row }">
+        <span class="text-primary">
+          {{ row.name }}
+        </span>
+      </template>
 
-    <!-- Website -->
-    <template #row-website="{ row }">
-      <div class="flex gap-1 items-center">
-        <div class="i-bx-globe" />
-        {{ row.website }}
-      </div>
-    </template>
-  </ATable>
+      <!-- Website -->
+      <template #row-website="{ row }">
+        <div class="flex gap-1 items-center">
+          <div class="i-bx-globe" />
+          {{ row.website }}
+        </div>
+      </template>
+    </ATable>
+  </div>
 </template>

@@ -1,35 +1,23 @@
 # Radio
 
 <!-- 👉 Basic -->
-<Demo>
-
-## Basic
+::::card Basic
 
 Use `label` prop to set the label.
 
-<DemoRadioBasic />
-
-<template #code>
-
+:::code DemoRadioBasic
 <<< @/demos/radio/DemoRadioBasic.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Color -->
-<Demo>
-
-## Color
+::::card Color
 
 Use `color` prop to change the radio color.
 
-<DemoRadioColor />
-
-<template #code>
-
+:::code DemoRadioColor
 <<< @/demos/radio/DemoRadioColor.vue
+:::
 
-</template>
-
-</Demo>
+::::

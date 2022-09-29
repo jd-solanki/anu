@@ -1,86 +1,55 @@
 # Avatar
 
 <!-- 👉 Default -->
-<Demo>
-
-## Default
+::::card Default
 
 Default variant for avatar is `light`
 
-<DemoAvatarDefault />
-
-<template #code>
-
+:::code DemoAvatarDefault
 <<< @/demos/avatar/DemoAvatarDefault.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Fill -->
-<Demo>
-
-## Fill
+::::card Fill
 
 You can use `variant="fill"` to create avatar with filled background
 
-<DemoAvatarFill />
-
-<template #code>
-
+:::code DemoAvatarFill
 <<< @/demos/avatar/DemoAvatarFill.vue
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Outlined -->
-<Demo>
-
-## Outlined
+::::card Outlined
 
 You can use variant="outline" to create outlined avatar
 
-<DemoAvatarOutlined />
-
-<template #code>
-
+:::code DemoAvatarOutlined
 <<< @/demos/avatar/DemoAvatarOutlined.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Sizing -->
-<Demo>
-
-## Sizing
+::::card Sizing
 
 You can use font-size utility to adjust the size of avatar
 
-<DemoAvatarSizing />
-
-<template #code>
-
+:::code DemoAvatarSizing
 <<< @/demos/avatar/DemoAvatarSizing.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Roundness -->
-<Demo>
-
-## Roundness
+::::card Roundness
 
 You can adjust avatar roundness using border-radius utilities
 
-<DemoAvatarRoundness />
-
-<template #code>
-
+:::code DemoAvatarRoundness
 <<< @/demos/avatar/DemoAvatarRoundness.vue
+:::
 
-</template>
-
-</Demo>
+::::
