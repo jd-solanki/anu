@@ -1,5 +1,10 @@
-<script lang="ts" setup>
+---
+layout: false
+---
+
+<!-- markdownlint-disable-next-line MD041 -->
+<script setup>
+import Playground from './components/Playground.vue'
 </script>
 
-<div class="vp-raw">
-</div>
+<Playground />
