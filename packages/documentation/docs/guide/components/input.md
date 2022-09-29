@@ -44,7 +44,7 @@ When you use **label slot**, Note that label's `for` attribute needs to prefix t
 
 You can use `hint` prop to add hint to the input.
 
-:::code <
+:::code DemoInputHint
 <<< @/demos/input/DemoInputHint.vue
 :::
 
