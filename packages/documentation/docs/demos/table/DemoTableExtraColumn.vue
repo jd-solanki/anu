@@ -35,34 +35,36 @@ const columns = [
 </script>
 
 <template>
-  <ATable
-    :rows="rows"
-    :columns="columns"
-  >
-    <template #row-actions>
-      <div class="flex items-center">
-        <ABtn
-          class="text-xs"
-          icon="i-bx-link-external"
-          icon-only
-          color="default"
-          variant="text"
-        />
-        <ABtn
-          class="text-xs"
-          icon="i-bx-edit-alt"
-          icon-only
-          variant="text"
-          color="default"
-        />
-        <ABtn
-          class="text-xs"
-          icon="i-bx-trash"
-          icon-only
-          variant="text"
-          color="default"
-        />
-      </div>
-    </template>
-  </ATable>
+  <div class="cards-demo-container">
+    <ATable
+      :rows="rows"
+      :columns="columns"
+    >
+      <template #row-actions>
+        <div class="flex items-center">
+          <ABtn
+            class="text-xs"
+            icon="i-bx-link-external"
+            icon-only
+            color="default"
+            variant="text"
+          />
+          <ABtn
+            class="text-xs"
+            icon="i-bx-edit-alt"
+            icon-only
+            variant="text"
+            color="default"
+          />
+          <ABtn
+            class="text-xs"
+            icon="i-bx-trash"
+            icon-only
+            variant="text"
+            color="default"
+          />
+        </div>
+      </template>
+    </ATable>
+  </div>
 </template>

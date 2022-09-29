@@ -29,5 +29,7 @@ const rows = [
 </script>
 
 <template>
-  <ATable :rows="rows" />
+  <div class="cards-demo-container">
+    <ATable :rows="rows" />
+  </div>
 </template>

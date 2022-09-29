@@ -335,10 +335,12 @@ const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPar
 </script>
 
 <template>
-  <ATable
-    :rows="fetchItem"
-    :columns="cols"
-    search
-    :page-size="5"
-  />
+  <div class="cards-demo-container">
+    <ATable
+      :rows="fetchItem"
+      :columns="cols"
+      search
+      :page-size="5"
+    />
+  </div>
 </template>
