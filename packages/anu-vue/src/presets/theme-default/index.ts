@@ -91,6 +91,9 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     // 👉 Helper class to create pill shaped list items
     'a-list-items-pill': 'my-[0.65rem] children-[.a-list-item]-rounded-lg [--a-list-item-margin:0.18rem_0.75rem] [--a-list-item-padding:0.5rem_0.75rem]',
 
+    // 👉 Menu
+    'a-menu': 'z-[51] shadow-xl [--a-transition-slide-up-transform:10px]',
+
     // 👉 Radio
     'a-radio-circle': 'border-solid h-5 w-5 border-(2 a-border) rounded-full mr-2 p-1 after:(duration-250 ease-in-out)', // ℹ️ :after is inner dot
     'a-radio-disabled': 'opacity-50',

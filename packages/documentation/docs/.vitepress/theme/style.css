@@ -12,6 +12,9 @@
     --vp-c-brand: hsl(var(--vp-brand-hue), 97%, 66%);
     --vp-c-brand-dark: hsl(var(--vp-brand-hue), 97%, 60%);
     --vp-c-brand-darker: hsl(var(--vp-brand-hue), 97%, 55%);
+
+    /* We need this because menu component has 51 index which overlaps on navbar on scroll */
+    --vp-z-index-nav: 52;
 }
 
 :root.dark {
