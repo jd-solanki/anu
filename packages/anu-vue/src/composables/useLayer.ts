@@ -39,8 +39,8 @@ export const useLayer = () => {
         : '',
     ]
 
-    const isThemeColor = ['primary', 'success', 'info', 'warning', 'danger'].includes(propColor)
-    const isHexColor = /^#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3}$/.test(propColor)
+    const isThemeColor = propColor && ['primary', 'success', 'info', 'warning', 'danger'].includes(propColor)
+    const isHexColor = propColor && /^#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3}$/.test(propColor)
 
     // 👉 Styles
     const styles = []
