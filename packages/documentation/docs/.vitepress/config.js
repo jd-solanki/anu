@@ -5,6 +5,11 @@ import { defineConfig } from 'vitepress'
 
 md = new MarkdownIt()
 
+const nav = []
+
+if (process.env.NODE_ENV !== 'production')
+  nav.push({ text: 'Playground', link: '/playground' })
+
 export default defineConfig({
   title: 'Anu',
   description: 'DX focused utility based vue component library',
@@ -16,6 +21,7 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/jd-solanki/anu' },
     ],
+    nav,
     sidebar: {
       '/guide/': [
         {
