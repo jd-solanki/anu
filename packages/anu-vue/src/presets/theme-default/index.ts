@@ -5,7 +5,10 @@ interface PresetOptions {
   shortcutOverrides?: Exclude<Preset['shortcuts'], undefined>
 }
 
-export const colors = ['primary', 'success', 'info', 'warning', 'danger']
+// TODO: Pass this to Anu plugin so that it can use the classes defined by theme preset
+export const colors = ['primary', 'success', 'info', 'warning', 'danger'] as const
+export type Colors = typeof colors
+
 const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
   // 👉 States
   [/^states:?(\d+)?$/, ([, op]) => `\

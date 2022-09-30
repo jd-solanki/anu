@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, toRef } from 'vue'
 import { useGroupModel } from '../../composables'
 import { ATypography } from '../typography'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
@@ -107,22 +107,22 @@ export const AList = defineComponent({
 
       const isActive = computed(() => options.value[itemIndex].isSelected)
 
-      const layerProps = computed(() => ({
-        states: props.states,
-        color: isActive.value ? props.color || 'primary' : undefined,
-        variant: isActive.value ? props.variant || 'light' : 'text',
-      }))
-
-      const [style, classes] = getLayerClasses(layerProps.value, { statesClass: 'states:10' })
+      // const [style, classes] = getLayerClasses(layerProps.value, { statesClass: 'states:10' })
+      const { styles, classes } = getLayerClasses(
+        computed(() => isActive.value ? props.color || 'primary' : undefined),
+        computed(() => isActive.value ? props.variant || 'light' : 'text'),
+        toRef(props, 'states'),
+        { statesClass: 'states:10' },
+      )
 
       return <li
         onClick={() => handleListItemClick(itemIndex)}
-        style={[...style]}
+        style={[...styles.value]}
         class={[
           'a-list-item',
           { 'opacity-50 pointer-events-none': listItem.disable },
           props.modelValue !== null
-            ? [...classes, 'cursor-pointer']
+            ? [...classes.value, 'cursor-pointer']
             : '',
           'flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height',
         ]}>

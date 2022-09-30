@@ -1,4 +1,4 @@
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent, reactive, toRef, toRefs } from 'vue'
 import { ATypography } from '../typography'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { extractTypographyProp, isTypographyUsed, useTypographyProps } from '@/composables/useTypography'
@@ -16,7 +16,11 @@ export const ACard = defineComponent({
   },
   setup(props, { slots }) {
     const { getLayerClasses } = useLayer()
-    const [style, classes] = getLayerClasses(props)
+    const { styles, classes } = getLayerClasses(
+      toRef(props, 'color'),
+      toRef(props, 'variant'),
+      toRef(props, 'states'),
+    )
 
     const typographyProps = extractTypographyProp<typeof props>(toRefs(props))
 
@@ -34,7 +38,7 @@ export const ACard = defineComponent({
       }
     }
 
-    return () => <div class={['a-card overflow-hidden uno-layer-base-text-sm uno-layer-base-bg-[hsl(var(--a-layer))]', ...classes]} style={[...style]}>
+    return () => <div class={['a-card overflow-hidden uno-layer-base-text-sm uno-layer-base-bg-[hsl(var(--a-layer))]', ...classes.value]} style={[...styles.value]}>
       {/* 👉 Image */}
       {props.img ? <img src={props.img} alt="card-img"></img> : null}
 

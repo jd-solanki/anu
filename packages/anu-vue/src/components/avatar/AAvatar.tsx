@@ -1,4 +1,4 @@
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, toRef } from 'vue'
 import { avatarOnlyProps } from '@/components/avatar/props'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 
@@ -17,7 +17,11 @@ export const AAvatar = defineComponent({
   },
   setup(props, { slots }) {
     const { getLayerClasses } = useLayer()
-    const [style, classes] = getLayerClasses(props)
+    const { styles, classes } = getLayerClasses(
+      toRef(props, 'color'),
+      toRef(props, 'variant'),
+      toRef(props, 'states'),
+    )
 
     const defaultSlotContent = computed(() => {
       if (props.icon)
@@ -28,7 +32,7 @@ export const AAvatar = defineComponent({
       return props.content
     })
 
-    return () => <div class={['a-avatar overflow-hidden uno-layer-base-text-2xl em:h-8 em:w-8 inline-flex items-center justify-center uno-layer-base-rounded-full', ...classes]} style={[...style]}>
+    return () => <div class={['a-avatar overflow-hidden uno-layer-base-text-2xl em:h-8 em:w-8 inline-flex items-center justify-center uno-layer-base-rounded-full', ...classes.value]} style={[...styles.value]}>
       {
         slots.default
           ? slots.default()
