@@ -1,0 +1,18 @@
+{
+    "Docs: create demo card": {
+        "prefix": "dc",
+        "body": [
+            "<!-- 👉 $1 -->",
+            "::::card ${1:Title}",
+            "",
+            "description",
+            "",
+            ":::code Demo$2$1",
+            "<<< @/demos/$2/DemoMenu$1.vue",
+            ":::",
+            "",
+            "::::"
+        ],
+        "description": "Docs: create demo card"
+    }
+}
