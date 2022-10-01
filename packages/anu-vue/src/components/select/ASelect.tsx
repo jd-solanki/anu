@@ -1,7 +1,7 @@
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { onClickOutside } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { Teleport, defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { isObject } from '@/utils/helpers'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
@@ -14,11 +14,15 @@ export const ASelect = defineComponent({
     ...useBaseInputProp(),
     modelValue: {
       required: false,
-      type: [String, Number] as PropType<string | number>,
+      type: [String, Number, Object] as PropType<string | number | ObjectOption>,
     },
     options: {
       type: Array as PropType<SelectOption[]>,
       default: undefined,
+    },
+    emitObject: {
+      type: Boolean,
+      default: false,
     },
     optionsWrapperClasses: {
       type: [Array, String, Object] as PropType<string | string[] | object>,
@@ -100,10 +104,19 @@ export const ASelect = defineComponent({
     // 👉 Options
     const optionClasses = 'a-select-option states before:transition-none cursor-pointer text-ellipsis overflow-hidden'
     const handleOptionClick = (option: SelectOption) => {
-      const value = isObjectOption(option) ? (option as ObjectOption).value : option
+      const value = isObjectOption(option) && !props.emitObject ? (option as ObjectOption).value : option
       emit('input', value)
       emit('update:modelValue', value)
     }
+
+    // 👉 Value
+    const selectedValue = computed(() => {
+      const option = props.options?.find(option => isObjectOption(option)
+        ? (option as ObjectOption).value === (!props.emitObject ? props.modelValue : (props.modelValue as ObjectOption).value)
+        : option === props.modelValue)
+
+      return option ? isObjectOption(option) ? (option as ObjectOption).label : option : ''
+    })
 
     return () => <>
             {/* TODO: Make sure we don't bind input's `type` attr here */}
@@ -116,7 +129,7 @@ export const ASelect = defineComponent({
                   default: (slotProps: any) =>
                         <input
                             {...slotProps}
-                            value={ isObjectOption(props.options![0]) ? (props.options as ObjectOption[])?.find(option => option.value === props.modelValue)?.label : props.modelValue }
+                            value={ selectedValue.value }
                             ref={selectRef}
                         />,
                 }}
