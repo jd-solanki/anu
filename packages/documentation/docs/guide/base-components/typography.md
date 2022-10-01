@@ -23,7 +23,7 @@ Want to create a list with title and subtitle no worries, Just add `text-sm`.
 You can use other font-size utilities to change typography size.
 
 :::code DemoTypographySizing
-<<< @/demos/typography/DemoTypographySizing.vue
+<<< @/demos/typography/DemoTypographySizing.vue{7,12,16,23,28,32,39,44,48}
 :::
 
 ::::
@@ -38,7 +38,7 @@ First element of array will be treated as content and rest of them will be class
 It greatly improves DX and keep you code a bit DRY.
 
 :::code DemoTypographyConfigArray
-<<< @/demos/typography/DemoTypographyConfigArray.vue
+<<< @/demos/typography/DemoTypographyConfigArray.vue{12-13,25-26,39-40,53-54}
 :::
 
 ::::
