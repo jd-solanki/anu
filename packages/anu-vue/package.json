@@ -43,7 +43,6 @@
   "dependencies": {
     "@floating-ui/dom": "^1.0.2",
     "defu": "^6.1.0",
-    "dist": "link:/Users/jd/Projects/oss/anu/packages/anu-vue/dist",
     "vue": "^3.2.40"
   },
   "devDependencies": {
