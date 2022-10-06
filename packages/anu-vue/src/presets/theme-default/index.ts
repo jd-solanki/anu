@@ -73,14 +73,14 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-checkbox-icon': 'transition duration-150 delay-100 ease-[cubic-bezier(.57,1.48,.87,1.09)]',
 
     // 👉 Dialog
-    'a-dialog-wrapper': 'z-[51]',
-    'a-dialog': 'shadow-2xl uno-layer-base-w-[500px] z-[52]',
+    'a-dialog-wrapper': 'z-[52]',
+    'a-dialog': 'shadow-2xl uno-layer-base-w-[500px] z-[53]',
 
     // 👉 Drawer
-    'a-drawer-wrapper': 'z-[51]',
+    'a-drawer-wrapper': 'z-[52]',
 
     // ℹ️ We added `!rounded-none` because ACard have rounded utility that override the `rounded-none`
-    'a-drawer': 'shadow-2xl uno-layer-base-w-[300px] z-[52] !rounded-none max-w-[calc(100vw-2rem)]',
+    'a-drawer': 'shadow-2xl uno-layer-base-w-[300px] z-[53] !rounded-none max-w-[calc(100vw-2rem)]',
 
     // 👉 Input
     'a-input-type-file': 'file:rounded-lg file:border-none file:mr-4 file:px-4 file:py-3 file:text-gray-500 file:rounded-r-none file:bg-[hsla(var(--a-base-color),0.05)] !px-0',
