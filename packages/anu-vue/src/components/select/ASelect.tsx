@@ -1,11 +1,12 @@
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { onClickOutside } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { Teleport, defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { isObject } from '@/utils/helpers'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
-type SelectOptions = unknown[] | ({ label: string; value: unknown } & Record<string | number | symbol, unknown>)[]
+interface ObjectOption { label: string; value: string | number }
+type SelectOption = string | number | ObjectOption
 
 export const ASelect = defineComponent({
   name: 'ASelect',
@@ -13,10 +14,15 @@ export const ASelect = defineComponent({
     ...useBaseInputProp(),
     modelValue: {
       required: false,
+      type: [String, Number, Object] as PropType<string | number | ObjectOption>,
     },
     options: {
-      type: Array as PropType<SelectOptions>,
+      type: Array as PropType<SelectOption[]>,
       default: undefined,
+    },
+    emitObject: {
+      type: Boolean,
+      default: false,
     },
     optionsWrapperClasses: {
       type: [Array, String, Object] as PropType<string | string[] | object>,
@@ -31,6 +37,7 @@ export const ASelect = defineComponent({
     const selectRef = ref<HTMLSelectElement>()
     const refFloating = ref()
 
+    const isObjectOption = (option: SelectOption) => isObject(option) && 'label' in option && 'value' in option
     const isOptionsVisible = ref(false)
 
     const calculateFloatingPosition = async () => {
@@ -96,10 +103,20 @@ export const ASelect = defineComponent({
 
     // 👉 Options
     const optionClasses = 'a-select-option states before:transition-none cursor-pointer text-ellipsis overflow-hidden'
-    const handleOptionClick = (option: unknown) => {
-      emit('input', option)
-      emit('update:modelValue', option)
+    const handleOptionClick = (option: SelectOption) => {
+      const value = isObjectOption(option) && !props.emitObject ? (option as ObjectOption).value : option
+      emit('input', value)
+      emit('update:modelValue', value)
     }
+
+    // 👉 Value
+    const selectedValue = computed(() => {
+      const option = props.options?.find(option => isObjectOption(option)
+        ? (option as ObjectOption).value === (!props.emitObject ? props.modelValue : (props.modelValue as ObjectOption).value)
+        : option === props.modelValue)
+
+      return option ? isObjectOption(option) ? (option as ObjectOption).label : option : ''
+    })
 
     return () => <>
             {/* TODO: Make sure we don't bind input's `type` attr here */}
@@ -112,8 +129,7 @@ export const ASelect = defineComponent({
                   default: (slotProps: any) =>
                         <input
                             {...slotProps}
-                            value={isObject(props.modelValue) && 'label' in props.modelValue && 'value' in props.modelValue ? (props.modelValue.label) : props.modelValue }
-                            readonly
+                            value={ selectedValue.value }
                             ref={selectRef}
                         />,
                 }}
@@ -131,7 +147,7 @@ export const ASelect = defineComponent({
                           },
                         })
                         : props.options?.map(option => <li class={optionClasses} onClick={() => handleOptionClick(option)}>
-                          {isObject(option) && 'label' in option && 'value' in option ? option.label : option}
+                          {isObjectOption(option) ? (option as ObjectOption).label : option}
                         </li>)
                     }
                 </ul>
