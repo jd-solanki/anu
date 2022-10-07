@@ -3,7 +3,9 @@
 <!-- 👉 Default -->
 ::::card Default
 
-Default variant for avatar is `light`
+Default variant for avatar is `light`.
+
+Use `color` prop to change the avatar color.
 
 :::code DemoAvatarDefault
 <<< @/demos/avatar/DemoAvatarDefault.vue
@@ -17,7 +19,7 @@ Default variant for avatar is `light`
 You can use `variant="fill"` to create avatar with filled background
 
 :::code DemoAvatarFill
-<<< @/demos/avatar/DemoAvatarFill.vue{4,8,13}
+<<< @/demos/avatar/DemoAvatarFill.vue{4,9,15}
 
 ::::
 
@@ -27,7 +29,7 @@ You can use `variant="fill"` to create avatar with filled background
 You can use variant="outline" to create outlined avatar
 
 :::code DemoAvatarOutlined
-<<< @/demos/avatar/DemoAvatarOutlined.vue{4,8,13}
+<<< @/demos/avatar/DemoAvatarOutlined.vue{4,9,15}
 :::
 
 ::::

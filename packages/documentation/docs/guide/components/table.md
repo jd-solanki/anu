@@ -6,7 +6,7 @@
 Use `rows` prop to provide data to `ATable`. Defining columns for table is optional. When columns aren't specified, columns will get calculate from first row and all columns will be filterable and sortable.
 
 :::code DemoTableBasic
-<<< @/demos/table/DemoTableBasic.vue{2-28,33}
+<<< @/demos/table/DemoTableBasic.vue{33}
 :::
 
 ::::
@@ -80,7 +80,7 @@ Define extra column in column definition to add column to table. Later, you can 
 Moreover, you can also omit the column definition to omit rendering the specific column.
 
 :::code DemoTableExtraColumn
-<<< @/demos/table/DemoTableExtraColumn.vue{43-67}
+<<< @/demos/table/DemoTableExtraColumn.vue{33,43-67}
 :::
 
 ::::

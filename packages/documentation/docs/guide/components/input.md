@@ -30,7 +30,7 @@ You can use `label` prop to add label to the input.
 For maximum flexibility you can use `label` slot.
 
 :::code DemoInputLabel
-<<< @/demos/input/DemoInputLabel.vue{11,16}
+<<< @/demos/input/DemoInputLabel.vue{4,15-20}
 :::
 
 ::::
@@ -110,7 +110,7 @@ You can use `readonly` prop to make input read only.
 Use `disabled` prop to make input disabled.
 
 :::code DemoInputStates
-<<< @/demos/input/DemoInputStates.vue{11,16}
+<<< @/demos/input/DemoInputStates.vue{10,15}
 :::
 
 ::::

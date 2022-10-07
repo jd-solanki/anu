@@ -5,8 +5,10 @@
 
 `fill` is default variant for button.
 
+Use `color` prop to change the button color.
+
 :::code DemoButtonFilled
-<<< @/demos/button/DemoButtonFilled.vue
+<<< @/demos/button/DemoButtonFilled.vue{5,9,13,17}
 :::
 
 ::::

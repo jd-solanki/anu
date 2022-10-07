@@ -6,7 +6,7 @@
 You can use `ASelect` component to render basic select.
 
 :::code DemoSelectBasic
-<<< @/demos/select/DemoSelectBasic.vue{5-6,9-16,22-26,29-33}
+<<< @/demos/select/DemoSelectBasic.vue
 :::
 
 ::::

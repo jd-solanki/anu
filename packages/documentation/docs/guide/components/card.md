@@ -10,7 +10,7 @@ Moreover, you can also use `.card-body` in default slot to render card content.
 You can use `.card-spacer` helper class to add margin bottom to each of its children except last.
 
 :::code DemoCardBasic
-<<< @/demos/card/DemoCardBasic.vue{12}
+<<< @/demos/card/DemoCardBasic.vue
 :::
 
 ::::

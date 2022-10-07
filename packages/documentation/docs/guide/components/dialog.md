@@ -8,7 +8,7 @@
 All props & slots available in `ACard` is available in `ADialog`.
 
 :::code DemoDialogBasic
-<<< @/demos/dialog/DemoDialogBasic.vue{4,8-13}
+<<< @/demos/dialog/DemoDialogBasic.vue
 :::
 
 ::::

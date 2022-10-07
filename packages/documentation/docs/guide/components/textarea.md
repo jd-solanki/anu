@@ -6,7 +6,7 @@
 You can use `ATextarea` component to render basic textarea.
 
 :::code DemoTextareaBasic
-<<< @/demos/textarea/DemoTextareaBasic.vue{2}
+<<< @/demos/textarea/DemoTextareaBasic.vue
 :::
 
 ::::
@@ -17,7 +17,7 @@ You can use `ATextarea` component to render basic textarea.
 You can use `placeholder` attribute to add placeholder to the textarea.
 
 :::code DemoTextareaPlaceholder
-<<< @/demos/textarea/DemoTextareaPlaceholder.vue{2}
+<<< @/demos/textarea/DemoTextareaPlaceholder.vue
 :::
 
 ::::
@@ -28,7 +28,7 @@ You can use `placeholder` attribute to add placeholder to the textarea.
 You can use `label` prop to add label to the textarea.
 
 :::code DemoTextareaLabel
-<<< @/demos/textarea/DemoTextareaLabel.vue{2}
+<<< @/demos/textarea/DemoTextareaLabel.vue
 :::
 
 ::::
@@ -39,7 +39,7 @@ You can use `label` prop to add label to the textarea.
 You can adjust the height of ATextarea component by providing `height` prop with the value of valid height class.
 
 :::code DemoTextareaHeight
-<<< @/demos/textarea/DemoTextareaHeight.vue{2}
+<<< @/demos/textarea/DemoTextareaHeight.vue
 :::
 
 ::::
