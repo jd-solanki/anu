@@ -1,6 +1,6 @@
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer';
-import { disabled } from '@/composables/useProps';
-import { defineComponent } from 'vue';
+import { defineComponent, toRef } from 'vue'
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { disabled } from '@/composables/useProps'
 
 export const ABtn = defineComponent({
   name: 'ABtn',
@@ -28,11 +28,17 @@ export const ABtn = defineComponent({
     },
     disabled,
   },
-  setup(props, { slots, attrs }) {
+  setup(props, { slots, attrs: _ }) {
     const { getLayerClasses } = useLayer()
 
+    const { styles, classes } = getLayerClasses(
+      toRef(props, 'color'),
+      toRef(props, 'variant'),
+      toRef(props, 'states'),
+    )
+
     // FIX: ABtn gets full width if placed inside flex container
-    return () => <button class={[props.iconOnly ? 'a-btn-icon-only' : 'a-btn', 'uno-layer-base-text-base whitespace-nowrap inline-flex justify-center items-center', { 'opacity-50 pointer-events-none': props.disabled }, ...getLayerClasses(props)]}>
+    return () => <button class={[props.iconOnly ? 'a-btn-icon-only' : 'a-btn', 'uno-layer-base-text-base whitespace-nowrap inline-flex justify-center items-center', { 'opacity-50 pointer-events-none': props.disabled }, ...classes.value]} style={[...styles.value]}>
       {props.icon ? <i class={props.icon}></i> : null}{slots.default?.()}{props.appendIcon ? <i class={props.appendIcon}></i> : null}
     </button>
   },

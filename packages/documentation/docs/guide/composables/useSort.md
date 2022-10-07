@@ -1,39 +1,23 @@
 # useSort
 
 <!-- 👉 Array Of String -->
-<Demo>
-
-## Array Of String
+::::card Array Of String
 
 description
 
-<DemoComposablesArrayOfString />
+:::code DemoComposablesArrayOfString
+<<< @/demos/composables/useSort/DemoComposablesArrayOfString.vue{10}
+:::
 
-<template #code>
-
-<<< @/demos/composables/useSort/DemoComposablesArrayOfString.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Array Of Object -->
-<Demo>
-
-## Array Of Object
+::::card Array Of Object
 
 description
 
-<template #demo>
+:::code DemoComposablesArrayOfObject
+<<< @/demos/composables/useSort/DemoComposablesArrayOfObject.vue{94}
+:::
 
-<DemoComposablesArrayOfObject />
-
-</template>
-
-<template #code>
-
-<<< @/demos/composables/useSort/DemoComposablesArrayOfObject.vue
-
-</template>
-
-</Demo>
+::::

@@ -1,89 +1,51 @@
 # Select
 
 <!-- 👉 Basic -->
-<Demo>
-
-## Basic
+::::card Basic
 
 You can use `ASelect` component to render basic select.
 
-<DemoSelectBasic />
-
-<template #code>
-
+:::code DemoSelectBasic
 <<< @/demos/select/DemoSelectBasic.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Placeholder -->
-<Demo>
-
-## Placeholder
+::::card Placeholder
 
 You can use `placeholder` attribute to add placeholder to the select.
 
-<div class="grid-row sm:grid-cols-2 justify-items-stretch">
-    <div>
-        <DemoSelectPlaceholder />
-    </div>
-</div>
+:::code DemoSelectPlaceholder
+<<< @/demos/select/DemoSelectPlaceholder.vue{13}
+:::
 
-<template #code>
-
-<<< @/demos/select/DemoSelectPlaceholder.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Label -->
-<Demo>
-
-## Label
+::::card Label
 
 You can use `label` prop to add label to the select.
 
-<div class="grid-row sm:grid-cols-2 justify-items-stretch">
-    <div>
-        <DemoSelectLabel />
-    </div>
-</div>
+:::code DemoSelectLabel
+<<< @/demos/select/DemoSelectLabel.vue{13}
+:::
 
-<template #code>
-
-<<< @/demos/select/DemoSelectLabel.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Hint -->
-<Demo>
-
-## Hint
+::::card Hint
 
 You can use `hint` prop to add hint to the select.
 
-<div class="grid-row sm:grid-cols-2 justify-items-stretch">
-    <div>
-        <DemoSelectHint />
-    </div>
-</div>
+:::code DemoSelectHint
+<<< @/demos/select/DemoSelectHint.vue{13}
+:::
 
-<template #code>
-
-<<< @/demos/select/DemoSelectHint.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Icons -->
-<Demo>
-
-## Icons
+::::card Icons
 
 You can use `append-inner-icon` prop to change icon of the select component.
 
@@ -91,48 +53,32 @@ To prepend the icon use `prepend-inner-icon` prop.
 
 Moreover, you can also use `append-icon` & `prepend-icon` prop to add icon outside of the select component.
 
-<DemoSelectIcons />
+:::code DemoSelectIcons
+<<< @/demos/select/DemoSelectIcons.vue{12,17}
+:::
 
-<template #code>
-
-<<< @/demos/select/DemoSelectIcons.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Slots -->
-<Demo>
-
-## Slot
+::::card Slot
 
 You can use default slot to render the `ASelect` options. Don't forget to bind `attrs` from [slotProps](https://vuejs.org/guide/components/slots.html#scoped-slots) to looping element.
 
-<DemoSelectSlot />
+:::code DemoSelectSlot
+<<< @/demos/select/DemoSelectSlot.vue{18,21-30}
+:::
 
-<template #code>
-
-<<< @/demos/select/DemoSelectSlot.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 States -->
-<Demo>
-
-## States
+::::card States
 
 You can use `readonly` prop to make select read only.
 
 Use `disabled` prop to make select disabled.
 
-<DemoSelectStates />
+:::code DemoSelectStates
+<<< @/demos/select/DemoSelectStates.vue{12,18}
+:::
 
-<template #code>
-
-<<< @/demos/select/DemoSelectStates.vue
-
-</template>
-
-</Demo>
+::::

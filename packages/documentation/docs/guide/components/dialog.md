@@ -1,73 +1,49 @@
 # Dialog
 
 <!-- 👉 Basic -->
-<Demo>
-
-## Basic
+::::card Basic
 
 `ADialog` component uses `ACard` as its base. Bind `ADialog` with `v-model` to hide and show dialog/card.
 
 All props & slots available in `ACard` is available in `ADialog`.
 
-<DemoDialogBasic />
-
-<template #code>
-
+:::code DemoDialogBasic
 <<< @/demos/dialog/DemoDialogBasic.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Placement -->
-<!-- <Demo>
-
-## Placement
+<!-- ::::card Placement
 
 You can adjust dialog placement via `place-items-start top-16 justify-center` classes.
 
 `place-items-start` will align dialog to top. `justify-center` will center dialog horizontally. Finally, add top utility class to adjust the placements.
 
-<DemoDialogPlacement />
-
-<template #code>
-
+:::code DemoDialogPlacement
 <<< @/demos/dialog/DemoDialogPlacement.vue
+:::
 
-</template>
-
-</Demo> -->
+:::: -->
 
 <!-- 👉 Width -->
-<Demo>
-
-## Width
+::::card Width
 
 Use width utility classes to provide custom width to dialog. e.g. `w-[800px]`.
 
-<DemoDialogWidth />
+:::code DemoDialogWidth
+<<< @/demos/dialog/DemoDialogWidth.vue{13}
+:::
 
-<template #code>
-
-<<< @/demos/dialog/DemoDialogWidth.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Persistent -->
-<Demo>
-
-## Persistent
+::::card Persistent
 
 You can disable closing dialog on outside click via `persistent` prop.
 
-<DemoDialogPersistent />
+:::code DemoDialogPersistent
+<<< @/demos/dialog/DemoDialogPersistent.vue{13}
+:::
 
-<template #code>
-
-<<< @/demos/dialog/DemoDialogPersistent.vue
-
-</template>
-
-</Demo>
+::::

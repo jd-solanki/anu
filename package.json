@@ -1,6 +1,6 @@
 {
   "name": "anu-vue",
-  "version": "0.7.2",
+  "version": "0.9.1",
   "description": "",
   "main": "index.js",
   "private": true,
@@ -10,7 +10,9 @@
     "docs:dev": "nr --filter @anu-vue/documentation dev",
     "docs:build": "nr --filter anu-vue build && nr --filter @anu-vue/documentation build",
     "clean": "rimraf node_modules packages/anu-vue/node_modules packages/anu-vue/dist packages/documentation/node_modules",
-    "release": "bumpp package.json packages/anu-vue/package.json --execute 'nr --filter anu-vue build' && na --filter anu-vue publish --no-git-checks"
+    "release": "bumpp package.json packages/anu-vue/package.json --execute 'nr --filter anu-vue build' && na --filter anu-vue publish --no-git-checks",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",

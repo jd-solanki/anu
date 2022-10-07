@@ -35,8 +35,10 @@ const columns = [
 </script>
 
 <template>
-  <ATable
-    :rows="rows"
-    :columns="columns"
-  />
+  <div class="cards-demo-container">
+    <ATable
+      :rows="rows"
+      :columns="columns"
+    />
+  </div>
 </template>

@@ -3,47 +3,33 @@
 <!-- TODO: Replace ABtn with AAvatar when ready. -->
 
 <!-- 👉 Basic -->
-<Demo>
-
-## Basic
+::::card Basic
 
 `ATypography` provides customizable typography for any needs.
 
 This will completely change how you work with typography.
 
-<DemoTypographyBasic />
-
-<template #code>
-
+:::code DemoTypographyBasic
 <<< @/demos/typography/DemoTypographyBasic.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Sizing -->
-<Demo>
-
-## Sizing
+::::card Sizing
 
 Want to create a list with title and subtitle no worries, Just add `text-sm`.
 
 You can use other font-size utilities to change typography size.
 
-<DemoTypographySizing />
+:::code DemoTypographySizing
+<<< @/demos/typography/DemoTypographySizing.vue{7,12,16,23,28,32,39,44,48}
+:::
 
-<template #code>
-
-<<< @/demos/typography/DemoTypographySizing.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Config Array -->
-<Demo>
-
-## Config Array
+::::card Config Array
 
 You can configure title, subtitle & text by passing array as prop instead of string.
 
@@ -51,12 +37,8 @@ First element of array will be treated as content and rest of them will be class
 
 It greatly improves DX and keep you code a bit DRY.
 
-<DemoTypographyConfigArray />
+:::code DemoTypographyConfigArray
+<<< @/demos/typography/DemoTypographyConfigArray.vue{12-13,25-26,39-40,53-54}
+:::
 
-<template #code>
-
-<<< @/demos/typography/DemoTypographyConfigArray.vue
-
-</template>
-
-</Demo>
+::::

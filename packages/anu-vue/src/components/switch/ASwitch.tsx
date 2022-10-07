@@ -48,9 +48,9 @@ export const ASwitch = defineComponent({
 
         {/* 👉 Switch */}
         {/* min width should be double the dot size */}
-        <div class={[data.value ? `bg-${props.color}` : 'bg-[hsl(var(--a-switch-default-color))]', 'a-switch-toggle flex rounded-inherit min-w-[var(--a-switch-track-size)]']}>
-            <div class="a-switch-dot grid place-items-center rounded-inherit m-[var(--a-switch-thumb-margin)]" style={dotPosition.value}>
-              <div class={[data.value ? `${props.onIcon} text-${props.color}` : props.offIcon, 'a-switch-icon color-[var(--a-switch-icon-color)]']}></div>
+        <div class={[data.value ? `bg-${props.color}` : 'bg-[hsl(var(--a-switch-default-color))]', 'a-switch-toggle flex rounded-inherit min-w-$a-switch-track-size']}>
+            <div class="a-switch-dot grid place-items-center rounded-inherit m-$a-switch-thumb-margin" style={dotPosition.value}>
+              <div class={[data.value ? `${props.onIcon} text-${props.color}` : props.offIcon, 'a-switch-icon color-$a-switch-icon-color']}></div>
             </div>
         </div>
 

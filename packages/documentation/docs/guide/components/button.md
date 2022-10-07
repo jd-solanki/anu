@@ -1,38 +1,28 @@
 # Button
 
 <!-- 👉 Filled -->
-<Demo>
-
-## Filled
+::::card Filled
 
 `fill` is default variant for button.
 
-<DemoButtonFilled />
+Use `color` prop to change the button color.
 
-<template #code>
+:::code DemoButtonFilled
+<<< @/demos/button/DemoButtonFilled.vue{5,9,13,17}
+:::
 
-<<< @/demos/button/DemoButtonFilled.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Outlined -->
-<Demo>
-
-## Outlined
+::::card Outlined
 
 You can use `variant="outline"` to create outlined button.
 
-<DemoButtonOutlined />
+:::code DemoButtonOutlined
+<<< @/demos/button/DemoButtonOutlined.vue{3,9,16,23,30}
+:::
 
-<template #code>
-
-<<< @/demos/button/DemoButtonOutlined.vue
-
-</template>
-
-</Demo>
+::::
 
 :::details Customize `border-style` of outlined buttons
 To create outlined button with different border style just add relevant class.
@@ -41,53 +31,42 @@ e.g. To create outline button with dashed border, add `border-dashed` class.
 :::
 
 <!-- 👉 Light -->
-<Demo>
-
-## Light
+::::card Light
 
 You can use `variant="light"` to create button with light background _(Background with opacity)_.
 
-<DemoButtonLight />
+:::code DemoButtonLight
+<<< @/demos/button/DemoButtonLight.vue{3,9,16,23,30}
+:::
 
-<template #code>
-
-<<< @/demos/button/DemoButtonLight.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Text -->
-<Demo>
-
-## Text
+::::card Text
 
 Use `variant="text"` to create a text button.
 
-<DemoButtonText />
+:::code DemoButtonText
+<<< @/demos/button/DemoButtonText.vue{3,8,15,22,29}
+:::
 
-<template #code>
-
-<<< @/demos/button/DemoButtonText.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Icons -->
-<Demo>
-
-## Icons
+::::card Icons
 
 You can use `icon` prop to render icon in button.
 
 Use `append-icon` prop to render icon after default slot.
 
-<DemoButtonIcons />
+:::code DemoButtonIcons
+<<< @/demos/button/DemoButtonIcons.vue{4,10,17,23,33,41,49,57,67,75,83,91}
+:::
 
+::::
 :::details You can also use default slot to render icon.
 
-```vue
+```vue{3}
 <template>
   <ABtn>
     <i class="i-bx-star" />
@@ -98,82 +77,50 @@ Use `append-icon` prop to render icon after default slot.
 
 :::
 
-<template #code>
-
-<<< @/demos/button/DemoButtonIcons.vue
-
-</template>
-
-</Demo>
-
 <!-- 👉 Block -->
-<Demo>
-
-## Block
+::::card Block
 
 Add `w-full` class to make block button.
 
-<DemoButtonBlock />
+:::code DemoButtonBlock
+<<< @/demos/button/DemoButtonBlock.vue{3,7}
+:::
 
-<template #code>
-
-<<< @/demos/button/DemoButtonBlock.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Icon Only -->
-<Demo>
-
-## Icon Only
+::::card Icon Only
 
 Use `icon-only` prop to render icon with icon only button.
 
-<DemoButtonIconOnly />
+:::code DemoButtonIconOnly
+<<< @/demos/button/DemoButtonIconOnly.vue{4,10,16,22}
+:::
 
-<template #code>
-
-<<< @/demos/button/DemoButtonIconOnly.vue
-
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Sizing -->
-<Demo>
-
-## Sizing
+::::card Sizing
 
 You can use font-size utility to adjust the size of button.
 
-<DemoButtonSizing />
+:::code DemoButtonSizing
+<<< @/demos/button/DemoButtonSizing.vue{4,12,17}
+:::
+
+::::
 
 :::tip
 If you have container with bigger font size and need default sized button use `text-base` class.
 :::
 
-<template #code>
-
-<<< @/demos/button/DemoButtonSizing.vue
-
-</template>
-
-</Demo>
-
 <!-- 👉 Roundness -->
-<Demo>
-
-## Roundness
+::::card Roundness
 
 You can adjust button roundness using border-radius utilities.
 
-<DemoButtonRoundness />
+:::code DemoButtonRoundness
+<<< @/demos/button/DemoButtonRoundness.vue{3,9,16,23,30}
+:::
 
-<template #code>
-
-<<< @/demos/button/DemoButtonRoundness.vue
-
-</template>
-
-</Demo>
+::::

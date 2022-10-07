@@ -5,8 +5,7 @@
       icon="i-bx-dollar"
       color="success"
       class="rounded-lg text-[1.25rem]"
-    >
-    </AAvatar>
+    />
     <ATypography
       title="PayPal"
       subtitle="last payment"

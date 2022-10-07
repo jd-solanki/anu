@@ -45,7 +45,7 @@ html.scroll-lock {
 .slide-up-enter-from,
 .slide-up-leave-to {
   opacity: 0;
-  transform: translateY(25px);
+  transform: translateY(var(--a-transition-slide-up-transform, 25px));
 }
 
 // 👉 Slide right

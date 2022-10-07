@@ -1,24 +1,18 @@
 {
-    "Demo component": {
-        "prefix": "demo",
+    "Docs: create demo card": {
+        "prefix": "dc",
         "body": [
-            "<!-- 👉 ${1:Basic} -->",
-            "<Demo>",
-            "",
-            "## $1",
+            "<!-- 👉 $1 -->",
+            "::::card ${1:Title}",
             "",
             "description",
             "",
-            "<DemoInput$1 />",
+            ":::code Demo$2$1",
+            "<<< @/demos/$2/DemoMenu$1.vue",
+            ":::",
             "",
-            "<template #code>",
-            "",
-            "<<< @/demos/input/DemoInput$1.vue",
-            "",
-            "</template>",
-            "",
-            "</Demo>"
+            "::::"
         ],
-        "description": "Demo component"
+        "description": "Docs: create demo card"
     }
 }

@@ -1,5 +1,5 @@
+import { defineComponent, ref, toRef, watch } from 'vue'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
-import { defineComponent, ref, watch } from 'vue'
 
 export const AAlert = defineComponent({
   name: 'AAlert',
@@ -29,6 +29,11 @@ export const AAlert = defineComponent({
   },
   setup(props, { slots, emit }) {
     const { getLayerClasses } = useLayer()
+    const { styles, classes } = getLayerClasses(
+      toRef(props, 'color'),
+      toRef(props, 'variant'),
+      toRef(props, 'states'),
+    )
 
     const isAlertVisible = ref(props.modelValue ?? true)
     watch(isAlertVisible, val => {
@@ -47,7 +52,7 @@ export const AAlert = defineComponent({
     }
 
     // TODO: Omit writing `props.modelValue ??` multiple times
-    return () => <div class={['a-alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...getLayerClasses(props)]}>
+    return () => <div class={['a-alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...classes.value]} style={[...styles.value]}>
       {props.icon ? <i class={props.icon}></i> : null}
       <div class="flex-grow">{slots.default?.()}</div>
       {

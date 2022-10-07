@@ -14,11 +14,6 @@ interface OptionsOut<T> {
   isSelected: ComputedRef<boolean>
 }
 
-// interface IOverload<T> {
-//   (param: ComposableParams<number>): { options: Ref<OptionsOut<number>[]>; value: number; select: (option: number) => void }
-//   (param: ComposableParams<T>): { options: Ref<OptionsOut<T>[]>; value: T; select: (option: T) => void }
-// }
-
 // TODO: Improve typing
 export function useGroupModel<T extends number>(param: ComposableParams<T>): { options: Ref<OptionsOut<T>[]>; value: T; select: (option: T) => void }
 export function useGroupModel<T>(param: ComposableParams<T>): { options: Ref<OptionsOut<T>[]>; value: T; select: (option: T) => void }
@@ -56,7 +51,10 @@ export function useGroupModel<T>(params: ComposableParams<T>) {
   if (typeof options === 'number') {
     _options.value = [...Array(options)].map((_, i) => ({
       value: i as T,
-      isSelected: computed(() => i === value.value),
+      isSelected: computed(() => unref(multi)
+        ? value.value instanceof Set ? value.value.has(i) : false
+        : i === value.value,
+      ),
     }))
   }
   else {

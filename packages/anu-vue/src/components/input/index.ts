@@ -1,2 +1,2 @@
-export { AInput } from './AInput';
+export { AInput } from './AInput'
 

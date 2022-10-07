@@ -35,6 +35,7 @@
       subtitle="Chocolate cake tiramisu donut"
       text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
       variant="text"
+      color="primary"
     />
   </div>
 </template>
