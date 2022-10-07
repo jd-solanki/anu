@@ -4,19 +4,19 @@
       :content="10"
       :max="9"
     >
-      <i class="inline-block i-bx-bell w-6 h-6" />
+      <i class="i-bx-bell w-6 h-6" />
     </ABadge>
     <ABadge
       :content="100"
       :max="99"
     >
-      <i class="inline-block i-bx-bell w-6 h-6" />
+      <i class="i-bx-bell w-6 h-6" />
     </ABadge>
     <ABadge
       :content="1000"
       :max="999"
     >
-      <i class="inline-block i-bx-bell w-6 h-6" />
+      <i class="i-bx-bell w-6 h-6" />
     </ABadge>
   </div>
 </template>

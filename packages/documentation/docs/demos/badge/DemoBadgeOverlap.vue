@@ -6,9 +6,14 @@
         class="rounded-none"
       />
     </ABadge>
-    <ABadge overlap>
-      <AAvatar icon="i-bx-home" />
+
+    <ABadge :overlap="false">
+      <AAvatar
+        icon="i-bx-home"
+        class="rounded-none"
+      />
     </ABadge>
+
     <ABadge
       offset-x="16"
       offset-y="16"

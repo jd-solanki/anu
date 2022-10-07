@@ -35,13 +35,14 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'text-medium-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-medium-opacity))]',
     'text-light-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]',
 
-    // 👉 Badge
-    'a-badge': 'px-1 rounded-full h-5 min-w-[1.25rem] flex justify-center items-center text-white text-xs font-medium z-[1] whitespace-nowrap',
-    'a-badge-dot': 'min-w-[0.5rem] h-2',
-
     // SECTION Components
     // 👉 Alert
     'a-alert': 'p-4 font-medium rounded-lg gap-x-2',
+
+    // 👉 Badge
+    'a-badge': 'px-1 rounded-full h-5 min-w-[1.25rem] flex justify-center items-center text-white text-xs font-medium z-[1] whitespace-nowrap',
+    'a-badge-dot': 'min-w-[0.5rem] h-2',
+    'a-badge-bordered': 'border-2 border-[hsl(var(--a-layer))]',
 
     // 👉 Button
     'a-btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em]',

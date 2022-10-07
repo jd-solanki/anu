@@ -21,6 +21,10 @@ export const ABadge = defineComponent({
       type: Boolean,
       default: false,
     },
+    bordered: {
+      type: Boolean,
+      default: true,
+    },
     max: {
       type: Number,
       default: 99,
@@ -35,7 +39,7 @@ export const ABadge = defineComponent({
     },
     overlap: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     offsetX: {
       type: [Number, String],
@@ -88,7 +92,7 @@ export const ABadge = defineComponent({
 
     return () => <div class={['a-badge-wrapper relative']}>
       {slots.default?.()}
-      <div class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }]} style={positionStyles.value}>
+      <div class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]} style={positionStyles.value}>
         {badgeSlotContent.value}
       </div>
     </div>
