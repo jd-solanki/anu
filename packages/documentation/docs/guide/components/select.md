@@ -17,7 +17,7 @@ You can use `ASelect` component to render basic select.
 You can use `placeholder` attribute to add placeholder to the select.
 
 :::code DemoSelectPlaceholder
-<<< @/demos/select/DemoSelectPlaceholder.vue
+<<< @/demos/select/DemoSelectPlaceholder.vue{13}
 :::
 
 ::::
@@ -28,7 +28,7 @@ You can use `placeholder` attribute to add placeholder to the select.
 You can use `label` prop to add label to the select.
 
 :::code DemoSelectLabel
-<<< @/demos/select/DemoSelectLabel.vue
+<<< @/demos/select/DemoSelectLabel.vue{13}
 :::
 
 ::::
@@ -39,7 +39,7 @@ You can use `label` prop to add label to the select.
 You can use `hint` prop to add hint to the select.
 
 :::code DemoSelectHint
-<<< @/demos/select/DemoSelectHint.vue
+<<< @/demos/select/DemoSelectHint.vue{13}
 :::
 
 ::::
@@ -54,7 +54,7 @@ To prepend the icon use `prepend-inner-icon` prop.
 Moreover, you can also use `append-icon` & `prepend-icon` prop to add icon outside of the select component.
 
 :::code DemoSelectIcons
-<<< @/demos/select/DemoSelectIcons.vue
+<<< @/demos/select/DemoSelectIcons.vue{12,17}
 :::
 
 ::::
@@ -65,7 +65,7 @@ Moreover, you can also use `append-icon` & `prepend-icon` prop to add icon outsi
 You can use default slot to render the `ASelect` options. Don't forget to bind `attrs` from [slotProps](https://vuejs.org/guide/components/slots.html#scoped-slots) to looping element.
 
 :::code DemoSelectSlot
-<<< @/demos/select/DemoSelectSlot.vue
+<<< @/demos/select/DemoSelectSlot.vue{18,21-30}
 :::
 
 ::::
@@ -78,7 +78,7 @@ You can use `readonly` prop to make select read only.
 Use `disabled` prop to make select disabled.
 
 :::code DemoSelectStates
-<<< @/demos/select/DemoSelectStates.vue
+<<< @/demos/select/DemoSelectStates.vue{12,18}
 :::
 
 ::::

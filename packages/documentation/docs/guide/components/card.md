@@ -36,7 +36,7 @@ Mix and match the different components to achieve desired UI.
 Card component uses layer composable as it's base. You can use `variant` prop to create various card variants.
 
 :::code DemoCardVariants
-<<< @/demos/card/DemoCardVariants.vue
+<<< @/demos/card/DemoCardVariants.vue{8,17,27,37}
 :::
 
 ::::
@@ -47,7 +47,7 @@ Card component uses layer composable as it's base. You can use `variant` prop to
 You can use `ATypography` slots to render custom content in header.
 
 :::code DemoCardSlot
-<<< @/demos/card/DemoCardSlot.vue
+<<< @/demos/card/DemoCardSlot.vue{8-17,25-34}
 :::
 
 ::::

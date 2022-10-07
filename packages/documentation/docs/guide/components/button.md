@@ -5,8 +5,10 @@
 
 `fill` is default variant for button.
 
+Use `color` prop to change the button color.
+
 :::code DemoButtonFilled
-<<< @/demos/button/DemoButtonFilled.vue
+<<< @/demos/button/DemoButtonFilled.vue{5,9,13,17}
 :::
 
 ::::
@@ -17,7 +19,7 @@
 You can use `variant="outline"` to create outlined button.
 
 :::code DemoButtonOutlined
-<<< @/demos/button/DemoButtonOutlined.vue
+<<< @/demos/button/DemoButtonOutlined.vue{3,9,16,23,30}
 :::
 
 ::::
@@ -34,7 +36,7 @@ e.g. To create outline button with dashed border, add `border-dashed` class.
 You can use `variant="light"` to create button with light background _(Background with opacity)_.
 
 :::code DemoButtonLight
-<<< @/demos/button/DemoButtonLight.vue
+<<< @/demos/button/DemoButtonLight.vue{3,9,16,23,30}
 :::
 
 ::::
@@ -45,7 +47,7 @@ You can use `variant="light"` to create button with light background _(Backgroun
 Use `variant="text"` to create a text button.
 
 :::code DemoButtonText
-<<< @/demos/button/DemoButtonText.vue
+<<< @/demos/button/DemoButtonText.vue{3,8,15,22,29}
 :::
 
 ::::
@@ -58,13 +60,13 @@ You can use `icon` prop to render icon in button.
 Use `append-icon` prop to render icon after default slot.
 
 :::code DemoButtonIcons
-<<< @/demos/button/DemoButtonIcons.vue
+<<< @/demos/button/DemoButtonIcons.vue{4,10,17,23,33,41,49,57,67,75,83,91}
 :::
 
 ::::
 :::details You can also use default slot to render icon.
 
-```vue
+```vue{3}
 <template>
   <ABtn>
     <i class="i-bx-star" />
@@ -81,7 +83,7 @@ Use `append-icon` prop to render icon after default slot.
 Add `w-full` class to make block button.
 
 :::code DemoButtonBlock
-<<< @/demos/button/DemoButtonBlock.vue
+<<< @/demos/button/DemoButtonBlock.vue{3,7}
 :::
 
 ::::
@@ -92,7 +94,7 @@ Add `w-full` class to make block button.
 Use `icon-only` prop to render icon with icon only button.
 
 :::code DemoButtonIconOnly
-<<< @/demos/button/DemoButtonIconOnly.vue
+<<< @/demos/button/DemoButtonIconOnly.vue{4,10,16,22}
 :::
 
 ::::
@@ -103,7 +105,7 @@ Use `icon-only` prop to render icon with icon only button.
 You can use font-size utility to adjust the size of button.
 
 :::code DemoButtonSizing
-<<< @/demos/button/DemoButtonSizing.vue
+<<< @/demos/button/DemoButtonSizing.vue{4,12,17}
 :::
 
 ::::
@@ -118,7 +120,7 @@ If you have container with bigger font size and need default sized button use `t
 You can adjust button roundness using border-radius utilities.
 
 :::code DemoButtonRoundness
-<<< @/demos/button/DemoButtonRoundness.vue
+<<< @/demos/button/DemoButtonRoundness.vue{3,9,16,23,30}
 :::
 
 ::::

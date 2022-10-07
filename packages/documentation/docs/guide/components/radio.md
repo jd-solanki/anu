@@ -6,7 +6,7 @@
 Use `label` prop to set the label.
 
 :::code DemoRadioBasic
-<<< @/demos/radio/DemoRadioBasic.vue
+<<< @/demos/radio/DemoRadioBasic.vue{4,10,16,22,28}
 :::
 
 ::::
@@ -17,7 +17,7 @@ Use `label` prop to set the label.
 Use `color` prop to change the radio color.
 
 :::code DemoRadioColor
-<<< @/demos/radio/DemoRadioColor.vue
+<<< @/demos/radio/DemoRadioColor.vue{15}
 :::
 
 ::::

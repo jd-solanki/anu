@@ -32,7 +32,7 @@ You can adjust dialog placement via `place-items-start top-16 justify-center` cl
 Use width utility classes to provide custom width to dialog. e.g. `w-[800px]`.
 
 :::code DemoDialogWidth
-<<< @/demos/dialog/DemoDialogWidth.vue
+<<< @/demos/dialog/DemoDialogWidth.vue{13}
 :::
 
 ::::
@@ -43,7 +43,7 @@ Use width utility classes to provide custom width to dialog. e.g. `w-[800px]`.
 You can disable closing dialog on outside click via `persistent` prop.
 
 :::code DemoDialogPersistent
-<<< @/demos/dialog/DemoDialogPersistent.vue
+<<< @/demos/dialog/DemoDialogPersistent.vue{13}
 :::
 
 ::::

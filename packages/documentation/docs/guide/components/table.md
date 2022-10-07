@@ -6,7 +6,7 @@
 Use `rows` prop to provide data to `ATable`. Defining columns for table is optional. When columns aren't specified, columns will get calculate from first row and all columns will be filterable and sortable.
 
 :::code DemoTableBasic
-<<< @/demos/table/DemoTableBasic.vue
+<<< @/demos/table/DemoTableBasic.vue{33}
 :::
 
 ::::
@@ -17,7 +17,7 @@ Use `rows` prop to provide data to `ATable`. Defining columns for table is optio
 You can use `columns` prop to define columns for the table.
 
 :::code DemoTableColumnDefinition
-<<< @/demos/table/DemoTableColumnDefinition.vue
+<<< @/demos/table/DemoTableColumnDefinition.vue{30-34,41}
 :::
 
 ::::
@@ -28,7 +28,7 @@ You can use `columns` prop to define columns for the table.
 Use `formatter` property while defining column to format the column text.
 
 :::code DemoTableColumnFormatter
-<<< @/demos/table/DemoTableColumnFormatter.vue
+<<< @/demos/table/DemoTableColumnFormatter.vue{32}
 :::
 
 ::::
@@ -39,7 +39,7 @@ Use `formatter` property while defining column to format the column text.
 `ATable` generates scoped slot based on your column name. If your column name is `website` then you can use `row-website` scoped slot to render custom content in your column.
 
 :::code DemoTableColumnSlot
-<<< @/demos/table/DemoTableColumnSlot.vue
+<<< @/demos/table/DemoTableColumnSlot.vue{35-39,42-47}
 :::
 
 ::::
@@ -49,10 +49,10 @@ Use `formatter` property while defining column to format the column text.
 
 Set `search` prop to `true` to enable table filtering.
 
-Search will respect the column's `isFilterable` property to include or exclude the column from searching. If you don't specify column defination all columns will be filterable.
+Search will respect the column's `isFilterable` property to include or exclude the column from searching. If you don't specify column definition all columns will be filterable.
 
 :::code DemoTableFiltering
-<<< @/demos/table/DemoTableFiltering.vue
+<<< @/demos/table/DemoTableFiltering.vue{35}
 :::
 
 ::::
@@ -80,7 +80,7 @@ Define extra column in column definition to add column to table. Later, you can 
 Moreover, you can also omit the column definition to omit rendering the specific column.
 
 :::code DemoTableExtraColumn
-<<< @/demos/table/DemoTableExtraColumn.vue
+<<< @/demos/table/DemoTableExtraColumn.vue{33,43-67}
 :::
 
 ::::
@@ -111,7 +111,7 @@ const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
 ```
 
 :::code DemoTableServerSideTable
-<<< @/demos/table/DemoTableServerSideTable.vue
+<<< @/demos/table/DemoTableServerSideTable.vue{277-334,340}
 :::
 
 ::::
