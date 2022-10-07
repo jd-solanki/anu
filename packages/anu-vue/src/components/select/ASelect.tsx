@@ -130,6 +130,7 @@ export const ASelect = defineComponent({
                         <input
                             {...slotProps}
                             value={ selectedValue.value }
+                            readonly
                             ref={selectRef}
                         />,
                 }}
