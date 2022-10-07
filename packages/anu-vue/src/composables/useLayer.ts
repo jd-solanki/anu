@@ -7,12 +7,19 @@ import { contrast } from '@/utils/color'
 
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
+    /**
+     * this is sample
+     */
     color,
     variant: {
       type: String,
       validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
       default: 'text',
     },
+
+    /**
+     * THis is awesome
+     */
     states: {
       type: Boolean,
       default: false,

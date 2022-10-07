@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/AAlert.json';
+</script>
+
 # Alert
 
 <!-- 👉 Light -->

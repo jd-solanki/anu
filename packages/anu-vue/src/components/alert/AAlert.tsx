@@ -12,11 +12,21 @@ export const AAlert = defineComponent({
         default: 'light',
       },
     }),
+
+    /**
+     * prepend icon
+     */
     icon: {
       type: String,
+      default: undefined,
     },
+
+    /**
+     * change append (close) icon
+     */
     appendIcon: {
       type: String,
+      default: undefined,
     },
     dismissible: {
       type: Boolean,

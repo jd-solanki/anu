@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ADrawer.json'
+</script>
+
 # Drawer
 
 <!-- 👉 Basic -->

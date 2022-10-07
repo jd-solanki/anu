@@ -5,6 +5,9 @@ import { disabled } from '@/composables/useProps'
 export const ABtn = defineComponent({
   name: 'ABtn',
   props: {
+    color: { default: 'primary' },
+    variant: { default: 'fill' },
+    states: { default: true },
     ...useLayerProps({
       color: {
         default: 'primary',
@@ -16,12 +19,26 @@ export const ABtn = defineComponent({
         default: true,
       },
     }),
+
+    /**
+     * prepend icon
+     */
     icon: {
       type: String,
+      default: undefined,
     },
+
+    /**
+     * append icon
+     */
     appendIcon: {
       type: String,
+      default: undefined,
     },
+
+    /**
+     * create icon only button
+     */
     iconOnly: {
       type: Boolean,
       default: false,

@@ -4,8 +4,14 @@ import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 export const ATextarea = defineComponent({
   name: 'ATextarea',
   props: {
-    modelValue: String,
-    height: String,
+    modelValue: {
+      type: String,
+      default: undefined,
+    },
+    height: {
+      type: String,
+      default: undefined,
+    },
     ...useBaseInputProp(),
   },
   setup(props, { slots, emit, attrs }) {

@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'url'
 import MarkdownIt from 'markdown-it'
 import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
@@ -110,5 +111,10 @@ export default defineConfig({
         configFile: '../../unocss.config.ts',
       }),
     ],
+    resolve: {
+      alias: {
+        '@anu-vue': fileURLToPath(new URL('../../../anu-vue/', import.meta.url)),
+      },
+    },
   },
 })

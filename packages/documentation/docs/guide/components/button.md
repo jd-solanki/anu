@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ABtn.json'
+</script>
+
 # Button
 
 <!-- 👉 Filled -->
@@ -122,3 +126,7 @@ You can adjust button roundness using border-radius utilities.
 :::
 
 ::::
+
+## API
+
+<Api :api="api"></Api>
