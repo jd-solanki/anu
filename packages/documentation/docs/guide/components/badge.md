@@ -1,122 +1,80 @@
 # Badge
 
 <!-- 👉 Default -->
-<Demo>
-
-## Default
+::::card Default
 
 Default variant for badge is `standard`
 
-<DemoBadgeDefault />
-
-<template #code>
-
+:::code DemoBadgeDefault
 <<< @/demos/badge/DemoBadgeDefault.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Color -->
-<Demo>
-
-## Content
+::::card Content
 
 Use the prop `badgeContent` to pass numeric values, if you want to use other data different than a number use the slot `badgeContent` instead
 
-<DemoBadgeContent />
-
-<template #code>
-
+:::code DemoBadgeContent
 <<< @/demos/badge/DemoBadgeContent.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Content -->
-<Demo>
-
-## Color
+::::card Color
 
 You can use `color` prop to change the badge color.
 
-<DemoBadgeColor />
-
-<template #code>
-
+:::code DemoBadgeColor
 <<< @/demos/badge/DemoBadgeColor.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Dot -->
-<Demo>
-
-## Dot
+::::card Dot
 
 Use the prop `variant` to transform the badge into a `dot`
 
-<DemoBadgeDot />
-
-<template #code>
-
+:::code DemoBadgeDot
 <<< @/demos/badge/DemoBadgeDot.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Anchor origin -->
-<Demo>
-
-## Anchor origin
+::::card Anchor origin
 
 Change the position of the badge by passing `horizontal` and `vertical` values to the `anchor` prop.
 
-<DemoBadgeAnchor />
-
-<template #code>
-
+:::code DemoBadgeAnchor
 <<< @/demos/badge/DemoBadgeAnchor.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Max -->
-<Demo>
-
-## Max
+::::card Max
 
 Change the `max` prop to cap the numeric value of the content
 
-<DemoBadgeMax />
-
-<template #code>
-
+:::code DemoBadgeMax
 <<< @/demos/badge/DemoBadgeMax.vue
+:::
 
-</template>
-
-</Demo>
+::::
 
 <!-- 👉 Overlap -->
-<Demo>
-
-## Overlap
+::::card Overlap
 
 Use `overlap` prop to adjust the position of the badge, if you need more refined adjustments you can use the `offsetX` or `offsetY` props.
 
 By default of `overlap` prop is `true`.
 
-<DemoBadgeOverlap />
-
-<template #code>
-
+:::code DemoBadgeOverlap
 <<< @/demos/badge/DemoBadgeOverlap.vue
+:::
 
-</template>
-
-</Demo>
+::::
