@@ -47,3 +47,8 @@ You can adjust the height of ATextarea component by providing `height` prop with
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ATypography.json';
+</script>
+
 # Typography
 
 <!-- TODO: Replace ABtn with AAvatar when ready. -->
@@ -42,3 +46,8 @@ It greatly improves DX and keep you code a bit DRY.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

@@ -5,9 +5,13 @@ import { disabled } from '@/composables/useProps'
 export const ABtn = defineComponent({
   name: 'ABtn',
   props: {
-    color: { default: 'primary' },
-    variant: { default: 'fill' },
-    states: { default: true },
+    /*
+      ℹ️ If we want volar to infer the correct default values for prop we need to enable below three lines because volar can't generate correct data for dynamic code
+      Please refer to this gen-component-meta script's useful links for more details
+    */
+    // color: { default: 'primary' },
+    // variant: { default: 'fill' },
+    // states: { default: true },
     ...useLayerProps({
       color: {
         default: 'primary',
@@ -43,6 +47,10 @@ export const ABtn = defineComponent({
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Disable state of component
+     */
     disabled,
   },
   setup(props, { slots, attrs: _ }) {

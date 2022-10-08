@@ -12,7 +12,14 @@ export const ACard = defineComponent({
       },
     }),
     ...useTypographyProps(),
-    img: String,
+
+    /**
+     * Render image at the top of the card (_above header_)
+     */
+    img: {
+      type: String,
+      default: undefined,
+    },
   },
   setup(props, { slots }) {
     const { getLayerClasses } = useLayer()

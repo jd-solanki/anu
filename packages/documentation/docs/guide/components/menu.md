@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/AMenu.json'
+</script>
+
 # Menu
 
 <!-- 👉 Basic -->
@@ -103,3 +107,8 @@ You can read more about middleware on their official [docs](https://floating-ui.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

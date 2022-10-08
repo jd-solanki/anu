@@ -73,3 +73,8 @@ Alert also support `v-model` to show and hide alert based on model value.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

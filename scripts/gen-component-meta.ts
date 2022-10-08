@@ -2,14 +2,32 @@ import fs, { existsSync, mkdirSync } from 'fs'
 import { join, parse, resolve } from 'path'
 
 import fg from 'fast-glob'
+import MarkdownIt from 'markdown-it'
 import type { ComponentMeta, MetaCheckerOptions } from 'vue-component-meta'
 import { createComponentMetaChecker } from 'vue-component-meta'
+
+const md = new MarkdownIt()
+
+/*
+  ℹ️ Useful links
+
+  vue-component-meta tests: https://github.com/johnsoncodehk/volar/blob/master/vue-language-tools/vue-component-meta/tests/index.spec.ts
+  discord thread about improving vue-component-meta: https://discord.com/channels/793943652350427136/1027819645677350912
+  GH issue for improving vue-component-meta based on runtime/dynamic props: https://github.com/johnsoncodehk/volar/issues/1854
+*/
+
+/*
+  TODO: Try to create fake file to generate accurate props for dynamic code
+  TODO: Sort props, events & slots alphabetically
+  TODO: Group props by component. E.g. in Drawer component there's is lots of props, separating them via component (these are card based props) will be more easy to read and adopt
+*/
 
 // SECTION Types
 export interface ComponentApiProps {
   name: ComponentMeta['props'][number]['name']
   description: ComponentMeta['props'][number]['description']
-  required: ComponentMeta['props'][number]['required']
+
+  // required: ComponentMeta['props'][number]['required']
   type: ComponentMeta['props'][number]['type']
   default: ComponentMeta['props'][number]['default']
 }
@@ -33,7 +51,6 @@ const tsconfigChecker = createComponentMetaChecker(
   checkerOptions,
 )
 
-// TODO: Define return type
 const filterMeta = (meta: ComponentMeta): ComponentApi => {
   // const clonedMeta: ComponentMeta = JSON.parse(JSON.stringify(meta))
 
@@ -45,22 +62,14 @@ const filterMeta = (meta: ComponentMeta): ComponentApi => {
 
     const { name, description, required, type, default: defaultValue } = prop
 
-    let propType = type.replace('"primary" | "success" | "info" | "warning" | "danger"', 'Color')
-    propType = !required ? propType.replace('| undefined', '') : propType
-
-    const propTypeAttrs = propType.includes('Color') ? ` title='${type}'` : ''
-
     props.push({
-      name,
-      description,
-      required,
+      name: `${name}${required ? '' : '?'}`,
+      description: md.render(description),
 
-      /*
-        ℹ️ We need to replace `|` character with `\\|` from type to correctly render type in single column
-        otherwise text after `|` will considered as next column
-      */
-      type: `<code${propTypeAttrs}>${propType}</code>`,
-      default: defaultValue ? `<code>${defaultValue}</code>` : 'unknown',
+      // required,
+
+      type,
+      default: defaultValue || 'unknown',
     })
   })
 
@@ -71,11 +80,13 @@ const filterMeta = (meta: ComponentMeta): ComponentApi => {
   }
 }
 
+// Collect components
 const components = fg.sync(['src/components/**/*.tsx'], {
   cwd: resolve(__dirname, '../packages/anu-vue'),
   absolute: true,
 })
 
+// Generate component meta
 components.forEach(componentPath => {
   // Thanks: https://futurestud.io/tutorials/node-js-get-a-file-name-with-or-without-extension
   const componentExportName = parse(componentPath).name

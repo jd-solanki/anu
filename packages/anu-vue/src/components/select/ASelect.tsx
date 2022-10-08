@@ -12,21 +12,41 @@ export const ASelect = defineComponent({
   name: 'ASelect',
   props: {
     ...useBaseInputProp(),
+
+    /**
+     * Bind v-model value to select
+     */
     modelValue: {
-      required: false,
       type: [String, Number, Object] as PropType<string | number | ObjectOption>,
+      default: undefined,
     },
+
+    /**
+     * Select options
+     */
     options: {
       type: Array as PropType<SelectOption[]>,
       default: undefined,
     },
+
+    /**
+     * When object is used as select option, enabling this prop will emit the whole object instead of value from object.
+     *
+     * When set to `false`: `'vue'`
+     *
+     * When set to `true`: `{ label: 'VueJS', value: 'vue' }`
+     */
     emitObject: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Add classes to wrapper of select options (_ul tag_)
+     */
     optionsWrapperClasses: {
       type: [Array, String, Object] as PropType<string | string[] | object>,
-      default: '',
+      default: undefined,
     },
   },
   emits: ['input', 'update:modelValue'],

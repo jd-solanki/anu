@@ -1,10 +1,7 @@
 import { fileURLToPath } from 'url'
-import MarkdownIt from 'markdown-it'
 import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
-
-md = new MarkdownIt()
 
 const nav = []
 

@@ -45,3 +45,8 @@ You can use `color` prop to change the checkbox color.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

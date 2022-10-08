@@ -49,3 +49,8 @@ You can disable closing drawer on outside click via `persistent` prop.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

@@ -9,7 +9,6 @@
     "build": "nr --filter anu-vue build",
     "docs:dev": "nr --filter @anu-vue/documentation dev",
     "docs:build": "nr --filter anu-vue build && nr --filter @anu-vue/documentation build",
-    "gen-comp-meta": "na tsx ./scripts/gen-component-meta.ts",
     "clean": "rimraf node_modules packages/anu-vue/node_modules packages/anu-vue/dist packages/documentation/node_modules",
     "release": "bumpp package.json packages/anu-vue/package.json --execute 'nr --filter anu-vue build' && na --filter anu-vue publish --no-git-checks",
     "lint": "eslint .",

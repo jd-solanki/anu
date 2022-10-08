@@ -60,6 +60,7 @@ You can use `ATypography` slots to render custom content in header.
 Above demo adds content to the right of title. If you want to add content on the right of both title & subtitle use `headerRight` slot.
 :::
 
+<!-- 👉 API -->
 ## API
 
 <Api :api="api"></Api>

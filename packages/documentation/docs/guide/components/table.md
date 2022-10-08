@@ -119,3 +119,8 @@ const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

@@ -86,3 +86,8 @@ Use `disabled` prop to make select disabled.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

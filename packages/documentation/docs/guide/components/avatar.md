@@ -57,3 +57,8 @@ You can adjust avatar roundness using border-radius utilities
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

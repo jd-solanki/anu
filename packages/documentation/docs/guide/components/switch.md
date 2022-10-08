@@ -88,3 +88,8 @@ You can adjust switch roundness using border-radius utilities
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

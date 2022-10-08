@@ -6,40 +6,23 @@ const propsHeader = Object.keys(props.api.props[0])
 </script>
 
 <template>
-  <h3>Props</h3>
-  <table class="text-[0.85rem]">
-    <!-- 👉 thead -->
-    <thead>
-      <tr>
-        <th
-          v-for="header in propsHeader"
-          :key="header"
-          class="capitalize"
-        >
-          {{ header }}
-        </th>
-      </tr>
-    </thead>
-
-    <!-- 👉 tbody -->
-    <tbody>
-      <tr
+  <ACard title="Props">
+    <div class="card-body">
+      <div
         v-for="prop in props.api.props"
         :key="prop.name"
-        :class="{ 'opacity-50': !prop.required }"
+        class="not-last-mb-4"
       >
-        <td
-          v-for="(value, _, i) in prop"
-          :key="i"
-          v-html="value"
+        <span
+          class="font-semibold text-[hsla(var(--a-typography-title-color),var(--a-typography-title-opacity))]"
+        >{{ prop.name }}</span>
+        <span class="text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]"> : {{ prop.type }}</span>
+        <span class="text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]"> = {{ prop.default }}</span>
+        <div
+          class="!children-[p]-m-0"
+          v-html="prop.description"
         />
-      </tr>
-    </tbody>
-  </table>
+      </div>
+    </div>
+  </ACard>
 </template>
-
-<style scoped>
-th, td {
-    padding: 12px;
-}
-</style>

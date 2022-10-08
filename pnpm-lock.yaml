@@ -49,6 +49,7 @@ importers:
       '@vitejs/plugin-vue-jsx': ^2.0.1
       '@vueuse/core': ^9.3.0
       defu: ^6.1.0
+      markdown-it: ^13.0.1
       sass: ^1.55.0
       typescript: ^4.8.4
       unocss: ^0.45.26
@@ -68,6 +69,7 @@ importers:
       '@vitejs/plugin-vue': 3.1.0_vite@3.1.4+vue@3.2.40
       '@vitejs/plugin-vue-jsx': 2.0.1_vite@3.1.4+vue@3.2.40
       '@vueuse/core': 9.3.0_vue@3.2.40
+      markdown-it: 13.0.1
       sass: 1.55.0
       typescript: 4.8.4
       unocss: 0.45.26_vite@3.1.4

@@ -129,3 +129,8 @@ Anu do not provide any validation mechanism at the moment as it assume it's bett
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>
