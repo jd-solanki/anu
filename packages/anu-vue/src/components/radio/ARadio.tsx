@@ -1,4 +1,3 @@
-import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { color, disabled } from '@/composables/useProps'
 
@@ -9,7 +8,7 @@ export const ARadio = defineComponent({
       ...color,
       default: 'primary',
     },
-    modelValue: String as PropType<string | null>,
+    modelValue: String,
     label: String,
     icon: {
       type: String,
