@@ -1,0 +1,5 @@
+<template>
+  <ATextarea
+    autosize
+  />
+</template>

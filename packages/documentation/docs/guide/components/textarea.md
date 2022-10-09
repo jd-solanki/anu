@@ -1,5 +1,4 @@
 # Textarea
-
 <!-- 👉 Basic -->
 ::::card Basic
 
@@ -40,6 +39,17 @@ You can adjust the height of ATextarea component by providing `height` prop with
 
 :::code DemoTextareaHeight
 <<< @/demos/textarea/DemoTextareaHeight.vue
+:::
+
+::::
+
+<!-- 👉 Autosize -->
+::::card Autosize
+
+You can use `autosize` prop to automatically update the height of ATextarea depending on the content.
+
+:::code DemoTextareaAutosize
+<<< @/demos/textarea/DemoTextareaAutosize.vue{3}
 :::
 
 ::::
