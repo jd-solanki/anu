@@ -41,3 +41,14 @@ You can use `color` prop to change the checkbox color.
 :::
 
 ::::
+
+<!-- 👉 Indeterminate -->
+::::card Indeterminate
+
+You can use `indeterminate` prop to change the status of the checkbox.
+
+:::code DemoCheckboxIndeterminate
+<<< @/demos/checkbox/DemoCheckboxIndeterminate.vue{4,10}
+:::
+
+::::

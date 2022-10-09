@@ -16,6 +16,10 @@ export const ACheckbox = defineComponent({
       default: 'i-bx-check',
     },
     disabled,
+    indeterminate: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { slots, attrs, emit }) {
     const elementId = `a-checkbox-${attrs.id || attrs.value || Math.random().toString(36).slice(2, 7)}`
@@ -31,7 +35,7 @@ export const ACheckbox = defineComponent({
                 class={['hidden children:next:checked:scale-full', `next:checked:bg-${props.color} next:checked:border-${props.color}`]}
             />
             <div class={['a-checkbox-box flex items-center justify-center shrink-0']}>
-                <i class={[props.icon, 'a-checkbox-icon scale-0 text-white']} />
+                <i class={[props.indeterminate ? 'i-bx-minus' : props.icon, 'a-checkbox-icon scale-0 text-white']} />
             </div>
             {slots.default ? slots.default() : props.label}
         </label>
