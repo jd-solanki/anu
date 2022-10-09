@@ -12,7 +12,7 @@ export const ATextarea = defineComponent({
     height: String,
     ...useBaseInputProp(),
     autosize: {
-      type: Boolean,
+      type: [Boolean, Number],
       default: false,
     },
   },
@@ -21,12 +21,13 @@ export const ATextarea = defineComponent({
       input: props.modelValue,
       onResize: () => {
         if (props.autosize && textarea.value.parentElement)
-          textarea.value.parentElement.style.height = `${textarea.value.scrollHeight}px`
+          textarea.value.parentElement.style.height = `${Math.min(textarea.value.scrollHeight, typeof props.autosize === 'number' ? props.autosize : Infinity)}px`
+
         emit('update:modelValue', input.value)
       },
     })
 
-    return () => <ABaseInput disabled={props.disabled} readonly={props.readonly} {...attrs} inputWrapperClasses={['min-h-32', props.height]}>
+    return () => <ABaseInput disabled={props.disabled} readonly={props.readonly} {...attrs} inputWrapperClasses={['min-h-32 overflow-hidden', props.height]}>
             {{
               // Recursively pass down slots
               ...slots,
@@ -36,6 +37,7 @@ export const ATextarea = defineComponent({
                         ref={props.autosize ? textarea : null}
                         v-model={input.value}
                         class="a-textarea bg-transparent resize-none"
+                        style={typeof props.autosize === 'number' && `max-height: ${props.autosize - 2}px`} // Pixel perfect : -2px for border
                     />,
             }}
         </ABaseInput>
