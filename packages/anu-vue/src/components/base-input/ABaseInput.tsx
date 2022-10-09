@@ -25,9 +25,11 @@ export const ABaseInput = defineComponent({
 
     const refRoot = ref()
     const refInputContainer = ref()
+    const refInputWrapper = ref()
     expose({
       refRoot,
       refInputContainer,
+      refInputWrapper,
     })
 
     // TODO(Enhancement): We might need to remove absolute added to html input element to retain width instead of providing min-w to below wrapper
@@ -53,11 +55,13 @@ export const ABaseInput = defineComponent({
                 }
 
                 {/* SECTION Input wrapper */}
-                <div class={[
+                <div
+                  ref={refInputWrapper}
+                  class={[
                     `${props.error ? 'border-danger' : 'focus-within:border-primary'}`,
                     'a-base-input-input-wrapper relative i:focus-within:text-primary items-center border border-solid border-a-border w-full',
                     props.inputWrapperClasses,
-                ]}>
+                  ]}>
 
                     {/* 👉 Slot: Prepend Inner */}
                     {
