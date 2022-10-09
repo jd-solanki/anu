@@ -16,6 +16,7 @@ export const ARadio = defineComponent({
     },
     disabled,
   },
+  emits: ['update:modelValue'],
   setup(props, { slots, attrs, emit }) {
     const elementId = `a-checkbox-${attrs.id || attrs.value || Math.random().toString(36).slice(2, 7)}`
     const isChecked = computed(() => props.modelValue === attrs.value)
