@@ -1,22 +1,47 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
-const isIndeterminate = ref(true)
+const items = [
+  'Apple',
+  'Banana',
+  'Watermelon',
+]
+
+const fruits = ref<Array<String>>([])
+const value = computed({
+  get() {
+    return fruits.value.length > items.length - 1
+  },
+  set(val) {
+    fruits.value = val ? items : []
+  },
+})
 </script>
 
 <template>
-  <div class="grid-row">
+  <div class="grid gap-y-3">
     <ACheckbox
-      :indeterminate="isIndeterminate"
-      :model-value="true"
+      disabled
+      indeterminate
     >
-      I have read the documentation
+      Vegetables
     </ACheckbox>
 
-    <ABtn
-      @click="isIndeterminate = !isIndeterminate"
+    <ACheckbox
+      v-model="value"
+      :indeterminate="!!fruits.length && fruits.length < items.length"
     >
-      Toggle indeterminate
-    </ABtn>
+      Fruits
+    </ACheckbox>
+
+    <ACheckbox
+      v-for="item of items"
+      :key="item"
+      v-model="fruits"
+      :value="item"
+      class="ml-7"
+    >
+      {{ item }}
+    </ACheckbox>
   </div>
 </template>
