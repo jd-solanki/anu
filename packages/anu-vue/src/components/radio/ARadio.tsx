@@ -1,3 +1,4 @@
+import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { color, disabled } from '@/composables/useProps'
 
@@ -8,7 +9,7 @@ export const ARadio = defineComponent({
       ...color,
       default: 'primary',
     },
-    modelValue: String,
+    modelValue: String as PropType<string | null>,
     label: String,
     icon: {
       type: String,
@@ -16,9 +17,12 @@ export const ARadio = defineComponent({
     },
     disabled,
   },
+  emits: ['update:modelValue'],
   setup(props, { slots, attrs, emit }) {
     const elementId = `a-checkbox-${attrs.id || attrs.value || Math.random().toString(36).slice(2, 7)}`
-    const isChecked = computed(() => props.modelValue === attrs.value)
+    const isChecked = computed(() => {
+      return props.modelValue === attrs.value
+    })
 
     return () => <label class={['inline-flex items-center cursor-pointer', props.disabled && 'a-radio-disabled pointer-events-none']} for={elementId}>
             {/* TODO: Try to avoid classes like next:checked:xxx so we can omit them in safelist */}

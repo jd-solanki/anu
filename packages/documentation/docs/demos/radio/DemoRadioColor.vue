@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 const favoriteFruit = ref(null)
-const colors = ['primary', 'success', 'info', 'warning', 'danger']
+const colors = ['primary', 'success', 'info', 'warning', 'danger'] as const
 </script>
 
 <template>
