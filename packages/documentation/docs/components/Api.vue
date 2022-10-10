@@ -6,7 +6,11 @@ const propsHeader = Object.keys(props.api.props[0])
 </script>
 
 <template>
-  <ACard title="Props">
+  <!-- ℹ️ We will update docs styles soon and add restore the default style of card in API section -->
+  <ACard
+    title="Props"
+    class="shadow-none border border-a-border"
+  >
     <div class="card-body">
       <div
         v-for="prop in props.api.props"
