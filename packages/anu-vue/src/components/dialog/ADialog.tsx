@@ -7,10 +7,18 @@ export const ADialog = defineComponent({
   name: 'ADialog',
   props: {
     ...useCardProps(),
+
+    /**
+     * Show/Hide menu base on v-model value
+     */
     modelValue: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Persistence of dialog when clicked outside of reference element
+     */
     persistent: {
       type: Boolean,
       default: false,

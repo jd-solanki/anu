@@ -12,16 +12,34 @@ export const AAlert = defineComponent({
         default: 'light',
       },
     }),
+
+    /**
+     * prepend icon
+     */
     icon: {
       type: String,
+      default: undefined,
     },
+
+    /**
+     * append (close) icon
+     */
     appendIcon: {
       type: String,
+      default: undefined,
     },
+
+    /**
+     * Make alert dismissible using this prop. Adds close icon as appended icon.
+     */
     dismissible: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Hide/Show alert based on v-model value
+     */
     modelValue: {
       type: Boolean,
       default: null,

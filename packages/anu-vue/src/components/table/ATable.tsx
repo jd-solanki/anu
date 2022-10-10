@@ -40,30 +40,57 @@ export interface ItemsFunction {
 }
 
 const tableProps = {
+  /**
+   * Table rows. Can be static array or function that returns resolves array. Visit [Server side table](#server-side-table) demo to understand how to use function as `rows` prop.
+   */
   rows: {
     type: [Array, Function] as PropType<Object[] | ItemsFunction>,
     required: true,
   },
+
+  /**
+   * By default table will infer the column definition from first row. You can also manually provide the column definition for more control.
+   */
   columns: {
     type: [Array] as PropType<PropColumn[]>,
     default: () => [],
   },
+
+  /**
+   * Enable filtering/searching in table
+   */
   search: {
     type: [Boolean, String],
     default: false,
   },
+
+  /**
+   * Text to render when no row is available
+   */
   noResultsText: {
     type: String,
     default: 'No matching results found!!',
   },
+
+  /**
+   * Enable/Disable sorting table
+   */
   isSortable: {
     type: Boolean,
     default: true,
   },
+
+  /**
+   * By default you can only sort single column. You can enable sorting multiple columns at the same time using this prop.
+   */
   multiSort: {
     type: Boolean,
     default: false,
   },
+
+  /**
+   * Set rows to show per page
+   */
   pageSize: {
     type: Number,
     default: 10,

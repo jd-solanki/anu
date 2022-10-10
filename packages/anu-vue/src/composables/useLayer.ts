@@ -7,12 +7,23 @@ import { contrast } from '@/utils/color'
 
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
+    /**
+     * Layer color
+     */
     color,
+
+    /**
+     * Layer variant
+     */
     variant: {
       type: String,
       validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
       default: 'text',
     },
+
+    /**
+     * Interaction states like hover & active
+     */
     states: {
       type: Boolean,
       default: false,

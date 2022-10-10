@@ -8,14 +8,26 @@ export const ADrawer = defineComponent({
   name: 'ADrawer',
   props: {
     ...useCardProps(),
+
+    /**
+     * Show/Hide drawer base on v-model value
+     */
     modelValue: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Persistence of drawer when clicked outside of reference element
+     */
     persistent: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Drawer anchor/position
+     */
     anchor: {
       type: String as PropType<'left' | 'right'>,
       default: 'left',

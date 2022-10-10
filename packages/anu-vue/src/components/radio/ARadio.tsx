@@ -4,16 +4,34 @@ import { color, disabled } from '@/composables/useProps'
 export const ARadio = defineComponent({
   name: 'ARadio',
   props: {
+    /**
+     * Radio color
+     */
+    // eslint-disable-next-line vue/require-prop-types
     color: {
       ...color,
       default: 'primary',
     },
-    modelValue: String,
-    label: String,
-    icon: {
+
+    /**
+     * Bind v-model value to radio
+     */
+    modelValue: {
       type: String,
-      default: 'i-bx-check',
+      default: undefined,
     },
+
+    /**
+     * Define label text
+     */
+    label: {
+      type: String,
+      default: undefined,
+    },
+
+    /**
+     * Disable radio
+     */
     disabled,
   },
   emits: ['update:modelValue'],

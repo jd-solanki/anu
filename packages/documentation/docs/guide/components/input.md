@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/AInput.json'
+</script>
+
 # Input
 
 <!-- 👉 Basic -->
@@ -125,3 +129,8 @@ Anu do not provide any validation mechanism at the moment as it assume it's bett
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

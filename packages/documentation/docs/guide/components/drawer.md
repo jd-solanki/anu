@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ADrawer.json'
+</script>
+
 # Drawer
 
 <!-- 👉 Basic -->
@@ -45,3 +49,8 @@ You can disable closing drawer on outside click via `persistent` prop.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>
