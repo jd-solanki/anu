@@ -35,9 +35,9 @@ export const ACheckbox = defineComponent({
       if (refCheckbox.value)
         refCheckbox.value.indeterminate = indeterminate
 
-      indeterminate
-        ? icon.value = 'i-bx-minus scale-full'
-        : icon.value = !prevIndeterminate || checked ? props.icon : 'i-bx-minus'
+      icon.value = indeterminate
+        ? 'i-bx-minus scale-full'
+        : !prevIndeterminate || checked ? props.icon : 'i-bx-minus'
     }, { immediate: true })
 
     return () => <label class={['inline-flex items-center cursor-pointer', props.disabled && 'a-checkbox-disabled pointer-events-none']} for={elementId}>
