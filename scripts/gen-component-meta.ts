@@ -14,6 +14,7 @@ const md = new MarkdownIt()
   vue-component-meta tests: https://github.com/johnsoncodehk/volar/blob/master/vue-language-tools/vue-component-meta/tests/index.spec.ts
   discord thread about improving vue-component-meta: https://discord.com/channels/793943652350427136/1027819645677350912
   GH issue for improving vue-component-meta based on runtime/dynamic props: https://github.com/johnsoncodehk/volar/issues/1854
+  Discord chat: https://discord.com/channels/793943652350427136/1027819645677350912
 */
 
 /*
