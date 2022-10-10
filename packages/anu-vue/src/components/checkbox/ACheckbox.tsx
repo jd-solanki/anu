@@ -28,10 +28,17 @@ export const ACheckbox = defineComponent({
     // Template refs
     const refCheckbox = ref()
 
-    // Set indeterminate state to input
-    watch(() => props.indeterminate, newVal => {
-      refCheckbox.value.indeterminate = newVal
-    })
+    const icon = ref('')
+
+    watch([data, () => props.indeterminate], ([checked, indeterminate], [_, prevIndeterminate]) => {
+      // Set indeterminate state of HTMLInputElement
+      if (refCheckbox.value)
+        refCheckbox.value.indeterminate = indeterminate
+
+      indeterminate
+        ? icon.value = 'i-bx-minus scale-full'
+        : icon.value = !prevIndeterminate || checked ? props.icon : 'i-bx-minus'
+    }, { immediate: true })
 
     return () => <label class={['inline-flex items-center cursor-pointer', props.disabled && 'a-checkbox-disabled pointer-events-none']} for={elementId}>
             {/* TODO: Once we support custom values and value related customization try to omit classes like next:checked:xxx so we can omit them in safelist */}
@@ -44,7 +51,7 @@ export const ACheckbox = defineComponent({
                 class={['hidden children:next:checked:scale-full', `next:checked:bg-${props.color} next:checked:border-${props.color}`]}
             />
             <div class={['a-checkbox-box flex items-center justify-center shrink-0', props.indeterminate && `bg-${props.color} border-${props.color}`]}>
-                <i class={[props.indeterminate ? 'scale-full i-bx-minus' : props.icon, 'a-checkbox-icon scale-0 text-white']} />
+                <i class={[icon.value, 'a-checkbox-icon scale-0 text-white']} />
             </div>
             {slots.default ? slots.default() : props.label}
         </label>
