@@ -65,7 +65,7 @@ export const ATypography = defineComponent({
 
     // TODO: Remove class block and use commented tag defaults instead of span once VitePress allow style isolation
     return () => <div class="uno-layer-base-text-base gap-4 flex flex-col">
-            {slots.title || props.title || slots.subtitle || props.subtitle ? typographyHeader : null}
+            {slots.title || props.title || slots.subtitle || props.subtitle || slots.headerRight ? typographyHeader : null}
             {
                 slots.default || props.text
                   ? <props.textTag class={['em:uno-layer-base-text-base uno-layer-base-text-[hsla(var(--a-typography-text-color),var(--a-typography-text-opacity))]', text.value.textClasses]}>{slots.default ? slots.default() : text.value.textContent}</props.textTag>

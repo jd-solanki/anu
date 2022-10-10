@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-const favoriteFruit = ref(null)
+const favoriteFruit = ref()
 const colors = ['primary', 'success', 'info', 'warning', 'danger']
 </script>
 

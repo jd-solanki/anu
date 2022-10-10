@@ -39,6 +39,11 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     // 👉 Alert
     'a-alert': 'p-4 font-medium rounded-lg gap-x-2',
 
+    // 👉 Badge
+    'a-badge': 'px-1 rounded-full h-5 min-w-[1.25rem] flex justify-center items-center text-white text-xs font-medium z-[1] whitespace-nowrap',
+    'a-badge-dot': 'min-w-[0.5rem] h-2',
+    'a-badge-bordered': 'outline outline-2 outline-[hsl(var(--a-layer))]',
+
     // 👉 Button
     'a-btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em]',
     'a-btn-icon-only': 'font-medium rounded-lg h-[2.5em] w-[2.5em] i:em:text-lg',

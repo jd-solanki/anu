@@ -115,7 +115,7 @@ export const ASelect = defineComponent({
         ? (option as ObjectOption).value === (!props.emitObject ? props.modelValue : (props.modelValue as ObjectOption).value)
         : option === props.modelValue)
 
-      return option ? isObjectOption(option) ? (option as ObjectOption).label : option : ''
+      return option ? isObjectOption(option) ? (option as ObjectOption).label : option : (props.modelValue as ObjectOption | undefined)?.label || ''
     })
 
     return () => <>
