@@ -33,18 +33,34 @@ export const AList = defineComponent({
         default: true,
       },
     }),
+
+    /**
+     * Items to render in list
+     */
     items: {
       type: Array as PropType<ListItem[]>,
-      required: true,
+      default: () => [],
     },
+
+    /**
+     * Enable selecting multiple list items
+     */
     multi: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Bind v-model value to selected list item
+     */
     modelValue: {
       type: [String, Number, Object],
       default: null,
     },
+
+    /**
+     * By default when avatar props are used avatar is added at start. Use `avatarAppend` to add avatar at end.
+     */
     avatarAppend: {
       type: Boolean,
       default: false,

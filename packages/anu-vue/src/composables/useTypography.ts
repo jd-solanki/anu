@@ -2,21 +2,45 @@ import type { ComponentObjectPropsOptions, PropType, Slots, ToRefs } from 'vue'
 
 export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
+
+    /**
+     * Typography title
+     */
     title: [String, Array] as PropType<string | string[]>,
+
+    /**
+     * Typography subtitle
+     */
     subtitle: [String, Array] as PropType<string | string[]>,
+
+    /**
+     * Typography text content
+     */
     text: [String, Array] as PropType<string | string[]>,
+
+    /**
+     * Tag to use for title of the card
+     */
     titleTag: {
       type: String,
       default: 'span',
 
     // default: 'h4',
     },
+
+    /**
+     * Tag to use for subtitle of the card
+     */
     subtitleTag: {
       type: String,
       default: 'span',
 
     // default: 'p',
     },
+
+    /**
+     * Tag to use for text rendered via `text` prop
+     */
     textTag: {
       type: String,
       default: 'span',

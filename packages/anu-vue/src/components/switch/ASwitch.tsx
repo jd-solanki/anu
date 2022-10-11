@@ -5,28 +5,50 @@ import { color as colorProps, disabled } from '@/composables/useProps'
 export const ASwitch = defineComponent({
   name: 'ASwitch',
   props: {
+    /**
+     * Switch color
+     */
+    // eslint-disable-next-line vue/require-prop-types
     color: {
       ...colorProps,
       default: 'primary',
     },
+
+    /**
+     * Define label text
+     */
     label: {
       type: String,
       default: undefined,
     },
+
+    /**
+     * Bind v-model value
+     */
     modelValue: {
       type: [Boolean, Array],
       default: false,
     },
+
+    /**
+     * Icon to render when switch is on
+     */
     onIcon: {
       type: String,
-      required: false,
       default: undefined,
     },
+
+    /**
+     * Icon to render when switch is off
+     */
     offIcon: {
       type: String,
-      required: false,
       default: undefined,
     },
+
+    /**
+     * Disable switch
+     */
     disabled,
   },
   emits: ['update:modelValue'],

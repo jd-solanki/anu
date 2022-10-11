@@ -1,9 +1,7 @@
-import MarkdownIt from 'markdown-it'
+import { fileURLToPath } from 'url'
 import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
-
-md = new MarkdownIt()
 
 const nav = []
 
@@ -111,5 +109,10 @@ export default defineConfig({
         configFile: '../../unocss.config.ts',
       }),
     ],
+    resolve: {
+      alias: {
+        '@anu-vue': fileURLToPath(new URL('../../../anu-vue/', import.meta.url)),
+      },
+    },
   },
 })

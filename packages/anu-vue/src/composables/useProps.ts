@@ -7,14 +7,14 @@ export type ColorProp = ThemeColor | undefined
 export const color = {
   type: String as PropType<ColorProp>,
   default: undefined,
-}
+} as const
 
 export const disabled = {
   type: Boolean,
   default: false,
-}
+} as const
 
 export const readonly = {
   type: Boolean,
   default: false,
-}
+} as const

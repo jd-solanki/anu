@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/AList.json'
+</script>
+
 # List
 
 <!-- 👉 Basic -->
@@ -76,3 +80,8 @@ Use `a-list-items-pill` to create pill shaped list items. It just modifies some 
 ## CSS Variables
 
 `AList` comes with various CSS variables to customize the UI according to your need. You can check them in this [file](https://github.com/jd-solanki/anu/blob/main/packages/anu-vue/src/presets/theme-default/scss/index.scss).
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

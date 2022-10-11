@@ -4,7 +4,14 @@ export { ABaseInput } from './ABaseInput'
 
 export const useBaseInputProp = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
+    /**
+     * Disable component
+     */
     disabled,
+
+    /**
+     * Make component read only
+     */
     readonly,
   }
 

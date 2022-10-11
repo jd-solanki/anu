@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/AAvatar.json'
+</script>
+
 # Avatar
 
 <!-- 👉 Default -->
@@ -55,3 +59,8 @@ You can adjust avatar roundness using border-radius utilities
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>
