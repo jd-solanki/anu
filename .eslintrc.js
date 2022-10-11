@@ -66,7 +66,6 @@ module.exports = {
     ],
 
     '@typescript-eslint/consistent-type-imports': 'error',
-    '@typescript-eslint/no-redeclare': 'warn',
   },
   settings: {
     'import/parsers': {
