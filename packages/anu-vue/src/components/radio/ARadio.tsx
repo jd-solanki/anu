@@ -36,7 +36,7 @@ export const ARadio = defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { slots, attrs, emit }) {
-    const elementId = `a-checkbox-${attrs.id || attrs.value || Math.random().toString(36).slice(2, 7)}`
+    const elementId = `a-checkbox-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`
     const isChecked = computed(() => props.modelValue === attrs.value)
 
     return () => <label class={['inline-flex items-center cursor-pointer', props.disabled && 'a-radio-disabled pointer-events-none']} for={elementId}>
