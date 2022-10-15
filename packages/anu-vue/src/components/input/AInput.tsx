@@ -1,3 +1,4 @@
+import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
@@ -10,7 +11,7 @@ export const AInput = defineComponent({
      * Bind v-model value
      */
     modelValue: {
-      type: String,
+      type: [String, Number] as PropType<string | number>,
       default: undefined,
     },
   },
