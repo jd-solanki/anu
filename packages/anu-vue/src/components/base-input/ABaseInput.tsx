@@ -21,7 +21,7 @@ export const ABaseInput = defineComponent({
   },
   setup(props, { attrs, slots, expose }) {
     const iconTransition = 'transition duration-150 ease -in'
-    const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}` : undefined
+    const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}-${Math.random().toString(36).slice(2, 7)}` : undefined
 
     const refRoot = ref()
     const refInputContainer = ref()
