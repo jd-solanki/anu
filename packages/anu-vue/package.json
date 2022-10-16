@@ -38,7 +38,7 @@
   "scripts": {
     "dev": "nr gen-comp-meta && vite build --watch",
     "gen-comp-meta": "na tsx ../../scripts/gen-component-meta.ts",
-    "build": "vite build && vue-tsc --emitDeclarationOnly --declaration",
+    "build": "nr gen-comp-meta && vite build && vue-tsc --emitDeclarationOnly --declaration",
     "preview": "vite preview"
   },
   "dependencies": {
