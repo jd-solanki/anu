@@ -1,5 +1,5 @@
 import { useVModel } from '@vueuse/core'
-import { defineComponent, ref, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import { color, disabled } from '@/composables/useProps'
 
 export const ACheckbox = defineComponent({
