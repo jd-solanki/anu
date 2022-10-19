@@ -47,7 +47,9 @@ export const ATypography = defineComponent({
       }
     })
 
-    const typographyHeader = <div class="flex justify-between">
+    // TODO: Remove class block and use commented tag defaults instead of span once VitePress allow style isolation
+    return () => {
+      const typographyHeader = <div class="flex justify-between">
         <div class="flex-grow">
             {
                 slots.title || props.title
@@ -63,8 +65,7 @@ export const ATypography = defineComponent({
         {slots.headerRight?.()}
     </div>
 
-    // TODO: Remove class block and use commented tag defaults instead of span once VitePress allow style isolation
-    return () => <div class="uno-layer-base-text-base gap-4 flex flex-col">
+      return <div class="uno-layer-base-text-base gap-4 flex flex-col">
             {slots.title || props.title || slots.subtitle || props.subtitle || slots.headerRight ? typographyHeader : null}
             {
                 slots.default || props.text
@@ -72,6 +73,7 @@ export const ATypography = defineComponent({
                   : null
             }
         </div>
+    }
   },
 })
 
