@@ -7,45 +7,26 @@ export const ATypography = defineComponent({
     ...useTypographyProps(),
   },
   setup(props, { slots }) {
-    const title = computed(() => {
-      const [titleContent, titleClasses] = props.title === undefined
+    const typographyItems = ['title', 'subtitle', 'text'] as const
+
+    const computeContentAndClasses = (item: typeof typographyItems[number]) => computed(() => {
+      const [content, classes] = props[item] === undefined
         ? []
-        : typeof props.title === 'string'
-          ? [props.title]
-          : props.title
+        : typeof props[item] === 'string'
+          ? [props[item]]
+          : props[item] as [string, string]
 
       return {
-        titleContent,
-        titleClasses,
+        content,
+        classes,
       }
     })
 
-    // const [subtitleContent, subtitleClasses] = computed(() => props.subtitle === undefined
-    const subtitle = computed(() => {
-      const [subtitleContent, subtitleClasses] = props.subtitle === undefined
-        ? []
-        : typeof props.subtitle === 'string'
-          ? [props.subtitle]
-          : props.subtitle
+    const data = typographyItems.reduce((acc, item) => {
+      acc[item] = computeContentAndClasses(item)
 
-      return {
-        subtitleContent,
-        subtitleClasses,
-      }
-    })
-
-    const text = computed(() => {
-      const [textContent, textClasses] = props.text === undefined
-        ? []
-        : typeof props.text === 'string'
-          ? [props.text]
-          : props.text
-
-      return {
-        textContent,
-        textClasses,
-      }
-    })
+      return acc
+    }, {} as Record<typeof typographyItems[number], ReturnType<typeof computeContentAndClasses>>)
 
     // TODO: Remove class block and use commented tag defaults instead of span once VitePress allow style isolation
     return () => {
@@ -53,12 +34,12 @@ export const ATypography = defineComponent({
         <div class="flex-grow">
             {
                 slots.title || props.title
-                  ? <props.titleTag class={['font-medium block em:uno-layer-base-text-lg uno-layer-base-text-[hsla(var(--a-typography-title-color),var(--a-typography-title-opacity))]', title.value.titleClasses]}>{slots.title ? slots.title() : title.value.titleContent}</props.titleTag>
+                  ? <props.titleTag class={['font-medium block em:uno-layer-base-text-lg uno-layer-base-text-[hsla(var(--a-typography-title-color),var(--a-typography-title-opacity))]', data.title.value.classes]}>{slots.title ? slots.title() : data.title.value.content}</props.titleTag>
                   : null
             }
             {
                 slots.subtitle || props.subtitle
-                  ? <props.subtitleTag class={['block em:uno-layer-base-text-sm uno-layer-base-text-[hsla(var(--a-typography-subtitle-color),var(--a-typography-subtitle-opacity))]', subtitle.value.subtitleClasses]}>{slots.subtitle ? slots.subtitle() : subtitle.value.subtitleContent}</props.subtitleTag>
+                  ? <props.subtitleTag class={['block em:uno-layer-base-text-sm uno-layer-base-text-[hsla(var(--a-typography-subtitle-color),var(--a-typography-subtitle-opacity))]', data.subtitle.value.classes]}>{slots.subtitle ? slots.subtitle() : data.subtitle.value.content}</props.subtitleTag>
                   : null
             }
         </div>
@@ -69,7 +50,7 @@ export const ATypography = defineComponent({
             {slots.title || props.title || slots.subtitle || props.subtitle || slots.headerRight ? typographyHeader : null}
             {
                 slots.default || props.text
-                  ? <props.textTag class={['em:uno-layer-base-text-base uno-layer-base-text-[hsla(var(--a-typography-text-color),var(--a-typography-text-opacity))]', text.value.textClasses]}>{slots.default ? slots.default() : text.value.textContent}</props.textTag>
+                  ? <props.textTag class={['em:uno-layer-base-text-base uno-layer-base-text-[hsla(var(--a-typography-text-color),var(--a-typography-text-opacity))]', data.text.value.classes]}>{slots.default ? slots.default() : data.text.value.content}</props.textTag>
                   : null
             }
         </div>
