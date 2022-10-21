@@ -1,4 +1,7 @@
-import { computed, defineComponent } from 'vue'
+import type { Ref } from 'vue'
+import { defineComponent, toRef } from 'vue'
+import type { ConfigurableValue } from '@/composables/useConfigurable'
+import { useConfigurable } from '@/composables/useConfigurable'
 import { useTypographyProps } from '@/composables/useTypography'
 
 export const ATypography = defineComponent({
@@ -9,24 +12,11 @@ export const ATypography = defineComponent({
   setup(props, { slots }) {
     const typographyItems = ['title', 'subtitle', 'text'] as const
 
-    const computeContentAndClasses = (item: typeof typographyItems[number]) => computed(() => {
-      const [content, classes] = props[item] === undefined
-        ? []
-        : typeof props[item] === 'string'
-          ? [props[item]]
-          : props[item] as [string, string]
-
-      return {
-        content,
-        classes,
-      }
-    })
-
     const data = typographyItems.reduce((acc, item) => {
-      acc[item] = computeContentAndClasses(item)
+      acc[item] = useConfigurable(toRef(props, item) as Ref<ConfigurableValue>)
 
       return acc
-    }, {} as Record<typeof typographyItems[number], ReturnType<typeof computeContentAndClasses>>)
+    }, {} as Record<typeof typographyItems[number], ReturnType<typeof useConfigurable>>)
 
     // TODO: Remove class block and use commented tag defaults instead of span once VitePress allow style isolation
     return () => {
