@@ -6,12 +6,14 @@ import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 
 import { AAvatar, isAvatarUsed } from '@/components/avatar'
 import type { AvatarOnlyProps } from '@/components/avatar/props'
+import type { ConfigurableValue } from '@/composables/useConfigurable'
+import { useConfigurable } from '@/composables/useConfigurable'
 
 // TODO: Reuse the existing props and its types. Maybe if we create AListItem component then we can reuse prop types.
 interface ListItem extends AvatarOnlyProps {
-  title: string | string[]
-  subtitle?: string | string[]
-  text: string | string[]
+  title: ConfigurableValue
+  subtitle?: ConfigurableValue
+  text: ConfigurableValue
   src?: string
   value?: any
   disable?: boolean
@@ -107,19 +109,11 @@ export const AList = defineComponent({
     // 👉 List items
     const listItems = computed(() => props.items.map((listItem, itemIndex) => {
       // ℹ️ Reduce the size of title to 1rem. We did the same in ACard as well.
-      let titleProp: string[] | undefined
-      if (listItem.title) {
-        // if title property is string
-        if (typeof listItem.title === 'string') {
-          titleProp = [listItem.title, 'text-base']
-        }
-
-        // title property is array
-        else {
-          const [textContent, textClasses] = listItem.title
-          titleProp = [textContent, `${textClasses} uno-layer-base-text-sm`]
-        }
-      }
+      const _titleProp = useConfigurable(listItem.title)
+      if (Array.isArray(_titleProp.value.classes))
+        _titleProp.value.classes = [..._titleProp.value.classes, 'uno-layer-base-text-base']
+      else
+        _titleProp.value.classes += ' uno-layer-base-text-base'
 
       const isActive = computed(() => options.value[itemIndex].isSelected)
 
@@ -149,7 +143,7 @@ export const AList = defineComponent({
                 ? avatarRenderer(listItem.content, listItem.src, listItem.alt, listItem.icon, listItem.$avatar)
                 : null
           }
-          <ATypography class="flex-grow" title={titleProp} subtitle={listItem.subtitle} text={listItem.text}></ATypography>
+          <ATypography class="flex-grow" title={Object.values(_titleProp.value) as ConfigurableValue} subtitle={listItem.subtitle} text={listItem.text}></ATypography>
           {
             slots.append
               ? slots.append({ listItem, itemIndex })
