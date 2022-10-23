@@ -1,4 +1,5 @@
 import type { ComponentObjectPropsOptions, PropType, Slots, ToRefs } from 'vue'
+import type { ConfigurableValue } from '@/composables/useConfigurable'
 
 export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
@@ -6,17 +7,17 @@ export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsO
     /**
      * Typography title
      */
-    title: [String, Array] as PropType<string | string[]>,
+    title: [String, Array] as PropType<ConfigurableValue>,
 
     /**
      * Typography subtitle
      */
-    subtitle: [String, Array] as PropType<string | string[]>,
+    subtitle: [String, Array] as PropType<ConfigurableValue>,
 
     /**
      * Typography text content
      */
-    text: [String, Array] as PropType<string | string[]>,
+    text: [String, Array] as PropType<ConfigurableValue>,
 
     /**
      * Tag to use for title of the card
@@ -54,7 +55,7 @@ export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsO
   return props
 }
 
-// Thanks: https://masteringjs.io/tutorials/fundamentals/filter-object
+// Thanks: <https://masteringjs.io/tutorials/fundamentals/filter-object>
 // TODO(TS): improve typing so that it only returns the typography types. Omit using `Partial`
 export const extractTypographyProp = <T>(props: ToRefs<T>): Partial<ToRefs<T>> => {
   return Object.fromEntries(
