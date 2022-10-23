@@ -27,6 +27,7 @@ export const ABadge = defineComponent({
     color: {
       ...color,
       default: 'primary',
+      type: String as PropType<string | null>,
     },
 
     /**
