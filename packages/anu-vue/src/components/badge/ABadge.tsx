@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent } from 'vue'
+import { Transition, computed, defineComponent } from 'vue'
 import { color } from '@/composables/useProps'
 import { isNumeric } from '@/utils/helpers'
 
@@ -13,6 +13,10 @@ const defaultOverlapOffset = 12
 export const ABadge = defineComponent({
   name: 'ABadge',
   props: {
+    modelValue: {
+      type: Boolean,
+      default: true,
+    },
     color: {
       ...color,
       default: 'primary',
@@ -92,9 +96,12 @@ export const ABadge = defineComponent({
 
     return () => <div class={['a-badge-wrapper relative']}>
       {slots.default?.()}
-      <div class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]} style={positionStyles.value}>
-        {badgeSlotContent.value}
-      </div>
+      <Transition name="scale">
+        <div v-show={props.modelValue} class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]} style={positionStyles.value}>
+          {badgeSlotContent.value}
+        </div>
+      </Transition>
+
     </div>
   },
 })
