@@ -26,6 +26,18 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
       \
       hover:before:opacity-${op || 15}`,
   ],
+
+  // ℹ️ Drawer styles based on anchor
+  [
+    /^a-drawer-anchor-(left|right|top|bottom)$/,
+    ([, dir]) => {
+      const classes = dir === 'left' || dir === 'right'
+        ? 'uno-layer-base-w-[300px] max-w-[calc(100vw-2rem)]'
+        : 'uno-layer-base-h-[300px] max-h-[calc(100vh-2rem)]'
+
+      return `children-[.a-drawer]-(${classes})`
+    },
+  ],
   {
   // 👉 Grid
     'grid-row': 'grid gap-6 place-items-start w-full',
@@ -85,7 +97,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-drawer-wrapper': 'z-[52]',
 
     // ℹ️ We added `!rounded-none` because ACard have rounded utility that override the `rounded-none`
-    'a-drawer': 'shadow-2xl uno-layer-base-w-[300px] z-[53] !rounded-none max-w-[calc(100vw-2rem)]',
+    'a-drawer': 'shadow-2xl z-[53] !rounded-none',
 
     // 👉 Input
     'a-input-type-file': 'file:rounded-lg file:border-none file:mr-4 file:px-4 file:py-3 file:text-gray-500 file:rounded-r-none file:bg-[hsla(var(--a-base-color),0.05)] !px-0',
@@ -163,6 +175,7 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       ...[...colors, 'layer-text', 'white'].map(c => `typography-title-${c}`),
       ...[...colors, 'layer-text', 'white'].map(c => `typography-subtitle-${c}`),
       ...[...colors, 'layer-text', 'white'].map(c => `typography-text-${c}`),
+      ...['top', 'right', 'bottom', 'left'].map(dir => `a-drawer-anchor-${dir}`),
     ],
     rules: [
       // Typography
