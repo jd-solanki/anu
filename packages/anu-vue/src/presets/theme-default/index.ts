@@ -57,8 +57,8 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-badge-bordered': 'outline outline-2 outline-[hsl(var(--a-layer))]',
 
     // 👉 Button
-    'a-btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em]',
-    'a-btn-icon-only': 'font-medium rounded-lg h-[2.5em] w-[2.5em] i:em:text-lg',
+    'a-btn': 'px-[1em] font-medium rounded-[0.5em] gap-x-[0.5em] h-[2.5em] focus:ring',
+    'a-btn-icon-only': 'font-medium rounded-lg h-[2.5em] w-[2.5em] i:em:text-lg focus:ring',
 
     // 👉 Base Input
     'a-base-input-root': 'min-w-[181px] gap-y-1',

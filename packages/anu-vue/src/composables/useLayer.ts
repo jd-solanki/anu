@@ -68,9 +68,9 @@ export const useLayer = () => {
       }
     }
 
-    // If it's theme color => Use color's CSS var to `--a-layer-color`
+    // If it's theme color => Use color's CSS var to `--a-layer-color` and to ring color '--un-ring-color'
     else {
-      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
+      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` }, { '--un-ring-color': `hsla(var(--a-${propColor}),var(--a-ring-opacity))` })
 
       // ℹ️ We need to set un-bg-opacity just like UnoCSS class
       classes.push('[--un-bg-opacity:1]')
