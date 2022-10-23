@@ -13,42 +13,81 @@ const defaultOverlapOffset = 12
 export const ABadge = defineComponent({
   name: 'ABadge',
   props: {
+    /**
+     * Show/Hide badge based on v-model value
+     */
     modelValue: {
       type: Boolean,
       default: true,
     },
+
+    /**
+     * Sets badge color
+     */
     color: {
       ...color,
       default: 'primary',
     },
+
+    /**
+     * Converts badge to a dot
+     */
     dot: {
       type: Boolean,
       default: false,
     },
+
+    /**
+    * Adds badge border
+    */
     bordered: {
       type: Boolean,
       default: true,
     },
+
+    /**
+     * Sets the highest possible value
+     */
     max: {
       type: Number,
       default: 99,
     },
+
+    /**
+     * Use to pass numeric values
+     */
     content: {
       type: [Number, String],
       default: undefined,
     },
+
+    /**
+     * Sets the badge position
+     */
     anchor: {
       type: String as PropType<Anchor>,
       default: 'top right',
     },
+
+    /**
+     * Adjusts position of badge
+     */
     overlap: {
       type: Boolean,
       default: true,
     },
+
+    /**
+     * Sets offset on x-axis
+     */
     offsetX: {
       type: [Number, String],
       default: defaultOffset,
     },
+
+    /**
+     * Sets offset on y-axis
+     */
     offsetY: {
       type: [Number, String],
       default: defaultOffset,
