@@ -26,6 +26,18 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
       \
       hover:before:opacity-${op || 15}`,
   ],
+
+  // ℹ️ Drawer styles based on anchor
+  [
+    /^a-drawer-anchor-(left|right|top|bottom)$/,
+    ([, dir]) => {
+      const classes = dir === 'left' || dir === 'right'
+        ? 'uno-layer-base-w-[300px] max-w-[calc(100vw-2rem)]'
+        : 'uno-layer-base-h-[300px] max-h-[calc(100vh-2rem)]'
+
+      return `children-[.a-drawer]-(${classes})`
+    },
+  ],
   {
   // 👉 Grid
     'grid-row': 'grid gap-6 place-items-start w-full',
@@ -163,6 +175,7 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       ...[...colors, 'layer-text', 'white'].map(c => `typography-title-${c}`),
       ...[...colors, 'layer-text', 'white'].map(c => `typography-subtitle-${c}`),
       ...[...colors, 'layer-text', 'white'].map(c => `typography-text-${c}`),
+      ...['top', 'right', 'bottom', 'left'].map(dir => `a-drawer-anchor-${dir}`),
     ],
     rules: [
       // Typography
