@@ -129,6 +129,17 @@ You can adjust button roundness using border-radius utilities.
 
 ::::
 
+<!-- 👉 Loading -->
+::::card Loading
+
+You can set loading state to button using `loading` props.
+
+:::code DemoButtonLoading
+<<< @/demos/button/DemoButtonLoading.vue{11}
+:::
+
+::::
+
 <!-- 👉 API -->
 ## API
 
