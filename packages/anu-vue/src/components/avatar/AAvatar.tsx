@@ -35,7 +35,7 @@ export const AAvatar = defineComponent({
       return props.content
     })
 
-    return () => <div style={{ '--a-spacing': spacing.value / 100 }} class={['a-avatar overflow-hidden inline-flex items-center justify-center', ...classes.value]} style={[...styles.value]}>
+    return () => <div style={[...styles.value, { '--a-spacing': spacing.value / 100 }]} class={['a-avatar overflow-hidden inline-flex items-center justify-center', ...classes.value]}>
       {
         slots.default
           ? slots.default()
