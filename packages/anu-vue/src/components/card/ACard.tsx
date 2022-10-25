@@ -48,7 +48,7 @@ export const ACard = defineComponent({
       }
     }
 
-    return () => <div style={{ '--a-spacing': spacing.value / 100 }} class={['a-card overflow-hidden uno-layer-base-bg-[hsl(var(--a-layer))]', ...classes.value]} style={[...styles.value]}>
+    return () => <div style={[...styles.value, { '--a-spacing': spacing.value / 100 }]} class={['a-card overflow-hidden uno-layer-base-bg-[hsl(var(--a-layer))]', ...classes.value]}>
       {/* 👉 Image */}
       {props.img ? <img src={props.img} alt="card-img"></img> : null}
 
