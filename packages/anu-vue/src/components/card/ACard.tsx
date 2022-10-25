@@ -1,11 +1,13 @@
 import { defineComponent, reactive, toRef, toRefs } from 'vue'
 import { ATypography } from '../typography'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { spacingProp, useSpacing } from '@/composables/useSpacing'
 import { extractTypographyProp, isTypographyUsed, useTypographyProps } from '@/composables/useTypography'
 
 export const ACard = defineComponent({
   name: 'ACard',
   props: {
+    spacing: spacingProp,
     ...useLayerProps({
       variant: {
         default: 'text',
@@ -22,6 +24,7 @@ export const ACard = defineComponent({
     },
   },
   setup(props, { slots }) {
+    const spacing = useSpacing(toRef(props, 'spacing'))
     const { getLayerClasses } = useLayer()
     const { styles, classes } = getLayerClasses(
       toRef(props, 'color'),
@@ -45,7 +48,7 @@ export const ACard = defineComponent({
       }
     }
 
-    return () => <div class={['a-card overflow-hidden uno-layer-base-text-sm uno-layer-base-bg-[hsl(var(--a-layer))]', ...classes.value]} style={[...styles.value]}>
+    return () => <div style={{ '--a-spacing': spacing.value / 100 }} class={['a-card overflow-hidden uno-layer-base-bg-[hsl(var(--a-layer))]', ...classes.value]} style={[...styles.value]}>
       {/* 👉 Image */}
       {props.img ? <img src={props.img} alt="card-img"></img> : null}
 

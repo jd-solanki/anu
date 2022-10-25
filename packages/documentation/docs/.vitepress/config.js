@@ -33,6 +33,12 @@ export default defineConfig({
           ],
         },
         {
+          text: 'Features',
+          items: [
+            { text: 'Sizing', link: '/guide/features/sizing' },
+          ],
+        },
+        {
           text: 'Components',
           items: [
             { text: 'Alert', link: '/guide/components/alert' },
