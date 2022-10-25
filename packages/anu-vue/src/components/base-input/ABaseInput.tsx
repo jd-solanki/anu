@@ -1,12 +1,14 @@
 import type { PropType } from 'vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, toRef } from 'vue'
 import { disabled, readonly } from '@/composables/useProps'
+import { spacingProp, useSpacing } from '@/composables/useSpacing'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
 export const ABaseInput = defineComponent({
   name: 'ABaseInput',
   inheritAttrs: false,
   props: {
+    spacing: spacingProp,
     inputWrapperClasses: [Array, String, Object] as PropType<string | string[] | object>,
     inputContainerAttrs: Object,
     hint: String,
@@ -20,6 +22,7 @@ export const ABaseInput = defineComponent({
     readonly,
   },
   setup(props, { attrs, slots, expose }) {
+    const spacing = useSpacing(toRef(props, 'spacing'))
     const iconTransition = 'transition duration-150 ease -in'
     const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}-${Math.random().toString(36).slice(2, 7)}` : undefined
 
@@ -32,7 +35,7 @@ export const ABaseInput = defineComponent({
 
     // TODO(Enhancement): We might need to remove absolute added to html input element to retain width instead of providing min-w to below wrapper
     // TODO: We need to improve default slot implementation so that we can provide selected slot to selection component
-    return () => <div class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', attrs.class ?? [], props.disabled && 'a-base-input-disabled ', (props.disabled || props.readonly) && 'pointer-events-none', !(props.disabled || props.readonly) && 'a-base-input-interactive']} ref={refRoot}>
+    return () => <div style={{ '--a-spacing': spacing.value / 100 }} class={['a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0', attrs.class ?? [], props.disabled && 'a-base-input-disabled ', (props.disabled || props.readonly) && 'pointer-events-none', !(props.disabled || props.readonly) && 'a-base-input-interactive']} ref={refRoot}>
             {/* 👉 Label */}
             {
                 slots.label
