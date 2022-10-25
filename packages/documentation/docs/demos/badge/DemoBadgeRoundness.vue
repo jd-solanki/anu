@@ -1,0 +1,39 @@
+<template>
+  <div class="flex flex-wrap gap-4 mt-8">
+    <ABadge
+      class="rounded-none"
+      content="9"
+    >
+      <AAvatar
+        icon="i-bx-home"
+        class="rounded-none"
+      />
+    </ABadge>
+    <ABadge
+      class="rounded-md"
+      content="9"
+    >
+      <AAvatar
+        icon="i-bx-home"
+        class="rounded-none"
+      />
+    </ABadge>
+    <ABadge
+      class="rounded-lg"
+      content="9"
+    >
+      <AAvatar
+        icon="i-bx-home"
+        class="rounded-none"
+      />
+    </ABadge>
+    <ABadge
+      content="9"
+    >
+      <AAvatar
+        icon="i-bx-home"
+        class="rounded-none"
+      />
+    </ABadge>
+  </div>
+</template>
