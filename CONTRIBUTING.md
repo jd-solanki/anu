@@ -93,6 +93,8 @@ For creating new component,
 
 Once you have this setup, create docs page for this component in `packages/documentation/docs/guide/components`
 
+Add the newly created docs page to the sidebar of the docs in [`packages/documentation/docs/.vitepress/config.ts`](https://github.com/jd-solanki/anu/blob/337eeb676d52646ffeedc57daa540d7e7168a17a/packages/documentation/docs/.vitepress/config.js#L37)
+
 For demo you need to create a new demo file in `packages/documentation/docs/demos/<component-name>`. **Make sure to follow the naming convention** (`Demo<component-name><demo-name>`) for creating demo so that it doesn't conflict with other demo file. This is because these files will be globally registered as components in VitePress so we can use them in markdown easily.
 
 Now, we have component, its documentation page and single demo.
