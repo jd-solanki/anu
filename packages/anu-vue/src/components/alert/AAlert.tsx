@@ -73,7 +73,7 @@ export const AAlert = defineComponent({
     }
 
     // TODO: Omit writing `props.modelValue ??` multiple times
-    return () => <div style={{ '--a-spacing': spacing.value / 100 }} class={['a-alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...classes.value]} style={[...styles.value]}>
+    return () => <div style={[...styles.value, { '--a-spacing': spacing.value / 100 }]} class={['a-alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...classes.value]}>
       {/* ℹ️ We need div as wrapper with span having `vertical-align: text-top` to center the icon with the text */}
       {props.icon ? <div><span class={props.icon}></span></div> : null}
       <div class="flex-grow">{slots.default?.()}</div>

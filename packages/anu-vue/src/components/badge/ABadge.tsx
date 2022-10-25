@@ -96,7 +96,7 @@ export const ABadge = defineComponent({
 
     return () => <div class={['a-badge-wrapper relative']}>
       {slots.default?.()}
-      <div {...attrs} style={{ '--a-spacing': spacing.value / 100 }} class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]} style={positionStyles.value}>
+      <div {...attrs} style={[positionStyles.value, { '--a-spacing': spacing.value / 100 }]} class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]}>
         {badgeSlotContent.value}
       </div>
     </div>
