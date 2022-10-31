@@ -65,3 +65,14 @@ You can use `halving` prop to allow half rating.
 :::
 
 ::::
+
+<!-- 👉 Hover -->
+::::card Hover
+
+You can use `hover` prop to see visual changes of value before click.
+
+:::code DemoRatingHover
+<<< @/demos/rating/DemoRatingHover.vue{12}
+:::
+
+::::
