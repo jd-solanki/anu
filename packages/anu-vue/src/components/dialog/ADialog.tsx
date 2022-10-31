@@ -5,6 +5,7 @@ import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 
 export const ADialog = defineComponent({
   name: 'ADialog',
+  inheritAttrs: false,
   props: {
     ...useCardProps(),
 
