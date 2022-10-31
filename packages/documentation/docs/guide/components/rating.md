@@ -76,3 +76,14 @@ You can use `hover` prop to see visual changes of value before click.
 :::
 
 ::::
+
+<!-- 👉 Items amount -->
+::::card Items amount
+
+You can use `itemsAmount` prop to change the amount of items.
+
+:::code DemoRatingItemsAmount
+<<< @/demos/rating/DemoRatingItemsAmount.vue{11,16,22}
+:::
+
+::::
