@@ -80,7 +80,7 @@ export const ARating = defineComponent({
        <div class={['flex', ...classes.value]} style={[...styles.value]} onMousemove={onMouseMove}>
 
         {stars.value.map((icon, i) => {
-          return <i class={[icon]} onClick={() => handleStarClick(i)}/>
+          return <i class={['cursor-pointer', icon]} onClick={() => handleStarClick(i)}/>
         })}
 
        {props.texts.length > 0 && <span class="ml-2">{props.texts[Math.floor(props.modelValue) - 1]}</span>}
