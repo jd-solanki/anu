@@ -10,36 +10,68 @@ export const ARating = defineComponent({
         default: 'primary',
       },
     }),
+
+    /**
+     * Bind v-model value to rating
+     */
     modelValue: {
       type: Number,
       default: 2.5,
       required: true,
     },
+
+    /**
+     * Sets amount of rating items
+     */
     itemsAmount: {
       type: [Number, String],
       default: 5,
     },
+
+    /**
+     * Allows the award of half a point
+     */
     halving: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Sets empty icon
+     */
     iconEmpty: {
       type: String,
       default: 'i-bx:star',
     },
+
+    /**
+     * Sets half-filled icon
+     */
     iconHalf: {
       type: String,
       default: 'i-bx:bxs-star-half',
     },
+
+    /**
+     * Sets filled icon
+     */
     iconFull: {
       type: String,
       default: 'i-bx:bxs-star',
     },
+
+    /**
+     * Sets your custom labels for each rating item
+     */
     texts: {
       type: Array,
       required: false,
       default: () => [],
     },
+
+    /**
+     * Allows to see visual changes of value on hover
+     */
     hover: {
       type: Boolean,
       default: false,
