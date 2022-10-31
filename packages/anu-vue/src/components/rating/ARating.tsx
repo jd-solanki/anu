@@ -16,7 +16,7 @@ export const ARating = defineComponent({
       required: true,
     },
     itemsAmount: {
-      type: Number,
+      type: [Number, String],
       default: 5,
     },
     halving: {
