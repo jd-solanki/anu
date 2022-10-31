@@ -61,7 +61,7 @@ You can use `texts` to provide your custom labels.
 You can use `halving` prop to allow half rating.
 
 :::code DemoRatingHalving
-<<< @/demos/rating/DemoRatingHalving.vue{11}
+<<< @/demos/rating/DemoRatingHalving.vue{10}
 :::
 
 ::::
