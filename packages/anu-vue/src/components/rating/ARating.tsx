@@ -40,7 +40,10 @@ export const ARating = defineComponent({
       required: false,
       default: () => [],
     },
-
+    hover: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -52,35 +55,46 @@ export const ARating = defineComponent({
       ref(false),
     )
 
-    const hoverValue = ref(0)
+    const rating = ref(0)
+    const isHovered = ref(false)
+
+    const visibleRating = computed(() => props.hover && isHovered.value ? rating.value : props.modelValue)
 
     const stars = computed(() =>
       Array.from({ length: props.itemsAmount }, (_, i) => i + 1).map(item =>
-        item <= props.modelValue
+        item <= visibleRating.value
           ? props.iconFull
-          : item - props.modelValue === 0.5
+          : item - visibleRating.value === 0.5
             ? props.iconHalf
             : props.iconEmpty,
       ),
     )
 
-    const handleStarClick = (index: number) => {
-      emit('update:modelValue', index + hoverValue.value)
+    const handleStarClick = () => {
+      emit('update:modelValue', rating.value)
     }
 
-    const onMouseMove = (e: MouseEvent) => {
+    const onMouseMove = (e: MouseEvent, index: number) => {
+      isHovered.value = true
+
       const { offsetX, target } = e
       if (target instanceof HTMLElement) {
         const starPercentage = (offsetX * 100) / target.clientWidth
-        props.halving ? (hoverValue.value = starPercentage < 50 ? 0.5 : 1) : (hoverValue.value = 1)
+        props.halving
+          ? (rating.value = starPercentage < 50 ? index + 0.5 : index + 1)
+          : (rating.value = index + 1)
       }
     }
 
+    const onMouseLeave = () => {
+      isHovered.value = false
+    }
+
     return () => (
-       <div class={['flex', ...classes.value]} style={[...styles.value]} onMousemove={onMouseMove}>
+       <div class={['flex', ...classes.value]} style={[...styles.value]} >
 
         {stars.value.map((icon, i) => {
-          return <i class={['cursor-pointer', icon]} onClick={() => handleStarClick(i)}/>
+          return <i class={['cursor-pointer', icon]} onClick={() => handleStarClick()} onMousemove={(event => onMouseMove(event, i))} onMouseleave={onMouseLeave}/>
         })}
 
        {props.texts.length > 0 && <span class="ml-2">{props.texts[Math.floor(props.modelValue) - 1]}</span>}
