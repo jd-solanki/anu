@@ -60,7 +60,7 @@ export const ARating = defineComponent({
 
     const visibleRating = computed(() => props.hover && isHovered.value ? rating.value : props.modelValue)
 
-    const stars = computed(() =>
+    const items = computed(() =>
       Array.from({ length: props.itemsAmount }, (_, i) => i + 1).map(item =>
         item <= visibleRating.value
           ? props.iconFull
@@ -70,7 +70,7 @@ export const ARating = defineComponent({
       ),
     )
 
-    const handleStarClick = () => {
+    const handleClick = () => {
       emit('update:modelValue', rating.value)
     }
 
@@ -79,9 +79,9 @@ export const ARating = defineComponent({
 
       const { offsetX, target } = e
       if (target instanceof HTMLElement) {
-        const starPercentage = (offsetX * 100) / target.clientWidth
+        const widthPercentage = (offsetX * 100) / target.clientWidth
         props.halving
-          ? (rating.value = starPercentage < 50 ? index + 0.5 : index + 1)
+          ? (rating.value = widthPercentage < 50 ? index + 0.5 : index + 1)
           : (rating.value = index + 1)
       }
     }
@@ -93,9 +93,9 @@ export const ARating = defineComponent({
     return () => (
        <div class={['flex', ...classes.value]} style={[...styles.value]} >
 
-        {stars.value.map((icon, i) => {
+        {items.value.map((icon, i) => {
           return <i class={['cursor-pointer', icon]}
-             onClick={() => handleStarClick()}
+             onClick={() => handleClick()}
              onMousemove={(event => onMouseMove(event, i))}
              onMouseleave={onMouseLeave}/>
         })}
