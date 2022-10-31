@@ -93,7 +93,7 @@ export const ARating = defineComponent({
     const visibleRating = computed(() => props.hover && isHovered.value ? rating.value : props.modelValue)
 
     const items = computed(() =>
-      Array.from({ length: props.itemsAmount }, (_, i) => i + 1).map(item =>
+      Array.from({ length: Number(props.itemsAmount) }, (_, i) => i + 1).map(item =>
         item <= visibleRating.value
           ? props.iconFull
           : item - visibleRating.value === 0.5
