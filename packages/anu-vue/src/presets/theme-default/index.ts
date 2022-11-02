@@ -78,8 +78,8 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-base-input-interactive': 'all-[.a-base-input-child]-placeholder:transition all-[.a-base-input-child]-placeholder:duration-250 all-[.a-base-input-child]-placeholder:ease all-[.a-base-input-child:focus]-placeholder-translate-x-1',
 
     // 👉 Button
-    'a-btn': 'em:spacing:px-4 font-medium em:spacing:rounded-lg em:spacing:gap-x-2 em:spacing:h-10',
-    'a-btn-icon-only': 'font-medium em:spacing:rounded-lg em:spacing:h-10 em:spacing:w-10 i:em:text-lg',
+    'a-btn': 'em:spacing:px-4 font-medium em:spacing:rounded-lg em:spacing:gap-x-2 em:spacing:h-10 focus-visible:ring-2 ring-offset-2',
+    'a-btn-icon-only': 'font-medium em:spacing:rounded-lg em:spacing:h-10 em:spacing:w-10 i:em:text-lg focus-visible:ring-2 ring-offset-2',
 
     // 👉 Card
     'a-card': 'em:spacing:rounded-lg shadow-lg',
