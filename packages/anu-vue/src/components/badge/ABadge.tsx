@@ -1,6 +1,7 @@
 import type { PropType } from 'vue'
-import { Transition, computed, defineComponent } from 'vue'
+import { Transition, computed, defineComponent, toRef } from 'vue'
 import { color } from '@/composables/useProps'
+import { spacingProp, useSpacing } from '@/composables/useSpacing'
 import { isNumeric } from '@/utils/helpers'
 
 export type VerticalAnchor = 'top' | 'bottom'
@@ -12,7 +13,10 @@ const defaultOverlapOffset = 12
 
 export const ABadge = defineComponent({
   name: 'ABadge',
+  inheritAttrs: false,
   props: {
+    spacing: spacingProp,
+    
     /**
      * Show/Hide badge based on v-model value
      */
@@ -94,7 +98,8 @@ export const ABadge = defineComponent({
       default: defaultOffset,
     },
   },
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
+    const spacing = useSpacing(toRef(props, 'spacing'))
     const formatMaxContent = (content: unknown) => {
       if (!isNumeric(content))
         return content
@@ -137,11 +142,10 @@ export const ABadge = defineComponent({
     return () => <div class={['a-badge-wrapper relative']}>
       {slots.default?.()}
       <Transition name="scale">
-        <div v-show={props.modelValue} class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]} style={positionStyles.value}>
+        <div v-show={props.modelValue} {...attrs} style={[positionStyles.value, { '--a-spacing': spacing.value / 100 }]} class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]}>
           {badgeSlotContent.value}
         </div>
       </Transition>
-
     </div>
   },
 })

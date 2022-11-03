@@ -89,3 +89,14 @@ By default of `overlap` prop is `true`.
 :::
 
 ::::
+
+<!-- 👉 Roundness -->
+::::card Roundness
+
+You can adjust badge roundness using border-radius utilities.
+
+:::code DemoBadgeRoundness
+<<< @/demos/badge/DemoBadgeRoundness.vue{4,13,22}
+:::
+
+::::
