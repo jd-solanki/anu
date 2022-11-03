@@ -3,7 +3,7 @@ import type { ComponentObjectPropsOptions, Ref } from 'vue'
 import { ref, unref, watch } from 'vue'
 import type { ColorProp } from '@/composables/useProps'
 import { color } from '@/composables/useProps'
-import { contrast } from '@/utils/color'
+import { contrast, hexToRgb } from '@/utils/color'
 
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
@@ -58,20 +58,21 @@ export const useLayer = () => {
 
     // If it's not theme color => Set color we received as prop to `--a-layer-color`
     if (!isThemeColor) {
-      styles.push({ '--a-layer-color': propColor })
+      styles.push({ '--a-layer-color': propColor }, { '--un-ring-color': propColor })
 
       // If color isn't theme color & is HEX color => Calculate contrast color => Assign it to `--a-layer-text`
       if (isHexColor) {
         const contrastColor = contrast(propColor)
+        const rgbColor = hexToRgb(propColor)! // isHexColor prevent undefined value here.
 
         styles.push(`--a-layer-text: ${contrastColor}`)
-        styles.push(`--un-ring-color: ${propColor}`)
+        styles.push(`--un-ring-color: rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, var(--un-ring-opacity))`)
       }
     }
 
     // If it's theme color => Use color's CSS var to `--a-layer-color` and to ring color '--un-ring-color'
     else {
-      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` }, { '--un-ring-color': `hsl(var(--a-${propColor}))` })
+      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` }, { '--un-ring-color': `hsla(var(--a-${propColor}), var(--un-ring-opacity))` })
 
       // ℹ️ We need to set un-bg-opacity just like UnoCSS class
       classes.push('[--un-bg-opacity:1]')
