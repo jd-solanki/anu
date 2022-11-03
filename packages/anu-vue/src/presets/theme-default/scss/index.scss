@@ -115,10 +115,15 @@ hr {
 
 // Remove outline
 .a-btn,
+.a-btn-icon-only,
 input,
 select,
 textarea {
-  &:focus {
-    outline: none;
+  --un-ring-opacity: 1;
+
+  &:focus, &:focus-visible {
+    outline: var(--un-ring-width) solid var(--un-ring-color);
+    outline-offset: var(--un-ring-offset-width);
+    box-shadow: none !important;
   }
 }
