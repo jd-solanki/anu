@@ -78,3 +78,14 @@ By default of `overlap` prop is `true`.
 :::
 
 ::::
+
+<!-- 👉 Sizing -->
+::::card Sizing
+
+You can use font-size utility to adjust the size of badge.
+
+:::code DemoBadgeSizing
+<<< @/demos/badge/DemoBadgeSizing.vue{4,13,22,31}
+:::
+
+::::
