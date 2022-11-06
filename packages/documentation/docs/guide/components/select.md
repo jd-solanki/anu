@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ASelect.json'
+</script>
+
 # Select
 
 <!-- 👉 Basic -->
@@ -82,3 +86,8 @@ Use `disabled` prop to make select disabled.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

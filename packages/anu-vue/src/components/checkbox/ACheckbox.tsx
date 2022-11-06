@@ -1,20 +1,47 @@
 import { useVModel } from '@vueuse/core'
+import type { PropType } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { color, disabled } from '@/composables/useProps'
 
 export const ACheckbox = defineComponent({
   name: 'ACheckbox',
   props: {
+    /**
+     * Checkbox color
+     */
+    // eslint-disable-next-line vue/require-prop-types
     color: {
       ...color,
       default: 'primary',
     },
-    modelValue: [Boolean, Array, Set],
-    label: String,
+
+    /**
+     * Bind v-model value to check/uncheck the checkbox.
+     */
+    modelValue: {
+      type: [Boolean, Array, Set] as PropType<boolean | unknown[] | Set<unknown>>,
+      default: undefined,
+    },
+
+    /**
+     * Label text
+     */
+    label: {
+      type: String,
+      default: undefined,
+    },
+
+    /**
+     * Icon to render in checkbox square instead of check
+     */
     icon: {
       type: String,
       default: 'i-bx-check',
     },
+
+    /**
+     * Disable checkbox
+     */
     disabled,
     indeterminate: {
       type: Boolean,
@@ -22,7 +49,7 @@ export const ACheckbox = defineComponent({
     },
   },
   setup(props, { slots, attrs, emit }) {
-    const elementId = `a-checkbox-${attrs.id || attrs.value || Math.random().toString(36).slice(2, 7)}`
+    const elementId = `a-checkbox-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`
     const data = useVModel(props, 'modelValue', emit)
 
     // Template refs

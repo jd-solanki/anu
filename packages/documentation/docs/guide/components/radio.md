@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ARadio.json'
+</script>
+
 # Radio
 
 <!-- 👉 Basic -->
@@ -21,3 +25,8 @@ Use `color` prop to change the radio color.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

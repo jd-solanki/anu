@@ -8,16 +8,28 @@ export const ADrawer = defineComponent({
   name: 'ADrawer',
   props: {
     ...useCardProps(),
+
+    /**
+     * Show/Hide drawer base on v-model value
+     */
     modelValue: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Persistence of drawer when clicked outside of reference element
+     */
     persistent: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Drawer anchor/position
+     */
     anchor: {
-      type: String as PropType<'left' | 'right'>,
+      type: String as PropType<'left' | 'right' | 'top' | 'bottom'>,
       default: 'left',
     },
   },
@@ -40,11 +52,20 @@ export const ADrawer = defineComponent({
     return () => <Teleport to="body">
       <Transition name="bg">
         <div v-show={props.modelValue} class={[
-          'a-drawer-wrapper grid fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]',
-          props.anchor === 'right' ? 'justify-end' : 'justify-start',
+          'a-drawer-wrapper flex fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]',
+          `a-drawer-anchor-${props.anchor}`,
+
+          // `flex-col` set full width for top & bottom anchored drawer
+          ['top', 'bottom'].includes(props.anchor) && 'flex-col',
+
+          // set drawer to end of flex container of anchor is right or bottom
+          ['right', 'bottom'].includes(props.anchor) && 'justify-end',
         ]}>
-          <Transition name={`slide-${props.anchor}`}>
-            <ACard {...attrs} v-show={props.modelValue} class="a-drawer backface-hidden transform translate-z-0" ref={refCard} {...props}>{{ ...slots }}</ACard>
+          <Transition name={`slide-${props.anchor === 'bottom' ? 'up' : props.anchor === 'top' ? 'down' : props.anchor}`}>
+            <ACard {...attrs} v-show={props.modelValue} class={[
+              'a-drawer backface-hidden transform translate-z-0',
+              props.anchor === 'bottom' && '[--a-transition-slide-up-transform:100%]']}
+              ref={refCard} {...props}>{{ ...slots }}</ACard>
           </Transition>
         </div>
       </Transition>

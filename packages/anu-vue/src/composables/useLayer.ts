@@ -7,12 +7,23 @@ import { contrast } from '@/utils/color'
 
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
+    /**
+     * Layer color
+     */
     color,
+
+    /**
+     * Layer variant
+     */
     variant: {
       type: String,
       validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
       default: 'text',
     },
+
+    /**
+     * Interaction states like hover & active
+     */
     states: {
       type: Boolean,
       default: false,
@@ -54,12 +65,13 @@ export const useLayer = () => {
         const contrastColor = contrast(propColor)
 
         styles.push(`--a-layer-text: ${contrastColor}`)
+        styles.push(`--un-ring-color: ${propColor}`)
       }
     }
 
-    // If it's theme color => Use color's CSS var to `--a-layer-color`
+    // If it's theme color => Use color's CSS var to `--a-layer-color` and to ring color '--un-ring-color'
     else {
-      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
+      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` }, { '--un-ring-color': `hsl(var(--a-${propColor}))` })
 
       // ℹ️ We need to set un-bg-opacity just like UnoCSS class
       classes.push('[--un-bg-opacity:1]')

@@ -1,6 +1,6 @@
 import { computedEager, useOffsetPagination } from '@vueuse/core'
 import type { ComputedRef, PropType, Ref, ToRefs } from 'vue'
-import { computed, defineComponent, reactive, ref, toRaw, toRefs, watch } from 'vue'
+import { computed, defineComponent, reactive, ref, toRaw, toRef, toRefs, watch } from 'vue'
 import { ABtn } from '@/components/btn'
 import { ACard, useCardProps } from '@/components/card'
 import { AInput } from '@/components/input'
@@ -10,6 +10,7 @@ import type { CustomFilter } from '@/composables/useSearch'
 import { useSearch } from '@/composables/useSearch'
 import type { CustomSort, typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
+import { spacingProp, useSpacing } from '@/composables/useSpacing'
 
 export type ShallSortByAsc = boolean | null
 
@@ -40,30 +41,57 @@ export interface ItemsFunction {
 }
 
 const tableProps = {
+  /**
+   * Table rows. Can be static array or function that returns resolves array. Visit [Server side table](#server-side-table) demo to understand how to use function as `rows` prop.
+   */
   rows: {
     type: [Array, Function] as PropType<Object[] | ItemsFunction>,
     required: true,
   },
+
+  /**
+   * By default table will infer the column definition from first row. You can also manually provide the column definition for more control.
+   */
   columns: {
     type: [Array] as PropType<PropColumn[]>,
     default: () => [],
   },
+
+  /**
+   * Enable filtering/searching in table
+   */
   search: {
     type: [Boolean, String],
     default: false,
   },
+
+  /**
+   * Text to render when no row is available
+   */
   noResultsText: {
     type: String,
     default: 'No matching results found!!',
   },
+
+  /**
+   * Enable/Disable sorting table
+   */
   isSortable: {
     type: Boolean,
     default: true,
   },
+
+  /**
+   * By default you can only sort single column. You can enable sorting multiple columns at the same time using this prop.
+   */
   multiSort: {
     type: Boolean,
     default: false,
   },
+
+  /**
+   * Set rows to show per page
+   */
   pageSize: {
     type: Number,
     default: 10,
@@ -73,10 +101,13 @@ const tableProps = {
 export const ATable = defineComponent({
   name: 'ATable',
   props: {
+    spacing: spacingProp,
     ...useCardProps(),
     ...tableProps,
   },
   setup(props, { slots }) {
+    const spacing = useSpacing(toRef(props, 'spacing'))
+
     // ℹ️ I used destructing to extract card props from table props. Moreover,I didn't wanted to use destructured props hence I omitted them
 
     const cardProps = computed<Partial<ToRefs<typeof props>>>(() => {
@@ -364,10 +395,10 @@ export const ATable = defineComponent({
                               slots[`row-${col.name}`]
                                 ? slots[`row-${col.name}`]?.({ row })
                                 : col.formatter
-                                  ? col.formatter?.(row)
+                                  ? <span class="a-table-td-text">{col.formatter?.(row)}</span>
 
                                   // TODO(TS): Improve typing
-                                  : row[col.name as keyof Object]
+                                  : <span class="a-table-td-text">{row[col.name as keyof Object]}</span>
                             }
                           </td>,
                         )
@@ -385,16 +416,16 @@ export const ATable = defineComponent({
       // 👉 Footer
       // TODO: create PR for useOffsetPagination metadata
       const tableFooter = <div class="a-table-footer flex items-center">
-        <ATypography class="text-size-[inherit]" v-slots={{
-          subtitle: () => <>
-            {rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {isLastPage ? rowsToRender.value.length : currentPage.value * currentPageSize.value} of {total.value}
-          </>,
-        }}></ATypography>
+        <ATypography class="a-table-pagination-meta">
+          {/* TODO: Remove this text-xs usage as we have text-xs in default theme's styles once we resolve the card font size issue */}
+          <span class="text-xs">{rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {isLastPage ? rowsToRender.value.length : currentPage.value * currentPageSize.value} of {total.value}</span>
+        </ATypography>
         <div class="flex-grow"></div>
         <div class="a-table-footer-per-page-container flex items-center">
           <span class="sm:inline hidden">per page</span>
           <ASelect
             class="a-table-footer-per-page-select"
+            spacing={80}
             inputWrapperClasses="a-table-footer-per-page-select--input-wrapper-classes"
             optionsWrapperClasses="a-table-footer-per-page-select--options-wrapper-classes"
             v-model={currentPageSize.value}
@@ -410,6 +441,7 @@ export const ATable = defineComponent({
       // TODO: noresultstext is represented as attrs of card
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
       return <ACard
+      style={{ '--a-spacing': spacing.value / 100 }}
         class="a-table"
         {...reactive(cardProps.value)}
         v-slots={{

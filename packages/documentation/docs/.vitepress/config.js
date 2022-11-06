@@ -1,11 +1,16 @@
-import MarkdownIt from 'markdown-it'
+import { fileURLToPath } from 'url'
 import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 
-md = new MarkdownIt()
-
-const nav = []
+const nav = [
+  {
+    text: 'Development',
+    items: [
+      { text: 'Contributing', link: '/development/contributing' },
+    ],
+  },
+]
 
 if (process.env.NODE_ENV !== 'production')
   nav.push({ text: 'Playground', link: '/playground' })
@@ -20,6 +25,7 @@ export default defineConfig({
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/jd-solanki/anu' },
+      { icon: 'discord', link: 'https://discord.gg/8MTQuasmZf' },
     ],
     nav,
     sidebar: {
@@ -31,6 +37,12 @@ export default defineConfig({
             { text: 'Installation', link: '/guide/getting-started/installation' },
             { text: 'Customization', link: '/guide/getting-started/customization' },
             { text: 'Grid', link: '/guide/getting-started/grid' },
+          ],
+        },
+        {
+          text: 'Features',
+          items: [
+            { text: 'Sizing', link: '/guide/features/sizing' },
           ],
         },
         {
@@ -111,5 +123,10 @@ export default defineConfig({
         configFile: '../../unocss.config.ts',
       }),
     ],
+    resolve: {
+      alias: {
+        '@anu-vue': fileURLToPath(new URL('../../../anu-vue/', import.meta.url)),
+      },
+    },
   },
 })

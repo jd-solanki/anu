@@ -1,11 +1,19 @@
+import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
 export const AInput = defineComponent({
   name: 'AInput',
   props: {
-    modelValue: String,
     ...useBaseInputProp(),
+
+    /**
+     * Bind v-model value
+     */
+    modelValue: {
+      type: [String, Number] as PropType<string | number>,
+      default: undefined,
+    },
   },
   emits: ['input', 'update:modelValue'],
   setup(props, { slots, emit, attrs }) {

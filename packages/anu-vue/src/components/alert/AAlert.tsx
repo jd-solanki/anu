@@ -1,9 +1,11 @@
 import { defineComponent, ref, toRef, watch } from 'vue'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { spacingProp, useSpacing } from '@/composables/useSpacing'
 
 export const AAlert = defineComponent({
   name: 'AAlert',
   props: {
+    spacing: spacingProp,
     ...useLayerProps({
       color: {
         default: 'primary',
@@ -12,22 +14,41 @@ export const AAlert = defineComponent({
         default: 'light',
       },
     }),
+
+    /**
+     * prepend icon
+     */
     icon: {
       type: String,
+      default: undefined,
     },
+
+    /**
+     * append (close) icon
+     */
     appendIcon: {
       type: String,
+      default: undefined,
     },
+
+    /**
+     * Make alert dismissible using this prop. Adds close icon as appended icon.
+     */
     dismissible: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Hide/Show alert based on v-model value
+     */
     modelValue: {
       type: Boolean,
       default: null,
     },
   },
   setup(props, { slots, emit }) {
+    const spacing = useSpacing(toRef(props, 'spacing'))
     const { getLayerClasses } = useLayer()
     const { styles, classes } = getLayerClasses(
       toRef(props, 'color'),
@@ -52,12 +73,13 @@ export const AAlert = defineComponent({
     }
 
     // TODO: Omit writing `props.modelValue ??` multiple times
-    return () => <div class={['a-alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...classes.value]} style={[...styles.value]}>
-      {props.icon ? <i class={props.icon}></i> : null}
+    return () => <div style={[...styles.value, { '--a-spacing': spacing.value / 100 }]} class={['a-alert items-start w-full', props.modelValue ?? isAlertVisible.value ? 'flex' : 'hidden', ...classes.value]}>
+      {/* ℹ️ We need div as wrapper with span having `vertical-align: text-top` to center the icon with the text */}
+      {props.icon ? <div><span class={props.icon}></span></div> : null}
       <div class="flex-grow">{slots.default?.()}</div>
       {
         appendIcon
-          ? <i class={[appendIcon, { 'cursor-pointer': props.dismissible }]} onClick={handleAppendIconClick}></i>
+          ? <div><span class={['align-text-top', appendIcon, { 'cursor-pointer': props.dismissible }]} onClick={handleAppendIconClick}></span></div>
           : null
       }
     </div>

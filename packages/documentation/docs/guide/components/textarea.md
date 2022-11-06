@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ATextarea.json'
+</script>
+
 # Textarea
 
 <!-- 👉 Basic -->
@@ -43,3 +47,8 @@ You can adjust the height of ATextarea component by providing `height` prop with
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

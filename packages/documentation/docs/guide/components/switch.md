@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ASwitch.json'
+</script>
+
 # Switch
 
 <!-- 👉 Basic -->
@@ -84,3 +88,8 @@ You can adjust switch roundness using border-radius utilities
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

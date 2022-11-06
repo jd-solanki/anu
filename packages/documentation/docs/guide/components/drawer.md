@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ADrawer.json'
+</script>
+
 # Drawer
 
 <!-- 👉 Basic -->
@@ -16,7 +20,7 @@ All props & slots available in `ACard` is available in `ADrawer`.
 <!-- 👉 Anchor -->
 ::::card Anchor
 
-You can change the position of the drawer by providing the values `left` or `right` to the `anchor` prop.
+You can change the position of the drawer by providing the values `left`、`right`、`top` or `bottom` to the `anchor` prop.
 
 :::code DemoDrawerAnchor
 <<< @/demos/drawer/DemoDrawerAnchor.vue{22,30}
@@ -45,3 +49,8 @@ You can disable closing drawer on outside click via `persistent` prop.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

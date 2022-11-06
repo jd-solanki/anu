@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/AAlert.json';
+</script>
+
 # Alert
 
 <!-- 👉 Light -->
@@ -71,3 +75,8 @@ Alert also support `v-model` to show and hide alert based on model value.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

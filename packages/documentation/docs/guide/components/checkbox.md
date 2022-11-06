@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ACheckbox.json'
+</script>
+
 # Checkbox
 
 <!-- 👉 Basic -->
@@ -52,3 +56,8 @@ You can use `indeterminate` prop to change the status of the checkbox.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

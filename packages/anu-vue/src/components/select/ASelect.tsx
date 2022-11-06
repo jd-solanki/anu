@@ -1,7 +1,7 @@
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { onClickOutside } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { isObject } from '@/utils/helpers'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
@@ -12,21 +12,41 @@ export const ASelect = defineComponent({
   name: 'ASelect',
   props: {
     ...useBaseInputProp(),
+
+    /**
+     * Bind v-model value to select
+     */
     modelValue: {
-      required: false,
       type: [String, Number, Object] as PropType<string | number | ObjectOption>,
+      default: undefined,
     },
+
+    /**
+     * Select options
+     */
     options: {
       type: Array as PropType<SelectOption[]>,
       default: undefined,
     },
+
+    /**
+     * When object is used as select option, enabling this prop will emit the whole object instead of value from object.
+     *
+     * When set to `false`: `'vue'`
+     *
+     * When set to `true`: `{ label: 'VueJS', value: 'vue' }`
+     */
     emitObject: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Add classes to wrapper of select options (_ul tag_)
+     */
     optionsWrapperClasses: {
       type: [Array, String, Object] as PropType<string | string[] | object>,
-      default: '',
+      default: undefined,
     },
   },
   emits: ['input', 'update:modelValue'],
@@ -83,15 +103,6 @@ export const ASelect = defineComponent({
     )
 
     // !SECTION
-
-    // 👉 watch: modelValue
-    watch(
-      () => props.modelValue,
-      () => {
-        isOptionsVisible.value = false
-      },
-    )
-
     // TODO: You can use it as utility in another components
     // TODO: Add some style to indicate currently selected item
     const handleInputClick = () => {
@@ -108,6 +119,10 @@ export const ASelect = defineComponent({
       emit('input', value)
       emit('update:modelValue', value)
     }
+    const closeOptions = (event: MouseEvent) => {
+      if (event.target !== refFloating.value)
+        isOptionsVisible.value = false
+    }
 
     // 👉 Value
     const selectedValue = computed(() => {
@@ -115,7 +130,7 @@ export const ASelect = defineComponent({
         ? (option as ObjectOption).value === (!props.emitObject ? props.modelValue : (props.modelValue as ObjectOption).value)
         : option === props.modelValue)
 
-      return option ? isObjectOption(option) ? (option as ObjectOption).label : option : ''
+      return option ? isObjectOption(option) ? (option as ObjectOption).label : option : (props.modelValue as ObjectOption | undefined)?.label || ''
     })
 
     return () => <>
@@ -137,6 +152,7 @@ export const ASelect = defineComponent({
             </ABaseInput>
             <Teleport to="body">
                 <ul
+                   onClick={closeOptions}
                     v-show={isOptionsVisible.value}
                     ref={refFloating}
                     class={['a-select-options-container absolute bg-[hsl(var(--a-layer))]', props.optionsWrapperClasses]}>
