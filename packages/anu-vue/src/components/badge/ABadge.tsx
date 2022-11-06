@@ -1,6 +1,7 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent } from 'vue'
+import { Transition, computed, defineComponent, toRef } from 'vue'
 import { color } from '@/composables/useProps'
+import { spacingProp, useSpacing } from '@/composables/useSpacing'
 import { isNumeric } from '@/utils/helpers'
 
 export type VerticalAnchor = 'top' | 'bottom'
@@ -12,45 +13,93 @@ const defaultOverlapOffset = 12
 
 export const ABadge = defineComponent({
   name: 'ABadge',
+  inheritAttrs: false,
   props: {
+    spacing: spacingProp,
+    
+    /**
+     * Show/Hide badge based on v-model value
+     */
+    modelValue: {
+      type: Boolean,
+      default: true,
+    },
+
+    /**
+     * Sets badge color
+     */
     color: {
       ...color,
       default: 'primary',
+      type: String as PropType<string | null>,
     },
+
+    /**
+     * Converts badge to a dot
+     */
     dot: {
       type: Boolean,
       default: false,
     },
+
+    /**
+    * Adds badge border
+    */
     bordered: {
       type: Boolean,
       default: true,
     },
+
+    /**
+     * Sets the highest possible value
+     */
     max: {
       type: Number,
       default: 99,
     },
+
+    /**
+     * Use to pass numeric values
+     */
     content: {
       type: [Number, String],
       default: undefined,
     },
+
+    /**
+     * Sets the badge position
+     */
     anchor: {
       type: String as PropType<Anchor>,
       default: 'top right',
     },
+
+    /**
+     * Adjusts position of badge
+     */
     overlap: {
       type: Boolean,
       default: true,
     },
+
+    /**
+     * Sets offset on x-axis
+     */
     offsetX: {
       type: [Number, String],
       default: defaultOffset,
     },
+
+    /**
+     * Sets offset on y-axis
+     */
     offsetY: {
       type: [Number, String],
       default: defaultOffset,
     },
   },
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
+    const spacing = useSpacing(toRef(props, 'spacing'))
     const formatMaxContent = (content: unknown) => {
       if (!isNumeric(content))
         return content
@@ -92,9 +141,11 @@ export const ABadge = defineComponent({
 
     return () => <div class={['a-badge-wrapper relative']}>
       {slots.default?.()}
-      <div class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]} style={positionStyles.value}>
-        {badgeSlotContent.value}
-      </div>
+      <Transition name="scale">
+        <div v-show={props.modelValue} {...attrs} style={[positionStyles.value, { '--a-spacing': spacing.value / 100 }]} class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]}>
+          {badgeSlotContent.value}
+        </div>
+      </Transition>
     </div>
   },
 })

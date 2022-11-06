@@ -22,6 +22,17 @@ Use the prop `content` to pass numeric values, if you want to use other data dif
 
 ::::
 
+<!-- 👉 v-model support -->
+::::card v-model support
+
+You can use v-model to control hiding/showing the badge
+
+:::code DemoBadgeVModel
+<<< @/demos/badge/DemoBadgeVModel.vue{4,9}
+:::
+
+::::
+
 <!-- 👉 Color -->
 ::::card Color
 
@@ -75,6 +86,17 @@ By default of `overlap` prop is `true`.
 
 :::code DemoBadgeOverlap
 <<< @/demos/badge/DemoBadgeOverlap.vue{10,18-19}
+:::
+
+::::
+
+<!-- 👉 Roundness -->
+::::card Roundness
+
+You can adjust badge roundness using border-radius utilities.
+
+:::code DemoBadgeRoundness
+<<< @/demos/badge/DemoBadgeRoundness.vue{4,13,22}
 :::
 
 ::::

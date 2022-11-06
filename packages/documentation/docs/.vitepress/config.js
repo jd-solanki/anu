@@ -18,7 +18,7 @@ export default defineConfig({
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/jd-solanki/anu' },
-      { icon: 'discord', link: 'https://discord.gg/vSp3a2Yn' },
+      { icon: 'discord', link: 'https://discord.gg/8MTQuasmZf' },
     ],
     nav,
     sidebar: {
@@ -30,6 +30,12 @@ export default defineConfig({
             { text: 'Installation', link: '/guide/getting-started/installation' },
             { text: 'Customization', link: '/guide/getting-started/customization' },
             { text: 'Grid', link: '/guide/getting-started/grid' },
+          ],
+        },
+        {
+          text: 'Features',
+          items: [
+            { text: 'Sizing', link: '/guide/features/sizing' },
           ],
         },
         {

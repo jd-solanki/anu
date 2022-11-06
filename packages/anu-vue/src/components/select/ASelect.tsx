@@ -1,7 +1,7 @@
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { onClickOutside } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { isObject } from '@/utils/helpers'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
@@ -103,15 +103,6 @@ export const ASelect = defineComponent({
     )
 
     // !SECTION
-
-    // 👉 watch: modelValue
-    watch(
-      () => props.modelValue,
-      () => {
-        isOptionsVisible.value = false
-      },
-    )
-
     // TODO: You can use it as utility in another components
     // TODO: Add some style to indicate currently selected item
     const handleInputClick = () => {
@@ -127,6 +118,10 @@ export const ASelect = defineComponent({
       const value = isObjectOption(option) && !props.emitObject ? (option as ObjectOption).value : option
       emit('input', value)
       emit('update:modelValue', value)
+    }
+    const closeOptions = (event: MouseEvent) => {
+      if (event.target !== refFloating.value)
+        isOptionsVisible.value = false
     }
 
     // 👉 Value
@@ -157,6 +152,7 @@ export const ASelect = defineComponent({
             </ABaseInput>
             <Teleport to="body">
                 <ul
+                   onClick={closeOptions}
                     v-show={isOptionsVisible.value}
                     ref={refFloating}
                     class={['a-select-options-container absolute bg-[hsl(var(--a-layer))]', props.optionsWrapperClasses]}>
