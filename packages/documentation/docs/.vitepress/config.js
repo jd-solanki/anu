@@ -3,7 +3,14 @@ import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 
-const nav = []
+const nav = [
+  {
+    text: 'Development',
+    items: [
+      { text: 'Contributing', link: '/development/contributing' },
+    ],
+  },
+]
 
 if (process.env.NODE_ENV !== 'production')
   nav.push({ text: 'Playground', link: '/playground' })
