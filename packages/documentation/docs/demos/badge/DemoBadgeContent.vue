@@ -9,6 +9,7 @@ const badgeContent = ref('9')
     v-model="badgeContent"
     label="Badge content"
     placeholder="Write your badge content"
+    class="sm:w-1/2"
   />
   <br>
   <div class="flex flex-wrap gap-8">
