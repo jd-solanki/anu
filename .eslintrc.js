@@ -49,6 +49,12 @@ module.exports = {
       },
     ],
 
+    'vue/custom-event-name-casing': ['error', 'camelCase', {
+      ignores: [
+        '/^(click):[a-z]+[a-zA-Z]+$/',
+      ],
+    }],
+
     // Plugin: eslint-plugin-import
     'import/prefer-default-export': 'off',
 
