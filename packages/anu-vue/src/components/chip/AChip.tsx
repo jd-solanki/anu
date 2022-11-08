@@ -12,16 +12,12 @@ export const AChip = defineComponent({
     */
     // color: { default: 'primary' },
     // variant: { default: 'fill' },
-    // states: { default: true },
     ...useLayerProps({
       color: {
         default: 'primary',
       },
       variant: {
         default: 'light',
-      },
-      states: {
-        default: true,
       },
     }),
 
