@@ -88,7 +88,8 @@ If you have Prettier installed in your editor, we recommend you disable it when 
 At the moment, anu don't have any design system. Hence, we have full freedom to design the component we like. However anu's UI should follow some basic stuff:
 
 - It should be minimal
-- alignment matters
+- Alignment matters
+- Prefer outline icons instead of solid icons
 - transitions & animations are nice to have (_Don't use fancy animations, it should look professional_)
 
 :::details Design inspirations
