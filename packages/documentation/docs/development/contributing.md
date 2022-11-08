@@ -83,6 +83,27 @@ If you have Prettier installed in your editor, we recommend you disable it when 
 - For dummy text instead of Lorem ipsum, you can use [cupcakeipsum](http://www.cupcakeipsum.com/) which is pretty sweet 😋
 - Try to follow [Python Zen](https://peps.python.org/pep-0020/). [Here](https://betterprogramming.pub/contemplating-the-zen-of-python-186722b833e5)'s post with nice examples.
 
+### Design
+
+At the moment, anu don't have any design system. Hence, we have full freedom to design the component we like. However anu's UI should follow some basic stuff:
+
+- It should be minimal
+- alignment matters
+- transitions & animations are nice to have (_Don't use fancy animations, it should look professional_)
+
+:::details Design inspirations
+
+<!-- - [UntitledUI](https://www.figma.com/file/V8nKLCJemHJyuAN39W6iok/%E2%9D%96-PREVIEW-%E2%9D%96-Untitled-UI-%E2%80%93-PRO-(v3.1)) -->
+
+- [Anu](https://dribbble.com/jd_0001/collections/5754387-anu) dribble collection
+- [UntitledUI](https://www.figma.com/community/file/1020079203222518115)
+- [Daisy UI](https://www.figma.com/file/usqAh1FfAVsiGIbSKUKyQ7/Disy-%E2%80%94-Preview-1.1?node-id=654%3A4605)
+- [One UI](https://www.behance.net/gallery/140873105/Oneui-Minimalism-UI-kit)
+- [Tremor](https://www.tremor.so/)
+- [Popups & Modals](https://www.figma.com/community/file/1160004185821594377)
+- Search [dribbble](https://dribbble.com/)
+:::
+
 ### Creating new component
 
 First of all, it is advisable to discuss the design & features of the component by opening the new [issue](https://github.com/jd-solanki/anu/issues/new). E.g. [New component: Menu](https://github.com/jd-solanki/anu/issues/26)
