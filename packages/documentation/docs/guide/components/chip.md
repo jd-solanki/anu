@@ -1,25 +1,25 @@
 # Chip
 
-<!-- 👉 Filled -->
-::::card Filled
+<!-- 👉 Light -->
+::::card Light
 
-`fill` is default variant for chip.
+`light` is default variant for chip.
 
 Use `color` prop to change the button color.
 
-:::code DemoChipFilled
-<<< @/demos/chip/DemoChipFilled.vue{4,7,10,13}
+:::code DemoChipLight
+<<< @/demos/chip/DemoChipLight.vue{4,7,10,13}
 :::
 
 ::::
 
-<!-- 👉 Outlined -->
-::::card Outlined
+<!-- 👉 Variants -->
+::::card Variants
 
-You can use `variant="outline"` to create outlined chip.
+You can use `variant` prop to change the chip variant.
 
-:::code DemoChipOutlined
-<<< @/demos/chip/DemoChipOutlined.vue{4,10,16,22,28}
+:::code DemoChipVariants
+<<< @/demos/chip/DemoChipVariants.vue{2,8,16}
 :::
 
 ::::

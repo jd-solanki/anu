@@ -18,7 +18,7 @@ export const AChip = defineComponent({
         default: 'primary',
       },
       variant: {
-        default: 'fill',
+        default: 'light',
       },
       states: {
         default: true,
