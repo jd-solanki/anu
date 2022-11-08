@@ -92,7 +92,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     // 👉 Chip
     'a-chip-wrapper': 'inline-flex items-center px-3 py-1 h-fit rounded-[inherit] text-sm whitespace-nowrap font-medium cursor-pointer',
     'a-chip-disabled': 'opacity-50 pointer-events-none',
-    'a-chip-content': 'flex items-center gap-x-1.5',
+    'a-chip-content': 'flex items-center gap-x-1',
 
     // 👉 Dialog
     'a-dialog-wrapper': 'z-[52]',
