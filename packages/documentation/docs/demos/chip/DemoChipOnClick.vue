@@ -7,7 +7,7 @@ const isLightOn = ref(true)
 <template>
   <div class="h-8">
     <AChip
-      :icon="isLightOn ? 'i-bx:bxs-moon' : 'i-bx:bxs-sun'"
+      :icon="isLightOn ? 'i-bx-bxs-moon' : 'i-bx-bxs-sun'"
       :variant="isLightOn ? 'outline' : 'fill'"
       :color="isLightOn ? 'primary' : 'warning'"
       @click="isLightOn = !isLightOn"
