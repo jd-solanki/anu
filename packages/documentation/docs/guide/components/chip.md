@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/AChip.json';
+</script>
+
 # Chip
 
 <!-- 👉 Light -->
@@ -69,3 +73,8 @@ Chip can be used as action item. You can use `@click` directive to handle onClic
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>
