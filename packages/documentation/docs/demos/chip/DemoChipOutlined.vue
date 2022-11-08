@@ -9,7 +9,7 @@
       color="success"
       variant="outline"
     >
-      Succes
+      Success
     </AChip>
     <AChip
       color="info"
