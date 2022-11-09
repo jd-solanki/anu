@@ -231,7 +231,7 @@ export const ATable = defineComponent({
     )
 
     // 👉 Paginated Rows
-    const paginatedRows = ref(sortedRows.value)
+    const paginatedRows = computed(() => sortedRows.value)
 
     // TODO: Check passing toRef(props, 'pageSize') to useOffsetPagination and use returned `currentPageSize` for reactive pgeSize prop
     const currentPageSize = ref(props.pageSize)
