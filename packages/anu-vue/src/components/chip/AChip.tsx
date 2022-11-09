@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { defineComponent, toRef } from 'vue'
+import { computed, defineComponent, toRef } from 'vue'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { disabled } from '@/composables/useProps'
 
@@ -61,13 +61,15 @@ export const AChip = defineComponent({
   emits: ['update:modelValue'],
 
   // emit on click
-  setup(props, { slots, attrs: _, emit }) {
+  setup(props, { slots, attrs, emit }) {
     const { getLayerClasses } = useLayer()
+
+    const isClickable = computed(() => attrs.onClick !== undefined)
 
     const { styles, classes } = getLayerClasses(
       toRef(props, 'color'),
       toRef(props, 'variant'),
-      toRef(props, 'states'),
+      isClickable,
     )
 
     const closeChip = () => {
@@ -76,7 +78,7 @@ export const AChip = defineComponent({
 
     return () => <div class={'rounded-full'}>
         { props.modelValue
-          ? <span class={['a-chip-wrapper', { 'a-chip-disabled': props.disabled }, ...classes.value]} style={styles.value}>
+          ? <span class={['a-chip-wrapper', { 'a-chip-disabled': props.disabled, 'cursor-pointer': isClickable.value }, ...classes.value]} style={styles.value}>
                 <span class={'a-chip-content'}>
                     { props.icon ? <i class={props.icon}></i> : null }
                     { slots.default?.() }
