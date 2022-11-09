@@ -23,7 +23,7 @@ Use `color` prop to change the button color.
 You can use `variant` prop to change the chip variant.
 
 :::code DemoChipVariants
-<<< @/demos/chip/DemoChipVariants.vue{2,8,16}
+<<< @/demos/chip/DemoChipVariants.vue{4,7,10}
 :::
 
 ::::

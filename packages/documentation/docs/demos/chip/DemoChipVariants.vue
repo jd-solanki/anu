@@ -1,21 +1,14 @@
-<script setup lang="ts">
-const variants = ['fill', 'outline'] as const
-const colors = ['primary', 'success', 'info', 'warning', 'danger'] as const
-</script>
-
 <template>
-  <div
-    v-for="variant in variants"
-    :key="variant"
-    class="flex flex-wrap gap-2 mb-4"
-  >
-    <AChip
-      v-for="color in colors"
-      :key="color"
-      :color="color"
-      :variant="variant"
-    >
-      {{ color }}
+  <div class="flex gap-x-2">
+    <AChip>Primary</AChip>
+    <AChip variant="fill">
+      Primary
+    </AChip>
+    <AChip variant="outline">
+      Primary
+    </AChip>
+    <AChip variant="text">
+      Primary
     </AChip>
   </div>
 </template>
