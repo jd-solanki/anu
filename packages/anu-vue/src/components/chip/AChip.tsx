@@ -58,7 +58,7 @@ export const AChip = defineComponent({
      */
     disabled,
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'click:close', 'click:appendIcon'],
 
   // emit on click
   setup(props, { slots, attrs, emit }) {
@@ -74,6 +74,7 @@ export const AChip = defineComponent({
 
     const closeChip = () => {
       emit('update:modelValue', false)
+      emit('click:close')
     }
 
     return () =>
@@ -81,7 +82,7 @@ export const AChip = defineComponent({
         ? <div class={['a-chip-wrapper', { 'a-chip-disabled': props.disabled, 'cursor-pointer': isClickable.value }, ...classes.value]} style={styles.value}>
             { props.icon ? <i class={props.icon}></i> : null }
             { slots.default?.() }
-            { props.appendIcon ? <i class={props.appendIcon}></i> : null }
+            { props.appendIcon ? <i class={[props.appendIcon, attrs['onClick:appendIcon'] && 'cursor-pointer']} onClick={() => emit('click:appendIcon')}></i> : null }
             { props.closable ? <button onClick={closeChip}><i class={'i-bx-x hover:i-bx-bxs-x-circle hover:opacity-70'}></i></button> : null }
           </div>
         : null
