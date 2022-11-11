@@ -75,7 +75,7 @@ export const ABaseInput = defineComponent({
                     {slots.default?.({
                       ...attrs,
                       class: [
-                        'a-base-input-child w-full h-full absolute inset-0 rounded-inherit',
+                        'a-base-input-child w-full h-full absolute inset-0 rounded-inherit bg-transparent',
                         slots['prepend-inner'] || props.prependInnerIcon ? 'a-base-input-w-prepend-inner' : 'a-base-input-wo-prepend-inner',
                         slots['append-inner'] || props.appendInnerIcon ? 'a-base-input-w-append-inner' : 'a-base-input-wo-append-inner',
                       ],
