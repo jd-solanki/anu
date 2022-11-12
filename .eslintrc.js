@@ -72,6 +72,12 @@ module.exports = {
     ],
 
     '@typescript-eslint/consistent-type-imports': 'error',
+
+    'vue/custom-event-name-casing': ['error',
+      {
+        ignores: ['click:close', 'click:appendIcon'],
+      },
+    ],
   },
   settings: {
     'import/parsers': {
