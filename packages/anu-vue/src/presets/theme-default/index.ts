@@ -90,7 +90,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-checkbox-icon': 'transition duration-150 delay-100 ease-[cubic-bezier(.57,1.48,.87,1.09)]',
 
     // 👉 Chip
-    'a-chip-wrapper': 'rounded-full inline-flex items-center gap-x-1 px-3 py-1 h-fit text-sm whitespace-nowrap font-medium',
+    'a-chip': 'rounded-full inline-flex items-center gap-x-1 px-3 py-1 h-fit text-sm whitespace-nowrap font-medium',
     'a-chip-disabled': 'opacity-50 pointer-events-none',
 
     // 👉 Dialog

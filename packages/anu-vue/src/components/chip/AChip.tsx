@@ -79,7 +79,7 @@ export const AChip = defineComponent({
 
     return () =>
       props.modelValue
-        ? <div class={['a-chip-wrapper', { 'a-chip-disabled': props.disabled, 'cursor-pointer': isClickable.value }, ...classes.value]} style={styles.value}>
+        ? <div class={['a-chip', { 'a-chip-disabled': props.disabled, 'cursor-pointer': isClickable.value }, ...classes.value]} style={styles.value}>
             { props.icon ? <i class={props.icon}></i> : null }
             { slots.default?.() }
             { props.appendIcon ? <i class={[props.appendIcon, attrs['onClick:appendIcon'] && 'cursor-pointer']} onClick={() => emit('click:appendIcon')}></i> : null }
