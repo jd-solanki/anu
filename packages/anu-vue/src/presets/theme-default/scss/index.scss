@@ -1,5 +1,11 @@
 @import '@unocss/reset/tailwind.css';
 
+// 👉 Global CSS Resets
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed;
+}
+
 $body-color: hsla(var(--a-base-color), 0.68);
 
 :root {
@@ -80,7 +86,7 @@ $body-color: hsla(var(--a-base-color), 0.68);
 
 // 👉 Typography
 
-html, body {
+body {
   color: $body-color;
 
   // Disable mobile tap blue color
