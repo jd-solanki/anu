@@ -433,7 +433,7 @@ export const ATable = defineComponent({
             inputWrapperClasses="a-table-footer-per-page-select--input-wrapper-classes"
             optionsWrapperClasses="a-table-footer-per-page-select--options-wrapper-classes"
             v-model={currentPageSize.value}
-            options={[5, 10, 15, 20]}>
+            options={Array.from(new Set([props.pageSize, 5, 10, 15, 20])).sort((a, b) => a - b)}>
           </ASelect>
         </div>
         <div>
