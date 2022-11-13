@@ -10,8 +10,10 @@
         alt="girl"
       >
 
-      <div class="card-body card-spacer">
-        <p>Macaroon cake powder pie cake cake gingerbread oat cake chocolate cake.</p>
+      <div class="a-card-body a-card-spacer">
+        <p class="text-sm">
+          Macaroon cake powder pie cake cake gingerbread oat cake chocolate cake.
+        </p>
         <ABtn>Read more</ABtn>
       </div>
     </ACard>
@@ -23,7 +25,7 @@
       text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
       img="/images/demo/minimal-2.jpg"
     >
-      <div class="card-body">
+      <div class="a-card-body">
         <ABtn>Read more</ABtn>
       </div>
     </ACard>
@@ -38,7 +40,7 @@
           alt="minimal-3"
         >
         <!-- Information -->
-        <div class="card-body card-spacer">
+        <div class="a-card-body a-card-spacer">
           <ATypography
             title="Awesome mobile"
             subtitle="Biscuit liquorice apple pie candy canes"

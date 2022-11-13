@@ -12,7 +12,7 @@ const isDialogShown = ref(false)
     text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
     persistent
   >
-    <div class="card-body">
+    <div class="a-card-body">
       <ABtn
         variant="light"
         class="text-sm"

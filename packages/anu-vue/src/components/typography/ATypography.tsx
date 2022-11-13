@@ -34,7 +34,7 @@ export const ATypography = defineComponent({
             {slots.title || props.title || slots.subtitle || props.subtitle || slots.headerRight ? typographyHeader : null}
             {
                 slots.default || props.text
-                  ? <props.textTag {...text.value.attrs} class={['em:uno-layer-base-text-base uno-layer-base-text-[hsla(var(--a-typography-text-color),var(--a-typography-text-opacity))]', text.value.classes]}>{slots.default ? slots.default() : text.value.content}</props.textTag>
+                  ? <props.textTag {...text.value.attrs} class={['uno-layer-base-text-[hsla(var(--a-typography-text-color),var(--a-typography-text-opacity))]', text.value.classes]}>{slots.default ? slots.default() : text.value.content}</props.textTag>
                   : null
             }
         </div>
