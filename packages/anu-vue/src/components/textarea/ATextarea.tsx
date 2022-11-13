@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
 export const ATextarea = defineComponent({
@@ -23,12 +23,19 @@ export const ATextarea = defineComponent({
     ...useBaseInputProp(),
   },
   setup(props, { slots, emit, attrs }) {
-    return () => <ABaseInput disabled={props.disabled} readonly={props.readonly} {...attrs} inputWrapperClasses={['min-h-32', props.height]}>
+    const textarea = ref<HTMLTextAreaElement>()
+
+    const handleInputWrapperClick = () => {
+      textarea.value?.focus()
+    }
+
+    return () => <ABaseInput onClick:inputWrapper={handleInputWrapperClick} disabled={props.disabled} readonly={props.readonly} {...attrs} inputWrapperClasses={['min-h-32', props.height]}>
             {{
               // Recursively pass down slots
               ...slots,
               default: (slotProps: any) =>
                     <textarea
+                        ref={textarea}
                         {...slotProps}
                         value={props.modelValue}
                         onInput={(event: Event) => emit('update:modelValue', (event.target as HTMLInputElement).value)}

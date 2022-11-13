@@ -61,21 +61,24 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-badge-bordered': 'outline em:spacing:outline-width-[0.166666666666667em] outline-[hsl(var(--a-layer))]',
 
     // 👉 Base Input
-    'a-base-input-root': 'spacing:min-w-[181px] em:spacing:gap-y-1',
+    'a-base-input-root': 'em:spacing:gap-y-1',
     'a-base-input-input-container': 'i:em:w-6 i:em:h-6 em:spacing:gap-x-3',
-    'a-base-input-input-wrapper': 'transition duration-250 ease-out flex i:em:w-5 i:em:h-5 em:spacing:gap-x-2 em:spacing:h-12 em:spacing:rounded-lg',
+    'a-base-input-input-wrapper': 'transition duration-250 ease-out flex i:em:w-5 i:em:h-5 em:spacing:h-12 em:spacing:rounded-lg',
 
-    'a-base-input-prepend-inner-icon': 'em:spacing:ml-3 z-1',
-    'a-base-input-append-inner-icon': 'em:spacing:me-3',
+    'a-base-input-prepend-inner-icon': 'z-1',
 
-    'a-base-input-w-prepend-inner': 'em:spacing:pl-10',
-    'a-base-input-wo-prepend-inner': 'em:spacing:pl-4',
-    'a-base-input-w-append-inner': 'em:spacing:pr-10',
-    'a-base-input-wo-append-inner': 'em:spacing:pr-4',
+    // 'a-base-input-append-inner-icon': '',
+
+    // 'a-base-input-w-prepend-inner': 'em:spacing:pl-10',
+    // 'a-base-input-wo-prepend-inner': 'em:spacing:pl-4',
+    // 'a-base-input-w-append-inner': 'em:spacing:pr-10',
+    // 'a-base-input-wo-append-inner': 'em:spacing:pr-4',
 
     // ℹ️ We have to add important before `bg-` because textarea has `bg-transparent` class
-    'a-base-input-disabled': '!all-[.a-base-input-child]-bg-[hsla(var(--a-base-color),0.12)] opacity-50',
+    'a-base-input-disabled': '!all-[.a-base-input-input-wrapper]-bg-[hsla(var(--a-base-color),0.12)] opacity-50',
     'a-base-input-interactive': 'all-[.a-base-input-child]-placeholder:transition all-[.a-base-input-child]-placeholder:duration-250 all-[.a-base-input-child]-placeholder:ease all-[.a-base-input-child:focus]-placeholder-translate-x-1',
+
+    // 'a-base-input-child': 'autofill-bg-transparent',
 
     // 👉 Button
     'a-btn': 'em:spacing:px-4 font-medium em:spacing:rounded-lg em:spacing:gap-x-2 em:spacing:h-10 focus-visible:ring-2 ring-offset-2',
@@ -108,7 +111,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-drawer': 'shadow-2xl z-[53] !rounded-none',
 
     // 👉 Input
-    'a-input-type-file': 'file:rounded-lg file:border-none file:mr-4 file:px-4 file:py-3 file:text-gray-500 file:rounded-r-none file:bg-[hsla(var(--a-base-color),0.05)] !px-0',
+    'a-input-type-file': 'all-[.a-base-input-child]-file:(rounded-lg border-none mr-4 px-4 py-3 text-gray-500 rounded-r-none bg-[hsla(var(--a-base-color),0.05)]) !all-[.a-base-input-input-wrapper]-px-0',
 
     // 👉 List
     'a-list': 'em:spacing:rounded-lg em:spacing:my-2',
@@ -154,7 +157,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-table-footer-next-page-btn': '!rounded-full',
 
     // 👉 Textarea
-    'a-textarea': 'em:spacing:py-4',
+    'a-textarea': 'em:spacing:py-4 overflow-x-hidden',
 
   // !SECTION Components
   },

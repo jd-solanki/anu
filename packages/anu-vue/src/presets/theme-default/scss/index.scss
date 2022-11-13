@@ -1,5 +1,7 @@
 @import '@unocss/reset/tailwind.css';
 
+$body-color: hsla(var(--a-base-color), 0.68);
+
 :root {
     --a-base-color: 0, 10%, 20%;
     --a-layer: 0, 0%, 100%;
@@ -79,7 +81,7 @@
 // 👉 Typography
 
 html, body {
-  color: hsla(var(--a-base-color), 0.68);
+  color: $body-color;
 
   // Disable mobile tap blue color
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
@@ -121,4 +123,18 @@ textarea {
   &:focus {
     outline: none;
   }
+}
+
+// ℹ️ Remove autocomplete styles
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: $body-color;
+  transition: background-color 5000s ease-in-out 0s;
 }

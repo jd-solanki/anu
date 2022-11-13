@@ -21,7 +21,8 @@ export const ABaseInput = defineComponent({
     disabled,
     readonly,
   },
-  setup(props, { attrs, slots, expose }) {
+  emits: ['click:inputWrapper'],
+  setup(props, { attrs, slots, expose, emit }) {
     const spacing = useSpacing(toRef(props, 'spacing'))
     const iconTransition = 'transition duration-150 ease -in'
     const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}-${Math.random().toString(36).slice(2, 7)}` : undefined
@@ -56,9 +57,9 @@ export const ABaseInput = defineComponent({
                 }
 
                 {/* SECTION Input wrapper */}
-                <div class={[
+                <div onClick={() => { emit('click:inputWrapper') }} class={[
                     `${props.error ? 'border-danger' : 'focus-within:border-primary'}`,
-                    'a-base-input-input-wrapper relative i:focus-within:text-primary items-center border border-solid border-a-border w-full',
+                    'a-base-input-input-wrapper cursor-text em:spacing:px-4 spacing:gap-x-2 relative i:focus-within:text-primary items-center border border-solid border-a-border w-full',
                     props.inputWrapperClasses,
                 ]}>
 
@@ -75,7 +76,7 @@ export const ABaseInput = defineComponent({
                     {slots.default?.({
                       ...attrs,
                       class: [
-                        'a-base-input-child w-full h-full absolute inset-0 rounded-inherit bg-transparent',
+                        'a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent',
                         slots['prepend-inner'] || props.prependInnerIcon ? 'a-base-input-w-prepend-inner' : 'a-base-input-wo-prepend-inner',
                         slots['append-inner'] || props.appendInnerIcon ? 'a-base-input-w-append-inner' : 'a-base-input-wo-append-inner',
                       ],
