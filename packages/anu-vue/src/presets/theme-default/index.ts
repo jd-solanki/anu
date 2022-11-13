@@ -86,10 +86,10 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
 
     // 👉 Card
     'a-card': 'em:spacing:rounded-lg shadow-lg',
-    'a-card-typography-wrapper': 'card-padding next:pt-0 em:spacing:not-last:pb-4',
-    'card-padding': 'em:spacing:p-5',
-    'card-spacer': 'not-last-children-mb-$a-card-spacer',
-    'card-body': 'card-padding',
+    'a-card-typography-wrapper': 'a-card-padding next:pt-0 em:spacing:not-last:pb-4',
+    'a-card-padding': 'em:spacing:p-5',
+    'a-card-spacer': 'not-last-children-mb-$a-card-spacer',
+    'a-card-body': 'a-card-padding',
 
     // 👉 Checkbox
     'a-checkbox-box': 'border-solid h-5 w-5 border-(2 a-border rounded) transition duration-200 mr-2',
