@@ -61,7 +61,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-badge-bordered': 'outline em:spacing:outline-width-[0.166666666666667em] outline-[hsl(var(--a-layer))]',
 
     // 👉 Base Input
-    'a-base-input-root': 'spacing:min-w-[181px] em:spacing:gap-y-1',
+    'a-base-input-root': 'em:spacing:gap-y-1',
     'a-base-input-input-container': 'i:em:w-6 i:em:h-6 em:spacing:gap-x-3',
     'a-base-input-input-wrapper': 'transition duration-250 ease-out flex i:em:w-5 i:em:h-5 em:spacing:h-12 em:spacing:rounded-lg',
 
@@ -153,7 +153,7 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-table-footer-next-page-btn': '!rounded-full',
 
     // 👉 Textarea
-    'a-textarea': 'em:spacing:py-4',
+    'a-textarea': 'em:spacing:py-4 overflow-x-hidden',
 
   // !SECTION Components
   },
