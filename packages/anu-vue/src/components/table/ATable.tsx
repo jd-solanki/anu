@@ -418,7 +418,11 @@ export const ATable = defineComponent({
       const tableFooter = <div class="a-table-footer flex items-center">
         <ATypography class="a-table-pagination-meta">
           {/* TODO: Remove this text-xs usage as we have text-xs in default theme's styles once we resolve the card font size issue */}
-          <span class="text-xs">{rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {isLastPage ? rowsToRender.value.length : currentPage.value * currentPageSize.value} of {total.value}</span>
+          <span class="text-xs">{rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {isLastPage.value
+            ? isSST.value
+              ? _serverTotal.value
+              : filteredRows.value.length
+            : currentPage.value * currentPageSize.value} of {total.value}</span>
         </ATypography>
         <div class="flex-grow"></div>
         <div class="a-table-footer-per-page-container flex items-center">
