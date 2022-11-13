@@ -13,6 +13,7 @@ export default defineConfig({
       name: 'anu-vue',
       fileName: 'anu-vue',
     },
+    outDir: 'dist',
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
@@ -29,7 +30,10 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue(), vueJsx(), dts()],
+  plugins: [vue(), vueJsx(), dts({
+    outputDir: 'dist/types',
+    insertTypesEntry: true,
+  })],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

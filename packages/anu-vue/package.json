@@ -34,11 +34,11 @@
   "files": [
     "dist"
   ],
-  "types": "dist",
+  "types": "dist/types",
   "scripts": {
     "dev": "nr gen-comp-meta && vite build --watch",
     "gen-comp-meta": "na tsx ../../scripts/gen-component-meta.ts",
-    "build": "nr gen-comp-meta && vite build && vue-tsc --emitDeclarationOnly --declaration",
+    "build": "nr gen-comp-meta && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
