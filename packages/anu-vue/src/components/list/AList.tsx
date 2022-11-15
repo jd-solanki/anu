@@ -59,7 +59,7 @@ export const AList = defineComponent({
      */
     modelValue: {
       type: [String, Number, Object],
-      default: null,
+      default: undefined,
     },
 
     /**
@@ -97,7 +97,7 @@ export const AList = defineComponent({
       const handleListItemClick = (index: number) => {
         const itemValue = options.value[index].value
         selectListItem(itemValue)
-        if (props.modelValue !== null)
+        if (props.modelValue !== undefined)
           emit('update:modelValue', value.value)
       }
 
@@ -123,10 +123,11 @@ export const AList = defineComponent({
         return <li
           onClick={() => handleListItemClick(itemIndex)}
           style={[...styles.value]}
+          data-x={String(props.modelValue)}
           class={[
             'a-list-item',
             { 'opacity-50 pointer-events-none': listItem.disable },
-            props.modelValue !== null
+            props.modelValue !== undefined
               ? [...classes.value, 'cursor-pointer']
               : '',
             'flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height',
