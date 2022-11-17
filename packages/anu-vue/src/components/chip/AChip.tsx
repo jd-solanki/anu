@@ -83,7 +83,7 @@ export const AChip = defineComponent({
             { props.icon ? <i class={props.icon}></i> : null }
             { slots.default?.() }
             { props.appendIcon ? <i class={props.appendIcon}></i> : null }
-            { props.closable ? <i onClick={closeChip} class={'i-bx-x hover:i-bx-bxs-x-circle hover:opacity-70'}></i> : null }
+            { props.closable ? <i onClick={closeChip} class={'i-bx-x hover:i-bx-bxs-x-circle hover:opacity-70 cursor-pointer'}></i> : null }
           </div>
         : null
   },
