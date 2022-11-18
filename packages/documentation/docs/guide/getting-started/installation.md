@@ -88,6 +88,20 @@
 
 It's done! 🥳
 
+
+## Volar Support 
+If you are using Volar, you can specify global component types by configuring compilerOptions.types in tsconfig.json.
+
+// tsconfig.json
+```json
+{
+  "compilerOptions": {
+    // ...
+    "types": ["anu-vue/volar"]
+  }
+}
+```
+
 Now, Just refer to the component in your vue files:
 
 ```vue
