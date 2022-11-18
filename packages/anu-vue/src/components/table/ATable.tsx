@@ -120,7 +120,7 @@ export const ATable = defineComponent({
         return null
       }).filter(i => i) as [keyof typeof props, typeof props[keyof typeof props]][]
 
-      return toRefs(Object.fromEntries(cardPropsEntries))
+      return toRefs(reactive(Object.fromEntries(cardPropsEntries)))
     })
 
     // 👉 isSST
@@ -136,6 +136,8 @@ export const ATable = defineComponent({
 
     const fetchRows = () => {
       // _search.value, currentPage.value, currentPageSize.value, sortedCols.value
+      if (typeof props.rows !== 'function')
+        return
 
       (props.rows as ItemsFunction)({
         /* eslint-disable @typescript-eslint/no-use-before-define */
@@ -163,6 +165,12 @@ export const ATable = defineComponent({
       shallSortByAsc: null,
     }
 
+    // 👉 Paginated Rows
+    const paginatedRows = ref<any[]>([])
+
+    // 👉 rowsToRender
+    const rowsToRender = computed(() => isSST.value ? _serverRows.value : paginatedRows.value)
+
     // 👉 _columns
     // TODO: Improve _columns computation
     // If columns are provided via prop
@@ -173,10 +181,9 @@ export const ATable = defineComponent({
 
       // Else generate columns from first row
       : isSST.value
-      /* eslint-disable @typescript-eslint/no-use-before-define */
+
         ? (rowsToRender.value.length
             ? Object.keys(rowsToRender.value[0])
-            /* eslint-enable @typescript-eslint/no-use-before-define */
               .map(k => ({
                 ...columnDefaults,
                 name: k,
@@ -230,9 +237,6 @@ export const ATable = defineComponent({
       }),
     )
 
-    // 👉 Paginated Rows
-    const paginatedRows = ref<any[]>([])
-
     // TODO: Check passing toRef(props, 'pageSize') to useOffsetPagination and use returned `currentPageSize` for reactive pgeSize prop
     const currentPageSize = ref(props.pageSize)
     const paginateRows = ({ currentPage, currentPageSize }: { currentPage: number; currentPageSize: number }) => {
@@ -274,9 +278,6 @@ export const ATable = defineComponent({
     }
 
     watch([_search, sortedCols, sortedRows], recalculateCurrentPageData, { deep: true, immediate: true })
-
-    // 👉 rowsToRender
-    const rowsToRender = computed(() => isSST.value ? _serverRows.value : paginatedRows.value)
 
     // 👉 onRequest
     // watch([_search, currentPage, sortedCols], fetchRows, { deep: true, immediate: true })
