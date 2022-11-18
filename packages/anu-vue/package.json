@@ -32,9 +32,10 @@
     "./dist/style.css": "./dist/style.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "volar.d.ts"
   ],
-  "types": "dist/types",
+  "types": "./dist/types",
   "scripts": {
     "dev": "nr gen-comp-meta && vite build --watch",
     "gen-comp-meta": "na tsx ../../scripts/gen-component-meta.ts",
