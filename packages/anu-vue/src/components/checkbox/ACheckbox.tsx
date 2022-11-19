@@ -73,21 +73,34 @@ export const ACheckbox = defineComponent({
           : data.value?.has(attrs.value) // For Set type
     })
 
-    return () => <label class={['inline-flex items-center cursor-pointer', props.disabled && 'a-checkbox-disabled pointer-events-none']} for={elementId}>
-            {/* TODO: Once we support custom values and value related customization try to omit classes like next:checked:xxx so we can omit them in safelist */}
-            <input
-                {...attrs}
-                ref={refCheckbox}
-                id={elementId}
-                type="checkbox"
-                v-model={data.value}
-                class="hidden"
-            />
-            <div class={['a-checkbox-box flex items-center justify-center shrink-0', (props.indeterminate || state.value) && `bg-${props.color} border-${props.color} children:scale-full`]}>
-                <i class={[icon.value, 'a-checkbox-icon scale-0 text-white']} />
-            </div>
-            {slots.default ? slots.default() : props.label}
-        </label>
+    return () => (
+      <label
+        class={[
+          'inline-flex items-center cursor-pointer',
+          props.disabled && 'a-checkbox-disabled pointer-events-none',
+        ]}
+        for={elementId}
+      >
+        {/* TODO: Once we support custom values and value related customization try to omit classes like next:checked:xxx so we can omit them in safelist */}
+        <input
+          {...attrs}
+          class="hidden"
+          id={elementId}
+          ref={refCheckbox}
+          type="checkbox"
+          v-model={data.value}
+        />
+        <div
+          class={[
+            'a-checkbox-box flex items-center justify-center shrink-0',
+            (props.indeterminate || state.value) && `bg-${props.color} border-${props.color} children:scale-full`,
+          ]}
+        >
+          <i class={[icon.value, 'a-checkbox-icon scale-0 text-white']} />
+        </div>
+        {slots.default ? slots.default() : props.label}
+      </label>
+    )
   },
 })
 

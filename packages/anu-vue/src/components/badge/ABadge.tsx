@@ -16,7 +16,7 @@ export const ABadge = defineComponent({
   inheritAttrs: false,
   props: {
     spacing: spacingProp,
-    
+
     /**
      * Show/Hide badge based on v-model value
      */
@@ -142,7 +142,12 @@ export const ABadge = defineComponent({
     return () => <div class={['a-badge-wrapper relative']}>
       {slots.default?.()}
       <Transition name="scale">
-        <div v-show={props.modelValue} {...attrs} style={[positionStyles.value, { '--a-spacing': spacing.value / 100 }]} class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]}>
+        <div
+          v-show={props.modelValue}
+          {...attrs}
+          class={[`a-badge bg-${props.color} absolute`, { 'a-badge-dot': props.dot }, { 'a-badge-bordered': props.bordered }]}
+          style={[positionStyles.value, { '--a-spacing': spacing.value / 100 }]}
+        >
           {badgeSlotContent.value}
         </div>
       </Transition>

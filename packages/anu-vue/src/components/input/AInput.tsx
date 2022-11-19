@@ -31,18 +31,28 @@ export const AInput = defineComponent({
       input.value?.focus()
     }
 
-    return () => <ABaseInput onClick:inputWrapper={handleInputWrapperClick} class={isInputTypeFile && 'a-input-type-file'} disabled={props.disabled} readonly={props.readonly} {...attrs}>
-            {{
-              // Recursively pass down slots
-              ...slots,
-              default: (slotProps: any) => <input
-                    {...slotProps}
-                    ref={input}
-                    value={props.modelValue}
-                    onInput={handleChange}
-                />,
-            }}
-        </ABaseInput >
+    return () => (
+      <ABaseInput
+        {...attrs}
+        class={isInputTypeFile ? 'a-input-type-file' : null}
+        disabled={props.disabled}
+        onClick:inputWrapper={handleInputWrapperClick}
+        readonly={props.readonly}
+      >
+        {{
+        // Recursively pass down slots
+          ...slots,
+          default: (slotProps: any) => (
+            <input
+              {...slotProps}
+              onInput={handleChange}
+              ref={input}
+              value={props.modelValue}
+            />
+          ),
+        }}
+      </ABaseInput >
+    )
   },
 })
 

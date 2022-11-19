@@ -51,21 +51,32 @@ export const ADrawer = defineComponent({
 
     return () => <Teleport to="body">
       <Transition name="bg">
-        <div v-show={props.modelValue} class={[
-          'a-drawer-wrapper flex fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]',
-          `a-drawer-anchor-${props.anchor}`,
+        <div
+          class={[
+            'a-drawer-wrapper flex fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]',
+            `a-drawer-anchor-${props.anchor}`,
 
-          // `flex-col` set full width for top & bottom anchored drawer
-          ['top', 'bottom'].includes(props.anchor) && 'flex-col',
+            // `flex-col` set full width for top & bottom anchored drawer
+            ['top', 'bottom'].includes(props.anchor) && 'flex-col',
 
-          // set drawer to end of flex container of anchor is right or bottom
-          ['right', 'bottom'].includes(props.anchor) && 'justify-end',
-        ]}>
+            // set drawer to end of flex container of anchor is right or bottom
+            ['right', 'bottom'].includes(props.anchor) && 'justify-end',
+          ]}
+          v-show={props.modelValue}
+        >
           <Transition name={`slide-${props.anchor === 'bottom' ? 'up' : props.anchor === 'top' ? 'down' : props.anchor}`}>
-            <ACard {...attrs} v-show={props.modelValue} class={[
-              'a-drawer backface-hidden transform translate-z-0',
-              props.anchor === 'bottom' && '[--a-transition-slide-up-transform:100%]']}
-              ref={refCard} {...props}>{{ ...slots }}</ACard>
+            <ACard
+              {...attrs}
+              {...props}
+              class={[
+                'a-drawer backface-hidden transform translate-z-0',
+                props.anchor === 'bottom' && '[--a-transition-slide-up-transform:100%]',
+              ]}
+              ref={refCard}
+              v-show={props.modelValue}
+            >
+              {{ ...slots }}
+            </ACard>
           </Transition>
         </div>
       </Transition>

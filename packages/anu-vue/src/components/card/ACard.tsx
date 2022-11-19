@@ -45,24 +45,38 @@ export const ACard = defineComponent({
     else
       _textProp.value.classes += ' uno-layer-base-text-sm'
 
-    return () => <div style={[...styles.value, { '--a-spacing': spacing.value / 100 }]} class={['a-card overflow-hidden uno-layer-base-bg-[hsl(var(--a-layer))]', ...classes.value]}>
-      {/* 👉 Image */}
-      {props.img ? <img src={props.img} alt="card-img"></img> : null}
+    return () => (
+      <div
+        class={['a-card overflow-hidden uno-layer-base-bg-[hsl(var(--a-layer))]', ...classes.value]}
+        style={[...styles.value, { '--a-spacing': spacing.value / 100 }]}
+      >
+        {/* 👉 Image */}
+        {props.img
+          ? <img
+              alt="card-img"
+              src={props.img}
+            />
+          : null}
 
-      {/* 👉 Typography */}
-      {
-        _isTypographyUsed
-          ? <div class="a-card-typography-wrapper">
-            <ATypography title={props.title} subtitle={props.subtitle} text={Object.values(_textProp.value) as ConfigurableValue}>
-              {{ ...slots, default: null }}
-            </ATypography>
-          </div>
-          : null
-      }
+        {/* 👉 Typography */}
+        {
+          _isTypographyUsed
+            ? <div class="a-card-typography-wrapper">
+              <ATypography
+                subtitle={props.subtitle}
+                text={Object.values(_textProp.value) as ConfigurableValue}
+                title={props.title}
+              >
+                {{ ...slots, default: null }}
+              </ATypography>
+            </div>
+            : null
+        }
 
-      {/* 👉 Default slot */}
-      {slots.default?.()}
-    </div>
+        {/* 👉 Default slot */}
+        {slots.default?.()}
+      </div>
+    )
   },
 })
 

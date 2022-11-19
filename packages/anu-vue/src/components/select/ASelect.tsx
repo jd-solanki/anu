@@ -134,42 +134,58 @@ export const ASelect = defineComponent({
     })
 
     return () => <>
-            {/* TODO: Make sure we don't bind input's `type` attr here */}
-            <ABaseInput disabled={props.disabled} readonly={props.readonly} appendInnerIcon="i-bx-chevron-down" {...attrs} ref={refReference} inputContainerAttrs={{
-              onClick: handleInputClick,
-            }}>
-                {{
-                  // Recursively pass down slots
-                  ...slots,
-                  default: (slotProps: any) =>
-                        <input
-                            {...slotProps}
-                            value={ selectedValue.value }
-                            readonly
-                            ref={selectRef}
-                        />,
-                }}
-            </ABaseInput>
-            <Teleport to="body">
-                <ul
-                   onClick={closeOptions}
-                    v-show={isOptionsVisible.value}
-                    ref={refFloating}
-                    class={['a-select-options-container absolute bg-[hsl(var(--a-layer))]', props.optionsWrapperClasses]}>
-                    {
-                      slots.default
-                        ? slots.default?.({
-                          attrs: {
-                            class: optionClasses,
-                          },
-                        })
-                        : props.options?.map(option => <li class={optionClasses} onClick={() => handleOptionClick(option)}>
-                          {isObjectOption(option) ? (option as ObjectOption).label : option}
-                        </li>)
-                    }
-                </ul>
-            </Teleport>
-        </>
+      {/* TODO: Make sure we don't bind input's `type` attr here */}
+      <ABaseInput
+        {...attrs}
+        appendInnerIcon="i-bx-chevron-down"
+        disabled={props.disabled}
+        inputContainerAttrs={{
+          onClick: handleInputClick,
+        }}
+        readonly={props.readonly}
+        ref={refReference}
+      >
+        {{
+          // Recursively pass down slots
+          ...slots,
+          default: (slotProps: any) =>
+            <input
+              {...slotProps}
+              readonly
+              ref={selectRef}
+              value={selectedValue.value}
+            />,
+        }}
+      </ABaseInput>
+      <Teleport to="body">
+        <ul
+          class={[
+            'a-select-options-container absolute bg-[hsl(var(--a-layer))]',
+            props.optionsWrapperClasses,
+          ]}
+          onClick={closeOptions}
+          ref={refFloating}
+          v-show={isOptionsVisible.value}
+        >
+          {
+            slots.default
+              ? slots.default?.({
+                attrs: {
+                  class: optionClasses,
+                },
+              })
+              : props.options?.map(option => (
+                <li
+                  class={optionClasses}
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {isObjectOption(option) ? (option as ObjectOption).label : option}
+                </li>
+              ))
+          }
+        </ul>
+      </Teleport>
+    </>
   },
 })
 
