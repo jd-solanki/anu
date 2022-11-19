@@ -67,9 +67,17 @@ export const ABtn = defineComponent({
     )
 
     // FIX: ABtn gets full width if placed inside flex container
-    return () => <button style={[...styles.value, { '--a-spacing': spacing.value / 100 }]} class={[props.iconOnly ? 'a-btn-icon-only' : 'a-btn', 'whitespace-nowrap inline-flex justify-center items-center', { 'opacity-50 pointer-events-none': props.disabled }, ...classes.value]} tabindex={props.disabled ? -1 : 0}>
-      {props.icon ? <i class={props.icon}></i> : null}{slots.default?.()}{props.appendIcon ? <i class={props.appendIcon}></i> : null}
-    </button>
+    return () => (
+      <button
+        class={[props.iconOnly ? 'a-btn-icon-only' : 'a-btn', 'whitespace-nowrap inline-flex justify-center items-center', { 'opacity-50 pointer-events-none': props.disabled }, ...classes.value]}
+        style={[...styles.value, { '--a-spacing': spacing.value / 100 }]}
+        tabindex={props.disabled ? -1 : 0}
+      >
+        {props.icon ? <i class={props.icon} /> : null}
+        {slots.default?.()}
+        {props.appendIcon ? <i class={props.appendIcon} /> : null}
+      </button>
+    )
   },
 })
 

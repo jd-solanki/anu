@@ -120,18 +120,19 @@ export const AList = defineComponent({
           { statesClass: 'states:10' },
         )
 
-        return <li
-          onClick={() => handleListItemClick(itemIndex)}
-          style={[...styles.value]}
-          data-x={String(props.modelValue)}
-          class={[
-            'a-list-item',
-            { 'opacity-50 pointer-events-none': listItem.disable },
-            props.modelValue !== undefined
-              ? [...classes.value, 'cursor-pointer']
-              : '',
-            'flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height',
-          ]}>
+        return (
+          <li
+            class={[
+              'a-list-item',
+              { 'opacity-50 pointer-events-none': listItem.disable },
+              props.modelValue !== undefined
+                ? [...classes.value, 'cursor-pointer']
+                : '',
+              'flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height',
+            ]}
+            onClick={() => handleListItemClick(itemIndex)}
+            style={[...styles.value]}
+          >
 
             {/* 👉 Slot: prepend */}
             {
@@ -142,11 +143,17 @@ export const AList = defineComponent({
 
                 // If icon prop is provided and should be prepended => Render icon
                 : listItem.icon && !props.iconAppend
-                  ? <i onClick={() => emit('click:icon')} class={['uno-layer-base-text-xl', listItem.icon]}></i>
+                  ? <i
+                      class={['uno-layer-base-text-xl', listItem.icon]}
+                      onClick={() => emit('click:icon')}
+                    />
 
                   // If avatar props are provided/used & should be prepended => Render avatar
                   : listItem.$avatar && !props.avatarAppend
-                    ? <AAvatar onClick={() => emit('click:avatar')} {...listItem.$avatar} />
+                    ? <AAvatar
+                        onClick={() => emit('click:avatar')}
+                        {...listItem.$avatar}
+                      />
 
                     // If nothing is truthy => Don't render anything
                     : null
@@ -159,7 +166,12 @@ export const AList = defineComponent({
                   item: listItem,
                   index: itemIndex,
                 })
-                : <ATypography class="flex-grow" title={Object.values(_titleProp.value) as ConfigurableValue} subtitle={listItem.subtitle} text={listItem.text}></ATypography>
+                : <ATypography
+                    class="flex-grow"
+                    subtitle={listItem.subtitle}
+                    text={listItem.text}
+                    title={Object.values(_titleProp.value) as ConfigurableValue}
+                  />
             }
 
             {/* 👉 Slot: append */}
@@ -171,36 +183,47 @@ export const AList = defineComponent({
 
                 // If icon prop is provided and should be appended => Render icon
                 : listItem.icon && props.iconAppend
-                  ? <i onClick={() => emit('click:iconAppend')} class={['uno-layer-base-text-xl', listItem.icon]}></i>
+                  ? <i
+                      class={['uno-layer-base-text-xl', listItem.icon]}
+                      onClick={() => emit('click:iconAppend')}
+                    />
 
                   // If avatar props are provided/used & should be appended => Render avatar
                   : listItem.$avatar && props.avatarAppend
-                    ? <AAvatar onClick={() => emit('click:avatarAppend')} {...listItem.$avatar} />
+                    ? <AAvatar
+                        onClick={() => emit('click:avatarAppend')}
+                        {...listItem.$avatar}
+                      />
 
                     // If nothing is truthy => Don't render anything
                     : null
             }
-        </li>
+          </li>
+        )
       })
     })
 
     // 👉 Return
     return () => <ul class="a-list grid gap-$a-list-gap">
-        {/* 👉 before slot */}
-        {
-          slots.before
-            ? <li>{slots.before?.()}</li>
-            : null
+      {/* 👉 before slot */}
+      {
+        slots.before
+          ? <li>
+            {slots.before?.()}
+          </li>
+          : null
         }
 
-        {/* 👉 List items */}
-        {slots.default ? slots.default() : listItems.value}
+      {/* 👉 List items */}
+      {slots.default ? slots.default() : listItems.value}
 
-        {/* 👉 after slot */}
-        {
-          slots.after
-            ? <li>{slots.after?.()}</li>
-            : null
+      {/* 👉 after slot */}
+      {
+        slots.after
+          ? <li>
+            {slots.after?.()}
+          </li>
+          : null
         }
     </ul>
   },

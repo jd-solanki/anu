@@ -28,20 +28,31 @@ export const AAvatar = defineComponent({
 
     const defaultSlotContent = computed(() => {
       if (props.icon)
-        return <i class={props.icon}></i>
-      if (props.src)
-        return <img src={props.src} alt={props.alt} />
+        return <i class={props.icon} />
+      if (props.src) {
+        return (
+          <img
+            alt={props.alt}
+            src={props.src}
+          />
+        )
+      }
 
       return props.content
     })
 
-    return () => <div style={[...styles.value, { '--a-spacing': spacing.value / 100 }]} class={['a-avatar overflow-hidden inline-flex items-center justify-center', ...classes.value]}>
-      {
+    return () => (
+      <div
+        class={['a-avatar overflow-hidden inline-flex items-center justify-center', ...classes.value]}
+        style={[...styles.value, { '--a-spacing': spacing.value / 100 }]}
+      >
+        {
         slots.default
           ? slots.default()
           : defaultSlotContent.value
       }
-    </div>
+      </div>
+    )
   },
 })
 

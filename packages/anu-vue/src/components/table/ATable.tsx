@@ -351,8 +351,15 @@ export const ATable = defineComponent({
       // TODO: There should be no data as well and it should be rendered only when data is filtered and there's no resulting rows
       // 👉 No results
       const noResultsTr = <tr>
-        <td colspan={_columns.value.length} class="em:px-[1.15rem] em:h-14 whitespace-nowrap text-center font-medium">
-          {slots.noResults ? slots.noResults() : <span>{props.noResultsText}</span>}
+        <td
+          class="em:px-[1.15rem] em:h-14 whitespace-nowrap text-center font-medium"
+          colspan={_columns.value.length}
+        >
+          {slots.noResults
+            ? slots.noResults()
+            : <span>
+              {props.noResultsText}
+            </span>}
         </td>
       </tr>
 
@@ -371,14 +378,25 @@ export const ATable = defineComponent({
             <tr>
               {_columns.value.map(column =>
                 <th
-                  class={['a-table-table-th whitespace-nowrap', props.isSortable && 'cursor-pointer select-none']}
+                  class={[
+                    'a-table-table-th whitespace-nowrap',
+                    props.isSortable && 'cursor-pointer select-none',
+                  ]}
                   onClick={() => handleHeaderClick(column)}
                 >
                   <div class="inline-flex items-center">
-                      <span>{column.name}</span>
-                    <div v-show={getShallSortByAsc.value(column) === true} class="i-bx-up-arrow-alt"></div>
-                    <div v-show={getShallSortByAsc.value(column) === false} class="i-bx-down-arrow-alt"></div>
-                    </div>
+                    <span>
+                      {column.name}
+                    </span>
+                    <div
+                      class="i-bx-up-arrow-alt"
+                      v-show={getShallSortByAsc.value(column) === true}
+                    />
+                    <div
+                      class="i-bx-down-arrow-alt"
+                      v-show={getShallSortByAsc.value(column) === false}
+                    />
+                  </div>
                 </th>,
               )}
             </tr>
@@ -391,18 +409,22 @@ export const ATable = defineComponent({
                 ? rowsToRender.value.map((row, _) => {
                   return <tr>
                     {
-                        _columns.value.map(col => <td class="a-table-table-td whitespace-nowrap">
-                            {
+                      _columns.value.map(col => <td class="a-table-table-td whitespace-nowrap">
+                        {
                               slots[`row-${col.name}`]
                                 ? slots[`row-${col.name}`]?.({ row })
                                 : col.formatter
-                                  ? <span class="a-table-td-text">{col.formatter?.(row)}</span>
+                                  ? <span class="a-table-td-text">
+                                    {col.formatter?.(row)}
+                                  </span>
 
                                   // TODO(TS): Improve typing
-                                  : <span class="a-table-td-text">{row[col.name as keyof Object]}</span>
+                                  : <span class="a-table-td-text">
+                                    {row[col.name as keyof Object]}
+                                  </span>
                             }
-                          </td>,
-                        )
+                      </td>,
+                      )
                     }
                   </tr>
                 })
@@ -412,49 +434,84 @@ export const ATable = defineComponent({
         </table>
       </div>
 
-      const searchInput = () => <AInput prepend-inner-icon="i-bx-search" placeholder="search..." class="max-w-48 text-sm" v-model={_search.value}></AInput>
+      const searchInput = () => (
+        <AInput
+          class="max-w-48 text-sm"
+          placeholder="search..."
+          prepend-inner-icon="i-bx-search"
+          v-model={_search.value}
+        />
+      )
 
       // 👉 Footer
       // TODO: create PR for useOffsetPagination metadata
       const tableFooter = <div class="a-table-footer flex items-center">
         <ATypography class="a-table-pagination-meta">
           {/* TODO: Remove this text-xs usage as we have text-xs in default theme's styles once we resolve the card font size issue */}
-          <span class="text-xs">{rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0} - {isLastPage.value
-            ? isSST.value
-              ? _serverTotal.value
-              : filteredRows.value.length
-            : currentPage.value * currentPageSize.value} of {total.value}</span>
+          <span class="text-xs">
+            {rowsToRender.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0}
+            {' '}
+            -
+            {' '}
+            {isLastPage.value
+              ? isSST.value
+                ? _serverTotal.value
+                : filteredRows.value.length
+              : currentPage.value * currentPageSize.value}
+            {' '}
+            of
+            {' '}
+            {total.value}
+          </span>
         </ATypography>
-        <div class="flex-grow"></div>
+        <div class="flex-grow" />
         <div class="a-table-footer-per-page-container flex items-center">
-          <span class="sm:inline hidden">per page</span>
+          <span class="sm:inline hidden">
+            per page
+          </span>
           <ASelect
             class="a-table-footer-per-page-select"
-            spacing={80}
             inputWrapperClasses="a-table-footer-per-page-select--input-wrapper-classes"
+            options={Array.from(new Set([props.pageSize, 5, 10, 15, 20])).sort((a, b) => a - b)}
             optionsWrapperClasses="a-table-footer-per-page-select--options-wrapper-classes"
+            spacing={80}
             v-model={currentPageSize.value}
-            options={Array.from(new Set([props.pageSize, 5, 10, 15, 20])).sort((a, b) => a - b)}>
-          </ASelect>
+          />
         </div>
         <div>
-          <ABtn icon-only class="a-table-footer-previous-page-btn" icon="i-bx-left-arrow-alt" variant="default" onClick={goToPreviousPage} {...(isFirstPage.value && { disabled: true })}></ABtn>
-          <ABtn icon-only class="a-table-footer-next-page-btn" icon="i-bx-right-arrow-alt" variant="default" onClick={goToNextPage} {...(isLastPage.value && { disabled: true })}></ABtn>
+          <ABtn
+            class="a-table-footer-previous-page-btn"
+            icon="i-bx-left-arrow-alt"
+            icon-only
+            onClick={goToPreviousPage}
+            variant="default"
+            {...(isFirstPage.value && { disabled: true })}
+          />
+          <ABtn
+            class="a-table-footer-next-page-btn"
+            icon="i-bx-right-arrow-alt"
+            icon-only
+            onClick={goToNextPage}
+            variant="default"
+            {...(isLastPage.value && { disabled: true })}
+          />
         </div>
       </div>
 
       // TODO: noresultstext is represented as attrs of card
       // 💡 Here we are passing all the slots to card except default which gets overridden for merging provided default slot with table
-      return <ACard
-      style={{ '--a-spacing': spacing.value / 100 }}
-        class="a-table"
-        {...reactive(cardProps.value)}
-        v-slots={{
-          ...slots,
-          default: () => [slots.default?.(), table, tableFooter],
-          headerRight: typeof props.search === 'boolean' && props.search ? searchInput : null,
-        }}
-      />
+      return (
+        <ACard
+          class="a-table"
+          style={{ '--a-spacing': spacing.value / 100 }}
+          {...reactive(cardProps.value)}
+          v-slots={{
+            ...slots,
+            default: () => [slots.default?.(), table, tableFooter],
+            headerRight: typeof props.search === 'boolean' && props.search ? searchInput : null,
+          }}
+        />
+      )
     }
   },
 })

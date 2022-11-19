@@ -79,12 +79,27 @@ export const AChip = defineComponent({
 
     return () =>
       props.modelValue
-        ? <div class={['a-chip', { 'a-chip-disabled': props.disabled, 'cursor-pointer': isClickable.value }, ...classes.value]} style={styles.value}>
-            { props.icon ? <i class={props.icon}></i> : null }
-            { slots.default?.() }
-            { props.appendIcon ? <i class={props.appendIcon}></i> : null }
-            { props.closable ? <button onClick={closeChip}><i class={'i-bx-x hover:i-bx-bxs-x-circle hover:opacity-70'}></i></button> : null }
-          </div>
+        ? <div
+            class={[
+              'a-chip',
+              {
+                'a-chip-disabled': props.disabled,
+                'cursor-pointer': isClickable.value,
+              },
+              ...classes.value,
+            ]}
+            style={styles.value}
+          >
+          { props.icon ? <i class={props.icon} /> : null }
+          { slots.default?.() }
+          { props.appendIcon ? <i class={props.appendIcon} /> : null }
+          { props.closable
+            ? <i
+                class="i-bx-x hover:i-bx-bxs-x-circle hover:opacity-70"
+                onClick={closeChip}
+              />
+            : null }
+        </div>
         : null
   },
 })
