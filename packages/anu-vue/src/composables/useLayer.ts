@@ -1,5 +1,5 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { ComponentObjectPropsOptions, Ref } from 'vue'
+import type { ComponentObjectPropsOptions } from 'vue'
 import { ref, unref, watch } from 'vue'
 import type { ColorProp } from '@/composables/useProps'
 import { color } from '@/composables/useProps'
@@ -119,12 +119,12 @@ export const useLayer = () => {
     }
   }
 
-  const getLayerClasses = (propColor: Ref<ColorProp>, propVariant: Ref<string>, propsStates: Ref<boolean>, config?: MaybeRef<UseLayerConfig>) => {
+  const getLayerClasses = (propColor: MaybeRef<ColorProp>, propVariant: MaybeRef<string>, propsStates: MaybeRef<boolean>, config?: MaybeRef<UseLayerConfig>) => {
     const classes = ref<any>([])
     const styles = ref<any>([])
 
-    watch([propColor, propVariant, propsStates, () => config], () => {
-      const { classes: _classes, styles: _styles } = computeClassesStyles(propColor.value, propVariant.value, propsStates.value, unref(config))
+    watch([propColor, propVariant, propsStates, () => unref(config)], () => {
+      const { classes: _classes, styles: _styles } = computeClassesStyles(unref(propColor), unref(propVariant), unref(propsStates), unref(config))
       classes.value = _classes
       styles.value = _styles
     }, { immediate: true })
