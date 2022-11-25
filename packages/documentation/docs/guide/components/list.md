@@ -54,12 +54,13 @@ Just like `avatar-append`, you can also use `icon-append` to render the action b
 
 `AList` also support `v-model`. Use any value other than `null` to enable the `v-model` support.
 
-If you don't provide `value` property to each list item, `AList` will emit list item's index as selected value.
+If you use `items` prop on `AList` and don't provide `value` property to each list item, `AList` will emit list item's index as selected value.
+
+If you are using `AListItem` in default slot of `AList` you can use `handleListItemClick` slot prop function to select the item value. `handleListItemClick` accepts option item as parameter.
 
 :::code DemoListVModelSupport
-<<< @/demos/list/DemoListVModelSupport.vue{11,18}
+<<< @/demos/list/DemoListVModelSupport.vue{11-12,20,34}
 :::
-
 ::::
 
 :::tip

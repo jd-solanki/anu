@@ -4,25 +4,25 @@ const items = [
     icon: 'i-bx-link-external text-sm cursor-pointer',
     title: 'Electronics',
     subtitle: 'Mobile, Earbuds, TV',
-    $avatar: { icon: 'i-bx-mobile-alt' },
+    avatarProps: { icon: 'i-bx-mobile-alt' },
   },
   {
     icon: 'i-bx-link-external text-sm cursor-pointer',
     title: 'Fashion',
     subtitle: 'T-shirt, Jeans, Shoes',
-    $avatar: { icon: 'i-bx-closet' },
+    avatarProps: { icon: 'i-bx-closet' },
   },
   {
     icon: 'i-bx-link-external text-sm cursor-pointer',
     title: 'Decor',
     subtitle: 'Fine Art, Dining',
-    $avatar: { icon: 'i-bx-home' },
+    avatarProps: { icon: 'i-bx-home' },
   },
   {
     icon: 'i-bx-link-external text-sm cursor-pointer',
     title: 'Sports',
     subtitle: 'Football, Cricket Kit',
-    $avatar: { icon: 'i-bx-football' },
+    avatarProps: { icon: 'i-bx-football' },
   },
 ]
 </script>
