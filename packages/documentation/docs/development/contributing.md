@@ -97,6 +97,7 @@ At the moment, anu don't have any design system. Hence, we have full freedom to 
 <!-- - [UntitledUI](https://www.figma.com/file/V8nKLCJemHJyuAN39W6iok/%E2%9D%96-PREVIEW-%E2%9D%96-Untitled-UI-%E2%80%93-PRO-(v3.1)) -->
 
 - [Anu](https://dribbble.com/jd_0001/collections/5754387-anu) dribble collection
+- [Stratis UI](https://www.stratisui.com/)
 - [UntitledUI](https://www.figma.com/community/file/1020079203222518115)
 - [Daisy UI](https://www.figma.com/file/usqAh1FfAVsiGIbSKUKyQ7/Disy-%E2%80%94-Preview-1.1?node-id=654%3A4605)
 - [One UI](https://www.behance.net/gallery/140873105/Oneui-Minimalism-UI-kit)
