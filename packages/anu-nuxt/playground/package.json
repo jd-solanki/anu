@@ -2,7 +2,7 @@
   "private": true,
   "name": "my-module-playground",
   "devDependencies": {
-    "@iconify-json/bx": "^1.1.4",
+    "@iconify-json/bx": "^1.1.5",
     "@unocss/nuxt": "^0.46.5"
   }
 }
