@@ -61,6 +61,7 @@ export default defineConfig({
             { text: 'List', link: '/guide/components/list' },
             { text: 'Menu', link: '/guide/components/menu' },
             { text: 'Radio', link: '/guide/components/radio' },
+            { text: 'Rating', link: '/guide/components/rating' },
             { text: 'Select', link: '/guide/components/select' },
             { text: 'Switch', link: '/guide/components/switch' },
             { text: 'Table', link: '/guide/components/table' },
