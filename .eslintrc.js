@@ -56,6 +56,10 @@ module.exports = {
       ],
     }],
 
+    // 'vue/require-prop-comment': ['error', {
+    //   type: 'JSDoc',
+    // }],
+
     // Plugin: eslint-plugin-import
     'import/prefer-default-export': 'off',
 
