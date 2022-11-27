@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "types": [
+            "anu-vue/volar"
+        ],
+        "paths": {
+            "@anu-vue/*": [
+                "../packages/anu-vue/*"
+            ]
+        }
+    },
+    "exclude": [
+        "**/dist/**"
+    ],
+    "include": [
+        "**/*.ts",
+        "**/*.d.ts",
+        "**/*.vue",
+        "**/*.md",
+        ".vitepress/shims.d.ts"
+    ]
+}

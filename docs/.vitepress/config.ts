@@ -1,9 +1,10 @@
 import { fileURLToPath } from 'url'
 import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
+import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
 
-const nav = [
+const nav: DefaultTheme.Config['nav'] = [
   {
     text: 'Development',
     items: [
@@ -122,12 +123,12 @@ export default defineConfig({
   vite: {
     plugins: [
       Unocss({
-        configFile: '../../unocss.config.ts',
+        configFile: '../../uno.config.ts',
       }),
     ],
     resolve: {
       alias: {
-        '@anu-vue': fileURLToPath(new URL('../../../anu-vue/', import.meta.url)),
+        '@anu-vue': fileURLToPath(new URL('../../packages/anu-vue', import.meta.url)),
       },
     },
   },

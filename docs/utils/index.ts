@@ -1,6 +1,6 @@
-export const extractFileNameFromPath = path => path.split('/').at(-1).split('.')[0]
+export const extractFileNameFromPath = (path: string) => path.split('/').at(-1).split('.')[0]
 
-export const extractFileNameFromGlobImport = demos => {
+export const extractFileNameFromGlobImport = (demos: string[]) => {
   const names = []
   for (const path in demos) names.push(extractFileNameFromPath(path))
 

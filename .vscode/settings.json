@@ -80,7 +80,8 @@
     // Extention: Code Spell Checker
     "cSpell.words": [
         "composables",
-        "Vite"
+        "Vite",
+        "vitepress"
     ],
     // Extension: UnoCSS
     "unocss.root": "packages/documentation",
