@@ -139,7 +139,7 @@ export const ARating = defineComponent({
     }
 
     return () => (
-       <div
+      <div
         class={[
           'a-rating flex',
           (props.animate && !props.readonly && !props.disabled) && 'a-rating-animated',
@@ -148,15 +148,19 @@ export const ARating = defineComponent({
           ...classes.value,
         ]}
         style={[...styles.value]}
-       >
+      >
 
         {items.value.map((icon, i) => {
-          return <i class={['cursor-pointer', icon]}
-             onClick={handleClick}
-             onMouseenter={(event => onMouseEnter(event, i))}
-             onMouseleave={onMouseLeave}/>
+          return (
+            <i
+              class={['cursor-pointer', icon]}
+              onClick={handleClick}
+              onMouseenter={(event => onMouseEnter(event, i))}
+              onMouseleave={onMouseLeave}
+            />
+          )
         })}
-       </div>
+      </div>
     )
   },
 })
