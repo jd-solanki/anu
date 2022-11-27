@@ -3,7 +3,14 @@ import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vitepress'
 
-const nav = []
+const nav = [
+  {
+    text: 'Development',
+    items: [
+      { text: 'Contributing', link: '/development/contributing' },
+    ],
+  },
+]
 
 if (process.env.NODE_ENV !== 'production')
   nav.push({ text: 'Playground', link: '/playground' })
@@ -18,7 +25,7 @@ export default defineConfig({
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/jd-solanki/anu' },
-      { icon: 'discord', link: 'https://discord.gg/vSp3a2Yn' },
+      { icon: 'discord', link: 'https://discord.gg/8MTQuasmZf' },
     ],
     nav,
     sidebar: {
@@ -33,6 +40,12 @@ export default defineConfig({
           ],
         },
         {
+          text: 'Features',
+          items: [
+            { text: 'Sizing', link: '/guide/features/sizing' },
+          ],
+        },
+        {
           text: 'Components',
           items: [
             { text: 'Alert', link: '/guide/components/alert' },
@@ -41,6 +54,7 @@ export default defineConfig({
             { text: 'Button', link: '/guide/components/button' },
             { text: 'Card', link: '/guide/components/card' },
             { text: 'Checkbox', link: '/guide/components/checkbox' },
+            { text: 'Chip', link: '/guide/components/chip' },
             { text: 'Dialog', link: '/guide/components/dialog' },
             { text: 'Drawer', link: '/guide/components/drawer' },
             { text: 'Input', link: '/guide/components/input' },

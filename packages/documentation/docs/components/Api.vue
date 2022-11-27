@@ -11,7 +11,7 @@ const propsHeader = Object.keys(props.api.props[0])
     title="Props"
     class="shadow-none border border-a-border"
   >
-    <div class="card-body">
+    <div class="a-card-body">
       <div
         v-for="prop in props.api.props"
         :key="prop.name"

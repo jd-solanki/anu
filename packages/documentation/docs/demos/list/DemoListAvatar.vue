@@ -1,28 +1,28 @@
 <script lang="ts" setup>
 const items = [
   {
-    icon: 'i-bx-mobile-alt',
+    icon: 'i-bx-link-external text-sm cursor-pointer',
     title: 'Electronics',
     subtitle: 'Mobile, Earbuds, TV',
-    $avatar: { class: 'text-xl' },
+    avatarProps: { icon: 'i-bx-mobile-alt' },
   },
   {
-    icon: 'i-bx-closet',
+    icon: 'i-bx-link-external text-sm cursor-pointer',
     title: 'Fashion',
     subtitle: 'T-shirt, Jeans, Shoes',
-    $avatar: { class: 'text-xl' },
+    avatarProps: { icon: 'i-bx-closet' },
   },
   {
-    icon: 'i-bx-home',
+    icon: 'i-bx-link-external text-sm cursor-pointer',
     title: 'Decor',
     subtitle: 'Fine Art, Dining',
-    $avatar: { class: 'text-xl' },
+    avatarProps: { icon: 'i-bx-home' },
   },
   {
-    icon: 'i-bx-football',
+    icon: 'i-bx-link-external text-sm cursor-pointer',
     title: 'Sports',
     subtitle: 'Football, Cricket Kit',
-    $avatar: { class: 'text-xl' },
+    avatarProps: { icon: 'i-bx-football' },
   },
 ]
 </script>
@@ -32,6 +32,7 @@ const items = [
     <ACard>
       <AList
         :items="items"
+        icon-append
         class="[--a-list-item-gap:1rem]"
       />
     </ACard>

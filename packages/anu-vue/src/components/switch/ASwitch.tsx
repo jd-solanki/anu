@@ -62,21 +62,55 @@ export const ASwitch = defineComponent({
       else return { transform: 'translateX(calc(var(--a-switch-track-size) - 100% - (var(--a-switch-thumb-margin) *2 )))' }
     })
 
-    return () => <label class={[props.label || slots.default ? 'flex' : 'inline-flex', 'a-switch cursor-pointer uno-layer-base-rounded-full justify-between items-center', props.disabled && 'a-switch-disabled pointer-events-none']} for={elementId}>
-        <input v-model={data.value} class="hidden" type="checkbox" role="switch" id={elementId} checked={data.value} />
+    return () => (
+      <label
+        class={[
+          props.label || slots.default
+            ? 'flex'
+            : 'inline-flex', 'a-switch cursor-pointer uno-layer-base-rounded-full justify-between items-center',
+          props.disabled && 'a-switch-disabled pointer-events-none',
+        ]}
+        for={elementId}
+      >
+        <input
+          checked={data.value}
+          class="hidden"
+          id={elementId}
+          role="switch"
+          type="checkbox"
+          v-model={data.value}
+        />
 
         {/* 👉 Label */}
         {slots.default ? slots.default() : props.label}
 
         {/* 👉 Switch */}
         {/* min width should be double the dot size */}
-        <div class={[data.value ? `bg-${props.color}` : 'bg-[hsl(var(--a-switch-default-color))]', 'a-switch-toggle flex rounded-inherit min-w-$a-switch-track-size']}>
-            <div class="a-switch-dot grid place-items-center rounded-inherit m-$a-switch-thumb-margin" style={dotPosition.value}>
-              <div class={[data.value ? `${props.onIcon} text-${props.color}` : props.offIcon, 'a-switch-icon color-$a-switch-icon-color']}></div>
-            </div>
+        <div
+          class={[
+            'a-switch-toggle flex rounded-inherit min-w-$a-switch-track-size',
+            data.value
+              ? `bg-${props.color}`
+              : 'bg-[hsl(var(--a-switch-default-color))]',
+          ]}
+        >
+          <div
+            class="a-switch-dot grid place-items-center rounded-inherit m-$a-switch-thumb-margin"
+            style={dotPosition.value}
+          >
+            <div
+              class={[
+                'a-switch-icon color-$a-switch-icon-color',
+                data.value
+                  ? `${props.onIcon} text-${props.color}`
+                  : props.offIcon,
+              ]}
+            />
+          </div>
         </div>
 
-    </label>
+      </label>
+    )
   },
 })
 

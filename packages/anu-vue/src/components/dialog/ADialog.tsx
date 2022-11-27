@@ -5,6 +5,7 @@ import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 
 export const ADialog = defineComponent({
   name: 'ADialog',
+  inheritAttrs: false,
   props: {
     ...useCardProps(),
 
@@ -42,9 +43,20 @@ export const ADialog = defineComponent({
 
     return () => <Teleport to="body">
       <Transition name="bg">
-        <div v-show={props.modelValue} class={['a-dialog-wrapper grid uno-layer-base-place-items-center fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]']}>
+        <div
+          class={['a-dialog-wrapper grid uno-layer-base-place-items-center fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]']}
+          v-show={props.modelValue}
+        >
           <Transition name="scale">
-            <ACard {...attrs} v-show={props.modelValue} class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]" ref={refCard} {...props}>{{ ...slots }}</ACard>
+            <ACard
+              {...attrs}
+              class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]"
+              ref={refCard}
+              v-show={props.modelValue}
+              {...props}
+            >
+              {{ ...slots }}
+            </ACard>
           </Transition>
         </div>
       </Transition>

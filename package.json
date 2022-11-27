@@ -9,10 +9,9 @@
     "build": "nr --filter anu-vue build",
     "docs:dev": "nr --filter @anu-vue/documentation dev",
     "docs:build": "nr --filter anu-vue build && nr --filter @anu-vue/documentation build",
-    "clean": "rimraf node_modules packages/anu-vue/node_modules packages/anu-vue/dist packages/documentation/node_modules",
+    "clean": "rimraf packages/anu-vue/dist && rimraf packages/anu-nuxt/dist",
     "release": "bumpp package.json packages/anu-vue/package.json --execute 'nr --filter anu-vue build' && na --filter anu-vue publish --no-git-checks",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "nr --filter anu-vue lint"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +26,10 @@
     "eslint": "^8.26.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsonc": "^2.5.0",
+    "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-unicorn": "^44.0.2",
     "eslint-plugin-vue": "^9.6.0",
     "fast-glob": "^3.2.11",

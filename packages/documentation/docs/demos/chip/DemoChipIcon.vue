@@ -1,0 +1,31 @@
+<template>
+  <div class="flex flex-wrap gap-2">
+    <AChip icon="i-bx-user">
+      <span>User</span>
+    </AChip>
+    <AChip
+      color="success"
+      icon="i-bx-bxs-battery-charging"
+    >
+      <span>Charging</span>
+    </AChip>
+    <AChip
+      color="info"
+      icon="i-bx-wrench"
+    >
+      <span>Settings</span>
+    </AChip>
+    <AChip
+      color="warning"
+      icon="i-bx-car"
+    >
+      <span>Traffic</span>
+    </AChip>
+    <AChip
+      color="danger"
+      icon="i-bx-trash"
+    >
+      <span>Remove</span>
+    </AChip>
+  </div>
+</template>

@@ -1,5 +1,5 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { ComponentObjectPropsOptions, Ref } from 'vue'
+import type { ComponentObjectPropsOptions } from 'vue'
 import { ref, unref, watch } from 'vue'
 import type { ColorProp } from '@/composables/useProps'
 import { color } from '@/composables/useProps'
@@ -65,12 +65,13 @@ export const useLayer = () => {
         const contrastColor = contrast(propColor)
 
         styles.push(`--a-layer-text: ${contrastColor}`)
+        styles.push(`--un-ring-color: ${propColor}`)
       }
     }
 
-    // If it's theme color => Use color's CSS var to `--a-layer-color`
+    // If it's theme color => Use color's CSS var to `--a-layer-color` and to ring color '--un-ring-color'
     else {
-      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
+      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` }, { '--un-ring-color': `hsl(var(--a-${propColor}))` })
 
       // ℹ️ We need to set un-bg-opacity just like UnoCSS class
       classes.push('[--un-bg-opacity:1]')
@@ -118,12 +119,12 @@ export const useLayer = () => {
     }
   }
 
-  const getLayerClasses = (propColor: Ref<ColorProp>, propVariant: Ref<string>, propsStates: Ref<boolean>, config?: MaybeRef<UseLayerConfig>) => {
+  const getLayerClasses = (propColor: MaybeRef<ColorProp>, propVariant: MaybeRef<string>, propsStates: MaybeRef<boolean>, config?: MaybeRef<UseLayerConfig>) => {
     const classes = ref<any>([])
     const styles = ref<any>([])
 
-    watch([propColor, propVariant, propsStates, () => config], () => {
-      const { classes: _classes, styles: _styles } = computeClassesStyles(propColor.value, propVariant.value, propsStates.value, unref(config))
+    watch([propColor, propVariant, propsStates, () => unref(config)], () => {
+      const { classes: _classes, styles: _styles } = computeClassesStyles(unref(propColor), unref(propVariant), unref(propsStates), unref(config))
       classes.value = _classes
       styles.value = _styles
     }, { immediate: true })
