@@ -135,7 +135,7 @@ export const AListItem = defineComponent({
                     class="flex-grow"
                     subtitle={props.subtitle}
                     text={props.text}
-                    title={Object.values(_titleProp.value) as ConfigurableValue}
+                    title={props.title ? Object.values(_titleProp.value) as ConfigurableValue : undefined}
                   />
             }
 
