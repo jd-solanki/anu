@@ -7,6 +7,8 @@ const rating = ref(0)
 <template>
   <ARating
     v-model="rating"
-    color="primary"
+    empty-icon="i-bx:heart"
+    full-icon="i-bx:bxs-heart"
+    color="danger"
   />
 </template>

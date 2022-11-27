@@ -1,9 +1,13 @@
+<script lang="ts" setup>
+import api from '@anu-vue/component-meta/ARating.json';
+</script>
+
 # Rating
 
 <!-- 👉 Basic -->
 ::::card Basic
 
-Rating is a component that allows users to rate content.
+Rating component allows users to rate content
 
 :::code DemoRatingBasic
 <<< @/demos/rating/DemoRatingBasic.vue{4,8}
@@ -14,10 +18,10 @@ Rating is a component that allows users to rate content.
 <!-- 👉 Colors -->
 ::::card Colors
 
-You can use color prop to change the rating color
+You can use `color` prop to change the rating color
 
 :::code DemoRatingColor
-<<< @/demos/rating/DemoRatingColor.vue{12,16,20,24}
+<<< @/demos/rating/DemoRatingColor.vue{10}
 :::
 
 ::::
@@ -28,62 +32,95 @@ You can use color prop to change the rating color
 You can use font-size utility to adjust the size of rating.
 
 :::code DemoRatingSizing
-<<< @/demos/rating/DemoRatingSizing.vue{11,16,20,24}
+<<< @/demos/rating/DemoRatingSizing.vue{11,15,19,21,24}
 :::
 
 ::::
+
+:::tip
+You can use padding utilities along with `all:` variant (`all:px-3`) to increase the gap between each rating icon.
+:::
 
 <!-- 👉 Custom icon -->
 ::::card Custom icon
 
-You can use custom icon by providing `icon-empty` and `icon-full` props.
+You can use custom icon by providing `empty-icon` and `full-icon` props.
 
-:::code DemoRatingIcon
-<<< @/demos/rating/DemoRatingIcon.vue{12-13,18-19,24-25,30-31}
+:::code DemoRatingCustomIcon
+<<< @/demos/rating/DemoRatingCustomIcon.vue{10-11}
 :::
 
 ::::
 
-<!-- 👉 Texts -->
-::::card Texts
+:::tip
+`ARating` component also supports `half-icon` prop to customize the half icon when using `halve` prop.
+:::
 
-You can use `texts` to provide your custom labels.
+<!-- 👉 Halve -->
+::::card Halve
 
-:::code DemoRatingTexts
-<<< @/demos/rating/DemoRatingTexts.vue{11}
+You can use `halve` prop to allow half rating.
+
+:::code DemoRatingHalve
+<<< @/demos/rating/DemoRatingHalve.vue{10}
 :::
 
 ::::
 
-<!-- 👉 Halving -->
-::::card Halving
+<!-- 👉 No Hover Hint -->
+::::card No hover hint
 
-You can use `halving` prop to allow half rating.
+You can use `no-hover-hint` prop to disable visual changes of value before click.
 
-:::code DemoRatingHalving
-<<< @/demos/rating/DemoRatingHalving.vue{10}
+:::code DemoRatingNoHoverHint
+<<< @/demos/rating/DemoRatingNoHoverHint.vue{11}
 :::
 
 ::::
 
-<!-- 👉 Hover -->
-::::card Hover
+<!-- 👉 Length -->
+::::card Length
 
-You can use `hover` prop to see visual changes of value before click.
+You can use `length` prop to change the amount of items.
 
-:::code DemoRatingHover
-<<< @/demos/rating/DemoRatingHover.vue{12}
+:::code DemoRatingLength
+<<< @/demos/rating/DemoRatingLength.vue{11}
 :::
 
 ::::
 
-<!-- 👉 Items amount -->
-::::card Items amount
+<!-- 👉 Animate -->
+::::card Animate
 
-You can use `itemsAmount` prop to change the amount of items.
+Use `animate` prop to animate hovered rating icon.
 
-:::code DemoRatingItemsAmount
-<<< @/demos/rating/DemoRatingItemsAmount.vue{11,16,22}
+:::code DemoRatingAnimate
+<<< @/demos/rating/DemoRatingAnimate.vue{10}
 :::
 
 ::::
+
+:::tip
+You can use `no-hover-hint` prop along with `animate` prop to only animate and prevent filling the rating icon on hover.
+:::
+
+<!-- 👉 States -->
+::::card States
+
+`ARating` also supports readonly & disabled states.
+
+When rating is readonly or disabled, rating won't animate and you won't get hover hint. This means, when you set rating in readonly or disabled state, you are implicitly setting `:animate="false"` & `:no-hover-hint="true"`.
+
+:::code DemoRatingStates
+<<< @/demos/rating/DemoRatingStates.vue{10,14}
+:::
+
+::::
+
+:::info NOTE
+When rating is readonly or disabled, `a-rating-animated` class won't apply.
+:::
+<!-- 👉 API -->
+## API
+
+<Api :api="api"></Api>

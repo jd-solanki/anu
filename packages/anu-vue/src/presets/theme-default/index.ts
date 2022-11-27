@@ -111,6 +111,11 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     // 👉 Menu
     'a-menu': 'z-[51] shadow-xl [--a-transition-slide-up-transform:10px]',
 
+    // 👉 Rating
+    'a-rating': 'uno-layer-base-text-xl',
+    'a-rating-animated': 'i:(transition-transform ease-in-out duration-250) hover:i:scale-125',
+    'a-rating-disabled': 'opacity-50',
+
     // 👉 Radio
     'a-radio-circle': 'border-solid h-5 w-5 border-(2 a-border) rounded-full mr-2 p-1 after:(duration-250 ease-in-out)', // ℹ️ :after is inner dot
     'a-radio-disabled': 'opacity-50',

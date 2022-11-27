@@ -7,6 +7,7 @@ const rating = ref(0)
 <template>
   <ARating
     v-model="rating"
-    color="primary"
+    halve
+    class="text-2xl"
   />
 </template>

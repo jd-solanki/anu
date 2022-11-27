@@ -8,7 +8,7 @@ const rating = ref(0)
   <div class="flex flex-col gap-2">
     <ARating
       v-model="rating"
-      :texts="['Terrible', 'Bad', 'Average', 'Good', 'Excellent']"
+      length="3"
     />
   </div>
 </template>

@@ -10,15 +10,15 @@ const rating = ref(0)
       v-model="rating"
       class="text-sm"
     />
-    <ARating v-model="rating" />
+    <ARating
+      v-model="rating"
+      class="text-base"
+    />
     <ARating
       v-model="rating"
       class="text-lg"
     />
-    <ARating
-      v-model="rating"
-      class="text-xl"
-    />
+    <ARating v-model="rating" />
     <ARating
       v-model="rating"
       class="text-2xl"

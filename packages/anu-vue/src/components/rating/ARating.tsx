@@ -1,5 +1,6 @@
 import { computed, defineComponent, ref, toRef } from 'vue'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { disabled, readonly } from '@/composables/useProps'
 
 export const ARating = defineComponent({
   name: 'ARating',
@@ -7,7 +8,7 @@ export const ARating = defineComponent({
     // color: { default: 'primary' },
     ...useLayerProps({
       color: {
-        default: 'primary',
+        default: 'warning',
       },
     }),
 
@@ -16,12 +17,13 @@ export const ARating = defineComponent({
      */
     modelValue: {
       type: Number,
+      default: undefined,
     },
 
     /**
      * Sets amount of rating items
      */
-    itemsAmount: {
+    length: {
       type: [Number, String],
       default: 5,
     },
@@ -29,7 +31,7 @@ export const ARating = defineComponent({
     /**
      * Allows the award of half a point
      */
-    halving: {
+    halve: {
       type: Boolean,
       default: false,
     },
@@ -37,7 +39,7 @@ export const ARating = defineComponent({
     /**
      * Sets empty icon
      */
-    iconEmpty: {
+    emptyIcon: {
       type: String,
       default: 'i-bx:star',
     },
@@ -45,7 +47,7 @@ export const ARating = defineComponent({
     /**
      * Sets half-filled icon
      */
-    iconHalf: {
+    halfIcon: {
       type: String,
       default: 'i-bx:bxs-star-half',
     },
@@ -53,27 +55,36 @@ export const ARating = defineComponent({
     /**
      * Sets filled icon
      */
-    iconFull: {
+    fullIcon: {
       type: String,
       default: 'i-bx:bxs-star',
     },
 
     /**
-     * Sets your custom labels for each rating item
-     */
-    texts: {
-      type: Array,
-      required: false,
-      default: () => [],
-    },
-
-    /**
      * Allows to see visual changes of value on hover
      */
-    hover: {
+    noHoverHint: {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Animate icon on hover
+     */
+    animate: {
+      type: Boolean,
+      default: false,
+    },
+
+    /**
+     * Make rating component readonly
+     */
+    readonly,
+
+    /**
+     * Disable rating selection
+     */
+    disabled,
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -88,15 +99,22 @@ export const ARating = defineComponent({
     const rating = ref(0)
     const isHovered = ref(false)
 
-    const visibleRating = computed(() => props.hover && isHovered.value ? rating.value : props.modelValue ?? 0)
+    const visibleRating = computed(() =>
+      !props.noHoverHint
+      && !props.readonly
+      && !props.disabled
+      && isHovered.value
+        ? rating.value
+        : props.modelValue ?? 0,
+    )
 
     const items = computed(() =>
-      Array.from({ length: Number(props.itemsAmount) }, (_, i) => i + 1).map(item =>
+      Array.from({ length: Number(props.length) }, (_, i) => i + 1).map(item =>
         item <= visibleRating.value
-          ? props.iconFull
+          ? props.fullIcon
           : item - visibleRating.value === 0.5
-            ? props.iconHalf
-            : props.iconEmpty,
+            ? props.halfIcon
+            : props.emptyIcon,
       ),
     )
 
@@ -104,13 +122,13 @@ export const ARating = defineComponent({
       emit('update:modelValue', rating.value)
     }
 
-    const onMouseMove = (e: MouseEvent, index: number) => {
+    const onMouseEnter = (e: MouseEvent, index: number) => {
       isHovered.value = true
 
       const { offsetX, target } = e
       if (target instanceof HTMLElement) {
         const widthPercentage = (offsetX * 100) / target.clientWidth
-        props.halving
+        props.halve
           ? (rating.value = widthPercentage < 50 ? index + 0.5 : index + 1)
           : (rating.value = index + 1)
       }
@@ -121,16 +139,23 @@ export const ARating = defineComponent({
     }
 
     return () => (
-       <div class={['flex', ...classes.value]} style={[...styles.value]} >
+       <div
+        class={[
+          'a-rating flex',
+          (props.animate && !props.readonly && !props.disabled) && 'a-rating-animated',
+          props.readonly && 'a-rating-readonly pointer-events-none',
+          props.disabled && 'a-rating-disabled pointer-events-none',
+          ...classes.value,
+        ]}
+        style={[...styles.value]}
+       >
 
         {items.value.map((icon, i) => {
           return <i class={['cursor-pointer', icon]}
-             onClick={() => handleClick()}
-             onMousemove={(event => onMouseMove(event, i))}
+             onClick={handleClick}
+             onMouseenter={(event => onMouseEnter(event, i))}
              onMouseleave={onMouseLeave}/>
         })}
-
-       {props.texts.length > 0 && <span class="ml-2">{props.texts[Math.floor(visibleRating.value) - 1]}</span>}
        </div>
     )
   },
