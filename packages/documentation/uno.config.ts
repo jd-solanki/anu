@@ -17,10 +17,14 @@ export default defineConfig({
         'height': '1.2em',
         'width': '1.2em',
 
+        // ℹ️ We are experimenting with `vertical-align` align property at the moment
         // ℹ️ We also have to find a way to inject this without this config. (e.g. [class^=i-])
-        'vertical-align': 'text-top',
+        'vertical-align': 'bottom',
         'flex-shrink': '0',
         'display': 'inline-block',
+
+        // We need to center the icon
+        'margin-block': '0.15em',
       },
     }),
 

@@ -32,16 +32,14 @@
     "./dist/style.css": "./dist/style.css"
   },
   "files": [
-    "dist",
-    "volar.d.ts"
+    "dist"
   ],
-  "types": "./dist/types",
+  "types": "dist",
   "scripts": {
     "dev": "nr gen-comp-meta && vite build --watch",
     "gen-comp-meta": "na tsx ../../scripts/gen-component-meta.ts",
-    "build": "nr gen-comp-meta && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --fix"
+    "build": "nr gen-comp-meta && vite build && vue-tsc --emitDeclarationOnly --declaration",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.0.3",

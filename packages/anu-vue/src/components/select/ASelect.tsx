@@ -1,7 +1,7 @@
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { onClickOutside } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
+import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { isObject } from '@/utils/helpers'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
@@ -103,6 +103,15 @@ export const ASelect = defineComponent({
     )
 
     // !SECTION
+
+    // 👉 watch: modelValue
+    watch(
+      () => props.modelValue,
+      () => {
+        isOptionsVisible.value = false
+      },
+    )
+
     // TODO: You can use it as utility in another components
     // TODO: Add some style to indicate currently selected item
     const handleInputClick = () => {
@@ -119,10 +128,6 @@ export const ASelect = defineComponent({
       emit('input', value)
       emit('update:modelValue', value)
     }
-    const closeOptions = (event: MouseEvent) => {
-      if (event.target !== refFloating.value)
-        isOptionsVisible.value = false
-    }
 
     // 👉 Value
     const selectedValue = computed(() => {
@@ -134,58 +139,41 @@ export const ASelect = defineComponent({
     })
 
     return () => <>
-      {/* TODO: Make sure we don't bind input's `type` attr here */}
-      <ABaseInput
-        {...attrs}
-        appendInnerIcon="i-bx-chevron-down"
-        disabled={props.disabled}
-        inputContainerAttrs={{
-          onClick: handleInputClick,
-        }}
-        readonly={props.readonly}
-        ref={refReference}
-      >
-        {{
-          // Recursively pass down slots
-          ...slots,
-          default: (slotProps: any) =>
-            <input
-              {...slotProps}
-              readonly
-              ref={selectRef}
-              value={selectedValue.value}
-            />,
-        }}
-      </ABaseInput>
-      <Teleport to="body">
-        <ul
-          class={[
-            'a-select-options-container absolute bg-[hsl(var(--a-layer))]',
-            props.optionsWrapperClasses,
-          ]}
-          onClick={closeOptions}
-          ref={refFloating}
-          v-show={isOptionsVisible.value}
-        >
-          {
-            slots.default
-              ? slots.default?.({
-                attrs: {
-                  class: optionClasses,
-                },
-              })
-              : props.options?.map(option => (
-                <li
-                  class={optionClasses}
-                  onClick={() => handleOptionClick(option)}
-                >
-                  {isObjectOption(option) ? (option as ObjectOption).label : option}
-                </li>
-              ))
-          }
-        </ul>
-      </Teleport>
-    </>
+            {/* TODO: Make sure we don't bind input's `type` attr here */}
+            <ABaseInput disabled={props.disabled} readonly={props.readonly} appendInnerIcon="i-bx-chevron-down" {...attrs} ref={refReference} inputContainerAttrs={{
+              onClick: handleInputClick,
+            }}>
+                {{
+                  // Recursively pass down slots
+                  ...slots,
+                  default: (slotProps: any) =>
+                        <input
+                            {...slotProps}
+                            value={ selectedValue.value }
+                            readonly
+                            ref={selectRef}
+                        />,
+                }}
+            </ABaseInput>
+            <Teleport to="body">
+                <ul
+                    v-show={isOptionsVisible.value}
+                    ref={refFloating}
+                    class={['a-select-options-container absolute bg-[hsl(var(--a-layer))]', props.optionsWrapperClasses]}>
+                    {
+                      slots.default
+                        ? slots.default?.({
+                          attrs: {
+                            class: optionClasses,
+                          },
+                        })
+                        : props.options?.map(option => <li class={optionClasses} onClick={() => handleOptionClick(option)}>
+                          {isObjectOption(option) ? (option as ObjectOption).label : option}
+                        </li>)
+                    }
+                </ul>
+            </Teleport>
+        </>
   },
 })
 

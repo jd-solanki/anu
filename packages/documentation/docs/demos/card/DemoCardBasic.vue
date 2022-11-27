@@ -9,14 +9,12 @@
 
     <!-- 👉 Using custom content (without props) -->
     <ACard>
-      <div class="a-card-body a-card-spacer">
+      <div class="card-body card-spacer">
         <ATypography
           title="Card title"
           subtitle="Chocolate cake tiramisu donut"
         />
-        <p class="text-sm">
-          Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar.
-        </p>
+        <span>Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar.</span>
       </div>
     </ACard>
   </div>

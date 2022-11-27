@@ -160,12 +160,12 @@ export const AMenu = defineComponent({
       <Transition name={props.transition || undefined}>
         <ACard
           class={['a-menu', props.strategy === 'fixed' ? 'fixed' : 'absolute']}
-          ref={refFloating}
           v-show={props.modelValue ?? isMenuVisible.value}
+          ref={refFloating}
         >
           {slots.default?.()}
         </ACard>
-      </Transition>
+        </Transition>
     </Teleport>
   },
 })

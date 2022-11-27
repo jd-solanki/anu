@@ -12,7 +12,7 @@ const isDrawerShown = ref(false)
     text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
     persistent
   >
-    <div class="a-card-body">
+    <div class="card-body">
       <ABtn
         variant="light"
         class="text-sm"

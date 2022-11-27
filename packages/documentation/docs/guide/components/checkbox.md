@@ -19,7 +19,7 @@ import api from '@anu-vue/component-meta/ACheckbox.json'
 Use `icon` prop to change the checked icon.
 
 :::code DemoCheckboxIcon
-<<< @/demos/checkbox/DemoCheckboxIcon.vue{12,19}
+<<< @/demos/checkbox/DemoCheckboxIcon.vue{3,7}
 :::
 
 ::::
@@ -41,18 +41,7 @@ Use `icon` prop to change the checked icon.
 You can use `color` prop to change the checkbox color.
 
 :::code DemoCheckboxColor
-<<< @/demos/checkbox/DemoCheckboxColor.vue{15,22,29,36,43}
-:::
-
-::::
-
-<!-- 👉 Indeterminate -->
-::::card Indeterminate
-
-You can use `indeterminate` prop to change the status of the checkbox.
-
-:::code DemoCheckboxIndeterminate
-<<< @/demos/checkbox/DemoCheckboxIndeterminate.vue{25,32}
+<<< @/demos/checkbox/DemoCheckboxColor.vue{4,11,18,25,32}
 :::
 
 ::::

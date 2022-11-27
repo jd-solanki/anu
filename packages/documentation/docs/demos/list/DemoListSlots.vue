@@ -20,14 +20,14 @@ const items = [
         </template>
 
         <!-- 👉 Slot: Append -->
-        <template #append="{ index }">
+        <template #append="{ itemIndex }">
           <ABtn
             variant="outline"
             class="text-[0.6rem] font-semibold opacity-50"
             color="default"
             :states="false"
           >
-            Shift + {{ index + 1 }}
+            Shift + {{ itemIndex + 1 }}
           </ABtn>
         </template>
 

@@ -12,8 +12,8 @@
       class="text-sm"
     />
     <ATypography
-      :text="['+$789', 'text-success']"
-      class="text-sm font-semibold place-self-end"
+      text="+$789"
+      class="text-sm text-success font-semibold place-self-end"
     />
 
     <!-- 👉 Credit card -->
@@ -28,8 +28,8 @@
       class="text-sm"
     />
     <ATypography
-      :text="['-$13.6', 'text-danger']"
-      class="text-sm font-semibold place-self-end"
+      text="-$13.6"
+      class="text-sm text-danger font-semibold place-self-end"
     />
 
     <!-- 👉 Server storage -->
@@ -44,8 +44,8 @@
       class="text-sm"
     />
     <ATypography
-      :text="['4 minutes ago', 'text-warning']"
-      class="text-sm font-semibold place-self-end"
+      text="4 minutes ago"
+      class="text-sm text-warning font-semibold place-self-end"
     />
   </div>
 </template>

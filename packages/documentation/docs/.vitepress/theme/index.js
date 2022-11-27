@@ -10,9 +10,7 @@ import './style.css'
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
-    app.use(anu, {
-      registerComponents: true,
-    })
+    app.use(anu)
 
     const demos = import.meta.globEager('../../demos/**/*.vue')
 
