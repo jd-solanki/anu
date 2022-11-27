@@ -41,7 +41,7 @@ export const ADialog = defineComponent({
     // Lock DOM scroll when modelValue is `true`
     useDOMScrollLock(toRef(props, 'modelValue'))
 
-    return () => <Teleport to="body">
+    return () => <Teleport to="body > div:first-child">
       <Transition name="bg">
         <div
           class={['a-dialog-wrapper grid uno-layer-base-place-items-center fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]']}

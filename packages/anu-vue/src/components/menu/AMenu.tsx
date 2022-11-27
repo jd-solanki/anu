@@ -155,7 +155,7 @@ export const AMenu = defineComponent({
       }
     }
 
-    return () => <Teleport to="body">
+    return () => <Teleport to="body > div:first-child">
       {/* ℹ️ Transition component don't accept null as value of name prop so we need `props.transition || undefined` */}
       <Transition name={props.transition || undefined}>
         <ACard

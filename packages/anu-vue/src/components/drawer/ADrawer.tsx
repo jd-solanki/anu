@@ -49,7 +49,7 @@ export const ADrawer = defineComponent({
     // Lock DOM scroll when modelValue is `true`
     useDOMScrollLock(toRef(props, 'modelValue'))
 
-    return () => <Teleport to="body">
+    return () => <Teleport to="body > div:first-child">
       <Transition name="bg">
         <div
           class={[
