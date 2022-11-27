@@ -136,6 +136,8 @@ const themeShortcuts: Exclude<Preset['shortcuts'], undefined> = [
     'a-select-option': 'em:spacing:px-4 em:spacing:py-1',
 
     // 👉 Switch
+    'a-switch': 'select-none',
+    'a-switch-label': 'select-text',
     'a-switch-toggle': 'transition-colors transition-duration-100 ease-in-out',
     'a-switch-dot': 'h-[1.18em] w-[1.18em] bg-white transition transition-duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]',
     'a-switch-icon': 'em:text-xs',

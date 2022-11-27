@@ -65,6 +65,7 @@ export const ASwitch = defineComponent({
     return () => (
       <label
         class={[
+          'a-switch',
           props.label || slots.default
             ? 'flex'
             : 'inline-flex', 'a-switch cursor-pointer uno-layer-base-rounded-full justify-between items-center',
@@ -82,7 +83,9 @@ export const ASwitch = defineComponent({
         />
 
         {/* 👉 Label */}
-        {slots.default ? slots.default() : props.label}
+        <div class="a-switch-label">
+          {slots.default ? slots.default() : props.label}
+        </div>
 
         {/* 👉 Switch */}
         {/* min width should be double the dot size */}
