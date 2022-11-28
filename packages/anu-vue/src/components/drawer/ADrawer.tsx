@@ -1,8 +1,9 @@
 import { onClickOutside } from '@vueuse/core'
 import type { PropType } from 'vue'
 import { Teleport, Transition, defineComponent, ref, toRef } from 'vue'
-import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { ACard, useCardProps } from '@/components/card'
+import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
+import { useTeleport } from '@/composables/useTeleport'
 
 export const ADrawer = defineComponent({
   name: 'ADrawer',
@@ -35,6 +36,8 @@ export const ADrawer = defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit, attrs }) {
+    const { teleportTarget } = useTeleport('#a-teleport-target')
+
     const refCard = ref()
     if (!props.persistent) {
       onClickOutside(refCard, () => {
@@ -49,7 +52,7 @@ export const ADrawer = defineComponent({
     // Lock DOM scroll when modelValue is `true`
     useDOMScrollLock(toRef(props, 'modelValue'))
 
-    return () => <Teleport to="#a-teleport-target">
+    return () => <Teleport to={teleportTarget.value}>
       <Transition name="bg">
         <div
           class={[

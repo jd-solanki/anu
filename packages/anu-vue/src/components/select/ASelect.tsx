@@ -3,6 +3,7 @@ import { onClickOutside } from '@vueuse/core'
 import type { PropType } from 'vue'
 import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { isObject } from '@/utils/helpers'
+import { useTeleport } from '@/composables/useTeleport'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
 interface ObjectOption { label: string; value: string | number }
@@ -51,6 +52,8 @@ export const ASelect = defineComponent({
   },
   emits: ['input', 'update:modelValue'],
   setup(props, { slots, emit, attrs }) {
+    const { teleportTarget } = useTeleport('#a-teleport-target')
+
     // SECTION Floating
     // Template refs
     const refReference = ref()
@@ -157,7 +160,7 @@ export const ASelect = defineComponent({
             />,
         }}
       </ABaseInput>
-      <Teleport to="#a-teleport-target">
+      <Teleport to={teleportTarget.value}>
         <ul
           class={[
             'a-select-options-container absolute bg-[hsl(var(--a-layer))]',

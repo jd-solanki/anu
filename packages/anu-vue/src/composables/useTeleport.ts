@@ -3,7 +3,7 @@
 import type { MaybeRef } from '@vueuse/core'
 import { computed, unref } from 'vue'
 
-export const useTeleport = (target: MaybeRef<HTMLElement | string | undefined>) => {
+export const useTeleport = (target?: MaybeRef<HTMLElement | string>) => {
   const teleportTarget = computed(() => {
     const _target = unref(target)
 

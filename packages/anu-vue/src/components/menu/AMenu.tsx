@@ -1,10 +1,11 @@
-import { ACard } from '@/components'
 import type { Middleware, Placement, Strategy } from '@floating-ui/dom'
 import { autoUpdate, computePosition, flip, shift } from '@floating-ui/dom'
 import { onClickOutside, useEventListener } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { defineComponent, getCurrentInstance, onBeforeUnmount, onMounted, ref, Teleport, Transition, watch } from 'vue'
+import { Teleport, Transition, defineComponent, getCurrentInstance, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
+import { useTeleport } from '@/composables/useTeleport'
+import { ACard } from '@/components'
 
 export const AMenu = defineComponent({
   name: 'AMenu',
@@ -71,6 +72,8 @@ export const AMenu = defineComponent({
     },
   },
   setup(props, { slots }) {
+    const { teleportTarget } = useTeleport('#a-teleport-target')
+
     const isMenuVisible = ref(props.modelValue ?? false)
 
     // Template refs
@@ -155,7 +158,7 @@ export const AMenu = defineComponent({
       }
     }
 
-    return () => <Teleport to="#a-teleport-target">
+    return () => <Teleport to={teleportTarget.value}>
       {/* ℹ️ Transition component don't accept null as value of name prop so we need `props.transition || undefined` */}
       <Transition name={props.transition || undefined}>
         <ACard
