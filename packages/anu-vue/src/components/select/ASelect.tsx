@@ -157,7 +157,7 @@ export const ASelect = defineComponent({
             />,
         }}
       </ABaseInput>
-      <Teleport to="body > div:first-child">
+      <Teleport to="#a-teleport-target">
         <ul
           class={[
             'a-select-options-container absolute bg-[hsl(var(--a-layer))]',
