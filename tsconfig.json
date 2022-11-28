@@ -13,6 +13,10 @@
         "skipDefaultLibCheck": true,
         "skipLibCheck": true,
         "jsx": "preserve",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "noUnusedLocals": true,
+        "sourceMap": true,
         "types": [
             "node"
         ]
