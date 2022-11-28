@@ -81,7 +81,8 @@
     "cSpell.words": [
         "composables",
         "Vite",
-        "vitepress"
+        "vitepress",
+        "Vuetify's"
     ],
     // Extension: UnoCSS
     "unocss.root": "packages/documentation",

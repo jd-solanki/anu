@@ -20,14 +20,6 @@ const plugin = {
         app.component(component.name, component)
       }
     }
-
-    // Create teleport target
-    // if (typeof window !== 'undefined') {
-    const teleportTarget = document.createElement('div')
-    teleportTarget.id = 'a-teleport-target'
-    document.body.appendChild(teleportTarget)
-
-    // }
   },
 }
 
