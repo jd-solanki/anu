@@ -7,7 +7,7 @@ export const useTeleport = (target?: MaybeRef<HTMLElement | string>) => {
   const teleportTarget = computed(() => {
     const _target = unref(target)
 
-    if (typeof window !== 'undefined')
+    if (typeof window === 'undefined')
       return undefined
 
     const targetElement = _target === undefined
