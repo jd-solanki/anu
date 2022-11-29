@@ -13,7 +13,7 @@
   # located at the absolute path "root/project/build-output"
   
   publish = "docs/.vitepress/dist"
-  command = "npx pnpm i --store=node_modules/.pnpm-store && npm run docs:build"
+  command = "npx pnpm i --store=node_modules/.pnpm-store && pnpm run docs:build"
 
   # Default build command.
   # command = "yarn build"
