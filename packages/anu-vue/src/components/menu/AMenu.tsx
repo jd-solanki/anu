@@ -124,7 +124,6 @@ export const AMenu = defineComponent({
     watch(
       [isMounted, () => props.placement],
       () => {
-        console.log('watch triggered')
         nextTick(() => {
           floatingUiCleanup = autoUpdate(refReference.value, refFloating.value.$el, calculateFloatingPosition)
         })
