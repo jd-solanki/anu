@@ -1,7 +1,7 @@
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside, useMounted } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { Teleport, computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
+import { Teleport, computed, defineComponent, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { isObject } from '@/utils/helpers'
 import { useTeleport } from '@/composables/useTeleport'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
@@ -52,7 +52,8 @@ export const ASelect = defineComponent({
   },
   emits: ['input', 'update:modelValue'],
   setup(props, { slots, emit, attrs }) {
-    const { teleportTarget } = useTeleport('#a-teleport-target')
+    const { teleportTarget } = useTeleport()
+    const isMounted = useMounted()
 
     // SECTION Floating
     // Template refs
@@ -90,7 +91,9 @@ export const ASelect = defineComponent({
 
     let floatingUiCleanup: Function = () => { }
     onMounted(() => {
-      floatingUiCleanup = autoUpdate(refReference.value.refInputContainer, refFloating.value, calculateFloatingPosition)
+      nextTick(() => {
+        floatingUiCleanup = autoUpdate(refReference.value.refInputContainer, refFloating.value, calculateFloatingPosition)
+      })
     })
     onBeforeUnmount(() => floatingUiCleanup())
 
@@ -160,19 +163,21 @@ export const ASelect = defineComponent({
             />,
         }}
       </ABaseInput>
-      <Teleport to={teleportTarget.value}>
-        <ul
-          class={[
-            'a-select-options-container absolute bg-[hsl(var(--a-layer))]',
-            props.optionsWrapperClasses,
-          ]}
-          onClick={closeOptions}
-          ref={refFloating}
-          v-show={isOptionsVisible.value}
-        >
-          {
+      {
+        isMounted.value
+          ? <Teleport to={teleportTarget.value}>
+            <ul
+              class={[
+                'a-select-options-container absolute bg-[hsl(var(--a-layer))]',
+                props.optionsWrapperClasses,
+              ]}
+              onClick={closeOptions}
+              ref={refFloating}
+              v-show={isOptionsVisible.value}
+            >
+              {
             slots.default
-              ? slots.default?.({
+              ? slots.default({
                 attrs: {
                   class: optionClasses,
                 },
@@ -186,8 +191,10 @@ export const ASelect = defineComponent({
                 </li>
               ))
           }
-        </ul>
-      </Teleport>
+            </ul>
+          </Teleport>
+          : null
+      }
     </>
   },
 })

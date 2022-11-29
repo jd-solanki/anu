@@ -1,20 +1,21 @@
 // ℹ️ Inspired from Vuetify's useTeleport composable
 
-import type { MaybeRef } from '@vueuse/core'
+import type { Ref } from 'vue'
 import { computed, unref } from 'vue'
 
-export const useTeleport = (target?: MaybeRef<HTMLElement | string>) => {
+export function useTeleport(target?: Ref<string | Element>) {
   const teleportTarget = computed(() => {
     const _target = unref(target)
 
     if (typeof window === 'undefined')
       return undefined
 
-    const targetElement = _target === undefined
-      ? document.body
-      : typeof _target === 'string'
-        ? document.querySelector(_target)
-        : _target
+    const targetElement
+      = _target === undefined
+        ? document.body
+        : typeof _target === 'string'
+          ? document.querySelector(_target)
+          : _target
 
     if (targetElement == null) {
       console.warn(`Unable to locate target ${_target}`)
@@ -32,8 +33,6 @@ export const useTeleport = (target?: MaybeRef<HTMLElement | string>) => {
     return useTeleport.cache.get(targetElement)
   })
 
-  return {
-    teleportTarget,
-  }
+  return { teleportTarget }
 }
 useTeleport.cache = new WeakMap<Element, Element>()

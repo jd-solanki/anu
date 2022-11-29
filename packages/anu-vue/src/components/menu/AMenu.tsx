@@ -1,8 +1,8 @@
 import type { Middleware, Placement, Strategy } from '@floating-ui/dom'
 import { autoUpdate, computePosition, flip, shift } from '@floating-ui/dom'
-import { onClickOutside, useEventListener } from '@vueuse/core'
+import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { Teleport, Transition, defineComponent, getCurrentInstance, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { Teleport, Transition, defineComponent, getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
 import { useTeleport } from '@/composables/useTeleport'
 import { ACard } from '@/components'
@@ -72,7 +72,8 @@ export const AMenu = defineComponent({
     },
   },
   setup(props, { slots }) {
-    const { teleportTarget } = useTeleport('#a-teleport-target')
+    const { teleportTarget } = useTeleport()
+    const isMounted = useMounted()
 
     const isMenuVisible = ref(props.modelValue ?? false)
 
@@ -113,15 +114,22 @@ export const AMenu = defineComponent({
     }
 
     let floatingUiCleanup: Function
+
     onMounted(() => {
       const vm = getCurrentInstance()
       refReference.value = vm?.proxy?.$el?.parentNode
-
-      // Recalculate position if placement changes at runtime
-      watch(() => props.placement, () => {
-        floatingUiCleanup = autoUpdate(refReference.value, refFloating.value.$el, calculateFloatingPosition)
-      }, { immediate: true })
     })
+
+    // Recalculate position if placement changes at runtime
+    watch(
+      [isMounted, () => props.placement],
+      () => {
+        console.log('watch triggered')
+        nextTick(() => {
+          floatingUiCleanup = autoUpdate(refReference.value, refFloating.value.$el, calculateFloatingPosition)
+        })
+      },
+    )
     onBeforeUnmount(() => floatingUiCleanup())
 
     // 👉 Event listeners
@@ -158,18 +166,20 @@ export const AMenu = defineComponent({
       }
     }
 
-    return () => <Teleport to={teleportTarget.value}>
-      {/* ℹ️ Transition component don't accept null as value of name prop so we need `props.transition || undefined` */}
-      <Transition name={props.transition || undefined}>
-        <ACard
-          class={['a-menu', props.strategy === 'fixed' ? 'fixed' : 'absolute']}
-          ref={refFloating}
-          v-show={props.modelValue ?? isMenuVisible.value}
-        >
-          {slots.default?.()}
-        </ACard>
-      </Transition>
-    </Teleport>
+    return () => isMounted.value
+      ? <Teleport to={teleportTarget.value}>
+        {/* ℹ️ Transition component don't accept null as value of name prop so we need `props.transition || undefined` */}
+        <Transition name={props.transition || undefined}>
+          <ACard
+            class={['a-menu', props.strategy === 'fixed' ? 'fixed' : 'absolute']}
+            ref={refFloating}
+            v-show={props.modelValue ?? isMenuVisible.value}
+          >
+            {slots.default?.()}
+          </ACard>
+        </Transition>
+      </Teleport>
+      : null
   },
 })
 
