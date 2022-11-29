@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu-vue/component-meta/AAvatar.json'
+import api from '@anu/component-meta/AAvatar.json'
 </script>
 
 # Avatar

@@ -44,9 +44,8 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.0.7",
-    "defu": "^6.1.1",
-    "vue": "^3.2.45"
+    "@floating-ui/dom": "^1.0.3",
+    "vue": "^3.2.41"
   },
   "devDependencies": {
     "@unocss/core": "^0.46.5",

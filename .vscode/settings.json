@@ -80,6 +80,8 @@
     // Extention: Code Spell Checker
     "cSpell.words": [
         "composables",
+        "defu",
+        "nuxt",
         "Vite",
         "vitepress",
         "Vuetify's"

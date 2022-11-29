@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu-vue/component-meta/ACheckbox.json'
+import api from '@anu/component-meta/ACheckbox.json'
 </script>
 
 # Checkbox

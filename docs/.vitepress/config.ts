@@ -128,7 +128,7 @@ export default defineConfig({
     ],
     resolve: {
       alias: {
-        '@anu-vue': fileURLToPath(new URL('../../packages/anu-vue', import.meta.url)),
+        '@anu': fileURLToPath(new URL('../../packages/anu-vue', import.meta.url)),
       },
     },
   },

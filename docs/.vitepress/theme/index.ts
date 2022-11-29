@@ -1,3 +1,4 @@
+import '@anu-vue/preset-theme-default/dist/styles.scss'
 import { anu } from 'anu-vue'
 import 'anu-vue/dist/style.css'
 import 'uno.css'

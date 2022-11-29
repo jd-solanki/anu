@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu-vue/component-meta/ASelect.json'
+import api from '@anu/component-meta/ASelect.json'
 </script>
 
 # Select

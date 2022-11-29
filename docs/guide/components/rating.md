@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu-vue/component-meta/ARating.json';
+import api from '@anu/component-meta/ARating.json';
 </script>
 
 # Rating

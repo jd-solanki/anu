@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es2017",
+        "target": "esnext",
         "module": "esnext",
         "lib": [
             "esnext"
@@ -14,7 +14,8 @@
         "skipLibCheck": true,
         "jsx": "preserve",
         "types": [
-            "node"
+            "node",
+            "vite/client"
         ]
     },
     "exclude": [

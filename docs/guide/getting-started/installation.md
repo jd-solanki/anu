@@ -6,13 +6,13 @@
 
     ```bash
     # pnpm
-    pnpm add anu-vue && pnpm add -D unocss @iconify-json/bx
+    pnpm add anu-vue && pnpm add -D @anu-vue/preset-theme-default unocss @iconify-json/bx
 
     # yarn
-    yarn add anu-vue && yarn add -D unocss @iconify-json/bx
+    yarn add anu-vue && yarn add -D @anu-vue/preset-theme-default unocss @iconify-json/bx
 
     # npm
-    npm install anu-vue && npm install -D unocss @iconify-json/bx
+    npm install anu-vue && npm install -D @anu-vue/preset-theme-default unocss @iconify-json/bx
     ```
 
 ## Usage
@@ -31,8 +31,9 @@
 
 2. Create UnoCSS Config file `uno.config.js` in root of the project with below content:
 
-    ```ts{14}
-    import { presetCore, presetThemeDefault } from 'anu-vue'
+    ```ts
+    import { presetAnu, presetIconExtraProperties } from 'anu-vue'
+    import { presetThemeDefault } from '@anu-vue/preset-theme-default'
     import {
       defineConfig,
       presetIcons,
@@ -44,32 +45,22 @@
         presetUno(),
         presetIcons({
           scale: 1.2,
-          extraProperties: {
-            height: '1.5em',
-            'flex-shrink': '0',
-            'display': 'inline-block',
-          },
+          extraProperties: presetIconExtraProperties,
         }),
 
-        // anu-vue presets
-        presetCore(),
+        // anu-vue preset
+        presetAnu(),
+
+        // default theme preset
         presetThemeDefault(),
       ],
       include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
     })
     ```
 
-    :::details Icon height alignment
-
-    Update highlighted line in above code snippet according line height in your app using `em` unit.
-
-    e.g. For VitePress line height of paragraph is `24px`. Hence, we have height of `1.5em` in docs.
-
-    :::
-
 3. Update your `main.js` file like below:
 
-    ```js{3,5-6,8-9,13}
+    ```js{3,5-6,8-9,13,11-12,15-16}
     import { createApp } from 'vue'
     import App from './App.vue'
     import { anu } from 'anu-vue'
@@ -77,8 +68,11 @@
     // UnoCSS import
     import 'uno.css'
 
-    // import styles
+    // anu styles
     import 'anu-vue/dist/style.css'
+
+    // default theme styles
+    import '@anu-vue/preset-theme-default/dist/styles.scss'
 
     // Using `app.use(anu)` will register all the components globally
     createApp(App)
@@ -87,20 +81,6 @@
     ```
 
 It's done! 🥳
-
-
-## Volar Support 
-If you are using Volar, you can specify global component types by configuring compilerOptions.types in tsconfig.json.
-
-// tsconfig.json
-```json
-{
-  "compilerOptions": {
-    // ...
-    "types": ["anu-vue/volar"]
-  }
-}
-```
 
 Now, Just refer to the component in your vue files:
 
@@ -199,3 +179,20 @@ You can also follow À la carte fashion if you don't want to register all the co
       <ABtn>Primary</ABtn>
     </template>
     ```
+
+## Volar Support
+
+If you are using [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar), you can specify global component types by adding below configuration in your [`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig).
+
+```json
+{
+  "compilerOptions": {
+    // ...
+    "types": ["anu-vue/volar"]
+  }
+}
+```
+
+If you have typescript project, you have to configure above in `tsconfig.json` file.
+
+That's it, enjoy the autocompletion 🥳

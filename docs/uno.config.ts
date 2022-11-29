@@ -1,4 +1,4 @@
-import { presetCore, presetThemeDefault } from 'anu-vue'
+import { presetAnu, presetIconExtraProperties } from 'anu-vue'
 import {
   defineConfig,
   presetIcons,
@@ -6,6 +6,7 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
+import { presetThemeDefault } from '../packages/preset-theme-default/src/index'
 
 export default defineConfig({
   presets: [
@@ -13,25 +14,22 @@ export default defineConfig({
     presetIcons({
       scale: 1.2,
       unit: 'em',
-      extraProperties: {
-        'height': '1.2em',
-        'width': '1.2em',
-
-        // ℹ️ We also have to find a way to inject this without this config. (e.g. [class^=i-])
-        'vertical-align': 'text-top',
-        'flex-shrink': '0',
-        'display': 'inline-block',
-      },
+      extraProperties: presetIconExtraProperties,
     }),
 
     // anu-vue presets
-    presetCore(),
+    presetAnu(),
     presetThemeDefault(),
   ],
   transformers: [
     transformerVariantGroup(),
     transformerDirectives(),
   ],
-  configDeps: ['../anu-vue/src/presets/theme-default/index.ts'],
+  configDeps: [
+    '../packages/preset-theme-default/src/shortcuts.ts',
+    '../packages/preset-theme-default/src/rules.ts',
+    '../packages/preset-theme-default/src/variants.ts',
+    '../packages/preset-theme-default/src/index.ts',
+  ],
   include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
 })

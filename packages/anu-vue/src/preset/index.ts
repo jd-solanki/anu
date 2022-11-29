@@ -1,6 +1,6 @@
 import type { Preset } from '@unocss/core'
 
-export function presetCore(): Preset {
+export function presetAnu(): Preset {
   return {
     name: '@anu-vue/preset-core',
     variants: [

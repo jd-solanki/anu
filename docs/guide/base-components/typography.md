@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu-vue/component-meta/ATypography.json';
+import api from '@anu/component-meta/ATypography.json';
 </script>
 
 # Typography
