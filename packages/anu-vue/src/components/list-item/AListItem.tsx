@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent, toRef } from 'vue'
+import { computed, defineComponent, getCurrentInstance, toRef } from 'vue'
 import { ATypography } from '../typography'
 import { AAvatar } from '@/components/avatar'
 import type { ConfigurableValue } from '@/composables/useConfigurable'
@@ -93,7 +93,7 @@ export const AListItem = defineComponent({
           class={[
             'a-list-item',
             { 'opacity-50 pointer-events-none': props.disable },
-            props.value !== undefined
+            props.value !== undefined || !!getCurrentInstance()?.vnode.props?.onClick
               ? [...classes.value, 'cursor-pointer']
               : '',
             'flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height',
