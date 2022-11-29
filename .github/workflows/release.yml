@@ -13,10 +13,27 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: '18'
+          check-latest: true
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
 
       - run: npx changelogithub # or changelogithub@0.12 if ensure the stable result
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      - name: PNPM build
+        run: pnpm run build
+
+      - name: Publish to NPM
+        run: pnpm -r publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
