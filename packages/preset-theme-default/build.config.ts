@@ -15,7 +15,7 @@ export default defineBuildConfig({
     'defu',
   ],
   hooks: {
-    'build:done': () => {
+    'mkdist:done': () => {
       fs.copyFileSync('src/scss/index.scss', 'dist/styles.scss')
     },
   },
