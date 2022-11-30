@@ -32,7 +32,7 @@ export const AListItem = defineComponent({
     },
     ...useLayerProps({
       variant: {
-        default: 'text',
+        default: undefined,
       },
       states: {
         default: true,
@@ -81,10 +81,10 @@ export const AListItem = defineComponent({
 
     // useLayer
     const { styles, classes } = getLayerClasses(
-      computed(() => props.isActive ? props.color || 'primary' : undefined),
-      computed(() => props.isActive ? props.variant || 'light' : 'text'),
+      computed(() => props.color ?? props.isActive ? props.color || 'primary' : undefined),
+      computed(() => props.isActive ? (!props.variant && !props.color ? 'text' : props.variant || 'light') : 'text'),
       toRef(props, 'states'),
-      { statesClass: 'states:10' },
+      computed(() => ({ statesClass: props.isActive ? 'states:10' : 'hover:states:10' })),
     )
 
     return () => {
