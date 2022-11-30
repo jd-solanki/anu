@@ -8,7 +8,7 @@
     "dev": "pnpm --filter @anu-vue/preset-theme-default stub && pnpm --filter anu-vue dev",
     "build": "pnpm -r --filter=./packages/* run build",
     "docs:dev": "pnpm --filter @anu-vue/documentation dev",
-    "docs:build": "pnpm --filter anu-vue build && pnpm --filter @anu-vue/documentation build",
+    "docs:build": "pnpm --filter anu-vue build && pnpm --filter @anu-vue/preset-theme-default build && pnpm --filter @anu-vue/documentation build",
     "clean": "rimraf packages/anu-vue/dist && rimraf packages/anu-nuxt/dist && rimraf packages/preset-theme-default/dist",
     "release": "bumpp package.json packages/**/package.json",
     "lint": "pnpm --filter anu-vue lint",
