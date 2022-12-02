@@ -42,7 +42,7 @@
   "dependencies": {
     "@css-render/vue3-ssr": "^0.15.11",
     "@nuxt/kit": "^3.0.0",
-    "anu-vue": "^0.10.0",
+    "anu-vue": "workspace:*",
     "defu": "^6.1.1"
   },
   "devDependencies": {
