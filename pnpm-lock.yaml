@@ -88,7 +88,7 @@ importers:
       '@nuxt/module-builder': ^0.2.1
       '@nuxt/schema': ^3.0.0
       '@unocss/nuxt': ^0.46.5
-      anu-vue: ^0.10.0
+      anu-vue: workspace:*
       defu: ^6.1.1
       nuxt: ^3.0.0
     dependencies:
