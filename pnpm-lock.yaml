@@ -6,12 +6,9 @@ importers:
     specifiers:
       '@antfu/eslint-config-vue': ^0.31.0
       '@antfu/ni': ^0.18.8
-      '@anu-vue/nuxt': workspace:*
-      '@anu-vue/preset-theme-default': workspace:*
       '@types/node': ^18.11.9
       '@typescript-eslint/eslint-plugin': ^5.44.0
       '@typescript-eslint/parser': ^5.44.0
-      anu-vue: workspace:*
       bumpp: ^8.2.1
       eslint: ^8.28.0
       eslint-config-airbnb-base: ^15.0.0
@@ -30,12 +27,9 @@ importers:
     devDependencies:
       '@antfu/eslint-config-vue': 0.31.1_ceqddw5ef2gmwwdmecwt3g24ky
       '@antfu/ni': 0.18.8
-      '@anu-vue/nuxt': link:packages/anu-nuxt
-      '@anu-vue/preset-theme-default': link:packages/preset-theme-default
       '@types/node': 18.11.9
       '@typescript-eslint/eslint-plugin': 5.44.0_fnsv2sbzcckq65bwfk7a5xwslu
       '@typescript-eslint/parser': 5.44.0_hsf322ms6xhhd4b5ne6lb74y4a
-      anu-vue: link:packages/anu-vue
       bumpp: 8.2.1
       eslint: 8.28.0
       eslint-config-airbnb-base: 15.0.0_ktrec6dplf4now6nlbc6d67jee
