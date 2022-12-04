@@ -18,6 +18,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@anu-vue/nuxt": "workspace:*",
+    "@anu-vue/preset-theme-default": "workspace:*",
+    "anu-vue": "workspace:*",
     "@antfu/eslint-config-vue": "^0.31.0",
     "@antfu/ni": "^0.18.8",
     "@types/node": "^18.11.9",
