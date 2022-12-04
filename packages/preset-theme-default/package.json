@@ -51,7 +51,6 @@
     "fs-extra": "^11.0.0"
   },
   "peerDependencies": {
-    "@unocss/core": "^0.45.30",
-    "@anu-vue/preset": "^0.11.0"
+    "@unocss/core": "^0.45.30"
   }
 }
