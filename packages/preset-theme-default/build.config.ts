@@ -1,5 +1,11 @@
-import fs from 'fs-extra'
-import { defineBuildConfig } from 'unbuild'
+import fs from 'fs-extra';
+import { defineBuildConfig } from 'unbuild';
+import pkg from './package.json';
+
+const external = [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
+];
 
 export default defineBuildConfig({
   entries: [
@@ -10,10 +16,7 @@ export default defineBuildConfig({
   rollup: {
     emitCJS: true,
   },
-  externals: [
-    '@unocss/core',
-    'defu',
-  ],
+  externals: external,
   hooks: {
     'mkdist:done': () => {
       fs.copyFileSync('src/scss/index.scss', 'dist/styles.scss')
