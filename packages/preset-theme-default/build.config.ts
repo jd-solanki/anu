@@ -1,11 +1,11 @@
-import fs from 'fs-extra';
-import { defineBuildConfig } from 'unbuild';
-import pkg from './package.json';
+import fs from 'fs-extra'
+import { defineBuildConfig } from 'unbuild'
+import pkg from './package.json'
 
 const external = [
   ...Object.keys(pkg.dependencies || {}),
   ...Object.keys(pkg.peerDependencies || {}),
-];
+]
 
 export default defineBuildConfig({
   entries: [
@@ -15,6 +15,7 @@ export default defineBuildConfig({
   clean: true,
   rollup: {
     emitCJS: true,
+    inlineDependencies: true,
   },
   externals: external,
   hooks: {
