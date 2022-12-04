@@ -23,11 +23,12 @@ const items = [
         <template #append="{ index }">
           <ABtn
             variant="outline"
-            class="text-[0.6rem] font-semibold opacity-50"
+            class="text-sm opacity-35 min-h-[24px]"
             color="default"
             :states="false"
+            :spacing="50"
           >
-            Shift + {{ index + 1 }}
+            &#8984; + {{ index + 1 }}
           </ABtn>
         </template>
 
@@ -35,7 +36,7 @@ const items = [
         <template #after>
           <hr class="my-2">
           <AList
-            :items="[{ text: '4 items found' }]"
+            :items="[{ subtitle: '4 items found' }]"
             class="my-0 opacity-75"
           />
         </template>

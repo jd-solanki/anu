@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 
 const items = [
-  { title: 'Donut jujubes' },
-  { title: 'Sesame snaps' },
-  { title: 'I love jelly' },
-  { title: 'Cake gummi', disable: true },
+  { text: 'Donut jujubes' },
+  { text: 'Sesame snaps' },
+  { text: 'I love jelly' },
+  { text: 'Cake gummi', disable: true },
 ]
 
 const itemsPropSelection = ref(0)
@@ -23,7 +23,10 @@ const slotSelection = ref(0)
       >
         <template #after>
           <hr class="my-2">
-          <AList :items="[{ text: `Selected: ${itemsPropSelection}` }]" />
+          <AList
+            class="mb-0"
+            :items="[{ subtitle: `Selected: ${itemsPropSelection}` }]"
+          />
         </template>
       </AList>
     </ACard>
@@ -38,8 +41,8 @@ const slotSelection = ref(0)
         <template #default="{ handleListItemClick }">
           <AListItem
             v-for="(item, index) in items"
-            :key="item.title"
-            :title="item.title"
+            :key="item.text"
+            :text="item.text"
             :value="index"
             :disable="item.disable"
             :is-active="slotSelection === index"
@@ -48,7 +51,10 @@ const slotSelection = ref(0)
         </template>
         <template #after>
           <hr class="my-2">
-          <AList :items="[{ text: `Selected: ${slotSelection}` }]" />
+          <AList
+            class="mb-0"
+            :items="[{ subtitle: `Selected: ${slotSelection}` }]"
+          />
         </template>
       </AList>
     </ACard>

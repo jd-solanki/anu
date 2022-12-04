@@ -7,6 +7,12 @@
         "types": [
             "anu-vue/volar"
         ],
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ],
         "paths": {
             "@anu-vue/*": [
                 "../packages/anu-vue/*"

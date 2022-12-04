@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 
 const items = [
-  { title: 'Donut jujubes' },
-  { title: 'Sesame snaps' },
-  { title: 'I love jelly' },
-  { title: 'Cake gummi', disable: true },
+  { text: 'Donut jujubes' },
+  { text: 'Sesame snaps' },
+  { text: 'I love jelly' },
+  { text: 'Cake gummi', disable: true },
 ]
 
 const menuPlacement = ref('bottom-start')
