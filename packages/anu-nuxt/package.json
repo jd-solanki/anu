@@ -43,12 +43,12 @@
     "@css-render/vue3-ssr": "^0.15.11",
     "@nuxt/kit": "^3.0.0",
     "anu-vue": "workspace:*",
-    "defu": "^6.1.1"
+    "defu": "^6.1.1",
+    "@unocss/nuxt": "^0.46.5"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.2.1",
     "@nuxt/schema": "^3.0.0",
-    "@unocss/nuxt": "^0.46.5",
     "nuxt": "^3.0.0"
   }
 }
