@@ -26,8 +26,6 @@ importers:
       typescript: ^4.9.3
       unbuild: ^1.0.1
       vue-component-meta: ^1.0.8
-    dependencies:
-      typescript: 4.9.3
     devDependencies:
       '@antfu/eslint-config-vue': 0.31.1_ceqddw5ef2gmwwdmecwt3g24ky
       '@antfu/ni': 0.18.8
@@ -48,6 +46,7 @@ importers:
       pnpm: 7.17.1
       rimraf: 3.0.2
       tsx: 3.12.1
+      typescript: 4.9.3
       unbuild: 1.0.1
       vue-component-meta: 1.0.9_typescript@4.9.3
 
@@ -7428,6 +7427,7 @@ packages:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /uc.micro/1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
