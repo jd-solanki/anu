@@ -3,7 +3,6 @@
     "composite": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
   },
   "include": [
     "vite.config.ts"
