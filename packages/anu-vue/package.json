@@ -22,12 +22,11 @@
     "vue"
   ],
   "license": "MIT",
-  "main": "./dist/anu-vue.umd.cjs",
+  "main": "./dist/anu-vue.es.js",
   "module": "./dist/anu-vue.js",
   "exports": {
     ".": {
-      "import": "./dist/anu-vue.js",
-      "require": "./dist/anu-vue.umd.cjs"
+      "import": "./dist/anu-vue.es.js"
     },
     "./dist/style.css": "./dist/style.css"
   },
