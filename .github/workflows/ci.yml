@@ -1,4 +1,4 @@
-name: Anu Continuous Integration
+name: Check build on various systems and node versions
 
 on:
   push:
