@@ -43,7 +43,10 @@ export default defineConfig({
         {
           text: 'Features',
           items: [
-            { text: 'Sizing', link: '/guide/features/sizing' },
+            { text: 'Presets', link: '/guide/features/presets' },
+            { text: 'DX Focused', link: '/guide/features/dx-focused' },
+            { text: 'Arbitrary Sizes', link: '/guide/features/arbitrary-sizes' },
+            { text: 'Spacing', link: '/guide/features/spacing' },
           ],
         },
         {
