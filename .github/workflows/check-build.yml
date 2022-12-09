@@ -8,6 +8,11 @@ on:
 
 jobs:
   build:
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
+
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -55,6 +60,6 @@ jobs:
         # run this step even if previous step failed
         if: success() || failure()
         with:
-          name: Results of unit tests (${{ matrix.os }} | ${{ matrix.node-version }})
+          name: Test results ${{ matrix.os }} | ${{ matrix.node-version }}
           path: test-results.xml
           reporter: jest-junit
