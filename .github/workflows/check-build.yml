@@ -49,4 +49,12 @@ jobs:
       - name: Build anu
         run: pnpm run build
       - name: Run unit tests
-        run: pnpm run test
+        run: npm run test -- --reporter=junit --outputFile=../../test-results.xml
+      - name: Report tests
+        uses: dorny/test-reporter@v1
+        # run this step even if previous step failed
+        if: success() || failure()
+        with:
+          name: Results of unit tests (${{ matrix.os }} | ${{ matrix.node-version }})
+          path: test-results.xml
+          reporter: jest-junit
