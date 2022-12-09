@@ -55,11 +55,9 @@ jobs:
         run: pnpm run build
       - name: Run unit tests
         run: npm run test -- --reporter=junit --outputFile=../../test-results.xml
-      - name: Report tests
-        uses: dorny/test-reporter@v1
-        # run this step even if previous step failed
-        if: success() || failure()
+      - name: Add tests results to artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
         with:
-          name: Test results ${{ matrix.os }} | ${{ matrix.node-version }}
+          name: test-results-${{ runner.os }}-${{ matrix.node-version }}
           path: test-results.xml
-          reporter: jest-junit
