@@ -8,11 +8,6 @@ on:
 
 jobs:
   build:
-    permissions:
-      id-token: write
-      contents: read
-      checks: write
-
     runs-on: ${{ matrix.os }}
 
     strategy:
