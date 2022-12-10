@@ -60,8 +60,7 @@ describe('Testing ABtn', () => {
     expect(wrapper.classes()).toContain('pointer-events-none')
     expect(wrapper.find('button').element.tabIndex).toBe(-1)
 
-    // setting disabled unfortunately does not prevent yet triggering click event
-    // await wrapper.trigger('click')
-    // expect(wrapper.emitted('click')).toBeUndefined()
+    await wrapper.trigger('click')
+    expect(wrapper.emitted('click')).toBeUndefined()
   })
 })

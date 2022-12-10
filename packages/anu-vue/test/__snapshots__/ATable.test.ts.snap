@@ -60,7 +60,7 @@ exports[`Testing ATable > mount component 1`] = `
       <!--teleport start-->
       <!--teleport end-->
     </div>
-    <div><button class=\\"a-btn-icon-only whitespace-nowrap inline-flex justify-center items-center opacity-50 pointer-events-none states [--un-bg-opacity:1] text-primary typography-title-primary typography-subtitle-primary typography-text-primary typography-subtitle-opacity-100 typography-text-opacity-100 a-table-footer-previous-page-btn\\" style=\\"--a-layer-color: hsla(var(--a-primary),var(--un-bg-opacity)); --un-ring-color: hsl(var(--a-primary)); --a-spacing: 1;\\" tabindex=\\"-1\\"><i class=\\"i-bx-left-arrow-alt\\"></i>
+    <div><button class=\\"a-btn-icon-only whitespace-nowrap inline-flex justify-center items-center opacity-50 pointer-events-none states [--un-bg-opacity:1] text-primary typography-title-primary typography-subtitle-primary typography-text-primary typography-subtitle-opacity-100 typography-text-opacity-100 a-table-footer-previous-page-btn\\" disabled=\\"\\" style=\\"--a-layer-color: hsla(var(--a-primary),var(--un-bg-opacity)); --un-ring-color: hsl(var(--a-primary)); --a-spacing: 1;\\" tabindex=\\"-1\\"><i class=\\"i-bx-left-arrow-alt\\"></i>
         <!---->
         <!---->
       </button><button class=\\"a-btn-icon-only whitespace-nowrap inline-flex justify-center items-center states [--un-bg-opacity:1] text-primary typography-title-primary typography-subtitle-primary typography-text-primary typography-subtitle-opacity-100 typography-text-opacity-100 a-table-footer-next-page-btn\\" style=\\"--a-layer-color: hsla(var(--a-primary),var(--un-bg-opacity)); --un-ring-color: hsl(var(--a-primary)); --a-spacing: 1;\\" tabindex=\\"0\\"><i class=\\"i-bx-right-arrow-alt\\"></i>
