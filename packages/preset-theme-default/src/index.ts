@@ -4,6 +4,8 @@ import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { variants } from './variants'
 
+import './scss/index.scss'
+
 interface PresetOptions {
   shortcutOverrides?: Exclude<Preset['shortcuts'], undefined>
 }
