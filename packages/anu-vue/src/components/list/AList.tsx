@@ -76,10 +76,9 @@ export const AList = defineComponent({
     })
 
     // const isActive = computed(() => options.value[itemIndex].isSelected)
-    const handleListItemClick = (item: any) => {
-      const emitValue = item.value ?? item
-      emit('update:modelValue', emitValue)
-      selectListItem(emitValue)
+    const handleListItemClick = (item: ListItem, index: number) => {
+      selectListItem(item.value || index)
+      emit('update:modelValue', value.value)
     }
 
     // 👉 Return
@@ -103,7 +102,7 @@ export const AList = defineComponent({
               avatarAppend={props.avatarAppend}
               iconAppend={props.iconAppend}
               is-active={options.value[index].isSelected}
-              onClick={handleListItemClick}
+              onClick={item.value || (props.modelValue !== undefined) ? () => handleListItemClick(item, index) : null}
               v-slots={{
                 prepend: slots.prepend ? () => slots.prepend?.({ item, index }) : null,
                 item: slots.item ? () => slots.item?.({ item, index }) : null,
