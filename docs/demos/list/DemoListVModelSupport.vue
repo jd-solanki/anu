@@ -46,7 +46,7 @@ const slotSelection = ref(0)
             :value="index"
             :disable="item.disable"
             :is-active="slotSelection === index"
-            @click="item => handleListItemClick(item)"
+            @click="handleListItemClick(item, index)"
           />
         </template>
         <template #after>

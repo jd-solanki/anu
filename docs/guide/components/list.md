@@ -52,7 +52,7 @@ Just like `avatar-append`, you can also use `icon-append` to render the action b
 <!-- 👉 `v-model` Support -->
 ::::card `v-model` Support
 
-`AList` also support `v-model`. Use any value other than `null` to enable the `v-model` support.
+`AList` also support `v-model`. Use any value other than `undefined` to enable the `v-model` support.
 
 If you use `items` prop on `AList` and don't provide `value` property to each list item, `AList` will emit list item's index as selected value.
 

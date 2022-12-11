@@ -63,8 +63,8 @@ export const AListItem = defineComponent({
       default: false,
     },
   },
-  emits: ['click', 'click:icon', 'click:avatar', 'click:iconAppend', 'click:avatarAppend'],
-  setup(props, { slots, emit }) {
+  emits: ['click:icon', 'click:avatar', 'click:iconAppend', 'click:avatarAppend'],
+  setup(props, { slots, emit, attrs }) {
     const { getLayerClasses } = useLayer()
 
     // ℹ️ Reduce the size of title to 1rem. We did the same in ACard as well.
@@ -73,11 +73,6 @@ export const AListItem = defineComponent({
       _titleProp.value.classes = [..._titleProp.value.classes, 'uno-layer-base-text-base']
     else
       _titleProp.value.classes += ' uno-layer-base-text-base'
-
-    // Handle list item click
-    const handleListItemClick = () => {
-      emit('click', props.value)
-    }
 
     // useLayer
     const { styles, classes } = getLayerClasses(
@@ -93,13 +88,12 @@ export const AListItem = defineComponent({
           class={[
             'a-list-item',
             { 'opacity-50 pointer-events-none': props.disable },
-            props.value !== undefined
+            props.value !== undefined || attrs.onClick
               ? [...classes.value, 'cursor-pointer']
               : '',
             'flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height',
           ]}
           data-color={props.color}
-          onClick={handleListItemClick}
           style={[...styles.value]}
         >
           {/* 👉 Slot: prepend */}
