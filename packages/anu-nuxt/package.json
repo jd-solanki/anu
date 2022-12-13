@@ -1,0 +1,54 @@
+{
+  "name": "@anu-vue/nuxt",
+  "version": "0.11.0",
+  "description": "Nuxt 3 Anu UI library",
+  "author": "Mehmet - @productdevbook <hi@productdevbook.com>",
+  "license": "MIT",
+  "private": false,
+  "funding": "https://github.com/sponsors/productdevbook",
+  "homepage": "https://github.com/jd-solanki/anu/tree/main/packages/anu-nuxt#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jd-solanki/anu.git",
+    "directory": "packages/anu-nuxt"
+  },
+  "bugs": {
+    "url": "https://github.com/jd-solanki/anu/issues"
+  },
+  "keywords": [
+    "nuxt 3",
+    "anu-nuxt",
+    "vue 3"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm dev:prepare && pnpm nuxt-module-build",
+    "dev": "pnpm dev:prepare && nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@css-render/vue3-ssr": "^0.15.11",
+    "@nuxt/kit": "^3.0.0",
+    "anu-vue": "workspace:*",
+    "defu": "^6.1.1"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^0.2.1",
+    "@nuxt/schema": "^3.0.0",
+    "@unocss/nuxt": "^0.46.5",
+    "nuxt": "^3.0.0"
+  }
+}

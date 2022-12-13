@@ -5,6 +5,11 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
+const externals = [
+  'vue',
+  '@floating-ui/dom',
+]
+
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -13,23 +18,25 @@ export default defineConfig({
       name: 'anu-vue',
       fileName: 'anu-vue',
     },
+    outDir: 'dist',
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: [
-        'vue',
-        '@floating-ui/dom',
-      ],
+      external: externals,
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          vue: 'Vue',
+          'vue': 'Vue',
+          '@floating-ui/dom': 'FloatingDom',
         },
       },
     },
   },
-  plugins: [vue(), vueJsx(), dts()],
+  plugins: [vue(), vueJsx(), dts({
+    outputDir: 'dist/types',
+    insertTypesEntry: true,
+  })],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

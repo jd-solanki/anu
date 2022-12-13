@@ -1,0 +1,34 @@
+{
+  "name": "@anu-vue/documentation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "serve": "vitepress serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@iconify-json/bx": "^1.1.5",
+    "@iconify-json/fluent-emoji": "^1.1.5",
+    "@iconify-json/logos": "^1.1.19",
+    "@unocss/preset-icons": "^0.46.5",
+    "@unocss/preset-uno": "0.46.5",
+    "markdown-it": "^13.0.1",
+    "markdown-it-container": "^3.0.0",
+    "postcss-prefix-selector": "^1.16.0",
+    "unocss": "^0.46.5",
+    "vitepress": "1.0.0-alpha.29"
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.6.0",
+    "anu-vue": "workspace:*",
+    "@anu-vue/preset-theme-default": "workspace:*",
+    "vee-validate": "^4.7.3",
+    "vue": "^3.2.45"
+  }
+}

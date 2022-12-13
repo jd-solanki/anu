@@ -1,4 +1,5 @@
-import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { ABaseInput, useBaseInputProp } from '@/components/base-input'
 
 export const AInput = defineComponent({
@@ -10,12 +11,14 @@ export const AInput = defineComponent({
      * Bind v-model value
      */
     modelValue: {
-      type: String,
+      type: [String, Number] as PropType<string | number>,
       default: undefined,
     },
   },
   emits: ['input', 'update:modelValue'],
   setup(props, { slots, emit, attrs }) {
+    const input = ref<HTMLInputElement>()
+
     const isInputTypeFile = attrs.type && attrs.type === 'file'
 
     const handleChange = (e: InputEvent) => {
@@ -24,18 +27,32 @@ export const AInput = defineComponent({
       emit('update:modelValue', val)
     }
 
-    return () => <ABaseInput disabled={props.disabled} readonly={props.readonly} {...attrs}>
-            {{
-              // Recursively pass down slots
-              ...slots,
-              default: (slotProps: any) => <input
-                    {...slotProps}
-                    value={props.modelValue}
-                    class={isInputTypeFile && 'a-input-type-file'}
-                    onInput={handleChange}
-                />,
-            }}
-        </ABaseInput >
+    const handleInputWrapperClick = () => {
+      input.value?.focus()
+    }
+
+    return () => (
+      <ABaseInput
+        {...attrs}
+        class={isInputTypeFile ? 'a-input-type-file' : null}
+        disabled={props.disabled}
+        onClick:inputWrapper={handleInputWrapperClick}
+        readonly={props.readonly}
+      >
+        {{
+        // Recursively pass down slots
+          ...slots,
+          default: (slotProps: any) => (
+            <input
+              {...slotProps}
+              onInput={handleChange}
+              ref={input}
+              value={props.modelValue}
+            />
+          ),
+        }}
+      </ABaseInput >
+    )
   },
 })
 

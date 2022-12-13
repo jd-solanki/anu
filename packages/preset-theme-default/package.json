@@ -1,0 +1,56 @@
+{
+  "name": "@anu-vue/preset-theme-default",
+  "version": "0.11.0",
+  "description": "Default theme preset for Anu framework.",
+  "type": "module",
+  "private": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./dist/styles.css": "./dist/styles.css",
+    "./dist/styles.scss": "./dist/styles.scss"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "*.d.ts",
+    "*.css",
+    "*.scss"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "stub": "unbuild --stub"
+  },
+  "author": "JD Solanki <https://github.com/jd-solanki>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/jd-solanki",
+  "homepage": "https://anu-vue.netlify.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jd-solanki/anu.git",
+    "directory": "packages/preset-theme-default"
+  },
+  "bugs": {
+    "url": "https://github.com/jd-solanki/anu/issues"
+  },
+  "keywords": [
+    "component library",
+    "ui components",
+    "vuejs",
+    "vue"
+  ],
+  "dependencies": {
+    "defu": "^6.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@unocss/core": "^0.45.30",
+    "@unocss/reset": "^0.46.5",
+    "fs-extra": "^11.0.0",
+    "rollup-plugin-scss": "3"
+  }
+}

@@ -1,21 +1,22 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent, toRef } from 'vue'
+import { defineComponent } from 'vue'
 import { useGroupModel } from '../../composables'
-import { ATypography } from '../typography'
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { isEmptyArray } from '@/utils/helpers'
 
-import { AAvatar, isAvatarUsed } from '@/components/avatar'
-import type { AvatarOnlyProps } from '@/components/avatar/props'
+import { AListItem } from '@/components/list-item'
+import type { ConfigurableValue } from '@/composables/useConfigurable'
 
 // TODO: Reuse the existing props and its types. Maybe if we create AListItem component then we can reuse prop types.
-interface ListItem extends AvatarOnlyProps {
-  title: string | string[]
-  subtitle?: string | string[]
-  text: string | string[]
-  src?: string
+interface ListItem {
+  title: ConfigurableValue
+  subtitle?: ConfigurableValue
+  text: ConfigurableValue
   value?: any
   disable?: boolean
-  $avatar?: { string: any }
+  icon?: string
+
+  // TODO: Improve typing
+  avatarProps?: any
 
   // color: 'primary' | 'success' | 'info' | 'warning' | 'danger'
   // variant: 'fill' | 'outline' | 'light' | 'text'
@@ -25,15 +26,6 @@ interface ListItem extends AvatarOnlyProps {
 export const AList = defineComponent({
   name: 'AList',
   props: {
-    ...useLayerProps({
-      variant: {
-        default: 'text',
-      },
-      states: {
-        default: true,
-      },
-    }),
-
     /**
      * Items to render in list
      */
@@ -55,11 +47,19 @@ export const AList = defineComponent({
      */
     modelValue: {
       type: [String, Number, Object],
-      default: null,
+      default: undefined,
     },
 
     /**
-     * By default when avatar props are used avatar is added at start. Use `avatarAppend` to add avatar at end.
+     * By default when icon props are used icon rendered at start. Use `iconAppend` to render icon at end.
+     */
+    iconAppend: {
+      type: Boolean,
+      default: false,
+    },
+
+    /**
+     * By default when avatar props are used avatar is added at start. Use `avatarAppend` to render avatar at end.
      */
     avatarAppend: {
       type: Boolean,
@@ -68,117 +68,60 @@ export const AList = defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
-    const { getLayerClasses } = useLayer()
-
     const { options, select: selectListItem, value } = useGroupModel({
-      options: props.items[0].value ? props.items.map(i => i.value) : props.items.length,
+      options: !isEmptyArray(props.items) && props.items[0].value
+        ? props.items.map(i => i.value)
+        : props.items.length,
       multi: props.multi,
     })
-    const isAvatarPropsUsed = computed(() => {
-      return isAvatarUsed(props.items[0])
-    })
 
-    // 👉 Avatar Renderer
-    const avatarRenderer = (
-      content: typeof props.items[number]['content'],
-      src: typeof props.items[number]['src'],
-      alt: typeof props.items[number]['alt'],
-      icon: typeof props.items[number]['icon'],
-      $avatar: typeof props.items[number]['$avatar'],
-    ) => {
-      const _alt = alt || 'avatar'
-
-      return <AAvatar
-        content={content}
-        src={src}
-        alt={_alt}
-        icon={icon}
-        {...$avatar}
-      />
+    // const isActive = computed(() => options.value[itemIndex].isSelected)
+    const handleListItemClick = (item: ListItem, index: number) => {
+      selectListItem(item.value || index)
+      emit('update:modelValue', value.value)
     }
-
-    const handleListItemClick = (index: number) => {
-      const itemValue = options.value[index].value
-      selectListItem(itemValue)
-      if (props.modelValue !== null)
-        emit('update:modelValue', value.value)
-    }
-
-    // 👉 List items
-    const listItems = computed(() => props.items.map((listItem, itemIndex) => {
-      // ℹ️ Reduce the size of title to 1rem. We did the same in ACard as well.
-      let titleProp: string[] | undefined
-      if (listItem.title) {
-        // if title property is string
-        if (typeof listItem.title === 'string') {
-          titleProp = [listItem.title, 'text-base']
-        }
-
-        // title property is array
-        else {
-          const [textContent, textClasses] = listItem.title
-          titleProp = [textContent, `${textClasses} uno-layer-base-text-sm`]
-        }
-      }
-
-      const isActive = computed(() => options.value[itemIndex].isSelected)
-
-      // const [style, classes] = getLayerClasses(layerProps.value, { statesClass: 'states:10' })
-      const { styles, classes } = getLayerClasses(
-        computed(() => isActive.value ? props.color || 'primary' : undefined),
-        computed(() => isActive.value ? props.variant || 'light' : 'text'),
-        toRef(props, 'states'),
-        { statesClass: 'states:10' },
-      )
-
-      return <li
-        onClick={() => handleListItemClick(itemIndex)}
-        style={[...styles.value]}
-        class={[
-          'a-list-item',
-          { 'opacity-50 pointer-events-none': listItem.disable },
-          props.modelValue !== null
-            ? [...classes.value, 'cursor-pointer']
-            : '',
-          'flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height',
-        ]}>
-          {
-            slots.prepend
-              ? slots.prepend({ listItem, itemIndex })
-              : isAvatarPropsUsed.value && !props.avatarAppend
-                ? avatarRenderer(listItem.content, listItem.src, listItem.alt, listItem.icon, listItem.$avatar)
-                : null
-          }
-          <ATypography class="flex-grow" title={titleProp} subtitle={listItem.subtitle} text={listItem.text}></ATypography>
-          {
-            slots.append
-              ? slots.append({ listItem, itemIndex })
-              : isAvatarPropsUsed.value && props.avatarAppend
-                ? avatarRenderer(listItem.content, listItem.src, listItem.alt, listItem.icon, listItem.$avatar)
-                : null
-          }
-      </li>
-    }))
 
     // 👉 Return
-    return () => <ul class="a-list grid gap-$a-list-gap">
+    return () => (
+      <ul class="a-list grid gap-$a-list-gap" >
         {/* 👉 before slot */}
         {
-          slots.before
-            ? <li>{slots.before?.()}</li>
-            : null
+        slots.before
+          ? <li>
+            {slots.before?.()}
+          </li>
+          : null
         }
 
         {/* 👉 List items */}
-        {slots.default ? slots.default() : listItems.value}
+        {slots.default
+          ? slots.default({ handleListItemClick })
+          : props.items.map((item, index) => (
+            <AListItem
+              {...item}
+              avatarAppend={props.avatarAppend}
+              iconAppend={props.iconAppend}
+              is-active={options.value[index].isSelected}
+              onClick={item.value || (props.modelValue !== undefined) ? () => handleListItemClick(item, index) : null}
+              v-slots={{
+                prepend: slots.prepend ? () => slots.prepend?.({ item, index }) : null,
+                item: slots.item ? () => slots.item?.({ item, index }) : null,
+                append: slots.append ? () => slots.append?.({ item, index }) : null,
+              }}
+              value={props.modelValue !== undefined ? options.value[index] : undefined}
+            />
+          ))}
 
         {/* 👉 after slot */}
         {
-          slots.after
-            ? <li>{slots.after?.()}</li>
-            : null
+        slots.after
+          ? <li>
+            {slots.after?.()}
+          </li>
+          : null
         }
-    </ul>
+      </ul>
+    )
   },
 })
 

@@ -1,0 +1,146 @@
+@import '@unocss/reset/tailwind.css';
+
+// 👉 Global CSS Resets
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed;
+}
+
+$body-color: hsla(var(--a-base-color), 0.68);
+
+:root {
+    --a-base-color: 0, 10%, 20%;
+    --a-layer: 0, 0%, 100%;
+    --a-border-opacity: 0.12;
+    --a-overlay-color: 0, 0%, 0%;
+    --a-overlay-opacity: 0.35;
+
+    --a-primary: 265, 97.7%, 66.3%;
+    --a-success: 94.5, 100%, 39.6%;
+    --a-info: 200.1, 100%, 54.3%;
+    --a-warning: 42.4, 100%, 50%;
+    --a-danger: 358.3, 100%, 64.9%;
+
+    // Contrast colors
+    // --a-contrast-dark: hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity));
+    --a-contrast-dark: #000;
+    --a-contrast-light: #fff;
+
+    // text emphasis
+    --a-text-emphasis-high-opacity: 0.87;
+    --a-text-emphasis-medium-opacity: 0.68;
+    --a-text-emphasis-light-opacity: 0.38;
+
+    // Typography
+    --a-typography-title-color: var(--a-base-color);
+    --a-typography-subtitle-color: var(--a-base-color);
+    --a-typography-text-color: var(--a-base-color);
+    --a-typography-title-opacity: var(--a-text-emphasis-high-opacity);
+    --a-typography-subtitle-opacity: var(--a-text-emphasis-light-opacity);
+    --a-typography-text-opacity: var(--a-text-emphasis-medium-opacity);
+
+    // SECTION Components
+
+    // 👉 Card
+    --a-card-spacer: 1rem;
+
+    // 👉 Switch
+    --a-switch-track-size: 3em;
+    --a-switch-thumb-margin: .25em;
+    --a-switch-default-color: 220, 13%, 91%;
+    /*
+      ℹ️ Value of this property is => hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity)).
+      As this will be always on light background we will keep it static and choose color from light scheme
+    */
+    --a-switch-icon-color: hsla(0, 10%, 20%, 0.68);
+
+    // 👉 List
+    // ℹ️ We might not need `--a-list-gap` this if we are using just `AList`, however when we use list inside another component this will be helpful
+    --a-list-gap: 0rem;
+    --a-list-item-gap: 0.75rem;    
+    --a-list-item-padding: 0.5rem 1rem;
+    --a-list-item-margin: 0rem;
+    --a-list-item-min-height: 2.5rem;
+
+    // !SECTION
+}
+
+:root.dark {
+  --a-base-color: 0, 0%, 94%;
+  --a-layer: 0, 0%, 12%;
+  --a-overlay-opacity: 0.5;
+
+  --a-primary: 261, 73%, 66.3%;
+  --a-success: 94.5, 73%, 39.6%;
+  --a-info: 200.1, 73%, 54.3%;
+  --a-warning: 42.4, 73%, 50%;
+  --a-danger: 358.3, 73%, 64.9%;
+
+  // SECTION Components
+
+  // 👉 Switch
+    --a-switch-default-color: 0, 0%, 16%;
+    
+  // !SECTION
+}
+
+// 👉 Typography
+
+body {
+  color: $body-color;
+
+  // Disable mobile tap blue color
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: hsla(var(--a-base-color), 0.87)
+}
+
+// 👉 Misc
+
+@keyframes shake {
+  0%   {transform: translateX(0);}
+  25%  {transform: translateX(1px);}
+  50%  {transform: translateX(-1px);}
+  100% {transform: translateX(0);}
+}
+
+.a-base-input-label.text-danger {
+    animation-name: shake;
+    animation-duration: 0.35s;
+}
+
+// Set default border-color for `hr` element for color scheme compatibility
+hr {
+  border-color: hsla(var(--a-base-color),var(--a-border-opacity))
+}
+
+// Remove outline
+.a-btn,
+input,
+select,
+textarea {
+  &:focus {
+    outline: none;
+  }
+}
+
+// ℹ️ Remove autocomplete styles
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: $body-color;
+  transition: background-color 5000s ease-in-out 0s;
+}
