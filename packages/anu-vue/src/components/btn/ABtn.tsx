@@ -70,6 +70,7 @@ export const ABtn = defineComponent({
     return () => (
       <button
         class={[props.iconOnly ? 'a-btn-icon-only' : 'a-btn', 'whitespace-nowrap inline-flex justify-center items-center', { 'opacity-50 pointer-events-none': props.disabled }, ...classes.value]}
+        disabled={props.disabled ? true : undefined}
         style={[...styles.value, { '--a-spacing': spacing.value / 100 }]}
         tabindex={props.disabled ? -1 : 0}
       >

@@ -1,0 +1,72 @@
+// Vitest Snapshot v1
+
+exports[`Testing ATable > mount component 1`] = `
+"<div class=\\"a-card overflow-hidden uno-layer-base-bg-[hsl(var(--a-layer))] a-table\\" style=\\"--a-spacing: 1;\\">
+  <!---->
+  <!---->
+  <!---->
+  <div class=\\"overflow-x-auto\\">
+    <table class=\\"a-table-table overflow-x-auto w-full max-w-full\\">
+      <thead>
+        <tr>
+          <th class=\\"a-table-table-th whitespace-nowrap cursor-pointer select-none\\">
+            <div class=\\"inline-flex items-center\\"><span>name</span>
+              <div class=\\"i-bx-up-arrow-alt\\" style=\\"display: none;\\"></div>
+              <div class=\\"i-bx-down-arrow-alt\\" style=\\"display: none;\\"></div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name1</span></td>
+        </tr>
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name2</span></td>
+        </tr>
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name3</span></td>
+        </tr>
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name4</span></td>
+        </tr>
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name5</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class=\\"a-table-footer flex items-center\\">
+    <div class=\\"uno-layer-base-text-base gap-4 flex flex-col a-table-pagination-meta\\">
+      <!----><span class=\\"uno-layer-base-text-[hsla(var(--a-typography-text-color),var(--a-typography-text-opacity))]\\"><span class=\\"text-xs\\">1 - 5 of 10</span></span>
+    </div>
+    <div class=\\"flex-grow\\"></div>
+    <div class=\\"a-table-footer-per-page-container flex items-center\\"><span class=\\"sm:inline hidden\\">per page</span>
+      <div class=\\"a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0 a-table-footer-per-page-select a-base-input-interactive\\" style=\\"--a-spacing: 0.8;\\">
+        <!---->
+        <div class=\\"a-base-input-input-container flex items-center\\">
+          <!---->
+          <div class=\\"focus-within:border-primary a-base-input-input-wrapper cursor-text em:spacing:px-4 spacing:gap-x-2 relative i:focus-within:text-primary items-center border border-solid border-a-border w-full a-table-footer-per-page-select--input-wrapper-classes\\">
+            <!----><input class=\\"a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent a-base-input-wo-prepend-inner a-base-input-w-append-inner\\" readonly=\\"\\"><i class=\\"a-base-input-append-inner-icon ml-auto transition duration-150 ease -in i-bx-chevron-down\\"></i>
+          </div>
+          <!---->
+        </div>
+        <transition-stub name=\\"expand\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" data-v-0762f2f7=\\"\\">
+          <div class=\\"h-8\\" style=\\"display: none;\\"><small class=\\"inline-block text-light-emphasis\\">
+              <!---->
+            </small></div>
+        </transition-stub>
+      </div>
+      <!--teleport start-->
+      <!--teleport end-->
+    </div>
+    <div><button class=\\"a-btn-icon-only whitespace-nowrap inline-flex justify-center items-center opacity-50 pointer-events-none states [--un-bg-opacity:1] text-primary typography-title-primary typography-subtitle-primary typography-text-primary typography-subtitle-opacity-100 typography-text-opacity-100 a-table-footer-previous-page-btn\\" disabled=\\"\\" style=\\"--a-layer-color: hsla(var(--a-primary),var(--un-bg-opacity)); --un-ring-color: hsl(var(--a-primary)); --a-spacing: 1;\\" tabindex=\\"-1\\"><i class=\\"i-bx-left-arrow-alt\\"></i>
+        <!---->
+        <!---->
+      </button><button class=\\"a-btn-icon-only whitespace-nowrap inline-flex justify-center items-center states [--un-bg-opacity:1] text-primary typography-title-primary typography-subtitle-primary typography-text-primary typography-subtitle-opacity-100 typography-text-opacity-100 a-table-footer-next-page-btn\\" style=\\"--a-layer-color: hsla(var(--a-primary),var(--un-bg-opacity)); --un-ring-color: hsl(var(--a-primary)); --a-spacing: 1;\\" tabindex=\\"0\\"><i class=\\"i-bx-right-arrow-alt\\"></i>
+        <!---->
+        <!---->
+      </button></div>
+  </div>
+</div>"
+`;

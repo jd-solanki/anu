@@ -48,3 +48,11 @@ jobs:
         run: pnpm install
       - name: Build anu
         run: pnpm run build
+      - name: Run unit tests
+        run: npm run test -- --reporter=junit --outputFile=../../test-results.xml
+      - name: Add tests results to artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-results-${{ runner.os }}-${{ matrix.node-version }}
+          path: test-results.xml

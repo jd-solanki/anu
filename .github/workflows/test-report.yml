@@ -1,0 +1,19 @@
+name: "Test Report"
+
+on:
+  workflow_run:
+    # runs after CI workflow
+    workflows: ["Check build on various systems and node versions"]
+    types:
+      - completed
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dorny/test-reporter@v1
+        with:
+          artifact: /test-results-(.*)/
+          name: "Test report $1"
+          path: "*.xml"
+          reporter: jest-junit
