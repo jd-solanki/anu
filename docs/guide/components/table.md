@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ATable.json'
+import api from '@anu/component-meta/ATable.json';
 </script>
 
 # Table
@@ -40,7 +40,7 @@ Use `formatter` property while defining column to format the column text.
 <!-- 👉 Column Slot -->
 ::::card Column Slot
 
-`ATable` generates scoped slot based on your column name. If your column name is `website` then you can use `row-website` scoped slot to render custom content in your column.
+`ATable` generates scoped slot based on your column name. If your column name is `website` then you can use `col-website` scoped slot to render custom content in your column.
 
 :::code DemoTableColumnSlot
 <<< @/demos/table/DemoTableColumnSlot.vue{35-39,42-47}

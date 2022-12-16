@@ -32,14 +32,14 @@ const rows = [
   <div class="cards-demo-container">
     <ATable :rows="rows">
       <!-- Name -->
-      <template #row-name="{ row }">
+      <template #col-name="{ row }">
         <span class="text-primary">
           {{ row.name }}
         </span>
       </template>
 
       <!-- Website -->
-      <template #row-website="{ row }">
+      <template #col-website="{ row }">
         <div class="flex gap-1 items-center">
           <div class="i-bx-globe" />
           {{ row.website }}

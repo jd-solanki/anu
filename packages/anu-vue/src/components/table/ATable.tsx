@@ -411,18 +411,18 @@ export const ATable = defineComponent({
                     {
                       _columns.value.map(col => <td class="a-table-table-td whitespace-nowrap">
                         {
-                              slots[`row-${col.name}`]
-                                ? slots[`row-${col.name}`]?.({ row })
-                                : col.formatter
-                                  ? <span class="a-table-td-text">
-                                    {col.formatter?.(row)}
-                                  </span>
+                          slots[`col-${col.name}`]
+                            ? slots[`col-${col.name}`]?.({ row })
+                            : col.formatter
+                              ? <span class="a-table-td-text">
+                                {col.formatter?.(row)}
+                              </span>
 
-                                  // TODO(TS): Improve typing
-                                  : <span class="a-table-td-text">
-                                    {row[col.name as keyof Object]}
-                                  </span>
-                            }
+                              // TODO(TS): Improve typing
+                              : <span class="a-table-td-text">
+                                {row[col.name as keyof Object]}
+                              </span>
+                        }
                       </td>,
                       )
                     }
