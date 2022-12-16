@@ -206,17 +206,32 @@ You can also follow À la carte fashion if you don't want to register all the co
     ```
 
 3. Add UnoCSS config file `uno.config.js` as shown in step 2 of [usage](#usage) section.
+4. Using [Preset](/guide/features/presets.md),
+   1. If you are going to use `preset-theme-default`, first install it.
 
-4. If you are using `preset-theme-default` [preset](/guide/features/presets.md), You also have to add its CSS (Assuming you already added `preset-theme-default` in `uno.config.js` as preset)
+      ```bash
+      # pnpm
+      pnpm add @anu-vue/preset-theme-default
 
-    ```diff
-      import { defineNuxtConfig } from 'nuxt/config'
-      
-      export default defineNuxtConfig({
-        modules: ['@anu-vue/nuxt', '@unocss/nuxt'],
-    +   css: ['@anu-vue/preset-theme-default/dist/styles.css'],
-      })
-    ```
+      # yarn
+      yarn add @anu-vue/preset-theme-default
+
+      # npm
+      npm install @anu-vue/preset-theme-default
+      ```
+
+   2. Include CSS in `nuxt.config.js`.
+
+      ```diff
+        import { defineNuxtConfig } from 'nuxt/config'
+        
+        export default defineNuxtConfig({
+          modules: ['@anu-vue/nuxt', '@unocss/nuxt'],
+      +   css: ['@anu-vue/preset-theme-default/dist/styles.css'],
+        })
+      ```
+
+   3. Make sure you have add `preset-theme-default` as preset in `uno.config.js` file.
 
 ## Volar Support
 
