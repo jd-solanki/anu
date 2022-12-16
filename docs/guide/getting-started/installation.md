@@ -6,13 +6,13 @@
 
     ```bash
     # pnpm
-    pnpm add anu-vue && pnpm add -D @anu-vue/preset-theme-default unocss @iconify-json/bx
+    pnpm add anu-vue @anu-vue/preset-theme-default && pnpm add -D unocss @iconify-json/bx
 
     # yarn
-    yarn add anu-vue && yarn add -D @anu-vue/preset-theme-default unocss @iconify-json/bx
+    yarn add anu-vue @anu-vue/preset-theme-default && yarn add -D unocss @iconify-json/bx
 
     # npm
-    npm install anu-vue && npm install -D @anu-vue/preset-theme-default unocss @iconify-json/bx
+    npm install anu-vue @anu-vue/preset-theme-default && npm install -D unocss @iconify-json/bx
     ```
 
 ## Usage
@@ -178,6 +178,44 @@ You can also follow À la carte fashion if you don't want to register all the co
     <template>
       <ABtn>Primary</ABtn>
     </template>
+    ```
+
+## Nuxt
+
+1. instead of installing `anu-vue` package, install `@anu-vue/nuxt`.
+
+    ```bash
+    # pnpm
+    pnpm add @anu-vue/nuxt
+
+    # yarn
+    yarn add @anu-vue/nuxt
+
+    # npm
+    npm install @anu-vue/nuxt
+    ```
+
+2. Add Anu & UnoCSS in nuxt modules
+
+    ```ts
+    import { defineNuxtConfig } from 'nuxt/config'
+
+    export default defineNuxtConfig({
+      modules: ['@anu-vue/nuxt', '@unocss/nuxt'],
+    })
+    ```
+
+3. Add UnoCSS config file `uno.config.js` as shown in step 2 of [usage](#usage) section.
+
+4. If you are using `preset-theme-default` [preset](/guide/features/presets.md), You also have to add its CSS (Assuming you already added `preset-theme-default` in `uno.config.js` as preset)
+
+    ```diff
+      import { defineNuxtConfig } from 'nuxt/config'
+      
+      export default defineNuxtConfig({
+        modules: ['@anu-vue/nuxt', '@unocss/nuxt'],
+    +   css: ['@anu-vue/preset-theme-default/dist/styles.css'],
+      })
     ```
 
 ## Volar Support

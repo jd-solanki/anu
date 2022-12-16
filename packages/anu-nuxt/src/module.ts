@@ -9,14 +9,13 @@ import {
 
 import { name, version } from '../package.json'
 
-export interface ModuleOptions {
-}
+export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
-    configKey: 'anuvue',
+    configKey: 'anuVue',
     compatibility: {
       nuxt: '^3.0.0',
     },

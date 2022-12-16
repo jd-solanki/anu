@@ -1,7 +1,8 @@
+import { presetThemeDefault } from '@anu-vue/preset-theme-default'
 import type { UnocssNuxtOptions } from '@unocss/nuxt'
 import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-uno'
-import { presetCore, presetThemeDefault } from 'anu-vue'
+import { presetAnu } from 'anu-vue'
 
 export default <UnocssNuxtOptions>{
   preflight: false,
@@ -17,7 +18,7 @@ export default <UnocssNuxtOptions>{
     }),
 
     // anu-vue presets
-    presetCore(),
+    presetAnu(),
     presetThemeDefault(),
   ],
   include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
