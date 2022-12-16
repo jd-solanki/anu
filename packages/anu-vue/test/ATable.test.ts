@@ -49,4 +49,44 @@ describe('Testing ATable', async () => {
     // check pagination
     expect(wrapper.find('.a-table-pagination-meta')?.text()).toBe('6 - 10 of 10')
   })
+
+  it('overrides the header of the name column with the content of the header-name slot', () => {
+    const wrapper = mount(ATable, {
+      slots: {
+        'header-name': 'Custom Name Header',
+      },
+      props: {
+        rows: [{
+          name: 'Leanne Graham',
+          username: 'Bret',
+          website: 'hildegard.org',
+        }],
+      },
+    })
+    const nameHeader = wrapper.find('th.a-table-table-th')
+
+    expect(nameHeader.text()).toBe('Custom Name Header')
+  })
+
+  it('when overriding header slot, sort icon shouldn\'t get overridden', () => {
+    const wrapper = mount(ATable, {
+      slots: {
+        'header-name': 'Custom Name Header',
+      },
+      props: {
+        rows: [{
+          name: 'Leanne Graham',
+          username: 'Bret',
+          website: 'hildegard.org',
+        }],
+      },
+    })
+    const nameHeader = wrapper.find('th.a-table-table-th')
+    const upArrow = nameHeader.find('.i-bx-up-arrow-alt')
+    const downArrow = nameHeader.find('.i-bx-down-arrow-alt')
+
+    expect(nameHeader.text()).toBe('Custom Name Header')
+    expect(upArrow.exists()).toBe(true)
+    expect(downArrow.exists()).toBe(true)
+  })
 })
