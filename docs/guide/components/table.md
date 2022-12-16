@@ -37,13 +37,15 @@ Use `formatter` property while defining column to format the column text.
 
 ::::
 
-<!-- 👉 Column Slot -->
-::::card Column Slot
+<!-- 👉 Slots -->
+::::card Slots
 
-`ATable` generates scoped slot based on your column name. If your column name is `website` then you can use `col-website` scoped slot to render custom content in your column.
+`ATable` provides scoped slot for rendering customer header for your column instead of just text via `header-<colName>` slot.
 
-:::code DemoTableColumnSlot
-<<< @/demos/table/DemoTableColumnSlot.vue{35-39,42-47}
+It also generates scoped slot based on your column name for rendering custom column. If your column name is `website` then you can use `col-website` scoped slot to render custom content in your column.
+
+:::code DemoTableSlots
+<<< @/demos/table/DemoTableSlots.vue{35-39,42-47}
 :::
 
 ::::

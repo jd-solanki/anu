@@ -376,25 +376,29 @@ export const ATable = defineComponent({
           {/* 👉 thead */}
           <thead>
             <tr>
-              {_columns.value.map(column =>
+              {_columns.value.map(col =>
                 <th
                   class={[
                     'a-table-table-th whitespace-nowrap',
                     props.isSortable && 'cursor-pointer select-none',
                   ]}
-                  onClick={() => handleHeaderClick(column)}
+                  onClick={() => handleHeaderClick(col)}
                 >
                   <div class="inline-flex items-center">
-                    <span>
-                      {column.name}
-                    </span>
+                    {
+                      slots[`header-${col.name}`]
+                        ? slots[`header-${col.name}`]?.({ col })
+                        : <span>
+                          {col.name}
+                        </span>
+                    }
                     <div
                       class="i-bx-up-arrow-alt"
-                      v-show={getShallSortByAsc.value(column) === true}
+                      v-show={getShallSortByAsc.value(col) === true}
                     />
                     <div
                       class="i-bx-down-arrow-alt"
-                      v-show={getShallSortByAsc.value(column) === false}
+                      v-show={getShallSortByAsc.value(col) === false}
                     />
                   </div>
                 </th>,

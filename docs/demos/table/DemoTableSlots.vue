@@ -31,19 +31,17 @@ const rows = [
 <template>
   <div class="cards-demo-container">
     <ATable :rows="rows">
-      <!-- Name -->
-      <template #col-name="{ row }">
-        <span class="text-primary">
-          {{ row.name }}
-        </span>
+      <!-- Header: Name -->
+      <template #header-name="{ col }">
+        <i class="i-bx-user me-1" /> {{ col.name }}
       </template>
 
-      <!-- Website -->
-      <template #col-website="{ row }">
-        <div class="flex gap-1 items-center">
-          <div class="i-bx-globe" />
-          {{ row.website }}
-        </div>
+      <!-- Column: Name -->
+      <template #col-name="{ row }">
+        <a
+          :href="row.website"
+          class="text-primary hover:underline"
+        >{{ row.name }}</a>
       </template>
     </ATable>
   </div>
