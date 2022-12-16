@@ -68,7 +68,7 @@ const tableProps = {
   /**
    * Text to render when no row is available
    */
-  noResultsText: {
+  noDataText: {
     type: String,
     default: 'No matching results found!!',
   },
@@ -348,17 +348,16 @@ export const ATable = defineComponent({
     })
 
     return () => {
-      // TODO: There should be no data as well and it should be rendered only when data is filtered and there's no resulting rows
-      // 👉 No results
-      const noResultsTr = <tr>
+      // 👉 No Data
+      const noDataTr = <tr>
         <td
           class="em:px-[1.15rem] em:h-14 whitespace-nowrap text-center font-medium"
           colspan={_columns.value.length}
         >
-          {slots.noResults
-            ? slots.noResults()
+          {slots['no-data']
+            ? slots['no-data']()
             : <span>
-              {props.noResultsText}
+              {props.noDataText}
             </span>}
         </td>
       </tr>
@@ -368,8 +367,6 @@ export const ATable = defineComponent({
             text via default text just above the table
 
             Later on, we will merge both default slots and will pass as single slot content to card
-
-          TODO(refactor): Use variant group here
       */
       const table = <div class="overflow-x-auto">
         <table class="a-table-table overflow-x-auto w-full max-w-full">
@@ -432,7 +429,7 @@ export const ATable = defineComponent({
                     }
                   </tr>
                 })
-                : noResultsTr
+                : noDataTr
             }
           </tbody>
         </table>
