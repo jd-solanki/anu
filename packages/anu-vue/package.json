@@ -37,9 +37,9 @@
   ],
   "types": "./dist/types",
   "scripts": {
-    "dev": "pnpm gen-comp-meta && vite build --watch",
+    "dev": "vite build --watch",
     "gen-comp-meta": "na tsx ../../scripts/gen-component-meta.ts",
-    "build": "pnpm gen-comp-meta && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --fix",
     "test": "vitest"
