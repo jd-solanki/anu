@@ -7,9 +7,9 @@ interface Props {
   color?: ColorProp
   modelValue?: ModelValue
   label: string
-  icon: string
-  disabled: boolean
-  indeterminate: boolean
+  icon?: string
+  disabled?: boolean
+  indeterminate?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {

@@ -4,8 +4,8 @@ import type { LayerProps } from '@/composables/useLayer'
 
 export interface CardProps extends LayerProps, TypographyProps {
   spacing?: number
-  img: string
-  alt: string
+  img?: string
+  alt?: string
 }
 
 export const propDefaults = Object.assign(typographyPropsDefaults, {

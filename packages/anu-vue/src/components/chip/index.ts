@@ -1,2 +1,2 @@
-export { AChip } from './AChip'
+export { default as AChip } from './AChip.vue'
 

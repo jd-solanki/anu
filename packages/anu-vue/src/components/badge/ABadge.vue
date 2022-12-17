@@ -14,16 +14,16 @@ type Anchor = `${VerticalAnchor} ${HorizontalAnchor}`
 
 interface Props {
   spacing?: number
-  modelValue: boolean
+  modelValue?: boolean
   color?: ColorProp
   dot?: boolean
   bordered?: boolean
   max?: number
-  content: number | string
-  anchor: Anchor
+  content?: number | string
+  anchor?: Anchor
   overlap?: boolean
-  offsetX: number | string
-  offsetY: number | string
+  offsetX?: number | string
+  offsetY?: number | string
 }
 
 const defaultOffset = 4

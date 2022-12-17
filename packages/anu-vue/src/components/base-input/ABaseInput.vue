@@ -15,14 +15,11 @@ interface Props {
   appendIcon: string
   prependInnerIcon: string
   appendInnerIcon: string
-  disabled: boolean
-  readonly: boolean
+  disabled?: boolean
+  readonly?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-  readonly: false,
-})
+const props = defineProps<Props>()
 
 const emit = defineEmits<{
   (e: 'click:inputWrapper'): void
