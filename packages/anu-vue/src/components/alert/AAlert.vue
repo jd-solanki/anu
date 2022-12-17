@@ -16,6 +16,8 @@ const props = withDefaults(defineProps<Props>(), {
   color: 'primary',
   variant: 'light',
   dismissible: false,
+
+  // ℹ️ We need to set default value as undefined for `useInternalBooleanState` to work properly
   modelValue: undefined,
 })
 

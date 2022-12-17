@@ -2,6 +2,7 @@ import type { ComponentObjectPropsOptions } from 'vue'
 import { useProps as useLayerProps } from '@/composables/useLayer'
 import { useTypographyProps } from '@/composables/useTypography'
 export { default as ACard } from './ACard.vue'
+export * from './props'
 
 // TODO: Use this card props in component as well
 export const useCardProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {

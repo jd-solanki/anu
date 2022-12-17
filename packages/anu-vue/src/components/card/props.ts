@@ -8,6 +8,6 @@ export interface CardProps extends LayerProps, TypographyProps {
   alt?: string
 }
 
-export const propDefaults = Object.assign(typographyPropsDefaults, {
+export const cardPropsDefaults = Object.assign(typographyPropsDefaults, {
   variant: 'text',
 } as Partial<CardProps>)

@@ -1,0 +1,75 @@
+<script lang="ts" setup>
+import type { Ref } from 'vue'
+import type { CardProps } from '@/components/card'
+import { ACard, cardPropsDefaults } from '@/components/card'
+import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
+import { useTeleport } from '@/composables/useTeleport'
+
+interface Props extends CardProps {
+  modelValue?: boolean
+  persistent?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), cardPropsDefaults)
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: boolean): void
+}>()
+
+defineOptions({
+  name: 'ADialog',
+  inheritAttrs: false,
+})
+
+const { teleportTarget } = useTeleport()
+const isMounted = useMounted()
+
+const refCard = ref()
+if (!props.persistent) {
+  onClickOutside(refCard, () => {
+    // If dialog is not open => Don't execute
+    if (!props.modelValue)
+      return
+
+    emit('update:modelValue', false)
+  })
+}
+
+// Lock DOM scroll when modelValue is `true`
+// ℹ️ We need to use type assertion here because of this issue: https://github.com/johnsoncodehk/volar/issues/2219
+useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
+</script>
+
+<template>
+  <Teleport
+    v-if="isMounted"
+    :to="teleportTarget"
+  >
+    <Transition name="bg">
+      <div
+        v-show="props.modelValue"
+        class="a-dialog-wrapper grid uno-layer-base-place-items-center fixed uno-layer-base-inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]"
+      >
+        <Transition name="scale">
+          <ACard
+            v-show="props.modelValue"
+            ref="refCard"
+            class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]"
+            v-bind="{ ...$attrs, ...props }"
+          >
+            <!-- ℹ️ Recursively pass down slots to child -->
+            <template
+              v-for="(_, name) in $slots"
+              #[name]="slotProps"
+            >
+              <slot
+                :name="name"
+                v-bind="slotProps || {}"
+              />
+            </template>
+          </ACard>
+        </Transition>
+      </div>
+    </Transition>
+  </Teleport>
+</template>
