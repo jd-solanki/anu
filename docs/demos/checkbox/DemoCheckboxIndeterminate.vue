@@ -39,7 +39,7 @@ const value = computed({
       :key="item"
       v-model="fruits"
       :value="item"
-      class="ml-7"
+      class="ms-7"
     >
       {{ item }}
     </ACheckbox>

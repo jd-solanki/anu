@@ -1,2 +1,2 @@
-export { ACheckbox } from './ACheckbox'
+export { default as ACheckbox } from './ACheckbox.vue'
 
