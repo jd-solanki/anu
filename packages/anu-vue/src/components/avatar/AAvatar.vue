@@ -32,7 +32,10 @@ const { styles, classes } = getLayerClasses(
   <div
     class="a-avatar overflow-hidden inline-flex items-center justify-center"
     :class="classes"
-    :style="[...styles, { '--a-spacing': spacing / 100 }]"
+    :style="[
+      ...styles,
+      { '--a-spacing': spacing / 100 },
+    ]"
   >
     <!-- Render default slot if it's being used -->
     <slot v-if="$slots.default" />

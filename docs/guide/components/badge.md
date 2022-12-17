@@ -17,7 +17,7 @@ Default variant for badge is `standard`
 Use the prop `content` to pass numeric values, if you want to use other data different than a number use the slot `content` instead
 
 :::code DemoBadgeContent
-<<< @/demos/badge/DemoBadgeContent.vue{4,15,20}
+<<< @/demos/badge/DemoBadgeContent.vue{3,8}
 :::
 
 ::::

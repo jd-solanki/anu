@@ -1,24 +1,11 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const badgeContent = ref('9')
-</script>
-
 <template>
-  <AInput
-    v-model="badgeContent"
-    label="Badge content"
-    placeholder="Write your badge content"
-    class="sm:w-1/2"
-  />
-  <br>
   <div class="flex flex-wrap gap-8">
-    <ABadge :content="badgeContent">
+    <ABadge :content="9">
       <i class="i-bx-bell w-6 h-6" />
     </ABadge>
     <ABadge>
       <template #content>
-        {{ badgeContent }}
+        9
       </template>
       <i class="i-bx-bell w-6 h-6" />
     </ABadge>
