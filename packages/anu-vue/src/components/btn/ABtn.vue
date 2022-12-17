@@ -59,7 +59,3 @@ const { styles, classes } = getLayerClasses(
     />
   </button>
 </template>
-
-<style lang="scss">
-
-</style>

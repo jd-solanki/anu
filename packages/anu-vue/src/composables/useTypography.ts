@@ -1,4 +1,5 @@
-import type { ComponentObjectPropsOptions, PropType, Slots, ToRefs } from 'vue'
+import type { ComponentObjectPropsOptions, PropType, Slots, ToRef, ToRefs } from 'vue'
+import type { TypographyProps } from '@/components/typography/props'
 import type { ConfigurableValue } from '@/composables/useConfigurable'
 
 export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
@@ -66,20 +67,25 @@ export const extractTypographyProp = <T>(props: ToRefs<T>): Partial<ToRefs<T>> =
   ) as Partial<ToRefs<T>>
 }
 
-// TODO [v0.2.0]: Find another way to check typography component usage & improve typing
-// export const isTypographyUsed = (props: ComponentObjectPropsOptions, slots: Slots) => {
-export const isTypographyUsed = (props: any, slots: Slots) => {
+export const isTypographyUsed = (props: { [K in keyof TypographyProps]: ToRef<TypographyProps[K]> }, slots: Slots) => {
   const { title, subtitle, text } = props
 
-  const validateProp = (prop: string | string[] | undefined): boolean => {
+  const validateProp = (prop: ConfigurableValue): boolean => {
     if (prop) {
       if (typeof prop === 'string')
         return !!prop
-      else return !!prop.length
+
+      if (typeof prop === 'number') {
+        // Thanks: https://stackoverflow.com/a/69422789/10796681
+        // Check if prop is not null or undefined
+        return (prop ?? null) !== null
+      }
+
+      else { return !!prop.length }
     }
 
     return false
   }
 
-  return validateProp(title) || validateProp(subtitle) || validateProp(text) || slots.title || slots.subtitle || slots.headerRight
+  return validateProp(title.value) || validateProp(subtitle.value) || validateProp(text.value) || slots.title || slots.subtitle || slots.headerRight
 }
