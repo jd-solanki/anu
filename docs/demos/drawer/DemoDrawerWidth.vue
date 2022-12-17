@@ -9,7 +9,7 @@ const isDrawerShown = ref(false)
     v-model="isDrawerShown"
     title="Drawer title"
     subtitle="Chocolate cake tiramisu donut"
-    class="w-[400px]"
+    class="!w-[400px]"
   />
 
   <ABtn @click="isDrawerShown = true">

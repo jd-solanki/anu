@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ADrawer.json'
+import api from '@anu/component-meta/ADrawer.json';
 </script>
 
 # Drawer
@@ -31,7 +31,7 @@ You can change the position of the drawer by providing the values `left`、`righ
 <!-- 👉 Width -->
 ::::card Width
 
-Use width utility classes to provide custom width to drawer. e.g. `w-[400px]`.
+Use width utility classes to provide custom width to drawer. e.g. `!w-[400px]`.
 
 :::code DemoDrawerWidth
 <<< @/demos/drawer/DemoDrawerWidth.vue{12}
