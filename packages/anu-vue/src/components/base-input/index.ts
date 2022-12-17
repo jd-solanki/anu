@@ -1,6 +1,6 @@
 import type { ComponentObjectPropsOptions } from 'vue'
 import { disabled, readonly } from '@/composables/useProps'
-export { ABaseInput } from './ABaseInput'
+export { default as ABaseInput } from './ABaseInput.vue'
 
 export const useBaseInputProp = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {

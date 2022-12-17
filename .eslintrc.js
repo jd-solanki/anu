@@ -58,6 +58,7 @@ module.exports = {
 
     // Vue
     'vue/require-default-prop': 'off',
+    'vue/no-restricted-class': ['error', '/^(p|m)(l|r)-/'],
 
     // 'vue/require-prop-comment': ['error', {
     //   type: 'JSDoc',

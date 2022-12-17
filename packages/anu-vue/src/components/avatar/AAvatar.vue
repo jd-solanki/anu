@@ -37,11 +37,7 @@ const { styles, classes } = getLayerClasses(
       { '--a-spacing': spacing / 100 },
     ]"
   >
-    <!-- Render default slot if it's being used -->
-    <slot v-if="$slots.default" />
-
-    <!-- Else, Render according to props provided: src, icon, content -->
-    <template v-else>
+    <slot>
       <img
         v-if="props.src"
         :src="props.src"
@@ -52,6 +48,6 @@ const { styles, classes } = getLayerClasses(
         :class="props.icon"
       />
       <span v-else>{{ props.content }}</span>
-    </template>
+    </slot>
   </div>
 </template>
