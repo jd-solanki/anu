@@ -1,5 +1,3 @@
-// TODO: Define emits for all components
-
 export { AAlert } from './alert'
 export { AAvatar } from './avatar'
 export { ABadge } from './badge'

@@ -1,0 +1,21 @@
+{
+    "Create SFC": {
+        "prefix": "sfc",
+        "body": [
+            "<script lang=\"ts\" setup>",
+            "defineOptions({",
+            "    name: 'A${1}',",
+            "})",
+            "</script>",
+            "",
+            "<template>",
+            "",
+            "</template>",
+            "",
+            "<style lang=\"scss\">",
+            "",
+            "</style>"
+        ],
+        "description": "Create SFC"
+    }
+}

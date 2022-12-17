@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ComponentApi } from '../../../../scripts/gen-component-meta'
+import type { ComponentApi } from '../../scripts/gen-component-meta'
 
 const props = defineProps<{ api: ComponentApi }>()
 const propsHeader = Object.keys(props.api.props[0])

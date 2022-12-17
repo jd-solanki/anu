@@ -5,6 +5,12 @@ import type { ColorProp } from '@/composables/useProps'
 import { color } from '@/composables/useProps'
 import { contrast } from '@/utils/color'
 
+export interface LayerProps {
+  color: ColorProp
+  variant: 'fill' | 'outline' | 'light' | 'text'
+  states: boolean
+}
+
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   const props = {
     /**

@@ -25,14 +25,21 @@
       ]
     },
     "types": [
-      "vitest/globals"
+      "vitest/globals",
+      "unplugin-vue-macros/macros-global"
+    ]
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-options"
     ]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "auto-imports.d.ts"
   ],
   "references": [
     {
