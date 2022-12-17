@@ -5,7 +5,7 @@ import { useLayer } from '@/composables/useLayer'
 import { useSpacing } from '@/composables/useSpacing'
 
 interface Props extends LayerProps {
-  spacing: number
+  spacing?: number
   icon?: string
   appendIcon?: string
   dismissible?: boolean

@@ -4,7 +4,7 @@ import { useSpacing } from '@/composables/useSpacing'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
 interface Props {
-  spacing: number
+  spacing?: number
   inputWrapperClasses: any
 
   inputContainerAttrs: HTMLAttributes

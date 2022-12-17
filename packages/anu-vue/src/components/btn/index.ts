@@ -1,1 +1,1 @@
-export { ABtn } from './ABtn'
+export { default as ABtn } from './ABtn.vue'

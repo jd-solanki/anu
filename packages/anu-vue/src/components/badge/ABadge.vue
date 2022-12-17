@@ -13,7 +13,7 @@ type HorizontalAnchor = 'left' | 'right'
 type Anchor = `${VerticalAnchor} ${HorizontalAnchor}`
 
 interface Props {
-  spacing: number
+  spacing?: number
   modelValue: boolean
   color?: ColorProp
   dot?: boolean
