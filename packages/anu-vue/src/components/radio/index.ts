@@ -1,2 +1,2 @@
-export { ARadio } from './ARadio'
+export { default as ARadio } from './ARadio.vue'
 
