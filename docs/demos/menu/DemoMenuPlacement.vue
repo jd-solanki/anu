@@ -50,7 +50,7 @@ const selectNext = () => {
     <ASelect
       v-model="menuPlacement"
       :options="placementOptions"
-      class="w-24 grow-0 ml-auto"
+      class="w-24 grow-0 ms-auto"
     />
     <ABtn
       variant="text"

@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 
+// TODO: Make internalState writeable computed to easily modify the value
 // NOTE: When using this composable, prop should be undefined
 export const useInternalBooleanState = (state: Ref<boolean | undefined>, emit: any, eventToEmit: string, initialValue: boolean) => {
   const _internalState = ref(initialValue)
