@@ -1,2 +1,4 @@
-export { AInput } from './AInput'
+export { default as AInput } from './AInput.vue'
+
+// export { AInput } from './AInput'
 

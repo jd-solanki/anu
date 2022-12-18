@@ -1,4 +1,4 @@
-import type { ComponentObjectPropsOptions, PropType, Slots, ToRef, ToRefs } from 'vue'
+import type { ComponentObjectPropsOptions, PropType, Ref, Slots, ToRef, ToRefs } from 'vue'
 import type { TypographyProps } from '@/components/typography/props'
 import type { ConfigurableValue } from '@/composables/useConfigurable'
 
@@ -70,22 +70,22 @@ export const extractTypographyProp = <T>(props: ToRefs<T>): Partial<ToRefs<T>> =
 export const isTypographyUsed = (props: { [K in keyof TypographyProps]: ToRef<TypographyProps[K]> }, slots: Slots) => {
   const { title, subtitle, text } = props
 
-  const validateProp = (prop: ConfigurableValue): boolean => {
-    if (prop) {
-      if (typeof prop === 'string')
-        return !!prop
+  const validateProp = (prop?: Ref<ConfigurableValue>): boolean => {
+    if (prop && prop.value) {
+      if (typeof prop.value === 'string')
+        return !!prop.value
 
-      if (typeof prop === 'number') {
+      if (typeof prop.value === 'number') {
         // Thanks: https://stackoverflow.com/a/69422789/10796681
         // Check if prop is not null or undefined
-        return (prop ?? null) !== null
+        return (prop.value ?? null) !== null
       }
 
-      else { return !!prop.length }
+      else { return !!prop.value.length }
     }
 
     return false
   }
 
-  return validateProp(title.value) || validateProp(subtitle.value) || validateProp(text.value) || slots.title || slots.subtitle || slots.headerRight
+  return validateProp(title) || validateProp(subtitle) || validateProp(text) || slots.title || slots.subtitle || slots.headerRight
 }

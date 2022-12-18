@@ -3,18 +3,20 @@ import type { HTMLAttributes } from 'vue'
 import { useSpacing } from '@/composables/useSpacing'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
+// TODO: Waiting for: https://github.com/vuejs/core/issues/4294
+// interface Props extends BaseInputProps {}
 interface Props {
   spacing?: number
-  inputWrapperClasses: any
+  inputWrapperClasses?: any
 
-  inputContainerAttrs: HTMLAttributes
-  hint: string
-  error: string
-  label: string
-  prependIcon: string
-  appendIcon: string
-  prependInnerIcon: string
-  appendInnerIcon: string
+  inputContainerAttrs?: HTMLAttributes
+  hint?: string
+  error?: string
+  label?: string
+  prependIcon?: string
+  appendIcon?: string
+  prependInnerIcon?: string
+  appendInnerIcon?: string
   disabled?: boolean
   readonly?: boolean
 }
