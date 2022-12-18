@@ -1,15 +1,10 @@
 <script lang="ts" setup>
 import { toRef } from 'vue'
-import type { AvatarOnlyProps } from './props'
-import type { LayerProps } from '@/composables/useLayer'
+import type { AvatarProps } from './props'
 import { useLayer } from '@/composables/useLayer'
 import { useSpacing } from '@/composables/useSpacing'
 
-interface Props extends AvatarOnlyProps, LayerProps {
-  spacing?: number
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<AvatarProps>(), {
   color: 'primary',
   variant: 'light',
   alt: 'avatar',

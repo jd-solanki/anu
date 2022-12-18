@@ -10,7 +10,8 @@ interface Props extends CardProps {
   persistent?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), cardPropsDefaults)
+// TODO: Fix type
+const props = withDefaults(defineProps<Props>(), { ...cardPropsDefaults })
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void
