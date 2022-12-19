@@ -1,4 +1,4 @@
-import type { ComponentObjectPropsOptions, PropType, Ref, Slots, ToRef, ToRefs } from 'vue'
+import type { ComponentObjectPropsOptions, PropType, Ref, Slots, ToRef } from 'vue'
 import type { TypographyProps } from '@/components/typography/props'
 import type { ConfigurableValue } from '@/composables/useConfigurable'
 
@@ -56,17 +56,6 @@ export const useTypographyProps = (propOverrides?: Partial<ComponentObjectPropsO
   return props
 }
 
-// Thanks: <https://masteringjs.io/tutorials/fundamentals/filter-object>
-// TODO(TS): improve typing so that it only returns the typography types. Omit using `Partial`
-export const extractTypographyProp = <T>(props: ToRefs<T>): Partial<ToRefs<T>> => {
-  return Object.fromEntries(
-    Object.entries(props)
-      .filter(
-        ([propName]) => Object.keys(useTypographyProps()).includes(propName),
-      ) as [keyof T, T[keyof T]][],
-  ) as Partial<ToRefs<T>>
-}
-
 export const isTypographyUsed = (props: { [K in keyof TypographyProps]: ToRef<TypographyProps[K]> }, slots: Slots) => {
   const { title, subtitle, text } = props
 
@@ -87,5 +76,5 @@ export const isTypographyUsed = (props: { [K in keyof TypographyProps]: ToRef<Ty
     return false
   }
 
-  return validateProp(title) || validateProp(subtitle) || validateProp(text) || slots.title || slots.subtitle || slots.headerRight
+  return validateProp(title) || validateProp(subtitle) || validateProp(text) || slots.title || slots.subtitle || slots['header-right']
 }

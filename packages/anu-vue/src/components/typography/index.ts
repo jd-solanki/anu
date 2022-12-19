@@ -1,2 +1,2 @@
-export { ATypography } from './ATypography'
+export { default as ATypography } from './ATypography.vue'
 export * from './props'
