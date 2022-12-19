@@ -3,6 +3,7 @@ import type { HTMLAttributes } from 'vue'
 import { useSpacing } from '@/composables/useSpacing'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
+// TODO: Input & Select component don't reuse the base input props
 // TODO: Waiting for: https://github.com/vuejs/core/issues/4294
 // interface Props extends BaseInputProps {}
 interface Props {
@@ -41,15 +42,15 @@ const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}-
 const refRoot = ref()
 const refInputContainer = ref()
 
-// expose({
-// refRoot,
-// refInputContainer,
-// })
+defineExpose({
+  refRoot,
+  refInputContainer,
+})
 </script>
 
 <template>
   <div
-    :ref="refRoot"
+    ref="refRoot"
     class="a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0"
     :class="[
       $attrs.class,
@@ -73,7 +74,7 @@ const refInputContainer = ref()
 
     <!-- SECTION Input Container -->
     <div
-      :ref="refInputContainer"
+      ref="refInputContainer"
       class="a-base-input-input-container flex items-center"
       v-bind="props.inputContainerAttrs"
     >

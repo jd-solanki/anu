@@ -70,7 +70,7 @@ else
           v-for="(_, name) in $slots"
           #[name]="slotProps"
         >
-          <!-- ℹ️ v-if condition will omit passing slots defined in array. Here, we don't want to pass default slot. -->
+          <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
           <slot
             v-if="name !== 'default'"
             :name="name"

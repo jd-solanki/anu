@@ -6,7 +6,9 @@ import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurabl
 import { useLayer } from '@/composables/useLayer'
 
 // TODO: Waiting for: https://github.com/vuejs/core/issues/4294
-interface Props extends ListItemProps {}
+interface Props extends ListItemProps {
+  temp?: string
+}
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'text',
