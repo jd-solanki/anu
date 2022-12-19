@@ -1,23 +1,22 @@
 <script lang="ts" setup>
-import type { BaseInputProps } from '@/components/base-input'
-import { ABaseInput } from '@/components/base-input'
+import type { ExtractPropTypes } from 'vue'
+import { ABaseInput, baseInputProps } from '@/components/base-input'
 
-type ModelValue = string
-
-interface Props extends BaseInputProps {
-  modelValue?: string
-  height?: string
-}
-
-const props = defineProps<Props>()
+const props = defineProps(Object.assign(baseInputProps, {
+  modelValue: String,
+  height: String,
+}))
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: ModelValue): void
+  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({
   name: 'ATextarea',
+  inheritAttrs: false,
 })
+
+const _baseInputProps = reactivePick(props, Object.keys(baseInputProps))
 
 const textarea = ref<HTMLTextAreaElement>()
 
@@ -28,6 +27,7 @@ const handleInputWrapperClick = () => {
 
 <template>
   <ABaseInput
+    v-bind="_baseInputProps"
     :input-wrapper-classes="['min-h-32', props.height]"
     @click:inputWrapper="handleInputWrapperClick"
   >
@@ -45,7 +45,7 @@ const handleInputWrapperClick = () => {
     </template>
     <template #default="slotProps">
       <textarea
-        v-bind="slotProps"
+        v-bind="{ ...slotProps, ...$attrs }"
         ref="textarea"
         class="a-textarea bg-transparent resize-none"
         :value="props.modelValue"

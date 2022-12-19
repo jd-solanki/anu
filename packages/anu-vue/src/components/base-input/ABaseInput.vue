@@ -104,7 +104,6 @@ defineExpose({
         <!-- 👉 Slot: Default -->
         <!-- TODO: We need to improve default slot implementation so that we can provide selected slot to selection component -->
         <slot
-          v-bind="$attrs"
           :id="elementId"
           class="a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent"
           :class="[

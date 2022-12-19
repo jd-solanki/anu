@@ -5,16 +5,11 @@ export type ThemeColor = typeof themeColors[number]
 export type ColorProp = ThemeColor | undefined
 
 export const color = {
-  type: String as PropType<ColorProp>,
-  default: undefined,
+  type: [String, undefined] as PropType<ColorProp>,
 } as const
 
-export const disabled = {
-  type: Boolean,
-  default: false,
-} as const
+export const disabled = { type: Boolean } as const
 
-export const readonly = {
-  type: Boolean,
-  default: false,
-} as const
+export const readonly = { type: Boolean } as const
+
+export const spacing = { type: Number } as const

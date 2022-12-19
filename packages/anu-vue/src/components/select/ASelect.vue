@@ -1,36 +1,35 @@
 <script lang="ts" setup>
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
+import type { ExtractPropTypes, PropType } from 'vue'
+import { ABaseInput, baseInputProps } from '@/components/base-input'
 
-import type { BaseInputProps } from '@/components/base-input'
-import { ABaseInput } from '@/components/base-input'
 import { useTeleport } from '@/composables/useTeleport'
 import { isObject } from '@/utils/helpers'
 
 interface ObjectOption { label: string; value: string | number }
 type SelectOption = string | number | ObjectOption
-type ModelValue = any
 
-interface Props extends BaseInputProps {
-  modelValue?: ModelValue
-  options?: SelectOption[]
-  emitObject?: boolean
-  optionsWrapperClasses?: any
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  options: () => [],
-})
+const props = defineProps(Object.assign(baseInputProps, {
+  modelValue: null,
+  options: {
+    type: [String, Number, Object] as PropType<SelectOption[]>,
+    default: () => [],
+  },
+  emitObject: Boolean,
+  optionsWrapperClasses: null,
+}))
 
 const emit = defineEmits<{
-  (e: 'input', value: ModelValue): void
-  (e: 'update:modelValue', value: ModelValue): void
+  (e: 'input', value: (ExtractPropTypes<typeof props>)['modelValue']): void
+  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({
   name: 'ASelect',
-
-//   inheritAttrs: false,
+  inheritAttrs: false,
 })
+
+const _baseInputProps = reactivePick(props, Object.keys(baseInputProps))
 
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
@@ -115,7 +114,7 @@ const closeOptions = (event: MouseEvent) => {
 
 // 👉 Value
 const selectedValue = computed(() => {
-  const option = props.options?.find(option => isObjectOption(option)
+  const option = props.options.find(option => isObjectOption(option)
     ? (option as ObjectOption).value === (!props.emitObject ? props.modelValue : (props.modelValue as ObjectOption).value)
     : option === props.modelValue)
 
@@ -126,7 +125,7 @@ const selectedValue = computed(() => {
 <template>
   <!-- 👉 Select Input -->
   <ABaseInput
-    v-bind="$attrs"
+    v-bind="_baseInputProps"
     ref="refReference"
     append-inner-icon="i-bx-chevron-down"
     :input-container-attrs="{
@@ -147,7 +146,7 @@ const selectedValue = computed(() => {
     </template>
     <template #default="slotProps">
       <input
-        v-bind="slotProps"
+        v-bind="{ ...slotProps, ...$attrs }"
         ref="selectRef"
         readonly
         :value="selectedValue"

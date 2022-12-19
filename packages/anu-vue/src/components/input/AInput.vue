@@ -1,23 +1,21 @@
 <script lang="ts" setup>
-// import type { BaseInputProps } from '@/components/base-input'
-import { ABaseInput } from '@/components/base-input'
+import type { ExtractPropTypes } from 'vue'
+import { ABaseInput, baseInputProps } from '@/components/base-input'
 
-type ModelValue = string | number
-
-interface Props {
-  modelValue: ModelValue
-}
-
-const props = defineProps<Props>()
+const props = defineProps(Object.assign(baseInputProps, {
+  modelValue: [String, Number],
+}))
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: ModelValue): void
+  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({
   name: 'AInput',
+  inheritAttrs: false,
 })
 
+const _baseInputProps = reactivePick(props, Object.keys(baseInputProps))
 const attrs = useAttrs()
 
 const input = ref<HTMLInputElement>()
@@ -38,6 +36,7 @@ const handleInputWrapperClick = () => {
 
 <template>
   <ABaseInput
+    v-bind="_baseInputProps"
     :class="[isInputTypeFile && 'a-input-type-file']"
     @click:inputWrapper="handleInputWrapperClick"
   >
@@ -55,7 +54,7 @@ const handleInputWrapperClick = () => {
     </template>
     <template #default="slotProps">
       <input
-        v-bind="slotProps"
+        v-bind="{ ...slotProps, ...$attrs }"
         ref="input"
         :value="props.modelValue"
         @input="handleChange"
