@@ -57,7 +57,3 @@ const isChecked = computed(() => props.modelValue === attrs.value)
     <slot>{{ props.label }}</slot>
   </label>
 </template>
-
-<style lang="scss">
-
-</style>

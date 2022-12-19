@@ -1,2 +1,2 @@
-export { ARating } from './ARating'
+export { default as ARating } from './ARating.vue'
 

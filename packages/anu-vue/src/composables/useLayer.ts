@@ -125,6 +125,7 @@ export const useLayer = () => {
     }
   }
 
+  // TODO: Even if params are MaybeRef, we still has to pass refs. E.g. In ARating can't passing static values.
   const getLayerClasses = (propColor: MaybeRef<ColorProp>, propVariant: MaybeRef<string>, propsStates: MaybeRef<boolean>, config?: MaybeRef<UseLayerConfig>) => {
     const classes = ref<any>([])
     const styles = ref<any>([])
