@@ -1,46 +1,97 @@
 <script lang="ts" setup>
-import type { ColorProp } from '@/composables/useProps'
+import { defu } from 'defu'
+import type { PropType } from 'vue'
+import { color, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
 import { isNumeric } from '@/utils/helpers'
-
-defineOptions({
-  name: 'ABadge',
-  inheritAttrs: false,
-})
 
 type VerticalAnchor = 'top' | 'bottom'
 type HorizontalAnchor = 'left' | 'right'
 type Anchor = `${VerticalAnchor} ${HorizontalAnchor}`
 
-interface Props {
-  spacing?: number
-  modelValue?: boolean
-  color?: ColorProp
-  dot?: boolean
-  bordered?: boolean
-  max?: number
-  content?: number | string
-  anchor?: Anchor
-  overlap?: boolean
-  offsetX?: number | string
-  offsetY?: number | string
-}
-
 const defaultOffset = 4
+const defaultOverlapOffset = 12
 
+/* eslint-disable vue/valid-define-props */
 // eslint-disable-next-line vue/define-macros-order
-const props = withDefaults(defineProps<Props>(), {
-  color: 'primary',
-  modelValue: true,
-  dot: false,
-  bordered: true,
-  anchor: 'top right',
-  overlap: true,
-  offsetX: defaultOffset,
-  offsetY: 4,
+const props = defineProps({
+  spacing: spacingProp,
+
+  /**
+   * Show/Hide badge based on v-model value
+   */
+  modelValue: {
+    type: Boolean,
+    default: true,
+  },
+
+  /**
+   * Sets badge color
+   */
+  color: defu({
+    default: 'primary',
+  }, color),
+
+  /**
+   * Converts badge to a dot
+   */
+  dot: Boolean,
+
+  /**
+  * Adds badge border
+  */
+  bordered: {
+    type: Boolean,
+    default: true,
+  },
+
+  /**
+   * Sets the highest possible value
+   */
+  max: Number,
+
+  /**
+   * Use to pass numeric values
+   */
+  content: [Number, String],
+
+  /**
+   * Sets the badge position
+   */
+  anchor: {
+    type: String as PropType<Anchor>,
+    default: 'top right',
+  },
+
+  /**
+   * Adjusts position of badge
+   */
+  overlap: {
+    type: Boolean,
+    default: true,
+  },
+
+  /**
+   * Sets offset on x-axis
+   */
+  offsetX: {
+    type: [Number, String],
+    default: defaultOffset,
+  },
+
+  /**
+   * Sets offset on y-axis
+   */
+  offsetY: {
+    type: [Number, String],
+    default: defaultOffset,
+  },
 })
 
-const defaultOverlapOffset = 12
+defineOptions({
+  name: 'ABadge',
+  inheritAttrs: false,
+})
 
 const spacing = useSpacing(toRef(props, 'spacing'))
 const formatMaxContent = (content: unknown) => {

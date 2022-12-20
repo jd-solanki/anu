@@ -1,24 +1,42 @@
 <script lang="ts" setup>
-import type { ColorProp } from '@/composables/useProps'
+import { defu } from 'defu'
+import type { ExtractPropTypes, PropType } from 'vue'
+import { color as colorProp, configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
-type ModelValue = boolean | unknown[] | Set<unknown>
+const props = defineProps({
+  /**
+   * Checkbox color
+   */
+  color: defu({ default: 'primary' }, colorProp),
 
-interface Props {
-  color?: ColorProp
-  modelValue?: ModelValue
-  label: string
-  icon?: string
-  disabled?: boolean
-  indeterminate?: boolean
-}
+  /**
+   * Bind v-model value to check/uncheck the checkbox.
+   */
+  modelValue: [Boolean, Array, Set] as PropType<boolean | unknown[] | Set<unknown>>,
 
-const props = withDefaults(defineProps<Props>(), {
-  color: 'primary',
-  icon: 'i-bx-check',
+  /**
+   * Label text
+   */
+  label: String,
+
+  /**
+   * Icon to render in checkbox square instead of check
+   */
+  icon: defu({ default: 'i-bx-check' }, configurableProp),
+
+  /**
+   * Disable checkbox
+   */
+  disabled: disabledProp,
+
+  /**
+   * Mark checkbox indeterminate
+   */
+  indeterminate: Boolean,
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: ModelValue): void
+  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({

@@ -1,19 +1,11 @@
 <script lang="ts" setup>
-import type { ListItemProps } from './props'
+import { listItemProps } from './props'
 import { AAvatar } from '@/components/avatar'
 import { ATypography } from '@/components/typography'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
 
-// TODO: Waiting for: https://github.com/vuejs/core/issues/4294
-interface Props extends ListItemProps {
-  temp?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  variant: 'text',
-  states: true,
-})
+const props = defineProps(listItemProps)
 
 const emit = defineEmits<{
   (e: 'click:icon'): void
@@ -50,7 +42,7 @@ const { styles, classes } = getLayerClasses(
     :style="styles"
     class="a-list-item flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height"
     :class="[
-      { 'opacity-50 pointer-events-none': props.disable },
+      { 'opacity-50 pointer-events-none': props.disabled },
       props.value !== undefined || $attrs.onClick
         ? [...classes, 'cursor-pointer']
         : '',

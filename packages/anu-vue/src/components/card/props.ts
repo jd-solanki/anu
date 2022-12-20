@@ -1,13 +1,14 @@
-import type { TypographyProps } from '@/components/typography/props'
-import { typographyPropsDefaults } from '@/components/typography/props'
-import type { LayerProps } from '@/composables/useLayer'
+import type { ExtractPropTypes } from 'vue'
+import { typographyProps } from '@/components/typography/props'
+import { useProps as useLayerProps } from '@/composables/useLayer'
+import { spacing } from '@/composables/useProps'
 
-export interface CardProps extends LayerProps, TypographyProps {
-  spacing?: number
-  img?: string
-  alt?: string
+export const cardProps = {
+  ...useLayerProps(),
+  ...typographyProps,
+  spacing,
+  img: String,
+  alt: String,
 }
 
-export const cardPropsDefaults = Object.assign(typographyPropsDefaults, {
-  variant: 'text',
-} as Partial<CardProps>)
+export type CardProps = ExtractPropTypes<typeof cardProps>

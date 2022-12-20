@@ -1,19 +1,45 @@
 <script lang="ts" setup>
-import type { LayerProps } from '@/composables/useLayer'
-import { useLayer } from '@/composables/useLayer'
+import type { PropType } from 'vue'
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
-interface Props extends LayerProps {
-  modelValue?: boolean
-  closable?: boolean
-  icon?: string
-  appendIcon?: string
-  disabled?: boolean
-}
+const props = defineProps({
+  ...useLayerProps({
+    color: {
+      default: 'primary',
+    },
+    variant: {
+      default: 'light',
+    },
+  }),
 
-const props = withDefaults(defineProps<Props>(), {
-  color: 'primary',
-  variant: 'light',
-  modelValue: true,
+  /**
+   * Bind v-model value to show/hide the chip.
+   */
+  modelValue: {
+    type: Boolean as PropType<boolean>,
+    default: true,
+  },
+
+  /**
+   * Allow to close chip
+   */
+  closable: Boolean,
+
+  /**
+   * prepend icon
+   */
+  icon: configurableProp,
+
+  /**
+   * append icon
+   */
+  appendIcon: configurableProp,
+
+  /**
+   * Disable state of component
+   */
+  disabled: disabledProp,
 })
 
 const emit = defineEmits<{

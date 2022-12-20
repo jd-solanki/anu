@@ -1,22 +1,25 @@
 <script lang="ts" setup>
-import type { LayerProps } from '@/composables/useLayer'
-import { useLayer } from '@/composables/useLayer'
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { configurable as configurableProp, disabled as disabledProp, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
 
-interface Props extends LayerProps {
-  spacing?: number
-  icon?: string
-  appendIcon?: string
-  iconOnly?: boolean
-  disabled?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  color: 'primary',
-  variant: 'fill',
-  states: true,
-  dismissible: false,
-  modelValue: undefined,
+const props = defineProps({
+  ...useLayerProps({
+    color: {
+      default: 'primary',
+    },
+    variant: {
+      default: 'fill',
+    },
+    states: {
+      default: true,
+    },
+  }),
+  spacing: spacingProp,
+  icon: configurableProp,
+  appendIcon: configurableProp,
+  iconOnly: Boolean,
+  disabled: disabledProp,
 })
 
 defineOptions({

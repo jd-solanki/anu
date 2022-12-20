@@ -1,21 +1,29 @@
 <script lang="ts" setup>
-import type { Ref } from 'vue'
-import type { CardProps } from '@/components/card'
-import { ACard, cardPropsDefaults } from '@/components/card'
+import { defu } from 'defu'
+import type { PropType, Ref } from 'vue'
+import { ACard, cardProps } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useTeleport } from '@/composables/useTeleport'
 
-interface Props extends CardProps {
-  modelValue?: boolean
-  persistent?: boolean
-  anchor?: 'left' | 'right' | 'top' | 'bottom'
-}
+const props = defineProps(defu({
+  /**
+   * Show/Hide drawer base on v-model value
+   */
+  modelValue: Boolean,
 
-// TODO: Fix type
-const props = withDefaults(defineProps<Props>(), {
-  ...cardPropsDefaults,
-  anchor: 'left',
-})
+  /**
+   * Persistence of drawer when clicked outside of reference element
+   */
+  persistent: Boolean,
+
+  /**
+   * Drawer anchor/position
+   */
+  anchor: {
+    type: String as PropType<'left' | 'right' | 'top' | 'bottom'>,
+    default: 'left',
+  },
+}, cardProps))
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void

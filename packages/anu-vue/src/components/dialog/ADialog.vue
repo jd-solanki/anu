@@ -1,17 +1,21 @@
 <script lang="ts" setup>
+import { defu } from 'defu'
 import type { Ref } from 'vue'
-import type { CardProps } from '@/components/card'
-import { ACard, cardPropsDefaults } from '@/components/card'
+import { ACard, cardProps } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useTeleport } from '@/composables/useTeleport'
 
-interface Props extends CardProps {
-  modelValue?: boolean
-  persistent?: boolean
-}
+const props = defineProps(defu({
+  /**
+   * Show/Hide menu base on v-model value
+   */
+  modelValue: Boolean,
 
-// TODO: Fix type
-const props = withDefaults(defineProps<Props>(), { ...cardPropsDefaults })
+  /**
+   * Persistence of dialog when clicked outside of reference element
+   */
+  persistent: Boolean,
+}, cardProps))
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void

@@ -1,26 +1,42 @@
 <script lang="ts" setup>
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { ListItemProps } from '@/components/list-item'
 import { AListItem } from '@/components/list-item'
 import { useGroupModel } from '@/composables'
 import { isEmptyArray } from '@/utils/helpers'
 
-type ModelValue = any
+const props = defineProps({
+  /**
+   * Items to render in list
+   */
+  items: {
+    type: Array as PropType<ListItemProps[]>,
+    default: () => [],
+  },
 
-interface Props {
-  items?: ListItemProps[]
-  multi?: boolean
-  modelValue?: ModelValue
-  iconAppend?: boolean
-  avatarAppend?: boolean
+  /**
+   * Enable selecting multiple list items
+   */
+  multi: Boolean,
 
-}
+  /**
+   * Bind v-model value to selected list item
+   */
+  modelValue: null,
 
-const props = withDefaults(defineProps<Props>(), {
-  items: () => [],
+  /**
+   * By default when icon props are used icon rendered at start. Use `iconAppend` to render icon at end.
+   */
+  iconAppend: Boolean,
+
+  /**
+   * By default when avatar props are used avatar is added at start. Use `avatarAppend` to render avatar at end.
+   */
+  avatarAppend: Boolean,
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: ModelValue): void
+  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({

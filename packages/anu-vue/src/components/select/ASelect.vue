@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
+import { defu } from 'defu'
 import type { ExtractPropTypes, PropType } from 'vue'
 import { ABaseInput, baseInputProps } from '@/components/base-input'
 
@@ -9,7 +10,7 @@ import { isObject } from '@/utils/helpers'
 interface ObjectOption { label: string; value: string | number }
 type SelectOption = string | number | ObjectOption
 
-const props = defineProps(Object.assign(baseInputProps, {
+const props = defineProps(defu({
   modelValue: null,
   options: {
     type: [String, Number, Object] as PropType<SelectOption[]>,
@@ -17,7 +18,7 @@ const props = defineProps(Object.assign(baseInputProps, {
   },
   emitObject: Boolean,
   optionsWrapperClasses: null,
-}))
+}, baseInputProps))
 
 const emit = defineEmits<{
   (e: 'input', value: (ExtractPropTypes<typeof props>)['modelValue']): void
@@ -29,7 +30,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const _baseInputProps = reactivePick(props, Object.keys(baseInputProps))
+const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
 
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()

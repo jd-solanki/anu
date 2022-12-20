@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+import { defu } from 'defu'
 import type { ExtractPropTypes } from 'vue'
 import { ABaseInput, baseInputProps } from '@/components/base-input'
 
-const props = defineProps(Object.assign(baseInputProps, {
+const props = defineProps(defu({
   modelValue: String,
   height: String,
-}))
+}, baseInputProps))
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
@@ -16,7 +17,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const _baseInputProps = reactivePick(props, Object.keys(baseInputProps))
+const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
 
 const textarea = ref<HTMLTextAreaElement>()
 

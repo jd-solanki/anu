@@ -1,13 +1,48 @@
-import type { ConfigurableValue } from '@/composables/useConfigurable'
+import type { ExtractPropTypes } from 'vue'
+import { configurable } from '@/composables/useProps'
 
-export interface TypographyProps {
-  title?: ConfigurableValue
-  subtitle?: ConfigurableValue
-  text?: ConfigurableValue
-  titleTag?: string
-  subtitleTag?: string
-  textTag?: string
+export const typographyProps = {
+  /**
+   * Typography title
+   */
+  title: configurable,
+
+  /**
+   * Typography subtitle
+   */
+  subtitle: configurable,
+
+  /**
+   * Typography text content
+   */
+  text: configurable,
+
+  /**
+   * Tag to use for title of the card
+   */
+  titleTag: {
+    type: String,
+    default: 'span',
+  },
+
+  /**
+   * Tag to use for subtitle of the card
+   */
+  subtitleTag: {
+    type: String,
+    default: 'span',
+  },
+
+  /**
+   * Tag to use for text rendered via `text` prop
+   */
+  textTag: {
+    type: String,
+    default: 'span',
+  },
 }
+
+export type TypographyProps = ExtractPropTypes<typeof typographyProps>
 
 export const typographyPropsDefaults: Partial<TypographyProps> = {
   titleTag: 'span',

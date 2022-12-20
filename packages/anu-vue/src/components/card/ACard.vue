@@ -1,18 +1,12 @@
 <script lang="ts" setup>
 import { ATypography } from '../typography'
-import type { CardProps } from './props'
-import { cardPropsDefaults } from './props'
+import { cardProps } from './props'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
 import { useSpacing } from '@/composables/useSpacing'
 import { isTypographyUsed } from '@/composables/useTypography'
 
-const props = withDefaults(
-  defineProps<CardProps>(),
-
-  // TODO: Fix type error
-  cardPropsDefaults,
-)
+const props = defineProps(cardProps)
 
 defineOptions({
   name: 'ACard',

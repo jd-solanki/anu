@@ -1,14 +1,10 @@
 <script lang="ts" setup>
 import { toRef } from 'vue'
-import type { AvatarProps } from './props'
+import { avatarProps } from './props'
 import { useLayer } from '@/composables/useLayer'
 import { useSpacing } from '@/composables/useSpacing'
 
-const props = withDefaults(defineProps<AvatarProps>(), {
-  color: 'primary',
-  variant: 'light',
-  alt: 'avatar',
-})
+const props = defineProps(avatarProps)
 
 defineOptions({
   name: 'AAvatar',

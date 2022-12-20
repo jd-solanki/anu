@@ -1,28 +1,9 @@
 <script lang="ts" setup>
-import type { HTMLAttributes } from 'vue'
+import { baseInputProps } from './props'
 import { useSpacing } from '@/composables/useSpacing'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
-// TODO: Input & Select component don't reuse the base input props
-// TODO: Waiting for: https://github.com/vuejs/core/issues/4294
-// interface Props extends BaseInputProps {}
-interface Props {
-  spacing?: number
-  inputWrapperClasses?: any
-
-  inputContainerAttrs?: HTMLAttributes
-  hint?: string
-  error?: string
-  label?: string
-  prependIcon?: string
-  appendIcon?: string
-  prependInnerIcon?: string
-  appendInnerIcon?: string
-  disabled?: boolean
-  readonly?: boolean
-}
-
-const props = defineProps<Props>()
+const props = defineProps(baseInputProps)
 
 const emit = defineEmits<{
   (e: 'click:inputWrapper'): void
@@ -30,7 +11,6 @@ const emit = defineEmits<{
 
 defineOptions({
   name: 'ABaseInput',
-  inheritAttrs: false,
 })
 
 const attrs = useAttrs()
@@ -53,7 +33,6 @@ defineExpose({
     ref="refRoot"
     class="a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0"
     :class="[
-      $attrs.class,
       props.disabled && 'a-base-input-disabled',
       (props.disabled || props.readonly) && 'pointer-events-none',
       !(props.disabled || props.readonly) && 'a-base-input-interactive',

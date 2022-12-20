@@ -1,29 +1,49 @@
 <script lang="ts" setup>
+import type { ExtractPropTypes } from 'vue'
 import { useInternalBooleanState } from '@/composables/useInternalState'
-import type { LayerProps } from '@/composables/useLayer'
-import { useLayer } from '@/composables/useLayer'
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { configurable as configurableProp, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
 
-interface Props extends LayerProps {
-  spacing?: number
-  icon?: string
-  appendIcon?: string
-  dismissible?: boolean
-  modelValue?: boolean
-}
+const props = defineProps({
+  spacing: spacingProp,
 
-const props = withDefaults(defineProps<Props>(), {
-  color: 'primary',
-  variant: 'light',
-  dismissible: false,
+  ...useLayerProps({
+    color: {
+      default: 'primary',
+    },
+    variant: {
+      default: 'light',
+    },
+  }),
 
-  // ℹ️ We need to set default value as undefined for `useInternalBooleanState` to work properly
-  modelValue: undefined,
+  /**
+   * prepend icon
+   */
+  icon: configurableProp,
+
+  /**
+   * append (close) icon
+   */
+  appendIcon: configurableProp,
+
+  /**
+   * Make alert dismissible using this prop. Adds close icon as appended icon.
+   */
+  dismissible: Boolean,
+
+  /**
+   * Hide/Show alert based on v-model value
+   */
+  modelValue: {
+    type: Boolean,
+    default: undefined,
+  },
 })
 
 const emit = defineEmits<{
   (e: 'click:appendIcon'): void
-  (e: 'update:modelValue', value: boolean): void
+  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({
