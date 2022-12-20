@@ -27,7 +27,7 @@ const rows = [
   },
 ]
 
-const columns = [
+const cols = [
   { name: 'name' },
   { name: 'username', formatter: row => `@${row.username}` },
   { name: 'website' },
@@ -38,7 +38,7 @@ const columns = [
   <div class="cards-demo-container">
     <ATable
       :rows="rows"
-      :columns="columns"
+      :cols="cols"
     />
   </div>
 </template>

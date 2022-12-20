@@ -33,7 +33,10 @@ const rows = [
     <ATable :rows="rows">
       <!-- Header: Name -->
       <template #header-name="{ col }">
-        <i class="i-bx-user me-1" /> {{ col.name }}
+        <i
+          v-once
+          class="i-bx-user me-1"
+        /> {{ col.name }}
       </template>
 
       <!-- Column: Name -->
