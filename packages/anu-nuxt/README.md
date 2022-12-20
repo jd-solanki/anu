@@ -1,3 +1,3 @@
 # @anu-vue/nuxt
 
-Please refer to the official [docs](https://anu-vue.netlify.app/guide/getting-started/installation.html#nuxt) for the details.
+Please refer to the official [docs](https://github.com/jd-solanki/anu/blob/main/docs/guide/getting-started/installation.md#nuxt) for the details.
