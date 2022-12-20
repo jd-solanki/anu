@@ -31,11 +31,9 @@ const _cols = computed<PropColumn[]>(() => {
   if (!props.rows.length)
     return []
 
+  // Else generate cols from first row
   return Object.keys(props.rows[0]).map(rowObjProperty => ({ name: rowObjProperty }))
 })
-
-console.log('props.rows :>> ', props.rows)
-console.log('_cols :>> ', _cols.value)
 </script>
 
 <template>
@@ -112,7 +110,3 @@ console.log('_cols :>> ', _cols.value)
     </template>
   </ACard>
 </template>
-
-<style lang="scss">
-
-</style>
