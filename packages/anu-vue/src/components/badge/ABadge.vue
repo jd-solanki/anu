@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
 import type { PropType } from 'vue'
-import { color, spacing as spacingProp } from '@/composables/useProps'
+import { color as colorProp, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
 import { isNumeric } from '@/utils/helpers'
 
@@ -30,7 +30,7 @@ const props = defineProps({
    */
   color: defu({
     default: 'primary',
-  }, color),
+  }, colorProp),
 
   /**
    * Converts badge to a dot

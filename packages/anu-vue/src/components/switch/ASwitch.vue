@@ -1,24 +1,47 @@
 <script lang="ts" setup>
-import type { ColorProp } from '@/composables/useProps'
+import { defu } from 'defu'
+import type { ExtractPropTypes, PropType } from 'vue'
+import { color as colorProp, disabled as disabledProp } from '@/composables/useProps'
 
-type ModelValue = any[] | Set<any> | boolean
+const props = defineProps({
+  /**
+     * Switch color
+     */
+  color: defu({
+    default: 'primary',
+  }, colorProp),
 
-interface Props {
-  color?: ColorProp
-  label?: string
-  modelValue?: ModelValue
-  onIcon?: string
-  offIcon?: string
-  disabled?: boolean
-}
+  /**
+     * Define label text
+     */
+  label: String,
 
-const props = withDefaults(defineProps<Props>(), {
-  color: 'primary',
-  modelValue: false,
+  /**
+     * Bind v-model value
+     */
+  modelValue: {
+    type: [Boolean, Array, Set] as PropType<any[] | Set<any> | boolean>,
+    default: false,
+  },
+
+  /**
+     * Icon to render when switch is on
+     */
+  onIcon: String,
+
+  /**
+     * Icon to render when switch is off
+     */
+  offIcon: String,
+
+  /**
+     * Disable switch
+     */
+  disabled: disabledProp,
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: ModelValue): void
+  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({
