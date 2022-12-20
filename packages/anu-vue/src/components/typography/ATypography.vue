@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import type { TypographyProps } from './props'
-import { typographyPropsDefaults } from './props'
+import { typographyProps } from './props'
 import { useConfigurable } from '@/composables/useConfigurable'
 
-interface Props extends TypographyProps {}
-
-const props = withDefaults(defineProps<Props>(), { ...typographyPropsDefaults })
+const props = defineProps(typographyProps)
 
 defineOptions({
   name: 'ATypography',

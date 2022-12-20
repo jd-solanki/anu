@@ -45,6 +45,7 @@ else
   >
     <!-- 👉 Image -->
     <img
+      v-if="props.img"
       :src="props.img"
       :alt="props.alt"
     >

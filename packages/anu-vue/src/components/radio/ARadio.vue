@@ -1,21 +1,34 @@
 <script lang="ts" setup>
-import type { ColorProp } from '@/composables/useProps'
+import { defu } from 'defu'
+import type { ExtractPropTypes } from 'vue'
+import { color as colorProp, disabled as disabledProp } from '@/composables/useProps'
 
-type ModelValue = string
+const props = defineProps({
+  /**
+   * Radio color
+   */
+  color: defu({
+    default: 'primary',
+  }, colorProp),
 
-interface Props {
-  color?: ColorProp
-  modelValue?: ModelValue
-  label?: string
-  disabled?: boolean
-}
+  /**
+   * Bind v-model value to radio
+   */
+  modelValue: String,
 
-const props = withDefaults(defineProps<Props>(), {
-  color: 'primary',
+  /**
+   * Define label text
+   */
+  label: String,
+
+  /**
+   * Disable radio
+   */
+  disabled: disabledProp,
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: ModelValue): void
+  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({

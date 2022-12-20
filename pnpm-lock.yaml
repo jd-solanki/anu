@@ -121,6 +121,7 @@ importers:
       '@vitejs/plugin-vue-jsx': ^2.1.1
       '@vue/test-utils': ^2.2.6
       '@vueuse/core': ^9.7.0
+      defu: ^6.1.1
       jsdom: ^20.0.3
       markdown-it: ^13.0.1
       sass: ^1.56.2
@@ -136,6 +137,7 @@ importers:
       vue-tsc: ^1.0.13
     dependencies:
       '@floating-ui/dom': 1.0.12
+      defu: 6.1.1
       vue: 3.2.45
     devDependencies:
       '@unocss/core': 0.46.5

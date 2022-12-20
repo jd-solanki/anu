@@ -1,32 +1,80 @@
 <script lang="ts" setup>
-import type { LayerProps } from '@/composables/useLayer'
-import { useLayer } from '@/composables/useLayer'
+import type { ExtractPropTypes } from 'vue'
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
+import { disabled as disabledProp, readonly as readonlyProp } from '@/composables/useProps'
 
-type ModelValue = number
+const props = defineProps({
+  ...useLayerProps({
+    color: {
+      default: 'warning',
+    },
+  }),
 
-interface Props extends LayerProps {
-  modelValue?: ModelValue
-  length?: number | string
-  halve?: boolean
-  emptyIcon?: string
-  halfIcon?: string
-  fullIcon?: string
-  noHoverHint?: boolean
-  animate?: boolean
-  readonly?: boolean
-  disabled?: boolean
-}
+  /**
+   * Bind v-model value to rating
+   */
+  modelValue: Number,
 
-const props = withDefaults(defineProps<Props>(), {
-  color: 'warning',
-  length: 5,
-  emptyIcon: 'i-bx-star',
-  halfIcon: 'i-bx:bxs-star-half',
-  fullIcon: 'i-bx:bxs-star',
+  /**
+   * Sets amount of rating items
+   */
+  length: {
+    type: [Number, String],
+    default: 5,
+  },
+
+  /**
+   * Allows the award of half a point
+   */
+  halve: Boolean,
+
+  /**
+   * Sets empty icon
+   */
+  emptyIcon: {
+    type: String,
+    default: 'i-bx:star',
+  },
+
+  /**
+   * Sets half-filled icon
+   */
+  halfIcon: {
+    type: String,
+    default: 'i-bx:bxs-star-half',
+  },
+
+  /**
+   * Sets filled icon
+   */
+  fullIcon: {
+    type: String,
+    default: 'i-bx:bxs-star',
+  },
+
+  /**
+   * Allows to see visual changes of value on hover
+   */
+  noHoverHint: Boolean,
+
+  /**
+   * Animate icon on hover
+   */
+  animate: Boolean,
+
+  /**
+   * Make rating component readonly
+   */
+  readonly: readonlyProp,
+
+  /**
+   * Disable rating selection
+   */
+  disabled: disabledProp,
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: ModelValue): void
+  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({

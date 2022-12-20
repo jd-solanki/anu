@@ -2,28 +2,74 @@
 import type { Middleware, Placement, Strategy } from '@floating-ui/dom'
 import { autoUpdate, computePosition, flip, shift } from '@floating-ui/dom'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
+import type { PropType } from 'vue'
 import { Teleport, Transition, getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
 import { useTeleport } from '@/composables/useTeleport'
 import { useInternalBooleanState } from '@/composables/useInternalState'
 import { ACard } from '@/components'
 
-interface Props {
-  modelValue?: boolean
-  persist?: boolean | 'content'
-  trigger?: 'click' | 'hover'
-  transition?: string | null
-  placement?: Placement
-  strategy?: Strategy
-  middleware?: ((referenceEl: HTMLElement, floatingEl: HTMLElement) => Middleware[]) | null
-}
-const props = withDefaults(defineProps<Props>(), {
-  // ℹ️ We need to set default value as undefined for `useInternalBooleanState` to work properly
-  modelValue: undefined,
-  transition: 'slide-up',
-  placement: 'bottom-start',
-  strategy: 'absolute',
-  middleware: null,
+const props = defineProps({
+  /**
+   * Show/Hide menu base on v-model value
+   */
+  modelValue: {
+    type: Boolean,
+    default: undefined,
+  },
+
+  /**
+   * Persistence of menu when clicked outside of reference element
+   */
+  persist: {
+    type: [Boolean, String] as PropType<boolean | 'content'>,
+    default: false,
+  },
+
+  /**
+   * Trigger event to open the menu
+   */
+  trigger: {
+    type: String as PropType<'click' | 'hover'>,
+    default: 'click',
+  },
+
+  /**
+   * Transition to add while showing/hiding menu
+   */
+  transition: {
+    type: [String, null] as PropType<string | null>,
+    default: 'slide-up',
+  },
+
+  // -- Floating UI based Props
+
+  // https://floating-ui.com/docs/computePosition#placement
+  /**
+   * Placement option from Floating UI
+   */
+  placement: {
+    type: String as PropType<Placement>,
+    default: 'bottom-start',
+  },
+
+  // https://floating-ui.com/docs/computePosition#strategy
+  /**
+   * Strategy option from Floating UI
+   */
+  strategy: {
+    type: String as PropType<Strategy>,
+    default: 'absolute',
+  },
+
+  // https://floating-ui.com/docs/tutorial#middleware
+  /**
+   * Middleware option from Floating UI
+   */
+  middleware: {
+    type: [Function, Object] as PropType<((referenceEl: HTMLElement, floatingEl: HTMLElement) => Middleware[]) | null>,
+    default: null,
+  },
 })
 
 const emit = defineEmits<{
@@ -95,9 +141,9 @@ onBeforeUnmount(() => floatingUiCleanup())
 // 👉 Event listeners
 /*
     If moduleValue is provided don't attach any event to modify the visibility of menu
-    props.modelValue === null => modelValue isn't provided
+    props.modelValue === undefined => modelValue isn't provided
 */
-if (props.modelValue === null) {
+if (props.modelValue === undefined) {
   // If trigger is hover
   if (props.trigger === 'hover') {
     // Reference
@@ -121,6 +167,7 @@ if (props.modelValue === null) {
     })
   }
   else {
+    console.log('click...')
     useEventListener(refReference, 'click', toggleAlertVisibility)
 
     if (props.persist !== true) {

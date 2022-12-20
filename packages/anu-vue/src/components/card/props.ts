@@ -7,6 +7,8 @@ export const cardProps = {
   ...useLayerProps(),
   ...typographyProps,
   spacing,
+
+  // TODO: Rename this prop to `src`
   img: String,
   alt: String,
 }

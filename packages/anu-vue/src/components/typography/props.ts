@@ -43,9 +43,3 @@ export const typographyProps = {
 }
 
 export type TypographyProps = ExtractPropTypes<typeof typographyProps>
-
-export const typographyPropsDefaults: Partial<TypographyProps> = {
-  titleTag: 'span',
-  subtitleTag: 'span',
-  textTag: 'span',
-}
