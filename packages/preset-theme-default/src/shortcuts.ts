@@ -135,7 +135,7 @@ const shortcuts: Preset['shortcuts'] = [
     'a-switch-disabled': 'opacity-50',
 
     // 👉 Table
-    'a-table-table': 'all-[tr]-border-b all-[tr]-border-a-border',
+    'a-table-table': 'all-[tbody_tr]-border-t all-[tr]-border-a-border',
 
     // With 1em (14px), 1.1428571429em => 16px & 3.5em => 49px
     'a-table-table-th': 'capitalize em:spacing:px-[1.1428571429em] spacing:h-[3.5em] text-left em:text-sm',

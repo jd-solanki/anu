@@ -3,7 +3,9 @@ import { spacing } from '@/composables/useProps'
 
 export interface PropColumn {
   name: string
+  classes?: any
   formatter?: (val: unknown) => unknown
+  headerClasses?: any
 }
 
 export const tableProps = {
@@ -28,7 +30,7 @@ export const tableProps = {
    */
   noDataText: {
     type: String,
-    default: 'No matching results found!',
+    default: 'No records found!',
   },
 
   /**

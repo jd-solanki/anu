@@ -274,8 +274,12 @@ const cols = [
 ]
 
 // 👉 rows function
-const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
+const fetchItems = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
   // ℹ️ You can use q, currentPage, rowsPerPage, sortedCols to fetch data from API
+  // console.log('q :>> ', q, typeof q)
+  // console.log('currentPage :>> ', currentPage)
+  // console.log('rowsPerPage :>> ', rowsPerPage)
+  // console.log('sortedCols :>> ', sortedCols)
 
   // Return promise
   return new Promise(resolve => {
@@ -307,6 +311,8 @@ const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPar
         },
       ])
 
+      // console.log('filteredData :>> ', filteredData.value)
+
       // Sorting logic
       const { results } = useSort<User>(
         filteredData.value,
@@ -314,19 +320,23 @@ const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPar
           const colsSortBy: typeSortBy = []
 
           sortedCols.forEach(col => {
-            if (col.sortBy)
-              colsSortBy.push({ name: col.name, sortBy: col.sortBy })
-            else if (col.shallSortByAsc !== null)
-              colsSortBy.push({ name: col.name, isAsc: col.shallSortByAsc })
+            if (col.sortBy !== undefined)
+              colsSortBy.push({ name: col.name, isAsc: col.sortBy })
           })
 
           return colsSortBy
         })(),
       )
 
+      // console.log('results :>> ', results.value)
+
       const _currentPage = currentPage || 1
 
+      // console.log('_currentPage :>> ', _currentPage)
+
       const paginatedRows = results.value.slice((_currentPage - 1) * rowsPerPage, _currentPage * rowsPerPage)
+
+      console.log('paginatedRows :>> ', paginatedRows)
 
       resolve({ rows: paginatedRows, total: results.value.length })
     }, 150)
@@ -336,11 +346,12 @@ const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPar
 
 <template>
   <div class="cards-demo-container">
-    <ATable
-      :rows="fetchItem"
-      :columns="cols"
-      search
+    <AServerTable
+      query
+      :rows="fetchItems"
+      :cols="cols"
       :page-size="5"
+      @fetch="fetchItems"
     />
   </div>
 </template>

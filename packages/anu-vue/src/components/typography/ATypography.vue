@@ -24,7 +24,7 @@ const text = useConfigurable(toRef(props, 'text'))
         <!-- 👉 Title -->
         <component
           :is="props.titleTag"
-          v-if="props.title || $slots.title"
+          v-if="(Array.isArray(props.title) ? props.title[0] : props.title) || $slots.title"
           v-bind="title.attrs"
           class="font-medium block em:uno-layer-base-text-lg uno-layer-base-text-[hsla(var(--a-typography-title-color),var(--a-typography-title-opacity))]"
           :class="[title.classes]"
@@ -37,7 +37,7 @@ const text = useConfigurable(toRef(props, 'text'))
         <!-- 👉 Subtitle -->
         <component
           :is="props.subtitleTag"
-          v-if="props.subtitle || $slots.subtitle"
+          v-if="(Array.isArray(props.subtitle) ? props.subtitle[0] : props.subtitle) || $slots.subtitle"
           v-bind="subtitle.attrs"
           class="block em:uno-layer-base-text-sm uno-layer-base-text-[hsla(var(--a-typography-subtitle-color),var(--a-typography-subtitle-opacity))]"
           :class="[subtitle.classes]"
@@ -46,17 +46,16 @@ const text = useConfigurable(toRef(props, 'text'))
             {{ subtitle.content }}
           </slot>
         </component>
-
-        <!-- 👉 Slot: header-right -->
-        <slot name="header-right" />
       </div>
+      <!-- 👉 Slot: header-right -->
+      <slot name="header-right" />
     </div>
     <!-- !SECTION -->
 
     <!-- 👉 Text -->
     <component
       :is="props.textTag"
-      v-if="props.text || $slots.text"
+      v-if="(Array.isArray(props.text) ? props.text[0] : props.text) || $slots.text"
       v-bind="text.attrs"
       class="uno-layer-base-text-[hsla(var(--a-typography-text-color),var(--a-typography-text-opacity))]"
       :class="[text.classes]"

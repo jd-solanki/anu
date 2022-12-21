@@ -10,8 +10,10 @@ const props = defineProps(defu(tableProps, cardProps))
 
 // TODO: We aren't getting type error for click:header
 const emit = defineEmits<{
-  (e: 'click:header', column: Exclude<(ExtractPropTypes<typeof props>)['cols'], undefined>): void
+  (e: 'click:header', col: Exclude<(ExtractPropTypes<typeof props>)['cols'], undefined>): void
 }>()
+
+console.log('props.cols :>> ', props.cols)
 
 defineOptions({
   name: 'ATable',
@@ -51,6 +53,7 @@ const _cols = computed<PropColumn[]>(() => {
               v-for="(col, index) in _cols"
               :key="index"
               class="a-table-table-th whitespace-nowrap"
+              :class="typeof col.headerClasses === 'function' ? col.headerClasses(col) : col.headerClasses"
               @click="$emit('click:header', col)"
             >
               <slot
@@ -75,6 +78,7 @@ const _cols = computed<PropColumn[]>(() => {
                 v-for="(col, colIndex) in _cols"
                 :key="colIndex"
                 class="a-table-table-td whitespace-nowrap"
+                :class="typeof col.classes === 'function' ? col.classes(row) : col.classes"
               >
                 <slot
                   :name="`col-${col.name}`"
@@ -88,9 +92,12 @@ const _cols = computed<PropColumn[]>(() => {
 
           <!-- If there's not rows to render => Show no data text -->
           <tr v-else>
-            <span
-              class="a-table-no-data-text"
-            >{{ props.noDataText }}</span>
+            <td
+              class="em:px-[1.15rem] em:h-14 whitespace-nowrap text-center font-medium"
+              :colspan="props.cols.length"
+            >
+              {{ props.noDataText }}
+            </td>
           </tr>
         </tbody>
       </table>

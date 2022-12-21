@@ -3,6 +3,7 @@ import { baseInputProps } from './props'
 import { useSpacing } from '@/composables/useSpacing'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
+// TODO: Provide a way to attach classes to root element
 const props = defineProps(baseInputProps)
 
 const emit = defineEmits<{
