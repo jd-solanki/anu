@@ -49,7 +49,7 @@ It also generates scoped slot based on your column name for rendering custom col
 <!-- 👉 Server Side Table -->
 ::::card Server Side Table
 
-If your table data is coming from API/backend you can pass async function to `rows` prop which should resolve the below type:
+<!-- If your table data is coming from API/backend you can pass async function to `rows` prop which should resolve the below type:
 
 ```ts
 interface rowsFunctionReturn {
@@ -69,7 +69,7 @@ const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
       // resolve(json) => { rows: [...], total: 10 }
   })
 }
-```
+``` -->
 
 :::code DemoTableServerSideTable
 <<< @/demos/table/DemoTableServerSideTable.vue{277-334,340}

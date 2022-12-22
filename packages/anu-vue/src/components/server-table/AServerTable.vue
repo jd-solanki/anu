@@ -3,9 +3,12 @@ import { defu } from 'defu'
 import type { ExtractPropTypes } from 'vue'
 import type { ServerTablePropColumn } from './props'
 import { serverTableProps } from './props'
-import { defuProps } from '@/composables/useProps'
-import { ATable, tableProps } from '@/components/table'
+import { ABtn } from '@/components/btn'
 import { AInput } from '@/components/input'
+import { ASelect } from '@/components/select'
+import { ATable, tableProps } from '@/components/table'
+import { ATypography } from '@/components/typography'
+import { defuProps } from '@/composables/useProps'
 
 const props = defineProps(defuProps(serverTableProps, tableProps))
 
@@ -76,8 +79,8 @@ const {
   pageCount,
   isFirstPage,
   isLastPage,
-  prev,
-  next,
+  prev: goToPreviousPage,
+  next: goToNextPage,
 } = useOffsetPagination({
   total: _total,
   page: 1,
@@ -147,6 +150,13 @@ const renderHeaderRightSlot = (typeof props.query === 'boolean' && props.query)
   || props.query
   || slots['before-search']
   || slots['after-search']
+
+const paginationMeta = computed(() => {
+  const from = _rows.value.length ? (currentPage.value - 1) * currentPageSize.value + 1 : 0
+  const to = isLastPage.value ? _total.value : currentPage.value * currentPageSize.value
+
+  return `${from} - ${to} of ${_total.value}`
+})
 </script>
 
 <template>
@@ -201,6 +211,44 @@ const renderHeaderRightSlot = (typeof props.query === 'boolean' && props.query)
         </div>
       </slot>
     </template>
+
+    <!-- 👉 Footer slot -->
+    <template #footer>
+      <div class="a-server-table-pagination flex items-center w-full">
+        <ATypography
+          class="a-server-table-pagination-meta"
+          :subtitle="paginationMeta"
+        />
+        <div class="a-server-table-per-page">
+          <span class="sm:inline hidden">per page</span>
+          <ASelect
+            v-model="currentPageSize"
+            :options="Array.from(new Set([props.pageSize, 5, 10, 15, 20])).sort((a, b) => a - b)"
+            :spacing="80"
+          />
+        </div>
+        <div class="flex-grow" />
+        <div class="a-server-table-pagination-navigation">
+          <ABtn
+            class="a-server-table-paginate-previous"
+            icon="i-bx-left-arrow-alt"
+            icon-only
+            variant="default"
+            :disabled="isFirstPage"
+            @click="goToPreviousPage"
+          />
+          <ABtn
+            class="a-server-table-paginate-next"
+            icon="i-bx-right-arrow-alt"
+            icon-only
+            variant="default"
+            :disabled="isLastPage"
+            @click="goToNextPage"
+          />
+        </div>
+      </div>
+    </template>
+
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
       v-for="(_, name) in $slots"

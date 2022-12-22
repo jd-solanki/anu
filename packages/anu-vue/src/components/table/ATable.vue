@@ -100,6 +100,13 @@ const _cols = computed<PropColumn[]>(() => {
             </td>
           </tr>
         </tbody>
+
+        <tfoot
+          v-if="$slots.footer"
+          class="a-table-footer"
+        >
+          <slot name="footer" />
+        </tfoot>
       </table>
     </div>
 

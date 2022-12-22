@@ -143,16 +143,18 @@ const shortcuts: Preset['shortcuts'] = [
     'a-table-table-td': 'em:spacing:px-[1.1428571429em] spacing:h-[3.5em] text-sm',
 
     // With 1em (12px), 1.3333333333em => 16px & 4.0833333333em => 49px
-    'a-table-footer': 'em:spacing:px-[1.3333333333em] spacing:h-[4.0833333333em] em:spacing:gap-x-4 em:text-xs',
-    'a-table-pagination-meta': '[--a-typography-text-opacity:var(--a-typography-subtitle-opacity)]',
+    // 'a-table-footer': 'em:spacing:px-[1.3333333333em] spacing:h-[4.0833333333em] em:spacing:gap-x-4 em:text-xs',
+    'a-server-table-pagination': 'em:spacing:px-[1.3333333333em] spacing:h-[4.0833333333em] em:spacing:gap-x-4 em:text-xs',
 
-    'a-table-footer-per-page-container': 'em:spacing:gap-x-2',
-    'a-table-footer-per-page-select': 'em:spacing:w-16 min-w-14',
+    // 'a-table-pagination-meta': '[--a-typography-text-opacity:var(--a-typography-subtitle-opacity)]',
 
-    'a-table-footer-per-page-select--input-wrapper-classes': 'rounded-0 !border-transparent !border-b-a-border', // ℹ️ inputWrapperClasses prop
-    'a-table-footer-per-page-select--options-wrapper-classes': 'em:text-sm spacing-85', // ℹ️ optionsWrapperClasses prop
-    'a-table-footer-previous-page-btn': '!rounded-full em:spacing:me-2',
-    'a-table-footer-next-page-btn': '!rounded-full',
+    // 'a-table-footer-per-page-container': 'em:spacing:gap-x-2',
+    // 'a-table-footer-per-page-select': 'em:spacing:w-16 min-w-14',
+
+    // 'a-table-footer-per-page-select--input-wrapper-classes': 'rounded-0 !border-transparent !border-b-a-border', // ℹ️ inputWrapperClasses prop
+    // 'a-table-footer-per-page-select--options-wrapper-classes': 'em:text-sm spacing-85', // ℹ️ optionsWrapperClasses prop
+    // 'a-table-footer-previous-page-btn': '!rounded-full em:spacing:me-2',
+    // 'a-table-footer-next-page-btn': '!rounded-full',
 
     // 👉 Textarea
     'a-textarea': 'em:spacing:py-4 overflow-x-hidden',
