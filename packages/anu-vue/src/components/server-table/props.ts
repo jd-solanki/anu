@@ -64,4 +64,6 @@ export const serverTableProps = {
     type: Number,
     default: 10,
   },
+
+  // ℹ️ Does anyone need prop initialPage?
 }

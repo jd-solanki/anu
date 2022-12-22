@@ -44,6 +44,7 @@ const _cols = computed<PropColumn[]>(() => {
     class="a-table"
     :style="{ '--a-spacing': spacing / 100 }"
   >
+    <slot name="before-table" />
     <div class="overflow-x-auto">
       <table class="a-table-table overflow-x-auto w-full max-w-full">
         <!-- 👉 thead -->
@@ -109,6 +110,7 @@ const _cols = computed<PropColumn[]>(() => {
         </tfoot>
       </table>
     </div>
+    <slot name="after-table" />
 
     <!-- ℹ️ Recursively pass down slots to child -->
     <template

@@ -11,13 +11,16 @@ interface ObjectOption { label: string; value: string | number }
 type SelectOption = string | number | ObjectOption
 
 const props = defineProps(defu({
-  modelValue: null,
+  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
+  modelValue: { type: null },
   options: {
     type: [String, Number, Object] as PropType<SelectOption[]>,
     default: () => [],
   },
   emitObject: Boolean,
-  optionsWrapperClasses: null,
+
+  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
+  optionsWrapperClasses: { type: null },
 }, baseInputProps))
 
 const emit = defineEmits<{
@@ -164,9 +167,7 @@ const selectedValue = computed(() => {
       v-show="isOptionsVisible"
       ref="refFloating"
       class="a-select-options-container absolute bg-[hsl(var(--a-layer))]"
-      :class="[
-        props.optionsWrapperClasses,
-      ]"
+      :class="props.optionsWrapperClasses"
       @click="closeOptions"
     >
       <slot

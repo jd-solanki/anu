@@ -16,7 +16,8 @@ export const listItemProps = {
   /**
    * List item value, makes list item clickable.
    */
-  value: null,
+  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
+  value: { type: null },
 
   /**
    * List item icon

@@ -4,7 +4,9 @@ import { disabled, readonly, spacing } from '@/composables/useProps'
 // TODO: Provide a way to apply classes on root. Later you can target input container & wrapper.
 export const baseInputProps = {
   spacing,
-  inputWrapperClasses: null,
+
+  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
+  inputWrapperClasses: { type: null },
   inputContainerAttrs: Object as PropType<HTMLAttributes>,
   hint: String,
   error: String,

@@ -3,12 +3,9 @@ import { defu } from 'defu'
 import type { ExtractPropTypes } from 'vue'
 import type { ServerTablePropColumn } from './props'
 import { serverTableProps } from './props'
-import { ABtn } from '@/components/btn'
-import { AInput } from '@/components/input'
-import { ASelect } from '@/components/select'
-import { ATable, tableProps } from '@/components/table'
-import { ATypography } from '@/components/typography'
 import { defuProps } from '@/composables/useProps'
+import { tableProps } from '@/components/table'
+import { ABtn, AInput, ASelect, ATypography } from '@/components'
 
 const props = defineProps(defuProps(serverTableProps, tableProps))
 
@@ -50,6 +47,7 @@ const _total = ref(0)
 const q = ref(typeof props.query === 'boolean' ? '' : props.query)
 watch(q, val => {
   emit('update:search', q.value)
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   fetchRows()
 })
 
@@ -62,8 +60,10 @@ const fetchRows = () => {
 
   props.rows({
     q: q.value,
+    /* eslint-disable @typescript-eslint/no-use-before-define */
     currentPage: currentPage.value,
     rowsPerPage: currentPageSize.value,
+    /* eslint-enable */
     sortedCols: sortedCols.value,
   })
     .then(data => {
@@ -212,22 +212,23 @@ const paginationMeta = computed(() => {
       </slot>
     </template>
 
-    <!-- 👉 Footer slot -->
-    <template #footer>
+    <!-- 👉 Pagination -->
+    <template #after-table>
       <div class="a-server-table-pagination flex items-center w-full">
         <ATypography
           class="a-server-table-pagination-meta"
           :subtitle="paginationMeta"
         />
-        <div class="a-server-table-per-page">
+        <div class="flex-grow" />
+        <div class="a-server-table-per-page flex items-center">
           <span class="sm:inline hidden">per page</span>
           <ASelect
             v-model="currentPageSize"
             :options="Array.from(new Set([props.pageSize, 5, 10, 15, 20])).sort((a, b) => a - b)"
             :spacing="80"
+            options-wrapper-classes="a-server-table-per-page-select--options-wrapper-classes"
           />
         </div>
-        <div class="flex-grow" />
         <div class="a-server-table-pagination-navigation">
           <ABtn
             class="a-server-table-paginate-previous"
