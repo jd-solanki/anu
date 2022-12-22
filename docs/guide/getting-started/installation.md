@@ -72,7 +72,7 @@
     import 'anu-vue/dist/style.css'
 
     // default theme styles
-    import '@anu-vue/preset-theme-default/dist/styles.css'
+    import '@anu-vue/preset-theme-default/dist/style.css'
 
     // Using `app.use(anu)` will register all the components globally
     createApp(App)
@@ -227,7 +227,7 @@ You can also follow À la carte fashion if you don't want to register all the co
         
         export default defineNuxtConfig({
           modules: ['@anu-vue/nuxt', '@unocss/nuxt'],
-      +   css: ['@anu-vue/preset-theme-default/dist/styles.css'],
+      +   css: ['@anu-vue/preset-theme-default/dist/style.css'],
         })
       ```
 

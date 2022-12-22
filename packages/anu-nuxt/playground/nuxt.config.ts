@@ -4,5 +4,5 @@ import anu from '..'
 
 export default defineNuxtConfig({
   modules: [anu, '@unocss/nuxt'],
-  css: ['@anu-vue/preset-theme-default/dist/styles.scss'],
+  css: ['@anu-vue/preset-theme-default/dist/style.scss'],
 })

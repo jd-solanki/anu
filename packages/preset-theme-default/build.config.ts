@@ -1,5 +1,5 @@
 import fs from 'fs-extra'
-import scss from 'rollup-plugin-scss'
+import sass from 'sass'
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
@@ -18,15 +18,15 @@ export default defineBuildConfig({
   ],
   hooks: {
     'mkdist:done': () => {
-      fs.copyFileSync('src/scss/index.scss', 'dist/styles.scss')
-    },
-    'rollup:options': (ctx, rollupOptions) => {
-      rollupOptions.plugins = rollupOptions.plugins || []
-      if (Array.isArray(rollupOptions.plugins)) {
-        rollupOptions.plugins.push(scss({
-          output: 'dist/styles.css',
-        }))
-      }
+      fs.copyFileSync('src/scss/index.scss', 'dist/style.scss')
+
+      const compiledSass = sass.compile('./src/scss/index.scss', { style: 'compressed' })
+
+      fs.writeFileSync(
+        'dist/style.css',
+        compiledSass.css,
+        { encoding: 'utf-8' },
+      )
     },
   },
 })
