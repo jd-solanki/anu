@@ -47,9 +47,9 @@ It also generates scoped slot based on your column name for rendering custom col
 :::: -->
 
 <!-- 👉 Server Side Table -->
-::::card Server Side Table
+<!-- ::::card Server Side Table
 
-<!-- If your table data is coming from API/backend you can pass async function to `rows` prop which should resolve the below type:
+If your table data is coming from API/backend you can pass async function to `rows` prop which should resolve the below type:
 
 ```ts
 interface rowsFunctionReturn {
@@ -69,10 +69,23 @@ const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
       // resolve(json) => { rows: [...], total: 10 }
   })
 }
-``` -->
+```
 
 :::code DemoTableServerSideTable
 <<< @/demos/table/DemoTableServerSideTable.vue{277-334,340}
+:::
+
+:::: -->
+
+<!-- 👉 Filtering -->
+::::card Filtering
+
+Set `search` prop to `true` to enable table filtering.
+
+Search will respect the column's `isFilterable` property to include or exclude the column from searching. If you don't specify column definition all columns will be filterable.
+
+:::code DemoTableFiltering
+<<< @/demos/table/DemoTableFiltering.vue{35}
 :::
 
 ::::

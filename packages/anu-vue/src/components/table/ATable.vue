@@ -13,8 +13,6 @@ const emit = defineEmits<{
   (e: 'click:header', col: Exclude<(ExtractPropTypes<typeof props>)['cols'], undefined>): void
 }>()
 
-console.log('props.cols :>> ', props.cols)
-
 defineOptions({
   name: 'ATable',
 })

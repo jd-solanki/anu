@@ -1,23 +1,20 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
 import type { ExtractPropTypes } from 'vue'
-import type { ServerTablePropColumn } from './props'
-import { serverTableProps } from './props'
-import { defuProps } from '@/composables/useProps'
-import { tableProps } from '@/components/table'
+import type { ItemsFunction, ServerTablePropColumn } from './props'
+import { serverTableColDefaults, serverTableProps } from './props'
 import { ABtn, AInput, ASelect, ATypography } from '@/components'
+import { tableProps } from '@/components/table'
+import { useSearch } from '@/composables/useSearch'
+import type { typeSortBy } from '@/composables/useSort'
+import { useSort } from '@/composables/useSort'
 
-const props = defineProps(defuProps(serverTableProps, tableProps))
+const props = defineProps(serverTableProps)
 
 // TODO: Check usage with usedebouncefn. Can we limit the # of req to server?
-
-// q: _q.value,
-// currentPage: currentPage.value,
-// rowsPerPage: currentPageSize.value,
-// sortedCols: sortedCols.value,
 const emit = defineEmits<{
 
-  // TODO: Duplicated from `ATable` because import interface issue
+  // TODO: Duplicated from `ATable` because of import interface issue
   (e: 'click:header', col: Exclude<(ExtractPropTypes<typeof props>)['cols'], undefined>): void
 
   // ---
@@ -29,24 +26,22 @@ defineOptions({
   name: 'AServerTable',
 })
 
-const colDefaults: Partial<ServerTablePropColumn> = {
-  isSortable: true,
-  headerClasses: (col: ServerTablePropColumn) => col.isSortable && 'cursor-pointer select-none',
-  sortBy: undefined,
-}
+const isSST = computedEager(() => !Array.isArray(props.rows))
 
 // ℹ️ We must return reactive: https://github.com/vuejs/docs/issues/849#issuecomment-775057101
 // Thanks: @skirtle. Discord conversation: https://discord.com/channels/325477692906536972/568037134968160256/1055173143423107142
-const _cols = computed<ServerTablePropColumn[]>(() => props.cols.map(colProp => reactive(defu(colProp, colDefaults))))
+const _cols = computed<ServerTablePropColumn[]>(() => props.cols.map(
+  colProp => reactive(defu(colProp, serverTableColDefaults)),
+))
 
 const _tableProps = reactivePick(props, Object.keys(tableProps).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof typeof tableProps>)
 
 const _rows = ref<unknown[]>([])
 const _total = ref(0)
 
-const q = ref(typeof props.query === 'boolean' ? '' : props.query)
-watch(q, val => {
-  emit('update:search', q.value)
+const q = ref(typeof props.search === 'boolean' ? '' : props.search)
+watch(q, value => {
+  emit('update:search', value)
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   fetchRows()
 })
@@ -54,23 +49,59 @@ watch(q, val => {
 const sortedCols = computed(() => _cols.value.filter(col => col.isSortable && col.sortBy !== undefined))
 
 const fetchRows = () => {
-  // _search.value, currentPage.value, currentPageSize.value, sortedCols.value
-  if (typeof props.rows !== 'function')
-    throw new Error('\'rows\' prop must be function')
-
-  props.rows({
-    q: q.value,
-    /* eslint-disable @typescript-eslint/no-use-before-define */
-    currentPage: currentPage.value,
-    rowsPerPage: currentPageSize.value,
-    /* eslint-enable */
-    sortedCols: sortedCols.value,
-  })
-    .then(data => {
-      const { rows, total } = data
-      _rows.value = rows
-      _total.value = total
+  // Use type check instead of isSST to prevent type aliases further
+  if (typeof props.rows === 'function') {
+    (props.rows as ItemsFunction)({
+      q: q.value,
+      /* eslint-disable @typescript-eslint/no-use-before-define */
+      currentPage: currentPage.value,
+      rowsPerPage: currentPageSize.value,
+      /* eslint-enable */
+      sortedCols: sortedCols.value,
     })
+      .then(data => {
+        const { rows, total } = data
+        _rows.value = rows
+        _total.value = total
+      })
+  }
+  else {
+    // Search
+    console.log('_cols.value :>> ', _cols.value)
+    const { results: filteredRows } = useSearch(
+      q,
+      props.rows,
+      _cols.value.map(col => col.filterFunc
+        ? { name: col.name, filterBy: col.filterFunc }
+        : col.name),
+    )
+    console.log('filteredRows :>> ', filteredRows.value)
+
+    // Sort
+    const { results: sortedRows } = useSort(
+      filteredRows,
+      computed(() => {
+        const colsSortBy: typeSortBy = []
+
+        sortedCols.value.forEach(col => {
+          if (col.sortFunc)
+            colsSortBy.push({ name: col.name, sortBy: col.sortFunc })
+          else if (col.sortBy !== undefined)
+            colsSortBy.push({ name: col.name, isAsc: col.sortBy === 'asc' })
+        })
+
+        return colsSortBy
+      }),
+    )
+
+    // Paginate
+    /* eslint-disable @typescript-eslint/no-use-before-define */
+    const start = (currentPage.value - 1) * currentPageSize.value
+    const end = currentPage.value * currentPageSize.value
+    /* eslint-enable */
+
+    _rows.value = sortedRows.value.slice(start, end)
+  }
 }
 
 const {
@@ -146,8 +177,8 @@ const handleHeaderClick = (clickedCol: ServerTablePropColumn) => {
 }
 
 const slots = useSlots()
-const renderHeaderRightSlot = (typeof props.query === 'boolean' && props.query)
-  || props.query
+const renderHeaderRightSlot = (typeof props.search === 'boolean' && props.search)
+  || props.search
   || slots['before-search']
   || slots['after-search']
 
@@ -161,11 +192,9 @@ const paginationMeta = computed(() => {
 
 <template>
   <ATable
-    v-bind="{
-      ..._tableProps,
-      cols: _cols,
-      rows: _rows,
-    }"
+    v-bind="_tableProps"
+    :cols="_cols"
+    :rows="_rows"
     class="[&>.a-card-typography-wrapper_.a-base-input-root]-max-w-48 [&>.a-card-typography-wrapper_.a-base-input-root]-text-sm"
     @click:header="handleHeaderClick"
   >
@@ -179,7 +208,7 @@ const paginationMeta = computed(() => {
       <!-- 👉 search -->
       <!-- input-wrapper-classes="max-w-48 text-sm" -->
       <AInput
-        v-if="(typeof props.query === 'boolean' && props.query) || props.query"
+        v-if="(typeof props.search === 'boolean' && props.search) || props.search"
         v-model="q"
         placeholder="search..."
         prepend-inner-icon="i-bx-search"

@@ -1,11 +1,18 @@
 import type { PropType } from 'vue'
 import type { PropColumn as TablePropColumn } from '@/components/table'
+import { tableProps } from '@/components/table'
+import { defuProps } from '@/composables/useProps'
+import type { CustomFilter } from '@/composables/useSearch'
+import type { CustomSort } from '@/composables/useSort'
 
 export type SortBy = 'asc' | 'desc' | undefined
 
 export interface ServerTablePropColumn extends TablePropColumn {
   isSortable?: boolean
   sortBy?: SortBy
+  isFilterable: Boolean
+  filterFunc?: CustomFilter<any>
+  sortFunc?: CustomSort
 }
 
 export interface ItemsFunctionParams {
@@ -19,12 +26,12 @@ export interface ItemsFunction {
   (props: ItemsFunctionParams): Promise<{ rows: unknown[]; total: number }>
 }
 
-export const serverTableProps = {
+export const serverTableProps = defuProps({
   /**
    * Function that returns resolves array.
    */
   rows: {
-    type: Function as PropType<ItemsFunction>,
+    type: [Array, Function] as PropType<ItemsFunction | unknown[]>,
     required: true,
   },
 
@@ -39,7 +46,7 @@ export const serverTableProps = {
   /**
    * Enable filtering/searching in table
    */
-  query: {
+  search: {
     type: [Boolean, String],
     default: false,
   },
@@ -66,4 +73,11 @@ export const serverTableProps = {
   },
 
   // ℹ️ Does anyone need prop initialPage?
+}, tableProps)
+
+export const serverTableColDefaults: Partial<ServerTablePropColumn> = {
+  isSortable: true,
+  headerClasses: (col: ServerTablePropColumn) => col.isSortable && 'cursor-pointer select-none',
+  sortBy: undefined,
+  isFilterable: true,
 }

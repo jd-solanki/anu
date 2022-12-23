@@ -30,7 +30,7 @@ const rows = [
 
 <template>
   <div class="cards-demo-container">
-    <ATable
+    <AServerTable
       :rows="rows"
       search
     />

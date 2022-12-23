@@ -261,17 +261,17 @@ const fakeDatabase: User[] = [
 ]
 
 // 👉 Columns
-const cols = [
-  // { name: 'id' },
-  { name: 'name' },
-  { name: 'username' },
-  { name: 'email' },
+// const cols = [
+//   // { name: 'id' },
+//   { name: 'name' },
+//   { name: 'username' },
+//   { name: 'email' },
 
-  // { name: 'address', formatter: row => `${row.address.street} @${row.address.city}` },
-  // { name: 'phone' },
-  // { name: 'website' },
-  // { name: 'company', formatter: row => `${row.company.name} - ${row.company.bs}` },
-]
+//   // { name: 'address', formatter: row => `${row.address.street} @${row.address.city}` },
+//   // { name: 'phone' },
+//   // { name: 'website' },
+//   // { name: 'company', formatter: row => `${row.company.name} - ${row.company.bs}` },
+// ]
 
 // 👉 rows function
 const fetchItems = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
@@ -347,9 +347,8 @@ const fetchItems = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPa
 <template>
   <div class="cards-demo-container">
     <AServerTable
-      query
+      search
       :rows="fetchItems"
-      :cols="cols"
       :page-size="5"
       @fetch="fetchItems"
     />
