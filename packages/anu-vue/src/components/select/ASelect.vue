@@ -24,7 +24,8 @@ const props = defineProps(defu({
 }, baseInputProps))
 
 const emit = defineEmits<{
-  (e: 'input', value: (ExtractPropTypes<typeof props>)['modelValue']): void
+
+  // (e: 'input', value: (ExtractPropTypes<typeof props>)['modelValue']): void
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
@@ -107,8 +108,8 @@ const optionClasses = 'a-select-option states before:transition-none cursor-poin
 const handleOptionClick = (option: SelectOption) => {
   const value = isObjectOption(option) && !props.emitObject ? (option as ObjectOption).value : option
 
-  // TODO: Do we really need this emit? 🤔
-  emit('input', value)
+  // Do we really need this emit? 🤔 => I guess no because now on all events get attached to input
+  // emit('input', value)
   emit('update:modelValue', value)
 }
 const closeOptions = (event: MouseEvent) => {
@@ -129,7 +130,7 @@ const selectedValue = computed(() => {
 <template>
   <!-- 👉 Select Input -->
   <ABaseInput
-    v-bind="_baseInputProps"
+    v-bind="{ ..._baseInputProps, class: $attrs.class }"
     ref="refReference"
     append-inner-icon="i-bx-chevron-down"
     :input-container-attrs="{
@@ -138,19 +139,18 @@ const selectedValue = computed(() => {
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="(_, name) in $slots"
+      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
       #[name]="slotProps"
     >
       <!-- ℹ️ v-if condition will omit passing slots defined in array. Here, we don't want to pass default slot. -->
       <slot
-        v-if="name !== 'default'"
         :name="name"
         v-bind="slotProps || {}"
       />
     </template>
     <template #default="slotProps">
       <input
-        v-bind="{ ...slotProps, ...$attrs }"
+        v-bind="{ ...$attrs, ...slotProps }"
         ref="selectRef"
         readonly
         :value="selectedValue"
@@ -170,10 +170,7 @@ const selectedValue = computed(() => {
       :class="props.optionsWrapperClasses"
       @click="closeOptions"
     >
-      <slot
-        name="default"
-        :attrs="{ class: optionClasses }"
-      >
+      <slot :attrs="{ class: optionClasses }">
         <li
           v-for="(option, index) in props.options"
           :key="index"

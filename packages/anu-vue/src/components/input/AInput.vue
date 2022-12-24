@@ -37,25 +37,24 @@ const handleInputWrapperClick = () => {
 
 <template>
   <ABaseInput
-    v-bind="_baseInputProps"
+    v-bind="{ ..._baseInputProps, class: $attrs.class }"
     :class="[isInputTypeFile && 'a-input-type-file']"
     @click:inputWrapper="handleInputWrapperClick"
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="(_, name) in $slots"
+      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
       #[name]="slotProps"
     >
       <!-- ℹ️ v-if condition will omit passing slots defined in array. Here, we don't want to pass default slot. -->
       <slot
-        v-if="name !== 'default'"
         :name="name"
         v-bind="slotProps || {}"
       />
     </template>
     <template #default="slotProps">
       <input
-        v-bind="{ ...slotProps, ...$attrs }"
+        v-bind="{ ...$attrs, ...slotProps }"
         ref="input"
         :value="props.modelValue"
         @input="handleChange"

@@ -50,7 +50,6 @@ const isChecked = computed(() => props.modelValue === attrs.value)
     ]"
   >
 
-    <!-- TODO: Try to avoid classes like next:checked:xxx so we can omit them in safelist -->
     <input
       v-bind="$attrs"
       :id="elementId"

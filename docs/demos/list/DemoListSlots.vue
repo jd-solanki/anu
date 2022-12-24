@@ -16,7 +16,7 @@ const items = [
       >
         <!-- 👉 Slot: Before -->
         <template #before>
-          <AInput input-wrapper-classes="m-$a-list-item-padding" />
+          <AInput class="m-$a-list-item-padding" />
         </template>
 
         <!-- 👉 Slot: Append -->

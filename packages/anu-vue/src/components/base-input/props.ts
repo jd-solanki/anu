@@ -7,6 +7,10 @@ export const baseInputProps = {
 
   // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
   inputWrapperClasses: { type: null },
+
+  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
+  inputClasses: { type: null },
+
   inputContainerAttrs: Object as PropType<HTMLAttributes>,
   hint: String,
   error: String,

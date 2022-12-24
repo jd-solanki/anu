@@ -87,6 +87,7 @@ defineExpose({
           :id="elementId"
           class="a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent"
           :class="[
+            props.inputClasses,
             $slots['prepend-inner'] || props.prependInnerIcon
               ? 'a-base-input-w-prepend-inner'
               : 'a-base-input-wo-prepend-inner',

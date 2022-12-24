@@ -47,7 +47,7 @@ else
     <img
       v-if="props.img"
       :src="props.img"
-      :alt="props.alt"
+      :alt="props.imgAlt"
     >
 
     <!-- 👉 Typography -->
@@ -62,12 +62,11 @@ else
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="(_, name) in $slots"
+          v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
           #[name]="slotProps"
         >
           <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
           <slot
-            v-if="name !== 'default'"
             :name="name"
             v-bind="slotProps || {}"
           />

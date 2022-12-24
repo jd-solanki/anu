@@ -52,6 +52,19 @@ It also generates scoped slot based on your column name for rendering custom col
 
 ::::
 
+<!-- 👉 Extra Column -->
+::::card Extra Column
+
+Define extra column in column definition to add column to table. Later, you can use column slot `col-<name>` to render your custom content.
+
+Moreover, you can also omit the column definition to omit rendering the specific column.
+
+:::code DemoTableExtraColumn
+<<< @/demos/table/DemoTableExtraColumn.vue{17-41}
+:::
+
+::::
+
 <!-- 👉 Filtering -->
 ::::card Filtering
 
@@ -76,19 +89,6 @@ Moreover, You can also sort multiple columns at once. You can enable it by setti
 
 :::code DemoTableSorting
 <<< @/demos/table/DemoTableSorting.vue{4-8,15}
-:::
-
-::::
-
-<!-- 👉 Extra Column -->
-::::card Extra Column
-
-Define extra column in column definition to add column to table. Later, you can use column slot `col-<name>` to render your custom content.
-
-Moreover, you can also omit the column definition to omit rendering the specific column.
-
-:::code DemoTableExtraColumn
-<<< @/demos/table/DemoTableExtraColumn.vue{17-41}
 :::
 
 ::::

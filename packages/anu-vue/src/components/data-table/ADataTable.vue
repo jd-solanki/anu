@@ -253,7 +253,6 @@ const paginationMeta = computed(() => {
     v-bind="_tableProps"
     :cols="cols"
     :rows="_rows"
-    class="[&>.a-card-typography-wrapper_.a-base-input-root]-max-w-48 [&>.a-card-typography-wrapper_.a-base-input-root]-text-sm"
     @click:header="handleHeaderClick"
   >
     <!-- 👉 Search -->
@@ -264,11 +263,11 @@ const paginationMeta = computed(() => {
       <!-- 👉 Slot: before-search -->
       <slot name="before-search" />
       <!-- 👉 search -->
-      <!-- input-wrapper-classes="max-w-48 text-sm" -->
       <AInput
         v-if="(typeof props.search === 'boolean' && props.search) || props.search"
         v-model="q"
         placeholder="search..."
+        class="max-w-48 text-sm"
         prepend-inner-icon="i-bx-search"
       />
       <!-- 👉 Slot: after-search -->

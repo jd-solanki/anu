@@ -8,9 +8,15 @@ export const cardProps = {
   ...typographyProps,
   spacing,
 
-  // TODO: Rename this prop to `src`
+  /**
+   * Render image at the top of the card (_above header_)
+   */
   img: String,
-  alt: String,
+
+  /**
+   * `alt` attribute for image rendered via `img` prop
+   */
+  imgAlt: String,
 }
 
 export type CardProps = ExtractPropTypes<typeof cardProps>
