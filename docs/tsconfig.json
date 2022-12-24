@@ -14,7 +14,7 @@
             "scripthost"
         ],
         "paths": {
-            "@anu-vue/*": [
+            "@anu/*": [
                 "../packages/anu-vue/*"
             ]
         }

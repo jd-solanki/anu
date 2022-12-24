@@ -143,11 +143,11 @@ const shortcuts: Preset['shortcuts'] = [
     'a-table-table-td': 'em:spacing:px-[1.1428571429em] spacing:h-[3.5em] text-sm',
 
     // With 1em (12px), 1.3333333333em => 16px & 4.0833333333em => 49px
-    'a-server-table-pagination': 'border-t border-a-border em:spacing:px-[1.3333333333em] spacing:h-[4.0833333333em] em:spacing:gap-x-4 em:text-xs',
-    'a-server-table-pagination-meta': '!em:[&_.a-typography-subtitle]-text-xs',
-    'a-server-table-per-page': '[&_.a-base-input-input-wrapper]-rounded-0 [&_.a-base-input-input-wrapper]-!border-transparent [&_.a-base-input-input-wrapper]-!border-b-a-border [&_.a-base-input-root]-max-w-[70px]',
-    'a-server-table-per-page-select--options-wrapper-classes': 'em:text-sm spacing-85', // ℹ️ optionsWrapperClasses prop
-    'a-server-table-pagination-navigation': '[&_.a-server-table-paginate-previous]-!rounded-full em:[&_.a-server-table-paginate-previous]-spacing:me-2 [&_.a-server-table-paginate-next]-!rounded-full em:spacing:gap-x-2',
+    'a-data-table-pagination': 'border-t border-a-border em:spacing:px-[1.3333333333em] spacing:h-[4.0833333333em] em:spacing:gap-x-4 em:text-xs',
+    'a-data-table-pagination-meta': '!em:[&_.a-typography-subtitle]-text-xs',
+    'a-data-table-per-page': '[&_.a-base-input-input-wrapper]-rounded-0 [&_.a-base-input-input-wrapper]-!border-transparent [&_.a-base-input-input-wrapper]-!border-b-a-border [&_.a-base-input-root]-max-w-[70px]',
+    'a-data-table-per-page-select--options-wrapper-classes': 'em:text-sm spacing-85', // ℹ️ optionsWrapperClasses prop
+    'a-data-table-pagination-navigation': '[&_.a-data-table-paginate-previous]-!rounded-full em:[&_.a-data-table-paginate-previous]-spacing:me-2 [&_.a-data-table-paginate-next]-!rounded-full em:spacing:gap-x-2',
 
     // 👉 Textarea
     'a-textarea': 'em:spacing:py-4 overflow-x-hidden',

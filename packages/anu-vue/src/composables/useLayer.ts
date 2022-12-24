@@ -24,7 +24,8 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
      */
     variant: {
       type: String,
-      validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
+
+      // validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
       default: 'text',
     },
 

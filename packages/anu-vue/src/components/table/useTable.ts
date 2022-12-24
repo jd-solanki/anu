@@ -1,5 +1,5 @@
 import type { ComputedRef, Ref } from 'vue'
-import type { SortBy } from '@/components/server-table'
+import type { SortBy } from '@/components/data-table'
 
 export const getComputedCols = <PropColumn>(rows: Ref<Record<string, unknown>[]>, cols: Ref<PropColumn[]>) => {
   return computed<PropColumn[]>(() => {
