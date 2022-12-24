@@ -17,6 +17,11 @@ const props = defineProps({
   modelValue: String,
 
   /**
+   * Bind classes to input element
+   */
+  inputClasses: { type: null },
+
+  /**
    * Define label text
    */
   label: String,
@@ -33,6 +38,7 @@ const emit = defineEmits<{
 
 defineOptions({
   name: 'ARadio',
+  inheritAttrs: false,
 })
 
 const attrs = useAttrs()
@@ -47,11 +53,12 @@ const isChecked = computed(() => props.modelValue === attrs.value)
     class="inline-flex items-center cursor-pointer"
     :class="[
       props.disabled && 'a-radio-disabled pointer-events-none',
+      $attrs.class,
     ]"
   >
 
     <input
-      v-bind="$attrs"
+      v-bind="{ ...$attrs, class: props.inputClasses }"
       :id="elementId"
       :checked="isChecked"
       class="hidden"
