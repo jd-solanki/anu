@@ -150,7 +150,8 @@ const shortcuts: Preset['shortcuts'] = [
     'a-data-table-pagination-navigation': '[&_.a-data-table-paginate-previous]-!rounded-full em:[&_.a-data-table-paginate-previous]-spacing:me-2 [&_.a-data-table-paginate-next]-!rounded-full em:spacing:gap-x-2',
 
     // 👉 Textarea
-    'a-textarea': 'em:spacing:py-4 overflow-x-hidden',
+    'a-textarea': '[&_.a-base-input-input-wrapper]-px-0',
+    'a-textarea-textarea': 'em:spacing:py-4 overflow-x-hidden em:spacing:px-4',
 
   // !SECTION Components
   },

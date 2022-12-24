@@ -27,9 +27,11 @@ const handleInputWrapperClick = () => {
 </script>
 
 <template>
+  <!-- ℹ️ `overflow-hidden` on input wrapper will prevent square edge when textarea will have scrollbar -->
   <ABaseInput
     v-bind="{ ..._baseInputProps, class: $attrs.class }"
-    :input-wrapper-classes="['min-h-32', props.height]"
+    :input-wrapper-classes="['min-h-32 overflow-hidden', props.height, props.inputWrapperClasses]"
+    class="a-textarea !pointer-events-auto"
     @click:inputWrapper="handleInputWrapperClick"
   >
     <!-- ℹ️ Recursively pass down slots to child -->
@@ -48,7 +50,7 @@ const handleInputWrapperClick = () => {
       <textarea
         v-bind="{ ...$attrs, ...slotProps }"
         ref="textarea"
-        class="a-textarea bg-transparent resize-none"
+        class="a-textarea-textarea bg-transparent resize-none"
         :value="props.modelValue"
         @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />

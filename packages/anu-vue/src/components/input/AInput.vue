@@ -39,6 +39,7 @@ const handleInputWrapperClick = () => {
   <ABaseInput
     v-bind="{ ..._baseInputProps, class: $attrs.class }"
     :class="[isInputTypeFile && 'a-input-type-file']"
+    class="a-input"
     @click:inputWrapper="handleInputWrapperClick"
   >
     <!-- ℹ️ Recursively pass down slots to child -->
@@ -56,6 +57,7 @@ const handleInputWrapperClick = () => {
       <input
         v-bind="{ ...$attrs, ...slotProps }"
         ref="input"
+        class="a-input-input"
         :value="props.modelValue"
         @input="handleChange"
       >

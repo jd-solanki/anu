@@ -133,6 +133,7 @@ const selectedValue = computed(() => {
     v-bind="{ ..._baseInputProps, class: $attrs.class }"
     ref="refReference"
     append-inner-icon="i-bx-chevron-down"
+    class="a-select"
     :input-container-attrs="{
       onClick: handleInputClick,
     }"
@@ -153,6 +154,7 @@ const selectedValue = computed(() => {
         v-bind="{ ...$attrs, ...slotProps }"
         ref="selectRef"
         readonly
+        class="a-select-input"
         :value="selectedValue"
       >
     </template>
