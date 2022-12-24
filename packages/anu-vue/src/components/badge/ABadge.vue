@@ -9,11 +9,6 @@ type VerticalAnchor = 'top' | 'bottom'
 type HorizontalAnchor = 'left' | 'right'
 type Anchor = `${VerticalAnchor} ${HorizontalAnchor}`
 
-const defaultOffset = 4
-const defaultOverlapOffset = 12
-
-/* eslint-disable vue/valid-define-props */
-// eslint-disable-next-line vue/define-macros-order
 const props = defineProps({
   spacing: spacingProp,
 
@@ -76,7 +71,7 @@ const props = defineProps({
    */
   offsetX: {
     type: [Number, String],
-    default: defaultOffset,
+    default: 4,
   },
 
   /**
@@ -84,9 +79,14 @@ const props = defineProps({
    */
   offsetY: {
     type: [Number, String],
-    default: defaultOffset,
+    default: 4,
   },
 })
+
+// ❗ Make sure to sync it with props `offsetX` & `offsetY`
+const defaultOffset = 4
+
+const defaultOverlapOffset = 12
 
 defineOptions({
   name: 'ABadge',

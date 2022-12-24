@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
 import type { ExtractPropTypes, PropType } from 'vue'
+import type { ConfigurableValue } from '@/composables/useConfigurable'
 import { color as colorProp, configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
 const props = defineProps({
@@ -51,7 +52,7 @@ const data = useVModel(props, 'modelValue', emit)
 // Template refs
 const refCheckbox = ref()
 
-const _icon = ref('')
+const _icon = ref<ConfigurableValue>('')
 
 watch([data, () => props.indeterminate], ([checked, indeterminate], [_, prevIndeterminate]) => {
   // Set indeterminate state of HTMLInputElement

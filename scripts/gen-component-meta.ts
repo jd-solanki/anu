@@ -82,16 +82,17 @@ const filterMeta = (meta: ComponentMeta): ComponentApi => {
 }
 
 // Collect components
-const components = fg.sync(['src/components/**/*.tsx'], {
+const components = fg.sync(['src/components/**/*.vue'], {
   cwd: resolve(__dirname, '../packages/anu-vue'),
   absolute: true,
 })
 
 // Generate component meta
 components.forEach(componentPath => {
+  const componentName = parse(componentPath).name
+
   // Thanks: https://futurestud.io/tutorials/node-js-get-a-file-name-with-or-without-extension
-  const componentExportName = parse(componentPath).name
-  const meta = filterMeta(tsconfigChecker.getComponentMeta(componentPath, componentExportName))
+  const meta = filterMeta(tsconfigChecker.getComponentMeta(componentPath))
 
   const metaDirPath = resolve(__dirname, '../packages/anu-vue/component-meta')
 
@@ -99,6 +100,6 @@ components.forEach(componentPath => {
   if (!existsSync(metaDirPath))
     mkdirSync(metaDirPath)
 
-  const metaJsonFilePath = join(metaDirPath, `${componentExportName}.json`)
+  const metaJsonFilePath = join(metaDirPath, `${componentName}.json`)
   fs.writeFileSync(metaJsonFilePath, JSON.stringify(meta, null, 4))
 })

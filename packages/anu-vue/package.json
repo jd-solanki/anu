@@ -39,7 +39,8 @@
   "scripts": {
     "dev": "vite build --watch",
     "gen-comp-meta": "na tsx ../../scripts/gen-component-meta.ts",
-    "build": "vite build",
+    "gen-volar": "na tsx ../../scripts/gen-volar.ts",
+    "build": "pnpm gen-volar && pnpm gen-comp-meta && vite build && vue-tsc --declaration --emitDeclarationOnly",
     "preview": "vite preview",
     "lint": "eslint . --fix",
     "test": "vitest"
@@ -63,6 +64,7 @@
     "unocss": "^0.46.5",
     "unplugin-auto-import": "^0.12.1",
     "unplugin-vue-components": "^0.22.12",
+    "unplugin-vue-define-options": "^1.1.1",
     "vite": "^3.2.5",
     "vite-plugin-dts": "^1.7.1",
     "vitest": "^0.25.8",

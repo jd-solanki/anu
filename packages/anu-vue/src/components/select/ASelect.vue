@@ -7,7 +7,7 @@ import { ABaseInput, baseInputProps } from '@/components/base-input'
 import { useTeleport } from '@/composables/useTeleport'
 import { isObject } from '@/utils/helpers'
 
-interface ObjectOption { label: string; value: string | number }
+export interface ObjectOption { label: string; value: string | number }
 type SelectOption = string | number | ObjectOption
 
 const props = defineProps(defu({

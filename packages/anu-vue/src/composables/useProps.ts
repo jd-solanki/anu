@@ -1,5 +1,5 @@
-import { createDefu, defu } from 'defu'
-import type { ComponentObjectPropsOptions, PropType } from 'vue'
+import { createDefu } from 'defu'
+import type { PropType } from 'vue'
 import type { ConfigurableValue } from '@/composables/useConfigurable'
 
 export const themeColors = ['primary', 'success', 'info', 'warning', 'danger'] as const
@@ -17,8 +17,6 @@ export const readonly = { type: Boolean } as const
 export const spacing = { type: Number } as const
 
 export const configurable = { type: [Array, String, Number, Object, undefined] as PropType<ConfigurableValue> } as const
-
-export const overrideProps = (props: ComponentObjectPropsOptions, propOverrides?: Partial<ComponentObjectPropsOptions>) => propOverrides ? defu(propOverrides, props) : props
 
 // TODO: Use this prop merger
 export const defuProps = createDefu((obj, key, value) => {

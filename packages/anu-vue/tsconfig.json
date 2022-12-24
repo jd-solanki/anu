@@ -11,6 +11,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "outDir": "dist/types",
     "lib": [
       "esnext",
       "dom"
@@ -26,12 +27,7 @@
     },
     "types": [
       "vitest/globals",
-      "unplugin-vue-macros/macros-global"
-    ]
-  },
-  "vueCompilerOptions": {
-    "plugins": [
-      "@vue-macros/volar/define-options"
+      "unplugin-vue-define-options/macros-global"
     ]
   },
   "include": [

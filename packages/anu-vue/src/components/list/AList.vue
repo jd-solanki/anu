@@ -72,7 +72,7 @@ const handleListItemClick = (item: ListItemProps, index: number) => {
         v-bind="item"
         :avatar-append="props.avatarAppend"
         :icon-append="props.iconAppend"
-        :is-active="options[index].isSelected"
+        :is-active="options[index].isSelected as unknown as boolean"
         :value="props.modelValue !== undefined ? options[index] : undefined"
         v-on="{
           click: item.value || (props.modelValue !== undefined)
