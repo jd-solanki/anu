@@ -43,12 +43,12 @@
     "vue"
   ],
   "dependencies": {
+    "@unocss/reset": "^0.46.5",
     "defu": "^6.1.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
     "@unocss/core": "^0.45.30",
-    "@unocss/reset": "^0.46.5",
     "fs-extra": "^11.1.0",
     "rollup-plugin-scss": "3"
   }
