@@ -9,7 +9,6 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./dist/styles.css": "./dist/styles.css",
     "./dist/styles.scss": "./dist/styles.scss"
   },
   "main": "./dist/index.cjs",
