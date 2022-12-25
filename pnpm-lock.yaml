@@ -172,11 +172,11 @@ importers:
       fs-extra: ^11.1.0
       rollup-plugin-scss: '3'
     dependencies:
+      '@unocss/reset': 0.46.5
       defu: 6.1.1
     devDependencies:
       '@types/fs-extra': 9.0.13
       '@unocss/core': 0.45.30
-      '@unocss/reset': 0.46.5
       fs-extra: 11.1.0
       rollup-plugin-scss: 3.0.0
 
@@ -2435,7 +2435,6 @@ packages:
 
   /@unocss/reset/0.46.5:
     resolution: {integrity: sha512-DU1sisNixEaUsnfDdbU+POaedJLKUtalHnOOce2Txxrcakf7M2/I5/9cRIXt5diVbPjIyoDPcx+7Gn8K0cTGqg==}
-    dev: true
 
   /@unocss/reset/0.47.6:
     resolution: {integrity: sha512-bdc2dbuDg+CzgeLowEwO1URRIMdzmCE4RH4IKpCpT1Xoa+92RRubdtzK4N/9ZiSo8d4vvfWcc8fvhZko/6smPQ==}
