@@ -5,7 +5,7 @@ import { shortcuts } from './shortcuts'
 import { variants } from './variants'
 
 // ℹ️ We will need this import to generate the CSS file for preset-theme-default. We are just temporary disabling this.
-// import './scss/index.scss'
+import './scss/index.scss'
 
 interface PresetOptions {
   shortcutOverrides?: Exclude<Preset['shortcuts'], undefined>
