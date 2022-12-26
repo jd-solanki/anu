@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import { ABtn } from '../src/components/btn/ABtn'
+import { ABtn } from '../src/components'
 
 describe('Testing ABtn', () => {
   it('can mount component', () => {

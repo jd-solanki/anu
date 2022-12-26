@@ -3,7 +3,7 @@ import { defu } from 'defu'
 import type { ExtractPropTypes, Ref } from 'vue'
 import type { DataTablePropColumn, ItemsFunction } from './props'
 import { dataTableColDefaults, dataTableProps } from './props'
-import { ABtn, AInput, ASelect, ATypography } from '@/components'
+import { ABtn, AInput, ASelect, ATable, ATypography } from '@/components'
 import { tableProps } from '@/components/table'
 import { useSearch } from '@/composables/useSearch'
 import type { typeSortBy } from '@/composables/useSort'
@@ -29,7 +29,8 @@ defineOptions({
 const _tableProps = reactivePick(props, Object.keys(tableProps).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof typeof tableProps>)
 
 const _rows = ref<Record<string, unknown>[]>(typeof props.rows !== 'function' ? props.rows : [])
-const _total = ref(0)
+const serverTotal = ref(0)
+const _total = computed(() => typeof props.rows === 'function' ? serverTotal.value : props.rows.length)
 
 // SECTION Calculate column
 /*
@@ -116,7 +117,7 @@ const fetchRows = () => {
       .then(data => {
         const { rows, total } = data
         _rows.value = rows
-        _total.value = total
+        serverTotal.value = total
       })
   }
   else {
@@ -241,10 +242,10 @@ const paginationMeta = computed(() => {
       ? (currentPage.value - 1) * currentPageSize.value + 1
       : 0
   const to = isLastPage.value
-    ? _rows.value.length
+    ? _total.value
     : currentPage.value * currentPageSize.value
 
-  return `${from} - ${to} of ${_rows.value.length}`
+  return `${from} - ${to} of ${_total.value}`
 })
 </script>
 
@@ -253,6 +254,7 @@ const paginationMeta = computed(() => {
     v-bind="_tableProps"
     :cols="cols"
     :rows="_rows"
+    class="a-data-table"
     @click:header="handleHeaderClick"
   >
     <!-- 👉 Search -->
@@ -284,18 +286,16 @@ const paginationMeta = computed(() => {
         :name="`header-${col.name}`"
         v-bind="{ col }"
       >
-        <div>
-          <span>{{ col.name }}</span>
-          <i
-            v-show="col.sortBy === 'asc'"
-            class="i-bx-up-arrow-alt"
-          />
-          <i
-            v-show="col.sortBy === 'desc'"
-            class="i-bx-down-arrow-alt"
-          />
-        </div>
+        <span>{{ col.name }}</span>
       </slot>
+      <i
+        v-show="col.sortBy === 'asc'"
+        class="i-bx-up-arrow-alt"
+      />
+      <i
+        v-show="col.sortBy === 'desc'"
+        class="i-bx-down-arrow-alt"
+      />
     </template>
 
     <!-- 👉 Pagination -->
@@ -336,9 +336,10 @@ const paginationMeta = computed(() => {
       </div>
     </template>
 
+    <!-- TODO: If you are using child component props in component => Filter them out -->
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="(_, name) in $slots"
+      v-for="name in Object.keys($slots).filter(slotName => !slotName.startsWith('header-'))"
       #[name]="slotProps"
     >
       <slot
