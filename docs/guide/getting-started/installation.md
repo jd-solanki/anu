@@ -186,13 +186,13 @@ You can also follow À la carte fashion if you don't want to register all the co
 
     ```bash
     # pnpm
-    pnpm add @anu-vue/nuxt && pnpm add -D @unocss/nuxt
+    pnpm add @anu-vue/nuxt @anu-vue/preset-theme-default && pnpm add -D @unocss/nuxt
 
     # yarn
-    yarn add @anu-vue/nuxt && yarn add -D @unocss/nuxt
+    yarn add @anu-vue/nuxt @anu-vue/preset-theme-default && yarn add -D @unocss/nuxt
 
     # npm
-    npm install @anu-vue/nuxt && npm install -D @unocss/nuxt
+    npm install @anu-vue/nuxt @anu-vue/preset-theme-default && npm install -D @unocss/nuxt
     ```
 
 2. Add Anu & UnoCSS in nuxt modules
@@ -202,36 +202,19 @@ You can also follow À la carte fashion if you don't want to register all the co
 
     export default defineNuxtConfig({
       modules: ['@anu-vue/nuxt', '@unocss/nuxt'],
+      css: ['@anu-vue/preset-theme-default/dist/style.css'],
     })
     ```
 
 3. Add UnoCSS config file `uno.config.js` as shown in step 2 of [usage](#usage) section.
-4. Using [Preset](/guide/features/presets.md),
-   1. If you are going to use `preset-theme-default`, first install it.
 
-      ```bash
-      # pnpm
-      pnpm add @anu-vue/preset-theme-default
+It's done, Let's try button component 🥳
 
-      # yarn
-      yarn add @anu-vue/preset-theme-default
-
-      # npm
-      npm install @anu-vue/preset-theme-default
-      ```
-
-   2. Include CSS in `nuxt.config.js`.
-
-      ```diff
-        import { defineNuxtConfig } from 'nuxt/config'
-        
-        export default defineNuxtConfig({
-          modules: ['@anu-vue/nuxt', '@unocss/nuxt'],
-      +   css: ['@anu-vue/preset-theme-default/dist/style.css'],
-        })
-      ```
-
-   3. Make sure you have add `preset-theme-default` as preset in `uno.config.js` file.
+```vue
+<template>
+  <ABtn>Primary</ABtn>
+</template>
+```
 
 ## Volar Support
 
