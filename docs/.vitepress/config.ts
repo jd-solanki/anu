@@ -47,6 +47,7 @@ export default defineConfig({
             { text: 'DX Focused', link: '/guide/features/dx-focused' },
             { text: 'Arbitrary Sizes', link: '/guide/features/arbitrary-sizes' },
             { text: 'Spacing', link: '/guide/features/spacing' },
+            { text: 'Theme', link: '/guide/features/theme' },
           ],
         },
         {
