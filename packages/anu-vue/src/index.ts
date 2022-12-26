@@ -1,3 +1,4 @@
+import { defu } from 'defu'
 import type { App } from 'vue'
 import * as components from './components'
 import { provideAppSpacing } from '@/composables/useSpacing'
@@ -7,12 +8,17 @@ export interface PluginOptions {
   registerComponents: boolean
 }
 
+const optionsDefaults: Partial<PluginOptions> = {
+  registerComponents: true,
+}
+
 const plugin = {
-  install(app: App, options?: PluginOptions) {
+  install(app: App, options: Partial<PluginOptions> = {}) {
     provideAppSpacing(app)
 
-    // console.log('components :>> ', components);
-    if (options && options.registerComponents) {
+    const _options = defu(options, optionsDefaults)
+
+    if (_options.registerComponents) {
       for (const prop in components) {
       // @ts-expect-error: I want to index import using string
         const component = components[prop]
