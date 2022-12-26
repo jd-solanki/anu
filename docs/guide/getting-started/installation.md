@@ -186,13 +186,13 @@ You can also follow À la carte fashion if you don't want to register all the co
 
     ```bash
     # pnpm
-    pnpm add @anu-vue/nuxt
+    pnpm add @anu-vue/nuxt && pnpm add -D @unocss/nuxt
 
     # yarn
-    yarn add @anu-vue/nuxt
+    yarn add @anu-vue/nuxt && yarn add -D @unocss/nuxt
 
     # npm
-    npm install @anu-vue/nuxt
+    npm install @anu-vue/nuxt && npm install -D @unocss/nuxt
     ```
 
 2. Add Anu & UnoCSS in nuxt modules
