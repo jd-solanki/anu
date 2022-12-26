@@ -18,7 +18,7 @@ export const typographyProps = {
   text: configurable,
 
   /**
-   * Tag to use for title of the card
+   * Tag to use for title of the component
    */
   titleTag: {
     type: String,
@@ -26,7 +26,7 @@ export const typographyProps = {
   },
 
   /**
-   * Tag to use for subtitle of the card
+   * Tag to use for subtitle of the component
    */
   subtitleTag: {
     type: String,

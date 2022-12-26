@@ -19,9 +19,12 @@ const propsHeader = Object.keys(props.api.props[0])
       >
         <span
           class="font-semibold text-[hsla(var(--a-typography-title-color),var(--a-typography-title-opacity))]"
-        >{{ prop.name }}</span>
-        <span class="text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]"> : {{ prop.type }}</span>
-        <span class="text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]"> = {{ prop.default }}</span>
+        >{{ prop.name.replace('?', '') }}</span>
+        <span class="text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]"> : {{ prop.type.replace(/\s*\| (undefined)$/, '') }}</span>
+        <span
+          v-if="prop.default !== 'unknown'"
+          class="text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]"
+        > = {{ prop.default }}</span>
         <div
           class="!children-[p]-m-0"
           v-html="prop.description"
