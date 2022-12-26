@@ -167,7 +167,6 @@ if (props.modelValue === undefined) {
     })
   }
   else {
-    console.log('click...')
     useEventListener(refReference, 'click', toggleAlertVisibility)
 
     if (props.persist !== true) {

@@ -12,6 +12,7 @@
         "resolveJsonModule": true,
         "skipDefaultLibCheck": true,
         "skipLibCheck": true,
+        "noUncheckedIndexedAccess": true,
         "jsx": "preserve",
         "types": [
             "node"

@@ -26,6 +26,7 @@ defineOptions({
   name: 'ADataTable',
 })
 
+// TODO: https://twitter.com/mattpocockuk/status/1606656367078539264
 const _tableProps = reactivePick(props, Object.keys(tableProps).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof typeof tableProps>)
 
 const _rows = ref<Record<string, unknown>[]>(typeof props.rows !== 'function' ? props.rows : [])

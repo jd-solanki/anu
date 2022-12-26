@@ -12,6 +12,9 @@ export interface LayerProps {
   states: boolean
 }
 
+// Thanks: https://youtu.be/a_m7jxrTlaw
+// type LooseAutocomplete<T extends string> = T | Omit<string, T>
+
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   let props = {
     /**
