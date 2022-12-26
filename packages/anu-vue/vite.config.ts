@@ -1,8 +1,8 @@
 import { resolve } from 'path'
 import { URL, fileURLToPath } from 'url'
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import dts from 'vite-plugin-dts'
+import AutoImport from 'unplugin-auto-import/vite'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 import { defineConfig } from 'vitest/config'
 
 const externals = [
@@ -33,10 +33,13 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue(), vueJsx(), dts({
-    outputDir: 'dist/types',
-    insertTypesEntry: true,
-  })],
+  plugins: [
+    vue(),
+    AutoImport({
+      imports: ['vue', '@vueuse/core'],
+    }),
+    DefineOptions(),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

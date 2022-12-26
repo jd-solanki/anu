@@ -3,7 +3,7 @@ const items = [
   { text: 'Donut jujubes' },
   { text: 'Sesame snaps' },
   { text: 'I love jelly' },
-  { text: 'Cake gummi', disable: true },
+  { text: 'Cake gummi', disabled: true },
 ]
 </script>
 

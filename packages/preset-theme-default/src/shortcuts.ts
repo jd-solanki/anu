@@ -135,7 +135,7 @@ const shortcuts: Preset['shortcuts'] = [
     'a-switch-disabled': 'opacity-50',
 
     // 👉 Table
-    'a-table-table': 'all-[tr]-border-b all-[tr]-border-a-border',
+    'a-table-table': 'all-[tbody_tr]-border-t all-[tr]-border-a-border',
 
     // With 1em (14px), 1.1428571429em => 16px & 3.5em => 49px
     'a-table-table-th': 'capitalize em:spacing:px-[1.1428571429em] spacing:h-[3.5em] text-left em:text-sm',
@@ -143,19 +143,15 @@ const shortcuts: Preset['shortcuts'] = [
     'a-table-table-td': 'em:spacing:px-[1.1428571429em] spacing:h-[3.5em] text-sm',
 
     // With 1em (12px), 1.3333333333em => 16px & 4.0833333333em => 49px
-    'a-table-footer': 'em:spacing:px-[1.3333333333em] spacing:h-[4.0833333333em] em:spacing:gap-x-4 em:text-xs',
-    'a-table-pagination-meta': '[--a-typography-text-opacity:var(--a-typography-subtitle-opacity)]',
-
-    'a-table-footer-per-page-container': 'em:spacing:gap-x-2',
-    'a-table-footer-per-page-select': 'em:spacing:w-16 min-w-14',
-
-    'a-table-footer-per-page-select--input-wrapper-classes': 'rounded-0 !border-transparent !border-b-a-border', // ℹ️ inputWrapperClasses prop
-    'a-table-footer-per-page-select--options-wrapper-classes': 'em:text-sm spacing-85', // ℹ️ optionsWrapperClasses prop
-    'a-table-footer-previous-page-btn': '!rounded-full em:spacing:me-2',
-    'a-table-footer-next-page-btn': '!rounded-full',
+    'a-data-table-pagination': 'border-t border-a-border em:spacing:px-[1.3333333333em] spacing:h-[4.0833333333em] em:spacing:gap-x-4 em:text-xs',
+    'a-data-table-pagination-meta': '!em:[&_.a-typography-subtitle]-text-xs',
+    'a-data-table-per-page': '[&_.a-base-input-input-wrapper]-rounded-0 [&_.a-base-input-input-wrapper]-!border-transparent [&_.a-base-input-input-wrapper]-!border-b-a-border [&_.a-base-input-root]-max-w-[70px]',
+    'a-data-table-per-page-select--options-wrapper-classes': 'em:text-sm spacing-85', // ℹ️ optionsWrapperClasses prop
+    'a-data-table-pagination-navigation': '[&_.a-data-table-paginate-previous]-!rounded-full em:[&_.a-data-table-paginate-previous]-spacing:me-2 [&_.a-data-table-paginate-next]-!rounded-full em:spacing:gap-x-2',
 
     // 👉 Textarea
-    'a-textarea': 'em:spacing:py-4 overflow-x-hidden',
+    'a-textarea': '[&_.a-base-input-input-wrapper]-px-0',
+    'a-textarea-textarea': 'em:spacing:py-4 overflow-x-hidden em:spacing:px-4',
 
   // !SECTION Components
   },

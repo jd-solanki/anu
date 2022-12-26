@@ -4,8 +4,6 @@ import api from '@anu/component-meta/ATypography.json';
 
 # Typography
 
-<!-- TODO: Replace ABtn with AAvatar when ready. -->
-
 <!-- 👉 Basic -->
 ::::card Basic
 

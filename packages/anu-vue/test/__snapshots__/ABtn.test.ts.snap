@@ -1,19 +1,19 @@
 // Vitest Snapshot v1
 
 exports[`Testing ABtn > can mount component 1`] = `
-"<button class=\\"a-btn whitespace-nowrap inline-flex justify-center items-center states [--un-bg-opacity:1] text-white typography-title-white typography-subtitle-white typography-text-white typography-subtitle-opacity-100 typography-text-opacity-100 bg-$a-layer-color\\" style=\\"--a-layer-color: hsla(var(--a-primary),var(--un-bg-opacity)); --un-ring-color: hsl(var(--a-primary)); --a-spacing: 1;\\" tabindex=\\"0\\">
-  <!---->Click me
-  <!---->
+"<button tabindex=\\"0\\" style=\\"--a-layer-color: hsla(var(--a-primary),var(--un-bg-opacity)); --un-ring-color: hsl(var(--a-primary)); --a-spacing: 1;\\" class=\\"whitespace-nowrap inline-flex justify-center items-center a-btn states [--un-bg-opacity:1] text-white typography-title-white typography-subtitle-white typography-text-white typography-subtitle-opacity-100 typography-text-opacity-100 bg-$a-layer-color\\">
+  <!--v-if-->Click me
+  <!--v-if-->
 </button>"
 `;
 
 exports[`Testing ABtn > has proper classes 1`] = `
 [
-  "a-btn",
   "whitespace-nowrap",
   "inline-flex",
   "justify-center",
   "items-center",
+  "a-btn",
   "states",
   "[--un-bg-opacity:1]",
   "text-white",

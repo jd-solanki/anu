@@ -1,2 +1,2 @@
-export { ATextarea } from './ATextarea'
+export { default as ATextarea } from './ATextarea.vue'
 

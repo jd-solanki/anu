@@ -35,7 +35,7 @@ export default defineNuxtModule<ModuleOptions>({
     addPlugin({ src: resolve('./runtime/plugin') })
 
     // Add auto-imported components
-    AnuComponentNames.map(name =>
+    anuComponentNames.map(name =>
       addComponent({
         name,
         export: name,
@@ -46,13 +46,13 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsSources([
       {
         from: 'anu-vue',
-        imports: [...AnuUIHooks],
+        imports: anuComposables,
       },
     ])
   },
 })
 
-const AnuComponentNames = [
+const anuComponentNames = [
   'AAlert',
   'AAvatar',
   'ABadge',
@@ -61,12 +61,15 @@ const AnuComponentNames = [
   'ACard',
   'ACheckbox',
   'AChip',
+  'ADataTable',
   'ADialog',
   'ADrawer',
   'AInput',
   'AList',
+  'AListItem',
   'AMenu',
   'ARadio',
+  'ARating',
   'ASelect',
   'ASwitch',
   'ATable',
@@ -74,8 +77,18 @@ const AnuComponentNames = [
   'ATypography',
 ]
 
-const AnuUIHooks = [
-  '',
+const anuComposables = [
+  'useConfigurable',
+  'useDOMScrollLock',
+  'useGroupModel',
+  'useInternalState',
+  'useLayer',
+  'useProps',
+  'useSearch',
+  'useSort',
+  'useSpacing',
+  'useTeleport',
+  'useTypography',
 ]
 
 declare module '@nuxt/schema' {

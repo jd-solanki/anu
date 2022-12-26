@@ -115,7 +115,9 @@ export const useSearch = <T>(search: MaybeRef<string>, data: MaybeRef<T[]>, filt
         */
 
         // Type 1): Extract val from Object and filter it
-        if (typeof _filterBy === 'string') { return filterObjectViaProperty(item, _filterBy, q, _strict) }
+        if (typeof _filterBy === 'string') {
+          return filterObjectViaProperty(item, _filterBy, q, _strict)
+        }
 
         /*
           Type 2): Loop over each filterBy element
@@ -135,7 +137,9 @@ export const useSearch = <T>(search: MaybeRef<string>, data: MaybeRef<T[]>, filt
             // console.log('k :>> ', k);
 
             // If k is string
-            if (typeof k === 'string') { return filterObjectViaProperty(item, k, q, _strict) }
+            if (typeof k === 'string') {
+              return filterObjectViaProperty(item, k, q, _strict)
+            }
 
             // Else k is of type { name: string, filterBy: (val, q) => boolean }
             else {

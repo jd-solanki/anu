@@ -1,346 +1,46 @@
 <script setup lang="ts">
-import type { ItemsFunctionParams, typeSortBy } from 'anu-vue'
-import { useSearch, useSort } from 'anu-vue'
-
-interface User {
-  id: number
-  name: string
-  username: string
-  email: string
-  address: {
-    street: string
-    suite: string
-    city: string
-    zipcode: string
-    geo: {
-      lat: string
-      lng: string
-    }
-  }
-  phone: string
-  website: string
-  company: {
-    name: string
-    catchPhrase: string
-    bs: string
-  }
-}
-
-// 👉 Fake Data
-const fakeDatabase: User[] = [
-  {
-    id: 1,
-    name: 'Leanne Graham',
-    username: 'Bret',
-    email: 'Sincere@april.biz',
-    address: {
-      street: 'Kulas Light',
-      suite: 'Apt. 556',
-      city: 'Gwenborough',
-      zipcode: '92998-3874',
-      geo: {
-        lat: '-37.3159',
-        lng: '81.1496',
-      },
-    },
-    phone: '1-770-736-8031 x56442',
-    website: 'hildegard.org',
-    company: {
-      name: 'Romaguera-Crona',
-      catchPhrase: 'Multi-layered client-server neural-net',
-      bs: 'harness real-time e-markets',
-    },
-  },
-  {
-    id: 2,
-    name: 'Ervin Howell',
-    username: 'Antonette',
-    email: 'Shanna@melissa.tv',
-    address: {
-      street: 'Victor Plains',
-      suite: 'Suite 879',
-      city: 'Wisokyburgh',
-      zipcode: '90566-7771',
-      geo: {
-        lat: '-43.9509',
-        lng: '-34.4618',
-      },
-    },
-    phone: '010-692-6593 x09125',
-    website: 'anastasia.net',
-    company: {
-      name: 'Deckow-Crist',
-      catchPhrase: 'Proactive didactic contingency',
-      bs: 'synergize scalable supply-chains',
-    },
-  },
-  {
-    id: 3,
-    name: 'Clementine Bauch',
-    username: 'Samantha',
-    email: 'Nathan@yesenia.net',
-    address: {
-      street: 'Douglas Extension',
-      suite: 'Suite 847',
-      city: 'McKenziehaven',
-      zipcode: '59590-4157',
-      geo: {
-        lat: '-68.6102',
-        lng: '-47.0653',
-      },
-    },
-    phone: '1-463-123-4447',
-    website: 'ramiro.info',
-    company: {
-      name: 'Romaguera-Jacobson',
-      catchPhrase: 'Face to face bifurcated interface',
-      bs: 'e-enable strategic applications',
-    },
-  },
-  {
-    id: 4,
-    name: 'Patricia Lebsack',
-    username: 'Karianne',
-    email: 'Julianne.OConner@kory.org',
-    address: {
-      street: 'Hoeger Mall',
-      suite: 'Apt. 692',
-      city: 'South Elvis',
-      zipcode: '53919-4257',
-      geo: {
-        lat: '29.4572',
-        lng: '-164.2990',
-      },
-    },
-    phone: '493-170-9623 x156',
-    website: 'kale.biz',
-    company: {
-      name: 'Robel-Corkery',
-      catchPhrase: 'Multi-tiered zero tolerance productivity',
-      bs: 'transition cutting-edge web services',
-    },
-  },
-  {
-    id: 5,
-    name: 'Chelsey Dietrich',
-    username: 'Kamren',
-    email: 'Lucio_Hettinger@annie.ca',
-    address: {
-      street: 'Skiles Walks',
-      suite: 'Suite 351',
-      city: 'Roscoeview',
-      zipcode: '33263',
-      geo: {
-        lat: '-31.8129',
-        lng: '62.5342',
-      },
-    },
-    phone: '(254)954-1289',
-    website: 'demarco.info',
-    company: {
-      name: 'Keebler LLC',
-      catchPhrase: 'User-centric fault-tolerant solution',
-      bs: 'revolutionize end-to-end systems',
-    },
-  },
-  {
-    id: 6,
-    name: 'Mrs. Dennis Schulist',
-    username: 'Leopoldo_Corkery',
-    email: 'Karley_Dach@jasper.info',
-    address: {
-      street: 'Norberto Crossing',
-      suite: 'Apt. 950',
-      city: 'South Christy',
-      zipcode: '23505-1337',
-      geo: {
-        lat: '-71.4197',
-        lng: '71.7478',
-      },
-    },
-    phone: '1-477-935-8478 x6430',
-    website: 'ola.org',
-    company: {
-      name: 'Considine-Lockman',
-      catchPhrase: 'Synchronised bottom-line interface',
-      bs: 'e-enable innovative applications',
-    },
-  },
-  {
-    id: 7,
-    name: 'Kurtis Weissnat',
-    username: 'Elwyn.Skiles',
-    email: 'Telly.Hoeger@billy.biz',
-    address: {
-      street: 'Rex Trail',
-      suite: 'Suite 280',
-      city: 'Howemouth',
-      zipcode: '58804-1099',
-      geo: {
-        lat: '24.8918',
-        lng: '21.8984',
-      },
-    },
-    phone: '210.067.6132',
-    website: 'elvis.io',
-    company: {
-      name: 'Johns Group',
-      catchPhrase: 'Configurable multimedia task-force',
-      bs: 'generate enterprise e-tailers',
-    },
-  },
-  {
-    id: 8,
-    name: 'Nicholas Runolfsdottir V',
-    username: 'Maxime_Nienow',
-    email: 'Sherwood@rosamond.me',
-    address: {
-      street: 'Ellsworth Summit',
-      suite: 'Suite 729',
-      city: 'Aliyaview',
-      zipcode: '45169',
-      geo: {
-        lat: '-14.3990',
-        lng: '-120.7677',
-      },
-    },
-    phone: '586.493.6943 x140',
-    website: 'jacynthe.com',
-    company: {
-      name: 'Abernathy Group',
-      catchPhrase: 'Implemented secondary concept',
-      bs: 'e-enable extensible e-tailers',
-    },
-  },
-  {
-    id: 9,
-    name: 'Glenna Reichert',
-    username: 'Delphine',
-    email: 'Chaim_McDermott@dana.io',
-    address: {
-      street: 'Dayna Park',
-      suite: 'Suite 449',
-      city: 'Bartholomebury',
-      zipcode: '76495-3109',
-      geo: {
-        lat: '24.6463',
-        lng: '-168.8889',
-      },
-    },
-    phone: '(775)976-6794 x41206',
-    website: 'conrad.com',
-    company: {
-      name: 'Yost and Sons',
-      catchPhrase: 'Switchable contextually-based project',
-      bs: 'aggregate real-time technologies',
-    },
-  },
-  {
-    id: 10,
-    name: 'Clementina DuBuque',
-    username: 'Moriah.Stanton',
-    email: 'Rey.Padberg@karina.biz',
-    address: {
-      street: 'Kattie Turnpike',
-      suite: 'Suite 198',
-      city: 'Lebsackbury',
-      zipcode: '31428-2261',
-      geo: {
-        lat: '-38.2386',
-        lng: '57.2232',
-      },
-    },
-    phone: '024-648-3804',
-    website: 'ambrose.net',
-    company: {
-      name: 'Hoeger LLC',
-      catchPhrase: 'Centralized empowering task-force',
-      bs: 'target end-to-end models',
-    },
-  },
-]
+import type { ItemsFunctionParams } from 'anu-vue'
+import { fakeAPICall } from './data'
 
 // 👉 Columns
 const cols = [
-  // { name: 'id' },
+  // ℹ️ We don't want to render all the columns from our rows so we are declaring those we want to get rendered
   { name: 'name' },
   { name: 'username' },
   { name: 'email' },
-
-  // { name: 'address', formatter: row => `${row.address.street} @${row.address.city}` },
-  // { name: 'phone' },
-  // { name: 'website' },
-  // { name: 'company', formatter: row => `${row.company.name} - ${row.company.bs}` },
 ]
 
 // 👉 rows function
-const fetchItem = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
+const fetchItems = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
   // ℹ️ You can use q, currentPage, rowsPerPage, sortedCols to fetch data from API
+  // console.log('q :>> ', q, typeof q)
+  // console.log('currentPage :>> ', currentPage)
+  // console.log('rowsPerPage :>> ', rowsPerPage)
+  // console.log('sortedCols :>> ', sortedCols)
 
-  // Return promise
-  return new Promise(resolve => {
-    // Added some timeout to delay the request response
-    setTimeout(() => {
-      // Search logic
-      const { results: filteredData } = useSearch<User>(q, fakeDatabase, [
-        'id',
-        'name',
-        'username',
-        'email',
-        {
-          name: 'address',
-          filterBy: (val: User['address'], q: string, item: User) => {
-            const _q = q.toLocaleLowerCase()
+  // ℹ️ Real API call (JSON Placeholder)
+  // return fetch('https://jsonplaceholder.typicode.com/todos')
+  //   .then(response => response.json())
+  //   .then(json => ({ rows: json, total: json.length }))
 
-            return val.street.toLocaleLowerCase().includes(_q) || val.street.toLocaleLowerCase().includes(_q)
-          },
-        },
-        'phone',
-        'website',
-        {
-          name: 'company',
-          filterBy: (val: User['company'], q: string, item: User) => {
-            const _q = q.toLocaleLowerCase()
+  return fakeAPICall({ q, currentPage, rowsPerPage, sortedCols })
 
-            return val.name.toLocaleLowerCase().includes(_q) || val.bs.toLocaleLowerCase().includes(_q)
-          },
-        },
-      ])
-
-      // Sorting logic
-      const { results } = useSort<User>(
-        filteredData.value,
-        (() => {
-          const colsSortBy: typeSortBy = []
-
-          sortedCols.forEach(col => {
-            if (col.sortBy)
-              colsSortBy.push({ name: col.name, sortBy: col.sortBy })
-            else if (col.shallSortByAsc !== null)
-              colsSortBy.push({ name: col.name, isAsc: col.shallSortByAsc })
-          })
-
-          return colsSortBy
-        })(),
-      )
-
-      const _currentPage = currentPage || 1
-
-      const paginatedRows = results.value.slice((_currentPage - 1) * rowsPerPage, _currentPage * rowsPerPage)
-
-      resolve({ rows: paginatedRows, total: results.value.length })
-    }, 150)
-  })
+    // response.data => { rows: [...], total: 10 }
+    .then(response => response.data)
+    .catch(() => {
+      console.log('Error fetching rows...')
+    })
 }
 </script>
 
 <template>
   <div class="cards-demo-container">
-    <ATable
-      :rows="fetchItem"
-      :columns="cols"
+    <ADataTable
       search
+      :rows="fetchItems"
+      :cols="cols"
       :page-size="5"
+      @fetch="fetchItems"
     />
   </div>
 </template>

@@ -37,10 +37,11 @@
     "dev": "pnpm dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "gen-imports": "na tsx ../../scripts/update-nuxt.ts",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@css-render/vue3-ssr": "^0.15.11",
+    "@css-render/vue3-ssr": "^0.15.12",
     "@nuxt/kit": "^3.0.0",
     "anu-vue": "workspace:*",
     "defu": "^6.1.1"

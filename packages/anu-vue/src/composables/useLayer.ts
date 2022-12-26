@@ -1,12 +1,19 @@
 import type { MaybeRef } from '@vueuse/core'
+import { defu } from 'defu'
 import type { ComponentObjectPropsOptions } from 'vue'
 import { ref, unref, watch } from 'vue'
-import type { ColorProp } from '@/composables/useProps'
-import { color } from '@/composables/useProps'
 import { contrast } from '@/utils/color'
+import { color } from '@/composables/useProps'
+import type { ColorProp } from '@/composables/useProps'
+
+export interface LayerProps {
+  color: ColorProp
+  variant: 'fill' | 'outline' | 'light' | 'text'
+  states: boolean
+}
 
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
-  const props = {
+  let props = {
     /**
      * Layer color
      */
@@ -17,7 +24,8 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
      */
     variant: {
       type: String,
-      validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
+
+      // validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
       default: 'text',
     },
 
@@ -30,9 +38,8 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
     },
   }
 
-  // Add `defaults` property in `props` if it is provided via `defaults` argument
   if (propOverrides)
-    Object.assign(props, propOverrides)
+    props = defu(propOverrides, props) as typeof props
 
   return props
 }
@@ -119,6 +126,7 @@ export const useLayer = () => {
     }
   }
 
+  // TODO: Even if params are MaybeRef, we still has to pass refs. E.g. In ARating can't passing static values.
   const getLayerClasses = (propColor: MaybeRef<ColorProp>, propVariant: MaybeRef<string>, propsStates: MaybeRef<boolean>, config?: MaybeRef<UseLayerConfig>) => {
     const classes = ref<any>([])
     const styles = ref<any>([])

@@ -1,2 +1,2 @@
-export { ADrawer } from './ADrawer'
+export { default as ADrawer } from './ADrawer.vue'
 

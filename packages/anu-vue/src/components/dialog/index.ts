@@ -1,2 +1,2 @@
-export { ADialog } from './ADialog'
+export { default as ADialog } from './ADialog.vue'
 

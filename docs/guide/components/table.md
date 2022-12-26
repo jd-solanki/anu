@@ -4,27 +4,29 @@ import api from '@anu/component-meta/ATable.json';
 
 # Table
 
+Anu provides two variations for table component:
+
+1. `ATable` - Use this lightweight table for simply rendering rows & columns. This also support rending custom column content via slot & allow adding extra columns.
+2. `ADataTable` - This table provide advanced features like sorting, searching & pagination. You can use this table to render the data from API. This component is build on top of `ATable` component.
+
 <!-- 👉 Basic -->
 ::::card Basic
 
-Use `rows` prop to provide data to `ATable`. Defining columns for table is optional. When columns aren't specified, columns will get calculate from first row and all columns will be filterable and sortable.
+You can create basic table that renders the rows & columns using `ATable` component.
+
+Use `rows` prop to provide data to `ATable`. Defining columns for table is optional. When columns aren't specified via prop, columns will get calculate from first row.
 
 :::code DemoTableBasic
-<<< @/demos/table/DemoTableBasic.vue{33}
+<<< @/demos/table/DemoTableBasic.vue{7}
 :::
 
 ::::
 
-<!-- 👉 Column Definition -->
-::::card Column Definition
+:::details Demo data
+In all table demos uses data for rows from below file.
 
-You can use `columns` prop to define columns for the table.
-
-:::code DemoTableColumnDefinition
-<<< @/demos/table/DemoTableColumnDefinition.vue{30-34,41}
+<<< @/demos/table/data.ts
 :::
-
-::::
 
 <!-- 👉 Column Formatter -->
 ::::card Column Formatter
@@ -32,7 +34,7 @@ You can use `columns` prop to define columns for the table.
 Use `formatter` property while defining column to format the column text.
 
 :::code DemoTableColumnFormatter
-<<< @/demos/table/DemoTableColumnFormatter.vue{32}
+<<< @/demos/table/DemoTableColumnFormatter.vue{6}
 :::
 
 ::::
@@ -45,7 +47,20 @@ Use `formatter` property while defining column to format the column text.
 It also generates scoped slot based on your column name for rendering custom column. If your column name is `website` then you can use `col-website` scoped slot to render custom content in your column.
 
 :::code DemoTableSlots
-<<< @/demos/table/DemoTableSlots.vue{35-39,42-47}
+<<< @/demos/table/DemoTableSlots.vue{8-14,16-22}
+:::
+
+::::
+
+<!-- 👉 Extra Column -->
+::::card Extra Column
+
+Define extra column in column definition to add column to table. Later, you can use column slot `col-<name>` to render your custom content.
+
+Moreover, you can also omit the column definition to omit rendering the specific column.
+
+:::code DemoTableExtraColumn
+<<< @/demos/table/DemoTableExtraColumn.vue{17-41}
 :::
 
 ::::
@@ -58,7 +73,7 @@ Set `search` prop to `true` to enable table filtering.
 Search will respect the column's `isFilterable` property to include or exclude the column from searching. If you don't specify column definition all columns will be filterable.
 
 :::code DemoTableFiltering
-<<< @/demos/table/DemoTableFiltering.vue{35}
+<<< @/demos/table/DemoTableFiltering.vue{9}
 :::
 
 ::::
@@ -73,20 +88,7 @@ To disable sorting on table use set `isSortable` prop to `false` on `ATable`.
 Moreover, You can also sort multiple columns at once. You can enable it by setting `multiSort` prop to `true` on `ATable`.
 
 :::code DemoTableSorting
-<<< @/demos/table/DemoTableSorting.vue
-:::
-
-::::
-
-<!-- 👉 Extra Column -->
-::::card Extra Column
-
-Define extra column in column definition to add column to table. Later, you can use column slot `row-<name>` to render your custom content.
-
-Moreover, you can also omit the column definition to omit rendering the specific column.
-
-:::code DemoTableExtraColumn
-<<< @/demos/table/DemoTableExtraColumn.vue{33,43-67}
+<<< @/demos/table/DemoTableSorting.vue{4-8,15}
 :::
 
 ::::
@@ -103,21 +105,17 @@ interface rowsFunctionReturn {
 }
 ```
 
-```ts{6}
+```ts{5}
 const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
   // You can use => q, currentPage, rowsPerPage, sortedCols
-  return new Promise((resolve, reject) => {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    return fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
-      .then(json => resolve(json))
-
-      // resolve(json) => { rows: [...], total: 10 }
-  })
+      .then(json => ({ rows: json, total: json.length }))
 }
 ```
 
 :::code DemoTableServerSideTable
-<<< @/demos/table/DemoTableServerSideTable.vue{277-334,340}
+<<< @/demos/table/DemoTableServerSideTable.vue{14,26-33,43}
 :::
 
 ::::

@@ -1,5 +1,3 @@
-// TODO: Define emits for all components
-
 export { AAlert } from './alert'
 export { AAvatar } from './avatar'
 export { ABadge } from './badge'
@@ -8,6 +6,7 @@ export { ABtn } from './btn'
 export { ACard } from './card'
 export { ACheckbox } from './checkbox'
 export { AChip } from './chip'
+export { ADataTable } from './data-table'
 export { ADialog } from './dialog'
 export { ADrawer } from './drawer'
 export { AInput } from './input'
