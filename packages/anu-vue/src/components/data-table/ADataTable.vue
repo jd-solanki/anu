@@ -178,7 +178,9 @@ const {
 fetchRows()
 
 // 👉 Handle header click
-const handleHeaderClick = (clickedCol: DataTablePropColumn) => {
+const handleHeaderClick = (clickedCol: any) => {
+  // TODO: Remove this and fix handler type error
+  clickedCol = clickedCol as DataTablePropColumn
   const tableCol = cols.value.find(_col => clickedCol.name === _col.name)
 
   // If we can't find clicked column in table columns
