@@ -30,7 +30,7 @@ const _tableProps = reactivePick(props, Object.keys(tableProps).filter(k => !['r
 
 const _rows = ref<Record<string, unknown>[]>(typeof props.rows !== 'function' ? props.rows : [])
 const serverTotal = ref(0)
-const _total = computed(() => typeof props.rows === 'function' ? serverTotal.value : props.rows.length)
+const _total = ref(typeof props.rows === 'function' ? serverTotal.value : props.rows.length)
 
 // SECTION Calculate column
 /*
@@ -129,6 +129,9 @@ const fetchRows = () => {
         ? { name: col.name, filterBy: col.filterFunc }
         : col.name),
     )
+
+    // Update total
+    _total.value = filteredRows.value.length
 
     // Sort
     const { results: sortedRows } = useSort(
@@ -238,11 +241,10 @@ const renderHeaderRightSlot = (typeof props.search === 'boolean' && props.search
 
 // 👉 Pagination meta
 const paginationMeta = computed(() => {
-  const from = typeof props.rows === 'function'
-    ? _rows.value.length
-    : props.rows.length
-      ? (currentPage.value - 1) * currentPageSize.value + 1
-      : 0
+  const from = _rows.value.length
+    ? (currentPage.value - 1) * currentPageSize.value + 1
+    : 0
+
   const to = isLastPage.value
     ? _total.value
     : currentPage.value * currentPageSize.value

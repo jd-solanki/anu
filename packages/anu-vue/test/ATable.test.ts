@@ -89,4 +89,30 @@ describe('Testing ATable & ADataTable', async () => {
     expect(upArrow.exists()).toBe(true)
     expect(downArrow.exists()).toBe(true)
   })
+
+  it('if we filter the rows pagination should show correct information', async () => {
+    const wrapper = mount(ADataTable, {
+      props: {
+        rows: nameList,
+        pageSize: 5,
+        search: true,
+      },
+    })
+
+    const pagination = wrapper.find('.a-data-table-pagination-meta')
+    const searchInput = wrapper.find('.a-card-typography-wrapper .a-input-input')
+
+    // check pagination
+    expect(pagination?.text()).toBe('1 - 5 of 10')
+
+    await searchInput.setValue('name1')
+
+    // check pagination
+    expect(pagination?.text()).toBe('1 - 2 of 2')
+
+    await searchInput.setValue('name4')
+
+    // check pagination
+    expect(pagination?.text()).toBe('1 - 1 of 1')
+  })
 })
