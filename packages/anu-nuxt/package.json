@@ -41,15 +41,14 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@css-render/vue3-ssr": "^0.15.12",
     "@nuxt/kit": "^3.0.0",
     "anu-vue": "workspace:*",
-    "defu": "^6.1.1"
+    "@anu-vue/preset-theme-default": "workspace:*"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.2.1",
     "@nuxt/schema": "^3.0.0",
-    "@unocss/nuxt": "^0.46.5",
+    "@unocss/nuxt": "^0.48.0",
     "nuxt": "^3.0.0"
   }
 }
