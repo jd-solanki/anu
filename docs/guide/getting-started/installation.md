@@ -182,17 +182,17 @@ You can also follow À la carte fashion if you don't want to register all the co
 
 ## Nuxt
 
-1. instead of installing `anu-vue` package, install `@anu-vue/nuxt`.
+1. Instead of installing `anu-vue` package, install `@anu-vue/nuxt`.
 
     ```bash
     # pnpm
-    pnpm add @anu-vue/nuxt @anu-vue/preset-theme-default && pnpm add -D @unocss/nuxt
+    pnpm add @anu-vue/nuxt && pnpm add -D @unocss/nuxt
 
     # yarn
-    yarn add @anu-vue/nuxt @anu-vue/preset-theme-default && yarn add -D @unocss/nuxt
+    yarn add @anu-vue/nuxt && yarn add -D @unocss/nuxt
 
     # npm
-    npm install @anu-vue/nuxt @anu-vue/preset-theme-default && npm install -D @unocss/nuxt
+    npm install @anu-vue/nuxt && npm install -D @unocss/nuxt
     ```
 
 2. Add Anu & UnoCSS in nuxt modules
@@ -202,11 +202,18 @@ You can also follow À la carte fashion if you don't want to register all the co
 
     export default defineNuxtConfig({
       modules: ['@anu-vue/nuxt', '@unocss/nuxt'],
-      css: ['@anu-vue/preset-theme-default/dist/style.css'],
     })
     ```
 
-3. Add UnoCSS config file `uno.config.js` as shown in step 2 of [usage](#usage) section.
+3. Add UnoCSS config file `uno.config.ts` with this configuration
+
+    ```ts
+    import { defineConfig } from 'unocss'
+
+    export default defineConfig({
+      include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
+    })
+    ```
 
 It's done, Let's try button component 🥳
 
