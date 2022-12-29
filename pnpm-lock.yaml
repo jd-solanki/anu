@@ -114,11 +114,8 @@ importers:
 
   packages/anu-nuxt/playground:
     specifiers:
-      '@anu-vue/preset-theme-default': workspace:^0.12.0
       '@iconify-json/bx': ^1.1.5
       '@unocss/nuxt': ^0.46.5
-    dependencies:
-      '@anu-vue/preset-theme-default': link:../../preset-theme-default
     devDependencies:
       '@iconify-json/bx': registry.npmjs.org/@iconify-json/bx/1.1.5
       '@unocss/nuxt': registry.npmjs.org/@unocss/nuxt/0.46.5_vite@3.2.5+webpack@5.75.0

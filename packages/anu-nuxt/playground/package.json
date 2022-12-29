@@ -4,8 +4,5 @@
   "devDependencies": {
     "@iconify-json/bx": "^1.1.5",
     "@unocss/nuxt": "^0.46.5"
-  },
-  "dependencies": {
-    "@anu-vue/preset-theme-default": "workspace:^0.12.0"
   }
 }
