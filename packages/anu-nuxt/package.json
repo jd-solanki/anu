@@ -33,15 +33,15 @@
     "dist"
   ],
   "scripts": {
-    "build": "pnpm dev:prepare && pnpm gen-imports && pnpm nuxt-module-build",
+    "build": "nuxi prepare && pnpm nuxt-module-build",
     "dev": "pnpm dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "gen-imports": "na tsx ../../scripts/update-nuxt.ts",
+    "dev:prepare": "nuxt-module-build --stub",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0",
+    "@iconify-json/bx": "latest",
     "anu-vue": "workspace:*",
     "@anu-vue/preset-theme-default": "workspace:*"
   },
