@@ -43,9 +43,6 @@
     "vuejs",
     "vue"
   ],
-  "dependencies": {
-    "defu": "^6.1.1"
-  },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
     "@unocss/core": "^0.45.30",

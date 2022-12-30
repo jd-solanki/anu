@@ -14,7 +14,6 @@ export default defineBuildConfig({
   externals: [
     '@unocss/core',
     '@unocss/reset',
-    'defu',
   ],
   hooks: {
     'mkdist:done': () => {

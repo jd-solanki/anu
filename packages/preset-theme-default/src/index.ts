@@ -1,5 +1,4 @@
 import type { Preset } from '@unocss/core'
-import { defu } from 'defu'
 import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { variants } from './variants'
@@ -15,7 +14,7 @@ interface PresetOptions {
 export const colors = ['primary', 'success', 'info', 'warning', 'danger'] as const
 export type Colors = typeof colors
 
-export function presetThemeDefault(options: PresetOptions = {}): Preset {
+export function presetThemeDefault(options: PresetOptions = {}): Preset {  
   return {
     name: '@anu-vue/preset-theme-default',
     theme: {
@@ -47,9 +46,11 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       ...['top', 'right', 'bottom', 'left'].map(dir => `a-drawer-anchor-${dir}`),
     ],
     rules,
-    shortcuts: options.shortcutOverrides
-      ? defu(options.shortcutOverrides, shortcuts)
-      : shortcuts,
+    shortcuts: options.shortcutOverrides === undefined
+      ? shortcuts
+      : Array.isArray(options.shortcutOverrides)
+        ? [...options.shortcutOverrides, ...shortcuts]
+        : [...Object.entries(options.shortcutOverrides), ...shortcuts],
     variants,
   }
 }
