@@ -6,6 +6,6 @@
     "@unocss/nuxt": "^0.46.5"
   },
   "dependencies": {
-    "@anu-vue/preset-theme-default": "workspace:^0.12.0"
+    "@anu-vue/preset-theme-default": "workspace:*"
   }
 }

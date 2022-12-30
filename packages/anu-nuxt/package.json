@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "build": "pnpm dev:prepare && pnpm gen-imports && pnpm nuxt-module-build",
-    "dev": "pnpm dev:prepare && pnpm gen-imports && nuxi dev playground",
+    "dev": "pnpm dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "gen-imports": "na tsx ../../scripts/update-nuxt.ts",

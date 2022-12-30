@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { ExtractPropTypes } from 'vue'
-import { useInternalBooleanState } from '@/composables/useInternalState'
+import { useInternalBooleanState } from '@/composables/useInternalBooleanState'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
+import type { ExtractPropTypes } from 'vue'
 
 const props = defineProps({
   spacing: spacingProp,

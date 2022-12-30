@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import {
-  addComponent,
-  addImportsSources,
-  addPlugin,
-  createResolver,
-  defineNuxtModule,
+addComponent,
+addImportsSources,
+addPlugin,
+createResolver,
+defineNuxtModule
 } from '@nuxt/kit'
 
 import { name, version } from '../package.json'
@@ -81,14 +81,13 @@ const anuComposables = [
   'useConfigurable',
   'useDOMScrollLock',
   'useGroupModel',
-  'useInternalState',
+  'useInternalBooleanState',
   'useLayer',
-  'useProps',
   'useSearch',
   'useSort',
   'useSpacing',
   'useTeleport',
-  'useTypography',
+  // 'useProps',
 ]
 
 declare module '@nuxt/schema' {
