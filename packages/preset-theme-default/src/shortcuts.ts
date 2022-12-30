@@ -1,6 +1,6 @@
-import type { Preset } from '@unocss/core'
+import type { Preset, StaticShortcutMap } from '@unocss/core'
 
-const shortcuts: Preset['shortcuts'] = [
+const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
   // 👉 States
   [/^states:?(\d+)?$/, ([, op]) => `\
       relative \

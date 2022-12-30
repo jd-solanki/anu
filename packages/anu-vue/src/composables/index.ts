@@ -1,12 +1,12 @@
 export * from './useConfigurable'
 export * from './useDOMScrollLock'
 export * from './useGroupModel'
-export * from './useInternalState'
+export * from './useInternalBooleanState'
 export * from './useLayer'
-export * from './useProps'
 export * from './useSearch'
 export * from './useSort'
-export * from './useSpacing'
+export { spacingProp, useSpacing } from './useSpacing'
 export * from './useTeleport'
-export * from './useTypography'
 
+// This is not composable at all. It is utility
+// export * from './useProps'
