@@ -63,7 +63,7 @@ jobs:
         run: pnpm install
 
       - name: Run unit tests
-        run: pnpm test -- --reporter=junit --outputFile=../../test-results.xml
+        run: npm run test -- --reporter=junit --outputFile=../../test-results.xml
 
       - name: Add tests results to artifacts
         uses: actions/upload-artifact@v2
