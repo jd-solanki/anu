@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+import { ATypography } from '../typography'
+import { cardProps } from './props'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
 import { useSpacing } from '@/composables/useSpacing'
-import { ATypography } from '../typography'
-import { cardProps } from './props'
 
 const props = defineProps(cardProps)
 
