@@ -115,10 +115,7 @@ importers:
       nuxt: registry.npmjs.org/nuxt/3.0.0_ntuob3xud5wukob6phfmz2mbyy
 
   packages/anu-nuxt/playground:
-    specifiers:
-      '@unocss/nuxt': ^0.46.5
-    devDependencies:
-      '@unocss/nuxt': registry.npmjs.org/@unocss/nuxt/0.46.5_vite@3.2.5+webpack@5.75.0
+    specifiers: {}
 
   packages/anu-vue:
     specifiers:
@@ -1537,35 +1534,6 @@ packages:
     version: 2.0.0
     dev: true
 
-  registry.npmjs.org/@nuxt/kit/3.0.0:
-    resolution: {integrity: sha512-7ZsOLt5s9a0ZleAIzmoD70JwkZf5ti6bDdxl6f8ew7Huxz+ni/oRfTPTX9TrORXsgW5CvDt6Q9M7IJNPkAN/Iw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@nuxt/kit/-/kit-3.0.0.tgz}
-    name: '@nuxt/kit'
-    version: 3.0.0
-    engines: {node: ^14.16.0 || ^16.10.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
-    dependencies:
-      '@nuxt/schema': registry.npmjs.org/@nuxt/schema/3.0.0
-      c12: registry.npmjs.org/c12/1.1.0
-      consola: registry.npmjs.org/consola/2.15.3
-      defu: registry.npmjs.org/defu/6.1.1
-      globby: registry.npmjs.org/globby/13.1.3
-      hash-sum: registry.npmjs.org/hash-sum/2.0.0
-      ignore: registry.npmjs.org/ignore/5.2.4
-      jiti: registry.npmjs.org/jiti/1.16.0
-      knitwork: registry.npmjs.org/knitwork/1.0.0
-      lodash.template: registry.npmjs.org/lodash.template/4.5.0
-      mlly: registry.npmjs.org/mlly/1.0.0
-      pathe: registry.npmjs.org/pathe/1.0.0
-      pkg-types: registry.npmjs.org/pkg-types/1.0.1
-      scule: registry.npmjs.org/scule/1.0.0
-      semver: registry.npmjs.org/semver/7.3.8
-      unctx: registry.npmjs.org/unctx/2.1.1
-      unimport: registry.npmjs.org/unimport/1.1.0
-      untyped: registry.npmjs.org/untyped/1.2.0
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: true
-
   registry.npmjs.org/@nuxt/kit/3.0.0_rollup@2.79.1:
     resolution: {integrity: sha512-7ZsOLt5s9a0ZleAIzmoD70JwkZf5ti6bDdxl6f8ew7Huxz+ni/oRfTPTX9TrORXsgW5CvDt6Q9M7IJNPkAN/Iw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@nuxt/kit/-/kit-3.0.0.tgz}
     id: registry.npmjs.org/@nuxt/kit/3.0.0
@@ -1608,29 +1576,6 @@ packages:
       unbuild: registry.npmjs.org/unbuild/1.0.2
     transitivePeerDependencies:
       - sass
-      - supports-color
-    dev: true
-
-  registry.npmjs.org/@nuxt/schema/3.0.0:
-    resolution: {integrity: sha512-5fwsidhs5NjFzR8sIzHMXO0WFGkI3tCH3ViANn2W4N5qCwoYZ0n1sZBkQ9Esn1VoEed6RsIlTpWrPZPVtqNkGQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@nuxt/schema/-/schema-3.0.0.tgz}
-    name: '@nuxt/schema'
-    version: 3.0.0
-    engines: {node: ^14.16.0 || ^16.10.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
-    dependencies:
-      c12: registry.npmjs.org/c12/1.1.0
-      create-require: registry.npmjs.org/create-require/1.1.1
-      defu: registry.npmjs.org/defu/6.1.1
-      jiti: registry.npmjs.org/jiti/1.16.0
-      pathe: registry.npmjs.org/pathe/1.0.0
-      pkg-types: registry.npmjs.org/pkg-types/1.0.1
-      postcss-import-resolver: registry.npmjs.org/postcss-import-resolver/2.0.0
-      scule: registry.npmjs.org/scule/1.0.0
-      std-env: registry.npmjs.org/std-env/3.3.1
-      ufo: registry.npmjs.org/ufo/1.0.1
-      unimport: registry.npmjs.org/unimport/1.1.0
-      untyped: registry.npmjs.org/untyped/1.2.0
-    transitivePeerDependencies:
-      - rollup
       - supports-color
     dev: true
 
@@ -2613,32 +2558,6 @@ packages:
       sirv: registry.npmjs.org/sirv/2.0.2
     dev: true
 
-  registry.npmjs.org/@unocss/nuxt/0.46.5_vite@3.2.5+webpack@5.75.0:
-    resolution: {integrity: sha512-5QXbBxTbIwzeRWkmWO4IpaKNO6wWKIbBt8Y34wW9qtpQxpIYZIZVWmX27bNum17H176AuuR4FwmbnqYBRuK2EA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@unocss/nuxt/-/nuxt-0.46.5.tgz}
-    id: registry.npmjs.org/@unocss/nuxt/0.46.5
-    name: '@unocss/nuxt'
-    version: 0.46.5
-    dependencies:
-      '@nuxt/kit': registry.npmjs.org/@nuxt/kit/3.0.0
-      '@unocss/core': registry.npmjs.org/@unocss/core/0.46.5
-      '@unocss/preset-attributify': registry.npmjs.org/@unocss/preset-attributify/0.46.5
-      '@unocss/preset-icons': registry.npmjs.org/@unocss/preset-icons/0.46.5
-      '@unocss/preset-tagify': registry.npmjs.org/@unocss/preset-tagify/0.46.5
-      '@unocss/preset-typography': registry.npmjs.org/@unocss/preset-typography/0.46.5
-      '@unocss/preset-uno': registry.npmjs.org/@unocss/preset-uno/0.46.5
-      '@unocss/preset-web-fonts': registry.npmjs.org/@unocss/preset-web-fonts/0.46.5
-      '@unocss/preset-wind': registry.npmjs.org/@unocss/preset-wind/0.46.5
-      '@unocss/reset': registry.npmjs.org/@unocss/reset/0.46.5
-      '@unocss/vite': registry.npmjs.org/@unocss/vite/0.46.5_vite@3.2.5
-      '@unocss/webpack': registry.npmjs.org/@unocss/webpack/0.46.5_webpack@5.75.0
-      unocss: registry.npmjs.org/unocss/0.46.5_aftkmhr5rrm4ubqpvrwsnalpt4
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-      - vite
-      - webpack
-    dev: true
-
   registry.npmjs.org/@unocss/nuxt/0.48.0_z2bdhhskicqcmqjhjqavfywcg4:
     resolution: {integrity: sha512-kdSW9vE9XUIrV5Tpe7YhLY+9W6E46mbiLxKn9JKLhmapjgImaez1+PvUoOpJElIk8m/Q1LAfth/wASZWQ/IRKg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@unocss/nuxt/-/nuxt-0.48.0.tgz}
     id: registry.npmjs.org/@unocss/nuxt/0.48.0
@@ -3033,7 +2952,7 @@ packages:
       '@unocss/scope': registry.npmjs.org/@unocss/scope/0.46.5
       '@unocss/transformer-directives': registry.npmjs.org/@unocss/transformer-directives/0.46.5
       magic-string: registry.npmjs.org/magic-string/0.26.7
-      vite: registry.npmjs.org/vite/3.2.5
+      vite: registry.npmjs.org/vite/3.2.5_sass@1.57.1
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -3078,26 +2997,6 @@ packages:
       fast-glob: registry.npmjs.org/fast-glob/3.2.12
       magic-string: registry.npmjs.org/magic-string/0.27.0
       vite: registry.npmjs.org/vite/4.0.3
-    transitivePeerDependencies:
-      - rollup
-    dev: true
-
-  registry.npmjs.org/@unocss/webpack/0.46.5_webpack@5.75.0:
-    resolution: {integrity: sha512-NHMWE6AWQX0s5lwAezO72h1ZFI3ywIwuifHBzWN9sYpzHcip2mpl1o3YhjQHvI6wDegdC4T+NqKOm3gn3hW51A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@unocss/webpack/-/webpack-0.46.5.tgz}
-    id: registry.npmjs.org/@unocss/webpack/0.46.5
-    name: '@unocss/webpack'
-    version: 0.46.5
-    peerDependencies:
-      webpack: ^4 || ^5
-    dependencies:
-      '@ampproject/remapping': registry.npmjs.org/@ampproject/remapping/2.2.0
-      '@rollup/pluginutils': registry.npmjs.org/@rollup/pluginutils/5.0.2
-      '@unocss/config': registry.npmjs.org/@unocss/config/0.46.5
-      '@unocss/core': registry.npmjs.org/@unocss/core/0.46.5
-      magic-string: registry.npmjs.org/magic-string/0.26.7
-      unplugin: registry.npmjs.org/unplugin/0.10.2
-      webpack: registry.npmjs.org/webpack/5.75.0
-      webpack-sources: registry.npmjs.org/webpack-sources/3.2.3
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -11428,42 +11327,6 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  registry.npmjs.org/unocss/0.46.5_aftkmhr5rrm4ubqpvrwsnalpt4:
-    resolution: {integrity: sha512-AMURkxzvhHgjxD9KcEyo1y+zTJvjHG9O+vYWTyyMEQeCspFmGONoEtnBC9p8MGPsiW4afSEJCrIROOEl186zKQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/unocss/-/unocss-0.46.5.tgz}
-    id: registry.npmjs.org/unocss/0.46.5
-    name: unocss
-    version: 0.46.5
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@unocss/webpack': 0.46.5
-    peerDependenciesMeta:
-      '@unocss/webpack':
-        optional: true
-    dependencies:
-      '@unocss/astro': registry.npmjs.org/@unocss/astro/0.46.5_vite@3.2.5
-      '@unocss/cli': registry.npmjs.org/@unocss/cli/0.46.5
-      '@unocss/core': registry.npmjs.org/@unocss/core/0.46.5
-      '@unocss/preset-attributify': registry.npmjs.org/@unocss/preset-attributify/0.46.5
-      '@unocss/preset-icons': registry.npmjs.org/@unocss/preset-icons/0.46.5
-      '@unocss/preset-mini': registry.npmjs.org/@unocss/preset-mini/0.46.5
-      '@unocss/preset-tagify': registry.npmjs.org/@unocss/preset-tagify/0.46.5
-      '@unocss/preset-typography': registry.npmjs.org/@unocss/preset-typography/0.46.5
-      '@unocss/preset-uno': registry.npmjs.org/@unocss/preset-uno/0.46.5
-      '@unocss/preset-web-fonts': registry.npmjs.org/@unocss/preset-web-fonts/0.46.5
-      '@unocss/preset-wind': registry.npmjs.org/@unocss/preset-wind/0.46.5
-      '@unocss/reset': registry.npmjs.org/@unocss/reset/0.46.5
-      '@unocss/transformer-attributify-jsx': registry.npmjs.org/@unocss/transformer-attributify-jsx/0.46.5
-      '@unocss/transformer-compile-class': registry.npmjs.org/@unocss/transformer-compile-class/0.46.5
-      '@unocss/transformer-directives': registry.npmjs.org/@unocss/transformer-directives/0.46.5
-      '@unocss/transformer-variant-group': registry.npmjs.org/@unocss/transformer-variant-group/0.46.5
-      '@unocss/vite': registry.npmjs.org/@unocss/vite/0.46.5_vite@3.2.5
-      '@unocss/webpack': registry.npmjs.org/@unocss/webpack/0.46.5_webpack@5.75.0
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-      - vite
-    dev: true
-
   registry.npmjs.org/unocss/0.46.5_vite@3.2.5:
     resolution: {integrity: sha512-AMURkxzvhHgjxD9KcEyo1y+zTJvjHG9O+vYWTyyMEQeCspFmGONoEtnBC9p8MGPsiW4afSEJCrIROOEl186zKQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/unocss/-/unocss-0.46.5.tgz}
     id: registry.npmjs.org/unocss/0.46.5
@@ -11636,17 +11499,6 @@ packages:
     transitivePeerDependencies:
       - rollup
       - vue
-    dev: true
-
-  registry.npmjs.org/unplugin/0.10.2:
-    resolution: {integrity: sha512-6rk7GUa4ICYjae5PrAllvcDeuT8pA9+j5J5EkxbMFaV+SalHhxZ7X2dohMzu6C3XzsMT+6jwR/+pwPNR3uK9MA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/unplugin/-/unplugin-0.10.2.tgz}
-    name: unplugin
-    version: 0.10.2
-    dependencies:
-      acorn: registry.npmjs.org/acorn/8.8.1
-      chokidar: registry.npmjs.org/chokidar/3.5.3
-      webpack-sources: registry.npmjs.org/webpack-sources/3.2.3
-      webpack-virtual-modules: registry.npmjs.org/webpack-virtual-modules/0.4.6
     dev: true
 
   registry.npmjs.org/unplugin/1.0.1:
@@ -12321,12 +12173,6 @@ packages:
     name: webpack-sources
     version: 3.2.3
     engines: {node: '>=10.13.0'}
-
-  registry.npmjs.org/webpack-virtual-modules/0.4.6:
-    resolution: {integrity: sha512-5tyDlKLqPfMqjT3Q9TAqf2YqjwmnUleZwzJi1A5qXnlBCdj2AtOJ6wAWdglTIDOPgOiOrXeBeFcsQ8+aGQ6QbA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/webpack-virtual-modules/-/webpack-virtual-modules-0.4.6.tgz}
-    name: webpack-virtual-modules
-    version: 0.4.6
-    dev: true
 
   registry.npmjs.org/webpack-virtual-modules/0.5.0:
     resolution: {integrity: sha512-kyDivFZ7ZM0BVOUteVbDFhlRt7Ah/CSPwJdi8hBpkK7QLumUqdLtVfm/PX/hkcnrvr0i77fO5+TjZ94Pe+C9iw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/webpack-virtual-modules/-/webpack-virtual-modules-0.5.0.tgz}

@@ -33,10 +33,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "nuxi prepare && pnpm nuxt-module-build",
+    "build": "pnpm dev:prepare && nuxt-module-build",
     "dev": "pnpm dev:prepare && nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

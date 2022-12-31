@@ -67,6 +67,8 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.unocss.presets = [
         // @ts-expect-error - We know that is a valid preset
         presetUno(),
+
+        // @ts-expect-error - We know that is a valid preset
         presetAnu(),
 
         // @ts-expect-error - We know that is a valid preset
