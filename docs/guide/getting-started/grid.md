@@ -12,7 +12,7 @@ For creating row, you need `grid`, `gap-4` & `place-items-start` classes. Anu's 
 For columns you can use utility classes according to your column needs.
 
 :::code DemoGridRow
-<<< @/demos/grid/DemoGridRow.vue{2}
+<<< @/components/demos/grid/DemoGridRow.vue{2}
 :::
 
 ::::
@@ -39,7 +39,7 @@ You can use responsive variants to create responsive grid.
 :::
 
 :::code DemoGridResponsiveGrid
-<<< @/demos/grid/DemoGridResponsiveGrid.vue{2}
+<<< @/components/demos/grid/DemoGridResponsiveGrid.vue{2}
 :::
 
 ::::

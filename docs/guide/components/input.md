@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/AInput.json'
+import api from '@anu/component-meta/AInput.json';
 </script>
 
 # Input
@@ -10,7 +10,7 @@ import api from '@anu/component-meta/AInput.json'
 You can use `AInput` component to render basic input.
 
 :::code DemoInputBasic
-<<< @/demos/input/DemoInputBasic.vue{4}
+<<< @/components/demos/input/DemoInputBasic.vue{4}
 :::
 
 ::::
@@ -21,7 +21,7 @@ You can use `AInput` component to render basic input.
 You can use `placeholder` attribute to add placeholder to the input.
 
 :::code DemoInputPlaceholder
-<<< @/demos/input/DemoInputPlaceholder.vue{6}
+<<< @/components/demos/input/DemoInputPlaceholder.vue{6}
 :::
 
 ::::
@@ -34,7 +34,7 @@ You can use `label` prop to add label to the input.
 For maximum flexibility you can use `label` slot.
 
 :::code DemoInputLabel
-<<< @/demos/input/DemoInputLabel.vue{4,15-20}
+<<< @/components/demos/input/DemoInputLabel.vue{4,15-20}
 :::
 
 ::::
@@ -49,7 +49,7 @@ When you use **label slot**, Note that label's `for` attribute needs to prefix t
 You can use `hint` prop to add hint to the input.
 
 :::code DemoInputHint
-<<< @/demos/input/DemoInputHint.vue{7}
+<<< @/components/demos/input/DemoInputHint.vue{7}
 :::
 
 ::::
@@ -60,7 +60,7 @@ You can use `hint` prop to add hint to the input.
 You can use various icon location prop to add icon to the input.
 
 :::code DemoInputIcons
-<<< @/demos/input/DemoInputIcons.vue{7,14,22,29}
+<<< @/components/demos/input/DemoInputIcons.vue{7,14,22,29}
 :::
 
 ::::
@@ -71,7 +71,7 @@ You can use various icon location prop to add icon to the input.
 You can use font-size utility to adjust the size of input.
 
 :::code DemoInputSizing
-<<< @/demos/input/DemoInputSizing.vue{5,11,17,23,29}
+<<< @/components/demos/input/DemoInputSizing.vue{5,11,17,23,29}
 :::
 
 ::::
@@ -86,7 +86,7 @@ Like `AInput`, `ASelect` & `ATextarea` also built on top of `ABaseInput` base co
 You can adjust input roundness by providing border-radius utilities to `input-wrapper-classes` prop.
 
 :::code DemoInputRoundness
-<<< @/demos/input/DemoInputRoundness.vue{5,11,20,26}
+<<< @/components/demos/input/DemoInputRoundness.vue{5,11,20,26}
 :::
 
 ::::
@@ -101,7 +101,7 @@ Like `AInput`, `ASelect` & `ATextarea` also built on top of `ABaseInput` base co
 You can use `type` attribute to add input type.
 
 :::code DemoInputTypes
-<<< @/demos/input/DemoInputTypes.vue{4,8,12,16,20,24,28,32}
+<<< @/components/demos/input/DemoInputTypes.vue{4,8,12,16,20,24,28,32}
 :::
 
 ::::
@@ -114,7 +114,7 @@ You can use `readonly` prop to make input read only.
 Use `disabled` prop to make input disabled.
 
 :::code DemoInputStates
-<<< @/demos/input/DemoInputStates.vue{10,15}
+<<< @/components/demos/input/DemoInputStates.vue{10,15}
 :::
 
 ::::
@@ -125,7 +125,7 @@ Use `disabled` prop to make input disabled.
 Anu do not provide any validation mechanism at the moment as it assume it's better handled by third-party libraries like [VeeValidate](https://vee-validate.logaretm.com/)
 
 :::code DemoInputValidation
-<<< @/demos/input/DemoInputValidation.vue{2,6,13-14}
+<<< @/components/demos/input/DemoInputValidation.vue{2,6,13-14}
 :::
 
 ::::

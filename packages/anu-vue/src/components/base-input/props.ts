@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import { disabled, readonly, spacing } from '@/composables/useProps'
+import { configurable, disabled, readonly, spacing } from '@/composables/useProps'
 
 // TODO: Provide a way to apply classes on root. Later you can target input container & wrapper.
 export const baseInputProps = {
@@ -38,7 +38,7 @@ export const baseInputProps = {
   /**
    * Label of the form component
    */
-  label: String,
+  label: configurable,
 
   /**
    * Prepend icon

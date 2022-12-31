@@ -10,7 +10,7 @@ import api from '@anu/component-meta/ARating.json';
 Rating component allows users to rate content
 
 :::code DemoRatingBasic
-<<< @/demos/rating/DemoRatingBasic.vue{4,8}
+<<< @/components/demos/rating/DemoRatingBasic.vue{4,8}
 :::
 
 ::::
@@ -21,7 +21,7 @@ Rating component allows users to rate content
 You can use `color` prop to change the rating color
 
 :::code DemoRatingColor
-<<< @/demos/rating/DemoRatingColor.vue{10}
+<<< @/components/demos/rating/DemoRatingColor.vue{10}
 :::
 
 ::::
@@ -32,7 +32,7 @@ You can use `color` prop to change the rating color
 You can use font-size utility to adjust the size of rating.
 
 :::code DemoRatingSizing
-<<< @/demos/rating/DemoRatingSizing.vue{11,15,19,21,24}
+<<< @/components/demos/rating/DemoRatingSizing.vue{11,15,19,21,24}
 :::
 
 ::::
@@ -47,7 +47,7 @@ You can use padding utilities along with `all:` variant (`all:px-3`) to increase
 You can use custom icon by providing `empty-icon` and `full-icon` props.
 
 :::code DemoRatingCustomIcon
-<<< @/demos/rating/DemoRatingCustomIcon.vue{10-11}
+<<< @/components/demos/rating/DemoRatingCustomIcon.vue{10-11}
 :::
 
 ::::
@@ -62,7 +62,7 @@ You can use custom icon by providing `empty-icon` and `full-icon` props.
 You can use `halve` prop to allow half rating.
 
 :::code DemoRatingHalve
-<<< @/demos/rating/DemoRatingHalve.vue{10}
+<<< @/components/demos/rating/DemoRatingHalve.vue{10}
 :::
 
 ::::
@@ -73,7 +73,7 @@ You can use `halve` prop to allow half rating.
 You can use `no-hover-hint` prop to disable visual changes of value before click.
 
 :::code DemoRatingNoHoverHint
-<<< @/demos/rating/DemoRatingNoHoverHint.vue{11}
+<<< @/components/demos/rating/DemoRatingNoHoverHint.vue{11}
 :::
 
 ::::
@@ -84,7 +84,7 @@ You can use `no-hover-hint` prop to disable visual changes of value before click
 You can use `length` prop to change the amount of items.
 
 :::code DemoRatingLength
-<<< @/demos/rating/DemoRatingLength.vue{11}
+<<< @/components/demos/rating/DemoRatingLength.vue{11}
 :::
 
 ::::
@@ -95,7 +95,7 @@ You can use `length` prop to change the amount of items.
 Use `animate` prop to animate hovered rating icon.
 
 :::code DemoRatingAnimate
-<<< @/demos/rating/DemoRatingAnimate.vue{10}
+<<< @/components/demos/rating/DemoRatingAnimate.vue{10}
 :::
 
 ::::
@@ -112,7 +112,7 @@ You can use `no-hover-hint` prop along with `animate` prop to only animate and p
 When rating is readonly or disabled, rating won't animate and you won't get hover hint. This means, when you set rating in readonly or disabled state, you are implicitly setting `:animate="false"` & `:no-hover-hint="true"`.
 
 :::code DemoRatingStates
-<<< @/demos/rating/DemoRatingStates.vue{10,14}
+<<< @/components/demos/rating/DemoRatingStates.vue{10,14}
 :::
 
 ::::

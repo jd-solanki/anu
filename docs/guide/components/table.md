@@ -17,7 +17,7 @@ You can create basic table that renders the rows & columns using `ATable` compon
 Use `rows` prop to provide data to `ATable`. Defining columns for table is optional. When columns aren't specified via prop, columns will get calculate from first row.
 
 :::code DemoTableBasic
-<<< @/demos/table/DemoTableBasic.vue{7}
+<<< @/components/demos/table/DemoTableBasic.vue{7}
 :::
 
 ::::
@@ -25,7 +25,7 @@ Use `rows` prop to provide data to `ATable`. Defining columns for table is optio
 :::details Demo data
 In all table demos uses data for rows from below file.
 
-<<< @/demos/table/data.ts
+<<< @/components/demos/table/data.ts
 :::
 
 <!-- 👉 Column Formatter -->
@@ -34,7 +34,7 @@ In all table demos uses data for rows from below file.
 Use `formatter` property while defining column to format the column text.
 
 :::code DemoTableColumnFormatter
-<<< @/demos/table/DemoTableColumnFormatter.vue{6}
+<<< @/components/demos/table/DemoTableColumnFormatter.vue{6}
 :::
 
 ::::
@@ -47,7 +47,7 @@ Use `formatter` property while defining column to format the column text.
 It also generates scoped slot based on your column name for rendering custom column. If your column name is `website` then you can use `col-website` scoped slot to render custom content in your column.
 
 :::code DemoTableSlots
-<<< @/demos/table/DemoTableSlots.vue{8-14,16-22}
+<<< @/components/demos/table/DemoTableSlots.vue{8-14,16-22}
 :::
 
 ::::
@@ -60,7 +60,7 @@ Define extra column in column definition to add column to table. Later, you can 
 Moreover, you can also omit the column definition to omit rendering the specific column.
 
 :::code DemoTableExtraColumn
-<<< @/demos/table/DemoTableExtraColumn.vue{17-41}
+<<< @/components/demos/table/DemoTableExtraColumn.vue{17-41}
 :::
 
 ::::
@@ -73,7 +73,7 @@ Set `search` prop to `true` to enable table filtering.
 Search will respect the column's `isFilterable` property to include or exclude the column from searching. If you don't specify column definition all columns will be filterable.
 
 :::code DemoTableFiltering
-<<< @/demos/table/DemoTableFiltering.vue{9}
+<<< @/components/demos/table/DemoTableFiltering.vue{9}
 :::
 
 ::::
@@ -88,7 +88,7 @@ To disable sorting on table use set `isSortable` prop to `false` on `ATable`.
 Moreover, You can also sort multiple columns at once. You can enable it by setting `multiSort` prop to `true` on `ATable`.
 
 :::code DemoTableSorting
-<<< @/demos/table/DemoTableSorting.vue{4-8,15}
+<<< @/components/demos/table/DemoTableSorting.vue{4-8,15}
 :::
 
 ::::
@@ -115,7 +115,7 @@ const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
 ```
 
 :::code DemoTableServerSideTable
-<<< @/demos/table/DemoTableServerSideTable.vue{14,26-33,43}
+<<< @/components/demos/table/DemoTableServerSideTable.vue{14,26-33,43}
 :::
 
 ::::

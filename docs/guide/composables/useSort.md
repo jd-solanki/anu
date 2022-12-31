@@ -6,7 +6,7 @@
 description
 
 :::code DemoComposablesArrayOfString
-<<< @/demos/composables/useSort/DemoComposablesArrayOfString.vue{10}
+<<< @/components/demos/composables/useSort/DemoComposablesArrayOfString.vue{10}
 :::
 
 ::::
@@ -17,7 +17,7 @@ description
 description
 
 :::code DemoComposablesArrayOfObject
-<<< @/demos/composables/useSort/DemoComposablesArrayOfObject.vue{94}
+<<< @/components/demos/composables/useSort/DemoComposablesArrayOfObject.vue{94}
 :::
 
 ::::

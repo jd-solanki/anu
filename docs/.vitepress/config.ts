@@ -5,6 +5,8 @@ import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
 
 const nav: DefaultTheme.Config['nav'] = [
+  { text: 'Guide', link: '/guide/getting-started/installation', activeMatch: '/guide/' },
+  { text: 'Anu UI', link: '/ui/introduction', activeMatch: '/ui/' },
   {
     text: 'Development',
     items: [
@@ -86,6 +88,25 @@ export default defineConfig({
             // { text: 'useSearch', link: '/guide/composables/useSearch' },
             // { text: 'useSort', link: '/guide/composables/useSort' },
             { text: 'useGroupModel', link: '/guide/composables/useGroupModel' },
+          ],
+        },
+      ],
+      '/ui/': [
+        {
+          text: 'UI',
+          items: [
+            {
+              text: 'Introduction',
+              link: '/ui/introduction',
+            },
+            {
+              text: 'Misc',
+              link: '/ui/misc',
+            },
+            {
+              text: 'Form',
+              link: '/ui/form',
+            },
           ],
         },
       ],

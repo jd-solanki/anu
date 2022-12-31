@@ -14,7 +14,7 @@ Moreover, you can also use `.card-body` in default slot to render card content.
 You can use `.card-spacer` helper class to add margin bottom to each of its children except last.
 
 :::code DemoCardBasic
-<<< @/demos/card/DemoCardBasic.vue
+<<< @/components/demos/card/DemoCardBasic.vue
 :::
 
 ::::
@@ -35,7 +35,7 @@ You can customize the applied `margin-bottom` by configuring `--a-card-spacer` C
 Mix and match the different components to achieve desired UI.
 
 :::code DemoCardVariousElements
-<<< @/demos/card/DemoCardVariousElements.vue
+<<< @/components/demos/card/DemoCardVariousElements.vue
 :::
 
 ::::
@@ -46,7 +46,7 @@ Mix and match the different components to achieve desired UI.
 Card component uses layer composable as it's base. You can use `variant` prop to create various card variants.
 
 :::code DemoCardVariants
-<<< @/demos/card/DemoCardVariants.vue{8,17,27,37}
+<<< @/components/demos/card/DemoCardVariants.vue{8,17,27,37}
 :::
 
 ::::
@@ -57,7 +57,7 @@ Card component uses layer composable as it's base. You can use `variant` prop to
 You can use `ATypography` slots to render custom content in header.
 
 :::code DemoCardSlot
-<<< @/demos/card/DemoCardSlot.vue{8-17,25-34}
+<<< @/components/demos/card/DemoCardSlot.vue{8-17,25-34}
 :::
 
 ::::

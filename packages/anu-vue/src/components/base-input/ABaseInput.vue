@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { baseInputProps } from './props'
+import { useConfigurable } from '@/composables/useConfigurable'
 import { useSpacing } from '@/composables/useSpacing'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
@@ -17,6 +18,9 @@ defineOptions({
 const attrs = useAttrs()
 
 const spacing = useSpacing(toRef(props, 'spacing'))
+
+const configurableLabel = useConfigurable(toRef(props, 'label'))
+
 const iconTransition = 'transition duration-150 ease -in'
 const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}-${Math.random().toString(36).slice(2, 7)}` : undefined
 
@@ -46,9 +50,10 @@ defineExpose({
         v-if="props.label"
         :for="elementId"
         class="a-base-input-label"
-        :class="[props.error && 'text-danger']"
+        v-bind="configurableLabel.attrs"
+        :class="[props.error && 'text-danger', configurableLabel.classes]"
       >
-        {{ props.label }}
+        {{ configurableLabel.content }}
       </label>
     </slot>
 

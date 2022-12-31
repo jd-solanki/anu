@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/AMenu.json'
+import api from '@anu/component-meta/AMenu.json';
 </script>
 
 # Menu
@@ -10,7 +10,7 @@ import api from '@anu/component-meta/AMenu.json'
 `AMenu` allows creating menu with various options to customize the behavior.
 
 :::code DemoMenuBasic
-<<< @/demos/menu/DemoMenuBasic.vue{12-14}
+<<< @/components/demos/menu/DemoMenuBasic.vue{12-14}
 :::
 
 ::::
@@ -21,7 +21,7 @@ import api from '@anu/component-meta/AMenu.json'
 To open menu on hover use set `trigger` prop to `hover`.
 
 :::code DemoMenuTrigger
-<<< @/demos/menu/DemoMenuTrigger.vue{12}
+<<< @/components/demos/menu/DemoMenuTrigger.vue{12}
 :::
 
 ::::
@@ -32,7 +32,7 @@ To open menu on hover use set `trigger` prop to `hover`.
 description
 
 :::code DemoMenuVModelSupport
-<<< @/demos/menu/DemoMenuVModelSupport.vue{11,17}
+<<< @/components/demos/menu/DemoMenuVModelSupport.vue{11,17}
 :::
 
 ::::
@@ -45,7 +45,7 @@ Use `persist` prop to adjust the persistence of menu.
 Default value is `false`, it will close the menu on any click. Set it to `true` to persist it on outside click. You can use `persist="content"` to persist menu to content only, means if you click on content menu won't close however outside click of content will close the menu.
 
 :::code DemoMenuPersistence
-<<< @/demos/menu/DemoMenuPersistence.vue{13,20}
+<<< @/components/demos/menu/DemoMenuPersistence.vue{13,20}
 :::
 
 ::::
@@ -58,7 +58,7 @@ Default value is `false`, it will close the menu on any click. Set it to `true` 
 To disable the transition you can set `transition` prop to `null`.
 
 :::code DemoMenuTransition
-<<< @/demos/menu/DemoMenuTransition.vue{12}
+<<< @/components/demos/menu/DemoMenuTransition.vue{12}
 :::
 
 ::::
@@ -71,7 +71,7 @@ As `AMenu` uses [Floating UI](https://floating-ui.com/), you can configure how m
 To adjust the placement of menu, use `placement` prop. This will get directly passed to Floating UI as show in their [docs](https://floating-ui.com/docs/computePosition#placement).
 
 :::code DemoMenuPlacement
-<<< @/demos/menu/DemoMenuPlacement.vue{13-26,42}
+<<< @/components/demos/menu/DemoMenuPlacement.vue{13-26,42}
 :::
 
 :::tip ✨ Auto Placement
@@ -86,7 +86,7 @@ If there's not enough space to render the menu on given position then it will up
 Set which positioning strategy to use to render the menu. This is also Floating UI option, for more details please read the official docs [here](https://floating-ui.com/docs/computeposition#strategy).
 
 :::code DemoMenuStrategy
-<<< @/demos/menu/DemoMenuStrategy.vue{12}
+<<< @/components/demos/menu/DemoMenuStrategy.vue{12}
 :::
 
 ::::
@@ -103,7 +103,7 @@ In below demo we are not using any middleware so menu component won't behave lik
 You can read more about middleware on their official [docs](https://floating-ui.com/docs/computePosition#middleware).
 
 :::code DemoMenuMiddleware
-<<< @/demos/menu/DemoMenuMiddleware.vue{9-15,20}
+<<< @/components/demos/menu/DemoMenuMiddleware.vue{9-15,20}
 :::
 
 ::::

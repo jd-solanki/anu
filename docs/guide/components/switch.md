@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ASwitch.json'
+import api from '@anu/component-meta/ASwitch.json';
 </script>
 
 # Switch
@@ -10,7 +10,7 @@ import api from '@anu/component-meta/ASwitch.json'
 Use `ASwitch` component to create toggle for boolean value.
 
 :::code DemoSwitchBasic
-<<< @/demos/switch/DemoSwitchBasic.vue{4,8}
+<<< @/components/demos/switch/DemoSwitchBasic.vue{4,8}
 :::
 
 ::::
@@ -21,7 +21,7 @@ Use `ASwitch` component to create toggle for boolean value.
 You can use `color` prop to change the switch color
 
 :::code DemoSwitchColors
-<<< @/demos/switch/DemoSwitchColors.vue{15,19,23,27,31}
+<<< @/components/demos/switch/DemoSwitchColors.vue{15,19,23,27,31}
 :::
 
 ::::
@@ -36,7 +36,7 @@ Label and switch have `justify-between` added as this is how generally used but 
 <br>
 
 :::code DemoSwitchLabel
-<<< @/demos/switch/DemoSwitchLabel.vue{13,17,21}
+<<< @/components/demos/switch/DemoSwitchLabel.vue{13,17,21}
 :::
 
 ::::
@@ -51,7 +51,7 @@ You can also use default slot to render the label
 Use `on-icon` & `off-icon` prop to render icons inside switch dot.
 
 :::code DemoSwitchIcons
-<<< @/demos/switch/DemoSwitchIcons.vue{15-16,20-21,26-27,32-33,38-39}
+<<< @/components/demos/switch/DemoSwitchIcons.vue{15-16,20-21,26-27,32-33,38-39}
 :::
 
 ::::
@@ -62,7 +62,7 @@ Use `on-icon` & `off-icon` prop to render icons inside switch dot.
 You can use font-size utility to adjust the size of switch
 
 :::code DemoSwitchSizing
-<<< @/demos/switch/DemoSwitchSizing.vue{16,20,25,29,33}
+<<< @/components/demos/switch/DemoSwitchSizing.vue{16,20,25,29,33}
 :::
 
 ::::
@@ -73,7 +73,7 @@ You can use font-size utility to adjust the size of switch
 You can use `disabled` prop to disable the switch
 
 :::code DemoSwitchStates
-<<< @/demos/switch/DemoSwitchStates.vue{23,28}
+<<< @/components/demos/switch/DemoSwitchStates.vue{23,28}
 :::
 
 ::::
@@ -84,7 +84,7 @@ You can use `disabled` prop to disable the switch
 You can adjust switch roundness using border-radius utilities
 
 :::code DemoSwitchRoundness
-<<< @/demos/switch/DemoSwitchRoundness.vue{12,16}
+<<< @/components/demos/switch/DemoSwitchRoundness.vue{12,16}
 :::
 
 ::::
