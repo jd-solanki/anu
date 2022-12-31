@@ -46,7 +46,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
         node: [16, 18]
 
     timeout-minutes: 10
@@ -63,7 +63,7 @@ jobs:
         run: pnpm install
 
       - name: Run unit tests
-        run: npm run test -- --reporter=junit --outputFile=../../test-results.xml
+        run: pnpm test -- --reporter=junit --outputFile=../../test-results.xml
 
       - name: Add tests results to artifacts
         uses: actions/upload-artifact@v2
