@@ -17,7 +17,6 @@
 
   # Default build command.
   # command = "yarn build"
-  ignore = "exit 1"
 
 [build.environment]
   NPM_FLAGS = "--version"
