@@ -1,0 +1,13 @@
+name: Deploy docs
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make POST request to trigger build
+      - run: curl -X POST -d {} ${{ secrets.BUILD_HOOK_URL }}
