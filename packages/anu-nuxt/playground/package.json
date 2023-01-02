@@ -1,11 +1,4 @@
 {
   "private": true,
-  "name": "my-module-playground",
-  "devDependencies": {
-    "@iconify-json/bx": "^1.1.5",
-    "@unocss/nuxt": "^0.46.5"
-  },
-  "dependencies": {
-    "@anu-vue/preset-theme-default": "workspace:*"
-  }
+  "name": "my-module-playground"
 }

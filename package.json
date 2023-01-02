@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --filter @anu-vue/preset-theme-default stub && pnpm --filter anu-vue dev",
-    "build": "pnpm -r --filter=./packages/* run build",
+    "build": "pnpm --filter anu-vue build && pnpm -r --filter=!anu-vue --filter=@anu-vue/preset-* --filter=./packages/* build",
     "docs:dev": "pnpm --filter @anu-vue/documentation dev",
     "docs:build": "pnpm --filter anu-vue build && pnpm --filter @anu-vue/preset-theme-default build && pnpm --filter @anu-vue/documentation build",
     "clean": "rimraf packages/anu-vue/dist && rimraf packages/anu-vue/component-meta && rimraf packages/anu-nuxt/dist && rimraf packages/anu-nuxt/playground/.nuxt && rimraf packages/preset-theme-default/dist",

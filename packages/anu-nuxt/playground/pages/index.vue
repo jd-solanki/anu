@@ -1,11 +1,63 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 const isDialogShown = ref(false)
 </script>
 
 <template>
-  <div class="max-w-2xl mx-auto space-y-10">
+  <div class="max-w-2xl mx-auto space-y-10 my-8">
+    <ATypography
+      class="text-2xl font-bold"
+      title="Anu Playground"
+    />
+    <div class="grid-row items-center grid-cols-[auto_1fr_auto]">
+      <!-- 👉 PayPal -->
+      <AAvatar
+        icon="i-bx-dollar"
+        color="success"
+        class="rounded-lg text-[1.25rem]"
+      />
+      <ATypography
+        title="PayPal"
+        subtitle="last payment"
+        class="text-sm"
+      />
+      <ATypography
+        :text="['+$789', 'text-success']"
+        class="text-sm font-semibold place-self-end"
+      />
+
+      <!-- 👉 Credit card -->
+      <AAvatar
+        icon="i-bx-credit-card"
+        color="danger"
+        class="rounded-lg text-[1.25rem]"
+      />
+      <ATypography
+        title="Credit card"
+        subtitle="ordered books"
+        class="text-sm"
+      />
+      <ATypography
+        :text="['-$13.6', 'text-danger']"
+        class="text-sm font-semibold place-self-end"
+      />
+
+      <!-- 👉 Server storage -->
+      <AAvatar
+        icon="i-bx-server"
+        color="warning"
+        class="rounded-lg text-[1.25rem]"
+      />
+      <ATypography
+        title="Server storage"
+        subtitle="90% storage used"
+        class="text-sm"
+      />
+      <ATypography
+        :text="['4 minutes ago', 'text-warning']"
+        class="text-sm font-semibold place-self-end"
+      />
+    </div>
+
     <div class="grid-row">
       <AAlert>
         Fruitcake I love liquorice apple pie croissant.
@@ -44,7 +96,7 @@ const isDialogShown = ref(false)
       />
 
       <!-- Image -->
-      <AAvatar src="/images/demo/portrait-1.jpg" />
+      <AAvatar src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" />
     </div>
 
     <div class="flex items-center flex-wrap gap-8">
@@ -66,7 +118,7 @@ const isDialogShown = ref(false)
         offset-x="16"
         offset-y="16"
       >
-        <AAvatar src="/images/demo/portrait-1.jpg" />
+        <AAvatar src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" />
       </ABadge>
     </div>
 
