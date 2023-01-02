@@ -112,7 +112,9 @@ export const useLayer = () => {
       classes.push('typography-subtitle-opacity-100 typography-text-opacity-100')
 
       // Add classes based on variant
-      if (propVariant === 'text') { classes.push('text-$a-layer-color') }
+      if (propVariant === 'text') {
+        classes.push('text-$a-layer-color')
+      }
       else {
         if (propVariant === 'fill')
           classes.push('bg-$a-layer-color')

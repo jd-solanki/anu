@@ -11,6 +11,7 @@ importers:
       '@typescript-eslint/parser': ^5.47.0
       '@vue-macros/volar': ^0.5.6
       bumpp: ^8.2.1
+      defu: ^6.1.1
       eslint: ^8.30.0
       eslint-config-airbnb-base: ^15.0.0
       eslint-import-resolver-typescript: ^3.5.2
@@ -23,8 +24,11 @@ importers:
       fast-glob: ^3.2.12
       fs-extra: ^11.1.0
       globby: ^13.1.3
+      jiti: ^1.16.0
+      pathe: ^1.0.0
       pnpm: ^7.19.0
       rimraf: ^3.0.2
+      semver: ^7.3.8
       taze: ^0.8.5
       tsx: ^3.12.1
       typescript: ^4.9.4
@@ -38,6 +42,7 @@ importers:
       '@typescript-eslint/parser': registry.npmjs.org/@typescript-eslint/parser/5.47.1_lzzuuodtsqwxnvqeq4g4likcqa
       '@vue-macros/volar': registry.npmjs.org/@vue-macros/volar/0.5.7_rollup@3.9.0+vue@3.2.45
       bumpp: registry.npmjs.org/bumpp/8.2.1
+      defu: registry.npmjs.org/defu/6.1.1
       eslint: registry.npmjs.org/eslint/8.30.0
       eslint-config-airbnb-base: registry.npmjs.org/eslint-config-airbnb-base/15.0.0_2lbwmhbr7bncddqbzzpg77o75m
       eslint-import-resolver-typescript: registry.npmjs.org/eslint-import-resolver-typescript/3.5.2_2lbwmhbr7bncddqbzzpg77o75m
@@ -50,8 +55,11 @@ importers:
       fast-glob: registry.npmjs.org/fast-glob/3.2.12
       fs-extra: registry.npmjs.org/fs-extra/11.1.0
       globby: registry.npmjs.org/globby/13.1.3
+      jiti: registry.npmjs.org/jiti/1.16.0
+      pathe: registry.npmjs.org/pathe/1.0.0
       pnpm: registry.npmjs.org/pnpm/7.21.0
       rimraf: registry.npmjs.org/rimraf/3.0.2
+      semver: registry.npmjs.org/semver/7.3.8
       taze: registry.npmjs.org/taze/0.8.5
       tsx: registry.npmjs.org/tsx/3.12.1
       typescript: registry.npmjs.org/typescript/4.9.4

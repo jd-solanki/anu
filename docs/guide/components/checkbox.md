@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ACheckbox.json'
+import api from '@anu/component-meta/ACheckbox.json';
 </script>
 
 # Checkbox
@@ -8,7 +8,7 @@ import api from '@anu/component-meta/ACheckbox.json'
 ::::card Basic
 
 :::code DemoCheckboxBasic
-<<< @/demos/checkbox/DemoCheckboxBasic.vue{4,9-11}
+<<< @/components/demos/checkbox/DemoCheckboxBasic.vue{4,9-11}
 :::
 
 ::::
@@ -19,7 +19,7 @@ import api from '@anu/component-meta/ACheckbox.json'
 Use `icon` prop to change the checked icon.
 
 :::code DemoCheckboxIcon
-<<< @/demos/checkbox/DemoCheckboxIcon.vue{12,19}
+<<< @/components/demos/checkbox/DemoCheckboxIcon.vue{12,19}
 :::
 
 ::::
@@ -30,7 +30,7 @@ Use `icon` prop to change the checked icon.
 `ACheckbox` also support arrays like a native checkbox.
 
 :::code DemoCheckboxArray
-<<< @/demos/checkbox/DemoCheckboxArray.vue{4,10,16,22,28}
+<<< @/components/demos/checkbox/DemoCheckboxArray.vue{4,10,16,22,28}
 :::
 
 ::::
@@ -41,7 +41,7 @@ Use `icon` prop to change the checked icon.
 You can use `color` prop to change the checkbox color.
 
 :::code DemoCheckboxColor
-<<< @/demos/checkbox/DemoCheckboxColor.vue{15,22,29,36,43}
+<<< @/components/demos/checkbox/DemoCheckboxColor.vue{15,22,29,36,43}
 :::
 
 ::::
@@ -52,7 +52,7 @@ You can use `color` prop to change the checkbox color.
 You can use `indeterminate` prop to change the status of the checkbox.
 
 :::code DemoCheckboxIndeterminate
-<<< @/demos/checkbox/DemoCheckboxIndeterminate.vue{25,32}
+<<< @/components/demos/checkbox/DemoCheckboxIndeterminate.vue{25,32}
 :::
 
 ::::

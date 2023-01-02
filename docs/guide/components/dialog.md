@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ADialog.json'
+import api from '@anu/component-meta/ADialog.json';
 </script>
 
 # Dialog
@@ -12,7 +12,7 @@ import api from '@anu/component-meta/ADialog.json'
 All props & slots available in `ACard` is available in `ADialog`.
 
 :::code DemoDialogBasic
-<<< @/demos/dialog/DemoDialogBasic.vue
+<<< @/components/demos/dialog/DemoDialogBasic.vue
 :::
 
 ::::
@@ -25,7 +25,7 @@ You can adjust dialog placement via `place-items-start top-16 justify-center` cl
 `place-items-start` will align dialog to top. `justify-center` will center dialog horizontally. Finally, add top utility class to adjust the placements.
 
 :::code DemoDialogPlacement
-<<< @/demos/dialog/DemoDialogPlacement.vue
+<<< @/components/demos/dialog/DemoDialogPlacement.vue
 :::
 
 :::: -->
@@ -36,7 +36,7 @@ You can adjust dialog placement via `place-items-start top-16 justify-center` cl
 Use width utility classes to provide custom width to dialog. e.g. `w-[800px]`.
 
 :::code DemoDialogWidth
-<<< @/demos/dialog/DemoDialogWidth.vue{13}
+<<< @/components/demos/dialog/DemoDialogWidth.vue{13}
 :::
 
 ::::
@@ -47,7 +47,7 @@ Use width utility classes to provide custom width to dialog. e.g. `w-[800px]`.
 You can disable closing dialog on outside click via `persistent` prop.
 
 :::code DemoDialogPersistent
-<<< @/demos/dialog/DemoDialogPersistent.vue{13}
+<<< @/components/demos/dialog/DemoDialogPersistent.vue{13}
 :::
 
 ::::

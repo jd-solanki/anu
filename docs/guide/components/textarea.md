@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ATextarea.json'
+import api from '@anu/component-meta/ATextarea.json';
 </script>
 
 # Textarea
@@ -10,7 +10,7 @@ import api from '@anu/component-meta/ATextarea.json'
 You can use `ATextarea` component to render basic textarea.
 
 :::code DemoTextareaBasic
-<<< @/demos/textarea/DemoTextareaBasic.vue
+<<< @/components/demos/textarea/DemoTextareaBasic.vue
 :::
 
 ::::
@@ -21,7 +21,7 @@ You can use `ATextarea` component to render basic textarea.
 You can use `placeholder` attribute to add placeholder to the textarea.
 
 :::code DemoTextareaPlaceholder
-<<< @/demos/textarea/DemoTextareaPlaceholder.vue
+<<< @/components/demos/textarea/DemoTextareaPlaceholder.vue
 :::
 
 ::::
@@ -32,7 +32,7 @@ You can use `placeholder` attribute to add placeholder to the textarea.
 You can use `label` prop to add label to the textarea.
 
 :::code DemoTextareaLabel
-<<< @/demos/textarea/DemoTextareaLabel.vue
+<<< @/components/demos/textarea/DemoTextareaLabel.vue
 :::
 
 ::::
@@ -43,7 +43,7 @@ You can use `label` prop to add label to the textarea.
 You can adjust the height of ATextarea component by providing `height` prop with the value of valid height class.
 
 :::code DemoTextareaHeight
-<<< @/demos/textarea/DemoTextareaHeight.vue
+<<< @/components/demos/textarea/DemoTextareaHeight.vue
 :::
 
 ::::

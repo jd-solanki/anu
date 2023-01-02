@@ -12,7 +12,7 @@ import api from '@anu/component-meta/AList.json';
 You can also use `default` slot to render your custom content if you don't want to use typography props.
 
 :::code DemoListBasic
-<<< @/demos/list/DemoListBasic.vue{2-7,13}
+<<< @/components/demos/list/DemoListBasic.vue{2-7,13}
 :::
 
 ::::
@@ -23,7 +23,7 @@ You can also use `default` slot to render your custom content if you don't want 
 Use `before` & `after` slot to add custom content before and after list items. There's also `prepend` & `append` slot for list item to append & prepend custom content.
 
 :::code DemoListSlots
-<<< @/demos/list/DemoListSlots.vue{18-20,23-32,35-41}
+<<< @/components/demos/list/DemoListSlots.vue{18-20,23-32,35-41}
 :::
 
 ::::
@@ -36,7 +36,7 @@ You can also pass avatar props like `src` or `icon` to list item under `$avatar`
 You can also use `avatar-append` prop to render the avatar at the end instead of start.
 
 :::code DemoListAvatar
-<<< @/demos/list/DemoListAvatar.vue{7,13,19,25}
+<<< @/components/demos/list/DemoListAvatar.vue{7,13,19,25}
 :::
 
 ::::
@@ -59,7 +59,7 @@ If you use `items` prop on `AList` and don't provide `value` property to each li
 If you are using `AListItem` in default slot of `AList` you can use `handleListItemClick` slot prop function to select the item value. `handleListItemClick` accepts option item as parameter.
 
 :::code DemoListVModelSupport
-<<< @/demos/list/DemoListVModelSupport.vue{11-12,20,34}
+<<< @/components/demos/list/DemoListVModelSupport.vue{11-12,20,34}
 :::
 ::::
 
@@ -73,7 +73,7 @@ For selection, `AList` uses [`useGroupModel`](/guide/composables/useGroupModel).
 `AList` also accepts layer props like `variant`, `color` & `states` to change the appearance of list.
 
 :::code DemoListVariants
-<<< @/demos/list/DemoListVariants.vue{20}
+<<< @/components/demos/list/DemoListVariants.vue{20}
 :::
 
 ::::

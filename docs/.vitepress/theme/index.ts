@@ -15,11 +15,19 @@ export default {
       registerComponents: true,
     })
 
-    const demos = import.meta.globEager('../../demos/**/*.vue')
+    // Register demos as components
+    const demos = import.meta.globEager('../../components/demos/**/*.vue')
 
     for (const path in demos)
       app.component(extractFileNameFromPath(path), demos[path].default)
 
+    // Register UI as components
+    const ui = import.meta.globEager('../../components/ui/**/*.vue')
+
+    for (const path in ui)
+      app.component(extractFileNameFromPath(path), ui[path].default)
+
+    // Other component registration
     app.component('Demo', Demo)
     app.component('Api', Api)
   },

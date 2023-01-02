@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { ACard } from '@/components'
-import { useInternalBooleanState } from '@/composables/useInternalBooleanState'
-import { useTeleport } from '@/composables/useTeleport'
 import type { Middleware, Placement, Strategy } from '@floating-ui/dom'
 import { autoUpdate, computePosition, flip, shift } from '@floating-ui/dom'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref, Teleport, Transition, watch } from 'vue'
+import { Teleport, Transition, getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
+import { useTeleport } from '@/composables/useTeleport'
+import { useInternalBooleanState } from '@/composables/useInternalBooleanState'
+import { ACard } from '@/components'
 
 const props = defineProps({
   /**
