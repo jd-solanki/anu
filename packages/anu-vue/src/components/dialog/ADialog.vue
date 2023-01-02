@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
 import type { Ref } from 'vue'
 import { ACard, cardProps } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
+import { defuProps } from '@/composables/useProps'
 import { useTeleport } from '@/composables/useTeleport'
 
-const props = defineProps(defu({
+const props = defineProps(defuProps({
   /**
    * Show/Hide menu base on v-model value
    */
