@@ -26,10 +26,11 @@ export function useGroupModel<T>(params: ComposableParams<T>) {
     // If multiple selection is enabled
     if (unref(multi)) {
       // If value is not set (Means previously multi was false) => Initialize new set and assign it to value
-      if (!(value.value instanceof Set)) { value.value = new Set([option]) }
-
-      // Else toggle option in set
+      if (!(value.value instanceof Set)) {
+        value.value = new Set([option])
+      }
       else {
+        // Else toggle option in set
         if (value.value.has(option))
           value.value.delete(option)
         else value.value.add(option)
