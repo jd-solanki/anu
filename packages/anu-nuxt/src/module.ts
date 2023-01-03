@@ -1,7 +1,6 @@
 import { presetThemeDefault } from '@anu-vue/preset-theme-default'
 import {
-  addPlugin,
-  createResolver,
+  addPluginTemplate,
   defineNuxtModule,
 } from '@nuxt/kit'
 import presetIcons from '@unocss/preset-icons'
@@ -50,15 +49,10 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   setup(opts, nuxt) {
-    const { resolve } = createResolver(import.meta.url)
+    const enablePreset = opts.presetTheme === true || typeof opts.presetTheme === 'object'
 
-    nuxt.options.css.push('anu-vue/dist/style.css')
-
-    if (opts.presetTheme === true || typeof opts.presetTheme === 'object') {
+    if (enablePreset) {
       nuxt.options.unocss = nuxt.options.unocss || {}
-
-      const ext = typeof opts.presetTheme === 'object' ? opts.presetTheme.style : 'css'
-      nuxt.options.css.push(`@anu-vue/preset-theme-default/dist/style.${ext}`)
 
       const iconPreset = !!nuxt.options.unocss?.icons || true
       nuxt.options.unocss.preflight = false
@@ -93,13 +87,34 @@ export default defineNuxtModule<ModuleOptions>({
       }
     }
 
+    // Add inline plugin template for Anu
+    // TODO: Look for reasons why import '#imports' doesn't work
+    addPluginTemplate({
+      filename: 'anu-vue.mjs',
+      getContents: () => {
+        const lines = [
+          'import { anu } from \'anu-vue\'',
+          `export default defineNuxtPlugin(nuxtApp => {
+            nuxtApp.vueApp.use(anu)
+          })`,
+        ]
+
+        if (enablePreset) {
+          const styleExt = typeof opts.presetTheme === 'object' ? opts.presetTheme.style : 'css'
+          lines.unshift(`import '@anu-vue/preset-theme-default/dist/style.${styleExt}'`)
+        }
+
+        lines.unshift('import \'anu-vue/dist/style.css\'')
+
+        return lines.join('\n')
+      },
+    })
+
     nuxt.hook('prepare:types', ({ tsConfig, references }) => {
       tsConfig.compilerOptions!.types.push('anu-vue/volar')
       references.push({
         types: 'anu-vue/volar',
       })
     })
-
-    addPlugin({ src: resolve('./runtime/plugin') })
   },
 })
