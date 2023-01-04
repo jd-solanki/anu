@@ -104,6 +104,11 @@ h6 {
 
 // 👉 Misc
 
+// Prevent icon glitch in firefox
+* {
+  backface-visibility: hidden;
+}
+
 @keyframes shake {
   0%   {transform: translateX(0);}
   25%  {transform: translateX(1px);}
