@@ -27,16 +27,16 @@ const _isTypographyUsed = isTypographyUsed(toRefs(props), slots)
 // Modify text prop to have `text-sm`
 const _textProp = useConfigurable(toRef(props, 'text'))
 if (_textProp.value.classes === undefined)
-  _textProp.value.classes = 'uno-layer-base-text-sm'
+  _textProp.value.classes = 'text-sm'
 else if (Array.isArray(_textProp.value.classes))
-  _textProp.value.classes = [..._textProp.value.classes, 'uno-layer-base-text-sm']
+  _textProp.value.classes = [..._textProp.value.classes, 'text-sm']
 else
-  _textProp.value.classes = ' uno-layer-base-text-sm'
+  _textProp.value.classes = ' text-sm'
 </script>
 
 <template>
   <div
-    class="a-card overflow-hidden uno-layer-base-bg-[hsl(var(--a-layer))]"
+    class="a-card overflow-hidden bg-[hsl(var(--a-layer))]"
     :class="classes"
     :style="[
       ...styles,

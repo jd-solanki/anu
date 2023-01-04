@@ -21,8 +21,8 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     /^a-drawer-anchor-(left|right|top|bottom)$/,
     ([, dir]) => {
       const classes = dir === 'left' || dir === 'right'
-        ? 'uno-layer-base-w-[300px] max-w-[calc(100vw-2rem)]'
-        : 'uno-layer-base-h-[300px] max-h-[calc(100vh-2rem)]'
+        ? 'w-[300px] max-w-[calc(100vw-2rem)]'
+        : 'h-[300px] max-h-[calc(100vh-2rem)]'
 
       return `children-[.a-drawer]-(${classes})`
     },
@@ -41,11 +41,11 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-alert': 'em:spacing:p-4 font-medium em:spacing:rounded-lg em:spacing:gap-x-2',
 
     // 👉 Avatar
-    'a-avatar': 'uno-layer-base-text-2xl em:spacing:h-8 em:spacing:w-8 uno-layer-base-rounded-full',
+    'a-avatar': 'text-2xl em:spacing:h-8 em:spacing:w-8 rounded-full',
 
     // 👉 Badge
     // with text-xs, 1.6666666667em => 20px
-    'a-badge': 'em:spacing:px-[0.3333333333em] rounded-full spacing:h-[1.6666666667em] spacing:min-w-[1.6666666667em] flex justify-center items-center uno-layer-base-text-white em:uno-layer-base-text-xs uno-layer-base-font-medium z-[1] whitespace-nowrap',
+    'a-badge': 'em:spacing:px-[0.3333333333em] rounded-full spacing:h-[1.6666666667em] spacing:min-w-[1.6666666667em] flex justify-center items-center text-white em:text-xs font-medium z-[1] whitespace-nowrap',
     'a-badge-dot': 'spacing:min-w-[0.666666666666667em] spacing:h-[0.666666666666667em]',
 
     // with text-xs, outline: 0.166666666666667em => 2px
@@ -93,7 +93,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // 👉 Dialog
     'a-dialog-wrapper': 'z-[52]',
-    'a-dialog': 'shadow-2xl uno-layer-base-w-[500px] z-[53]',
+    'a-dialog': 'shadow-2xl w-[500px] z-[53]',
 
     // 👉 Drawer
     'a-drawer-wrapper': 'z-[52]',
@@ -114,7 +114,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-menu': 'z-[51] shadow-xl [--a-transition-slide-up-transform:10px]',
 
     // 👉 Rating
-    'a-rating': 'uno-layer-base-text-xl',
+    'a-rating': 'text-xl',
     'a-rating-animated': 'i:(transition-transform ease-in-out duration-250) hover:i:scale-125',
     'a-rating-disabled': 'opacity-50',
 

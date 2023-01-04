@@ -121,7 +121,7 @@ export const useLayer = () => {
         if (propVariant === 'light')
           classes.push('bg-$a-layer-color bg-opacity-15')
         if (propVariant === 'outline')
-          classes.push('border-width-1 uno-layer-base-border-solid border-$a-layer-color')
+          classes.push('border-width-1 border-solid border-$a-layer-color')
       }
     }
 

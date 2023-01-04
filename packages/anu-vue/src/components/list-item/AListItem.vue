@@ -24,9 +24,9 @@ const { getLayerClasses } = useLayer()
 // ℹ️ Reduce the size of title to 1rem. We did the same in ACard as well.
 const _titleProp = useConfigurable(props.title)
 if (Array.isArray(_titleProp.value.classes))
-  _titleProp.value.classes = [..._titleProp.value.classes, 'uno-layer-base-text-base']
+  _titleProp.value.classes = [..._titleProp.value.classes, 'text-base']
 else
-  _titleProp.value.classes += ' uno-layer-base-text-base'
+  _titleProp.value.classes += ' text-base'
 
 // useLayer
 const { styles, classes } = getLayerClasses(
@@ -52,7 +52,7 @@ const { styles, classes } = getLayerClasses(
     <slot name="prepend">
       <i
         v-if="props.icon && !props.iconAppend"
-        class="uno-layer-base-text-xl"
+        class="text-xl"
         :class="props.icon"
         @click="$emit('click:icon')"
       />
@@ -77,7 +77,7 @@ const { styles, classes } = getLayerClasses(
     <slot name="append">
       <i
         v-if="props.icon && props.iconAppend"
-        class="uno-layer-base-text-xl"
+        class="text-xl"
         :class="props.icon"
         @click="$emit('click:iconAppend')"
       />

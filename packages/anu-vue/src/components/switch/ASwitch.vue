@@ -63,7 +63,7 @@ const dotPosition = computed(() => {
 <template>
   <label
     :for="elementId"
-    class="a-switch a-switch cursor-pointer uno-layer-base-rounded-full justify-between items-center"
+    class="a-switch a-switch cursor-pointer rounded-full justify-between items-center"
     :class="[
       props.label || $slots.default
         ? 'flex'

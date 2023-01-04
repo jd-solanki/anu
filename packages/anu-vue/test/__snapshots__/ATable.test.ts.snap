@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`Testing ATable & ADataTable > mount component 1`] = `
-"<div class=\\"a-card overflow-hidden uno-layer-base-bg-[hsl(var(--a-layer))] a-table a-data-table\\" style=\\"--a-spacing: 1;\\">
+"<div class=\\"a-card overflow-hidden bg-[hsl(var(--a-layer))] a-table a-data-table\\" style=\\"--a-spacing: 1;\\">
   <!-- 👉 Image -->
   <!--v-if-->
   <!-- 👉 Typography -->
@@ -37,13 +37,13 @@ exports[`Testing ATable & ADataTable > mount component 1`] = `
     </table>
   </div>
   <div class=\\"a-data-table-pagination flex items-center w-full\\">
-    <div class=\\"uno-layer-base-text-base gap-4 flex flex-col a-data-table-pagination-meta\\">
+    <div class=\\"text-base gap-4 flex flex-col a-data-table-pagination-meta\\">
       <!-- SECTION Typography header -->
       <div class=\\"flex justify-between\\">
         <div class=\\"flex-grow\\">
           <!-- 👉 Title -->
           <!--v-if-->
-          <!-- 👉 Subtitle --><span class=\\"a-typography-subtitle block em:uno-layer-base-text-sm uno-layer-base-text-[hsla(var(--a-typography-subtitle-color),var(--a-typography-subtitle-opacity))]\\">1 - 5 of 10</span>
+          <!-- 👉 Subtitle --><span class=\\"a-typography-subtitle block em:text-sm text-[hsla(var(--a-typography-subtitle-color),var(--a-typography-subtitle-opacity))]\\">1 - 5 of 10</span>
         </div><!-- 👉 Slot: header-right -->
       </div><!-- !SECTION -->
       <!-- 👉 Text -->
