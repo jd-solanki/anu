@@ -1,11 +1,12 @@
 import { presetThemeDefault } from '@anu-vue/preset-theme-default'
 import {
+  addImports,
   addPluginTemplate,
   defineNuxtModule,
 } from '@nuxt/kit'
 import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-uno'
-import { presetAnu, presetIconExtraProperties } from 'anu-vue'
+import { Composables as AnuComposables, presetAnu, presetIconExtraProperties } from 'anu-vue'
 
 import { name, version } from '../package.json'
 
@@ -21,7 +22,7 @@ interface PresetThemeOptions {
    *
    * @default 'css'
    */
-  style?: 'css' | 'sass'
+  style?: 'css' | 'scss'
 }
 
 export interface ModuleOptions {
@@ -54,7 +55,14 @@ export default defineNuxtModule<ModuleOptions>({
     if (enablePreset) {
       nuxt.options.unocss = nuxt.options.unocss || {}
 
-      const iconPreset = !!nuxt.options.unocss?.icons || true
+      // Enable unocss preset icon by default if it is not enabled.
+      const iconPreset = typeof nuxt.options.unocss?.icons === 'boolean'
+        ? {
+            scale: 1.2,
+            extraProperties: presetIconExtraProperties,
+          }
+        : nuxt.options.unocss.icons
+
       nuxt.options.unocss.preflight = false
 
       // Add default presets for Anu into the unocss options.
@@ -66,29 +74,16 @@ export default defineNuxtModule<ModuleOptions>({
         presetAnu(),
 
         // @ts-expect-error - We know that is a valid preset
+        presetIcons(iconPreset),
+
+        // @ts-expect-error - We know that is a valid preset
         presetThemeDefault(),
         ...(nuxt.options.unocss.presets || []),
       ]
-
-      // If icon preset is enabled via `unocss.icons` option, add it to the presets.
-      // Default to `true` if `unocss.icons` is not defined.
-      if (iconPreset) {
-        // Icon Preset Anu by default
-        const presetIcon = presetIcons(typeof iconPreset === 'object'
-          ? iconPreset
-          : {
-              scale: 1.2,
-              extraProperties: presetIconExtraProperties,
-            },
-        )
-
-        // @ts-expect-error - We know that is a valid preset
-        nuxt.options.unocss.presets?.push(presetIcon)
-      }
     }
 
     // Add inline plugin template for Anu
-    // TODO: Look for reasons why import '#imports' doesn't work
+    // TODO: Look for reasons why import '#imports' doesn't work within a plugin template.
     addPluginTemplate({
       filename: 'anu-vue.mjs',
       getContents: () => {
@@ -109,6 +104,16 @@ export default defineNuxtModule<ModuleOptions>({
         return lines.join('\n')
       },
     })
+
+    // Add Auto Completions for Anu Composables
+    Object.keys(AnuComposables)
+      .filter(key => key.includes('use') && key !== 'useProp')
+      .forEach(name => {
+        addImports({
+          name,
+          from: 'anu-vue',
+        })
+      })
 
     nuxt.hook('prepare:types', ({ tsConfig, references }) => {
       tsConfig.compilerOptions!.types.push('anu-vue/volar')

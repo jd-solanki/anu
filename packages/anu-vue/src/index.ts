@@ -1,6 +1,7 @@
 import { defu } from 'defu'
 import type { App } from 'vue'
 import * as components from './components'
+import * as composables from './composables'
 import { provideAppSpacing } from '@/composables/useSpacing'
 import './scss/index.scss'
 
@@ -34,6 +35,7 @@ export * from './composables'
 export { presetAnu } from './preset'
 export * from './symbols'
 export { plugin as anu }
+export const Composables = composables
 export const presetIconExtraProperties = {
   'height': '1.2em',
   'width': '1.2em',
