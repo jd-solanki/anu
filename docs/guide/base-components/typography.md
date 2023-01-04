@@ -28,6 +28,14 @@ You might feel like this is useless but this greatly improves DX and boosts comp
 
 ::::
 
+:::details When not to use `ATypography` component?
+If you want to render either title, subtitle or text only, prefer using respective class (_for text you don't need any class, please read below note_) instead of component.
+
+`ATypography` is for rendering title, subtitle & text easily or adding custom content on right via `header-right` slot.
+
+In summary, it provides common structure (_flex_) we use in our apps regularly.
+:::
+
 :::details `ATypography`'s `text` prop
 `text` prop is for convenience so you don't have to do this:
 
