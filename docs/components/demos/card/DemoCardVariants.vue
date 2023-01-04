@@ -17,7 +17,9 @@
       variant="light"
       color="primary"
       class="shadow-none"
-    />
+    >
+      <p>Awesome</p>
+    </ACard>
 
     <!-- 👉 Outline -->
     <ACard

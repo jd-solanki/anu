@@ -9,15 +9,15 @@ const rules: Preset['rules'] = [
 
   // Typography
   [
-    /^typography-(\w+)-([-\w]+)$/,
+    /^a-(title|subtitle|text)-([-\w]+)$/,
     ([, type, c]: string[]) => ({
-      [`--a-typography-${type}-color`]: `var(--a-${c})`,
+      [`--a-${type}-color`]: `var(--a-${c})`,
     }),
   ],
   [
-    /^typography-(\w+)-opacity-(\d+)$/,
+    /^a-(title|subtitle|text)-opacity-(\d+)$/,
     ([, type, o]: string[]) => ({
-      [`--a-typography-${type}-opacity`]: `${Number(o) * 0.01}`,
+      [`--a-${type}-opacity`]: `${Number(o) * 0.01}`,
     }),
   ],
 

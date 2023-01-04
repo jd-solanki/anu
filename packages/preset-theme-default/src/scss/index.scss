@@ -32,12 +32,10 @@ $body-color: hsla(var(--a-base-color), 0.68);
     --a-text-emphasis-light-opacity: 0.38;
 
     // Typography
-    --a-typography-title-color: var(--a-base-color);
-    --a-typography-subtitle-color: var(--a-base-color);
-    --a-typography-text-color: var(--a-base-color);
-    --a-typography-title-opacity: var(--a-text-emphasis-high-opacity);
-    --a-typography-subtitle-opacity: var(--a-text-emphasis-light-opacity);
-    --a-typography-text-opacity: var(--a-text-emphasis-medium-opacity);
+    --a-title-color: var(--a-base-color);
+    --a-subtitle-color: var(--a-base-color);
+    --a-title-opacity: var(--a-text-emphasis-high-opacity);
+    --a-subtitle-opacity: var(--a-text-emphasis-light-opacity);
 
     // SECTION Components
 

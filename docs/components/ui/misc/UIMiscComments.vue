@@ -48,7 +48,9 @@ const comments = [
               class="text-base"
               :src="comment.avatar"
             />
-            <ATypography :title="[comment.name, 'text-base']" />
+            <p class="a-title text-base">
+              {{ comment.name }}
+            </p>
           </div>
 
           <!-- Comment -->
@@ -57,10 +59,9 @@ const comments = [
           </p>
 
           <!-- Comment time -->
-          <ATypography
-            class="text-xs mt-1"
-            :subtitle="comment.time"
-          />
+          <p class="a-subtitle text-xs mt-1">
+            {{ comment.time }}
+          </p>
         </div>
 
         <ATextarea v-model="input" />

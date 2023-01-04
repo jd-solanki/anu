@@ -18,7 +18,7 @@ const propsHeader = Object.keys(props.api.props[0])
         class="not-last-mb-4"
       >
         <span
-          class="font-semibold text-[hsla(var(--a-typography-title-color),var(--a-typography-title-opacity))]"
+          class="font-semibold text-[hsla(var(--a-title-color),var(--a-title-opacity))]"
         >{{ prop.name.replace('?', '') }}</span>
         <span class="text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]"> : {{ prop.type.replace(/\s*\| (undefined)$/, '') }}</span>
         <span

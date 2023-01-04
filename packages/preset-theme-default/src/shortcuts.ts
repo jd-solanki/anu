@@ -32,6 +32,9 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'grid-row': 'grid gap-6 place-items-start w-full',
 
     // 👉 Typography
+    'a-title': 'font-medium block em:text-lg text-[hsla(var(--a-title-color),var(--a-title-opacity))]',
+    'a-subtitle': 'block em:text-sm text-[hsla(var(--a-subtitle-color),var(--a-subtitle-opacity))]',
+    'a-text': '',
     'text-high-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-high-opacity))]',
     'text-medium-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-medium-opacity))]',
     'text-light-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]',
@@ -144,7 +147,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // With 1em (12px), 1.3333333333em => 16px & 4.0833333333em => 49px
     'a-data-table-pagination': 'border-t border-a-border em:spacing:px-[1.3333333333em] spacing:h-[4.0833333333em] em:spacing:gap-x-4 em:text-xs',
-    'a-data-table-pagination-meta': '!em:[&_.a-typography-subtitle]-text-xs',
+    'a-data-table-pagination-meta': 'em:text-base',
     'a-data-table-per-page': '[&_.a-base-input-input-wrapper]-rounded-0 [&_.a-base-input-input-wrapper]-!border-transparent [&_.a-base-input-input-wrapper]-!border-b-a-border [&_.a-base-input-root]-max-w-[70px]',
     'a-data-table-per-page-select--options-wrapper-classes': 'em:text-sm spacing-85', // ℹ️ optionsWrapperClasses prop
     'a-data-table-pagination-navigation': '[&_.a-data-table-paginate-previous]-!rounded-full em:[&_.a-data-table-paginate-previous]-spacing:me-2 [&_.a-data-table-paginate-next]-!rounded-full em:spacing:gap-x-2',

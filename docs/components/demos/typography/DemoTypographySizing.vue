@@ -11,10 +11,7 @@
       subtitle="last payment"
       class="text-sm"
     />
-    <ATypography
-      :text="['+$789', 'text-success']"
-      class="text-sm font-semibold place-self-end"
-    />
+    <span class="text-success text-sm font-semibold ms-auto">+$789</span>
 
     <!-- 👉 Credit card -->
     <AAvatar
@@ -27,10 +24,7 @@
       subtitle="ordered books"
       class="text-sm"
     />
-    <ATypography
-      :text="['-$13.6', 'text-danger']"
-      class="text-sm font-semibold place-self-end"
-    />
+    <span class="text-danger text-sm font-semibold ms-auto">-$13.6</span>
 
     <!-- 👉 Server storage -->
     <AAvatar
@@ -43,9 +37,6 @@
       subtitle="90% storage used"
       class="text-sm"
     />
-    <ATypography
-      :text="['4 minutes ago', 'text-warning']"
-      class="text-sm font-semibold place-self-end"
-    />
+    <span class="text-warning text-sm font-semibold ms-auto">4 minutes ago</span>
   </div>
 </template>

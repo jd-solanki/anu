@@ -8,7 +8,6 @@
         class="rounded-lg text-[1.25rem]"
       />
       <ATypography
-        class="!children:leading-tight"
         :title="['Sales', 'text-sm font-normal !text-medium-emphasis']"
         :subtitle="['2.5k', 'text-xl font-bold !text-high-emphasis']"
       />
@@ -21,7 +20,6 @@
         class="rounded-lg text-[1.25rem]"
       />
       <ATypography
-        class="!children:leading-tight"
         :title="['Revenue', 'text-sm !text-medium-emphasis font-normal']"
         :subtitle="['$816', 'text-xl font-bold !text-high-emphasis']"
       />
@@ -35,7 +33,6 @@
         class="rounded-lg text-[1.25rem]"
       />
       <ATypography
-        class="!children:leading-tight"
         :title="['Customers', 'text-sm !text-medium-emphasis font-normal']"
         :subtitle="['1.5', 'text-xl font-bold !text-high-emphasis']"
       />
@@ -49,7 +46,6 @@
         class="rounded-lg text-[1.25rem]"
       />
       <ATypography
-        class="!children:leading-tight"
         :title="['Returns', 'text-sm !text-medium-emphasis font-normal']"
         :subtitle="['1.5', 'text-xl font-bold !text-high-emphasis']"
       />

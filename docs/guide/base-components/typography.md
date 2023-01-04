@@ -4,18 +4,59 @@ import api from '@anu/component-meta/ATypography.json';
 
 # Typography
 
+<!-- 👉 Classes -->
+::::card Classes
+
+Anu provides useful classes like `.a-title` & `.a-subtitle` for rendering typography with consistency.
+
+:::code DemoTypographyClasses
+<<< @/components/demos/typography/DemoTypographyClasses.vue
+:::
+
+::::
+
 <!-- 👉 Basic -->
 ::::card Basic
 
-`ATypography` provides customizable typography for any needs.
+`ATypography` component provides customizable typography to render title, subtitle & text using single component.
 
-This will completely change how you work with typography.
+You might feel like this is useless but this greatly improves DX and boosts component reusability. This will completely change how you work with typography.
 
 :::code DemoTypographyBasic
 <<< @/components/demos/typography/DemoTypographyBasic.vue
 :::
 
 ::::
+
+:::details `ATypography`'s `text` prop
+`text` prop is for convenience so you don't have to do this:
+
+```vue
+<template>
+  <ATypography
+    title="Title"
+    subtitle="This is subtitle"
+  >
+    <p>This is text</p>
+  </ATypography>
+</template>
+```
+
+Instead you can just insert text using `text` prop.
+
+```vue
+<template>
+  <ATypography
+    title="Title"
+    subtitle="This is subtitle"
+    text="This is text"
+  />
+</template>
+
+```
+
+When you use `text` prop of `ATypography` component, it adds class `.a-text` to customize that particular text rendered using `ATypography` component.
+:::
 
 <!-- 👉 Sizing -->
 ::::card Sizing
@@ -25,7 +66,7 @@ Want to create a list with title and subtitle no worries, Just add `text-sm`.
 You can use other font-size utilities to change typography size.
 
 :::code DemoTypographySizing
-<<< @/components/demos/typography/DemoTypographySizing.vue{7,12,16,23,28,32,39,44,48}
+<<< @/components/demos/typography/DemoTypographySizing.vue{7,12,14,20,25,27,33,38,40}
 :::
 
 ::::
@@ -40,7 +81,7 @@ First element of array will be treated as content and rest of them will be class
 It greatly improves DX and keep you code a bit DRY.
 
 :::code DemoTypographyConfigArray
-<<< @/components/demos/typography/DemoTypographyConfigArray.vue{12-13,25-26,39-40,53-54}
+<<< @/components/demos/typography/DemoTypographyConfigArray.vue{11-12,23-24,36-37,49-50}
 :::
 
 ::::

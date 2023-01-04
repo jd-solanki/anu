@@ -102,14 +102,14 @@ export const useLayer = () => {
       ? propVariant === 'fill' ? 'white' : propColor
       : 'layer-text'
 
-    // ℹ️ `typography-title-${color}` does uses CSS variable however `text-${color}` don't so we need to attach the color our self
-    // TODO: Check is it convenient to add `typography-title-$color` like in above line to identify the color as CSS var 🤔
-    const textClasses = `text-${isThemeColor ? textColor : `\$a-${textColor}`} typography-title-${textColor} typography-subtitle-${textColor} typography-text-${textColor}`
+    // ℹ️ `a-title-${color}` does uses CSS variable however `text-${color}` don't so we need to attach the color our self
+    // TODO: Check is it convenient to add `a-title-$color` like in above line to identify the color as CSS var 🤔
+    const textClasses = `text-${isThemeColor ? textColor : `\$a-${textColor}`} a-title-${textColor} a-subtitle-${textColor}`
 
     if (propColor) {
       // common classes
       classes.push(textClasses)
-      classes.push('typography-subtitle-opacity-100 typography-text-opacity-100')
+      classes.push('a-subtitle-opacity-100')
 
       // Add classes based on variant
       if (propVariant === 'text') {

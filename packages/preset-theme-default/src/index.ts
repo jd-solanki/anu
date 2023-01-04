@@ -14,7 +14,7 @@ interface PresetOptions {
 export const colors = ['primary', 'success', 'info', 'warning', 'danger'] as const
 export type Colors = typeof colors
 
-export function presetThemeDefault(options: PresetOptions = {}): Preset {  
+export function presetThemeDefault(options: PresetOptions = {}): Preset {
   return {
     name: '@anu-vue/preset-theme-default',
     theme: {
@@ -40,9 +40,8 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       ...colors.map(c => `next:checked:border-${c}`),
 
       // Typography
-      ...[...colors, 'layer-text', 'white'].map(c => `typography-title-${c}`),
-      ...[...colors, 'layer-text', 'white'].map(c => `typography-subtitle-${c}`),
-      ...[...colors, 'layer-text', 'white'].map(c => `typography-text-${c}`),
+      ...[...colors, 'layer-text', 'white'].map(c => `a-title-${c}`),
+      ...[...colors, 'layer-text', 'white'].map(c => `a-subtitle-${c}`),
       ...['top', 'right', 'bottom', 'left'].map(dir => `a-drawer-anchor-${dir}`),
     ],
     rules,

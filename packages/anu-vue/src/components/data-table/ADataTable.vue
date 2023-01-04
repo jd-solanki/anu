@@ -3,7 +3,7 @@ import { defu } from 'defu'
 import type { ExtractPropTypes, Ref } from 'vue'
 import type { DataTablePropColumn, ItemsFunction } from './props'
 import { dataTableColDefaults, dataTableProps } from './props'
-import { ABtn, AInput, ASelect, ATable, ATypography } from '@/components'
+import { ABtn, AInput, ASelect, ATable } from '@/components'
 import { tableProps } from '@/components/table'
 import { useSearch } from '@/composables/useSearch'
 import type { typeSortBy } from '@/composables/useSort'
@@ -306,10 +306,7 @@ const paginationMeta = computed(() => {
     <!-- 👉 Pagination -->
     <template #after-table>
       <div class="a-data-table-pagination flex items-center w-full">
-        <ATypography
-          class="a-data-table-pagination-meta"
-          :subtitle="paginationMeta"
-        />
+        <span class="a-subtitle a-data-table-pagination-meta">{{ paginationMeta }}</span>
         <div class="flex-grow" />
         <div class="a-data-table-per-page flex items-center">
           <span class="sm:inline hidden">per page</span>
