@@ -31,6 +31,7 @@ const plugin = {
 export { AnuComponentResolver } from './componentResolver'
 export * from './components'
 export * from './composables'
+export * as composables from './composables'
 export { presetAnu } from './preset'
 export * from './symbols'
 export { plugin as anu }
