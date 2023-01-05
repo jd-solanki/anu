@@ -6,7 +6,7 @@ import {
 } from '@nuxt/kit'
 import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-uno'
-import { Composables as AnuComposables, presetAnu, presetIconExtraProperties } from 'anu-vue'
+import { composables as AnuComposables, presetAnu, presetIconExtraProperties } from 'anu-vue'
 
 import { name, version } from '../package.json'
 
@@ -106,8 +106,10 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     // Add Auto Completions for Anu Composables
+    const composablesToExclude = ['useProp']
+
     Object.keys(AnuComposables)
-      .filter(key => key.includes('use') && key !== 'useProp')
+      .filter(key => key.includes('use') && !composablesToExclude.includes(key))
       .forEach(name => {
         addImports({
           name,
