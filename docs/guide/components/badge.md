@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ABadge.json';
+import api from '@anu/component-meta/ABadge.json'
 </script>
 
 # Badge
@@ -7,7 +7,7 @@ import api from '@anu/component-meta/ABadge.json';
 <!-- 👉 Default -->
 ::::card Default
 
-Default variant for badge is `standard`
+Default color for badge is `primary`.
 
 :::code DemoBadgeDefault
 <<< @/components/demos/badge/DemoBadgeDefault.vue
@@ -18,7 +18,7 @@ Default variant for badge is `standard`
 <!-- 👉 Content -->
 ::::card Content
 
-Use the prop `content` to pass numeric values, if you want to use other data different than a number use the slot `content` instead
+Use the prop `content` to pass numeric values, if you want to use other data different than a number use the slot `content` instead.
 
 :::code DemoBadgeContent
 <<< @/components/demos/badge/DemoBadgeContent.vue{3,8}
@@ -29,7 +29,7 @@ Use the prop `content` to pass numeric values, if you want to use other data dif
 <!-- 👉 v-model support -->
 ::::card v-model support
 
-You can use v-model to control hiding/showing the badge
+You can use v-model to control hiding/showing the badge.
 
 :::code DemoBadgeVModel
 <<< @/components/demos/badge/DemoBadgeVModel.vue{4,9}
@@ -51,7 +51,7 @@ You can use `color` prop to change the badge color.
 <!-- 👉 Dot -->
 ::::card Dot
 
-Use the prop `variant` to transform the badge into a `dot`
+Use the prop `dot` to transform the badge into a dot.
 
 :::code DemoBadgeDot
 <<< @/components/demos/badge/DemoBadgeDot.vue{3}
@@ -62,7 +62,7 @@ Use the prop `variant` to transform the badge into a `dot`
 <!-- 👉 Anchor origin -->
 ::::card Anchor origin
 
-Change the position of the badge by passing `horizontal` and `vertical` values to the `anchor` prop.
+Change the position of the badge by passing `top/bottom` and `left/right` values to the `anchor` prop.
 
 :::code DemoBadgeAnchor
 <<< @/components/demos/badge/DemoBadgeAnchor.vue{5,11,17,23}
@@ -73,7 +73,7 @@ Change the position of the badge by passing `horizontal` and `vertical` values t
 <!-- 👉 Max -->
 ::::card Max
 
-Change the `max` prop to cap the numeric value of the content
+Change the `max` prop to cap the numeric value of the content.
 
 :::code DemoBadgeMax
 <<< @/components/demos/badge/DemoBadgeMax.vue{5,11,17}

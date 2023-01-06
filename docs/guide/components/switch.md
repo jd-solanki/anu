@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ASwitch.json';
+import api from '@anu/component-meta/ASwitch.json'
 </script>
 
 # Switch
@@ -18,7 +18,7 @@ Use `ASwitch` component to create toggle for boolean value.
 <!-- 👉 Colors -->
 ::::card Colors
 
-You can use `color` prop to change the switch color
+You can use `color` prop to change the switch color.
 
 :::code DemoSwitchColors
 <<< @/components/demos/switch/DemoSwitchColors.vue{15,19,23,27,31}
@@ -42,7 +42,7 @@ Label and switch have `justify-between` added as this is how generally used but 
 ::::
 
 :::tip
-You can also use default slot to render the label
+You can also use default slot to render the label.
 :::
 
 <!-- 👉 Icons -->
@@ -59,7 +59,7 @@ Use `on-icon` & `off-icon` prop to render icons inside switch dot.
 <!-- 👉 Sizing -->
 ::::card Sizing
 
-You can use font-size utility to adjust the size of switch
+You can use font-size utility to adjust the size of switch.
 
 :::code DemoSwitchSizing
 <<< @/components/demos/switch/DemoSwitchSizing.vue{16,20,25,29,33}
@@ -70,7 +70,7 @@ You can use font-size utility to adjust the size of switch
 <!-- 👉 States -->
 ::::card States
 
-You can use `disabled` prop to disable the switch
+You can use `disabled` prop to disable the switch.
 
 :::code DemoSwitchStates
 <<< @/components/demos/switch/DemoSwitchStates.vue{23,28}
@@ -81,7 +81,7 @@ You can use `disabled` prop to disable the switch
 <!-- 👉 Roundness -->
 ::::card Roundness
 
-You can adjust switch roundness using border-radius utilities
+You can adjust switch roundness using border-radius utilities.
 
 :::code DemoSwitchRoundness
 <<< @/components/demos/switch/DemoSwitchRoundness.vue{12,16}

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/AAlert.json';
+import api from '@anu/component-meta/AAlert.json'
 </script>
 
 # Alert
@@ -42,7 +42,7 @@ You can use `variant="outline"` to create outlined alert.
 <!-- 👉 Icons -->
 ::::card Icons
 
-You can use `icon` prop to render icon in button.
+You can use `icon` prop to render icon in alert.
 
 Use `append-icon` prop to render icon after default slot.
 
