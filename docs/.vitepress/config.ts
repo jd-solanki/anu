@@ -62,6 +62,7 @@ export default defineConfig({
             { text: 'Card', link: '/guide/components/card' },
             { text: 'Checkbox', link: '/guide/components/checkbox' },
             { text: 'Chip', link: '/guide/components/chip' },
+            { text: 'Circle', link: '/guide/components/circle' },
             { text: 'Dialog', link: '/guide/components/dialog' },
             { text: 'Drawer', link: '/guide/components/drawer' },
             { text: 'Input', link: '/guide/components/input' },

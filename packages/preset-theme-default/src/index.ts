@@ -33,6 +33,8 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       ...colors.map(c => `hover:bg-${c}`),
 
       ...colors.map(c => `border-${c}`),
+      ...colors.map(c => `stroke-${c}`),
+      ...colors.map(c => `fill-${c}`),
       ...[...colors, '$a-layer-text'].map(c => `text-${c}`),
       ...colors.map(c => `shadow-${c}`),
       ...colors.map(c => `after:bg-${c}`),
