@@ -25,9 +25,10 @@ const { styles, classes } = getLayerClasses(
 )
 
 // FIXME Can't found a better way to change the background overlay depending of the layer. It's not perfect for transparent variant like light, text or outline.
+const attrsClasses = attrs.class as string || ''
 const overlayClasses = computed(() => {
   // We skip if there is some bg-* classes
-  if (!props.overlay || (attrs.class && attrs.class.split(' ').some(c => /^bg-(.+)$/.test(c))))
+  if (!props.overlay || attrsClasses.split(' ').some(c => /^bg-(.+)$/.test(c)))
     return
   if (!props.variant || props.variant === 'fill')
     return 'bg-$a-layer-color'
