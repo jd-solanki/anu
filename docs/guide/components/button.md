@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ABtn.json';
+import api from '@anu/component-meta/ABtn.json'
 </script>
 
 # Button
@@ -125,6 +125,18 @@ You can adjust button roundness using border-radius utilities.
 
 :::code DemoButtonRoundness
 <<< @/components/demos/button/DemoButtonRoundness.vue{3,9,16,23,30}
+:::
+
+::::
+
+<!-- 👉 Loading -->
+::::card Loading
+
+You can use the `loading` prop to inform about a background process or asynchronous operation.
+This property will display a `ALoading` component (by default) instead of the icon and/or label of the button.
+
+:::code DemoButtonLoading
+<<< @/components/demos/button/DemoButtonLoading.vue{10,17,24,32,39,50}
 :::
 
 ::::

@@ -69,6 +69,14 @@ export const baseInputProps = {
    * Set component in readonly mode
    */
   readonly,
+
+  /**
+   * Set loading state
+   */
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 }
 
 export type BaseInputProps = ExtractPropTypes<typeof baseInputProps>

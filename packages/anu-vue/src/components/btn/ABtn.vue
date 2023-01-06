@@ -20,6 +20,14 @@ const props = defineProps({
   appendIcon: configurableProp,
   iconOnly: Boolean,
   disabled: disabledProp,
+
+  /**
+   * Set loading state
+   */
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 defineOptions({
@@ -51,9 +59,21 @@ const { styles, classes } = getLayerClasses(
     ]"
     :disabled="props.disabled ? true : undefined"
   >
-    <i
-      v-if="props.icon"
-      :class="props.icon"
+    <template v-if="props.icon">
+      <ALoader
+        v-if="props.loading"
+        class="bg-transparent contents"
+      />
+      <i
+        v-else
+        :class="props.icon"
+      />
+    </template>
+    <ALoader
+      v-else-if="props.loading"
+      :color="props.color"
+      :variant="props.variant === 'text' ? 'outline' : props.variant"
+      overlay
     />
     <slot />
     <i

@@ -106,8 +106,12 @@ defineExpose({
 
         <!-- 👉 Slot: Append Inner -->
         <slot name="append-inner">
+          <ALoader
+            v-if="props.loading"
+            class="bg-transparent"
+          />
           <i
-            v-if="props.appendInnerIcon"
+            v-else-if="props.appendInnerIcon"
             class="a-base-input-append-inner-icon ms-auto"
             :class="[iconTransition, props.appendInnerIcon]"
           />
