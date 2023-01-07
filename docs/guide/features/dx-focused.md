@@ -23,11 +23,11 @@ const items = [
 
 > _DX => Developer Experience_
 
-Frameworks are nice, they helps you write more maintainable and less code. In long run, developer experience does matter.
+Frameworks are nice, they help you write more maintainable and less code. In the long run, developer experience does matter.
 
 ## Configurable Array
 
-Assume you have list like below and want to just change the size of the avatar/icon in list.
+Assume you have a list as shown below and you want to just change the size of the avatar/icon in the list.
 
 <div class="cards-demo-container">
   <ACard>
@@ -127,7 +127,7 @@ const items = [
 
 With Anu's atomic behavior, you can pass the existing props like `title`, `subtitle`, etc to certain components creating UI quickly without extra hassle.
 
-Below code will create drawer with title & subtitle. This is because `ADrawer` uses `ACard` component that in turns uses `ATypography` component.
+The code below will create a drawer with title & subtitle. This is because `ADrawer` uses `ACard` component that in turns uses `ATypography` component.
 
 ```vue
 <template>
@@ -143,7 +143,7 @@ Below code will create drawer with title & subtitle. This is because `ADrawer` u
 
 As Anu is built on top of utility classes, it has edge over the frameworks that uses SCSS or don't have utility classes.
 
-Thanks to utility classes at some point if you want to change anything regarding the component once only then utility classes can easily let you perform changes.
+Thanks to utility classes at some point if you want to change anything regarding the component once, only then can utility classes easily let you perform changes.
 
 ```vue
 <template>
@@ -151,6 +151,6 @@ Thanks to utility classes at some point if you want to change anything regarding
 </template>
 ```
 
-This is customization is not limited to top level component. You can use selectors with utility classes to customize the nested component. e.g. `children-[.a-card]-rounded-3xl`
+This customization is not limited to top level component. You can use selectors with utility classes to customize the nested component. e.g. `children-[.a-card]-rounded-3xl`
 
 > _More to come..._

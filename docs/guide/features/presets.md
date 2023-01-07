@@ -1,19 +1,19 @@
 # Presets
 
-Apart from theming just colors Anu also gives full flexibility on customizing the components. Anu allows defining your own preset that changes how component should look.
+Apart from theming just colors, Anu also gives full flexibility on customizing the components. Anu allows defining your own preset that changes how components should look.
 
 With presets feature, You can even replicate Bootstrap or Material design <i class="i-fluent-emoji-exploding-head"></i>
 
-Below is example of buttons customized using preset feature to look like Bootstrap buttons:
+Below is an example of buttons customized using preset feature to look like Bootstrap buttons:
 
 ![Bootstrap buttons using anu](/images/guide/anu-bootstrap-btns.png)
 
-If you have notices in installation section, To use Anu you need to use two presets.
+If you had noticed in the installation section, to use Anu you need to use two presets.
 
 1. Anu (`presetAnu`)
 2. Theme Default (`presetThemeDefault` )
 
-`presetAnu` provides core styles for anu. These styles have nothing to do with visuals of any component.
+`presetAnu` provides core styles for Anu. These styles have nothing to do with visuals of any component.
 
 `presetThemeDefault` is where all the styling magic happens.
 
@@ -23,9 +23,9 @@ Actually, [presets](https://github.com/unocss/unocss#presets) feature is from Un
 
 ## How to customize the theme default preset?
 
-To change the look of single component, you don't have to create the preset from the scratch or copy-paste the existing preset.
+To change the look of a single component, you don't have to create the preset from scratch or copy-paste the existing preset.
 
-`presetThemeDefault` have various shortcuts that styles the component. You can overrides these shortcuts to change the look & feel of the component.
+`presetThemeDefault` have various shortcuts that styles the component. You can override these shortcuts to change the look & feel of the component.
 
 ```ts
 presetThemeDefault({
@@ -41,4 +41,4 @@ Creating your own UnoCSS preset is really simple. We recommend you first checkou
 
 Next, you can refer to our `presetThemeDefault` preset to create you own preset.
 
-> _If you want more details feel free to let us know that you are building your own preset so we can focus more on this part of documentation._
+> _If you want more details, feel free to let us know that you are building your own preset so we can focus more on this part of documentation._

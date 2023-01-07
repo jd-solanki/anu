@@ -35,7 +35,7 @@ Assume your theme color is `#5563fd`. Just convert it to [hsl](https://developer
 
 Done 🥳
 
-If you want to change CSS variant in dark theme just update the selector:
+If you want to change the CSS variant in the dark theme, just update the selector:
 
 ```diff
 - :root
@@ -44,9 +44,9 @@ If you want to change CSS variant in dark theme just update the selector:
 
 ## How to create custom theme?
 
-Creating custom theme is as easy as defining new values for existing CSS variables.
+Creating a custom theme is as easy as defining new values for the existing CSS variables.
 
-Create new CSS selector for `:root` with theme name (assuming `coffee`) and write down CSS variables with desired values:
+Create a new CSS selector for `:root` with the theme name (assuming `coffee`) and write down the CSS variables with the desired values:
 
 ```css
 :root.coffee {
@@ -55,6 +55,6 @@ Create new CSS selector for `:root` with theme name (assuming `coffee`) and writ
 }
 ```
 
-Now just add class `coffee` to html element: `html.coffee`.
+Now just add class `coffee` to the html element: `html.coffee`.
 
 Don't forget to include the CSS file in your entrypoint 😜
