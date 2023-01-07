@@ -15,6 +15,7 @@ export interface LayerProps {
 // Thanks: https://youtu.be/a_m7jxrTlaw
 // type LooseAutocomplete<T extends string> = T | Omit<string, T>
 
+// TODO: Use `useColor` composable to removed the color calculation
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   let props = {
     /**

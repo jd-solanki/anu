@@ -1,3 +1,4 @@
+export * from './useColor'
 export * from './useConfigurable'
 export * from './useDOMScrollLock'
 export * from './useGroupModel'

@@ -1,14 +1,14 @@
 <script lang="ts" setup>
+import { defu } from 'defu'
 import type { ExtractPropTypes } from 'vue'
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
-import { disabled as disabledProp, readonly as readonlyProp } from '@/composables/useProps'
+import { useColor } from '@/composables'
+import { color as colorProp, disabled as disabledProp, readonly as readonlyProp } from '@/composables/useProps'
 
 const props = defineProps({
-  ...useLayerProps({
-    color: {
-      default: 'warning',
-    },
-  }),
+  /**
+   * Rating color
+   */
+  color: defu({ default: 'warning' }, colorProp),
 
   /**
    * Bind v-model value to rating
@@ -81,13 +81,7 @@ defineOptions({
   name: 'ARating',
 })
 
-const { getLayerClasses } = useLayer()
-
-const { styles, classes } = getLayerClasses(
-  toRef(props, 'color'),
-  ref(''),
-  ref(false),
-)
+const { styles } = useColor(toRef(props, 'color'), 'rating-color')
 
 const rating = ref(0)
 const isHovered = ref(false)
@@ -140,7 +134,6 @@ const onMouseLeave = () => {
       (props.animate && !props.readonly && !props.disabled) && 'a-rating-animated',
       props.readonly && 'a-rating-readonly pointer-events-none',
       props.disabled && 'a-rating-disabled pointer-events-none',
-      ...classes,
     ]"
   >
     <i
