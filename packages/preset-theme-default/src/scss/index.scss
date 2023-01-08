@@ -114,6 +114,35 @@ h6 {
     animation-duration: 0.35s;
 }
 
+@keyframes circular-dash {
+  0% {
+    stroke-dasharray: 1, 628;
+    stroke-dashoffset: 0px;
+  }
+
+  50% {
+    stroke-dasharray: 300, 628;
+    stroke-dashoffset: -100px;
+  }
+
+  to {
+    stroke-dasharray: 300, 628;
+    stroke-dashoffset: -600px;
+  }
+}
+
+.animate-circular-dash {
+  animation: circular-dash 2s ease-in-out infinite;
+}
+
+@keyframes ping-dot {
+  0%,100% {transform: scale(1);}
+  50% { transform: scale(1.2);}
+}
+.animate-ping-dot {
+  animation: ping-dot 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
 // Set default border-color for `hr` element for color scheme compatibility
 hr {
   border-color: hsla(var(--a-base-color),var(--a-border-opacity))

@@ -15,6 +15,17 @@ Use `ACircle` component to create svg circles.
 
 ::::
 
+<!-- 👉 Chart -->
+::::card Chart
+
+Use `ACircle` component to create svg circles.  
+
+:::code DemoCircleChart
+<<< @/components/demos/circle/DemoCircleChart.vue{1,2}
+:::
+
+::::
+
 <!-- 👉 Knob -->
 ::::card Knob
 

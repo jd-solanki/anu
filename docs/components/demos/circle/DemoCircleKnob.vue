@@ -17,7 +17,7 @@ const toggle = () => {
 }
 
 const target = ref(null)
-const knob = ref(20)
+const knob = ref(25)
 const { elementX, elementY, elementWidth, elementHeight, isOutside } = useMouseInElement(target)
 const { pressed } = useMousePressed({ target })
 
@@ -35,7 +35,7 @@ watch(angle, () => {
 // scroll
 const { y } = useWindowScroll()
 
-const scroll = ref(0)
+const scroll = ref(1)
 const wHeight = ref(0)
 onMounted(() => {
   wHeight.value = document.body.scrollHeight - window.innerHeight
@@ -47,9 +47,23 @@ watch(y, () => {
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+const onClick = () => {
+  console.log('click')
+}
 </script>
 
 <template>
+  <ACircle
+    color="danger"
+    class="text-xl"
+    :value="[{ class: 'fill-$a-layer-color animate-ping-dot', r: 40 },
+             { class: 'fill-$a-layer-color animate-ping', r: 60 },
+    ]"
+    svg-classes="rounded-full"
+    ring-classes="hidden"
+  />
+
   <ACircle
     :value="scroll"
     :color="scroll >= 100 ? 'success' : null"
@@ -63,7 +77,7 @@ const scrollToTop = () => {
         v-if="scroll < 100"
         class="text-xs"
       >
-        {{ y }}
+        {{ Math.round(y) }}
       </div>
       <i
         v-else
@@ -73,9 +87,13 @@ const scrollToTop = () => {
   </ACircle>
 
   <div class="flex justify-between">
-    <ABtn @click="toggle()">
+    <ABtn
+      class="animate-shake-x"
+      @click="toggle()"
+    >
       Transition
     </ABtn>
+
     <ACircle
       :value="number"
       color="warning"
@@ -84,37 +102,37 @@ const scrollToTop = () => {
 
     <ACircle
       ref="target"
-      :value="knob"
+      :value="number"
       color="primary"
       class="text-6xl"
     >
       <template #center>
-        <div class="text-base">
-          {{ Math.round(knob) }}
+        <div class="text-sm">
+          {{ Math.round(number) }}
         </div>
       </template>
     </ACircle>
 
     <ACircle
       ref="target"
-      :value="[{ value: knob, class: 'stroke-danger stroke-6' }]"
+      :value="{ value: knob, class: 'stroke-15 stroke-cap-round' }"
       color="danger"
       class="text-8xl cursor-pointer"
-      ring-classes="stroke-6"
-      rounded
+      ring-classes="stroke-15"
     >
       <template #default="{ circles, total }">
         <circle
           class="fill-danger"
           :cx="circles[0].endX"
           :cy="circles[0].endY"
-          r="8"
+          r="20"
+          @click="onClick"
         />
         <text
           x="0"
           y="0"
           fill="red"
-          class="text-base text-center"
+          class="text-5xl text-center"
           dominant-baseline="middle"
           text-anchor="middle"
         >
@@ -131,7 +149,7 @@ const scrollToTop = () => {
       ring-classes="stroke-white opacity-50"
     >
       <template #center>
-        <div class="text-lg flex justify-between items-center w-12 text-info font-bold">
+        <div class="text-base flex justify-between items-center w-10 text-info font-bold">
           <i class="i-bx-bxs-volume-full" />
           {{ Math.round(knob) }}
         </div>

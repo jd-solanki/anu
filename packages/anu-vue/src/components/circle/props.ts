@@ -1,10 +1,11 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
+
 import { useProps as useLayerProps } from '@/composables/useLayer'
 
 export const circleProps = {
   ...useLayerProps({
     variant: {
-      default: undefined,
+      default: 'text',
     },
   }),
 
@@ -25,8 +26,8 @@ export const circleProps = {
   },
 
   value: {
-    type: [Number, Array],
-    default: 25,
+    type: [Number, Array, Object],
+    default: 0,
   },
   isPercent: {
     type: Boolean,
@@ -49,7 +50,20 @@ export const circleProps = {
     type: String,
     default: null,
   },
+  svgStyles: {
+    type: String,
+    default: null,
+  },
   ringClasses: {
+    type: String,
+    default: null,
+  },
+
+  type: {
+    type: String as PropType<'doughnut' | 'pie'>,
+    default: 'doughnut',
+  },
+  viewBox: {
     type: String,
     default: null,
   },

@@ -15,74 +15,101 @@ const { styles, classes } = getLayerClasses(
   toRef(props, 'variant'),
   toRef(props, 'states'),
 )
+styles.value.push(props.svgStyles)
+if (props.gooey)
+  styles.value.push({ filter: 'url(#goo)' })
 
 // NOTE - Inspired from https://codepen.io/yufish/pen/mdBRmaM
 // and https://stackoverflow.com/questions/52067363/how-to-create-a-circle-progress-inside-a-vue-component
 
 // Calculate circle data
-const pad = props.rounded ? 9 : 0
-const radius = props.rounded ? 52 : 28
-const side = radius + pad
+const padding = props.type === 'pie' ? 0 : 20
+const radius = props.rounded ? 100 : 100
+const side = radius + padding
+
+let viewBox = props.viewBox || `-${side},-${side},${(side) * 2},${(side) * 2}`
+
 const circumference = Math.round(Math.PI * radius * 2)
 
-// Convert to array or format data
-const items = computed(() => Array.isArray(props.value) ? props.value : [{ value: props.value, class: 'stroke-current' }])
+let circles: any
+let total: any
+if (props.value) {
+  // Convert to array or format data
+  const items = computed(() => Array.isArray(props.value)
+    ? props.value
+    : typeof props.value === 'object' ? [props.value] : [{ value: props.value, class: 'stroke-current' }])
 
-// Get the total and all percentages
-const total = computed(() => items.value.reduce((prev, cur) => prev + cur.value, 0))
-const percentages = computed(() => items.value.map(item => total.value ? item.value / (props.isPercent ? 100 : total.value) : 0))
+  // Get the total and all percentages
+  total = computed(() => items.value.reduce((prev, cur) => prev + cur.value, 0))
+  const percentages = computed(() => items.value.map(item => total.value ? item.value / (props.isPercent ? 100 : total.value) : 0))
 
-const circles = computed(() => items.value.map((item, index) => {
-  const percent = percentages.value[index]
-  const cumul: number = percentages.value.slice(0, index).reduce((prev, cur) => prev + cur, 0)
+  circles = computed(() => items.value.map((item, index) => {
+    const percent = percentages.value[index]
+    const cumul = percentages.value.slice(0, index).reduce((prev, cur) => prev + cur, 0)
 
-  return {
-    ...item,
-    percent,
-    cumul,
+    const origin = item.origin ? item.origin / 100 : 0
+    const cumulPercent = cumul + origin - 0.25 // subtract 25% to start on North
+    const startR = radius - (item.startDistance || 0)
+    const endR = radius - (item.endDistance || 0)
+    const pi2 = Math.PI * 2
 
-    'startX': Math.cos((cumul - 0.25) * 2 * Math.PI) * (radius - (item.startOffset || 0)), // subtract .25 to start on North
-    'startY': Math.sin((cumul - 0.25) * 2 * Math.PI) * (radius - (item.startOffset || 0)),
-    'endX': Math.cos((cumul + percent - 0.25) * 2 * Math.PI) * (radius - (item.endOffset || 0)),
-    'endY': Math.sin((cumul + percent - 0.25) * 2 * Math.PI) * (radius - (item.endOffset || 0)),
-    'stroke-dasharray': `${percent * circumference} ${circumference}`,
-    'stroke-dashoffset': -cumul * circumference,
-    'style': item.offset && `transform: scale(${item.offset / 40})`,
-  }
-}))
+    return {
+      ...item,
+      percent,
+      cumul,
+
+      'startX': Math.cos(cumulPercent * pi2) * startR,
+      'startY': Math.sin(cumulPercent * pi2) * startR,
+      'endX': Math.cos((cumulPercent + percent) * pi2) * endR,
+      'endY': Math.sin((cumulPercent + percent) * pi2) * endR,
+      'stroke-dasharray': `${percent * circumference} ${circumference}`,
+      'stroke-dashoffset': -(cumul + origin) * circumference,
+      'style': item.distance && `transform: scale(${item.distance / radius})`,
+    }
+  }))
+}
 </script>
 
 <template>
   <div class="">
-    <div class="relative flex">
+    <div
+      class="relative flex"
+    >
       <svg
         class="inline w-[1em] h-[1em] ww-$a-spinner-size hh-$a-spinner-size"
         :class="[
           animation,
-          !rounded && 'rounded-full',
           ...classes,
           svgClasses,
+          props.type === 'pie' && 'rounded-full',
         ]"
         fill="none"
         :style="styles"
-        :viewBox="`-${side},-${side},${(side) * 2},${(side) * 2}`"
+        :viewBox="viewBox"
+        :width="maxX"
+        :height="maxY"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle
-          class="progress-ring-circle fill-none stroke-18 stroke-current opacity-25"
-          :class="ringClasses"
-          :r="radius"
-        />
 
-        <g class="-rotate-90">
-
+        <g
+          v-if="circles"
+          class="-rotate-90"
+        >
+          <circle
+            class="progress-ring-circle fill-none stroke-current opacity-25"
+            stroke-width="40"
+            :class="ringClasses"
+            :r="radius"
+          />
           <circle
             v-for="(circle, index) in circles"
             :key="index"
             :r="radius"
             :stroke-linecap="rounded ? 'round' : 'inherit'"
-            stroke-width="18"
+            class="stroke-current"
+            stroke-width="40"
             v-bind="circle"
+            style="text: red;"
           />
         </g>
 
