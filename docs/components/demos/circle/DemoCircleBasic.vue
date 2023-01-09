@@ -42,7 +42,6 @@ const pad = 20
           endDistance: radius - distance,
           class: 'stroke-primary stroke-2',
           color: 'current',
-          debug: true,
         }"
         class="mx-auto"
         svg-classes="w-300px h-300px"

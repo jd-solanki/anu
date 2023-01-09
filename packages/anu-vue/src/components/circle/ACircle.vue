@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { circleProps } from './props'
 import { useLayer } from '@/composables/useLayer'
+import { useArcs } from '@/composables/useTrigonometry'
 
 const props = defineProps(circleProps)
 
@@ -27,25 +28,13 @@ const padding = props.type === 'pie' ? 0 : 20
 const radius = props.rounded ? 100 : 100
 const side = radius + padding
 
-let viewBox = props.viewBox || `-${side},-${side},${(side) * 2},${(side) * 2}`
-
 const circumference = Math.round(Math.PI * radius * 2)
 
 let circles: any
-let total: any
-if (props.value) {
-  // Convert to array or format data
-  const items = computed(() => Array.isArray(props.value)
-    ? props.value
-    : typeof props.value === 'object' ? [props.value] : [{ value: props.value, class: 'stroke-current' }])
 
-  // Get the total and all percentages
-  total = computed(() => items.value.reduce((prev, cur) => prev + cur.value, 0))
-  const percentages = computed(() => items.value.map(item => total.value ? item.value / (props.isPercent ? 100 : total.value) : 0))
+const { arcs, total, viewBox: composableViewBox } = useArcs(toRef(props, 'value'))
 
-  circles = computed(() => items.value.map((item, index) => {
-    const percent = percentages.value[index]
-    const cumul = percentages.value.slice(0, index).reduce((prev, cur) => prev + cur, 0)
+let viewBox = props.viewBox || composableViewBox
 
     const origin = item.origin ? item.origin / 100 : 0
     const cumulPercent = cumul + origin - 0.25 // subtract 25% to start on North
@@ -90,9 +79,8 @@ if (props.value) {
         :height="maxY"
         xmlns="http://www.w3.org/2000/svg"
       >
-
         <g
-          v-if="circles"
+          v-if="arcs"
           class="-rotate-90"
         >
           <circle
@@ -102,7 +90,7 @@ if (props.value) {
             :r="radius"
           />
           <circle
-            v-for="(circle, index) in circles"
+            v-for="(circle, index) in arcs"
             :key="index"
             :r="radius"
             :stroke-linecap="rounded ? 'round' : 'inherit'"
@@ -113,7 +101,7 @@ if (props.value) {
           />
         </g>
 
-        <slot v-bind="{ circles, total }" />
+        <slot v-bind="{ circles: arcs, matrix, total }" />
       </svg>
 
       <div class="absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center select-none pointer-events-none">

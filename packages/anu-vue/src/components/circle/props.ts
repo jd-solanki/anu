@@ -1,4 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
+import type { typeArc } from '@/composables/useTrigonometry'
 
 import { useProps as useLayerProps } from '@/composables/useLayer'
 
@@ -26,7 +27,7 @@ export const circleProps = {
   },
 
   value: {
-    type: [Number, Array, Object],
+    type: [Number, String, Array as PropType<typeArc[]>, Object as PropType<typeArc>],
     default: 0,
   },
   isPercent: {
