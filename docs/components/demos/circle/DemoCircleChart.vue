@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 
-const isPercent = ref(true)
+const isPercentages = ref(true)
 
 const val1 = ref(20)
 const val2 = ref(40)
@@ -33,7 +33,7 @@ const slices = computed(() => [
         v-model="val3"
         type="number"
       />
-      <ACheckbox v-model="isPercent">
+      <ACheckbox v-model="isPercentages">
         It's percentages
       </ACheckbox>
     </div>
@@ -41,13 +41,13 @@ const slices = computed(() => [
     <div class="flex gap-6">
       <ACircle
         :value="values"
-        :is-percent="isPercent"
+        :is-percentages="isPercentages"
         svg-classes="w-100px h-100px"
       />
 
       <ACircle
         :value="values"
-        :is-percent="isPercent"
+        :is-percentages="isPercentages"
         class="text-8xl"
         rounded
       >
@@ -73,7 +73,7 @@ const slices = computed(() => [
 
       <ACircle
         :value="slices"
-        :is-percent="isPercent"
+        :is-percentages="isPercentages"
         class="text-8xl"
         ring-classes="hidden"
         type="pie"

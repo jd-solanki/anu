@@ -6,7 +6,7 @@ import type { ComputedRef, Ref } from 'vue'
 export interface UseArcsOptions {
   radius?: number
   padding?: number
-  isPercentages?: boolean
+  isPercentages?: MaybeRef<boolean>
 }
 
 // NOTE - If we use distance, we need to provide distance for points start and end of the arc. Maybe it's boring and useless... will see.
@@ -65,7 +65,7 @@ export function useArcs(source: MaybeRef<number | Array<typeArc> | typeArc>, opt
   // Get the total and all percentages
   const total = computed(() => items.value.reduce((prev, cur) => prev + unref(cur.value), 0))
   const percentages = computed(() => items.value.map(item => total.value
-    ? unref(item.value) / (isPercentages ? 100 : total.value)
+    ? unref(item.value) / (unref(isPercentages) ? 100 : total.value)
     : 0))
 
   // Compute all arcs

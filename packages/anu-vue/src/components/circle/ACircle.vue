@@ -24,15 +24,14 @@ if (props.gooey)
 // and https://stackoverflow.com/questions/52067363/how-to-create-a-circle-progress-inside-a-vue-component
 
 // Calculate circle data
-const padding = props.type === 'pie' ? 0 : 20
 const radius = props.rounded ? 100 : 100
-const side = radius + padding
-
-const circumference = Math.round(Math.PI * radius * 2)
 
 let circles: any
 
-const { arcs, total, viewBox: composableViewBox } = useArcs(toRef(props, 'value'))
+const { arcs, total, viewBox: composableViewBox } = useArcs(toRef(props, 'value'), {
+  isPercentages: toRef(props, 'isPercentages'),
+  padding: props.type === 'pie' ? 0 : 20,
+})
 
 let viewBox = props.viewBox || composableViewBox
 

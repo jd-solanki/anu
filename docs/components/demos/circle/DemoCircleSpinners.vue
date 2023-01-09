@@ -35,7 +35,7 @@ const colors = ['primary', 'success', 'warning', 'info', 'danger']
       color="success"
       class="text-6xl animate-spin animate-duration-2000"
       ring-classes="hidden"
-      :is-percent="false"
+      :is-percentages="false"
     />
 
     <ACircle
@@ -76,7 +76,7 @@ const colors = ['primary', 'success', 'warning', 'info', 'danger']
       class="text-6xl animate-spin animate-duration-2000 children:children:children:scale-90"
       ring-classes="hidden"
       rounded
-      :is-percent="false"
+      :is-percentages="false"
     />
   </div>
 
