@@ -69,13 +69,13 @@ const pad = 20
               class="fill-primary"
               :cx="arc.startX"
               :cy="arc.startY"
-              r="4"
+              r="5"
             />
             <circle
               class="fill-primary"
               :cx="arc.endX"
               :cy="arc.endY"
-              r="4"
+              r="5"
             />
 
             <!-- 👉 Sides -->
@@ -109,9 +109,9 @@ const pad = 20
             <!-- 👉 X and Y values -->
             <text
               :x="arc.endX"
-              :y="arc.endY > 0 ? -10 : 10"
+              :y="arc.endY > 0 ? -12 : 14"
               fill="currentColor"
-              class="text-xs text-center"
+              class="text-xs"
               dominant-baseline="middle"
               text-anchor="middle"
             >
@@ -121,9 +121,9 @@ const pad = 20
               :x="arc.endX > 0 ? -10 : 10"
               :y="arc.endY"
               fill="currentColor"
-              class="text-xs text-center"
+              class="text-xs"
               dominant-baseline="middle"
-              text-anchor="middle"
+              :text-anchor="arc.endX > 0 ? 'end' : 'start'"
             >
               {{ Math.round(-arc.endY) }}
             </text>

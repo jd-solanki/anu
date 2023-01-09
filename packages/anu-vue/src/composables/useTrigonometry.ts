@@ -23,7 +23,44 @@ export interface typeArc extends SVGElement {
 export interface typeArcsResult {
   arcs: ComputedRef<typeArc[]>
   total: ComputedRef<number>
+  radius: number
+  side: number
   viewBox: String
+}
+
+// Svg is a square. Calculate side, circumference and viewBox.
+function getBounds(radius: number, padding: number) {
+  const side = radius + padding
+
+  return {
+    circumference: Math.PI * radius * 2,
+    side,
+    viewBox: `-${side},-${side},${(side) * 2},${(side) * 2}`,
+  }
+}
+
+// Source could be a number, an array or an object. Normalize it !
+function normalizeSource(source: MaybeRef<number | Array<typeArc> | typeArc>) {
+  return computed(() => {
+    if (!isRef(source) || source === undefined)
+      return [{ value: source || 0, class: 'stroke-current' } as unknown as typeArc]
+    if (Array.isArray(source.value))
+      return source.value
+    if (typeof source.value === 'object')
+      return [source.value]
+
+    return [{ value: source.value || 0, class: 'stroke-current' } as unknown as typeArc]
+  })
+}
+
+// Return the total of all the values.
+function getTotal(items: ComputedRef<typeArc[]>) {
+  return computed(() => items.value.reduce((prev, cur) => prev + unref(cur.value), 0))
+}
+
+// Return percentages of the values.
+function getPercentages(items: ComputedRef<typeArc[]>, total: ComputedRef<number>, isPercentages: MaybeRef<boolean>) {
+  return computed(() => items.value.map(item => unref(item.value) / (unref(isPercentages) ? 100 : total.value)))
 }
 
 // option 1: number or reactive number
@@ -42,31 +79,15 @@ export function useArcs(source: MaybeRef<number | Array<typeArc> | typeArc>, opt
     isPercentages = true,
   } = options
 
-  // The shape is a square, get svg side
-  const side = radius + padding
-
-  // Calculate and return viewBox
-  const viewBox = `-${side},-${side},${(side) * 2},${(side) * 2}`
-
-  const circumference = Math.PI * radius * 2
+  // Get bounds of the shape
+  const { circumference, side, viewBox } = getBounds(radius, padding)
 
   // Convert source to array
-  const items = computed(() => {
-    if (!isRef(source) || source === undefined)
-      return [{ value: source || 0, class: 'stroke-current' } as unknown as typeArc]
-    if (Array.isArray(source.value))
-      return source.value
-    if (typeof source.value === 'object')
-      return [source.value]
+  const items = normalizeSource(source)
 
-    return [{ value: source.value || 0, class: 'stroke-current' } as unknown as typeArc]
-  })
-
-  // Get the total and all percentages
-  const total = computed(() => items.value.reduce((prev, cur) => prev + unref(cur.value), 0))
-  const percentages = computed(() => items.value.map(item => total.value
-    ? unref(item.value) / (unref(isPercentages) ? 100 : total.value)
-    : 0))
+  // Get the total and percentages of all items
+  const total = getTotal(items)
+  const percentages = getPercentages(items, total, isPercentages)
 
   // Compute all arcs
   const arcs: ComputedRef<typeArc[]> = computed(() => items.value.map((item, index) => {
@@ -94,5 +115,5 @@ export function useArcs(source: MaybeRef<number | Array<typeArc> | typeArc>, opt
     }
   }))
 
-  return { arcs, total, viewBox }
+  return { arcs, radius, side, total, viewBox }
 }

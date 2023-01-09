@@ -30,7 +30,7 @@ export const circleProps = {
     type: [Number, String, Array as PropType<typeArc[]>, Object as PropType<typeArc>],
     default: 0,
   },
-  isPercent: {
+  isPercentages: {
     type: Boolean,
     default: true,
   },

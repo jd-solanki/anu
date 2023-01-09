@@ -23,12 +23,9 @@ if (props.gooey)
 // NOTE - Inspired from https://codepen.io/yufish/pen/mdBRmaM
 // and https://stackoverflow.com/questions/52067363/how-to-create-a-circle-progress-inside-a-vue-component
 
-// Calculate circle data
-const radius = props.rounded ? 100 : 100
-
 let circles: any
 
-const { arcs, total, viewBox: composableViewBox } = useArcs(toRef(props, 'value'), {
+const { arcs, radius, side, total, viewBox: composableViewBox } = useArcs(toRef(props, 'value'), {
   isPercentages: toRef(props, 'isPercentages'),
   padding: props.type === 'pie' ? 0 : 20,
 })
@@ -96,11 +93,10 @@ let viewBox = props.viewBox || composableViewBox
             class="stroke-current"
             stroke-width="40"
             v-bind="circle"
-            style="text: red;"
           />
         </g>
 
-        <slot v-bind="{ arcs, matrix, total }" />
+        <slot v-bind="{ arcs, radius, side, total }" />
       </svg>
 
       <div class="absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center select-none pointer-events-none">
