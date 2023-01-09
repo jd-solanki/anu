@@ -120,11 +120,11 @@ const onClick = () => {
       class="text-8xl cursor-pointer"
       ring-classes="stroke-15"
     >
-      <template #default="{ circles, total }">
+      <template #default="{ arcs, total }">
         <circle
           class="fill-danger"
-          :cx="circles[0].endX"
-          :cy="circles[0].endY"
+          :cx="arcs[0].endX"
+          :cy="arcs[0].endY"
           r="20"
           @click="onClick"
         />

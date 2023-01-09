@@ -101,7 +101,7 @@ let viewBox = props.viewBox || composableViewBox
           />
         </g>
 
-        <slot v-bind="{ circles: arcs, matrix, total }" />
+        <slot v-bind="{ arcs, matrix, total }" />
       </svg>
 
       <div class="absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center select-none pointer-events-none">

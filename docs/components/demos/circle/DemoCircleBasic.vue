@@ -47,7 +47,7 @@ const pad = 20
         svg-classes="w-300px h-300px"
         ring-classes="stroke-1"
       >
-        <template #default="{ circles }">
+        <template #default="{ arcs }">
           <!-- 👉 Axis -->
           <line
             :x1="-radius - pad"
@@ -61,71 +61,71 @@ const pad = 20
           />
 
           <template
-            v-for="(circle, i) in circles"
+            v-for="(arc, i) in arcs"
             :key="i"
           >
             <!-- 👉 Handles -->
             <circle
               class="fill-primary"
-              :cx="circle.startX"
-              :cy="circle.startY"
+              :cx="arc.startX"
+              :cy="arc.startY"
               r="4"
             />
             <circle
               class="fill-primary"
-              :cx="circle.endX"
-              :cy="circle.endY"
+              :cx="arc.endX"
+              :cy="arc.endY"
               r="4"
             />
 
             <!-- 👉 Sides -->
             <line
-              :x2="circle.startX"
-              :y2="circle.startY"
-              :class="`stroke-${circle.color} stroke-1`"
+              :x2="arc.startX"
+              :y2="arc.startY"
+              :class="`stroke-${arc.color} stroke-1`"
             />
             <line
-              :x2="circle.endX"
-              :y2="circle.endY"
-              :class="`stroke-${circle.color} stroke-1`"
+              :x2="arc.endX"
+              :y2="arc.endY"
+              :class="`stroke-${arc.color} stroke-1`"
             />
 
             <!-- 👉 Dashed lines -->
             <line
-              :x1="circle.endX"
-              :x2="circle.endX"
-              :y2="circle.endY"
-              :class="`stroke-${circle.color} stroke-0.5`"
+              :x1="arc.endX"
+              :x2="arc.endX"
+              :y2="arc.endY"
+              :class="`stroke-${arc.color} stroke-0.5`"
               stroke-dasharray="4,4"
             />
             <line
-              :y1="circle.endY"
-              :x2="circle.endX"
-              :y2="circle.endY"
-              :class="`stroke-${circle.color} stroke-0.5`"
+              :y1="arc.endY"
+              :x2="arc.endX"
+              :y2="arc.endY"
+              :class="`stroke-${arc.color} stroke-0.5`"
               stroke-dasharray="4,4"
             />
 
             <!-- 👉 X and Y values -->
             <text
-              :x="circle.endX"
-              :y="circle.endY > 0 ? -10 : 10"
+              :x="arc.endX"
+              :y="arc.endY > 0 ? -10 : 10"
               fill="currentColor"
               class="text-xs text-center"
               dominant-baseline="middle"
               text-anchor="middle"
             >
-              {{ Math.round(circle.endX) }}
+              {{ Math.round(arc.endX) }}
             </text>
             <text
-              :x="circle.endX > 0 ? -10 : 10"
-              :y="circle.endY"
+              :x="arc.endX > 0 ? -10 : 10"
+              :y="arc.endY"
               fill="currentColor"
               class="text-xs text-center"
               dominant-baseline="middle"
               text-anchor="middle"
             >
-              {{ Math.round(-circle.endY) }}
+              {{ Math.round(-arc.endY) }}
             </text>
           </template>
         </template>

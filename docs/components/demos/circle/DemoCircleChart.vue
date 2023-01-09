@@ -6,7 +6,7 @@ const isPercent = ref(true)
 const val1 = ref(20)
 const val2 = ref(40)
 const val3 = ref(10)
-const arcs = computed(() => [
+const values = computed(() => [
   { value: val1.value, class: 'stroke-primary', color: 'primary', startDistance: 20, endDistance: 10 },
   { value: val2.value, class: 'stroke-danger', color: 'danger', startDistance: 70, endDistance: 10 },
   { value: val3.value, class: 'stroke-success', color: 'success', startDistance: 20, endDistance: 10 },
@@ -40,20 +40,20 @@ const slices = computed(() => [
 
     <div class="flex gap-6">
       <ACircle
-        :value="arcs"
+        :value="values"
         :is-percent="isPercent"
         svg-classes="w-100px h-100px"
       />
 
       <ACircle
-        :value="arcs"
+        :value="values"
         :is-percent="isPercent"
         class="text-8xl"
         rounded
       >
-        <template #default="{ circles, total }">
+        <template #default="{ arcs }">
           <circle
-            v-for="(dot, i) in circles"
+            v-for="(dot, i) in arcs"
             :key="i"
             :class="`fill-${dot.color} stroke-white`"
             :cx="dot.startX"
@@ -61,7 +61,7 @@ const slices = computed(() => [
             r="8"
           />
           <circle
-            v-for="(dot, i) in circles"
+            v-for="(dot, i) in arcs"
             :key="i"
             :class="`fill-${dot.color} stroke-black`"
             :cx="dot.endX"

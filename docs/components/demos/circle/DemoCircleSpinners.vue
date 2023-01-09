@@ -58,11 +58,11 @@ const colors = ['primary', 'success', 'warning', 'info', 'danger']
       ring-classes="stroke-none"
       rounded
     >
-      <template #default="{ circles, total }">
+      <template #default="{ arcs, total }">
         <circle
           class="fill-info"
-          :cx="circles[0].endX"
-          :cy="circles[0].endY"
+          :cx="arcs[0].endX"
+          :cy="arcs[0].endY"
           r="20"
         />
       </template>
@@ -117,9 +117,9 @@ const colors = ['primary', 'success', 'warning', 'info', 'danger']
       class="text-6xl animate-spin animate-duration-2000"
       ring-classes="stroke-none"
     >
-      <template #default="{ circles }">
+      <template #default="{ arcs }">
         <circle
-          v-for="(item, index) in circles"
+          v-for="(item, index) in arcs"
           :key="index"
           :class="`stroke-${item.color} fill-${item.color} animate-spin animate-duration-4000`"
           :cx="item.startX"
@@ -127,7 +127,7 @@ const colors = ['primary', 'success', 'warning', 'info', 'danger']
           r="10"
         />
         <circle
-          v-for="(item, index) in circles"
+          v-for="(item, index) in arcs"
           :key="index"
           :class="`stroke-${item.color} fill-${item.color} scale-40`"
           :cx="item.endX"
@@ -142,14 +142,14 @@ const colors = ['primary', 'success', 'warning', 'info', 'danger']
       class="text-6xl animate-spinn"
       ring-classes="stroke-none"
     >
-      <template #default="{ circles, total }">
+      <template #default="{ arcs, total }">
         <g
           v-for="n in 3"
           :key="n"
           :class="`animate-spin animate-duration-${1000 * n}`"
         >
           <circle
-            v-for="(item, index) in circles"
+            v-for="(item, index) in arcs"
             :key="index"
             :class="`stroke-${item.color} stroke-5 scale-${30 + (n * n - 1) * 10}`"
             :cx="item.startX"
@@ -166,14 +166,14 @@ const colors = ['primary', 'success', 'warning', 'info', 'danger']
       ring-classes="stroke-none"
       svg-classes="rounded-full"
     >
-      <template #default="{ circles, total }">
+      <template #default="{ arcs, total }">
         <g
           v-for="n in 2"
           :key="n"
           :class="`animate-spinn animate-duration-${1000 * n}`"
         >
           <circle
-            v-for="(item, index) in circles"
+            v-for="(item, index) in arcs"
             :key="index"
             :class="`stroke-${item.color} stroke-3 rotate-${30 + (n * n - 1) * 10}`"
             :cx="item.startX"
@@ -215,9 +215,9 @@ const colors = ['primary', 'success', 'warning', 'info', 'danger']
       ring-classes="stroke-none"
       svg-classes="rounded-full"
     >
-      <template #default="{ circles, total }">
+      <template #default="{ arcs, total }">
         <circle
-          v-for="(item, index) in circles"
+          v-for="(item, index) in arcs"
           :key="index"
           :class="`stroke-${item.color} stroke-3`"
         >
