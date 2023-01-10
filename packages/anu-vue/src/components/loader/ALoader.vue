@@ -15,8 +15,6 @@ defineOptions({
 const slots = useSlots()
 const attrs = useAttrs()
 
-const loading = toRef(props, 'loading')
-
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
   toRef(props, 'color'),
@@ -57,8 +55,8 @@ if (props.overlay) {
 if (props.fullPage) {
   const isLocked = useScrollLock(document.body, false)
 
-  watch(loading, () => {
-    isLocked.value = !!loading.value
+  watch(() => props.loading, () => {
+    isLocked.value = props.loading
   }, { immediate: true })
 }
 
