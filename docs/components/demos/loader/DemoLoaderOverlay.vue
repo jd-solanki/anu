@@ -16,7 +16,7 @@ const loading = ref(true)
       <ALoader
         :loading="loading"
         overlay
-        class="text-2xl bg-[#ddf3ff] dark:bg-[#15262e]"
+        class="text-2xl"
       />
     </AAlert>
     <AAlert
@@ -81,7 +81,6 @@ const loading = ref(true)
     >
       <ALoader
         :loading="loading"
-        variant="light"
         overlay
         class="text-3xl"
         title="It's loading..."
@@ -99,30 +98,66 @@ const loading = ref(true)
       </div>
     </ACard>
 
-    <ABtn
-      :loading="loading"
-      variant="fill"
-    >
-      Button
-    </ABtn>
-    <ABtn
-      :loading="loading"
-      variant="light"
-    >
-      Button
-    </ABtn>
-    <ABtn
-      :loading="loading"
-      variant="outline"
-    >
-      Button
-    </ABtn>
-    <ABtn
-      :loading="loading"
-      variant="text"
-    >
-      Button
-    </ABtn>
+    <div class="flex gap-x-2">
+      <AChip variant="fill">
+        Primary
+        <ALoader
+          :loading="loading"
+          overlay
+        />
+      </AChip>
+      <AChip>
+        Primary
+        <ALoader
+          :loading="loading"
+          overlay
+        />
+      </AChip>
+      <AChip variant="outline">
+        Primary
+        <ALoader
+          :loading="loading"
+          overlay
+          class="bg-white dark:bg-dark"
+        />
+      </AChip>
+      <AChip variant="text">
+        Primary
+        <ALoader
+          :loading="loading"
+          overlay
+          class="bg-light dark:bg-dark"
+        />
+      </AChip>
+    </div>
+
+    <div class="w-full flex gap-6">
+      <ABtn
+        :loading="loading"
+        variant="fill"
+      >
+        Button
+      </ABtn>
+      <ABtn
+        :loading="loading"
+        variant="light"
+      >
+        Button
+      </ABtn>
+      <ABtn
+        :loading="loading"
+        variant="outline"
+      >
+        Button
+      </ABtn>
+      <ABtn
+        :loading="loading"
+        variant="text"
+      >
+        Button
+      </ABtn>
+    </div>
+
     <ABtn
       variant="fill"
       :loading="loading"

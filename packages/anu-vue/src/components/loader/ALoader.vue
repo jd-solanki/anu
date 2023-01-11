@@ -73,44 +73,56 @@ else
 </script>
 
 <template>
-  <span
+  <!-- ℹ️ We need class `contents` to use component inline and align well in ABtn icon-only. -->
+  <div
     v-if="loading"
-    class="a-loader-overlay"
-    :class="[
-      (overlay || fullPage) && 'absolute z-1 top-0 bottom-0 left-0 right-0 w-full flex flex-col gap-2 items-center justify-center text-center',
-      fullPage && 'fixed !z-9999',
-      overlayClasses,
-      ...classes,
-    ]"
-    :style="styles"
+    :class="!overlay && !fullPage ? 'relative inline-block' : 'contents'"
   >
-    <!-- 👉 Slot: Default -->
-    <slot>
-      <ASpinner class="a-loader-spinner inline w-$a-spinner-size h-$a-spinner-size animate-spin" />
-    </slot>
-
-    <!-- 👉 Typography -->
     <div
-      v-if="_isTypographyUsed"
-      class="a-loader-typography-wrapper"
+      class="a-loader contents"
+      :class="[
+        (overlay || fullPage) && 'a-loader-overlay absolute z-1 top-0 bottom-0 left-0 right-0 w-full flex flex-col gap-2 items-center justify-center text-center',
+        fullPage && 'fixed !z-9999',
+        overlayClasses,
+        ...classes,
+      ]"
+      :style="styles"
     >
-      <ATypography
-        :title="props.title"
-        :subtitle="props.subtitle"
-        :text="Object.values(_textProp) as ConfigurableValue"
+      <!-- 👉 Slot: Default -->
+      <slot>
+        <ASpinner class="a-loader-spinner inline w-$a-spinner-size h-$a-spinner-size animate-spin" />
+      </slot>
+
+      <!-- 👉 Typography -->
+      <div
+        v-if="_isTypographyUsed"
+        class="a-loader-typography-wrapper"
       >
-        <!-- ℹ️ Recursively pass down slots to child -->
-        <template
-          v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
-          #[name]="slotProps"
+        <ATypography
+          :title="props.title"
+          :subtitle="props.subtitle"
+          :text="Object.values(_textProp) as ConfigurableValue"
         >
-          <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
-          <slot
-            :name="name"
-            v-bind="slotProps || {}"
-          />
-        </template>
-      </ATypography>
+          <!-- ℹ️ Recursively pass down slots to child -->
+          <template
+            v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+            #[name]="slotProps"
+          >
+            <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
+            <slot
+              :name="name"
+              v-bind="slotProps || {}"
+            />
+          </template>
+        </ATypography>
+      </div>
     </div>
-  </span>
+
+    <!-- 👉 Overlay mask -->
+    <div
+      v-if="overlay || fullPage"
+      class="a-loader-overlay-mask bg-white dark:bg-dark absolute top-0 bottom-0 left-0 right-0 w-full"
+      :class="fullPage && 'fixed !z-9998'"
+    />
+  </div>
 </template>
