@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-const arc = ref(10)
+const arcValue = ref(10)
 const origin = ref(0)
 const distance = ref(100)
 
@@ -13,7 +13,7 @@ const pad = 20
   <div class="flex flex-col gap-6">
     <div class="grid-row sm:grid-cols-3 place-items-stretch">
       <AInput
-        v-model="arc"
+        v-model="arcValue"
         type="number"
         label="Arc"
         hint="Value in %"
@@ -35,7 +35,7 @@ const pad = 20
     <div class="flex gap-6">
       <ACircle
         :value="{
-          value: arc,
+          value: arcValue,
           origin,
           distance,
           startDistance: radius - distance,

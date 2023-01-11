@@ -30,29 +30,7 @@ const { arcs, radius, side, total, viewBox: composableViewBox } = useArcs(toRef(
   padding: props.type === 'pie' ? 0 : 20,
 })
 
-let viewBox = props.viewBox || composableViewBox
-
-    const origin = item.origin ? item.origin / 100 : 0
-    const cumulPercent = cumul + origin - 0.25 // subtract 25% to start on North
-    const startR = radius - (item.startDistance || 0)
-    const endR = radius - (item.endDistance || 0)
-    const pi2 = Math.PI * 2
-
-    return {
-      ...item,
-      percent,
-      cumul,
-
-      'startX': Math.cos(cumulPercent * pi2) * startR,
-      'startY': Math.sin(cumulPercent * pi2) * startR,
-      'endX': Math.cos((cumulPercent + percent) * pi2) * endR,
-      'endY': Math.sin((cumulPercent + percent) * pi2) * endR,
-      'stroke-dasharray': `${percent * circumference} ${circumference}`,
-      'stroke-dashoffset': -(cumul + origin) * circumference,
-      'style': item.distance && `transform: scale(${item.distance / radius})`,
-    }
-  }))
-}
+const viewBox = props.viewBox || composableViewBox
 </script>
 
 <template>
@@ -71,8 +49,6 @@ let viewBox = props.viewBox || composableViewBox
         fill="none"
         :style="styles"
         :viewBox="viewBox"
-        :width="maxX"
-        :height="maxY"
         xmlns="http://www.w3.org/2000/svg"
       >
         <g
