@@ -90,7 +90,9 @@ else
     >
       <!-- 👉 Slot: Default -->
       <slot>
-        <ASpinner class="a-loader-spinner inline w-$a-spinner-size h-$a-spinner-size animate-spin" />
+        <ASpinner
+          class="a-loader-spinner w-$a-spinner-size h-$a-spinner-size rounded-full"
+        />
       </slot>
 
       <!-- 👉 Typography -->

@@ -1,21 +1,48 @@
 <template>
   <svg
     fill="none"
-    viewBox="0 0 24 24"
+    viewBox="-120,-120,240,240"
     xmlns="http://www.w3.org/2000/svg"
+    class="animate-spin animate-duration-[var(--a-spin-duration,_1s)]"
   >
-    <circle
-      class="opacity-25"
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="currentColor"
-      stroke-width="4"
-    />
-    <path
-      class=""
-      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-      fill="currentColor"
-    />
+    <g class="-rotate-90">
+      <circle
+        class="a-spinner-ring stroke-[var(--a-ring-color,_currentColor)] stroke-width-[var(--a-ring-stroke,_40)] opacity-[var(--a-ring-opacity,_.25)]"
+        r="100"
+      />
+      <circle
+        r="100"
+        class="a-spinner-arc stroke-[var(--a-arc-color,_currentColor)] stroke-width-[var(--a-arc-stroke,_40)] opacity-[var(--a-arc-opacity)]"
+        stroke-dasharray="219.9114857512855 628.3185307179587"
+        stroke-dashoffset="0"
+      />
+    </g>
   </svg>
 </template>
+
+<style scoped>
+.stroke-cap-round .a-spinner-arc {
+  stroke-linecap: round;
+}
+
+@keyframes circular-dash {
+  0% {
+    stroke-dasharray: 1, 628;
+    stroke-dashoffset: 0px;
+  }
+
+  50% {
+    stroke-dasharray: 300, 628;
+    stroke-dashoffset: -100px;
+  }
+
+  to {
+    stroke-dasharray: 300, 628;
+    stroke-dashoffset: -600px;
+  }
+}
+
+.animate-circular-dash .a-spinner-arc {
+  animation: circular-dash 2s ease-in-out infinite;
+}
+</style>

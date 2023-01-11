@@ -39,6 +39,26 @@ By default, the loader follow the current text color.
 
 ::::
 
+<!-- 👉 Customization -->
+::::card Customization
+
+You can use customize apparence of the loader.  
+It's composed of two elements : `ring` and `arc`.
+
+Use classes to change individually the `stroke`, the `color` and the `opacity`.
+
+Add the class `stroke-cap-round` to round the arc.
+
+You can also change the rotation speed or animation effect with the class `animate-circular-dash`.
+
+Thanks to unocss, the possibilities are endless !
+
+:::code DemoLoaderCustomization
+<<< @/components/demos/loader/DemoLoaderCustomization.vue{3,7,10,12,16,21}
+:::
+
+::::
+
 <!-- 👉 Overlay -->
 ::::card Overlay
 
