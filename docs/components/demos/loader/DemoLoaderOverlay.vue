@@ -11,7 +11,10 @@ const loading = ref(true)
     </ABtn>
 
     <!-- Alert -->
-    <AAlert color="info">
+    <AAlert
+      color="info"
+      class="relative"
+    >
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
         :loading="loading"
@@ -22,6 +25,7 @@ const loading = ref(true)
     <AAlert
       color="info"
       variant="fill"
+      class="relative"
     >
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
@@ -33,30 +37,32 @@ const loading = ref(true)
     <AAlert
       color="info"
       variant="outline"
+      class="relative"
     >
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
         :loading="loading"
         overlay
-        class="text-2xl bg-white dark:bg-dark"
+        class="text-2xl"
       />
     </AAlert>
     <AAlert
       color="info"
       variant="text"
+      class="relative"
     >
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
         :loading="loading"
         overlay
-        class="text-2xl bg-light dark:bg-dark"
+        class="text-2xl"
       />
     </AAlert>
 
     <!-- Card -->
     <ACard
       variant="fill"
-      color="danger"
+      class="relative"
       title="Card title"
       subtitle="Chocolate cake tiramisu donut"
     >
@@ -78,6 +84,7 @@ const loading = ref(true)
     <ACard
       variant="light"
       color="danger"
+      class="relative"
     >
       <ALoader
         :loading="loading"
@@ -99,21 +106,27 @@ const loading = ref(true)
     </ACard>
 
     <div class="flex gap-x-2">
-      <AChip variant="fill">
+      <AChip
+        class="relative"
+        variant="fill"
+      >
         Primary
         <ALoader
           :loading="loading"
           overlay
         />
       </AChip>
-      <AChip>
+      <AChip class="relative">
         Primary
         <ALoader
           :loading="loading"
           overlay
         />
       </AChip>
-      <AChip variant="outline">
+      <AChip
+        class="relative"
+        variant="outline"
+      >
         Primary
         <ALoader
           :loading="loading"
@@ -121,7 +134,10 @@ const loading = ref(true)
           class="bg-white dark:bg-dark"
         />
       </AChip>
-      <AChip variant="text">
+      <AChip
+        class="relative"
+        variant="text"
+      >
         Primary
         <ALoader
           :loading="loading"

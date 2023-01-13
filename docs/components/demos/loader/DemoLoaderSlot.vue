@@ -1,6 +1,6 @@
 <template>
   <div class="cards-demo-container">
-    <ACard class="flex text-center justify-center p-6">
+    <ACard class="flex text-center justify-center p-6 relative">
       <ALoader
         title="Heartbeat"
         subtitle="Made with love with Anu"
