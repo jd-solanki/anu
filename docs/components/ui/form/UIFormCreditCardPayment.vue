@@ -30,11 +30,13 @@ const creditCardDetails = reactive({
           v-model.trim="creditCardDetails.expiration"
           label="Expiration"
           placeholder="23/12"
+          class="justify-end"
         />
         <AInput
           v-model.trim.number="creditCardDetails.cvc"
           label="CVV"
           placeholder="987"
+          class="justify-end"
           type="number"
         />
 
