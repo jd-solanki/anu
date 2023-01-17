@@ -14,7 +14,6 @@ const isDrawerShown = ref(false)
     <AAlert
       color="info"
       variant="fill"
-      class="relative"
       @click="ready && start()"
     >
       AAlert component. Click to start loading...
@@ -31,7 +30,6 @@ const isDrawerShown = ref(false)
       color="danger"
       title="Card title"
       subtitle="Chocolate cake tiramisu donut"
-      class="relative"
       @click="ready && start()"
     >
       <div class="a-card-body a-card-spacer">
@@ -60,7 +58,7 @@ const isDrawerShown = ref(false)
       <ALoader
         :loading="!ready"
         overlay
-        class="text-6xl"
+        class="text-6xl bg-white"
       />
     </ADialog>
 
@@ -77,7 +75,7 @@ const isDrawerShown = ref(false)
       <ALoader
         :loading="!ready"
         overlay
-        class="text-6xl"
+        class="text-6xl bg-white"
       />
     </ADrawer>
 

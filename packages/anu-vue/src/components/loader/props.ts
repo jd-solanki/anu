@@ -1,24 +1,14 @@
 import type { ExtractPropTypes } from 'vue'
 import { typographyProps } from '@/components/typography/props'
 import { useProps as useLayerProps } from '@/composables/useLayer'
-import { color } from '@/composables/useProps'
 
 export const loaderProps = {
   ...useLayerProps({
-    color: {
-      default: 'primary',
-    },
     variant: {
       default: undefined,
     },
   }),
-
   ...typographyProps,
-
-  /**
-   * Typography color
-   */
-  typographyColor: color,
 
   /**
    * Toggle loading state
@@ -35,11 +25,6 @@ export const loaderProps = {
     type: Boolean,
     default: false,
   },
-
-  /**
-   * Overlay color
-   */
-  overlayColor: color,
 
   /**
    * Display loader in full page mode

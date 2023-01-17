@@ -1,12 +1,10 @@
-<script lang="ts" setup>
-import type { Ref } from 'vue'
+<script setup lang="ts">
+import { ATypography } from '../typography'
 import ASpinner from './ASpinner.vue'
 import { loaderProps } from './props'
 import { isTypographyUsed } from '@/components/typography/utils'
-import { useColor } from '@/composables'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
-import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
-import { useTypographyColor } from '@/composables/useTypographyColor'
+import { useLayer } from '@/composables/useLayer'
 
 const props = defineProps(loaderProps)
 
@@ -15,22 +13,53 @@ defineOptions({
 })
 
 const slots = useSlots()
+const attrs = useAttrs()
 
-const _loaderColor = computed(() => props.color || 'hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity))')
-const _overlayColor = computed(() => props.overlayColor || 'hsla(var(--a-layer), 0.8)')
-const _typographyColor = computed(() => props.typographyColor || null)
-
-const { styles: loaderStyles } = useColor(_loaderColor, 'loader-color')
-const { styles: overlayStyles } = useColor(_overlayColor, 'loader-overlay-color', 'bg')
-
-// TODO: Create composable useLazyVShow
-const isShownOnce = ref(props.loading)
-watchOnce(
-  () => props.loading,
-  () => { isShownOnce.value = true },
+const { getLayerClasses } = useLayer()
+const { styles, classes } = getLayerClasses(
+  toRef(props, 'color'),
+  toRef(props, 'variant'),
+  toRef(props, 'states'),
 )
 
-// ℹ️ Typography
+// FIXME Can't found a better way to change the background overlay depending of the layer. It's not perfect for transparent variant like light, text or outline.
+const attrsClasses = attrs.class as string || ''
+const overlayClasses = computed(() => {
+  // We skip if there is some bg-* classes
+  if (!props.overlay || attrsClasses.split(' ').some(c => /^bg-(.+)$/.test(c)))
+    return
+  if (!props.variant || props.variant === 'fill')
+    return 'bg-$a-layer-color'
+
+  if (props.variant === 'outline')
+    return 'bg-white dark:bg-dark !border-none states'
+
+  if (props.variant === 'light')
+    return 'bg-$a-layer-color states'
+
+  return 'bg-$a-layer-color' // bg-light dark:bg-dark'
+})
+
+if (props.overlay) {
+  onMounted(() => {
+    const instance = getCurrentInstance()
+
+    // Add `relative` class to parent if overlay props
+    // FIXME It's work but it's ugly and not secure at all. Should we ask developer to add `relative` class themselves ?
+    if (instance?.parent?.vnode.el)
+      instance.parent.vnode.el.classList.add('relative', 'overflow-hidden')
+  })
+}
+
+// Prevent scrolling when full page mode
+if (props.fullPage) {
+  const isLocked = useScrollLock(document.body, false)
+
+  watch(() => props.loading, () => {
+    isLocked.value = props.loading
+  }, { immediate: true })
+}
+
 const _isTypographyUsed = isTypographyUsed(toRefs(props), slots)
 
 // Modify text prop to have `text-sm`
@@ -41,39 +70,27 @@ else if (Array.isArray(_textProp.value.classes))
   _textProp.value.classes = [..._textProp.value.classes, 'text-sm']
 else
   _textProp.value.classes = ' text-sm'
-
-const { typographyClasses } = useTypographyColor(_typographyColor)
-
-// Prevent scrolling when full page mode
-if (props.fullPage) {
-  // Lock DOM scroll when modelValue is `true`
-  // ℹ️ We need to use type assertion here because of this issue: https://github.com/johnsoncodehk/volar/issues/2219
-  useDOMScrollLock(toRef(props, 'loading') as Ref<boolean>)
-}
 </script>
 
 <template>
-  <!-- TODO: Use loader's CSS color instead of layer color: bg-[hsla(var(--a-layer),0.85)] -->
+  <!-- ℹ️ We need class `contents` to use component inline and align well in ABtn icon-only. -->
   <div
-    v-if="isShownOnce"
-    v-show="props.loading"
-    class="a-loader-wrapper inline-block align-middle text-center rounded-inherit overflow-hidden"
-    :class="[
-      props.overlay && 'absolute inset-0',
-    ]"
+    v-if="loading"
+    :class="!overlay && !fullPage ? 'relative inline-block' : 'contents'"
   >
     <div
-      :style="props.overlay || props.fullPage ? overlayStyles : undefined"
-      class="a-loader-overlay"
+      class="a-loader contents"
       :class="[
-        (props.overlay || props.fullPage) && 'w-full h-full flex flex-col gap-3 items-center justify-center overflow-hidden',
-        props.fullPage && 'fixed inset-0 z-54',
+        (overlay || fullPage) && 'a-loader-overlay absolute z-1 top-0 bottom-0 left-0 right-0 w-full flex flex-col gap-2 items-center justify-center text-center',
+        fullPage && 'fixed !z-9999',
+        overlayClasses,
+        ...classes,
       ]"
+      :style="styles"
     >
-      <!-- 👉 Slot: default -->
+      <!-- 👉 Slot: Default -->
       <slot>
         <ASpinner
-          :style="loaderStyles"
           class="a-loader-spinner w-$a-spinner-size h-$a-spinner-size rounded-full"
         />
       </slot>
@@ -84,7 +101,6 @@ if (props.fullPage) {
         class="a-loader-typography-wrapper"
       >
         <ATypography
-          :class="typographyClasses"
           :title="props.title"
           :subtitle="props.subtitle"
           :text="Object.values(_textProp) as ConfigurableValue"
@@ -103,5 +119,12 @@ if (props.fullPage) {
         </ATypography>
       </div>
     </div>
+
+    <!-- 👉 Overlay mask -->
+    <div
+      v-if="overlay || fullPage"
+      class="a-loader-overlay-mask bg-white dark:bg-dark absolute top-0 bottom-0 left-0 right-0 w-full"
+      :class="fullPage && 'fixed !z-9998'"
+    />
   </div>
 </template>

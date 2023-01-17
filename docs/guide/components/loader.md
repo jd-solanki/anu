@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ALoader.json';
+import api from '@anu/component-meta/ALoader.json'
 </script>
 
 # Loader
@@ -14,12 +14,6 @@ Use `ALoader` component to display a loader.
 :::
 
 ::::
-
-:::warning caveats
-
-1. Had to ensure `position: relative` on the wrapper element if using `overlay` prop
-2. You might experience loader is square instead of adopting to the border radius of element it's wrapping. This is because element with border radius isn't immediate parent of loader and due to this reasons loader can't inherit the border radius. e.g. `AAlert` component. In this case, just add `.overflow-hidden` and done 😇
-:::
 
 <!-- 👉 Sizing -->
 ::::card Sizing

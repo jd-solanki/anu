@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ALoader } from '@/components/loader'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, disabled as disabledProp, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
@@ -46,14 +45,13 @@ const { styles, classes } = getLayerClasses(
 </script>
 
 <template>
-  <!-- ❗ relative class is required for loader. states also adds relative class but it can be turned off via prop -->
   <button
     :tabindex="props.disabled ? -1 : 0"
     :style="[
       ...styles,
       { '--a-spacing': spacing / 100 },
     ]"
-    class="whitespace-nowrap inline-flex justify-center items-center relative"
+    class="whitespace-nowrap inline-flex justify-center items-center"
     :class="[
       props.iconOnly ? 'a-btn-icon-only' : 'a-btn',
       props.disabled && 'opacity-50 pointer-events-none',
@@ -61,13 +59,21 @@ const { styles, classes } = getLayerClasses(
     ]"
     :disabled="props.disabled ? true : undefined"
   >
+    <template v-if="props.icon">
+      <ALoader
+        v-if="props.loading"
+        class="bg-transparent contents"
+      />
+      <i
+        v-else
+        :class="props.icon"
+      />
+    </template>
     <ALoader
-      v-if="props.loading"
+      v-else-if="props.loading"
+      :color="props.color"
+      :variant="props.variant === 'text' ? 'outline' : props.variant"
       overlay
-    />
-    <i
-      v-if="props.icon && !props.loading"
-      :class="props.icon"
     />
     <slot />
     <i
