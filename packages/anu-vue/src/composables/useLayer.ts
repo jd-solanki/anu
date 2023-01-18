@@ -88,6 +88,8 @@ export const useLayer = () => {
     //   return `hsla(${hsla.h},${hsla.s}%,${hsla.l}%,${hsla.a * 100}%)`
     // })()
 
+    styles.push({ '--a-layer-hsl-color': _isThemeColor ? `var(--a-${propColor})` : _colord.toHslString().replace(/hsla?\(([\d\s]+,[\d\s]+%,[\d\s]+%).*/gm, '$1') })
+
     if (propVariant === 'fill') {
       if (_isThemeColor) {
         // Background

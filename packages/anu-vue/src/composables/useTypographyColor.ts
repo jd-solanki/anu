@@ -7,7 +7,7 @@ const calculateColor = (_isThemeColor: boolean, _color: ColorProp | null, _varia
   const classes = []
   const styles = []
   if (_isThemeColor) {
-    classes.push('a-subtitle-opacity-100')
+    classes.push('a-title-opacity-100 a-subtitle-opacity-100')
     if (_variant !== 'fill')
       classes.push(`a-title-${_color} a-subtitle-${_color}`)
     else
