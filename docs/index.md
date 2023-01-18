@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Anu
   text: Build better interfaces faster
-  tagline: DX focused utility based vue component library
+  tagline: DX focused utility based Vue component library
   actions:
     - theme: brand
       text: Get Started
@@ -33,14 +33,14 @@ hero:
   <div>
     <div class="i-fluent-emoji-four-leaf-clover text-primary text-3xl inline-flex shrink-0 p-2"></div>
     <p class="text-high-emphasis font-semibold text-xl">Flexibility</p>
-    <span class="text-sm">With UnoCSS's arbitrary values and component customization you can build desired UI in no time.</span>
+    <span class="text-sm">With UnoCSS's arbitrary values and component customization, you can build your desired UI in no time.</span>
   </div>
 
   <!-- Configurable -->
   <div>
     <div class="i-fluent-emoji-sparkles text-primary text-3xl inline-flex shrink-0 p-2"></div>
     <p class="text-high-emphasis font-semibold text-xl">Configurable UI</p>
-    <span class="text-sm">This is the most exciting and beloved feature of anu. Customize the rendered UI via configurable array.</span>
+    <span class="text-sm">This is the most exciting and beloved feature of Anu. Customize the rendered UI via configurable array.</span>
   </div>
 
   <!-- Design -->
@@ -54,7 +54,7 @@ hero:
   <div>
     <div class="i-fluent-emoji-high-voltage text-primary text-3xl inline-flex shrink-0 p-2"></div>
     <p class="text-high-emphasis font-semibold text-xl">Powerful tools</p>
-    <span class="text-sm">Anu is build on top of powerful tools like UnoCSS, VueUse, etc. This saves your lot of development time.</span>
+    <span class="text-sm">Anu is built on top of powerful tools like UnoCSS, VueUse, etc. This saves you alot of development time.</span>
   </div>
 
   <!-- Hackable -->

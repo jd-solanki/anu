@@ -18,7 +18,7 @@ Default variant for badge is `standard`
 <!-- 👉 Content -->
 ::::card Content
 
-Use the prop `content` to pass numeric values, if you want to use other data different than a number use the slot `content` instead
+Use the prop `content` to pass numeric values, if you want to use other data different than a number, use the slot `content` instead
 
 :::code DemoBadgeContent
 <<< @/components/demos/badge/DemoBadgeContent.vue{3,8}
@@ -40,7 +40,7 @@ You can use v-model to control hiding/showing the badge
 <!-- 👉 Color -->
 ::::card Color
 
-You can use `color` prop to change the badge color.
+You can use the `color` prop to change the badge color.
 
 :::code DemoBadgeColor
 <<< @/components/demos/badge/DemoBadgeColor.vue{5,11,17,23,29}
@@ -86,7 +86,7 @@ Change the `max` prop to cap the numeric value of the content
 
 Use `overlap` prop to adjust the position of the badge, if you need more refined adjustments you can use the `offsetX` or `offsetY` props.
 
-By default of `overlap` prop is `true`.
+By default `overlap` prop is `true`.
 
 :::code DemoBadgeOverlap
 <<< @/components/demos/badge/DemoBadgeOverlap.vue{10,18-19}

@@ -29,7 +29,7 @@
     }
     ```
 
-2. Create UnoCSS Config file `uno.config.js` in root of the project with below content:
+2. Create the UnoCSS Config file `uno.config.js` in the root of the project with the content below:
 
     ```ts
     import { presetAnu, presetIconExtraProperties } from 'anu-vue'
@@ -58,7 +58,7 @@
     })
     ```
 
-3. Update your `main.js` file like below:
+3. Update your `main.js` file as shown below:
 
     ```js{3,5-6,8-9,13,11-12,15-16}
     import { createApp } from 'vue'
@@ -96,7 +96,7 @@ Now, Just refer to the component in your vue files:
 
 <br>
 
-Probably you might not want to globally register the components. You can also follow below approaches:
+Probably you might not want to globally register the components. You can also follow the approaches below:
 
 ### Tree Shaking
 
@@ -112,7 +112,7 @@ You can also follow À la carte fashion if you don't want to register all the co
         .mount('#app')
     ```
 
-2. Now, import components individually from `anu-vue`
+2. Now import the components individually from `anu-vue`
 
     ```vue
     <script setup>
@@ -128,7 +128,7 @@ You can also follow À la carte fashion if you don't want to register all the co
 
 [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) lets you auto import components on demand. With this you can omit import statement and still get benefits of tree shaking.
 
-1. Remove anu plugin use in `main.js` file if you haven't
+1. Remove the anu plugin in the `main.js` file if you haven't
 
     ```diff
     -  import { anu } from 'anu-vue'
@@ -151,7 +151,7 @@ You can also follow À la carte fashion if you don't want to register all the co
     npm i -D unplugin-vue-components
     ```
 
-3. Add following in `vite.config.js`:
+3. Add the following in `vite.config.js`:
 
     ```js
     // other imports
@@ -172,7 +172,7 @@ You can also follow À la carte fashion if you don't want to register all the co
     })
     ```
 
-4. Now, just use components the component and it will be auto imported on demand 🤯
+4. Now just use the component and it will be auto imported on demand 🤯
 
     ```vue
     <template>
@@ -195,7 +195,7 @@ You can also follow À la carte fashion if you don't want to register all the co
     npm install @anu-vue/nuxt && npm install -D @unocss/nuxt
     ```
 
-2. Add Anu & UnoCSS in nuxt modules
+2. Add Anu & UnoCSS in the nuxt modules array in the `nuxt.config.ts` file as shown below: 
 
     ```ts
     import { defineNuxtConfig } from 'nuxt/config'
@@ -205,7 +205,7 @@ You can also follow À la carte fashion if you don't want to register all the co
     })
     ```
 
-3. Add UnoCSS config file `uno.config.ts` with this configuration
+3. Add UnoCSS config file `uno.config.ts` with the configuration shown below:
 
     ```ts
     import { defineConfig } from 'unocss'
@@ -215,7 +215,7 @@ You can also follow À la carte fashion if you don't want to register all the co
     })
     ```
 
-It's done, Let's try button component 🥳
+It's done, Let's try the button component 🥳
 
 ```vue
 <template>
@@ -225,7 +225,7 @@ It's done, Let's try button component 🥳
 
 ## Volar Support
 
-If you are using [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar), you can specify global component types by adding below configuration in your [`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig).
+If you are using [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar), you can specify global component types by adding the configuration below in your [`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig).
 
 ```json
 {
@@ -236,6 +236,6 @@ If you are using [Volar](https://marketplace.visualstudio.com/items?itemName=Vue
 }
 ```
 
-If you have typescript project, you have to configure above in `tsconfig.json` file.
+If you have a typescript project, you will have to configure the above in the `tsconfig.json` file.
 
 That's it, enjoy the autocompletion 🥳
