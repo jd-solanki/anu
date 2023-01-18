@@ -30,8 +30,7 @@ defineOptions({
 const _tableProps = reactivePick(props, Object.keys(tableProps).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof typeof tableProps>)
 
 const _rows = ref<Record<string, unknown>[]>(typeof props.rows !== 'function' ? props.rows : [])
-const serverTotal = ref(0)
-const _total = ref(typeof props.rows === 'function' ? serverTotal.value : props.rows.length)
+const _total = ref(typeof props.rows === 'function' ? 0 : props.rows.length)
 
 // SECTION Calculate column
 /*
@@ -118,7 +117,7 @@ const fetchRows = () => {
       .then(data => {
         const { rows, total } = data
         _rows.value = rows
-        serverTotal.value = total
+        _total.value = total
       })
   }
   else {

@@ -17,6 +17,21 @@ You can also use `default` slot to render your custom content if you don't want 
 
 ::::
 
+:::tip Customization
+`AList` is highly customizable component. It uses CSS variables for its spacing so you can have full control over high it look. You can update this CSS variables via UnoCSS classes to change the appearance.
+
+```vue
+<template>
+  <AList class="[--a-list-gap:1rem]"></AList>
+</template>
+```
+
+Below is available CSS variable you can override:
+
+<<< @/../packages/preset-theme-default/src/scss/index.scss#a-list-css-vars
+
+:::
+
 <!-- 👉 Slots -->
 ::::card Slots
 

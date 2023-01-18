@@ -68,7 +68,7 @@ You can customize close icon using `append-icon` prop.
 <!-- 👉 v-model support -->
 ::::card v-model support
 
-Alert also support `v-model` to show and hide alert based on model value.
+Alert also supports `v-model` to show and hide alert based on model value.
 
 :::code DemoAlertVModelSupport
 <<< @/components/demos/alert/DemoAlertVModelSupport.vue{4,9}

@@ -2,7 +2,7 @@ import type { MaybeRef } from '@vueuse/core'
 import { defu } from 'defu'
 import type { ComponentObjectPropsOptions } from 'vue'
 import { ref, unref, watch } from 'vue'
-import { contrast } from '@/utils/color'
+import { getContrastColor } from '@/utils/color'
 import { color } from '@/composables/useProps'
 import type { ColorProp } from '@/composables/useProps'
 
@@ -15,6 +15,7 @@ export interface LayerProps {
 // Thanks: https://youtu.be/a_m7jxrTlaw
 // type LooseAutocomplete<T extends string> = T | Omit<string, T>
 
+// TODO: Use `useColor` composable to removed the color calculation
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
   let props = {
     /**
@@ -60,8 +61,7 @@ export const useLayer = () => {
         : '',
     ]
 
-    const isThemeColor = propColor && ['primary', 'success', 'info', 'warning', 'danger'].includes(propColor)
-    const isHexColor = propColor && /^#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3}$/.test(propColor)
+    const isThemeColor = propColor && (['primary', 'success', 'info', 'warning', 'danger'] as ColorProp[]).includes(propColor)
 
     // 👉 Styles
     const styles = []
@@ -70,9 +70,9 @@ export const useLayer = () => {
     if (!isThemeColor) {
       styles.push({ '--a-layer-color': propColor })
 
-      // If color isn't theme color & is HEX color => Calculate contrast color => Assign it to `--a-layer-text`
-      if (isHexColor) {
-        const contrastColor = contrast(propColor)
+      if (propColor) {
+        // If color isn't theme color & is HEX color => Calculate contrast color => Assign it to `--a-layer-text`
+        const contrastColor = getContrastColor(propColor as string)
 
         styles.push(`--a-layer-text: ${contrastColor}`)
         styles.push(`--un-ring-color: ${propColor}`)
