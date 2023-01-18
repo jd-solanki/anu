@@ -5,6 +5,7 @@
       title="Card title"
       subtitle="Chocolate cake tiramisu donut"
       text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
+      color="red"
     />
 
     <!-- 👉 Using custom content (without props) -->

@@ -2,7 +2,8 @@ import type { MaybeRef } from '@vueuse/core'
 import { defu } from 'defu'
 import type { ComponentObjectPropsOptions } from 'vue'
 import { ref, unref, watch } from 'vue'
-import { getContrastColor } from '@/utils/color'
+import { useTypographyColor } from './useTypographyColor'
+import { getContrastColor, isThemeColor } from '@/utils/color'
 import { color } from '@/composables/useProps'
 import type { ColorProp } from '@/composables/useProps'
 
@@ -53,21 +54,25 @@ interface UseLayerConfig {
 }
 export const useLayer = () => {
   // TODO(TS): Improve typing
-  const computeClassesStyles = (propColor: ColorProp, propVariant: string, propsStates: boolean, config?: UseLayerConfig) => {
+  const computeClassesStyles = (propColor: ColorProp, propVariant: string, propsStates: boolean, config: UseLayerConfig = {}) => {
     // 👉 Classes
-    const classes: string[] = [
-      propsStates
-        ? (config && config.statesClass ? config.statesClass : 'states')
-        : '',
+    const classes = [
+      propsStates && defu(config, { statesClass: 'states' }),
     ]
 
-    const isThemeColor = propColor && (['primary', 'success', 'info', 'warning', 'danger'] as ColorProp[]).includes(propColor)
+    const { typographyClasses } = useTypographyColor(propColor)
+    console.log('typographyClasses.value :>> ', typographyClasses.value)
+
+    classes.push(typographyClasses.value)
+    console.log('classes :>> ', classes)
 
     // 👉 Styles
     const styles = []
 
+    const _isThemeColor = isThemeColor(propColor)
+
     // If it's not theme color => Set color we received as prop to `--a-layer-color`
-    if (!isThemeColor) {
+    if (!_isThemeColor) {
       styles.push({ '--a-layer-color': propColor })
 
       if (propColor) {
@@ -98,18 +103,18 @@ export const useLayer = () => {
 
       Once we attach the proper class, text color will be handled by CSS variables
     */
-    const textColor = isThemeColor
+    const textColor = _isThemeColor
       ? propVariant === 'fill' ? 'white' : propColor
       : 'layer-text'
 
     // ℹ️ `a-title-${color}` does uses CSS variable however `text-${color}` don't so we need to attach the color our self
     // TODO: Check is it convenient to add `a-title-$color` like in above line to identify the color as CSS var 🤔
-    const textClasses = `text-${isThemeColor ? textColor : `\$a-${textColor}`} a-title-${textColor} a-subtitle-${textColor}`
+    const textClasses = `text-${_isThemeColor ? textColor : `\$a-${textColor}`}`
+    classes.push()
 
     if (propColor) {
       // common classes
       classes.push(textClasses)
-      classes.push('a-subtitle-opacity-100')
 
       // Add classes based on variant
       if (propVariant === 'text') {
