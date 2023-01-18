@@ -1,9 +1,6 @@
 <template>
   <div class="flex flex-wrap gap-4">
-    <ABtn
-      variant="light"
-      color="red"
-    >
+    <ABtn>
       Primary
     </ABtn>
 
