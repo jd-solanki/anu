@@ -1,3 +1,5 @@
+import type { ColorProp } from '@/composables/useProps'
+
 // ℹ️ Extracted from https://developer.mozilla.org/en-US/docs/Web/CSS/named-color
 export const namedColors = Object.freeze({
   // CSS Level 1
@@ -269,3 +271,5 @@ export const getContrastColor = (color: string): string => {
   // If the color could not be parsed, return black as the contrast color
   return darkContrastColor
 }
+
+export const isThemeColor = (color: ColorProp | null): boolean => !!(color && (['primary', 'success', 'info', 'warning', 'danger'] as ColorProp[]).includes(color))

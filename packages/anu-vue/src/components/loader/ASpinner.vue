@@ -21,10 +21,6 @@
 </template>
 
 <style scoped>
-.stroke-cap-round .a-spinner-arc {
-  stroke-linecap: round;
-}
-
 @keyframes circular-dash {
   0% {
     stroke-dasharray: 1, 628;
