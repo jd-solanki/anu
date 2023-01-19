@@ -3,10 +3,8 @@ import type { Ref } from 'vue'
 import ASpinner from './ASpinner.vue'
 import { loaderProps } from './props'
 import { isTypographyUsed } from '@/components/typography/utils'
-import { useColor } from '@/composables'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
-import { useTypographyColor } from '@/composables/useTypographyColor'
 
 const props = defineProps(loaderProps)
 
@@ -15,13 +13,6 @@ defineOptions({
 })
 
 const slots = useSlots()
-
-const _loaderColor = computed(() => props.color || 'hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity))')
-const _overlayColor = computed(() => props.overlayColor || 'hsla(var(--a-layer), 0.8)')
-const _typographyColor = computed(() => props.typographyColor || null)
-
-const { styles: loaderStyles } = useColor(_loaderColor, 'loader-color')
-const { styles: overlayStyles } = useColor(_overlayColor, 'loader-overlay-color', 'bg')
 
 // TODO: Create composable useLazyVShow
 const isShownOnce = ref(props.loading)
@@ -42,8 +33,6 @@ else if (Array.isArray(_textProp.value.classes))
 else
   _textProp.value.classes = ' text-sm'
 
-const { typographyClasses } = useTypographyColor(_typographyColor)
-
 // Prevent scrolling when full page mode
 if (props.fullPage) {
   // Lock DOM scroll when modelValue is `true`
@@ -63,7 +52,7 @@ if (props.fullPage) {
     ]"
   >
     <div
-      :style="props.overlay || props.fullPage ? overlayStyles : undefined"
+      style="background: var(--a-loader-overlay-bg)"
       class="a-loader-overlay"
       :class="[
         (props.overlay || props.fullPage) && 'w-full h-full flex flex-col gap-3 items-center justify-center overflow-hidden',
@@ -72,10 +61,7 @@ if (props.fullPage) {
     >
       <!-- 👉 Slot: default -->
       <slot>
-        <ASpinner
-          :style="loaderStyles"
-          class="a-loader-spinner w-$a-spinner-size h-$a-spinner-size rounded-full"
-        />
+        <ASpinner class="a-loader-spinner w-$a-spinner-size h-$a-spinner-size rounded-full" />
       </slot>
 
       <!-- 👉 Typography -->
@@ -84,7 +70,6 @@ if (props.fullPage) {
         class="a-loader-typography-wrapper"
       >
         <ATypography
-          :class="typographyClasses"
           :title="props.title"
           :subtitle="props.subtitle"
           :text="Object.values(_textProp) as ConfigurableValue"

@@ -12,6 +12,8 @@ $body-color: hsla(var(--a-base-color), 0.68);
     --a-base-color: 0, 10%, 20%;
     --a-layer: 0, 0%, 100%;
     --a-border-opacity: 0.12;
+    --a-loader-overlay-bg: hsla(var(--a-layer),var(--a-loader-overlay-bg-opacity));
+    --a-loader-overlay-bg-opacity: 0.85;
     --a-overlay-color: 0, 0%, 0%;
     --a-overlay-opacity: 0.35;
 

@@ -61,13 +61,19 @@ const { styles, classes } = getLayerClasses(
     ]"
     :disabled="props.disabled ? true : undefined"
   >
+    <template v-if="props.icon">
+      <ALoader
+        v-if="props.loading"
+        class="[--a-loader-overlay-bg:transparent]"
+      />
+      <i
+        v-else
+        :class="props.icon"
+      />
+    </template>
     <ALoader
-      v-if="props.loading"
+      v-else-if="props.loading"
       overlay
-    />
-    <i
-      v-if="props.icon && !props.loading"
-      :class="props.icon"
     />
     <slot />
     <i
