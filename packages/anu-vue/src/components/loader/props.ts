@@ -1,13 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import { typographyProps } from '@/components/typography/props'
-import { useProps as useLayerProps } from '@/composables/useLayer'
 
 export const loaderProps = {
-  ...useLayerProps({
-    variant: {
-      default: undefined,
-    },
-  }),
   ...typographyProps,
 
   /**
