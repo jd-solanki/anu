@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ARating.json';
+import api from '@anu/component-meta/ARating.json'
 </script>
 
 # Rating
@@ -7,7 +7,7 @@ import api from '@anu/component-meta/ARating.json';
 <!-- 👉 Basic -->
 ::::card Basic
 
-Rating component allows users to rate content
+Rating component allows users to rate content.
 
 :::code DemoRatingBasic
 <<< @/components/demos/rating/DemoRatingBasic.vue{4,8}
@@ -18,7 +18,7 @@ Rating component allows users to rate content
 <!-- 👉 Colors -->
 ::::card Colors
 
-You can use `color` prop to change the rating color
+You can use `color` prop to change the rating color.
 
 :::code DemoRatingColor
 <<< @/components/demos/rating/DemoRatingColor.vue{10}

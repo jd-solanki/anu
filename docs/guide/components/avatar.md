@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/AAvatar.json';
+import api from '@anu/component-meta/AAvatar.json'
 </script>
 
 # Avatar
@@ -20,7 +20,7 @@ Use `color` prop to change the avatar color.
 <!-- 👉 Fill -->
 ::::card Fill
 
-You can use `variant="fill"` to create avatar with filled background
+You can use `variant="fill"` to create avatar with filled background.
 
 :::code DemoAvatarFill
 <<< @/components/demos/avatar/DemoAvatarFill.vue{4,9,15}
@@ -30,7 +30,7 @@ You can use `variant="fill"` to create avatar with filled background
 <!-- 👉 Outlined -->
 ::::card Outlined
 
-You can use variant="outline" to create outlined avatar
+You can use `variant="outline"` to create outlined avatar.
 
 :::code DemoAvatarOutlined
 <<< @/components/demos/avatar/DemoAvatarOutlined.vue{4,9,15}
@@ -41,7 +41,7 @@ You can use variant="outline" to create outlined avatar
 <!-- 👉 Sizing -->
 ::::card Sizing
 
-You can use font-size utility to adjust the size of avatar
+You can use font-size utility to adjust the size of avatar.
 
 :::code DemoAvatarSizing
 <<< @/components/demos/avatar/DemoAvatarSizing.vue{5,9,13,17,21}
@@ -52,7 +52,7 @@ You can use font-size utility to adjust the size of avatar
 <!-- 👉 Roundness -->
 ::::card Roundness
 
-You can adjust avatar roundness using border-radius utilities
+You can adjust avatar roundness using border-radius utilities.
 
 :::code DemoAvatarRoundness
 <<< @/components/demos/avatar/DemoAvatarRoundness.vue{5,9,13,17,21}

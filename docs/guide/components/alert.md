@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/AAlert.json';
+import api from '@anu/component-meta/AAlert.json'
 </script>
 
 # Alert
@@ -42,7 +42,7 @@ You can use `variant="outline"` to create outlined alert.
 <!-- 👉 Icons -->
 ::::card Icons
 
-You can use `icon` prop to render icon in button.
+You can use `icon` prop to render icon in alert.
 
 Use `append-icon` prop to render icon after default slot.
 
@@ -68,7 +68,7 @@ You can customize close icon using `append-icon` prop.
 <!-- 👉 v-model support -->
 ::::card v-model support
 
-Alert also support `v-model` to show and hide alert based on model value.
+Alert also supports `v-model` to show and hide alert based on model value.
 
 :::code DemoAlertVModelSupport
 <<< @/components/demos/alert/DemoAlertVModelSupport.vue{4,9}
