@@ -11,7 +11,10 @@ const loading = ref(true)
     </ABtn>
 
     <!-- Alert -->
-    <AAlert color="info">
+    <AAlert
+      color="info"
+      class="relative"
+    >
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
         :loading="loading"
@@ -22,6 +25,7 @@ const loading = ref(true)
     <AAlert
       color="info"
       variant="fill"
+      class="relative"
     >
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
@@ -33,6 +37,7 @@ const loading = ref(true)
     <AAlert
       color="info"
       variant="outline"
+      class="relative"
     >
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
@@ -44,6 +49,7 @@ const loading = ref(true)
     <AAlert
       color="info"
       variant="text"
+      class="relative"
     >
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
@@ -99,21 +105,27 @@ const loading = ref(true)
     </ACard>
 
     <div class="flex gap-x-2">
-      <AChip variant="fill">
+      <AChip
+        variant="fill"
+        class="relative"
+      >
         Primary
         <ALoader
           :loading="loading"
           overlay
         />
       </AChip>
-      <AChip>
+      <AChip class="relative">
         Primary
         <ALoader
           :loading="loading"
           overlay
         />
       </AChip>
-      <AChip variant="outline">
+      <AChip
+        variant="outline"
+        class="relative"
+      >
         Primary
         <ALoader
           :loading="loading"
@@ -121,7 +133,10 @@ const loading = ref(true)
           class="bg-white dark:bg-dark"
         />
       </AChip>
-      <AChip variant="text">
+      <AChip
+        variant="text"
+        class="relative"
+      >
         Primary
         <ALoader
           :loading="loading"

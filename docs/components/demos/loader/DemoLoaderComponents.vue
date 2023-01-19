@@ -14,6 +14,7 @@ const isDrawerShown = ref(false)
     <AAlert
       color="info"
       variant="fill"
+      class="relative"
       @click="ready && start()"
     >
       AAlert component. Click to start loading...
