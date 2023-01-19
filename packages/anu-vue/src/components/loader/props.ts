@@ -1,7 +1,14 @@
 import type { ExtractPropTypes } from 'vue'
 import { typographyProps } from '@/components/typography/props'
+import { color } from '@/composables/useProps'
 
 export const loaderProps = {
+
+  /**
+   * Loader color
+   */
+  color,
+
   ...typographyProps,
 
   /**

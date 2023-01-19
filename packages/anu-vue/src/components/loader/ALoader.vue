@@ -3,6 +3,7 @@ import type { Ref } from 'vue'
 import ASpinner from './ASpinner.vue'
 import { loaderProps } from './props'
 import { isTypographyUsed } from '@/components/typography/utils'
+import { useColor } from '@/composables'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 
@@ -13,6 +14,8 @@ defineOptions({
 })
 
 const slots = useSlots()
+
+const { styles } = useColor(toRef(props, 'color'), 'rating-color')
 
 // TODO: Create composable useLazyVShow
 const isShownOnce = ref(props.loading)
@@ -61,7 +64,10 @@ if (props.fullPage) {
     >
       <!-- 👉 Slot: default -->
       <slot>
-        <ASpinner class="a-loader-spinner w-$a-spinner-size h-$a-spinner-size rounded-full" />
+        <ASpinner
+          :style="styles"
+          class="a-loader-spinner w-$a-spinner-size h-$a-spinner-size rounded-full"
+        />
       </slot>
 
       <!-- 👉 Typography -->
