@@ -57,11 +57,13 @@ $body-color: hsla(var(--a-base-color), 0.68);
 
     // 👉 List
     // ℹ️ We might not need `--a-list-gap` this if we are using just `AList`, however when we use list inside another component this will be helpful
+    // #region a-list-css-vars
     --a-list-gap: 0rem;
     --a-list-item-gap: 0.75rem;    
     --a-list-item-padding: 0.5rem 1rem;
     --a-list-item-margin: 0rem;
     --a-list-item-min-height: 2.5rem;
+    // #endregion a-list-css-vars
 
     // !SECTION
 }

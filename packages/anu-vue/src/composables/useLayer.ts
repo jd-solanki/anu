@@ -2,9 +2,11 @@ import type { MaybeRef } from '@vueuse/core'
 import { defu } from 'defu'
 import type { ComponentObjectPropsOptions } from 'vue'
 import { ref, unref, watch } from 'vue'
-import { getContrastColor } from '@/utils/color'
-import { color } from '@/composables/useProps'
 import type { ColorProp } from '@/composables/useProps'
+import { color } from '@/composables/useProps'
+import { useTypographyColor } from '@/composables/useTypographyColor'
+import { isThemeColor } from '@/utils/color'
+import { colord } from '@/utils/colord'
 
 export interface LayerProps {
   color: ColorProp
@@ -53,39 +55,106 @@ interface UseLayerConfig {
 }
 export const useLayer = () => {
   // TODO(TS): Improve typing
-  const computeClassesStyles = (propColor: ColorProp, propVariant: string, propsStates: boolean, config?: UseLayerConfig) => {
-    // 👉 Classes
-    const classes: string[] = [
-      propsStates
-        ? (config && config.statesClass ? config.statesClass : 'states')
-        : '',
-    ]
-
-    const isThemeColor = propColor && (['primary', 'success', 'info', 'warning', 'danger'] as ColorProp[]).includes(propColor)
-
+  const computeClassesStyles = (propColor: ColorProp, propVariant: string, propsStates: boolean, config: UseLayerConfig = {}) => {
     // 👉 Styles
     const styles = []
 
-    // If it's not theme color => Set color we received as prop to `--a-layer-color`
-    if (!isThemeColor) {
-      styles.push({ '--a-layer-color': propColor })
+    // 👉 Classes
+    const _config = defu(config, { statesClass: 'states' })
+    const classes: any[] = [
+      propsStates && _config.statesClass,
+    ]
 
-      if (propColor) {
-        // If color isn't theme color & is HEX color => Calculate contrast color => Assign it to `--a-layer-text`
-        const contrastColor = getContrastColor(propColor as string)
+    const _colord = colord(propColor)
 
-        styles.push(`--a-layer-text: ${contrastColor}`)
-        styles.push(`--un-ring-color: ${propColor}`)
+    // Handle typography for card
+    const { typographyClasses, typographyStyles } = useTypographyColor(propColor, propVariant)
+
+    // console.log('typographyClasses :>> ', typographyClasses.value)
+    // console.log('typographyStyles :>> ', typographyStyles.value)
+    classes.push(typographyClasses.value)
+    styles.push(typographyStyles.value)
+
+    const _isThemeColor = isThemeColor(propColor)
+
+    // const hslaColor = (() => {
+    //   if (_isThemeColor)
+    //     return propColor
+
+    //   const hsla = _colord.toHsl()
+
+    //   styles.push({ '--a-layer-hsl': `hsl(${hsla.h},${hsla.s}%,${hsla.l})%` })
+
+    //   return `hsla(${hsla.h},${hsla.s}%,${hsla.l}%,${hsla.a * 100}%)`
+    // })()
+
+    styles.push({ '--a-layer-hsl-color': _isThemeColor ? `var(--a-${propColor})` : _colord.toHslString().replace(/hsla?\(([\d\s]+,[\d\s]+%,[\d\s]+%).*/gm, '$1') })
+
+    if (propVariant === 'fill') {
+      if (_isThemeColor) {
+        // Background
+        styles.push({ background: `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
+        classes.push('[--un-bg-opacity:1]')
+
+        // Text
+        classes.push('text-white')
+      }
+      else {
+        // Background
+        styles.push({ background: propColor })
+
+        // Text
+        styles.push({ color: _colord.contrasting().toHslString() })
+      }
+    }
+    else if (propVariant === 'light') {
+      if (_isThemeColor) {
+        // Background
+        styles.push({ background: `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
+        classes.push('[--un-bg-opacity:0.15]')
+
+        // text
+        classes.push(`text-${propColor}`)
+      }
+      else {
+        // Background
+        const _hslaColor = _colord.toHsl()
+        styles.push({ background: `hsla(${_hslaColor.h}, ${_hslaColor.s}%, ${_hslaColor.l}%, 0.15)` })
+
+        // Text
+        styles.push({ color: propColor })
+      }
+    }
+    else if (propVariant === 'outline') {
+      if (_isThemeColor) {
+        // Border
+        classes.push('border-width-1', 'border-solid')
+        styles.push({ borderColor: `hsl(var(--a-${propColor})` })
+
+        // Text
+        classes.push(`text-${propColor}`)
+      }
+      else {
+        // Border
+        classes.push('border-width-1', 'border-solid')
+        styles.push({ borderColor: propColor })
+
+        // Text
+        styles.push({ color: propColor })
+      }
+    }
+    else if (propVariant === 'text') {
+      if (_isThemeColor) {
+        // Text
+        classes.push(`text-${propColor}`)
+      }
+      else {
+        // Text
+        styles.push({ color: propColor })
       }
     }
 
-    // If it's theme color => Use color's CSS var to `--a-layer-color` and to ring color '--un-ring-color'
-    else {
-      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` }, { '--un-ring-color': `hsl(var(--a-${propColor}))` })
-
-      // ℹ️ We need to set un-bg-opacity just like UnoCSS class
-      classes.push('[--un-bg-opacity:1]')
-    }
+    // styles.push({ '--a-layer-color': _isThemeColor ? `var(--a-${propColor})` : hslaColor })
 
     /*
       ℹ️ This is CSS var name
@@ -98,32 +167,41 @@ export const useLayer = () => {
 
       Once we attach the proper class, text color will be handled by CSS variables
     */
-    const textColor = isThemeColor
-      ? propVariant === 'fill' ? 'white' : propColor
-      : 'layer-text'
+    // const textColor = _isThemeColor
+    //   ? propVariant === 'fill' ? 'white' : propColor
+    //   : 'layer-text'
 
-    // ℹ️ `a-title-${color}` does uses CSS variable however `text-${color}` don't so we need to attach the color our self
-    // TODO: Check is it convenient to add `a-title-$color` like in above line to identify the color as CSS var 🤔
-    const textClasses = `text-${isThemeColor ? textColor : `\$a-${textColor}`} a-title-${textColor} a-subtitle-${textColor}`
+    // if (propColor) {
+    //   // Add text color
+    //   if (_isThemeColor) {
+    //     if (propVariant === 'fill')
+    //       classes.push('text-white')
+    //     else
+    //       classes.push(`text-${propColor}`)
+    //   }
+    //   else {
+    //     styles.push({
+    //       '--a-layer-text': propVariant === 'text' ? 'var(--a-layer-color)' : _colord.contrasting().toHslString(),
+    //       'color': 'var(--a-layer-text)',
+    //     })
+    //   }
 
-    if (propColor) {
-      // common classes
-      classes.push(textClasses)
-      classes.push('a-subtitle-opacity-100')
+    //   // common classes
+    //   // classes.push(textClasses)
 
-      // Add classes based on variant
-      if (propVariant === 'text') {
-        classes.push('text-$a-layer-color')
-      }
-      else {
-        if (propVariant === 'fill')
-          classes.push('bg-$a-layer-color')
-        if (propVariant === 'light')
-          classes.push('bg-$a-layer-color bg-opacity-15')
-        if (propVariant === 'outline')
-          classes.push('border-width-1 border-solid border-$a-layer-color')
-      }
-    }
+    //   // Add classes based on variant
+    //   if (propVariant === 'text') {
+    //     classes.push('text-$a-layer-color')
+    //   }
+    //   else {
+    //     if (propVariant === 'fill')
+    //       classes.push('bg-$a-layer-color')
+    //     if (propVariant === 'light')
+    //       classes.push('bg-$a-layer-color bg-opacity-15')
+    //     if (propVariant === 'outline')
+    //       classes.push('border-width-1 border-solid border-$a-layer-color')
+    //   }
+    // }
 
     return {
       styles,
