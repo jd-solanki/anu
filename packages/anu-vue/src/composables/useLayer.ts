@@ -65,30 +65,13 @@ export const useLayer = () => {
       propsStates && _config.statesClass,
     ]
 
-    const _colord = colord(propColor)
-
     // Handle typography for card
     const { typographyClasses, typographyStyles } = useTypographyColor(propColor, propVariant)
 
-    // console.log('typographyClasses :>> ', typographyClasses.value)
-    // console.log('typographyStyles :>> ', typographyStyles.value)
     classes.push(typographyClasses.value)
     styles.push(typographyStyles.value)
 
     const _isThemeColor = isThemeColor(propColor)
-
-    // const hslaColor = (() => {
-    //   if (_isThemeColor)
-    //     return propColor
-
-    //   const hsla = _colord.toHsl()
-
-    //   styles.push({ '--a-layer-hsl': `hsl(${hsla.h},${hsla.s}%,${hsla.l})%` })
-
-    //   return `hsla(${hsla.h},${hsla.s}%,${hsla.l}%,${hsla.a * 100}%)`
-    // })()
-
-    styles.push({ '--a-layer-hsl-color': _isThemeColor ? `var(--a-${propColor})` : _colord.toHslString().replace(/hsla?\(([\d\s]+,[\d\s]+%,[\d\s]+%).*/gm, '$1') })
 
     /*
       ❗ Below code is intentionally not DRY.
@@ -101,9 +84,28 @@ export const useLayer = () => {
       We also have colord as dependency for now. We might remove this in future once Anu is more popular and mature.
     */
 
-    // 👉 Variant: Fill
-    if (propVariant === 'fill') {
-      if (_isThemeColor) {
+    // ℹ️ For light variant we will keep the overlay color of `--a-layer` instead of adopting the layer color. We will add it regardless of its theme color or not.
+    if (propVariant === 'light') {
+      // Set loader typography's title & subtitle opacity to 1
+      classes.push('[&_.a-loader-overlay]-[--a-title-opacity:1] [&_.a-loader-overlay]-[--a-subtitle-opacity:1]')
+
+      // Loader overlay
+      styles.push({ '--a-loader-overlay-bg': 'hsla(var(--a-layer),var(--a-loader-overlay-bg-opacity))' })
+    }
+
+    /*
+      ℹ️ Outline & Text variant
+        For overlay bg, We can create use style: `background-color:hsla(var(--a-surface),var(--a-background))`,
+        where `--a-background` will be body bg. Moreover, when card is used we will add new style `--a-surface:--a-layer-color` (_bg color of card_)
+
+        With above, if component with outline variant will get correct overlay bg regardless of component is used inside card or outside of it.
+        ATM, If outline component is placed on body (_gray bg_) then it will get white overlay bg
+    */
+
+    if (_isThemeColor) {
+      styles.push({ '--a-layer-hsl-color': `var(--a-${propColor})` })
+
+      if (propVariant === 'fill') {
         // Background
         styles.push({ background: `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
         classes.push('[--un-bg-opacity:1]')
@@ -115,27 +117,8 @@ export const useLayer = () => {
         // Loader overlay
         styles.push({ '--a-loader-overlay-bg': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
       }
-      else {
-        // Background
-        styles.push({ background: propColor })
 
-        // Text
-        if (propColor !== undefined && propColor !== null)
-          styles.push({ color: _colord.contrasting().toHslString() })
-
-        // Loader overlay
-        if (propColor)
-          styles.push({ '--a-loader-overlay-bg': _colord.toHslString() })
-      }
-    }
-
-    // 👉 Variant: Light
-    // ℹ️ For light variant we will keep the overlay color of `--a-layer` instead of adopting the layer color.
-    else if (propVariant === 'light') {
-      // Set loader typography's title & subtitle opacity to 1
-      classes.push('[&_.a-loader-overlay]-[--a-title-opacity:1] [&_.a-loader-overlay]-[--a-subtitle-opacity:1]')
-
-      if (_isThemeColor) {
+      else if (propVariant === 'light') {
         // Background
         styles.push({ background: `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
         classes.push('[--un-bg-opacity:0.15]')
@@ -144,33 +127,10 @@ export const useLayer = () => {
         if (propColor !== undefined && propColor !== null)
           classes.push(`text-${propColor}`)
 
-        // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'hsla(var(--a-layer),var(--a-loader-overlay-bg-opacity))' })
+        // We have set loader overlay color above (before _isThemeColor condition)
       }
-      else {
-        // Background
-        const _hslaColor = _colord.toHsl()
-        styles.push({ background: `hsla(${_hslaColor.h}, ${_hslaColor.s}%, ${_hslaColor.l}%, 0.15)` })
 
-        // Text
-        if (propColor !== undefined && propColor !== null)
-          styles.push({ color: propColor })
-
-        // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'hsla(var(--a-layer),var(--a-loader-overlay-bg-opacity))' })
-      }
-    }
-
-    // 👉 Variant: Outline
-    /*
-      ℹ️ For overlay bg, We can create use style: `background-color:hsla(var(--a-surface),var(--a-background))`,
-        where `--a-background` will be body bg. Moreover, when card is used we will add new style `--a-surface:--a-layer-color` (_bg color of card_)
-
-        With above, if component with outline variant will get correct overlay bg regardless of component is used inside card or outside of it.
-        ATM, If outline component is placed on body (_gray bg_) then it will get white overlay bg
-    */
-    else if (propVariant === 'outline') {
-      if (_isThemeColor) {
+      else if (propVariant === 'outline') {
         // Border
         classes.push('border-width-1', 'border-solid')
         styles.push({ borderColor: `hsl(var(--a-${propColor})` })
@@ -182,7 +142,45 @@ export const useLayer = () => {
         // Loader overlay
         styles.push({ '--a-loader-overlay-bg': 'hsl(var(--a-layer))' })
       }
-      else {
+
+      else if (propVariant === 'text') {
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          classes.push(`text-${propColor}`)
+
+        // Loader overlay
+        styles.push({ '--a-loader-overlay-bg': 'hsl(var(--a-layer))' })
+      }
+    }
+    else if (propColor) {
+      const _colord = colord(propColor as string)
+
+      styles.push({ '--a-layer-hsl-color': _colord.toHslString().replace(/hsla?\(([\d\s]+,[\d\s]+%,[\d\s]+%).*/gm, '$1') })
+
+      if (propVariant === 'fill') {
+        // Background
+        styles.push({ background: propColor })
+
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          styles.push({ color: _colord.contrasting().toHslString() })
+
+        // Loader overlay
+        if (propColor)
+          styles.push({ '--a-loader-overlay-bg': _colord.toHslString() })
+      }
+      else if (propVariant === 'light') {
+        // Background
+        const _hslaColor = _colord.toHsl()
+        styles.push({ background: `hsla(${_hslaColor.h}, ${_hslaColor.s}%, ${_hslaColor.l}%, 0.15)` })
+
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          styles.push({ color: propColor })
+
+        // We have set loader overlay color above (before _isThemeColor condition)
+      }
+      else if (propVariant === 'outline') {
         // Border
         classes.push('border-width-1', 'border-solid')
         styles.push({ borderColor: propColor })
@@ -194,20 +192,7 @@ export const useLayer = () => {
         // Loader overlay
         styles.push({ '--a-loader-overlay-bg': 'hsl(var(--a-layer))' })
       }
-    }
-
-    // 👉 Variant: Text
-    // ℹ️ Same info as outline's overlay bg
-    else if (propVariant === 'text') {
-      if (_isThemeColor) {
-        // Text
-        if (propColor !== undefined && propColor !== null)
-          classes.push(`text-${propColor}`)
-
-        // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'hsl(var(--a-layer))' })
-      }
-      else {
+      else if (propVariant === 'text') {
         // Text
         if (propColor !== undefined && propColor !== null)
           styles.push({ color: propColor })
@@ -216,55 +201,6 @@ export const useLayer = () => {
         styles.push({ '--a-loader-overlay-bg': 'hsl(var(--a-layer))' })
       }
     }
-
-    // styles.push({ '--a-layer-color': _isThemeColor ? `var(--a-${propColor})` : hslaColor })
-
-    /*
-      ℹ️ This is CSS var name
-
-      If theme color
-        If variant is fill => white
-        Else => passed color
-      Else
-        string 'layer-text'
-
-      Once we attach the proper class, text color will be handled by CSS variables
-    */
-    // const textColor = _isThemeColor
-    //   ? propVariant === 'fill' ? 'white' : propColor
-    //   : 'layer-text'
-
-    // if (propColor) {
-    //   // Add text color
-    //   if (_isThemeColor) {
-    //     if (propVariant === 'fill')
-    //       classes.push('text-white')
-    //     else
-    //       classes.push(`text-${propColor}`)
-    //   }
-    //   else {
-    //     styles.push({
-    //       '--a-layer-text': propVariant === 'text' ? 'var(--a-layer-color)' : _colord.contrasting().toHslString(),
-    //       'color': 'var(--a-layer-text)',
-    //     })
-    //   }
-
-    //   // common classes
-    //   // classes.push(textClasses)
-
-    //   // Add classes based on variant
-    //   if (propVariant === 'text') {
-    //     classes.push('text-$a-layer-color')
-    //   }
-    //   else {
-    //     if (propVariant === 'fill')
-    //       classes.push('bg-$a-layer-color')
-    //     if (propVariant === 'light')
-    //       classes.push('bg-$a-layer-color bg-opacity-15')
-    //     if (propVariant === 'outline')
-    //       classes.push('border-width-1 border-solid border-$a-layer-color')
-    //   }
-    // }
 
     return {
       styles,
