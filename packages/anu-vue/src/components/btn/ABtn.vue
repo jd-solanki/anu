@@ -46,7 +46,6 @@ const { styles, classes } = getLayerClasses(
 </script>
 
 <template>
-  <!-- ❗ relative class is required for loader. states also adds relative class but it can be turned off via prop -->
   <button
     :tabindex="props.disabled ? -1 : 0"
     :style="[
