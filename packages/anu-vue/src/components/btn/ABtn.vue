@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ALoader } from '@/components/loader'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, disabled as disabledProp, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
@@ -20,6 +21,14 @@ const props = defineProps({
   appendIcon: configurableProp,
   iconOnly: Boolean,
   disabled: disabledProp,
+
+  /**
+   * Set loading state
+   */
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 defineOptions({
@@ -43,7 +52,7 @@ const { styles, classes } = getLayerClasses(
       ...styles,
       { '--a-spacing': spacing / 100 },
     ]"
-    class="whitespace-nowrap inline-flex justify-center items-center"
+    class="whitespace-nowrap inline-flex justify-center items-center relative"
     :class="[
       props.iconOnly ? 'a-btn-icon-only' : 'a-btn',
       props.disabled && 'opacity-50 pointer-events-none',
@@ -51,9 +60,19 @@ const { styles, classes } = getLayerClasses(
     ]"
     :disabled="props.disabled ? true : undefined"
   >
-    <i
-      v-if="props.icon"
-      :class="props.icon"
+    <template v-if="props.icon">
+      <ALoader
+        v-if="props.loading"
+        class="[--a-loader-overlay-bg:transparent]"
+      />
+      <i
+        v-else
+        :class="props.icon"
+      />
+    </template>
+    <ALoader
+      v-else-if="props.loading"
+      overlay
     />
     <slot />
     <i

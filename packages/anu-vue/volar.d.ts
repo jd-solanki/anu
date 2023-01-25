@@ -14,6 +14,7 @@ declare module 'vue' {
     AInput: typeof import('anu-vue')['AInput']
     AList: typeof import('anu-vue')['AList']
     AListItem: typeof import('anu-vue')['AListItem']
+    ALoader: typeof import('anu-vue')['ALoader']
     AMenu: typeof import('anu-vue')['AMenu']
     ARadio: typeof import('anu-vue')['ARadio']
     ARating: typeof import('anu-vue')['ARating']
@@ -25,4 +26,4 @@ declare module 'vue' {
   }
 }
 
-export  {}
+export { }

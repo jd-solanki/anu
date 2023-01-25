@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { baseInputProps } from './props'
+import { ALoader } from '@/components/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
 import { useSpacing } from '@/composables/useSpacing'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
@@ -72,6 +73,7 @@ defineExpose({
       </slot>
 
       <!-- SECTION Input Wrapper -->
+      <!-- ❗ relative class is required for loader on `.a-base-input-input-wrapper` -->
       <div
         :class="[props.inputWrapperClasses, props.error ? 'border-danger' : 'focus-within:border-primary']"
         class="a-base-input-input-wrapper cursor-text em:spacing:px-4 spacing:gap-x-2 relative i:focus-within:text-primary items-center border border-solid border-a-border w-full"
@@ -106,8 +108,9 @@ defineExpose({
 
         <!-- 👉 Slot: Append Inner -->
         <slot name="append-inner">
+          <ALoader v-if="props.loading" />
           <i
-            v-if="props.appendInnerIcon"
+            v-else-if="props.appendInnerIcon"
             class="a-base-input-append-inner-icon ms-auto"
             :class="[iconTransition, props.appendInnerIcon]"
           />
