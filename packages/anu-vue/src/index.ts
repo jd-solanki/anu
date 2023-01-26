@@ -42,5 +42,6 @@ export const presetIconExtraProperties = {
   'vertical-align': 'text-top',
   'flex-shrink': '0',
   'display': 'inline-block',
+  'backface-visibility': 'hidden',
 }
 
