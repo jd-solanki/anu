@@ -3,7 +3,7 @@ name: "Test Report"
 on:
   workflow_run:
     # runs after CI workflow
-    workflows: ["Check build on various systems and node versions"]
+    workflows: ["CI"]
     types:
       - completed
 
