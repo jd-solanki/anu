@@ -55,7 +55,7 @@ if (props.fullPage) {
     ]"
   >
     <div
-      style="background: var(--a-loader-overlay-bg)"
+      :style="{ background: props.overlay ? 'var(--a-loader-overlay-bg)' : undefined }"
       class="a-loader-overlay"
       :class="[
         (props.overlay || props.fullPage) && 'w-full h-full flex flex-col gap-3 items-center justify-center overflow-hidden',
