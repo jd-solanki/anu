@@ -8,6 +8,7 @@ declare module 'vue' {
     ACard: typeof import('anu-vue')['ACard']
     ACheckbox: typeof import('anu-vue')['ACheckbox']
     AChip: typeof import('anu-vue')['AChip']
+    ACircle: typeof import('anu-vue')['ACircle']
     ADataTable: typeof import('anu-vue')['ADataTable']
     ADialog: typeof import('anu-vue')['ADialog']
     ADrawer: typeof import('anu-vue')['ADrawer']
