@@ -24,8 +24,8 @@ const props = defineProps(defu({
 }, baseInputProps))
 
 const emit = defineEmits<{
-
-  // (e: 'input', value: (ExtractPropTypes<typeof props>)['modelValue']): void
+  (e: 'change', value: (ExtractPropTypes<typeof props>)['modelValue']): void
+  (e: 'input', value: (ExtractPropTypes<typeof props>)['modelValue']): void
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
@@ -108,8 +108,8 @@ const optionClasses = 'a-select-option states before:transition-none cursor-poin
 const handleOptionClick = (option: SelectOption) => {
   const value = isObjectOption(option) && !props.emitObject ? (option as ObjectOption).value : option
 
-  // Do we really need this emit? 🤔 => I guess no because now on all events get attached to input
-  // emit('input', value)
+  emit('change', value)
+  emit('input', value)
   emit('update:modelValue', value)
 }
 const closeOptions = (event: MouseEvent) => {
