@@ -23,13 +23,6 @@ const input = ref<HTMLInputElement>()
 
 const isInputTypeFile = attrs.type && attrs.type === 'file'
 
-const handleChange = (e: Event) => {
-  const val = (e.target as HTMLInputElement).value
-
-  //   emit('input', val)
-  emit('update:modelValue', val)
-}
-
 const handleInputWrapperClick = () => {
   input.value?.focus()
 }
@@ -59,7 +52,7 @@ const handleInputWrapperClick = () => {
         ref="input"
         class="a-input-input"
         :value="props.modelValue"
-        @input="handleChange"
+        @input="e => { $emit('update:modelValue', (e.target as HTMLInputElement).value) }"
       >
     </template>
   </ABaseInput>
