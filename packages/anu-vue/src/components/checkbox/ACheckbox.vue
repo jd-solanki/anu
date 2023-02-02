@@ -26,6 +26,11 @@ const props = defineProps({
   icon: defu({ default: 'i-bx-check' }, configurableProp),
 
   /**
+   * Bind classes to input element
+   */
+  inputClasses: { type: null },
+
+  /**
    * Disable checkbox
    */
   disabled: disabledProp,
@@ -42,6 +47,7 @@ const emit = defineEmits<{
 
 defineOptions({
   name: 'ACheckbox',
+  inheritAttrs: false,
 })
 
 const attrs = useAttrs()
@@ -75,15 +81,18 @@ const state = computed(() => {
   <label
     :for="elementId"
     class="inline-flex items-center cursor-pointer"
-    :class="[props.disabled && 'a-checkbox-disabled pointer-events-none']"
+    :class="[
+      $attrs.class,
+      props.disabled && 'a-checkbox-disabled pointer-events-none',
+    ]"
   >
     <input
+      v-bind="{ ...$attrs, class: props.inputClasses }"
       :id="elementId"
       :ref="refCheckbox"
       v-model="data"
       class="hidden"
       type="checkbox"
-      v-bind="attrs"
     >
     <div
       class="a-checkbox-box flex items-center justify-center shrink-0"
