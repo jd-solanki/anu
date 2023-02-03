@@ -87,10 +87,10 @@ export const useLayer = () => {
     // ℹ️ For light variant we will keep the overlay color of `--a-layer` instead of adopting the layer color. We will add it regardless of its theme color or not.
     if (propVariant === 'light') {
       // Set loader typography's title & subtitle opacity to 1
-      classes.push('[&_.a-loader-overlay]-[--a-title-opacity:1] [&_.a-loader-overlay]-[--a-subtitle-opacity:1]')
+      classes.push('[&_.a-loader-overlay]-[--a-title-opacity:1] [&_.a-loader-overlay]-[--a-subtitle-opacity:1] [--a-loader-overlay-bg-opacity:.85]')
 
       // Loader overlay
-      styles.push({ '--a-loader-overlay-bg': 'hsla(var(--a-layer),var(--a-loader-overlay-bg-opacity))' })
+      styles.push({ '--a-loader-overlay-bg': 'hsla(0, 0%, 100%,var(--a-loader-overlay-bg-opacity))' })
     }
 
     /*
@@ -103,11 +103,11 @@ export const useLayer = () => {
     */
 
     if (_isThemeColor) {
-      styles.push({ '--a-layer-hsl-color': `var(--a-${propColor})` })
+      styles.push({ '--a-layer': `var(--a-${propColor})` })
 
       if (propVariant === 'fill') {
         // Background
-        styles.push({ background: `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
+        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity,var(--un-bg-opacity)))' })
         classes.push('[--un-bg-opacity:1]')
 
         // Text
@@ -115,13 +115,13 @@ export const useLayer = () => {
           classes.push('text-white')
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
+        styles.push({ '--a-loader-overlay-bg': 'hsla(var(--a-layer),var(--a-loader-overlay-bg-opacity))' })
       }
 
       else if (propVariant === 'light') {
         // Background
-        styles.push({ background: `hsla(var(--a-${propColor}),var(--un-bg-opacity))` })
-        classes.push('[--un-bg-opacity:0.15]')
+        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity,var(--un-bg-opacity)))' })
+        classes.push('[--a-layer-opacity:0.15]')
 
         // text
         if (propColor !== undefined && propColor !== null)
@@ -133,33 +133,34 @@ export const useLayer = () => {
       else if (propVariant === 'outline') {
         // Border
         classes.push('border-width-1', 'border-solid')
-        styles.push({ borderColor: `hsl(var(--a-${propColor})` })
+        styles.push({ borderColor: 'hsl(var(--a-layer)' })
 
         // Text
         if (propColor !== undefined && propColor !== null)
-          classes.push(`text-${propColor}`)
+          classes.push('text-[hsl(var(--a-layer))]')
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'hsl(var(--a-layer))' })
+        styles.push({ '--a-loader-overlay-bg': 'inherit' })
       }
 
       else if (propVariant === 'text') {
         // Text
         if (propColor !== undefined && propColor !== null)
-          classes.push(`text-${propColor}`)
+          classes.push('text-[hsl(var(--a-layer))]')
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'hsl(var(--a-layer))' })
+        styles.push({ '--a-loader-overlay-bg': 'inherit' })
       }
     }
     else if (propColor) {
       const _colord = colord(propColor as string)
 
-      styles.push({ '--a-layer-hsl-color': _colord.toHslString().replace(/hsla?\(([\d\s]+,[\d\s]+%,[\d\s]+%).*/gm, '$1') })
+      styles.push({ '--a-layer': _colord.toHslString().replace(/hsla?\(([\d\s]+,[\d\s]+%,[\d\s]+%).*/gm, '$1') })
 
       if (propVariant === 'fill') {
         // Background
-        styles.push({ background: propColor })
+        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity,var(--un-bg-opacity)))' })
+        classes.push('[--un-bg-opacity:1]')
 
         // Text
         if (propColor !== undefined && propColor !== null)
