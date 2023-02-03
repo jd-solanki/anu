@@ -90,7 +90,7 @@ export const useLayer = () => {
       classes.push('[&_.a-loader-overlay]-[--a-title-opacity:1] [&_.a-loader-overlay]-[--a-subtitle-opacity:1] [--a-loader-overlay-bg-opacity:.85]')
 
       // Loader overlay
-      styles.push({ '--a-loader-overlay-bg': 'hsla(0, 0%, 100%,var(--a-loader-overlay-bg-opacity))' })
+      styles.push({ '--a-loader-overlay-bg': 'var(--a-theme-color)' })
     }
 
     /*
@@ -107,20 +107,21 @@ export const useLayer = () => {
 
       if (propVariant === 'fill') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity,var(--un-bg-opacity)))' })
-        classes.push('[--un-bg-opacity:1]')
+        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity))' })
+        classes.push('[--a-layer-opacity:1]')
 
         // Text
         if (propColor !== undefined && propColor !== null)
           classes.push('text-white')
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'hsla(var(--a-layer),var(--a-loader-overlay-bg-opacity))' })
+        styles.push({ '--a-loader-overlay-bg': 'var(--a-layer)' })
+        classes.push('[--a-loader-overlay-bg-opacity:1]')
       }
 
       else if (propVariant === 'light') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity,var(--un-bg-opacity)))' })
+        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity))' })
         classes.push('[--a-layer-opacity:0.15]')
 
         // text
@@ -140,7 +141,8 @@ export const useLayer = () => {
           classes.push('text-[hsl(var(--a-layer))]')
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'inherit' })
+        styles.push({ '--a-loader-overlay-bg': 'var(--a-surface)' })
+        classes.push('[--a-loader-overlay-bg-opacity:1]')
       }
 
       else if (propVariant === 'text') {
@@ -149,7 +151,8 @@ export const useLayer = () => {
           classes.push('text-[hsl(var(--a-layer))]')
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'inherit' })
+        // styles.push({ '--a-loader-overlay-bg': 'inherit' })
+        classes.push('[--a-loader-overlay-bg-opacity:1]')
       }
     }
     else if (propColor) {
@@ -159,8 +162,8 @@ export const useLayer = () => {
 
       if (propVariant === 'fill') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity,var(--un-bg-opacity)))' })
-        classes.push('[--un-bg-opacity:1]')
+        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity))' })
+        classes.push('[--a-layer-opacity:1]')
 
         // Text
         if (propColor !== undefined && propColor !== null)
@@ -172,34 +175,34 @@ export const useLayer = () => {
       }
       else if (propVariant === 'light') {
         // Background
-        const _hslaColor = _colord.toHsl()
-        styles.push({ background: `hsla(${_hslaColor.h}, ${_hslaColor.s}%, ${_hslaColor.l}%, 0.15)` })
+        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity))' })
+        classes.push('[--a-layer-opacity:0.15]')
 
         // Text
         if (propColor !== undefined && propColor !== null)
-          styles.push({ color: propColor })
+          styles.push({ color: 'hsl(var(--a-layer))' })
 
         // We have set loader overlay color above (before _isThemeColor condition)
       }
       else if (propVariant === 'outline') {
         // Border
         classes.push('border-width-1', 'border-solid')
-        styles.push({ borderColor: propColor })
+        styles.push({ borderColor: 'hsl(var(--a-layer))' })
 
         // Text
         if (propColor !== undefined && propColor !== null)
-          styles.push({ color: propColor })
+          styles.push({ color: 'hsl(var(--a-layer))' })
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'hsl(var(--a-layer))' })
+        styles.push({ '--a-loader-overlay-bg': 'inherit' })
       }
       else if (propVariant === 'text') {
         // Text
         if (propColor !== undefined && propColor !== null)
-          styles.push({ color: propColor })
+          styles.push({ color: 'hsl(var(--a-layer))' })
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'hsl(var(--a-layer))' })
+        styles.push({ '--a-loader-overlay-bg': 'inherit' })
       }
     }
 
