@@ -9,13 +9,13 @@ const rules: Preset['rules'] = [
 
   // Typography
   [
-    /^a-(title|subtitle|text)-([-\w]+)$/,
+    /^a-(title|subtitle)-([-\w]+)$/,
     ([, type, c]: string[]) => ({
       [`--a-${type}-color`]: `var(--a-${c})`,
     }),
   ],
   [
-    /^a-(title|subtitle|text)-opacity-(\d+)$/,
+    /^a-(title|subtitle)-opacity-(\d+)$/,
     ([, type, o]: string[]) => ({
       [`--a-${type}-opacity`]: `${Number(o) * 0.01}`,
     }),

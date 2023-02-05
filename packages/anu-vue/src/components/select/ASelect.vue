@@ -168,7 +168,7 @@ const selectedValue = computed(() => {
     <ul
       v-show="isOptionsVisible"
       ref="refFloating"
-      class="a-select-options-container absolute bg-[hsl(var(--a-layer))]"
+      class="a-select-options-container absolute bg-[hsl(var(--a-surface))]"
       :class="props.optionsWrapperClasses"
       @click="closeOptions"
     >
