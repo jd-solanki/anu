@@ -63,7 +63,7 @@ const { styles, classes } = getLayerClasses(
     <template v-if="props.icon">
       <ALoader
         v-if="props.loading"
-        class="[--a-loader-overlay-bg:transparent]"
+        class="[--a-loader-overlay-bg-c:transparent]"
       />
       <i
         v-else

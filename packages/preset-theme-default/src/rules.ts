@@ -11,7 +11,7 @@ const rules: Preset['rules'] = [
   [
     /^a-(title|subtitle)-([-\w]+)$/,
     ([, type, c]: string[]) => ({
-      [`--a-${type}-color`]: `var(--a-${c})`,
+      [`--a-${type}-c`]: `var(--a-${c})`,
     }),
   ],
   [
@@ -19,17 +19,6 @@ const rules: Preset['rules'] = [
     ([, type, o]: string[]) => ({
       [`--a-${type}-opacity`]: `${Number(o) * 0.01}`,
     }),
-  ],
-
-  [
-    'overlay',
-    {
-      position: 'absolute',
-      inset: 0,
-      content: '\'\'',
-      background: 'currentColor',
-      opacity: 0,
-    },
   ],
 ]
 

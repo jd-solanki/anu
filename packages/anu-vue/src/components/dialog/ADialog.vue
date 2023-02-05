@@ -53,7 +53,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
     <Transition name="bg">
       <div
         v-show="props.modelValue"
-        class="a-dialog-wrapper grid place-items-center fixed inset-0 bg-[hsla(var(--a-overlay-color),var(--a-overlay-opacity))]"
+        class="a-dialog-wrapper grid place-items-center fixed inset-0 bg-[hsla(var(--a-overlay-c),var(--a-overlay-opacity))]"
       >
         <Transition name="scale">
           <ACard

@@ -84,30 +84,30 @@ export const useLayer = () => {
       We also have colord as dependency for now. We might remove this in future once Anu is more popular and mature.
     */
 
-    // ℹ️ For light variant we will keep the overlay color of `--a-layer` instead of adopting the layer color. We will add it regardless of its theme color or not.
+    // ℹ️ For light variant we will keep the overlay color of `--a-layer-c` instead of adopting the layer color. We will add it regardless of its theme color or not.
     if (propVariant === 'light') {
       // Set loader typography's title & subtitle opacity to 1
       classes.push('[&_.a-loader-overlay]-[--a-title-opacity:1] [&_.a-loader-overlay]-[--a-subtitle-opacity:1] [--a-loader-overlay-bg-opacity:.85]')
 
       // Loader overlay
-      styles.push({ '--a-loader-overlay-bg': 'var(--a-theme-color)' })
+      styles.push({ '--a-loader-overlay-bg-c': 'var(--a-theme-c)' })
     }
 
     /*
       ℹ️ Outline & Text variant
-        For overlay bg, We can create use style: `background-color:hsla(var(--a-surface),var(--a-background))`,
-        where `--a-background` will be body bg. Moreover, when card is used we will add new style `--a-surface:--a-layer-color` (_bg color of card_)
+        For overlay bg, We can create use style: `background-color:hsla(var(--a-surface-c),var(--a-background))`,
+        where `--a-background` will be body bg. Moreover, when card is used we will add new style `--a-surface-c:--a-layer-c-color` (_bg color of card_)
 
         With above, if component with outline variant will get correct overlay bg regardless of component is used inside card or outside of it.
         ATM, If outline component is placed on body (_gray bg_) then it will get white overlay bg
     */
 
     if (_isThemeColor) {
-      styles.push({ '--a-layer': `var(--a-${propColor})` })
+      styles.push({ '--a-layer-c': `var(--a-${propColor})` })
 
       if (propVariant === 'fill') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity))' })
+        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
         classes.push('[--a-layer-opacity:1]')
 
         // Text
@@ -115,13 +115,13 @@ export const useLayer = () => {
           classes.push('text-white')
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'var(--a-layer)' })
+        styles.push({ '--a-loader-overlay-bg-c': 'var(--a-layer-c)' })
         classes.push('[--a-loader-overlay-bg-opacity:1]')
       }
 
       else if (propVariant === 'light') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity))' })
+        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
         classes.push('[--a-layer-opacity:0.15]')
 
         // text
@@ -134,35 +134,35 @@ export const useLayer = () => {
       else if (propVariant === 'outline') {
         // Border
         classes.push('border-width-1', 'border-solid')
-        styles.push({ borderColor: 'hsl(var(--a-layer)' })
+        styles.push({ borderColor: 'hsl(var(--a-layer-c)' })
 
         // Text
         if (propColor !== undefined && propColor !== null)
-          classes.push('text-[hsl(var(--a-layer))]')
+          classes.push('text-[hsl(var(--a-layer-c))]')
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'var(--a-surface)' })
+        styles.push({ '--a-loader-overlay-bg-c': 'var(--a-surface-c)' })
         classes.push('[--a-loader-overlay-bg-opacity:1]')
       }
 
       else if (propVariant === 'text') {
         // Text
         if (propColor !== undefined && propColor !== null)
-          classes.push('text-[hsl(var(--a-layer))]')
+          classes.push('text-[hsl(var(--a-layer-c))]')
 
         // Loader overlay
-        // styles.push({ '--a-loader-overlay-bg': 'inherit' })
+        // styles.push({ '--a-loader-overlay-bg-c': 'inherit' })
         classes.push('[--a-loader-overlay-bg-opacity:1]')
       }
     }
     else if (propColor) {
       const _colord = colord(propColor as string)
 
-      styles.push({ '--a-layer': _colord.toHslString().replace(/hsla?\(([\d\s]+,[\d\s]+%,[\d\s]+%).*/gm, '$1') })
+      styles.push({ '--a-layer-c': _colord.toHslValue() })
 
       if (propVariant === 'fill') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity))' })
+        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
         classes.push('[--a-layer-opacity:1]')
 
         // Text
@@ -171,38 +171,38 @@ export const useLayer = () => {
 
         // Loader overlay
         if (propColor)
-          styles.push({ '--a-loader-overlay-bg': _colord.toHslString() })
+          styles.push({ '--a-loader-overlay-bg-c': _colord.toHslString() })
       }
       else if (propVariant === 'light') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer),var(--a-layer-opacity))' })
+        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
         classes.push('[--a-layer-opacity:0.15]')
 
         // Text
         if (propColor !== undefined && propColor !== null)
-          styles.push({ color: 'hsl(var(--a-layer))' })
+          styles.push({ color: 'hsl(var(--a-layer-c))' })
 
         // We have set loader overlay color above (before _isThemeColor condition)
       }
       else if (propVariant === 'outline') {
         // Border
         classes.push('border-width-1', 'border-solid')
-        styles.push({ borderColor: 'hsl(var(--a-layer))' })
+        styles.push({ borderColor: 'hsl(var(--a-layer-c))' })
 
         // Text
         if (propColor !== undefined && propColor !== null)
-          styles.push({ color: 'hsl(var(--a-layer))' })
+          styles.push({ color: 'hsl(var(--a-layer-c))' })
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'inherit' })
+        styles.push({ '--a-loader-overlay-bg-c': 'inherit' })
       }
       else if (propVariant === 'text') {
         // Text
         if (propColor !== undefined && propColor !== null)
-          styles.push({ color: 'hsl(var(--a-layer))' })
+          styles.push({ color: 'hsl(var(--a-layer-c))' })
 
         // Loader overlay
-        styles.push({ '--a-loader-overlay-bg': 'inherit' })
+        styles.push({ '--a-loader-overlay-bg-c': 'inherit' })
       }
     }
 

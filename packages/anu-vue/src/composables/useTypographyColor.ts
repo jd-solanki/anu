@@ -1,6 +1,7 @@
 import type { MaybeComputedRef } from '@vueuse/core'
 import { resolveUnref } from '@vueuse/core'
 import type { ColorProp } from './useProps'
+import { colord } from '@/utils/colord'
 import { isThemeColor } from '@/utils/color'
 
 const calculateColor = (_isThemeColor: boolean, _color: ColorProp | null, _variant: string) => {
@@ -19,12 +20,12 @@ const calculateColor = (_isThemeColor: boolean, _color: ColorProp | null, _varia
     if (_variant !== 'fill')
       classes.push(`a-title-${_color} a-subtitle-${_color}`)
     else
-      styles.push('--a-title-color: white; --a-subtitle-color: white')
+      styles.push('--a-title-c: 0, 0%, 100%; --a-subtitle-c: 0, 0%, 100%') // white
   }
   else if (_color !== undefined) {
-    const typographyColor = _color === null ? 'var(--a-base-color)' : _color
+    const typographyC = _color === null ? 'var(--a-base-c)' : colord(_color as string).toHslValue()
 
-    styles.push(`--a-title-color: ${typographyColor}; --a-subtitle-color: ${typographyColor};`)
+    styles.push(`--a-title-c: ${typographyC}; --a-subtitle-c: ${typographyC};`)
     classes.push(
       _color === null
         ? '[--a-title-opacity:var(--a-text-emphasis-high-opacity)] [--a-subtitle-opacity:var(--a-text-emphasis-light-opacity)]'

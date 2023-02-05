@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useCssVar } from '@vueuse/core'
-import { computed, onMounted } from 'vue';
+import { useCssVar } from '@vueuse/core';
+import { computed } from 'vue';
 
 const primaryColor = useCssVar('--a-primary')
 const vpBrandHue = useCssVar('--vp-brand-hue')
@@ -34,15 +34,15 @@ To customize theme color, set a CSS variable in your CSS with color name prefixe
 
 ## CSS variables
 
-Besides colors, Anu uses CSS variables for other stuff like typography customization. All anu's CSS variables are prefixed with `a-`.
+Besides colors, Anu uses CSS variables for other stuff for providing maximum flexibility and customization on the fly. All anu's CSS variables are prefixed with `a-`.
 
-Interesting ones are listed below:
+:::details View all CSS vars
+Below is CSS vars defined for preset theme default's light theme:
 
-| CSS variables                      | Usage                        |
-| :--------------------------------- | :--------------------------- |
-| `--a-text-emphasis-high-opacity`   | High priority text opacity   |
-| `--a-text-emphasis-medium-opacity` | Medium priority text opacity |
-| `--a-text-emphasis-light-opacity`  | Low priority text opacity    |
+<<< @/../packages/preset-theme-default/src/scss/index.scss#all-css-vars
+:::
+
+Moreover, It's recommended that you [learn](/development/contributing.html#css-vars) CSS vars naming convention for color to know when you should wrap `hsl()` or use CSS var directly.
 
 ## Component customization
 

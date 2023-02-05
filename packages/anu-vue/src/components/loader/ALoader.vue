@@ -45,7 +45,7 @@ if (props.fullPage) {
 </script>
 
 <template>
-  <!-- TODO: Use loader's CSS color instead of layer color: bg-[hsla(var(--a-layer),0.85)] -->
+  <!-- TODO: Use loader's CSS color instead of layer color: bg-[hsla(var(--a-layer-c),0.85)] -->
   <div
     v-if="isShownOnce"
     v-show="props.loading"
@@ -55,7 +55,7 @@ if (props.fullPage) {
     ]"
   >
     <div
-      :style="{ background: props.overlay ? 'hsla(var(--a-loader-overlay-bg),var(--a-loader-overlay-bg-opacity))' : undefined }"
+      :style="{ background: props.overlay ? 'hsla(var(--a-loader-overlay-bg-c),var(--a-loader-overlay-bg-opacity))' : undefined }"
       class="a-loader-overlay"
       :class="[
         (props.overlay || props.fullPage) && 'w-full h-full flex flex-col gap-3 items-center justify-center overflow-hidden',

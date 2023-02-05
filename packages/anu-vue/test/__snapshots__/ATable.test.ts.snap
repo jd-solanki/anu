@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`Testing ATable & ADataTable > mount component 1`] = `
-"<div class=\\"a-card relative overflow-hidden bg-[hsla(var(--a-surface),var(--un-bg-opacity,1))] a-table a-data-table\\" style=\\"--a-spacing: 1;\\">
+"<div class=\\"a-card relative overflow-hidden bg-[hsla(var(--a-surface-c),var(--un-bg-opacity,1))] a-table a-data-table\\" style=\\"--a-spacing: 1;\\">
   <!-- 👉 Image -->
   <!--v-if-->
   <!-- 👉 Typography -->
@@ -65,9 +65,9 @@ exports[`Testing ATable & ADataTable > mount component 1`] = `
       <!--teleport start-->
       <!--teleport end-->
     </div>
-    <div class=\\"a-data-table-pagination-navigation\\"><button tabindex=\\"-1\\" style=\\"--a-layer: var(--a-primary); --a-spacing: 1;\\" class=\\"whitespace-nowrap inline-flex justify-center items-center relative a-btn-icon-only opacity-50 pointer-events-none states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-previous\\" disabled=\\"\\"><i class=\\"i-bx-left-arrow-alt\\"></i>
+    <div class=\\"a-data-table-pagination-navigation\\"><button tabindex=\\"-1\\" style=\\"--a-layer-c: var(--a-primary); --a-spacing: 1;\\" class=\\"whitespace-nowrap inline-flex justify-center items-center relative a-btn-icon-only opacity-50 pointer-events-none states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-previous\\" disabled=\\"\\"><i class=\\"i-bx-left-arrow-alt\\"></i>
         <!--v-if-->
-      </button><button tabindex=\\"0\\" style=\\"--a-layer: var(--a-primary); --a-spacing: 1;\\" class=\\"whitespace-nowrap inline-flex justify-center items-center relative a-btn-icon-only states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-next\\"><i class=\\"i-bx-right-arrow-alt\\"></i>
+      </button><button tabindex=\\"0\\" style=\\"--a-layer-c: var(--a-primary); --a-spacing: 1;\\" class=\\"whitespace-nowrap inline-flex justify-center items-center relative a-btn-icon-only states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-next\\"><i class=\\"i-bx-right-arrow-alt\\"></i>
         <!--v-if-->
       </button></div>
   </div>

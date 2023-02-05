@@ -18,12 +18,12 @@ const propsHeader = Object.keys(props.api.props[0])
         class="not-last-mb-4"
       >
         <span
-          class="font-semibold text-[hsla(var(--a-title-color),var(--a-title-opacity))]"
+          class="font-semibold text-[hsla(var(--a-title-c),var(--a-title-opacity))]"
         >{{ prop.name.replace('?', '') }}</span>
-        <span class="text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]"> : {{ prop.type.replace(/\s*\| (undefined)$/, '') }}</span>
+        <span class="text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))]"> : {{ prop.type.replace(/\s*\| (undefined)$/, '') }}</span>
         <span
           v-if="prop.default !== 'unknown'"
-          class="text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]"
+          class="text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))]"
         > = {{ prop.default }}</span>
         <div
           class="!children-[p]-m-0"

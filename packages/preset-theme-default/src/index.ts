@@ -24,7 +24,7 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
         info: 'hsl(var(--a-info))',
         warning: 'hsl(var(--a-warning))',
         danger: 'hsl(var(--a-danger))',
-        a: { border: 'hsla(var(--a-base-color),var(--a-border-opacity))' },
+        a: { border: 'hsla(var(--a-base-c),var(--a-border-opacity))' },
       },
     },
     safelist: [

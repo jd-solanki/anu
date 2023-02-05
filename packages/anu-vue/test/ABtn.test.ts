@@ -11,7 +11,7 @@ describe('Testing ABtn', () => {
 
     expect(wrapper.classes()).toContain('a-btn')
 
-    // expect(window.getComputedStyle(wrapper.find('button').element).getPropertyValue('--a-layer-color')).toContain('--a-primary')
+    // expect(window.getComputedStyle(wrapper.find('button').element).getPropertyValue('--a-layer-c-color')).toContain('--a-primary')
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -31,7 +31,7 @@ describe('Testing ABtn', () => {
   // it('color prop changes button color', () => {
   //   const wrapper = shallowMount(ABtn, { props: { color: 'warning' }, slots: { default: 'Click me' } })
 
-  //   expect(window.getComputedStyle(wrapper.find('button').element).getPropertyValue('--a-layer-color')).toContain('--a-warning')
+  //   expect(window.getComputedStyle(wrapper.find('button').element).getPropertyValue('--a-layer-c-color')).toContain('--a-warning')
   // })
 
   it('icon prop adds an icon', () => {

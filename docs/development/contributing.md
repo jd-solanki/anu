@@ -106,6 +106,22 @@ At the moment, anu don't have any design system. Hence, we have full freedom to 
 - Search [dribbble](https://dribbble.com/)
 :::
 
+### CSS vars
+
+We follow naming convention for CSS color vars. As we have theme colors CSS vars that has just HSL value and not full color (e.g. `--a-primary: 265, 97.7%, 66.3%`) and some other colors that are full color (e.g. `--a-switch-icon-color: hsla(0, 10%, 20%, 0.68)`), it's confusing while using the CSS var to identify if it's full color or just HSL value.
+
+Due to this reason we follow below convention when deciding the name of CSS var that is color:
+
+- suffix `-c` => For just HSL value (`--a-base-c: 0, 10%, 20%;`)
+- suffix `-color` => For full color (`--a-switch-icon-color: hsla(0, 10%, 20%, 0.68)`)
+- Don't suffix anything => For theme color (`--a-primary: 265, 97.7%, 66.3%`)
+
+With above naming convention, we can clearly know if we should wrap the CSS var in `hsl()` or directly use it like a color value.
+
+:::warning
+Don't forget to follow this convention when defining any CSS var for color, including background (`--a-something-bg-color: hsl(var(--a-surface-c))`)
+:::
+
 ### Creating new component
 
 First of all, it is advisable to discuss the design & features of the component by opening the new [issue](https://github.com/jd-solanki/anu/issues/new). E.g. [New component: Menu](https://github.com/jd-solanki/anu/issues/26)

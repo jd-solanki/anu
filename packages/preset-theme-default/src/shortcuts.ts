@@ -32,12 +32,12 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'grid-row': 'grid gap-6 place-items-start w-full',
 
     // 👉 Typography
-    'a-title': 'font-medium block em:text-lg text-[hsla(var(--a-title-color),var(--a-title-opacity))]',
-    'a-subtitle': 'block em:text-sm text-[hsla(var(--a-subtitle-color),var(--a-subtitle-opacity))]',
+    'a-title': 'font-medium block em:text-lg text-[hsla(var(--a-title-c),var(--a-title-opacity))]',
+    'a-subtitle': 'block em:text-sm text-[hsla(var(--a-subtitle-c),var(--a-subtitle-opacity))]',
     'a-text': '',
-    'text-high-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-high-opacity))]',
-    'text-medium-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-medium-opacity))]',
-    'text-light-emphasis': 'text-[hsla(var(--a-base-color),var(--a-text-emphasis-light-opacity))]',
+    'text-high-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-high-opacity))]',
+    'text-medium-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-medium-opacity))]',
+    'text-light-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))]',
 
     // SECTION Components
     // 👉 Alert
@@ -52,7 +52,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-badge-dot': 'spacing:min-w-[0.666666666666667em] spacing:h-[0.666666666666667em]',
 
     // with text-xs, outline: 0.166666666666667em => 2px
-    'a-badge-bordered': 'outline em:spacing:outline-width-[0.166666666666667em] outline-[hsl(var(--a-theme-color))]',
+    'a-badge-bordered': 'outline em:spacing:outline-width-[0.166666666666667em] outline-[hsl(var(--a-theme-c))]',
 
     // 👉 Base Input
     'a-base-input-root': 'em:spacing:gap-y-1',
@@ -69,7 +69,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     // 'a-base-input-wo-append-inner': 'em:spacing:pr-4',
 
     // ℹ️ We have to add important before `bg-` because textarea has `bg-transparent` class
-    'a-base-input-disabled': '!all-[.a-base-input-input-wrapper]-bg-[hsla(var(--a-base-color),0.12)] opacity-50',
+    'a-base-input-disabled': '!all-[.a-base-input-input-wrapper]-bg-[hsla(var(--a-base-c),0.12)] opacity-50',
     'a-base-input-interactive': 'all-[.a-base-input-child]-placeholder:transition all-[.a-base-input-child]-placeholder:duration-250 all-[.a-base-input-child]-placeholder:ease all-[.a-base-input-child:focus]-placeholder-translate-x-1',
 
     // 'a-base-input-child': 'autofill-bg-transparent',
@@ -105,7 +105,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-drawer': 'shadow-2xl z-[53] !rounded-none',
 
     // 👉 Input
-    'a-input-type-file': 'all-[.a-base-input-child]-file:(rounded-lg border-none mr-4 px-4 py-3 text-gray-500 rounded-r-none bg-[hsla(var(--a-base-color),0.05)]) !all-[.a-base-input-input-wrapper]-px-0',
+    'a-input-type-file': 'all-[.a-base-input-child]-file:(rounded-lg border-none mr-4 px-4 py-3 text-gray-500 rounded-r-none bg-[hsla(var(--a-base-c),0.05)]) !all-[.a-base-input-input-wrapper]-px-0',
 
     // 👉 List
     'a-list': 'em:spacing:rounded-lg em:spacing:my-2',
@@ -156,7 +156,9 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-textarea': '[&_.a-base-input-input-wrapper]-px-0',
     'a-textarea-textarea': 'em:spacing:py-4 overflow-x-hidden em:spacing:px-4',
 
-  // !SECTION Components
+    // !SECTION Components
+
+    'overlay': 'absolute inset-0 content-empty bg-[hsla(var(--a-overlay-c),var(--a-overlay-opacity))] opacity-0',
   },
 ]
 

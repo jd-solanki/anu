@@ -6,24 +6,25 @@ body {
   text-rendering: optimizeSpeed;
 }
 
-$body-color: hsla(var(--a-base-color), 0.68);
+$body-color: hsla(var(--a-base-c), 0.68);
 
 :root {
-    --a-base-color: 0, 10%, 20%;
+    // #region all-css-vars
+    --a-base-c: 0, 10%, 20%;
 
     // ℹ️ Theme color (for now Used for light variant overlay color)
-    --a-theme-color: 0, 0%, 100%;
+    --a-theme-c: 0, 0%, 100%;
 
     // ℹ️ Used for background on body like select options, card, etc
-    --a-surface: 0, 0%, 100%;
+    --a-surface-c: 0, 0%, 100%;
     
     --a-border-opacity: 0.12;
-    --a-loader-overlay-bg: var(--a-layer);
+    --a-loader-overlay-bg-c: var(--a-layer-c);
 
     // ℹ️ Only light variant will have 0.35 or something else
     --a-loader-overlay-bg-opacity: 1;
 
-    --a-overlay-color: 0, 0%, 0%;
+    --a-overlay-c: 0, 0%, 0%;
     --a-overlay-opacity: 0.35;
 
     --a-primary: 265, 97.7%, 66.3%;
@@ -43,8 +44,8 @@ $body-color: hsla(var(--a-base-color), 0.68);
     --a-text-emphasis-light-opacity: 0.38;
 
     // Typography
-    --a-title-color: var(--a-base-color);
-    --a-subtitle-color: var(--a-base-color);
+    --a-title-c: var(--a-base-c);
+    --a-subtitle-c: var(--a-base-c);
     --a-title-opacity: var(--a-text-emphasis-high-opacity);
     --a-subtitle-opacity: var(--a-text-emphasis-light-opacity);
 
@@ -61,7 +62,7 @@ $body-color: hsla(var(--a-base-color), 0.68);
     --a-switch-thumb-margin: .25em;
     --a-switch-default-color: 220, 13%, 91%;
     /*
-      ℹ️ Value of this property is => hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity)).
+      ℹ️ Value of this property is => hsla(var(--a-base-c), var(--a-text-emphasis-medium-opacity)).
       As this will be always on light background we will keep it static and choose color from light scheme
     */
     --a-switch-icon-color: hsla(0, 10%, 20%, 0.68);
@@ -76,13 +77,15 @@ $body-color: hsla(var(--a-base-color), 0.68);
     --a-list-item-min-height: 2.5rem;
     // #endregion a-list-css-vars
 
+    // #endregion all-css-vars
+
     // !SECTION
 }
 
 :root.dark {
-  --a-base-color: 0, 0%, 94%;
-  --a-theme-color: 0, 0%, 0%;
-  --a-surface: 0, 0%, 12%;
+  --a-base-c: 0, 0%, 94%;
+  --a-theme-c: 0, 0%, 0%;
+  --a-surface-c: 0, 0%, 12%;
   --a-overlay-opacity: 0.5;
 
   --a-primary: 261, 73%, 66.3%;
@@ -114,7 +117,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: hsla(var(--a-base-color), 0.87)
+  color: hsla(var(--a-base-c), 0.87)
 }
 
 // 👉 Misc
@@ -133,7 +136,7 @@ h6 {
 
 // Set default border-color for `hr` element for color scheme compatibility
 hr {
-  border-color: hsla(var(--a-base-color),var(--a-border-opacity))
+  border-color: hsla(var(--a-base-c),var(--a-border-opacity))
 }
 
 // Remove outline

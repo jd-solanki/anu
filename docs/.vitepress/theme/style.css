@@ -1,7 +1,7 @@
 /* Styles adjusting VitePress according to theme */
 :root {
     --vp-background: 0, 0%, 100%;
-    --vp-c-text-1: hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity));
+    --vp-c-text-1: hsla(var(--a-base-c), var(--a-text-emphasis-medium-opacity));
     --vp-c-bg: hsl(var(--vp-background));
     --vp-c-bg-alt: hsl(var(--vp-background));
 
@@ -41,7 +41,7 @@ SECTION VitePress
 
 @media (min-width: 960px) {
     .VPNavBar>.container {
-        border-bottom: thin solid hsla(var(--a-base-color), var(--a-border-opacity));
+        border-bottom: thin solid hsla(var(--a-base-c), var(--a-border-opacity));
     }
 }
 
@@ -71,7 +71,7 @@ SECTION VitePress
 
 @media (min-width: 768px) {
     .VPNavBarSearch .DocSearch.DocSearch-Button {
-        background-color: hsla(var(--a-base-color), 0.04) !important;
+        background-color: hsla(var(--a-base-c), 0.04) !important;
     }
 }
 
@@ -88,7 +88,7 @@ SECTION VitePress
     Enable below style for styled scrollbar
 */
 /* .VPSidebar::-webkit-scrollbar {
-    background: rgb(var(--a-layer));
+    background: rgb(var(--a-layer-c));
     block-size: 8px;
     border-end-end-radius: 14px;
     border-start-end-radius: 14px;
@@ -127,7 +127,7 @@ SECTION VitePress
 }
 
 .dark .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
-    border: 1px solid hsla(var(--a-base-color), var(--a-border-opacity));
+    border: 1px solid hsla(var(--a-base-c), var(--a-border-opacity));
     opacity: 0.85;
     font-weight: 500;
 }
@@ -137,13 +137,13 @@ SECTION VitePress
 ========================== */
 
 .cards-demo-container {
-    /* rounded-lg border-dashed border border-a-border p-8 bg-[hsla(var(--a-base-color), .05)] */
+    /* rounded-lg border-dashed border border-a-border p-8 bg-[hsla(var(--a-base-c), .05)] */
     @apply rounded-lg border-dashed border border-a-border p-8;
-    background: hsla(var(--a-base-color), 0.05);
+    background: hsla(var(--a-base-c), 0.05);
 }
 
 .dark .cards-demo-container {
-    background: hsla(var(--a-base-color), 0.01);
+    background: hsla(var(--a-base-c), 0.01);
 }
 
 /* ==========================
@@ -164,7 +164,7 @@ SECTION VitePress
 }
 
 .VPHero.VPHomeHero .text {
-    color: hsla(var(--a-base-color), 0.87)
+    color: hsla(var(--a-base-c), 0.87)
 }
 
 /* !SECTION */

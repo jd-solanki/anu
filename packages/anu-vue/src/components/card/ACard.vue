@@ -36,7 +36,7 @@ else
 
 <template>
   <div
-    class="a-card relative overflow-hidden bg-[hsla(var(--a-surface),var(--un-bg-opacity,1))]"
+    class="a-card relative overflow-hidden bg-[hsla(var(--a-surface-c),var(--un-bg-opacity,1))]"
     :class="classes"
     :style="[
       ...styles,

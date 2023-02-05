@@ -4,7 +4,7 @@
 
     <ALoader
       color="primary"
-      class="[--a-ring-color:hsla(var(--a-base-color),0.1)] [--a-ring-opacity:1] [--a-spin-duration:1.5s]"
+      class="[--a-ring-color:hsla(var(--a-base-c),0.1)] [--a-ring-opacity:1] [--a-spin-duration:1.5s]"
     />
 
     <ALoader class="[--a-ring-stroke:0] [&_.a-spinner-arc]-stroke-cap-round rotate-y-180" />
