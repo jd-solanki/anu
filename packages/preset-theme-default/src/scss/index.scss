@@ -10,10 +10,19 @@ $body-color: hsla(var(--a-base-color), 0.68);
 
 :root {
     --a-base-color: 0, 10%, 20%;
-    --a-layer: 0, 0%, 100%;
+
+    // ℹ️ Theme color (for now Used for light variant overlay color)
+    --a-theme-color: 0, 0%, 100%;
+
+    // ℹ️ Used for background on body like select options, card, etc
+    --a-surface: 0, 0%, 100%;
+    
     --a-border-opacity: 0.12;
-    --a-loader-overlay-bg: hsla(var(--a-layer),var(--a-loader-overlay-bg-opacity));
-    --a-loader-overlay-bg-opacity: 0.85;
+    --a-loader-overlay-bg: var(--a-layer);
+
+    // ℹ️ Only light variant will have 0.35 or something else
+    --a-loader-overlay-bg-opacity: 1;
+
     --a-overlay-color: 0, 0%, 0%;
     --a-overlay-opacity: 0.35;
 
@@ -23,10 +32,10 @@ $body-color: hsla(var(--a-base-color), 0.68);
     --a-warning: 42.4, 100%, 50%;
     --a-danger: 358.3, 100%, 64.9%;
 
+    // TODO: Add support to customize contrast color in => packages/anu-vue/src/utils/colord.ts
     // Contrast colors
-    // --a-contrast-dark: hsla(var(--a-base-color), var(--a-text-emphasis-medium-opacity));
-    --a-contrast-dark: #000;
-    --a-contrast-light: #fff;
+    // --a-contrast-dark: #000;
+    // --a-contrast-light: #fff;
 
     // text emphasis
     --a-text-emphasis-high-opacity: 0.87;
@@ -72,7 +81,8 @@ $body-color: hsla(var(--a-base-color), 0.68);
 
 :root.dark {
   --a-base-color: 0, 0%, 94%;
-  --a-layer: 0, 0%, 12%;
+  --a-theme-color: 0, 0%, 0%;
+  --a-surface: 0, 0%, 12%;
   --a-overlay-opacity: 0.5;
 
   --a-primary: 261, 73%, 66.3%;

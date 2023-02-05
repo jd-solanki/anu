@@ -15,7 +15,7 @@ defineOptions({
 
 const slots = useSlots()
 
-const { styles } = useColor(toRef(props, 'color'), 'rating-color')
+const { styles } = useColor(toRef(props, 'color'), 'spinner-color')
 
 // TODO: Create composable useLazyVShow
 const isShownOnce = ref(props.loading)
@@ -55,7 +55,7 @@ if (props.fullPage) {
     ]"
   >
     <div
-      style="background: var(--a-loader-overlay-bg)"
+      :style="{ background: props.overlay ? 'hsla(var(--a-loader-overlay-bg),var(--a-loader-overlay-bg-opacity))' : undefined }"
       class="a-loader-overlay"
       :class="[
         (props.overlay || props.fullPage) && 'w-full h-full flex flex-col gap-3 items-center justify-center overflow-hidden',

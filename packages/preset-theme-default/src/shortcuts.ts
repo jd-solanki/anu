@@ -52,7 +52,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-badge-dot': 'spacing:min-w-[0.666666666666667em] spacing:h-[0.666666666666667em]',
 
     // with text-xs, outline: 0.166666666666667em => 2px
-    'a-badge-bordered': 'outline em:spacing:outline-width-[0.166666666666667em] outline-[hsl(var(--a-layer))]',
+    'a-badge-bordered': 'outline em:spacing:outline-width-[0.166666666666667em] outline-[hsl(var(--a-theme-color))]',
 
     // 👉 Base Input
     'a-base-input-root': 'em:spacing:gap-y-1',

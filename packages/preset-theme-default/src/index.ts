@@ -28,20 +28,17 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       },
     },
     safelist: [
-      ...colors.map(c => `[--a-layer-color:hsla(var(--a-${c}),var(--un-bg-opacity,1))]`),
       ...colors.map(c => `bg-${c}`),
       ...colors.map(c => `hover:bg-${c}`),
 
       ...colors.map(c => `border-${c}`),
-      ...[...colors, '$a-layer-text'].map(c => `text-${c}`),
+      ...colors.map(c => `text-${c}`),
       ...colors.map(c => `shadow-${c}`),
       ...colors.map(c => `after:bg-${c}`),
-      ...colors.map(c => `next:checked:bg-${c}`),
-      ...colors.map(c => `next:checked:border-${c}`),
 
       // Typography
-      ...[...colors, 'layer-text', 'white'].map(c => `a-title-${c}`),
-      ...[...colors, 'layer-text', 'white'].map(c => `a-subtitle-${c}`),
+      ...colors.map(c => `a-title-${c}`),
+      ...colors.map(c => `a-subtitle-${c}`),
       ...['top', 'right', 'bottom', 'left'].map(dir => `a-drawer-anchor-${dir}`),
     ],
     rules,
