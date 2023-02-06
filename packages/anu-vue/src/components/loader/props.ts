@@ -1,14 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import { typographyProps } from '@/components/typography/props'
-import { color } from '@/composables/useProps'
 
 export const loaderProps = {
-
-  /**
-   * Loader color
-   */
-  color,
-
   ...typographyProps,
 
   /**
@@ -17,14 +10,6 @@ export const loaderProps = {
   loading: {
     type: Boolean,
     default: true,
-  },
-
-  /**
-   * Set overlay to use ALoader inside component
-   */
-  overlay: {
-    type: Boolean,
-    default: false,
   },
 
   /**

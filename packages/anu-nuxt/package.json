@@ -40,15 +40,15 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0",
+    "@anu-vue/preset-theme-default": "workspace:*",
     "@iconify-json/bx": "latest",
-    "anu-vue": "workspace:*",
-    "@anu-vue/preset-theme-default": "workspace:*"
+    "@nuxt/kit": "^3.1.2",
+    "anu-vue": "workspace:*"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.2.1",
-    "@nuxt/schema": "^3.0.0",
-    "@unocss/nuxt": "^0.48.0",
-    "nuxt": "^3.0.0"
+    "@nuxt/schema": "^3.1.2",
+    "@unocss/nuxt": "^0.49.4",
+    "nuxt": "^3.1.2"
   }
 }

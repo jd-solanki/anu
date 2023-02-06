@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { URL, fileURLToPath } from 'url'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
-import DefineOptions from 'unplugin-vue-define-options/vite'
+import VueMacros from 'unplugin-vue-macros/vite'
 import { defineConfig } from 'vitest/config'
 
 const externals = [
@@ -34,11 +34,14 @@ export default defineConfig({
     },
   },
   plugins: [
-    vue(),
+    VueMacros({
+      plugins: {
+        vue: vue(),
+      },
+    }),
     AutoImport({
       imports: ['vue', '@vueuse/core'],
     }),
-    DefineOptions(),
   ],
   resolve: {
     alias: {

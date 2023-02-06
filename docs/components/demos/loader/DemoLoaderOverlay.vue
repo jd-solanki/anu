@@ -18,7 +18,6 @@ const loading = ref(true)
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
         :loading="loading"
-        overlay
         class="text-2xl"
       />
     </AAlert>
@@ -30,7 +29,7 @@ const loading = ref(true)
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
         :loading="loading"
-        overlay
+
         class="text-2xl"
       />
     </AAlert>
@@ -42,8 +41,8 @@ const loading = ref(true)
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
         :loading="loading"
-        overlay
-        class="text-2xl bg-white dark:bg-dark"
+
+        class="text-2xl "
       />
     </AAlert>
     <AAlert
@@ -54,8 +53,8 @@ const loading = ref(true)
       Fruitcake I love liquorice apple pie croissant.
       <ALoader
         :loading="loading"
-        overlay
-        class="text-2xl bg-light dark:bg-dark"
+
+        class="text-2xl "
       />
     </AAlert>
 
@@ -70,7 +69,7 @@ const loading = ref(true)
         <p class="text-sm">
           <ALoader
             :loading="loading"
-            overlay
+
             class="text-3xl"
             title="It's loading..."
             subtitle="Click to stop loading."
@@ -87,7 +86,7 @@ const loading = ref(true)
     >
       <ALoader
         :loading="loading"
-        overlay
+
         class="text-3xl"
         title="It's loading..."
         subtitle="Click to stop loading."
@@ -112,14 +111,12 @@ const loading = ref(true)
         Primary
         <ALoader
           :loading="loading"
-          overlay
         />
       </AChip>
       <AChip class="relative">
         Primary
         <ALoader
           :loading="loading"
-          overlay
         />
       </AChip>
       <AChip
@@ -129,8 +126,8 @@ const loading = ref(true)
         Primary
         <ALoader
           :loading="loading"
-          overlay
-          class="bg-white dark:bg-dark"
+
+          class=""
         />
       </AChip>
       <AChip
@@ -140,8 +137,7 @@ const loading = ref(true)
         Primary
         <ALoader
           :loading="loading"
-          overlay
-          class="bg-light dark:bg-dark"
+          class=""
         />
       </AChip>
     </div>

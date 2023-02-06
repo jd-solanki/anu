@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ALoader } from '@/components/loader'
+import { ASpinner } from '@/components'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, disabled as disabledProp, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
@@ -43,13 +43,37 @@ const { styles, classes } = getLayerClasses(
   toRef(props, 'variant'),
   toRef(props, 'states'),
 )
+
+const btn = ref()
+const _styles = computed(() => {
+  const s = []
+
+  if (props.loading && btn.value)
+    s.push({ minWidth: `${btn.value.offsetWidth}px` })
+
+  return s
+})
 </script>
+
+<template name="btnContent">
+  <i
+    v-if="props.icon"
+    :class="props.icon"
+  />
+  <slot />
+  <i
+    v-if="props.appendIcon"
+    :class="props.appendIcon"
+  />
+</template>
 
 <template>
   <button
+    ref="btn"
     :tabindex="props.disabled ? -1 : 0"
     :style="[
       ...styles,
+      ..._styles,
       { '--a-spacing': spacing / 100 },
     ]"
     class="whitespace-nowrap inline-flex justify-center items-center relative"
@@ -60,24 +84,11 @@ const { styles, classes } = getLayerClasses(
     ]"
     :disabled="props.disabled ? true : undefined"
   >
-    <template v-if="props.icon">
-      <ALoader
-        v-if="props.loading"
-        class="[--a-loader-overlay-bg-c:transparent]"
-      />
-      <i
-        v-else
-        :class="props.icon"
-      />
-    </template>
-    <ALoader
-      v-else-if="props.loading"
-      overlay
-    />
-    <slot />
-    <i
-      v-if="props.appendIcon"
-      :class="props.appendIcon"
-    />
+      <TransitionGroup name="fade">
+        <div class="btn-content" v-show="!props.loading" key="btn-content">
+          <template is="btnContent"></template>
+        </div>
+        <ASpinner key="spinner" v-show="props.loading"></ASpinner>
+      </TransitionGroup>
   </button>
 </template>

@@ -17,6 +17,14 @@ export const cardProps = {
    * `alt` attribute for image rendered via `img` prop
    */
   imgAlt: String,
+
+  /**
+   * Set loading state
+   */
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 }
 
 export type CardProps = ExtractPropTypes<typeof cardProps>

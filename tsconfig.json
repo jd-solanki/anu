@@ -15,7 +15,18 @@
         "noUncheckedIndexedAccess": true,
         "jsx": "preserve",
         "types": [
-            "node"
+            "node",
+            "unplugin-vue-macros/macros-global",
+        ]
+    },
+    "vueCompilerOptions": {
+        "plugins": [
+            "@vue-macros/volar/define-model",
+            "@vue-macros/volar/define-props",
+            "@vue-macros/volar/define-props-refs",
+            "@vue-macros/volar/short-vmodel",
+            "@vue-macros/volar/define-slots",
+            "@vue-macros/volar/export-props"
         ]
     },
     "exclude": [

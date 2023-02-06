@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ATypography } from '../typography'
 import { cardProps } from './props'
+import { ASpinner } from '@/components'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
@@ -76,5 +77,13 @@ else
 
     <!-- 👉 Slot: Default -->
     <slot />
+
+    <!-- 👉 Loading overlay  -->
+    <div
+      class="overlay"
+      :class="[props.loading && 'opacity-100']"
+    >
+      <ASpinner class="em:w-6 em:h-6 absolute inset-0 m-auto text-[hsl(var(--a-layer-c))]" />
+    </div>
   </div>
 </template>

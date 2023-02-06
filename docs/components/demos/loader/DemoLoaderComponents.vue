@@ -10,44 +10,42 @@ const isDrawerShown = ref(false)
 
 <template>
   <div class="flex flex-wrap gap-6">
+    <ABtn
+      :loading="!ready"
+      @click="ready && start()"
+    >
+      Button
+    </ABtn>
+
+    <ABtn
+      :loading="!ready"
+      icon-only
+      icon="i-bx-cloud-upload"
+      @click="ready && start()"
+    />
+
     <!-- Alert -->
     <AAlert
-      color="info"
       variant="fill"
       class="relative"
       @click="ready && start()"
     >
-      AAlert component. Click to start loading...
+      Fruitcake I love liquorice apple pie croissant.
       <ALoader
         :loading="!ready"
-        overlay
-        class="text-2xl"
       />
     </AAlert>
 
     <!-- Card -->
-    <ACard
-      variant="fill"
-      color="danger"
-      title="Card title"
-      subtitle="Chocolate cake tiramisu donut"
-      @click="ready && start()"
-    >
-      <div class="a-card-body a-card-spacer">
-        <p class="text-sm">
-          <ALoader
-            :loading="!ready"
-            overlay
-            class="text-3xl"
-            title="It's loading..."
-            subtitle="Click to stop loading."
-            @click.stop="stop()"
-          />
-          Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate
-          bar.
-        </p>
-      </div>
-    </ACard>
+    <div class="cards-demo-container">
+      <ACard
+        title="Card title"
+        subtitle="Chocolate cake tiramisu donut"
+        text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
+        :loading="!ready"
+        @click="ready && start()"
+      />
+    </div>
 
     <!-- Dialog -->
     <ADialog
@@ -83,44 +81,5 @@ const isDrawerShown = ref(false)
     <ABtn @click="isDrawerShown = true; start()">
       Show drawer
     </ABtn>
-
-    <div class="flex gap-6">
-      <!-- Badge -->
-      <ABadge :content="9">
-        <ABtn
-          :loading="!ready"
-          @click="ready && start()"
-        >
-          Button
-        </ABtn>
-      </ABadge>
-
-      <!-- Button -->
-      <ABtn
-        :loading="!ready"
-        icon="i-bx-wink-smile"
-        @click="ready && start()"
-      >
-        Loading icon
-      </ABtn>
-
-      <ABtn
-        color="success"
-        variant="light"
-        class="text-2xl"
-        :loading="!ready"
-        icon-only
-        icon="i-bx-dollar-circle"
-        @click="ready && start()"
-      />
-
-      <!-- Input -->
-      <AInput
-        :loading="!ready"
-        placeholder="Type to load"
-        append-inner-icon="i-bx-check-double"
-        @keypress="ready && start()"
-      />
-    </div>
   </div>
 </template>

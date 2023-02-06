@@ -19,6 +19,7 @@ declare module 'vue' {
     ARadio: typeof import('anu-vue')['ARadio']
     ARating: typeof import('anu-vue')['ARating']
     ASelect: typeof import('anu-vue')['ASelect']
+    ASpinner: typeof import('anu-vue')['ASpinner']
     ASwitch: typeof import('anu-vue')['ASwitch']
     ATable: typeof import('anu-vue')['ATable']
     ATextarea: typeof import('anu-vue')['ATextarea']
@@ -26,4 +27,4 @@ declare module 'vue' {
   }
 }
 
-export { }
+export  {}

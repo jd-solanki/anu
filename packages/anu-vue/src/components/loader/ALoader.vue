@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
-import ASpinner from './ASpinner.vue'
 import { loaderProps } from './props'
+import { ASpinner } from '@/components'
 import { isTypographyUsed } from '@/components/typography/utils'
-import { useColor } from '@/composables'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 
@@ -14,8 +13,6 @@ defineOptions({
 })
 
 const slots = useSlots()
-
-const { styles } = useColor(toRef(props, 'color'), 'spinner-color')
 
 // TODO: Create composable useLazyVShow
 const isShownOnce = ref(props.loading)
@@ -45,54 +42,39 @@ if (props.fullPage) {
 </script>
 
 <template>
-  <!-- TODO: Use loader's CSS color instead of layer color: bg-[hsla(var(--a-layer-c),0.85)] -->
   <div
     v-if="isShownOnce"
     v-show="props.loading"
-    class="a-loader-wrapper inline-block align-middle text-center rounded-inherit overflow-hidden"
-    :class="[
-      props.overlay && 'absolute inset-0',
-    ]"
+    class="a-loader overlay flex items-center justify-center flex-col text-center gap-4"
+    :class="[props.loading && 'opacity-100', props.fullPage && 'fixed inset-0 z-54']"
   >
+    <!-- 👉 Slot: default -->
+    <slot>
+      <ASpinner class="a-loader-spinner text-[hsl(var(--a-layer-c))]" />
+    </slot>
+    <!-- 👉 Typography -->
     <div
-      :style="{ background: props.overlay ? 'hsla(var(--a-loader-overlay-bg-c),var(--a-loader-overlay-bg-opacity))' : undefined }"
-      class="a-loader-overlay"
-      :class="[
-        (props.overlay || props.fullPage) && 'w-full h-full flex flex-col gap-3 items-center justify-center overflow-hidden',
-        props.fullPage && 'fixed inset-0 z-54',
-      ]"
+      v-if="_isTypographyUsed"
+      class="a-loader-typography-wrapper"
     >
-      <!-- 👉 Slot: default -->
-      <slot>
-        <ASpinner
-          :style="styles"
-          class="a-loader-spinner w-$a-spinner-size h-$a-spinner-size rounded-full"
-        />
-      </slot>
-
-      <!-- 👉 Typography -->
-      <div
-        v-if="_isTypographyUsed"
-        class="a-loader-typography-wrapper"
+      <ATypography
+        :title="props.title"
+        :subtitle="props.subtitle"
+        :text="Object.values(_textProp) as ConfigurableValue"
+        style="--a-title-c: var(--a-layer-c); --a-subtitle-c: var(--a-layer-c)"
       >
-        <ATypography
-          :title="props.title"
-          :subtitle="props.subtitle"
-          :text="Object.values(_textProp) as ConfigurableValue"
+        <!-- ℹ️ Recursively pass down slots to child -->
+        <template
+          v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+          #[name]="slotProps"
         >
-          <!-- ℹ️ Recursively pass down slots to child -->
-          <template
-            v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
-            #[name]="slotProps"
-          >
-            <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
-            <slot
-              :name="name"
-              v-bind="slotProps || {}"
-            />
-          </template>
-        </ATypography>
-      </div>
+          <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
+          <slot
+            :name="name"
+            v-bind="slotProps || {}"
+          />
+        </template>
+      </ATypography>
     </div>
   </div>
 </template>

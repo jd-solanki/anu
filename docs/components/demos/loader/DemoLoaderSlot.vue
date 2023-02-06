@@ -1,6 +1,11 @@
 <template>
   <div class="cards-demo-container">
-    <ACard class="flex text-center justify-center p-6">
+    <ACard
+      title="Card title"
+      subtitle="Chocolate cake tiramisu donut"
+      text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
+      style="--a-loader-overlay-bg-opacity: 1"
+    >
       <ALoader
         title="Heartbeat"
         subtitle="Made with love with Anu"

@@ -12,20 +12,19 @@ $body-color: hsla(var(--a-base-c), 0.68);
     // #region all-css-vars
     --a-base-c: 0, 10%, 20%;
 
-    // ℹ️ Theme color (for now Used for light variant overlay color)
+    // ℹ️ Represents theme color. light => white, dark => black. ATM, it's used for backdrop & badge outline color.
     --a-theme-c: 0, 0%, 100%;
 
     // ℹ️ Used for background on body like select options, card, etc
     --a-surface-c: 0, 0%, 100%;
     
     --a-border-opacity: 0.12;
-    --a-loader-overlay-bg-c: var(--a-layer-c);
+    --a-loader-overlay-bg-c: var(--a-theme-c);
+    --a-loader-overlay-bg-opacity: 0.85;
 
-    // ℹ️ Only light variant will have 0.35 or something else
-    --a-loader-overlay-bg-opacity: 1;
-
-    --a-overlay-c: 0, 0%, 0%;
-    --a-overlay-opacity: 0.35;
+    // TODO: This should be backdrop not overlay
+    --a-backdrop-c: 0, 0%, 0%;
+    --a-backdrop-opacity: 0.35;
 
     --a-primary: 265, 97.7%, 66.3%;
     --a-success: 94.5, 100%, 39.6%;
@@ -52,10 +51,10 @@ $body-color: hsla(var(--a-base-c), 0.68);
     // SECTION Components
 
     // 👉 Card
-    --a-card-spacer: 1rem;
+    --a-card-spacer: 1em;
 
     // 👉 Spinner
-    --a-spinner-size: 1.2em;
+    --a-spinner-size: 1.25em;
 
     // 👉 Switch
     --a-switch-track-size: 3em;
@@ -86,7 +85,7 @@ $body-color: hsla(var(--a-base-c), 0.68);
   --a-base-c: 0, 0%, 94%;
   --a-theme-c: 0, 0%, 0%;
   --a-surface-c: 0, 0%, 12%;
-  --a-overlay-opacity: 0.5;
+  --a-backdrop-opacity: 0.5;
 
   --a-primary: 261, 73%, 66.3%;
   --a-success: 94.5, 73%, 39.6%;

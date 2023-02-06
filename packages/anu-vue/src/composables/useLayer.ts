@@ -84,24 +84,6 @@ export const useLayer = () => {
       We also have colord as dependency for now. We might remove this in future once Anu is more popular and mature.
     */
 
-    // ℹ️ For light variant we will keep the overlay color of `--a-layer-c` instead of adopting the layer color. We will add it regardless of its theme color or not.
-    if (propVariant === 'light') {
-      // Set loader typography's title & subtitle opacity to 1
-      classes.push('[&_.a-loader-overlay]-[--a-title-opacity:1] [&_.a-loader-overlay]-[--a-subtitle-opacity:1] [--a-loader-overlay-bg-opacity:.85]')
-
-      // Loader overlay
-      styles.push({ '--a-loader-overlay-bg-c': 'var(--a-theme-c)' })
-    }
-
-    /*
-      ℹ️ Outline & Text variant
-        For overlay bg, We can create use style: `background-color:hsla(var(--a-surface-c),var(--a-background))`,
-        where `--a-background` will be body bg. Moreover, when card is used we will add new style `--a-surface-c:--a-layer-c-color` (_bg color of card_)
-
-        With above, if component with outline variant will get correct overlay bg regardless of component is used inside card or outside of it.
-        ATM, If outline component is placed on body (_gray bg_) then it will get white overlay bg
-    */
-
     if (_isThemeColor) {
       styles.push({ '--a-layer-c': `var(--a-${propColor})` })
 
@@ -113,10 +95,6 @@ export const useLayer = () => {
         // Text
         if (propColor !== undefined && propColor !== null)
           classes.push('text-white')
-
-        // Loader overlay
-        styles.push({ '--a-loader-overlay-bg-c': 'var(--a-layer-c)' })
-        classes.push('[--a-loader-overlay-bg-opacity:1]')
       }
 
       else if (propVariant === 'light') {
@@ -127,8 +105,6 @@ export const useLayer = () => {
         // text
         if (propColor !== undefined && propColor !== null)
           classes.push(`text-${propColor}`)
-
-        // We have set loader overlay color above (before _isThemeColor condition)
       }
 
       else if (propVariant === 'outline') {
@@ -139,20 +115,12 @@ export const useLayer = () => {
         // Text
         if (propColor !== undefined && propColor !== null)
           classes.push('text-[hsl(var(--a-layer-c))]')
-
-        // Loader overlay
-        styles.push({ '--a-loader-overlay-bg-c': 'var(--a-surface-c)' })
-        classes.push('[--a-loader-overlay-bg-opacity:1]')
       }
 
       else if (propVariant === 'text') {
         // Text
         if (propColor !== undefined && propColor !== null)
           classes.push('text-[hsl(var(--a-layer-c))]')
-
-        // Loader overlay
-        // styles.push({ '--a-loader-overlay-bg-c': 'inherit' })
-        classes.push('[--a-loader-overlay-bg-opacity:1]')
       }
     }
     else if (propColor) {
@@ -168,10 +136,6 @@ export const useLayer = () => {
         // Text
         if (propColor !== undefined && propColor !== null)
           styles.push({ color: _colord.contrasting().toHslString() })
-
-        // Loader overlay
-        if (propColor)
-          styles.push({ '--a-loader-overlay-bg-c': _colord.toHslString() })
       }
       else if (propVariant === 'light') {
         // Background
@@ -181,8 +145,6 @@ export const useLayer = () => {
         // Text
         if (propColor !== undefined && propColor !== null)
           styles.push({ color: 'hsl(var(--a-layer-c))' })
-
-        // We have set loader overlay color above (before _isThemeColor condition)
       }
       else if (propVariant === 'outline') {
         // Border
@@ -192,17 +154,11 @@ export const useLayer = () => {
         // Text
         if (propColor !== undefined && propColor !== null)
           styles.push({ color: 'hsl(var(--a-layer-c))' })
-
-        // Loader overlay
-        styles.push({ '--a-loader-overlay-bg-c': 'inherit' })
       }
       else if (propVariant === 'text') {
         // Text
         if (propColor !== undefined && propColor !== null)
           styles.push({ color: 'hsl(var(--a-layer-c))' })
-
-        // Loader overlay
-        styles.push({ '--a-loader-overlay-bg-c': 'inherit' })
       }
     }
 
