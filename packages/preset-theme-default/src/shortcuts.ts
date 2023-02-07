@@ -75,8 +75,11 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     // 'a-base-input-child': 'autofill-bg-transparent',
 
     // 👉 Button
-    'a-btn': 'em:spacing:px-4 font-medium em:spacing:rounded-lg em:spacing:gap-x-2 em:spacing:h-10 focus-visible:ring-2 ring-offset-2',
-    'a-btn-icon-only': 'font-medium em:spacing:rounded-lg em:spacing:h-10 em:spacing:w-10 i:em:text-lg focus-visible:ring-2 ring-offset-2',
+    'a-btn': 'grid em:spacing:px-4 font-medium em:spacing:rounded-lg em:spacing:h-10 focus-visible:ring-2 ring-offset-2',
+
+    // ℹ️ We don't want to add unnecessary nesting of `.a-btn > .a-btn-content` hence we are directly writing shortcut that generates `.a-btn-content`
+    'a-btn-content': 'em:spacing:gap-x-2 flex items-center justify-center',
+    'a-btn-icon-only': 'em:spacing:px-2 font-medium em:spacing:rounded-lg aspect-square em:spacing:min-w-10 uno-layer-base-i:em:[&_.a-btn-content]-text-lg focus-visible:ring-2 ring-offset-2',
 
     // 👉 Card
     'a-card': 'em:spacing:rounded-lg shadow-lg',

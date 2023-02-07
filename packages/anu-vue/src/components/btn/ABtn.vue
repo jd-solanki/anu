@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ASpinner } from '@/components'
+import { ASpinner } from '@/components/spinner'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, disabled as disabledProp, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
@@ -45,27 +45,12 @@ const { styles, classes } = getLayerClasses(
 )
 
 const btn = ref()
-const _styles = computed(() => {
-  const s = []
-
-  if (props.loading && btn.value)
-    s.push({ minWidth: `${btn.value.offsetWidth}px` })
-
-  return s
+const _styles = ref<{ minWidth?: string }>({})
+watch(() => props.loading, val => {
+  if (val && btn.value)
+    _styles.value.minWidth = `${btn.value.offsetWidth}px`
 })
 </script>
-
-<template name="btnContent">
-  <i
-    v-if="props.icon"
-    :class="props.icon"
-  />
-  <slot />
-  <i
-    v-if="props.appendIcon"
-    :class="props.appendIcon"
-  />
-</template>
 
 <template>
   <button
@@ -73,10 +58,10 @@ const _styles = computed(() => {
     :tabindex="props.disabled ? -1 : 0"
     :style="[
       ...styles,
-      ..._styles,
+      _styles,
       { '--a-spacing': spacing / 100 },
     ]"
-    class="whitespace-nowrap inline-flex justify-center items-center relative"
+    class="whitespace-nowrap justify-center items-center relative"
     :class="[
       props.iconOnly ? 'a-btn-icon-only' : 'a-btn',
       props.disabled && 'opacity-50 pointer-events-none',
@@ -84,11 +69,25 @@ const _styles = computed(() => {
     ]"
     :disabled="props.disabled ? true : undefined"
   >
-      <TransitionGroup name="fade">
-        <div class="btn-content" v-show="!props.loading" key="btn-content">
-          <template is="btnContent"></template>
-        </div>
-        <ASpinner key="spinner" v-show="props.loading"></ASpinner>
-      </TransitionGroup>
+    <Transition
+      name="fade"
+      mode="out-in"
+    >
+      <ASpinner v-if="props.loading" />
+      <div
+        v-else
+        class="a-btn-content"
+      >
+        <i
+          v-if="props.icon"
+          :class="props.icon"
+        />
+        <slot />
+        <i
+          v-if="props.appendIcon"
+          :class="props.appendIcon"
+        />
+      </div>
+    </Transition>
   </button>
 </template>

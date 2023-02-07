@@ -9,7 +9,7 @@ defineOptions({
     fill="none"
     viewBox="-120,-120,240,240"
     xmlns="http://www.w3.org/2000/svg"
-    class="inline-block animate-spin em:w-5 em:h-5 animate-duration-[var(--a-spin-duration,_1s)]"
+    class="inline-block animate-spin em:w-[1.2em] em:h-[1.2em] animate-duration-[var(--a-spin-duration,_1s)]"
   >
     <g class="-rotate-90">
       <circle

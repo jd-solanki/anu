@@ -45,4 +45,3 @@ export const presetIconExtraProperties = {
   'display': 'inline-block',
   'backface-visibility': 'hidden',
 }
-
