@@ -21,17 +21,13 @@ defineOptions({
 </script>
 
 <template>
-  <Transition
-    name="fade"
-    mode="out-in"
-  >
-    <i
-      v-if="!props.loading"
-      :class="props.icon"
-    />
-    <ASpinner
-      v-else
-      v-bind="$attrs"
-    />
-  </Transition>
+  <ASpinner
+    v-if="props.loading"
+    class="transition-opacity"
+    v-bind="$attrs"
+  />
+  <i
+    v-else
+    :class="props.icon"
+  />
 </template>

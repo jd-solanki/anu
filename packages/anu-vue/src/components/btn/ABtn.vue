@@ -43,25 +43,16 @@ const { styles, classes } = getLayerClasses(
   toRef(props, 'variant'),
   toRef(props, 'states'),
 )
-
-const btn = ref()
-const _styles = ref<{ minWidth?: string }>({})
-watch(() => props.loading, val => {
-  if (val && btn.value)
-    _styles.value.minWidth = `${btn.value.offsetWidth}px`
-})
 </script>
 
 <template>
   <button
-    ref="btn"
     :tabindex="props.disabled ? -1 : 0"
     :style="[
       ...styles,
-      _styles,
       { '--a-spacing': spacing / 100 },
     ]"
-    class="whitespace-nowrap justify-center items-center relative"
+    class="inline-flex whitespace-nowrap justify-center items-center relative"
     :class="[
       props.iconOnly ? 'a-btn-icon-only' : 'a-btn',
       props.disabled && 'opacity-50 pointer-events-none',
@@ -69,25 +60,23 @@ watch(() => props.loading, val => {
     ]"
     :disabled="props.disabled ? true : undefined"
   >
-    <Transition
-      name="fade"
-      mode="out-in"
+    <ASpinner
+      class="absolute"
+      :class="[!props.loading && 'opacity-0']"
+    />
+    <div
+      class="a-btn-content"
+      :class="[props.loading && 'opacity-0']"
     >
-      <ASpinner v-if="props.loading" />
-      <div
-        v-else
-        class="a-btn-content"
-      >
-        <i
-          v-if="props.icon"
-          :class="props.icon"
-        />
-        <slot />
-        <i
-          v-if="props.appendIcon"
-          :class="props.appendIcon"
-        />
-      </div>
-    </Transition>
+      <i
+        v-if="props.icon"
+        :class="props.icon"
+      />
+      <slot />
+      <i
+        v-if="props.appendIcon"
+        :class="props.appendIcon"
+      />
+    </div>
   </button>
 </template>
