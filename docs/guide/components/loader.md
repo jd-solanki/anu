@@ -47,6 +47,17 @@ You can customize overlay color and opacity via CSS vars `--a-loader-overlay-bg-
 As `ADrawer` & `ADialog` is built on top of `ACard`, you can pass `loading` prop to these components and loader will work without any extra efforts.
 :::
 
+<!-- 👉 Spinner Icon -->
+::::card Spinner Icon
+
+Anu also provides convenient component `ALoadingIcon` for satisfying your custom needs 😇
+
+:::code DemoLoaderSpinnerIcon
+<<< @/components/demos/loader/DemoLoaderSpinnerIcon.vue
+:::
+
+::::
+
 <!-- 👉 Slot and Typography -->
 ::::card Slot and Typography
 
