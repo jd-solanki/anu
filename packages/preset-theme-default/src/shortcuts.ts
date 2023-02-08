@@ -57,7 +57,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     // 👉 Base Input
     'a-base-input-root': 'em:spacing:gap-y-1',
     'a-base-input-input-container': 'i:em:w-6 i:em:h-6 em:spacing:gap-x-3',
-    'a-base-input-input-wrapper': 'transition duration-250 ease-out flex i:em:w-5 i:em:h-5 em:spacing:h-12 em:spacing:rounded-lg',
+    'a-base-input-input-wrapper': 'transition duration-250 ease-out flex i:em:w-5 i:em:h-5 em:[&_>_.a-spinner]-w-5 em:spacing:h-12 em:spacing:rounded-lg',
 
     'a-base-input-prepend-inner-icon': 'z-1',
 
@@ -75,11 +75,12 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     // 'a-base-input-child': 'autofill-bg-transparent',
 
     // 👉 Button
-    'a-btn': 'em:spacing:px-4 font-medium em:spacing:rounded-lg em:spacing:gap-x-2 em:spacing:h-10 focus-visible:ring-2 ring-offset-2',
-    'a-btn-icon-only': 'font-medium em:spacing:rounded-lg em:spacing:h-10 em:spacing:w-10 i:em:text-lg focus-visible:ring-2 ring-offset-2',
+    'a-btn': 'em:spacing:px-4 font-medium em:spacing:rounded-lg em:spacing:h-10 focus-visible:ring-2 ring-offset-2',
+    'a-btn-content': 'flex items-center justify-center em:spacing:gap-x-2',
+    'a-btn-icon-only': 'em:spacing:px-2 font-medium em:spacing:rounded-lg aspect-square em:spacing:min-w-10 uno-layer-base-i:em:[&_.a-btn-content]-text-lg focus-visible:ring-2 ring-offset-2',
 
     // 👉 Card
-    'a-card': 'em:spacing:rounded-lg shadow-lg',
+    'a-card': 'em:spacing:rounded-lg shadow-lg em:[&_>_.a-loader_.a-spinner]-w-7',
     'a-card-typography-wrapper': 'a-card-padding next:pt-0 em:spacing:not-last:pb-4',
     'a-card-padding': 'em:spacing:p-5',
     'a-card-spacer': 'not-last-children-mb-$a-card-spacer',
@@ -109,6 +110,9 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // 👉 List
     'a-list': 'em:spacing:rounded-lg em:spacing:my-2',
+
+    // 👉 Loader
+    'a-loader': '[&.a-loader-full-page]-text-4xl',
 
     // Helper class to create pill shaped list items
     'a-list-items-pill': 'em:spacing:my-[0.65em] em:spacing:children-[.a-list-item]-rounded-lg [--a-list-item-margin:0.18em_0.75em] [--a-list-item-padding:0.5em_0.75em]',

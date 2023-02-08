@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ASpinner } from '@/components'
+import { ASpinner } from '@/components/spinner'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, disabled as disabledProp, spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
@@ -27,7 +27,7 @@ const props = defineProps({
    */
   loading: {
     type: Boolean,
-    default: false,
+    default: undefined,
   },
 })
 
@@ -43,40 +43,16 @@ const { styles, classes } = getLayerClasses(
   toRef(props, 'variant'),
   toRef(props, 'states'),
 )
-
-const btn = ref()
-const _styles = computed(() => {
-  const s = []
-
-  if (props.loading && btn.value)
-    s.push({ minWidth: `${btn.value.offsetWidth}px` })
-
-  return s
-})
 </script>
-
-<template name="btnContent">
-  <i
-    v-if="props.icon"
-    :class="props.icon"
-  />
-  <slot />
-  <i
-    v-if="props.appendIcon"
-    :class="props.appendIcon"
-  />
-</template>
 
 <template>
   <button
-    ref="btn"
     :tabindex="props.disabled ? -1 : 0"
     :style="[
       ...styles,
-      ..._styles,
       { '--a-spacing': spacing / 100 },
     ]"
-    class="whitespace-nowrap inline-flex justify-center items-center relative"
+    class="inline-flex whitespace-nowrap justify-center items-center relative"
     :class="[
       props.iconOnly ? 'a-btn-icon-only' : 'a-btn',
       props.disabled && 'opacity-50 pointer-events-none',
@@ -84,11 +60,25 @@ const _styles = computed(() => {
     ]"
     :disabled="props.disabled ? true : undefined"
   >
-      <TransitionGroup name="fade">
-        <div class="btn-content" v-show="!props.loading" key="btn-content">
-          <template is="btnContent"></template>
-        </div>
-        <ASpinner key="spinner" v-show="props.loading"></ASpinner>
-      </TransitionGroup>
+    <!-- ℹ️ Don't render spinner if not using loading -->
+    <ASpinner
+      v-if="typeof props.loading === 'boolean'"
+      class="absolute"
+      :class="[!props.loading && 'opacity-0']"
+    />
+    <div
+      class="a-btn-content"
+      :class="[props.loading && 'opacity-0']"
+    >
+      <i
+        v-if="props.icon"
+        :class="props.icon"
+      />
+      <slot />
+      <i
+        v-if="props.appendIcon"
+        :class="props.appendIcon"
+      />
+    </div>
   </button>
 </template>

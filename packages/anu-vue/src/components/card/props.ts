@@ -1,4 +1,5 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
+import type { LoaderProps } from '@/components/loader/props'
 import { typographyProps } from '@/components/typography/props'
 import { useProps as useLayerProps } from '@/composables/useLayer'
 import { spacing } from '@/composables/useProps'
@@ -22,8 +23,8 @@ export const cardProps = {
    * Set loading state
    */
   loading: {
-    type: Boolean,
-    default: false,
+    type: [Boolean, Object] as PropType<boolean | LoaderProps>,
+    default: undefined,
   },
 }
 

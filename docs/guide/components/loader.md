@@ -7,7 +7,7 @@ import api from '@anu/component-meta/ALoader.json';
 <!-- 👉 Spinner -->
 ::::card Spinner
 
-Use `ASpinner` component to render a spinner.
+Use `ASpinner` component to render a spinner. For adjusting size of the spinner you can use font size utilities or if you want to set it to fixed size then use width utilities `em:w-5`. Spinner have `aspect-square` so height will be matched.
 
 :::code DemoLoaderSpinner
 <<< @/components/demos/loader/DemoLoaderSpinner.vue{3,4}
@@ -18,9 +18,7 @@ Use `ASpinner` component to render a spinner.
 <!-- 👉 Components -->
 ::::card Components
 
-`ALoader` can be used in other components.
-
-You can customize overlay color and opacity via CSS vars `--a-loader-overlay-bg-c` & `--a-loader-overlay-bg-opacity` respectively.
+Anu already integrated loading for components that requires loading.
 
 :::code DemoLoaderComponents
 <<< @/components/demos/loader/DemoLoaderComponents.vue{20-24,37-44,58-62,75-79,90,99,110,118}
@@ -28,16 +26,26 @@ You can customize overlay color and opacity via CSS vars `--a-loader-overlay-bg-
 
 ::::
 
-<!-- 👉 Overlay -->
-::::card Overlay
+:::tip Performance 🚀
+If you don't use loading prop then `loading` prop for these component will be `undefined`. Anu will only render loader if `loading` prop is other than `undefined`. Hence, You won't get unwanted loader DOM if you aren't using loader.
+:::
 
-Use the prop `overlay` to cover the parent component. You can change the apparence of the overlay with `bg-` and `bg-opacity-` unocss utilities.
+<!-- 👉 Loader -->
+::::card Loader
 
-:::code DemoLoaderOverlay
-<<< @/components/demos/loader/DemoLoaderOverlay.vue{12,16}
+You can use `ALoader` component to create customer loader/blocking UI.
+
+You can customize overlay color and opacity via CSS vars `--a-loader-overlay-bg-c` & `--a-loader-overlay-bg-opacity` respectively.
+
+:::code DemoLoaderLoader
+<<< @/components/demos/loader/DemoLoaderLoader.vue{12,16}
 :::
 
 ::::
+
+:::info
+As `ADrawer` & `ADialog` is built on top of `ACard`, you can pass `loading` prop to these components and loader will work without any extra efforts.
+:::
 
 <!-- 👉 Slot and Typography -->
 ::::card Slot and Typography
