@@ -57,7 +57,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     // 👉 Base Input
     'a-base-input-root': 'em:spacing:gap-y-1',
     'a-base-input-input-container': 'i:em:w-6 i:em:h-6 em:spacing:gap-x-3',
-    'a-base-input-input-wrapper': 'transition duration-250 ease-out flex i:em:w-5 i:em:h-5 em:spacing:h-12 em:spacing:rounded-lg',
+    'a-base-input-input-wrapper': 'transition duration-250 ease-out flex i:em:w-5 i:em:h-5 em:[&_>_.a-spinner]-w-5 em:spacing:h-12 em:spacing:rounded-lg',
 
     'a-base-input-prepend-inner-icon': 'z-1',
 

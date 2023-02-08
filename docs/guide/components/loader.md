@@ -7,7 +7,7 @@ import api from '@anu/component-meta/ALoader.json';
 <!-- 👉 Spinner -->
 ::::card Spinner
 
-Use `ASpinner` component to render a spinner.
+Use `ASpinner` component to render a spinner. For adjusting size of the spinner you can use font size utilities or if you want to set it to fixed size then use width utilities `em:w-5`. Spinner have `aspect-square` so height will be matched.
 
 :::code DemoLoaderSpinner
 <<< @/components/demos/loader/DemoLoaderSpinner.vue{3,4}
