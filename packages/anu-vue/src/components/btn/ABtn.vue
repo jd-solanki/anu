@@ -27,7 +27,7 @@ const props = defineProps({
    */
   loading: {
     type: Boolean,
-    default: false,
+    default: undefined,
   },
 })
 
@@ -60,7 +60,9 @@ const { styles, classes } = getLayerClasses(
     ]"
     :disabled="props.disabled ? true : undefined"
   >
+    <!-- ℹ️ Don't render spinner if not using loading -->
     <ASpinner
+      v-if="(typeof props.loading === 'boolean')"
       class="absolute"
       :class="[!props.loading && 'opacity-0']"
     />
