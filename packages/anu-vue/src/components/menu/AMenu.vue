@@ -3,7 +3,7 @@ import type { Middleware, Placement, Strategy } from '@floating-ui/dom'
 import { autoUpdate, computePosition, flip, shift } from '@floating-ui/dom'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
 import type { PropType } from 'vue'
-import { Teleport, Transition, getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
 import { useTeleport } from '@/composables/useTeleport'
 import { useInternalBooleanState } from '@/composables/useInternalBooleanState'
@@ -101,20 +101,20 @@ const calculateFloatingPosition = async () => {
         // ℹ️ For this we need need bridge to handle keep menu content open
         // offset(6),
 
-        sameWidthMiddleware(refFloating.value.$el),
+        sameWidthMiddleware(refFloating.value),
         flip(),
         shift({ padding: 10 }),
       ] as Middleware[]
-    : props.middleware(refReference.value, refFloating.value.$el)
+    : props.middleware(refReference.value, refFloating.value)
 
   // Calculate position of floating element
-  const { x, y } = await computePosition(refReference.value, refFloating.value.$el, {
+  const { x, y } = await computePosition(refReference.value, refFloating.value, {
     strategy: props.strategy,
     placement: props.placement,
     middleware: _middleware,
   })
 
-  Object.assign(refFloating.value.$el.style, {
+  Object.assign(refFloating.value.style, {
     left: `${x}px`,
     top: `${y}px`,
   })
@@ -124,7 +124,8 @@ let floatingUiCleanup: Function
 
 onMounted(() => {
   const vm = getCurrentInstance()
-  refReference.value = vm?.proxy?.$el?.parentNode
+  if (vm?.proxy?.$parent)
+    refReference.value = vm?.proxy?.$parent.$el
 })
 
 // Recalculate position if placement changes at runtime
@@ -132,7 +133,7 @@ watch(
   [isMounted, () => props.placement],
   () => {
     nextTick(() => {
-      floatingUiCleanup = autoUpdate(refReference.value, refFloating.value.$el, calculateFloatingPosition)
+      floatingUiCleanup = autoUpdate(refReference.value, refFloating.value, calculateFloatingPosition)
     })
   },
 )
@@ -192,18 +193,16 @@ if (props.modelValue === undefined) {
   >
     <!-- ℹ️ Transition component don't accept null as value of name prop so we need `props.transition || undefined` -->
     <Transition :name="props.transition || undefined">
-      <ACard
+      <div
         v-show="props.modelValue ?? isAlertVisible"
         ref="refFloating"
         class="a-menu"
         :class="[props.strategy === 'fixed' ? 'fixed' : 'absolute']"
       >
-        <slot />
-      </ACard>
+        <ACard>
+          <slot />
+        </ACard>
+      </div>
     </Transition>
   </Teleport>
 </template>
-
-<style lang="scss">
-
-</style>
