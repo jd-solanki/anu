@@ -62,7 +62,7 @@ const { styles, classes } = getLayerClasses(
   >
     <!-- ℹ️ Don't render spinner if not using loading -->
     <ASpinner
-      v-if="(typeof props.loading === 'boolean')"
+      v-if="typeof props.loading === 'boolean'"
       class="absolute"
       :class="[!props.loading && 'opacity-0']"
     />

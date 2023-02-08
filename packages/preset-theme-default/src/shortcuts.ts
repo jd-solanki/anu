@@ -80,7 +80,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-btn-icon-only': 'em:spacing:px-2 font-medium em:spacing:rounded-lg aspect-square em:spacing:min-w-10 uno-layer-base-i:em:[&_.a-btn-content]-text-lg focus-visible:ring-2 ring-offset-2',
 
     // 👉 Card
-    'a-card': 'em:spacing:rounded-lg shadow-lg',
+    'a-card': 'em:spacing:rounded-lg shadow-lg em:[&_>_.a-loader_.a-spinner]-w-7',
     'a-card-typography-wrapper': 'a-card-padding next:pt-0 em:spacing:not-last:pb-4',
     'a-card-padding': 'em:spacing:p-5',
     'a-card-spacer': 'not-last-children-mb-$a-card-spacer',
@@ -110,6 +110,9 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // 👉 List
     'a-list': 'em:spacing:rounded-lg em:spacing:my-2',
+
+    // 👉 Loader
+    'a-loader': '[&.a-loader-full-page]-text-4xl',
 
     // Helper class to create pill shaped list items
     'a-list-items-pill': 'em:spacing:my-[0.65em] em:spacing:children-[.a-list-item]-rounded-lg [--a-list-item-margin:0.18em_0.75em] [--a-list-item-padding:0.5em_0.75em]',

@@ -46,7 +46,7 @@ if (props.fullPage) {
     v-if="isShownOnce"
     v-show="props.loading"
     class="a-loader overlay flex items-center justify-center flex-col text-center gap-4"
-    :class="[props.loading && 'opacity-100', props.fullPage && 'fixed inset-0 z-54']"
+    :class="[props.loading && 'opacity-100', props.fullPage && 'a-loader-full-page fixed inset-0 z-54']"
   >
     <!-- 👉 Slot: default -->
     <slot>

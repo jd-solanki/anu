@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ATypography } from '../typography'
 import { cardProps } from './props'
-import { ASpinner } from '@/components'
+import { ALoader } from '@/components/loader'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
@@ -44,6 +44,16 @@ else
       { '--a-spacing': spacing / 100 },
     ]"
   >
+    <!-- 👉 Loader  -->
+    <!--
+        ℹ️ We have intentionally placed loader on top.
+        Because we have card content style based on last child pseudo selector.
+    -->
+    <ALoader
+      v-if="typeof props.loading !== 'undefined'"
+      v-bind="typeof props.loading === 'boolean' ? { loading: props.loading } : props.loading"
+    />
+
     <!-- 👉 Image -->
     <img
       v-if="props.img"
@@ -77,13 +87,5 @@ else
 
     <!-- 👉 Slot: Default -->
     <slot />
-
-    <!-- 👉 Loading overlay  -->
-    <div
-      class="overlay"
-      :class="[props.loading && 'opacity-100']"
-    >
-      <ASpinner class="em:w-6 em:h-6 absolute inset-0 m-auto text-[hsl(var(--a-layer-c))]" />
-    </div>
   </div>
 </template>

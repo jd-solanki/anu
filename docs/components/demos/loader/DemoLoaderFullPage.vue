@@ -14,7 +14,6 @@ const loading = ref(false)
     full-page
     title="Full page loading"
     subtitle="Click anywhere to stop loading"
-    class="text-4xl"
     @click="loading = false"
   />
 </template>
