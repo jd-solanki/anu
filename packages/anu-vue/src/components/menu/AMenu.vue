@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { Middleware, Placement, Strategy } from '@floating-ui/dom'
-import { autoUpdate, computePosition, flip, shift } from '@floating-ui/dom'
+import type { Middleware, Placement, Strategy } from '@floating-ui/vue'
+import { autoUpdate, flip, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
-import type { PropType } from 'vue'
-import { getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import type { PropType, Ref } from 'vue'
+import { getCurrentInstance, onMounted, ref } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
 import { useTeleport } from '@/composables/useTeleport'
 import { useInternalBooleanState } from '@/composables/useInternalBooleanState'
@@ -66,10 +66,7 @@ const props = defineProps({
   /**
    * Middleware option from Floating UI
    */
-  middleware: {
-    type: [Function, Object] as PropType<((referenceEl: HTMLElement, floatingEl: HTMLElement) => Middleware[]) | null>,
-    default: null,
-  },
+  middleware: Function as PropType<(referenceEl: Ref<HTMLElement>, floatingEl: Ref<HTMLElement>) => Middleware[]>,
 })
 
 const emit = defineEmits<{
@@ -88,56 +85,37 @@ const { internalState: isAlertVisible, toggle: toggleAlertVisibility } = useInte
 const refReference = ref()
 const refFloating = ref()
 
-const calculateFloatingPosition = async () => {
-  /*
+/*
     ℹ️ We need to construct the internal middleware variable
 
-    If user don't pass the middleware prop then prop value will be `null` which will easy to tackle with simple if condition as shown below
+    If user don't pass the middleware prop then prop value will be `undefined` which will easy to tackle with simple if condition as shown below
 
     Here, we will use user's middleware if passed via props or we will use our defaults
     */
-  const _middleware = props.middleware === null
-    ? [
-        // ℹ️ For this we need need bridge to handle keep menu content open
-        // offset(6),
+const _middleware = props.middleware === undefined
+  ? [
+      // ℹ️ For this we need need bridge to handle keep menu content open
+      // offset(6),
 
-        sameWidthMiddleware(refFloating.value),
-        flip(),
-        shift({ padding: 10 }),
-      ] as Middleware[]
-    : props.middleware(refReference.value, refFloating.value)
+      sameWidthMiddleware(refFloating),
+      flip(),
+      shift({ padding: 10 }),
+    ] as Middleware[]
+  : props.middleware(refReference, refFloating)
 
-  // Calculate position of floating element
-  const { x, y } = await computePosition(refReference.value, refFloating.value, {
-    strategy: props.strategy,
-    placement: props.placement,
-    middleware: _middleware,
-  })
-
-  Object.assign(refFloating.value.style, {
-    left: `${x}px`,
-    top: `${y}px`,
-  })
-}
-
-let floatingUiCleanup: Function
+// Calculate position of floating element
+const { x, y, strategy } = useFloating(refReference, refFloating, {
+  strategy: toRef(props, 'strategy'),
+  placement: toRef(props, 'placement'),
+  middleware: _middleware,
+  whileElementsMounted: autoUpdate,
+})
 
 onMounted(() => {
   const vm = getCurrentInstance()
   if (vm?.proxy?.$parent)
     refReference.value = vm?.proxy?.$parent.$el
 })
-
-// Recalculate position if placement changes at runtime
-watch(
-  [isMounted, () => props.placement],
-  () => {
-    nextTick(() => {
-      floatingUiCleanup = autoUpdate(refReference.value, refFloating.value, calculateFloatingPosition)
-    })
-  },
-)
-onBeforeUnmount(() => floatingUiCleanup())
 
 // 👉 Event listeners
 /*
@@ -197,7 +175,11 @@ if (props.modelValue === undefined) {
         v-show="props.modelValue ?? isAlertVisible"
         ref="refFloating"
         class="a-menu"
-        :class="[props.strategy === 'fixed' ? 'fixed' : 'absolute']"
+        :style="{
+          top: `${y ?? 0}px`,
+          left: `${x ?? 0}px`,
+        }"
+        :class="strategy"
       >
         <ACard>
           <slot />

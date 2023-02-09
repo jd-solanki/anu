@@ -1,11 +1,12 @@
 import type { ElementRects } from '@floating-ui/dom'
+import type { Ref } from 'vue'
 
-export const sameWidth = (floatingEl: HTMLElement) => {
+export const sameWidth = (floatingEl: Ref<HTMLElement>) => {
   return {
     name: 'sameWidth',
     fn: ({ rects, x, y }: { rects: ElementRects; x: number; y: number }) => {
       // Set width of reference to floating
-      floatingEl.style.minWidth = `${rects.reference.width}px`
+      floatingEl.value.style.minWidth = `${rects.reference.width}px`
 
       return { x, y }
     },
