@@ -29,7 +29,7 @@ To open menu on hover use set `trigger` prop to `hover`.
 <!-- 👉 v-model support -->
 ::::card v-model support
 
-description
+`AMenu` also support `v-model` to show/hide menu.
 
 :::code DemoMenuVModelSupport
 <<< @/components/demos/menu/DemoMenuVModelSupport.vue{11,17}

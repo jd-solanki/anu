@@ -2,29 +2,21 @@
 import { menuProps } from './props'
 import { ACard } from '@/components'
 import { AFloating } from '@/components/floating'
+import { useParentEl } from '@/composables'
 
 const props = defineProps(menuProps)
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
 
 defineOptions({
   name: 'AMenu',
 })
 
-const refReference = ref()
-onMounted(() => {
-  const vm = getCurrentInstance()
-  if (vm?.proxy?.$parent)
-    refReference.value = vm?.proxy?.$parent.$el
-})
+const { parentEL } = useParentEl()
 </script>
 
 <template>
   <AFloating
     v-bind="props"
-    :reference-el="refReference"
+    :reference-el="parentEL"
   >
     <ACard>
       <slot />

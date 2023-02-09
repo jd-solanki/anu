@@ -68,6 +68,7 @@ const { x, y, strategy } = useFloating(toRef(props, 'referenceEl'), refFloating,
 if (props.modelValue === undefined) {
   // If trigger is hover
   if (props.trigger === 'hover') {
+    // TODO: Try to refactor multiple listeners via https://github.com/vueuse/vueuse/pull/2180
     // Reference
     useEventListener(toRef(props, 'referenceEl'), 'mouseenter', () => {
       if (isFloatingElVisible.value === false)

@@ -5,6 +5,7 @@ import type { Ref } from 'vue'
 export const useInternalBooleanState = (state: Ref<boolean | undefined>, emit: any, eventToEmit: string, initialValue: boolean) => {
   const _internalState = ref(initialValue)
 
+  // TODO: Allow passing value to set the value instead of just toggling
   const toggle = () => {
     if (state.value !== undefined)
       emit(eventToEmit)
