@@ -12,6 +12,8 @@ $body-color: hsla(var(--a-base-c), 0.68);
     // #region all-css-vars
     --a-base-c: 0, 10%, 20%;
 
+    --a-spacing: 1;
+
     // ℹ️ Represents theme color. light => white, dark => black. ATM, it's used for backdrop & badge outline color.
     --a-theme-c: 0, 0%, 100%;
 
@@ -69,11 +71,11 @@ $body-color: hsla(var(--a-base-c), 0.68);
     // 👉 List
     // ℹ️ We might not need `--a-list-gap` this if we are using just `AList`, however when we use list inside another component this will be helpful
     // #region a-list-css-vars
-    --a-list-gap: 0rem;
-    --a-list-item-gap: 0.75rem;    
-    --a-list-item-padding: 0.5rem 1rem;
-    --a-list-item-margin: 0rem;
-    --a-list-item-min-height: 2.5rem;
+    --a-list-gap: calc(0em * var(--a-spacing));
+    --a-list-item-gap: calc(0.75em * var(--a-spacing));
+    --a-list-item-padding: calc(0.5em * var(--a-spacing)) calc(1em * var(--a-spacing));
+    --a-list-item-margin: calc(0em * var(--a-spacing));
+    --a-list-item-min-height: calc(2.5em * var(--a-spacing));
     // #endregion a-list-css-vars
 
     // #endregion all-css-vars

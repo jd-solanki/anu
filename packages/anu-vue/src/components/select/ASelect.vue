@@ -1,26 +1,27 @@
 <script lang="ts" setup>
-import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
+import { flip, offset, shift } from '@floating-ui/vue'
 import { defu } from 'defu'
 import type { ExtractPropTypes, PropType } from 'vue'
+import { ACard, AList } from '@/components'
 import { ABaseInput, baseInputProps } from '@/components/base-input'
-
-import { useTeleport } from '@/composables/useTeleport'
+import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
+import type { ListItemProps } from '@/components/list-item'
 import { isObject } from '@/utils/helpers'
 
 export interface ObjectOption { label: string; value: string | number }
-type SelectOption = string | number | ObjectOption
 
 const props = defineProps(defu({
   // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
   modelValue: { type: null },
   options: {
-    type: [String, Number, Object] as PropType<SelectOption[]>,
+    type: Array as PropType<ListItemProps[]>,
     default: () => [],
   },
   emitObject: Boolean,
 
   // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
   optionsWrapperClasses: { type: null },
+  listClasses: { type: null },
 }, baseInputProps))
 
 const emit = defineEmits<{
@@ -36,51 +37,13 @@ defineOptions({
 
 const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
 
-const { teleportTarget } = useTeleport()
-const isMounted = useMounted()
-
 // SECTION Floating
 // Template refs
 const refReference = ref()
-const selectRef = ref<HTMLSelectElement>()
 const refFloating = ref()
+const selectRef = ref<HTMLSelectElement>()
 
-const isObjectOption = (option: SelectOption) => isObject(option) && 'label' in option && 'value' in option
 const isOptionsVisible = ref(false)
-
-const calculateFloatingPosition = async () => {
-  const { x, y } = await computePosition(refReference.value.refInputContainer, refFloating.value, {
-    placement: 'bottom-start',
-    middleware: [
-      offset(6),
-      {
-        name: 'sameWidth',
-        fn: ({ rects, x, y }) => {
-          // Set width of reference to floating
-          refFloating.value.style.width = `${rects.reference.width}px`
-
-          return { x, y }
-        },
-      },
-      flip(),
-      shift({ padding: 10 }),
-    ],
-  })
-
-  Object.assign(refFloating.value.style, {
-    left: `${x}px`,
-    top: `${y}px`,
-  })
-}
-
-let floatingUiCleanup: Function = () => { }
-onMounted(() => {
-  nextTick(() => {
-    floatingUiCleanup = autoUpdate(refReference.value.refInputContainer, refFloating.value, calculateFloatingPosition)
-  })
-})
-
-onBeforeUnmount(() => floatingUiCleanup())
 
 onClickOutside(
   refFloating,
@@ -104,27 +67,24 @@ const handleInputClick = () => {
 }
 
 // 👉 Options
-const optionClasses = 'a-select-option states before:transition-none cursor-pointer text-ellipsis overflow-hidden'
-const handleOptionClick = (option: SelectOption) => {
-  const value = isObjectOption(option) && !props.emitObject ? (option as ObjectOption).value : option
-
-  emit('change', value)
-  emit('input', value)
-  emit('update:modelValue', value)
+const handleOptionClick = (item: ListItemProps, value: any) => {
+  const valueToEmit = props.emitObject ? item : value
+  emit('change', valueToEmit)
+  emit('input', valueToEmit)
+  emit('update:modelValue', valueToEmit)
 }
 const closeOptions = (event: MouseEvent) => {
   if (event.target !== refFloating.value)
     isOptionsVisible.value = false
 }
 
-// 👉 Value
-const selectedValue = computed(() => {
-  const option = props.options.find(option => isObjectOption(option)
-    ? (option as ObjectOption).value === (!props.emitObject ? props.modelValue : (props.modelValue as ObjectOption).value)
-    : option === props.modelValue)
-
-  return option ? isObjectOption(option) ? (option as ObjectOption).label : option : (props.modelValue as ObjectOption | undefined)?.label || ''
-})
+// 👉 Middleware
+const middleware = () => [
+  offset(6),
+  sameWidthFloatingUIMiddleware(refFloating),
+  flip(),
+  shift({ padding: 10 }),
+]
 </script>
 
 <template>
@@ -155,33 +115,32 @@ const selectedValue = computed(() => {
         ref="selectRef"
         readonly
         class="a-select-input"
-        :value="selectedValue"
+        :value="isObject(modelValue) ? modelValue.text : modelValue"
       >
     </template>
   </ABaseInput>
 
   <!-- 👉 Select options -->
-  <Teleport
-    v-if="isMounted"
-    :to="teleportTarget"
+  <AFloating
+    :reference-el="refReference && refReference.refInputContainer"
+    :middleware="middleware"
+    class="a-select-floating"
   >
-    <ul
+    <ACard
       v-show="isOptionsVisible"
       ref="refFloating"
-      class="a-select-options-container absolute bg-[hsl(var(--a-surface-c))]"
+      :data-slots="Object.keys($slots)"
+      class="a-select-options-container bg-[hsl(var(--a-surface-c))]"
       :class="props.optionsWrapperClasses"
       @click="closeOptions"
     >
-      <slot :attrs="{ class: optionClasses }">
-        <li
-          v-for="(option, index) in props.options"
-          :key="index"
-          :class="optionClasses"
-          @click="handleOptionClick(option)"
-        >
-          {{ isObjectOption(option) ? (option as ObjectOption).label : option }}
-        </li>
-      </slot>
-    </ul>
-  </Teleport>
+      <AList
+        :items="options"
+        :value="props.modelValue"
+        class="a-select-options-list"
+        :class="props.listClasses"
+        @click:item="({ item, value }) => handleOptionClick(item, value)"
+      />
+    </ACard>
+  </AFloating>
 </template>

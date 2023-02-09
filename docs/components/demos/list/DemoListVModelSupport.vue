@@ -8,8 +8,8 @@ const items = [
   { text: 'Cake gummi', disabled: true },
 ]
 
-const itemsPropSelection = ref(0)
-const slotSelection = ref(0)
+const itemsPropSelection = ref<typeof items[number] | null>(null)
+const slotSelection = ref<typeof items[number] | null>(null)
 </script>
 
 <template>
@@ -25,7 +25,7 @@ const slotSelection = ref(0)
           <hr class="my-2">
           <AList
             class="mb-0"
-            :items="[{ subtitle: `Selected: ${itemsPropSelection}` }]"
+            :items="[{ subtitle: `Selected: ${itemsPropSelection && itemsPropSelection.text}` }]"
           />
         </template>
       </AList>
@@ -44,8 +44,8 @@ const slotSelection = ref(0)
             :key="item.text"
             :text="item.text"
             :value="index"
-            :disable="item.disable"
-            :is-active="slotSelection === index"
+            :disabled="item.disabled"
+            :is-active="slotSelection?.text === item.text"
             @click="handleListItemClick(item, index)"
           />
         </template>
@@ -53,7 +53,7 @@ const slotSelection = ref(0)
           <hr class="my-2">
           <AList
             class="mb-0"
-            :items="[{ subtitle: `Selected: ${slotSelection}` }]"
+            :items="[{ subtitle: `Selected: ${slotSelection && slotSelection.text}` }]"
           />
         </template>
       </AList>

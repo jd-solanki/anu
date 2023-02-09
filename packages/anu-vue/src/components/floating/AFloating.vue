@@ -16,6 +16,7 @@ const emit = defineEmits<{
 
 defineOptions({
   name: 'AFloating',
+  inheritAttrs: false,
 })
 
 const { teleportTarget } = useTeleport()
@@ -106,6 +107,11 @@ if (props.modelValue === undefined) {
     }
   }
 }
+
+// Expose: https://vuejs.org/api/sfc-script-setup.html#defineexpose
+defineExpose({
+  refFloating,
+})
 </script>
 
 <template>
@@ -117,6 +123,7 @@ if (props.modelValue === undefined) {
     <Transition :name="props.transition || undefined">
       <div
         v-show="props.modelValue ?? isFloatingElVisible"
+        v-bind="$attrs"
         ref="refFloating"
         class="a-floating"
         :style="{

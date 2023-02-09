@@ -130,8 +130,9 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-radio-disabled': 'opacity-50',
 
     // 👉 Select
-    'a-select-options-container': 'z-10 border border-solid border-a-border em:spacing:rounded-lg em:spacing:py-3 shadow-lg',
-    'a-select-option': 'em:spacing:px-4 em:spacing:py-1',
+    'a-select-floating': '[--a-transition-slide-up-transform:6px]',
+    'a-select-options-container': '',
+    'a-select-options-list': '![--a-spacing:0.75]',
 
     // 👉 Switch
     'a-switch': 'select-none',
