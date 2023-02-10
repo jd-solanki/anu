@@ -53,6 +53,14 @@ If you like this lib do give it a star or spread some words on Twitter.
 
 Thanks 🙏
 
+## Sponsors
+
+<p align="center">
+  <a href="https://cdn.jsdelivr.net/gh/jd-solanki/static/sponsors/sponsors.svg">
+    <img alt="sponsors" src='https://cdn.jsdelivr.net/gh/jd-solanki/static/sponsors/sponsors.svg'/>
+  </a>
+</p>
+
 ## Credits
 
 - [UnoCSS](https://github.com/unocss/unocss) - Anu depends on it
