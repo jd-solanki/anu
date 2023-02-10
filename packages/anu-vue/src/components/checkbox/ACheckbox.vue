@@ -65,7 +65,7 @@ watch([data, () => props.indeterminate], ([checked, indeterminate], [_, prevInde
   if (refCheckbox.value)
     refCheckbox.value.indeterminate = indeterminate
 
-  _icon.value = !indeterminate && (!prevIndeterminate || checked) ? props.icon : 'i-bx-minus'
+  _icon.value = (!indeterminate && (!prevIndeterminate || checked)) ? props.icon : 'i-bx-minus'
 }, { immediate: true })
 
 const state = computed(() => {

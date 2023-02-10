@@ -106,8 +106,8 @@ const formatMaxContent = (content: unknown) => {
 }
 
 const anchorOffset = computed(() => {
-  const newOffsetY = props.overlap && defaultOffset === props.offsetY ? defaultOverlapOffset : props.offsetY
-  const newOffsetX = props.overlap && defaultOffset === props.offsetX ? defaultOverlapOffset : props.offsetX
+  const newOffsetY = (props.overlap && defaultOffset === props.offsetY) ? defaultOverlapOffset : props.offsetY
+  const newOffsetX = (props.overlap && defaultOffset === props.offsetX) ? defaultOverlapOffset : props.offsetX
 
   return { y: newOffsetY, x: newOffsetX }
 })

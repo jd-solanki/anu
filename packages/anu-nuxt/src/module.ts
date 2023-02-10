@@ -67,16 +67,9 @@ export default defineNuxtModule<ModuleOptions>({
 
       // Add default presets for Anu into the unocss options.
       nuxt.options.unocss.presets = [
-        // @ts-expect-error - We know that is a valid preset
         presetUno(),
-
-        // @ts-expect-error - We know that is a valid preset
         presetAnu(),
-
-        // @ts-expect-error - We know that is a valid preset
         presetIcons(iconPreset),
-
-        // @ts-expect-error - We know that is a valid preset
         presetThemeDefault(),
         ...(nuxt.options.unocss.presets || []),
       ]

@@ -7,7 +7,7 @@ import { useLayer } from '@/composables/useLayer'
 
 const props = defineProps(listItemProps)
 
-const emit = defineEmits<{
+defineEmits<{
   (e: 'click:icon'): void
   (e: 'click:avatar'): void
   (e: 'click:iconAppend'): void
@@ -30,8 +30,8 @@ else
 
 // useLayer
 const { styles, classes } = getLayerClasses(
-  computed(() => props.isActive ? props.color || 'primary' : undefined),
-  computed(() => props.isActive ? props.variant || 'light' : 'text'),
+  computed(() => props.isActive ? (props.color || 'primary') : undefined),
+  computed(() => props.isActive ? (props.variant || 'light') : 'text'),
   toRef(props, 'states'),
   { statesClass: 'states:10' },
 )

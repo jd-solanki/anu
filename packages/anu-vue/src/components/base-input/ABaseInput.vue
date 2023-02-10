@@ -8,7 +8,7 @@ import TransitionExpand from '@/transitions/TransitionExpand.vue'
 // TODO: Provide a way to attach classes to root element
 const props = defineProps(baseInputProps)
 
-const emit = defineEmits<{
+defineEmits<{
   (e: 'click:inputWrapper'): void
 }>()
 
@@ -23,7 +23,9 @@ const spacing = useSpacing(toRef(props, 'spacing'))
 const configurableLabel = useConfigurable(toRef(props, 'label'))
 
 const iconTransition = 'transition duration-150 ease -in'
-const elementId = attrs.id || props.label ? `a-input-${attrs.id || props.label}-${Math.random().toString(36).slice(2, 7)}` : undefined
+
+const _elementIdToken = attrs.id || props.label
+const elementId = _elementIdToken ? `a-input-${_elementIdToken}-${Math.random().toString(36).slice(2, 7)}` : undefined
 
 const refRoot = ref()
 const refInputContainer = ref()

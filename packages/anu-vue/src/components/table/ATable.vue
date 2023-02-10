@@ -9,7 +9,7 @@ import { ACard, cardProps } from '@/components/card'
 const props = defineProps(defu(tableProps, cardProps))
 
 // TODO: We aren't getting type error for click:header
-const emit = defineEmits<{
+defineEmits<{
   (e: 'click:header', col: Exclude<(ExtractPropTypes<typeof props>)['cols'], undefined>): void
 }>()
 

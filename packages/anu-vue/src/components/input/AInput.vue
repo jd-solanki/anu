@@ -7,7 +7,7 @@ const props = defineProps(defu({
   modelValue: [String, Number],
 }, baseInputProps))
 
-const emit = defineEmits<{
+defineEmits<{
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 

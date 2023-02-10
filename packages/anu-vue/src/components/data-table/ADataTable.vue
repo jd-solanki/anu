@@ -164,7 +164,6 @@ const fetchRows = () => {
 const {
   currentPage,
   currentPageSize,
-  pageCount,
   isFirstPage,
   isLastPage,
   prev: goToPreviousPage,
@@ -219,7 +218,7 @@ const handleHeaderClick = (clickedCol: any) => {
   */
   if (!props.multiSort) {
     // Loop over all table columns
-    cols.value.forEach((_col, index) => {
+    cols.value.forEach(_col => {
       // If iterating column is other than clicked column
       if (_col.name !== clickedCol.name) {
         // Remove sorting

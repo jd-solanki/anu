@@ -87,10 +87,10 @@ const rating = ref(0)
 const isHovered = ref(false)
 
 const visibleRating = computed(() =>
-  !props.noHoverHint
+  (!props.noHoverHint
     && !props.readonly
     && !props.disabled
-    && isHovered.value
+    && isHovered.value)
     ? rating.value
     : props.modelValue ?? 0,
 )

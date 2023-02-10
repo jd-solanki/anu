@@ -5,7 +5,9 @@ export const sameWidth = (floatingEl: Ref<HTMLElement>) => ({
   name: 'sameWidth',
   fn: ({ rects, x, y }: { rects: ElementRects; x: number; y: number }) => {
     // Set width of reference to floating
-    unrefElement(floatingEl).style.minWidth = `${rects.reference.width}px`
+    const _floatingEL = unrefElement(floatingEl)
+    if (_floatingEL)
+      _floatingEL.style.minWidth = `${rects.reference.width}px`
 
     return { x, y }
   },

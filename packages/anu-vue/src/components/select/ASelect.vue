@@ -5,7 +5,7 @@ import type { ExtractPropTypes, PropType } from 'vue'
 import { ACard, AList } from '@/components'
 import { ABaseInput, baseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
-import type { ListItemProps } from '@/components/list-item'
+import type { ListPropItems } from '@/components/list'
 import { isObject } from '@/utils/helpers'
 
 export interface ObjectOption { label: string; value: string | number }
@@ -14,7 +14,7 @@ const props = defineProps(defu({
   // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
   modelValue: { type: null },
   options: {
-    type: Array as PropType<ListItemProps[]>,
+    type: Array as PropType<ListPropItems>,
     default: () => [],
   },
   emitObject: Boolean,
@@ -67,7 +67,7 @@ const handleInputClick = () => {
 }
 
 // 👉 Options
-const handleOptionClick = (item: ListItemProps, value: any) => {
+const handleOptionClick = (item: ListPropItems[number], value: any) => {
   const valueToEmit = props.emitObject ? item : value
   emit('change', valueToEmit)
   emit('input', valueToEmit)

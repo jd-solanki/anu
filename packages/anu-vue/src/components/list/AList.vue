@@ -1,53 +1,19 @@
 <script lang="ts" setup>
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { ListItemProps } from '@/components/list-item'
+import type { ExtractPropTypes } from 'vue'
+import type { ListPropItems } from './props'
+import { listProps } from './props'
 import { AListItem } from '@/components/list-item'
 import { useGroupModel } from '@/composables'
-import { spacing as spacingProp } from '@/composables/useProps'
 import { useSpacing } from '@/composables/useSpacing'
+import { isObject } from '@/utils/helpers'
 
-type ListItem = ListItemProps | string
-
-const props = defineProps({
-  /**
-   * Items to render in list
-   */
-  'items': {
-    type: Array as PropType<ListItem[]>,
-    default: () => [],
-  },
-
-  /**
-   * Enable selecting multiple list items
-   */
-  'multi': Boolean,
-
-  /**
-   * Bind v-model value to selected list item
-   */
-  'modelValue': null,
-
-  /**
-   * By default when icon props are used icon rendered at start. Use `iconAppend` to render icon at end.
-   */
-  'iconAppend': Boolean,
-
-  /**
-   * By default when avatar props are used avatar is added at start. Use `avatarAppend` to render avatar at end.
-   */
-  'avatarAppend': Boolean,
-
-  // ℹ️ Workaround for checking if event is present on component instance: https://github.com/vuejs/core/issues/5220#issuecomment-1007488240
-  'onClick:item': Function,
-
-  'spacing': spacingProp,
-})
+const props = defineProps(listProps)
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 
   // ℹ️ Fix type => (e: 'click:item', value: (ExtractPropTypes<typeof props>)['items'][number]): void
-  (e: 'click:item', value: { index: number; item: ListItem; value: any }): void
+  (e: 'click:item', value: { index: number; item: ListPropItems[number]; value: any }): void
 }>()
 
 defineOptions({
@@ -56,7 +22,7 @@ defineOptions({
 
 const spacing = useSpacing(toRef(props, 'spacing'))
 
-const extractItemValueFromItemOption = (item: ListItem) => typeof item === 'string' ? item : (item.value || item)
+const extractItemValueFromItemOption = (item: ListPropItems[number]) => isObject(item) ? (item.value || item) : item
 
 const { options, select: selectListItem, value } = useGroupModel({
   options: props.items.map(i => extractItemValueFromItemOption(i)),
@@ -64,7 +30,7 @@ const { options, select: selectListItem, value } = useGroupModel({
 })
 
 // const isActive = computed(() => options.value[itemIndex].isSelected)
-const handleListItemClick = (item: ListItem, index: number) => {
+const handleListItemClick = (item: ListPropItems[number], index: number) => {
   selectListItem(extractItemValueFromItemOption(item) || index)
   emit('update:modelValue', value.value)
   emit('click:item', {
