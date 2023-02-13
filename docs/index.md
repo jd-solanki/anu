@@ -26,7 +26,7 @@ hero:
   <div>
     <div class="i-fluent-emoji-crown text-primary text-3xl inline-flex shrink-0 p-2"></div>
     <p class="text-high-emphasis font-semibold text-xl">DX Matters</p>
-    <span class="text-sm">Anu is built with DX in mind. Through out the docs you will notice bare minimum code to render great UI.</span>
+    <span class="text-sm">Anu is built with DX in mind. Throughout the docs you will notice bare minimum code to render great UI.</span>
   </div>
 
   <!-- Flexibility -->
@@ -54,7 +54,7 @@ hero:
   <div>
     <div class="i-fluent-emoji-high-voltage text-primary text-3xl inline-flex shrink-0 p-2"></div>
     <p class="text-high-emphasis font-semibold text-xl">Powerful tools</p>
-    <span class="text-sm">Anu is built on top of powerful tools like UnoCSS, VueUse, etc. This saves you alot of development time.</span>
+    <span class="text-sm">Anu is built on top of powerful tools like UnoCSS, VueUse, etc. - saving you lots of development time.</span>
   </div>
 
   <!-- Hackable -->
