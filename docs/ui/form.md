@@ -13,3 +13,12 @@
 :::tip
 We are not using `.a-card-spacer` class here because we get spacing between card body via Anu's grid system 😇
 :::
+
+<!-- 👉 Form Validation using Zod -->
+::::card Form Validation using Zod
+
+:::code UIFormValidationZod
+<<< @/components/ui/form/UIFormValidationZod.vue
+:::
+
+::::

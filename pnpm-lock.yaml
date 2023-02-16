@@ -78,6 +78,7 @@ importers:
       '@iconify-json/logos': ^1.1.22
       '@unocss/preset-icons': ^0.49.4
       '@unocss/preset-uno': 0.49.4
+      '@vee-validate/zod': ^4.7.4
       '@vueuse/core': ^9.12.0
       anu-vue: workspace:*
       markdown-it: ^13.0.1
@@ -87,6 +88,7 @@ importers:
       vee-validate: ^4.7.3
       vitepress: 1.0.0-alpha.45
       vue: ^3.2.47
+      zod: 3.20.4-beta.0
     dependencies:
       '@anu-vue/preset-theme-default': link:../packages/preset-theme-default
       '@vueuse/core': 9.12.0_vue@3.2.47
@@ -99,11 +101,13 @@ importers:
       '@iconify-json/logos': 1.1.22
       '@unocss/preset-icons': 0.49.4
       '@unocss/preset-uno': 0.49.4
+      '@vee-validate/zod': 4.7.4_bf2mpmktvgk43p2sn2sicjc3va
       markdown-it: 13.0.1
       markdown-it-container: 3.0.0
       postcss-prefix-selector: 1.16.0_postcss@8.4.21
       unocss: 0.49.4_vite@4.1.1
       vitepress: 1.0.0-alpha.45_2r467mdhb7mblpaox4bg7fatdi
+      zod: 3.20.4-beta.0
 
   packages/anu-nuxt:
     specifiers:
@@ -2599,7 +2603,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.2.12
       magic-string: 0.27.0
-      vite: 4.1.1_@types+node@18.11.19
+      vite: 4.1.1
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -2621,6 +2625,16 @@ packages:
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - rollup
+    dev: true
+
+  /@vee-validate/zod/4.7.4_bf2mpmktvgk43p2sn2sicjc3va:
+    resolution: {integrity: sha512-AyOgGchUaElroaArwyPnSgftp6Ho74dzEr72qxQw6/J+BRVh7UpshkTeHAf6Tvwg4hyxIW4veurOB0yWuqYSyA==}
+    peerDependencies:
+      vee-validate: ^4.4.0
+      zod: ^3.1.0
+    dependencies:
+      vee-validate: 4.7.3_vue@3.2.47
+      zod: 3.20.4-beta.0
     dev: true
 
   /@vercel/nft/0.22.6:
@@ -2667,7 +2681,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.1.1_@types+node@18.11.19
+      vite: 4.1.1
       vue: 3.2.47
     dev: true
 
@@ -10156,7 +10170,6 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.4.5
       vue: 3.2.47
-    dev: false
 
   /vite-node/0.28.4:
     resolution: {integrity: sha512-KM0Q0uSG/xHHKOJvVHc5xDBabgt0l70y7/lWTR7Q0pR5/MrYxadT+y32cJOE65FfjGmJgxpVEEY+69btJgcXOQ==}
@@ -10943,4 +10956,8 @@ packages:
       archiver-utils: 2.1.0
       compress-commons: 4.1.1
       readable-stream: 3.6.0
+    dev: true
+
+  /zod/3.20.4-beta.0:
+    resolution: {integrity: sha512-6axq/qksLzzxRzin107kkRQvteZYyHl2tBxxzUJ9t6xT4R+tgWu6Dli6NLFTMnk16ZoF9tNAg8WLrFu6+gNruw==}
     dev: true
