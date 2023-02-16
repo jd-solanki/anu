@@ -2,10 +2,12 @@
 import type { ExtractPropTypes } from 'vue'
 import type { ListPropItems } from './props'
 import { listProps } from './props'
-import { AListItem } from '@/components/list-item'
-import { useGroupModel } from '@/composables'
-import { useSpacing } from '@/composables/useSpacing'
+import type { listSlots } from './slots'
+import { listItemSlot } from './slots'
 import { isObject } from '@/utils/helpers'
+import { useSpacing } from '@/composables/useSpacing'
+import { useGroupModel } from '@/composables'
+import { AListItem } from '@/components/list-item'
 
 const props = defineProps(listProps)
 
@@ -19,6 +21,8 @@ const emit = defineEmits<{
 defineOptions({
   name: 'AList',
 })
+
+defineSlots<typeof listSlots>()
 
 const spacing = useSpacing(toRef(props, 'spacing'))
 
@@ -68,26 +72,18 @@ const handleListItemClick = (item: ListPropItems[number], index: number) => {
             : null,
         }"
       >
-        <!-- 👉 Slot: prepend -->
-        <slot
-          name="prepend"
-          :item="item"
-          :index="index"
-        />
-
-        <!-- 👉 Slot: item -->
-        <slot
-          name="item"
-          :item="item"
-          :index="index"
-        />
-
-        <!-- 👉 Slot: append -->
-        <slot
-          name="append"
-          :item="item"
-          :index="index"
-        />
+        <!-- ℹ️ Recursively pass down slots to child -->
+        <template
+          v-for="name in Object.keys(listItemSlot)"
+          #[name]="slotProps"
+        >
+          <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
+          <slot
+            :name="name"
+            :index="index"
+            v-bind="slotProps || {}"
+          />
+        </template>
       </AListItem>
     </slot>
     <li v-if="$slots.after">

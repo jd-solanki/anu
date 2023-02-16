@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { listItemProps } from './props'
+import type { listItemSlots } from './slots'
 import { AAvatar } from '@/components/avatar'
 import { ATypography } from '@/components/typography'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
@@ -17,6 +18,8 @@ defineEmits<{
 defineOptions({
   name: 'AListItem',
 })
+
+defineSlots<typeof listItemSlots>()
 
 const { getLayerClasses } = useLayer()
 
@@ -49,7 +52,10 @@ const { styles, classes } = getLayerClasses(
     ]"
   >
     <!-- 👉 Slot: prepend -->
-    <slot name="prepend">
+    <slot
+      name="prepend"
+      :item="props"
+    >
       <i
         v-if="props.icon && !props.iconAppend"
         class="text-xl"
@@ -64,7 +70,10 @@ const { styles, classes } = getLayerClasses(
     </slot>
 
     <!-- 👉 Slot: prepend -->
-    <slot name="item">
+    <slot
+      name="item"
+      :item="props"
+    >
       <ATypography
         class="flex-grow"
         :subtitle="props.subtitle"
@@ -74,7 +83,10 @@ const { styles, classes } = getLayerClasses(
     </slot>
 
     <!-- 👉 Slot: append -->
-    <slot name="append">
+    <slot
+      name="append"
+      :item="props"
+    >
       <i
         v-if="props.icon && props.iconAppend"
         class="text-xl"

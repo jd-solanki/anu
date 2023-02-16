@@ -20,6 +20,7 @@
         ]
     },
     "vueCompilerOptions": {
+        "target": 3,
         "plugins": [
             "@vue-macros/volar/define-model",
             "@vue-macros/volar/define-props",

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { typographyProps } from './props'
+import type { typographySlots } from './slots'
 import { useConfigurable } from '@/composables/useConfigurable'
 
 const props = defineProps(typographyProps)
@@ -7,6 +8,8 @@ const props = defineProps(typographyProps)
 defineOptions({
   name: 'ATypography',
 })
+
+defineSlots<typeof typographySlots>()
 
 const title = useConfigurable(toRef(props, 'title'))
 const subtitle = useConfigurable(toRef(props, 'subtitle'))

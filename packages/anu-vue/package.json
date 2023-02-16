@@ -37,7 +37,7 @@
   ],
   "types": "./dist/types",
   "scripts": {
-    "dev": "pnpm gen-comp-meta && vite build --watch",
+    "dev": "pnpm gen-comp-meta && concurrently \"vue-tsc --declaration --emitDeclarationOnly --watch\" \"vite build --watch\"",
     "gen-comp-meta": "na tsx ../../scripts/gen-component-meta.ts",
     "gen-volar": "na tsx ../../scripts/gen-volar.ts",
     "build": "pnpm gen-volar && pnpm gen-comp-meta && vite build && vue-tsc --declaration --emitDeclarationOnly",

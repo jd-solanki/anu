@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ATypography } from '../typography'
 import { cardProps } from './props'
+import type { cardSlots } from './slots'
+import { cardTypographySlots } from './slots'
 import { ALoader } from '@/components/loader'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
@@ -13,6 +15,8 @@ defineOptions({
   name: 'ACard',
 })
 
+defineSlots<typeof cardSlots>()
+
 const slots = useSlots()
 
 const spacing = useSpacing(toRef(props, 'spacing'))
@@ -23,6 +27,7 @@ const { styles, classes } = getLayerClasses(
   toRef(props, 'states'),
 )
 
+console.log('slots :>> ', slots)
 const _isTypographyUsed = isTypographyUsed(toRefs(props), slots)
 
 // Modify text prop to have `text-sm`
@@ -73,7 +78,7 @@ else
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+          v-for="name in Object.keys(cardTypographySlots)"
           #[name]="slotProps"
         >
           <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->

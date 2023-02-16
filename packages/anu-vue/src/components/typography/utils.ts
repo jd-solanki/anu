@@ -4,6 +4,9 @@ import type { ConfigurableValue } from '@/composables/useConfigurable'
 
 export const isTypographyUsed = (props: { [K in keyof TypographyProps]: ToRef<TypographyProps[K]> }, slots: Slots) => {
   const { title, subtitle, text } = props
+  console.log('title :>> ', title.value, slots.title)
+  console.log('subtitle :>> ', subtitle.value, slots.subtitle)
+  console.log('text :>> ', text.value, slots.text)
 
   const validateProp = (prop?: Ref<ConfigurableValue>): boolean => {
     if (prop && prop.value) {
