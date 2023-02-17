@@ -4,9 +4,6 @@
         "baseUrl": ".",
         "resolveJsonModule": true,
         "esModuleInterop": true,
-        "types": [
-            "anu-vue/volar"
-        ],
         "lib": [
             "esnext",
             "dom",

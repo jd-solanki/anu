@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ATypography } from '../typography'
 import { cardProps } from './props'
+import type { cardSlots } from './slots'
+import { cardTypographySlots } from './slots'
 import { ALoader } from '@/components/loader'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
@@ -12,6 +14,8 @@ const props = defineProps(cardProps)
 defineOptions({
   name: 'ACard',
 })
+
+defineSlots<typeof cardSlots>()
 
 const slots = useSlots()
 
@@ -73,7 +77,7 @@ else
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+          v-for="name in Object.keys(cardTypographySlots)"
           #[name]="slotProps"
         >
           <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->

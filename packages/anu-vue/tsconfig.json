@@ -27,7 +27,18 @@
     },
     "types": [
       "vitest/globals",
-      "unplugin-vue-define-options/macros-global"
+      "unplugin-vue-macros/macros-global"
+    ]
+  },
+  "vueCompilerOptions": {
+    "target": 3,
+    "plugins": [
+      "@vue-macros/volar/define-model",
+      "@vue-macros/volar/define-props",
+      "@vue-macros/volar/define-props-refs",
+      "@vue-macros/volar/short-vmodel",
+      "@vue-macros/volar/define-slots",
+      "@vue-macros/volar/export-props"
     ]
   },
   "include": [

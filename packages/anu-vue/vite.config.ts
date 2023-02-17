@@ -18,6 +18,7 @@ export default defineConfig({
       name: 'anu-vue',
       fileName: 'anu-vue',
     },
+    emptyOutDir: false,
     outDir: 'dist',
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled

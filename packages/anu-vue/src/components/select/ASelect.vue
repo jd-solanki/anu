@@ -2,6 +2,8 @@
 import { flip, offset, shift } from '@floating-ui/vue'
 import { defu } from 'defu'
 import type { ExtractPropTypes, PropType } from 'vue'
+import type { selectSlots } from './slots'
+import { selectBaseInputSlots, selectCardSlots, selectListSlots } from './slots'
 import { ACard, AList } from '@/components'
 import { ABaseInput, baseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
@@ -35,6 +37,8 @@ defineOptions({
   inheritAttrs: false,
 })
 
+defineSlots<typeof selectSlots>()
+
 const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
 
 // SECTION Floating
@@ -67,8 +71,8 @@ const handleInputClick = () => {
 }
 
 // 👉 Options
-const handleOptionClick = (item: ListPropItems[number], value: any) => {
-  const valueToEmit = props.emitObject ? item : value
+const handleOptionClick = (value: any, item?: ListPropItems[number]) => {
+  const valueToEmit = (item && props.emitObject) ? item : value
   emit('change', valueToEmit)
   emit('input', valueToEmit)
   emit('update:modelValue', valueToEmit)
@@ -85,6 +89,9 @@ const middleware = () => [
   flip(),
   shift({ padding: 10 }),
 ]
+
+const slots = useSlots()
+const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectCardSlots).filter(([slotName]) => slots[slotName])))
 </script>
 
 <template>
@@ -100,7 +107,7 @@ const middleware = () => [
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+      v-for="name in Object.keys(selectBaseInputSlots)"
       #[name]="slotProps"
     >
       <!-- ℹ️ v-if condition will omit passing slots defined in array. Here, we don't want to pass default slot. -->
@@ -134,13 +141,39 @@ const middleware = () => [
       :class="props.optionsWrapperClasses"
       @click="closeOptions"
     >
+      <!-- ℹ️ Recursively pass down slots to child -->
+      <template
+        v-for="name in Object.keys(cardSlotsToPass)"
+        #[name]="slotProps"
+      >
+        <!-- ℹ️ v-if condition will omit passing slots defined in array. Here, we don't want to pass default slot. -->
+        <slot
+          :name="name"
+          v-bind="slotProps || {}"
+        />
+      </template>
       <AList
         :items="options"
         :value="props.modelValue"
         class="a-select-options-list"
         :class="props.listClasses"
-        @click:item="({ item, value }) => handleOptionClick(item, value)"
-      />
+        @click:item="({ item, value }) => handleOptionClick(value, item)"
+      >
+        <!-- ℹ️ Recursively pass down slots to child -->
+        <template
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in selectListSlots"
+          #[originalSlotName]="slotProps"
+        >
+          <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
+          <slot
+            :name="updatedSlotName"
+            v-bind="{
+              ...(slotProps || {}),
+              ...({ handleOptionClick }),
+            }"
+          />
+        </template>
+      </AList>
     </ACard>
   </AFloating>
 </template>

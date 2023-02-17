@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { baseInputProps } from './props'
+import type { baseInputSlots } from './slots'
 import { ALoader } from '@/components/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
 import { useSpacing } from '@/composables/useSpacing'
@@ -15,6 +16,8 @@ defineEmits<{
 defineOptions({
   name: 'ABaseInput',
 })
+
+defineSlots<typeof baseInputSlots>()
 
 const attrs = useAttrs()
 

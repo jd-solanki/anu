@@ -2,10 +2,12 @@
 import type { ExtractPropTypes } from 'vue'
 import type { ListPropItems } from './props'
 import { listProps } from './props'
-import { AListItem } from '@/components/list-item'
-import { useGroupModel } from '@/composables'
-import { useSpacing } from '@/composables/useSpacing'
+import type { listSlots } from './slots'
+import { listItemSlot } from './slots'
 import { isObject } from '@/utils/helpers'
+import { useSpacing } from '@/composables/useSpacing'
+import { useGroupModel } from '@/composables'
+import { AListItem } from '@/components/list-item'
 
 const props = defineProps(listProps)
 
@@ -13,12 +15,14 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 
   // ℹ️ Fix type => (e: 'click:item', value: (ExtractPropTypes<typeof props>)['items'][number]): void
-  (e: 'click:item', value: { index: number; item: ListPropItems[number]; value: any }): void
+  (e: 'click:item', value: { item: ListPropItems[number]; value: any }): void
 }>()
 
 defineOptions({
   name: 'AList',
 })
+
+defineSlots<typeof listSlots>()
 
 const spacing = useSpacing(toRef(props, 'spacing'))
 
@@ -30,13 +34,12 @@ const { options, select: selectListItem, value } = useGroupModel({
 })
 
 // const isActive = computed(() => options.value[itemIndex].isSelected)
-const handleListItemClick = (item: ListPropItems[number], index: number) => {
-  selectListItem(extractItemValueFromItemOption(item) || index)
+const handleListItemClick = (item: ListPropItems[number]) => {
+  selectListItem(extractItemValueFromItemOption(item))
   emit('update:modelValue', value.value)
   emit('click:item', {
-    index,
-    item,
     value: value.value,
+    item,
   })
 }
 </script>
@@ -64,30 +67,22 @@ const handleListItemClick = (item: ListPropItems[number], index: number) => {
         :value="props.modelValue !== undefined ? options[index] : undefined"
         v-on="{
           click: props['onClick:item'] || (props.modelValue !== undefined)
-            ? () => handleListItemClick(item, index)
+            ? () => handleListItemClick(item)
             : null,
         }"
       >
-        <!-- 👉 Slot: prepend -->
-        <slot
-          name="prepend"
-          :item="item"
-          :index="index"
-        />
-
-        <!-- 👉 Slot: item -->
-        <slot
-          name="item"
-          :item="item"
-          :index="index"
-        />
-
-        <!-- 👉 Slot: append -->
-        <slot
-          name="append"
-          :item="item"
-          :index="index"
-        />
+        <!-- ℹ️ Recursively pass down slots to child -->
+        <template
+          v-for="name in Object.keys(listItemSlot)"
+          #[name]="slotProps"
+        >
+          <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
+          <slot
+            :name="name"
+            :index="index"
+            v-bind="slotProps || {}"
+          />
+        </template>
       </AListItem>
     </slot>
     <li v-if="$slots.after">

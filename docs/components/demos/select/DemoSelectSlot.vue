@@ -3,13 +3,12 @@ import { ref } from 'vue'
 
 const selected = ref()
 const frameworks = [
-  { label: 'VueJS', value: 'vue', icon: 'i-logos-vue', brandColor: '#42b883' },
-  { label: 'ReactJS', value: 'react', icon: 'i-logos-react', brandColor: '#00d8ff' },
-  { label: 'AngularJS', value: 'angular', icon: 'i-logos-angular', brandColor: '#b52e31' },
-  { label: 'SolidJS', value: 'solid', icon: 'i-logos-solidjs-icon', brandColor: '#4e84c1' },
-  { label: 'AlpineJS', value: 'alpine', icon: 'i-logos-alpinejs-icon', brandColor: '#2d3441' },
+  { text: 'VueJS', value: 'vue', icon: 'i-logos-vue', style: 'color: #42b883' },
+  { text: 'ReactJS', value: 'react', icon: 'i-logos-react', style: 'color: #00d8ff' },
+  { text: 'AngularJS', value: 'angular', icon: 'i-logos-angular', style: 'color: #b52e31' },
+  { text: 'SolidJS', value: 'solid', icon: 'i-logos-solidjs-icon', style: 'color: #4e84c1' },
+  { text: 'AlpineJS', value: 'alpine', icon: 'i-logos-alpinejs-icon', style: 'color: #77c1d2' },
 ]
-const color = '#fff'
 </script>
 
 <template>
