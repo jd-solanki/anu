@@ -20,11 +20,11 @@ const items = [
         </template>
 
         <!-- 👉 Slot: Append -->
-        <template #append="{ index }">
+        <template #item-append="{ index }">
           <ABtn
             variant="outline"
             class="text-sm opacity-35 min-h-[24px] spacing-50"
-            color="default"
+            color="inherit"
             :states="false"
           >
             &#8984; {{ index + 1 }}

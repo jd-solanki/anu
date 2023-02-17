@@ -123,6 +123,12 @@ export const useLayer = () => {
           classes.push('text-[hsl(var(--a-layer-c))]')
       }
     }
+    else if (propColor === 'inherit') {
+      classes.push('text-inherit')
+
+      if (propVariant === 'outline')
+        classes.push('border-width-1 border-solid border-current')
+    }
     else if (propColor) {
       const _colord = colord(propColor as string)
 

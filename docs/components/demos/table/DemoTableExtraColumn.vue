@@ -20,7 +20,7 @@ const cols = [
             class="text-xs"
             icon="i-bx-link-external"
             icon-only
-            color="default"
+            color="inherit"
             variant="text"
           />
           <ABtn
@@ -28,14 +28,14 @@ const cols = [
             icon="i-bx-edit-alt"
             icon-only
             variant="text"
-            color="default"
+            color="inherit"
           />
           <ABtn
             class="text-xs"
             icon="i-bx-trash"
             icon-only
             variant="text"
-            color="default"
+            color="inherit"
           />
         </div>
       </template>
