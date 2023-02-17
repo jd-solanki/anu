@@ -58,7 +58,7 @@ exports[`Testing ATable & ADataTable > mount component 1`] = `
             <!-- 👉 Slot: Prepend Inner -->
             <!--v-if-->
             <!-- 👉 Slot: Default -->
-            <!-- TODO: We need to improve default slot implementation so that we can provide selected slot to selection component --><input readonly=\\"\\" class=\\"a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent a-base-input-wo-prepend-inner a-base-input-w-append-inner a-select-input\\"><!-- 👉 Slot: Append Inner --><i class=\\"a-base-input-append-inner-icon ms-auto transition duration-150 ease -in i-bx-chevron-down\\"></i>
+            <!-- TODO: We need to improve default slot implementation so that we can provide selected slot to selection component --><input readonly=\\"\\" class=\\"a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent a-base-input-w-prepend-inner a-base-input-w-append-inner a-select-input\\"><!-- 👉 Slot: Append Inner --><i class=\\"a-base-input-append-inner-icon ms-auto transition duration-150 ease -in i-bx-chevron-down\\"></i>
           </div><!-- !SECTION -->
           <!-- 👉 Slot: Append -->
           <!--v-if-->
