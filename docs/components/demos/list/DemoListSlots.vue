@@ -16,7 +16,7 @@ const items = [
       >
         <!-- 👉 Slot: Before -->
         <template #before>
-          <AInput class="m-$a-list-item-padding" />
+          <AInput class="my-2 mx-4" />
         </template>
 
         <!-- 👉 Slot: Append -->
@@ -28,7 +28,7 @@ const items = [
             :states="false"
             :spacing="50"
           >
-            &#8984; + {{ index + 1 }}
+            &#8984; {{ index + 1 }}
           </ABtn>
         </template>
 

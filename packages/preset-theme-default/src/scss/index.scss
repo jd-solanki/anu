@@ -67,17 +67,6 @@ $body-color: hsla(var(--a-base-c), 0.68);
       As this will be always on light background we will keep it static and choose color from light scheme
     */
     --a-switch-icon-color: hsla(0, 10%, 20%, 0.68);
-
-    // 👉 List
-    // ℹ️ We might not need `--a-list-gap` this if we are using just `AList`, however when we use list inside another component this will be helpful
-    // #region a-list-css-vars
-    --a-list-gap: calc(0em * var(--a-spacing));
-    --a-list-item-gap: calc(0.75em * var(--a-spacing));
-    --a-list-item-padding: calc(0.5em * var(--a-spacing)) calc(1em * var(--a-spacing));
-    --a-list-item-margin: calc(0em * var(--a-spacing));
-    --a-list-item-min-height: calc(2.5em * var(--a-spacing));
-    // #endregion a-list-css-vars
-
     // #endregion all-css-vars
 
     // !SECTION

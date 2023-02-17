@@ -109,13 +109,14 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-input-type-file': 'all-[.a-base-input-child]-file:(rounded-lg border-none mr-4 px-4 py-3 text-gray-500 rounded-r-none bg-[hsla(var(--a-base-c),0.05)]) !all-[.a-base-input-input-wrapper]-px-0',
 
     // 👉 List
-    'a-list': 'em:spacing:rounded-lg em:spacing:my-2',
+    'a-list': 'em:spacing:rounded-lg m-[var(--a-list-margin,calc(0.5em*var(--a-spacing))_0)] gap-[var(--a-list-gap)]',
+    'a-list-item': 'gap-[var(--a-list-item-gap,calc(0.75em*var(--a-spacing)))] p-[var(--a-list-item-padding,calc(0.5em*var(--a-spacing))_calc(1em*var(--a-spacing)))] m-[var(--a-list-item-margin)] min-h-[var(--a-list-item-min-height,calc(2.5em*var(--a-spacing)))]',
+
+    // Helper class to create pill shaped list items
+    'a-list-items-pill': '[--a-list-margin:calc(0.75em*var(--a-spacing))_0] em:spacing:children-[.a-list-item]-rounded-lg [--a-list-item-margin:calc(0.18em*var(--a-spacing))_calc(0.75em*var(--a-spacing))] [--a-list-item-padding:calc(0.5em*var(--a-spacing))_calc(0.75em*var(--a-spacing))]',
 
     // 👉 Loader
     'a-loader': '[&.a-loader-full-page]-text-4xl',
-
-    // Helper class to create pill shaped list items
-    'a-list-items-pill': 'em:spacing:my-[0.65em] em:spacing:children-[.a-list-item]-rounded-lg [--a-list-item-margin:0.18em_0.75em] [--a-list-item-padding:0.5em_0.75em]',
 
     // 👉 Menu
     'a-menu': 'z-[51] shadow-xl [--a-transition-slide-up-transform:10px]',

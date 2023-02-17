@@ -43,7 +43,7 @@ const { styles, classes } = getLayerClasses(
 <template>
   <li
     :style="styles"
-    class="a-list-item flex items-center gap-$a-list-item-gap m-$a-list-item-margin p-$a-list-item-padding min-h-$a-list-item-min-height"
+    class="a-list-item flex items-center"
     :class="[
       { 'opacity-50 pointer-events-none': props.disabled },
       props.value !== undefined || $attrs.onClick

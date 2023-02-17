@@ -46,7 +46,7 @@ const handleListItemClick = (item: ListPropItems[number]) => {
 
 <template>
   <ul
-    class="a-list grid gap-$a-list-gap"
+    class="a-list grid"
     :style="[{ '--a-spacing': spacing / 100 }]"
   >
     <!-- 👉 Slot: before -->
