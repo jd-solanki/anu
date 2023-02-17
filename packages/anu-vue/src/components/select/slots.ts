@@ -5,7 +5,19 @@ import { prefixObjectKeys, removeKeys } from '@/utils/helpers'
 
 export const selectBaseInputSlots = removeKeys(baseInputSlots, ['default'])
 export const selectCardSlots = removeKeys(cardSlots, ['default'])
-export const selectListSlots = prefixObjectKeys(listSlots, 'option-')
+
+const { default: selectListDefaultSlot, ...selectListRestSlots } = listSlots
+
+// export const selectListSlots = renameObjKey(
+//   prefixObjectKeys(listSlots, 'options-'),
+//   'options-default',
+//   'default',
+// )
+
+export const selectListSlots = {
+  ...prefixObjectKeys(selectListRestSlots, 'options-'),
+  ...prefixObjectKeys({ default: selectListDefaultSlot }, ''),
+}
 
 export const selectSlots = {
   ...selectBaseInputSlots,

@@ -63,3 +63,16 @@ export const prefixObjectKeys = <T extends Record<string, any>, K extends string
     Object.entries(obj).map(([k, v]) => [`${prefix}${k}`, { originalKey: k, prefixedKey: `${prefix}${k}`, value: v }]),
   ) as any
 }
+
+export const renameObjKey = <T extends Record<string, any>, K extends keyof T, R extends string>(
+  obj: T,
+  key: K,
+  replaceWith: R,
+): Prettify<Omit<T, K> & Record<R, T[K]>> => {
+  const { [key]: value, ...rest } = obj
+
+  return {
+    ...rest,
+    [replaceWith]: value,
+  } as Omit<T, K> & Record<R, T[K]>
+}

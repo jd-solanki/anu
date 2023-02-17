@@ -10,15 +10,15 @@ export const listOwnSlots = {
 } as const
 
 export const listItemSlot = {
-  prepend: {
+  'item-prepend': {
     item: listItemSlots.prepend.item,
     index: Number(),
   },
-  item: {
+  'item-item': {
     item: listItemSlots.item.item,
     index: Number(),
   },
-  append: {
+  'item-append': {
     item: listItemSlots.append.item,
     index: Number(),
   },
