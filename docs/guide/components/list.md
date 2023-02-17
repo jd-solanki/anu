@@ -29,7 +29,7 @@ You can also use `default` slot to render your custom content if you don't want 
 :::
 
 :::warning
-When you override the list item via CSS variable, it's up to you to handle `--a-spacing` CSS var. For example, you are overriding list gap and don't want to consider the `--a-spacing` variable then you can simply override it via `[--a-spacing:1rem]`. However, if you want to allow spacing modification then write `[--a-spacing:calc(1rem*var(--a-spacing))]`
+When you override the list item via CSS variable, it's up to you to handle `--a-spacing` CSS var. For example, you are overriding list gap and don't want to consider the `--a-spacing` variable then you can simply override it via `[--a-spacing:1]`. However, if you want to allow spacing modification then write `[--a-spacing:calc(1*var(--a-spacing))]`
 
 For in library example you can check `.a-list-items-pill` class styles.
 :::

@@ -18,3 +18,14 @@ You can use `spacing-<number>` class to add/update `--a-spacing` CSS variable.
   </ABtn>
 </template>
 ```
+
+:::tip Wanna have some fun 😜
+You can reduce overall spacing of all components by updating `--a-spacing` CSS var from `:root`
+
+```css
+:root {
+  --a-spacing: 0.9;
+}
+```
+
+:::
