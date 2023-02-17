@@ -23,7 +23,7 @@ const items = [
         <template #append="{ index }">
           <ABtn
             variant="outline"
-            class="text-sm opacity-35 min-h-[24px] [--a-spacing:.5]"
+            class="text-sm opacity-35 min-h-[24px] spacing-50"
             color="default"
             :states="false"
           >
