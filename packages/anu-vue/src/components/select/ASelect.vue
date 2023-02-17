@@ -71,8 +71,8 @@ const handleInputClick = () => {
 }
 
 // 👉 Options
-const handleOptionClick = (item: ListPropItems[number], value: any) => {
-  const valueToEmit = props.emitObject ? item : value
+const handleOptionClick = (value: any, item?: ListPropItems[number]) => {
+  const valueToEmit = (item && props.emitObject) ? item : value
   emit('change', valueToEmit)
   emit('input', valueToEmit)
   emit('update:modelValue', valueToEmit)
@@ -157,7 +157,7 @@ const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectC
         :value="props.modelValue"
         class="a-select-options-list"
         :class="props.listClasses"
-        @click:item="({ item, value }) => handleOptionClick(item, value)"
+        @click:item="({ item, value }) => handleOptionClick(value, item)"
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
@@ -167,7 +167,10 @@ const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectC
           <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
           <slot
             :name="updatedSlotName"
-            v-bind="slotProps || {}"
+            v-bind="{
+              ...(slotProps || {}),
+              ...({ handleOptionClick }),
+            }"
           />
         </template>
       </AList>

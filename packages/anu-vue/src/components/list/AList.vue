@@ -15,7 +15,7 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 
   // ℹ️ Fix type => (e: 'click:item', value: (ExtractPropTypes<typeof props>)['items'][number]): void
-  (e: 'click:item', value: { index: number; item: ListPropItems[number]; value: any }): void
+  (e: 'click:item', value: { item: ListPropItems[number]; value: any }): void
 }>()
 
 defineOptions({
@@ -34,13 +34,12 @@ const { options, select: selectListItem, value } = useGroupModel({
 })
 
 // const isActive = computed(() => options.value[itemIndex].isSelected)
-const handleListItemClick = (item: ListPropItems[number], index: number) => {
-  selectListItem(extractItemValueFromItemOption(item) || index)
+const handleListItemClick = (item: ListPropItems[number]) => {
+  selectListItem(extractItemValueFromItemOption(item))
   emit('update:modelValue', value.value)
   emit('click:item', {
-    index,
-    item,
     value: value.value,
+    item,
   })
 }
 </script>
@@ -68,7 +67,7 @@ const handleListItemClick = (item: ListPropItems[number], index: number) => {
         :value="props.modelValue !== undefined ? options[index] : undefined"
         v-on="{
           click: props['onClick:item'] || (props.modelValue !== undefined)
-            ? () => handleListItemClick(item, index)
+            ? () => handleListItemClick(item)
             : null,
         }"
       >

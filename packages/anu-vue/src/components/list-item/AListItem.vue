@@ -51,53 +51,59 @@ const { styles, classes } = getLayerClasses(
         : '',
     ]"
   >
-    <!-- 👉 Slot: prepend -->
     <slot
-      name="prepend"
       :item="props"
+      :attrs="$attrs"
     >
-      <i
-        v-if="props.icon && !props.iconAppend"
-        class="text-xl"
-        :class="props.icon"
-        @click="$emit('click:icon')"
-      />
-      <AAvatar
-        v-if="props.avatarProps && !props.avatarAppend"
-        v-bind="props.avatarProps"
-        @click="$emit('click:avatar')"
-      />
-    </slot>
-
-    <!-- 👉 Slot: prepend -->
-    <slot
-      name="item"
-      :item="props"
-    >
-      <ATypography
-        class="flex-grow"
-        :subtitle="props.subtitle"
-        :text="props.text"
-        :title="props.title ? Object.values(_titleProp) as ConfigurableValue : undefined"
-      />
-    </slot>
-
-    <!-- 👉 Slot: append -->
-    <slot
-      name="append"
-      :item="props"
-    >
-      <i
-        v-if="props.icon && props.iconAppend"
-        class="text-xl"
-        :class="props.icon"
-        @click="$emit('click:iconAppend')"
-      />
-      <AAvatar
-        v-if="props.avatarProps && props.avatarAppend"
-        v-bind="props.avatarProps"
-        @click="$emit('click:avatarAppend')"
-      />
+      <!-- 👉 Slot: prepend -->
+      <slot
+        name="prepend"
+        :item="props"
+        :attrs="$attrs"
+      >
+        <i
+          v-if="props.icon && !props.iconAppend"
+          class="text-xl"
+          :class="props.icon"
+          @click="$emit('click:icon')"
+        />
+        <AAvatar
+          v-if="props.avatarProps && !props.avatarAppend"
+          v-bind="props.avatarProps"
+          @click="$emit('click:avatar')"
+        />
+      </slot>
+      <!-- 👉 Slot: default slot -->
+      <slot
+        name="item"
+        :item="props"
+        :attrs="$attrs"
+      >
+        <ATypography
+          class="flex-grow"
+          :subtitle="props.subtitle"
+          :text="props.text"
+          :title="props.title ? Object.values(_titleProp) as ConfigurableValue : undefined"
+        />
+      </slot>
+      <!-- 👉 Slot: append -->
+      <slot
+        name="append"
+        :item="props"
+        :attrs="$attrs"
+      >
+        <i
+          v-if="props.icon && props.iconAppend"
+          class="text-xl"
+          :class="props.icon"
+          @click="$emit('click:iconAppend')"
+        />
+        <AAvatar
+          v-if="props.avatarProps && props.avatarAppend"
+          v-bind="props.avatarProps"
+          @click="$emit('click:avatarAppend')"
+        />
+      </slot>
     </slot>
   </li>
 </template>
