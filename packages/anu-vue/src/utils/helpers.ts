@@ -49,7 +49,7 @@ export const removeKeys = <T, K extends keyof T>(obj: T, keys: K[]): Prettify<Om
 //   ) as AddPrefixToObjectKeys<T, K>
 // }
 
-interface PrefixObjectKey<T, P extends string, K extends keyof T> {
+export interface PrefixObjectKey<T, P extends string, K extends keyof T> {
   originalKey: keyof T
   prefixedKey: K extends string ? `${P}${K}` : never
   value: T[K]
