@@ -7,7 +7,9 @@ import { defineConfig } from 'vitest/config'
 
 const externals = [
   'vue',
-  '@floating-ui/dom',
+  '@floating-ui/vue',
+  'colord',
+  'defu',
 ]
 
 // https://vitejs.dev/config/
@@ -29,7 +31,9 @@ export default defineConfig({
         // for externalized deps
         globals: {
           'vue': 'Vue',
-          '@floating-ui/dom': 'FloatingDom',
+          '@floating-ui/vue': 'FloatingVue',
+          'colord': 'Colord',
+          'defu': 'Defu',
         },
       },
     },
