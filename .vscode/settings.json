@@ -95,5 +95,4 @@
     "unocss.root": "packages/documentation",
     // Extension: Volar
     "volar.vueserver.vitePress.processMdFile": true,
-    "references.preferredLocation": "peek",
 }

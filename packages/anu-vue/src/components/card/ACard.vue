@@ -27,7 +27,6 @@ const { styles, classes } = getLayerClasses(
   toRef(props, 'states'),
 )
 
-console.log('slots :>> ', slots)
 const _isTypographyUsed = isTypographyUsed(toRefs(props), slots)
 
 // Modify text prop to have `text-sm`
