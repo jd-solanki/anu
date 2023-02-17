@@ -3,7 +3,6 @@ import { defu } from 'defu'
 import type { ExtractPropTypes } from 'vue'
 import type { PropColumn } from './props'
 import { tableProps } from './props'
-import { useSpacing } from '@/composables/useSpacing'
 import { ACard, cardProps } from '@/components/card'
 
 const props = defineProps(defu(tableProps, cardProps))
@@ -19,8 +18,6 @@ defineOptions({
 
 // TODO: What about spacing? Table & Card both support spacing 🤔
 const _cardProps = reactivePick(props, Object.keys(cardProps) as Array<keyof typeof cardProps>)
-
-const spacing = useSpacing(toRef(props, 'spacing'))
 
 const _cols = computed<PropColumn[]>(() => {
   // If custom cols are provided => Use them
@@ -40,7 +37,6 @@ const _cols = computed<PropColumn[]>(() => {
   <ACard
     v-bind="_cardProps"
     class="a-table"
-    :style="{ '--a-spacing': spacing / 100 }"
   >
     <slot name="before-table" />
     <div class="overflow-x-auto">

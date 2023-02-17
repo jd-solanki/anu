@@ -2,7 +2,6 @@
 import { defu } from 'defu'
 import type { PropType } from 'vue'
 import { color as colorProp, spacing as spacingProp } from '@/composables/useProps'
-import { useSpacing } from '@/composables/useSpacing'
 import { isNumeric } from '@/utils/helpers'
 
 type VerticalAnchor = 'top' | 'bottom'
@@ -93,7 +92,6 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const spacing = useSpacing(toRef(props, 'spacing'))
 const formatMaxContent = (content: unknown) => {
   if (!isNumeric(content) || props.max === undefined)
     return content
@@ -137,10 +135,7 @@ const positionStyles = computed(() => {
           { 'a-badge-dot': props.dot },
           { 'a-badge-bordered': props.bordered },
         ]"
-        :style="[
-          positionStyles,
-          { '--a-spacing': spacing / 100 },
-        ]"
+        :style="positionStyles"
       >
         <template v-if="!props.dot">
           <template v-if="$slots.content">

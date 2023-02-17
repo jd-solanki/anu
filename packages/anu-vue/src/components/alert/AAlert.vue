@@ -3,7 +3,6 @@ import type { ExtractPropTypes } from 'vue'
 import { useInternalBooleanState } from '@/composables/useInternalBooleanState'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, spacing as spacingProp } from '@/composables/useProps'
-import { useSpacing } from '@/composables/useSpacing'
 
 const props = defineProps({
   spacing: spacingProp,
@@ -52,7 +51,6 @@ defineOptions({
 
 const { internalState: isAlertVisible, toggle: toggleAlertVisibility } = useInternalBooleanState(toRef(props, 'modelValue'), emit, 'update:modelValue', true)
 
-const spacing = useSpacing(toRef(props, 'spacing'))
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
   toRef(props, 'color'),
@@ -79,10 +77,7 @@ const handleAppendIconClick = () => {
       ...classes,
       isAlertVisible ? 'flex' : 'hidden',
     ]"
-    :style="[
-      ...styles,
-      { '--a-spacing': spacing / 100 },
-    ]"
+    :style="styles"
   >
     <!-- ℹ️ We need div as wrapper with span having `vertical-align: text-top` to center the icon with the text -->
     <div v-if="props.icon">

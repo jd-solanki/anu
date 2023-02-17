@@ -311,7 +311,6 @@ const paginationMeta = computed(() => {
           <ASelect
             v-model="currentPageSize"
             :options="Array.from(new Set([props.pageSize, 5, 10, 15, 20])).sort((a, b) => a - b)"
-            :spacing="80"
             options-wrapper-classes="a-data-table-per-page-select--options-wrapper-classes"
           />
         </div>

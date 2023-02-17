@@ -2,7 +2,6 @@
 import { ASpinner } from '@/components/spinner'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, disabled as disabledProp, spacing as spacingProp } from '@/composables/useProps'
-import { useSpacing } from '@/composables/useSpacing'
 
 const props = defineProps({
   ...useLayerProps({
@@ -35,7 +34,6 @@ defineOptions({
   name: 'ABtn',
 })
 
-const spacing = useSpacing(toRef(props, 'spacing'))
 const { getLayerClasses } = useLayer()
 
 const { styles, classes } = getLayerClasses(
@@ -48,10 +46,7 @@ const { styles, classes } = getLayerClasses(
 <template>
   <button
     :tabindex="props.disabled ? -1 : 0"
-    :style="[
-      ...styles,
-      { '--a-spacing': spacing / 100 },
-    ]"
+    :style="styles"
     class="inline-flex whitespace-nowrap justify-center items-center relative"
     :class="[
       props.iconOnly ? 'a-btn-icon-only' : 'a-btn',

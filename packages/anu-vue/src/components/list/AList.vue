@@ -5,7 +5,6 @@ import { listProps } from './props'
 import type { listSlots } from './slots'
 import { listItemSlot } from './slots'
 import { isObject } from '@/utils/helpers'
-import { useSpacing } from '@/composables/useSpacing'
 import { useGroupModel } from '@/composables'
 import { AListItem } from '@/components/list-item'
 
@@ -23,8 +22,6 @@ defineOptions({
 })
 
 defineSlots<typeof listSlots>()
-
-const spacing = useSpacing(toRef(props, 'spacing'))
 
 const extractItemValueFromItemOption = (item: ListPropItems[number]) => isObject(item) ? (item.value || item) : item
 
@@ -45,10 +42,7 @@ const handleListItemClick = (item: ListPropItems[number]) => {
 </script>
 
 <template>
-  <ul
-    class="a-list grid"
-    :style="[{ '--a-spacing': spacing / 100 }]"
-  >
+  <ul class="a-list grid">
     <!-- 👉 Slot: before -->
     <li v-if="$slots.before">
       <slot name="before" />
@@ -59,7 +53,7 @@ const handleListItemClick = (item: ListPropItems[number]) => {
       <AListItem
         v-for="(item, index) in props.items"
         :key="index"
-        :text="typeof item === 'string' ? item : undefined"
+        :text="typeof item === 'string' || typeof item === 'number' ? item : undefined"
         v-bind="typeof item === 'string' ? {} : item"
         :avatar-append="props.avatarAppend"
         :icon-append="props.iconAppend"

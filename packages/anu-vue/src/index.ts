@@ -1,7 +1,6 @@
 import { defu } from 'defu'
 import type { App } from 'vue'
 import * as components from './components'
-import { provideAppSpacing } from '@/composables/useSpacing'
 import './scss/index.scss'
 
 export interface PluginOptions {
@@ -14,8 +13,6 @@ const optionsDefaults: Partial<PluginOptions> = {
 
 const plugin = {
   install(app: App, options: Partial<PluginOptions> = {}) {
-    provideAppSpacing(app)
-
     const _options = defu(options, optionsDefaults)
 
     if (_options.registerComponents) {

@@ -7,7 +7,6 @@ import { ALoader } from '@/components/loader'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
-import { useSpacing } from '@/composables/useSpacing'
 
 const props = defineProps(cardProps)
 
@@ -19,7 +18,6 @@ defineSlots<typeof cardSlots>()
 
 const slots = useSlots()
 
-const spacing = useSpacing(toRef(props, 'spacing'))
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
   toRef(props, 'color'),
@@ -43,10 +41,7 @@ else
   <div
     class="a-card relative overflow-hidden bg-[hsla(var(--a-surface-c),var(--un-bg-opacity,1))]"
     :class="classes"
-    :style="[
-      ...styles,
-      { '--a-spacing': spacing / 100 },
-    ]"
+    :style="styles"
   >
     <!-- 👉 Loader  -->
     <!--

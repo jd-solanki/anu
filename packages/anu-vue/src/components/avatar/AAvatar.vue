@@ -2,7 +2,6 @@
 import { toRef } from 'vue'
 import { avatarProps } from './props'
 import { useLayer } from '@/composables/useLayer'
-import { useSpacing } from '@/composables/useSpacing'
 
 const props = defineProps(avatarProps)
 
@@ -10,7 +9,6 @@ defineOptions({
   name: 'AAvatar',
 })
 
-const spacing = useSpacing(toRef(props, 'spacing'))
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
   toRef(props, 'color'),
@@ -23,10 +21,7 @@ const { styles, classes } = getLayerClasses(
   <div
     class="a-avatar overflow-hidden inline-flex items-center justify-center"
     :class="classes"
-    :style="[
-      ...styles,
-      { '--a-spacing': spacing / 100 },
-    ]"
+    :style="styles"
   >
     <slot>
       <img

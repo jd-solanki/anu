@@ -17,7 +17,7 @@ const text = useConfigurable(toRef(props, 'text'))
 </script>
 
 <template>
-  <div class="text-base gap-4 flex flex-col">
+  <div class="gap-4 flex flex-col">
     <!-- SECTION Typography header -->
     <div
       v-if="$slots.title || props.title || $slots.subtitle || props.subtitle || $slots['header-right']"

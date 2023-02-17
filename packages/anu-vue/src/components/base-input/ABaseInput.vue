@@ -3,7 +3,6 @@ import { baseInputProps } from './props'
 import type { baseInputSlots } from './slots'
 import { ALoader } from '@/components/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
-import { useSpacing } from '@/composables/useSpacing'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
 // TODO: Provide a way to attach classes to root element
@@ -20,8 +19,6 @@ defineOptions({
 defineSlots<typeof baseInputSlots>()
 
 const attrs = useAttrs()
-
-const spacing = useSpacing(toRef(props, 'spacing'))
 
 const configurableLabel = useConfigurable(toRef(props, 'label'))
 
@@ -48,7 +45,6 @@ defineExpose({
       (props.disabled || props.readonly) && 'pointer-events-none',
       !(props.disabled || props.readonly) && 'a-base-input-interactive',
     ]"
-    :style="{ '--a-spacing': spacing / 100 }"
   >
     <!-- 👉 Label -->
     <slot name="label">
