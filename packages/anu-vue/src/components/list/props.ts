@@ -1,8 +1,11 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { ListItemProps } from '@/components/list-item'
-import { spacing } from '@/composables/useProps'
+import { listItemProps } from '@/components/list-item'
 
 export type ListPropItems = (ListItemProps | string | number)[]
+
+// List item props
+const { avatarAppend, iconAppend, color, variant, states } = listItemProps
 
 export const listProps = {
   /**
@@ -23,21 +26,24 @@ export const listProps = {
    */
   'modelValue': null,
 
+  // ℹ️ Workaround for checking if event is present on component instance: https://github.com/vuejs/core/issues/5220#issuecomment-1007488240
+  'onClick:item': Function,
+
+  // ℹ️ Below is list item props that will be passed to each list item
+
   /**
    * By default when icon props are used icon rendered at start. Use `iconAppend` to render icon at end.
    */
-  'iconAppend': Boolean,
+  iconAppend,
 
   /**
    * By default when avatar props are used avatar is added at start. Use `avatarAppend` to render avatar at end.
    */
-  'avatarAppend': Boolean,
+  avatarAppend,
 
-  // ℹ️ Workaround for checking if event is present on component instance: https://github.com/vuejs/core/issues/5220#issuecomment-1007488240
-
-  'onClick:item': Function,
-
-  'spacing': spacing,
+  color,
+  variant,
+  states,
 }
 
 export type ListProps = ExtractPropTypes<typeof listProps>

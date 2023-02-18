@@ -57,6 +57,9 @@ const handleListItemClick = (item: ListPropItems[number]) => {
         v-bind="typeof item === 'string' ? {} : item"
         :avatar-append="props.avatarAppend"
         :icon-append="props.iconAppend"
+        :color="props.color"
+        :variant="props.variant"
+        :states="props.states"
         :is-active="options[index].isSelected as unknown as boolean"
         :value="props.modelValue !== undefined ? options[index] : undefined"
         v-on="{
