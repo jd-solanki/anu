@@ -1,5 +1,4 @@
 import type { PropType } from 'vue'
-import { spacing } from '@/composables/useProps'
 
 export interface PropColumn {
   name: string
@@ -32,9 +31,4 @@ export const tableProps = {
     type: String,
     default: 'No records found!',
   },
-
-  /**
-   * Component spacing
-   */
-  spacing,
 }

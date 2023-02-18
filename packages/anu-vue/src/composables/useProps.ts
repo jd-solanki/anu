@@ -16,8 +16,6 @@ export const disabled = { type: Boolean } as const
 
 export const readonly = { type: Boolean } as const
 
-export const spacing = { type: Number } as const
-
 export const configurable = { type: [Array, String, Number, Object, undefined] as PropType<ConfigurableValue> } as const
 
 // TODO: Use this prop merger

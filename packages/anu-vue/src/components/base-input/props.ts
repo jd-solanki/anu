@@ -1,12 +1,8 @@
 import type { ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import { configurable, disabled, readonly, spacing } from '@/composables/useProps'
+import { configurable, disabled, readonly } from '@/composables/useProps'
 
 // TODO: Provide a way to apply classes on root. Later you can target input container & wrapper.
 export const baseInputProps = {
-  /**
-   * Component spacing
-   */
-  spacing,
 
   /**
    * Input wrapper classes

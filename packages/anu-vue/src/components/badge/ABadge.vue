@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
 import type { PropType } from 'vue'
-import { color as colorProp, spacing as spacingProp } from '@/composables/useProps'
+import { color as colorProp } from '@/composables/useProps'
 import { isNumeric } from '@/utils/helpers'
 
 type VerticalAnchor = 'top' | 'bottom'
@@ -9,7 +9,6 @@ type HorizontalAnchor = 'left' | 'right'
 type Anchor = `${VerticalAnchor} ${HorizontalAnchor}`
 
 const props = defineProps({
-  spacing: spacingProp,
 
   /**
    * Show/Hide badge based on v-model value

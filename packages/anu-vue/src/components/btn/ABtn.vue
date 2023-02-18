@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ASpinner } from '@/components/spinner'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
-import { configurable as configurableProp, disabled as disabledProp, spacing as spacingProp } from '@/composables/useProps'
+import { configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
 const props = defineProps({
   ...useLayerProps({
@@ -15,7 +15,6 @@ const props = defineProps({
       default: true,
     },
   }),
-  spacing: spacingProp,
   icon: configurableProp,
   appendIcon: configurableProp,
   iconOnly: Boolean,

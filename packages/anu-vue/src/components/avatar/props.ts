@@ -1,9 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
 import { useProps as useLayerProps } from '@/composables/useLayer'
-import { configurable, spacing } from '@/composables/useProps'
+import { configurable } from '@/composables/useProps'
 
 export const avatarProps = {
-  spacing,
 
   ...useLayerProps({
     color: {

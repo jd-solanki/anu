@@ -2,10 +2,9 @@
 import type { ExtractPropTypes } from 'vue'
 import { useInternalBooleanState } from '@/composables/useInternalBooleanState'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
-import { configurable as configurableProp, spacing as spacingProp } from '@/composables/useProps'
+import { configurable as configurableProp } from '@/composables/useProps'
 
 const props = defineProps({
-  spacing: spacingProp,
 
   ...useLayerProps({
     color: {
