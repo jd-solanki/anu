@@ -22,7 +22,7 @@ const attrs = useAttrs()
 
 const configurableLabel = useConfigurable(toRef(props, 'label'))
 
-const iconTransition = 'transition duration-150 ease -in'
+const iconTransition = 'transition duration-150 ease-in'
 
 const _elementIdToken = attrs.id || props.label
 const elementId = _elementIdToken ? `a-input-${_elementIdToken}-${Math.random().toString(36).slice(2, 7)}` : undefined
