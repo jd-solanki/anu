@@ -18,13 +18,9 @@ export function presetAnu(options: Partial<typeof presetDefaults> = {}): Preset 
       ),
     },
     safelist: [
-      // TODO: We can remove this color safelist if we use leverage `--a-color` CSS var
       ..._options.colors.map(c => `bg-${c}`),
-      ..._options.colors.map(c => `hover:bg-${c}`),
-
       ..._options.colors.map(c => `border-${c}`),
       ..._options.colors.map(c => `text-${c}`),
-      ..._options.colors.map(c => `shadow-${c}`),
       ..._options.colors.map(c => `after:bg-${c}`),
 
       // Typography

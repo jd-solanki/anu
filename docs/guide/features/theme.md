@@ -91,9 +91,24 @@ app.use(anu, {
 
 Passing options to anu config will merge them and will result in new color **secondary** added to existing theme palette.
 
-Additionally, You also have to add this new color in Anu's UnoCSS preset.
+Additionally, You also have to add this new color in Anu's UnoCSS preset option as styles are generated via UnoCSS.
 
-> _Working on omitting this preset step. Guide WIP._
+```ts
+// file: uno.config.ts
+
+import { presetAnu } from 'anu-vue'
+import { defineConfig } from 'unocss'
+
+export default defineConfig({
+  presets: [
+    // other presets
+    presetAnu({
+      // Add new color, It will get merged with existing colors
+      colors: ['secondary'],
+    }),
+  ]
+})
+```
 
 Finally let's use new color 😍
 
