@@ -1,37 +1,14 @@
-import { defu } from 'defu'
-import type { App } from 'vue'
-import * as components from './components'
-import './scss/index.scss'
-
-export interface PluginOptions {
-  registerComponents: boolean
-}
-
-const optionsDefaults: Partial<PluginOptions> = {
-  registerComponents: true,
-}
-
-const plugin = {
-  install(app: App, options: Partial<PluginOptions> = {}) {
-    const _options = defu(options, optionsDefaults)
-
-    if (_options.registerComponents) {
-      for (const prop in components) {
-      // @ts-expect-error: I want to index import using string
-        const component = components[prop]
-        app.component(component.name, component)
-      }
-    }
-  },
-}
+import '@/scss/index.scss'
 
 export { AnuComponentResolver } from './componentResolver'
 export * from './components'
 export * from './composables'
 export * as composables from './composables'
-export { presetAnu } from './preset'
+export { plugin as anu } from './plugin'
+export type { PluginOptions, ThemeColors, ThemeOptions as ThemeOption } from './plugin'
+export { defaultThemeColors, presetAnu } from './preset'
 export * from './symbols'
-export { plugin as anu }
+
 export const presetIconExtraProperties = {
   'height': '1.2em',
   'width': '1.2em',

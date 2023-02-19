@@ -1,8 +1,37 @@
 import type { Preset } from '@unocss/core'
+import { defu } from 'defu'
 
-export function presetAnu(): Preset {
+export const defaultThemeColors = ['primary', 'success', 'info', 'warning', 'danger']
+
+export const presetDefaults = {
+  colors: defaultThemeColors,
+}
+
+export function presetAnu(options: Partial<typeof presetDefaults> = {}): Preset {
+  const _options: typeof presetDefaults = defu(options, presetDefaults)
+
   return {
     name: '@anu-vue/preset-core',
+    theme: {
+      colors: Object.fromEntries(
+        _options.colors.map(c => [c, `hsl(var(--a-${c}))`]),
+      ),
+    },
+    safelist: [
+      // TODO: We can remove this color safelist if we use leverage `--a-color` CSS var
+      ..._options.colors.map(c => `bg-${c}`),
+      ..._options.colors.map(c => `hover:bg-${c}`),
+
+      ..._options.colors.map(c => `border-${c}`),
+      ..._options.colors.map(c => `text-${c}`),
+      ..._options.colors.map(c => `shadow-${c}`),
+      ..._options.colors.map(c => `after:bg-${c}`),
+
+      // Typography
+      ..._options.colors.map(c => `a-title-${c}`),
+      ..._options.colors.map(c => `a-subtitle-${c}`),
+      ...['top', 'right', 'bottom', 'left'].map(dir => `a-drawer-anchor-${dir}`),
+    ],
     variants: [
       (matcher: string) => {
         if (!matcher.startsWith('i:'))

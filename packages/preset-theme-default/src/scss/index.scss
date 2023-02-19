@@ -28,12 +28,6 @@ $body-color: hsla(var(--a-base-c), 0.68);
     --a-backdrop-c: 0, 0%, 0%;
     --a-backdrop-opacity: 0.35;
 
-    --a-primary: 265, 97.7%, 66.3%;
-    --a-success: 94.5, 100%, 39.6%;
-    --a-info: 200.1, 100%, 54.3%;
-    --a-warning: 42.4, 100%, 50%;
-    --a-danger: 358.3, 100%, 64.9%;
-
     // TODO: Add support to customize contrast color in => packages/anu-vue/src/utils/colord.ts
     // Contrast colors
     // --a-contrast-dark: #000;
@@ -78,12 +72,6 @@ $body-color: hsla(var(--a-base-c), 0.68);
   --a-surface-c: 0, 0%, 12%;
   --a-loader-overlay-bg-opacity: 0.75;
   --a-backdrop-opacity: 0.5;
-
-  --a-primary: 261, 73%, 66.3%;
-  --a-success: 94.5, 73%, 39.6%;
-  --a-info: 200.1, 73%, 54.3%;
-  --a-warning: 42.4, 73%, 50%;
-  --a-danger: 358.3, 73%, 64.9%;
 
   // SECTION Components
 

@@ -1,6 +1,16 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { StyleValue } from 'vue'
+import type { ComputedRef, StyleValue } from 'vue'
+import { useAnu } from '@/composables/useAnu'
 import type { ColorProp } from '@/composables/useProps'
+
+export const isThemeColor = (color: ColorProp | null): ComputedRef<boolean> => computed(() => {
+  let activeThemeColors: string[] = []
+
+  const { activeTheme } = useAnu()
+  activeThemeColors = Object.keys(activeTheme.value.theme.colors)
+
+  return !!(color && (activeThemeColors as ColorProp[]).includes(color))
+})
 
 export const useColor = (color: MaybeRef<ColorProp>, cssVarName: MaybeRef<string>, as: 'text' | 'bg' = 'text') => {
   const styles = computed(() => {
@@ -8,10 +18,10 @@ export const useColor = (color: MaybeRef<ColorProp>, cssVarName: MaybeRef<string
     const cssVar = computed(() => `--a-${unref(cssVarName)}`)
 
     const property = as === 'bg' ? 'background-color' : 'color'
-    const isThemeColor = ['primary', 'success', 'info', 'warning', 'danger'].includes(_color as string)
+    const _isThemeColor = isThemeColor(_color)
 
     const _styles = {
-      [cssVar.value]: isThemeColor ? `hsl(var(--a-${_color}))` : _color,
+      [cssVar.value]: _isThemeColor.value ? `hsl(var(--a-${_color}))` : _color,
       [property]: `var(${cssVar.value})`,
     } as StyleValue
 

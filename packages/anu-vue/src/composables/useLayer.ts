@@ -2,10 +2,10 @@ import type { MaybeRef } from '@vueuse/core'
 import { defu } from 'defu'
 import type { ComponentObjectPropsOptions } from 'vue'
 import { ref, unref, watch } from 'vue'
+import { isThemeColor } from '@/composables/useColor'
 import type { ColorProp } from '@/composables/useProps'
 import { color } from '@/composables/useProps'
 import { useTypographyColor } from '@/composables/useTypographyColor'
-import { isThemeColor } from '@/utils/color'
 import { colord } from '@/utils/colord'
 
 export interface LayerProps {
@@ -84,7 +84,7 @@ export const useLayer = () => {
       We also have colord as dependency for now. We might remove this in future once Anu is more popular and mature.
     */
 
-    if (_isThemeColor) {
+    if (_isThemeColor.value) {
       styles.push({ '--a-layer-c': `var(--a-${propColor})` })
 
       if (propVariant === 'fill') {

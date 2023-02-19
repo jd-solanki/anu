@@ -11,9 +11,7 @@ import './style.css'
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
-    app.use(anu, {
-      registerComponents: true,
-    })
+    app.use(anu)
 
     // Register demos as components
     const demos = import.meta.globEager('../../components/demos/**/*.vue')

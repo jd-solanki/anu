@@ -132,7 +132,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // 👉 Select
     'a-select-floating': '[--a-transition-slide-up-transform:6px]',
-    'a-select-options-container': '',
+    'a-select-options-container': 'z-10',
     'a-select-options-list': 'spacing-75',
 
     // 👉 Switch

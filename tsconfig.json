@@ -16,7 +16,7 @@
         "jsx": "preserve",
         "types": [
             "node",
-            "unplugin-vue-macros/macros-global",
+            "unplugin-vue-macros/macros-global"
         ]
     },
     "vueCompilerOptions": {

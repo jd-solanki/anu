@@ -22,7 +22,7 @@
         "*"
       ],
       "anu-vue": [
-        "./src"
+        "."
       ]
     },
     "types": [
@@ -47,7 +47,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "auto-imports.d.ts",
-    "shims.d.ts"
+    "shims.d.ts",
+    "volar.d.ts"
   ],
   "references": [
     {

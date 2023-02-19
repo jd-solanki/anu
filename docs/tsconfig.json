@@ -16,6 +16,9 @@
         "paths": {
             "@anu/*": [
                 "../packages/anu-vue/*"
+            ],
+            "anu-vue": [
+                "../packages/anu-vue"
             ]
         }
     },

@@ -1,12 +1,11 @@
 import { createDefu } from 'defu'
 import type { PropType } from 'vue'
 import type { ConfigurableValue } from '@/composables/useConfigurable'
+import type { ThemeColors } from '@/plugin'
 import type { NamedColors } from '@/utils/color'
 import type { LooseAutocomplete } from '@/utils/typescripts'
 
-export const themeColors = ['primary', 'success', 'info', 'warning', 'danger'] as const
-export type ThemeColor = typeof themeColors[number]
-export type ColorProp = LooseAutocomplete<ThemeColor | NamedColors> | undefined
+export type ColorProp = LooseAutocomplete<ThemeColors | NamedColors> | undefined
 
 export const color = {
   type: [String, undefined] as PropType<ColorProp>,

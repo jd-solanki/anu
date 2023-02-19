@@ -1,16 +1,24 @@
 <script setup lang="ts">
 import { useCssVar } from '@vueuse/core';
+import { useAnu } from 'anu-vue';
 import { computed } from 'vue';
 
-const primaryColor = useCssVar('--a-primary')
+const { activeTheme, themes } = useAnu()
 const vpBrandHue = useCssVar('--vp-brand-hue')
-const isPrimaryChanged = computed(() => primaryColor.value.startsWith('235'))
+const isPrimaryChanged = computed(() => activeTheme.value.theme?.colors.primary?.startsWith('235'))
 
 const updatePrimaryColor = () => {
-    // To update the look & feel of whole template, update VitePress primary color as well
-    vpBrandHue.value = isPrimaryChanged.value ? '265' : '235'
+  const primaryColor = activeTheme.value.theme.colors.primary
+  const primaryHue = isPrimaryChanged.value ? '265' : '235'
 
-    primaryColor.value = `${isPrimaryChanged.value ? '265' : '235'}, 97.7%, 66.3%`
+  // To update the look & feel of whole template, update VitePress primary color as well
+  vpBrandHue.value = primaryHue
+
+  // ℹ️ Change primary color for all themes. You can also just change the primary color of current/active theme 😇
+  for (const themeName in themes.value) {
+    const theme = themes.value[themeName]
+    theme.colors.primary = `${primaryHue}, 97.7%, 66.3%`
+  }
 }
 </script>
 
@@ -18,9 +26,9 @@ const updatePrimaryColor = () => {
 
 ## Color
 
-Anu uses [HSL](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl) color format to define colors. You can configure theme colors via [CSS variables(custom properties)](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+Anu uses [HSL](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl) color format to define and use colors. You can update theme colors via [themes](/guide/features/theme.md) configurations.
 
-To customize theme color, set a CSS variable in your CSS with color name prefixed with `a-` (_e.g. `--a-primary`_). Below is the list of colors you can configure.
+Below is the list of default colors. You can also [add new colors](/guide/features/theme.html#how-to-add-new-color) to the palette.
 
 <div class="flex gap-6 flex-wrap">
     <ACard variant="fill" color="primary" class="rounded-2xl shadow-2xl shadow-primary shadow-opacity-40 w-26 h-26 font-semibold grid place-items-center">Primary</ACard>
@@ -32,9 +40,16 @@ To customize theme color, set a CSS variable in your CSS with color name prefixe
 
 <ABtn class="mt-8" :class="isPrimaryChanged ? 'bg-[hsl(265,97.7%,66.3%)]' : 'bg-[hsl(235,97.7%,66.3%)]'" @click="updatePrimaryColor">{{ isPrimaryChanged ? 'Reset' : 'Change' }} primary</ABtn>
 
+<br />
+<br />
+
+Also checkout related documentation:
+
+- [`useAnu` composable](/guide/composables/useAnu.md)
+
 ## CSS variables
 
-Besides colors, Anu uses CSS variables for other stuff for providing maximum flexibility and customization on the fly. All anu's CSS variables are prefixed with `a-`.
+For the most part, Anu uses CSS variables for other stuff to providing maximum flexibility and customization on the fly. All anu's CSS variables are prefixed with `a-`.
 
 :::details View all CSS vars
 Below is CSS vars defined for preset theme default's light theme:
@@ -69,7 +84,7 @@ Just change the colors to Bootstrap's color and see the magic 😍
 ![Bootstrap buttons using anu](/images/guide/anu-bootstrap-btns.png)
 :::
 
-You can refer to available shortcuts in [this](https://github.com/jd-solanki/anu/blob/main/packages/anu-vue/src/presets/theme-default/index.ts) file.
+You can refer to available shortcuts in [this](https://github.com/jd-solanki/anu/blob/main/packages/preset-theme-default/src/shortcuts.ts) file.
 
 If you like this simple customization don't forget to give a **star on Github**. If you don't like it give a triple star 😉.
 

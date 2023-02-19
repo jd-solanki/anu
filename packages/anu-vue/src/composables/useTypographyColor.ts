@@ -2,7 +2,7 @@ import type { MaybeComputedRef } from '@vueuse/core'
 import { resolveUnref } from '@vueuse/core'
 import type { ColorProp } from './useProps'
 import { colord } from '@/utils/colord'
-import { isThemeColor } from '@/utils/color'
+import { isThemeColor } from '@/composables/useColor'
 
 const calculateColor = (_isThemeColor: boolean, _color: ColorProp | null, _variant: string) => {
   const classes = []
@@ -48,7 +48,7 @@ export const useTypographyColor = (color: MaybeComputedRef<ColorProp | null>, va
   const _isThemeColor = isThemeColor(_color)
 
   watch([() => color, () => variant], () => {
-    const calculatedColor = calculateColor(_isThemeColor, _color, _variant)
+    const calculatedColor = calculateColor(_isThemeColor.value, _color, _variant)
     typographyClasses.value = calculatedColor.classes
     typographyStyles.value = calculatedColor.styles
   }, { immediate: true })

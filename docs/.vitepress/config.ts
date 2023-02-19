@@ -88,6 +88,7 @@ export default defineConfig({
           items: [
             // { text: 'useSearch', link: '/guide/composables/useSearch' },
             // { text: 'useSort', link: '/guide/composables/useSort' },
+            { text: 'useAnu', link: '/guide/composables/useAnu' },
             { text: 'useGroupModel', link: '/guide/composables/useGroupModel' },
           ],
         },
@@ -119,6 +120,8 @@ export default defineConfig({
     },
   },
   markdown: {
+    // ℹ️ We only enabled this in development so that we can highlight code lines by seeing line number without calculating it in our editor.
+    lineNumbers: process.env.NODE_ENV === 'development',
     theme: 'dracula',
     config: md => {
       md.use(Container, 'card', {
