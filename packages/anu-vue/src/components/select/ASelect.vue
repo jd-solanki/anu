@@ -110,7 +110,6 @@ const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectC
       v-for="name in Object.keys(selectBaseInputSlots)"
       #[name]="slotProps"
     >
-      <!-- ℹ️ v-if condition will omit passing slots defined in array. Here, we don't want to pass default slot. -->
       <slot
         :name="name"
         v-bind="slotProps || {}"
@@ -146,7 +145,6 @@ const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectC
         v-for="name in Object.keys(cardSlotsToPass)"
         #[name]="slotProps"
       >
-        <!-- ℹ️ v-if condition will omit passing slots defined in array. Here, we don't want to pass default slot. -->
         <slot
           :name="name"
           v-bind="slotProps || {}"
@@ -164,7 +162,6 @@ const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectC
           v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in selectListSlots"
           #[originalSlotName]="slotProps"
         >
-          <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
           <slot
             :name="updatedSlotName"
             v-bind="{

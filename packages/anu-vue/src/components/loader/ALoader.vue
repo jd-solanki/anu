@@ -68,7 +68,6 @@ if (props.fullPage) {
           v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
           #[name]="slotProps"
         >
-          <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
           <slot
             :name="name"
             v-bind="slotProps || {}"
