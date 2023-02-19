@@ -3,7 +3,7 @@ import type { ExtractPropTypes } from 'vue'
 import type { ListPropItems } from './props'
 import { listProps } from './props'
 import type { listSlots } from './slots'
-import { listItemSlot } from './slots'
+import { listItemSlots } from './slots'
 import { isObject } from '@/utils/helpers'
 import { useGroupModel } from '@/composables'
 import { AListItem } from '@/components/list-item'
@@ -70,12 +70,11 @@ const handleListItemClick = (item: ListPropItems[number]) => {
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="name in Object.keys(listItemSlot)"
-          #[name]="slotProps"
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in listItemSlots"
+          #[originalSlotName]="slotProps"
         >
-          <!-- ℹ️ v-if condition will omit passing slots. Here, we don't want to pass default slot. -->
           <slot
-            :name="name"
+            :name="updatedSlotName"
             :index="index"
             v-bind="slotProps || {}"
           />

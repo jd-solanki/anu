@@ -1,5 +1,6 @@
 import type { ListPropItems } from './props'
-import { listItemSlots } from '@/components/list-item/slots'
+import { listItemSlots as listItemComponentSlots } from '@/components/list-item/slots'
+import { prefixObjectKeys } from '@/utils/helpers'
 
 export const listOwnSlots = {
   before: {},
@@ -9,22 +10,25 @@ export const listOwnSlots = {
   after: {},
 } as const
 
-export const listItemSlot = {
-  'item-prepend': {
-    item: listItemSlots.prepend.item,
-    index: Number(),
-  },
-  'item-item': {
-    item: listItemSlots.item.item,
-    index: Number(),
-  },
-  'item-append': {
-    item: listItemSlots.append.item,
-    index: Number(),
-  },
-} as const
+// export const listItemSlots = {
+//   'item-prepend': {
+//     item: listItemComponentSlots.prepend.item,
+//     index: Number(),
+//   },
+//   'item-item': {
+//     item: listItemComponentSlots.item.item,
+//     index: Number(),
+//   },
+//   'item-append': {
+//     item: listItemComponentSlots.append.item,
+//     index: Number(),
+//   },
+// } as const
+
+const { 'item-default': _, ...listItemSlots } = prefixObjectKeys(listItemComponentSlots, 'item-')
+export { listItemSlots }
 
 export const listSlots = {
-  ...listItemSlot,
+  ...listItemSlots,
   ...listOwnSlots,
 } as const
