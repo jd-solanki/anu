@@ -9,7 +9,7 @@ export const listItemSlots = {
     item: Object as unknown as ListItemProps,
     attrs: Object as unknown,
   },
-  item: {
+  content: {
     item: Object as unknown as ListItemProps,
     attrs: Object as unknown,
   },

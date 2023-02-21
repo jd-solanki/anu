@@ -64,12 +64,12 @@ Moreover, you can also use `append-icon` & `prepend-icon` prop to add icon outsi
 ::::
 
 <!-- 👉 Slots -->
-::::card Slot
+::::card Slots
 
 You can use default slot to render the `ASelect` options.
 
-:::code DemoSelectSlot
-<<< @/components/demos/select/DemoSelectSlot.vue{19-29}
+:::code DemoSelectSlots
+<<< @/components/demos/select/DemoSelectSlots.vue{19-29}
 :::
 
 ::::

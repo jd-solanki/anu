@@ -75,7 +75,7 @@ const { styles, classes } = getLayerClasses(
       </slot>
       <!-- 👉 Slot: default slot -->
       <slot
-        name="item"
+        name="content"
         :item="props"
         :attrs="$attrs"
       >
