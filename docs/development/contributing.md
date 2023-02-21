@@ -102,6 +102,7 @@ At the moment, anu don't have any design system. Hence, we have full freedom to 
 - [Daisy UI](https://www.figma.com/file/usqAh1FfAVsiGIbSKUKyQ7/Disy-%E2%80%94-Preview-1.1?node-id=654%3A4605)
 - [One UI](https://www.behance.net/gallery/140873105/Oneui-Minimalism-UI-kit)
 - [Tremor](https://www.tremor.so/)
+- [Preline UI](https://preline.co/)
 - [Popups & Modals](https://www.figma.com/community/file/1160004185821594377)
 - Search [dribbble](https://dribbble.com/)
 :::
