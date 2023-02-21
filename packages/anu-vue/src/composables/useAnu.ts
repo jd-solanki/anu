@@ -2,10 +2,8 @@ import type { ConfigThemes, PluginOptions } from '../plugin'
 import { createCustomGlobalState } from '@/composables/useCustomCreateGlobalState'
 
 const getThemeColorsCss = (themes: ConfigThemes) => {
-  return Object.entries(themes)
-    .map(
-      ([themeName, theme]) => `${theme.class ? `.${theme.class}` : ':root'}{${Object.entries(theme.colors).concat(Object.entries(theme.cssVars)).map(([varName, val]) => `--a-${varName}:${val};`).join('')}}`,
-    )
+  return Object.values(themes)
+    .map(theme => `${theme.class ? `.${theme.class}` : ':root'}{${Object.entries(theme.colors).concat(Object.entries(theme.cssVars)).map(([varName, val]) => `--a-${varName}:${val};`).join('')}}`)
     .join('')
 }
 
@@ -15,8 +13,6 @@ export interface AnuComposableOptions {
 }
 
 export const useAnu = createCustomGlobalState((options: AnuComposableOptions) => {
-  console.log('useAnu called with options', options)
-
   const themes = ref(options.themes)
   const activeThemeName = ref(options.initialTheme)
   const activeTheme = computed(() => ({
