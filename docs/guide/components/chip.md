@@ -88,4 +88,4 @@ Chip can be used as action item. You can use `@click` directive to handle onClic
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="Chip" :api="api"></Api>

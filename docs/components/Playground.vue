@@ -1,8 +1,14 @@
 <script lang="ts" setup>
+import api from '@anu/component-meta/AAlert.json'
 </script>
 
 <template>
-  <ABtn>
-    Button
-  </ABtn>
+  <Api
+    :api="api"
+    title="alert"
+  />
 </template>
+
+<style lang="scss">
+
+</style>

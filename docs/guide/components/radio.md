@@ -29,4 +29,4 @@ Use `color` prop to change the radio color.
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="Radio" :api="api"></Api>

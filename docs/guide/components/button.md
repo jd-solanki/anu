@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ABtn.json'
+import api from '@anu/component-meta/ABtn.json';
 </script>
 
 # Button
@@ -144,4 +144,4 @@ This property will display a `ALoading` component (by default) instead of the ic
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="Button" :api="api"></Api>

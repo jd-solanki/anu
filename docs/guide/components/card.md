@@ -69,4 +69,4 @@ Above demo adds content to the right of title. If you want to add content on the
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="Card" :api="api"></Api>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ARating.json'
+import api from '@anu/component-meta/ARating.json';
 </script>
 
 # Rating
@@ -123,4 +123,4 @@ When rating is readonly or disabled, `a-rating-animated` class won't apply.
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="Rating" :api="api"></Api>

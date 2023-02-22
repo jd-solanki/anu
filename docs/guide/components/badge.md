@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import api from '@anu/component-meta/ABadge.json'
+import api from '@anu/component-meta/ABadge.json';
 </script>
 
 # Badge
@@ -119,4 +119,4 @@ You can use font-size utility to adjust the size of badge.
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="Badge" :api="api"></Api>

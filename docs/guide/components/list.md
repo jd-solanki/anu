@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import api from '@anu/component-meta/AList.json';
+import listItemApi from '@anu/component-meta/AListItem.json';
 </script>
 
 # List
@@ -106,4 +107,5 @@ Use `a-list-items-pill` to create pill shaped list items. It just modifies some 
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="List" :api="api" class="mb-8"></Api>
+<Api title="List item" :api="listItemApi"></Api>

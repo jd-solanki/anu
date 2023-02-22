@@ -60,4 +60,4 @@ You can use `indeterminate` prop to change the status of the checkbox.
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="Checkbox" :api="api"></Api>

@@ -85,4 +85,4 @@ You can display the loader component in a full page.
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="Loader" :api="api"></Api>

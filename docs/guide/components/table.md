@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import dataTableApi from '@anu/component-meta/ADataTable.json';
 import api from '@anu/component-meta/ATable.json';
 </script>
 
@@ -123,4 +124,5 @@ const fetchRows = ({ q, currentPage, rowsPerPage, sortedCols }) => {
 <!-- 👉 API -->
 ## API
 
-<Api :api="api"></Api>
+<Api title="Table" :api="api" class="mb-8"></Api>
+<Api title="Data Table" :api="dataTableApi"></Api>
