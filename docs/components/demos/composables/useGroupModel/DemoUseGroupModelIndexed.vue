@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useGroupModel } from 'anu-vue'
-const { options, select, value } = useGroupModel({
+const { options, select, selected } = useGroupModel({
   options: 3,
 })
 </script>
@@ -16,5 +16,5 @@ const { options, select, value } = useGroupModel({
       Index: {{ option.value }}
     </ABtn>
   </div>
-  <small>Selected: {{ String(value) }}</small>
+  <small>Selected: {{ String(selected) }}</small>
 </template>

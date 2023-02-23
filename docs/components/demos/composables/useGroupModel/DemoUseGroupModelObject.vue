@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useGroupModel } from 'anu-vue'
 
-const { options, select, value } = useGroupModel({
+const { options, select, selected } = useGroupModel({
   options: [
     { title: 'Home', icon: 'i-bx-home' },
     { title: 'Categories', icon: 'i-bx-category' },
@@ -27,5 +27,5 @@ const { options, select, value } = useGroupModel({
       <span>{{ option.value.title }}</span>
     </div>
   </div>
-  <small>Selected: {{ JSON.stringify(value) }}</small>
+  <small>Selected: {{ JSON.stringify(selected) }}</small>
 </template>

@@ -3,7 +3,7 @@ import { useGroupModel } from 'anu-vue'
 import { ref } from 'vue'
 
 const isMultiEnabled = ref(false)
-const { options, select, value } = useGroupModel<string>({
+const { options, select, selected } = useGroupModel({
   options: ['apple', 'banana', 'orange', 'watermelon'],
   multi: isMultiEnabled,
 })
@@ -28,8 +28,8 @@ const { options, select, value } = useGroupModel<string>({
     />
     <small class="block">Selected: {{
       isMultiEnabled
-        ? value ? [...value].join(', ') : String(value)
-        : String(value)
+        ? selected ? [...selected].join(', ') : String(selected)
+        : String(selected)
     }}</small>
   </div>
 </template>

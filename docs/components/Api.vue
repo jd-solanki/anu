@@ -36,7 +36,7 @@ const { results: filteredEvents } = useSearch(q, props.api.events, (q: string, e
 
 // SECTION Tabs
 const tabs = ['props', 'slots', 'events']
-const { options: apiTabs, select, value: apiActiveTab } = useGroupModel({
+const { options: apiTabs, select, selected: apiActiveTab } = useGroupModel({
   options: tabs,
 })
 

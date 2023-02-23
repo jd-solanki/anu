@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useGroupModel } from 'anu-vue'
 
-const { options, select, value } = useGroupModel({
+const { options, select } = useGroupModel({
   options: [
     'VueJS',
     'Pinia',
@@ -25,4 +25,3 @@ const { options, select, value } = useGroupModel({
     </AChip>
   </div>
 </template>
-

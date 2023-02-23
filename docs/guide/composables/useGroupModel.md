@@ -41,7 +41,7 @@ description
 If you want a value or values be selected by default, use the `selected` property which takes a function whose first argument is an array of specified options via the `options` property. Use this function to return an array of values to be selected by default
 
 :::code DemoUseGroupModelSelected
-<<< @/demos/composables/useGroupModel/DemoUseGroupModelSelected.vue{9-17}
+<<< @/components/demos/composables/useGroupModel/DemoUseGroupModelSelected.vue{9-17}
 :::
 
 ::::
