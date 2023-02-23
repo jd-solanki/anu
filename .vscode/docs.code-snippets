@@ -8,7 +8,7 @@
             "description",
             "",
             ":::code Demo$2$1",
-            "<<< @/demos/$2/DemoMenu$1.vue",
+            "<<< @/components/demos/$2/DemoMenu$1.vue",
             ":::",
             "",
             "::::"

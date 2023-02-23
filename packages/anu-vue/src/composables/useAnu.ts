@@ -1,0 +1,60 @@
+import type { ConfigThemes, PluginOptions } from '../plugin'
+import { createCustomGlobalState } from '@/composables/useCustomCreateGlobalState'
+
+const getThemeColorsCss = (themes: ConfigThemes) => {
+  return Object.values(themes)
+    .map(theme => `${theme.class ? `.${theme.class}` : ':root'}{${Object.entries(theme.colors).concat(Object.entries(theme.cssVars)).map(([varName, val]) => `--a-${varName}:${val};`).join('')}}`)
+    .join('')
+}
+
+export interface AnuComposableOptions {
+  themes: PluginOptions['themes']
+  initialTheme: PluginOptions['initialTheme']
+}
+
+export const useAnu = createCustomGlobalState((options: AnuComposableOptions) => {
+  const themes = ref(options.themes)
+  const activeThemeName = ref(options.initialTheme)
+  const activeTheme = computed(() => ({
+    name: activeThemeName.value,
+    theme: themes.value[activeThemeName.value],
+  }))
+  const themeColorsCss = ref('')
+  useStyleTag(themeColorsCss)
+
+  /*
+    ℹ️ `Object.values(themes.value).map(theme => [theme.colors, theme.cssVars]).flat()` will allow watching for colors & css vars of all themes 😮
+
+    Object.values(themes.value) => [<lightThemeConfig>, <darkThemeConfig>] => Each theme's theme value/config
+    Object.values(themes.value).map(theme => [theme.colors, theme.cssVars]) => [[<lightThemeColors>, <lightThemeCssVars>], [<darkThemeColors>, <darkThemeCssVars>]] => Will return nested array with colors & css variables
+    Finally flat the array to get list of each theme's color & css var [<lightThemeColor>, <lightThemeCssVars>, <darkThemeColors>, <darkThemeCssVars>] ✨
+  */
+  watch(
+    () => Object.values(themes.value).map(theme => [theme.colors, theme.cssVars]).flat(),
+    () => {
+      themeColorsCss.value = getThemeColorsCss(themes.value)
+    },
+    { deep: true, immediate: true },
+  )
+
+  // Toggle theme class
+  watch(activeThemeName, (newThemeName, oldThemeName) => {
+    const newTheme = themes.value[newThemeName]
+
+    if (newTheme && newTheme.class)
+      document.documentElement.classList.toggle(newTheme.class)
+
+    // ℹ️ Initially, `oldThemeName` will be undefined
+    if (oldThemeName) {
+      const oldTheme = themes.value[oldThemeName]
+      if (oldTheme && oldTheme.class)
+        document.documentElement.classList.toggle(oldTheme.class)
+    }
+  }, { immediate: true })
+
+  return {
+    themes,
+    activeThemeName,
+    activeTheme,
+  }
+})

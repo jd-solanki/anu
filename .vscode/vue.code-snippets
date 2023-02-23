@@ -1,0 +1,28 @@
+{
+    "Create SFC": {
+        "prefix": "sfc",
+        "body": [
+            "<script lang=\"ts\" setup>",
+            "defineOptions({",
+            "  name: 'A${1}',",
+            "})",
+            "</script>",
+            "",
+            "<template>",
+            "",
+            "</template>",
+            "",
+            "<style lang=\"scss\">",
+            "",
+            "</style>"
+        ],
+        "description": "Create SFC"
+    },
+    "Create template with v-if": {
+        "prefix": "tif",
+        "body": [
+            "<template v-if=\"${1}\"></template>"
+        ],
+        "description": "Create template with v-if"
+    }
+}

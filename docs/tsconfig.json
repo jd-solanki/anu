@@ -1,0 +1,35 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "types": [
+            "anu-vue/volar"
+        ],
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ],
+        "paths": {
+            "@anu/*": [
+                "../packages/anu-vue/*"
+            ],
+            "anu-vue": [
+                "../packages/anu-vue"
+            ]
+        }
+    },
+    "exclude": [
+        "**/dist/**"
+    ],
+    "include": [
+        "**/*.ts",
+        "**/*.d.ts",
+        "**/*.vue",
+        "**/*.md",
+        ".vitepress/shims.d.ts"
+    ]
+}

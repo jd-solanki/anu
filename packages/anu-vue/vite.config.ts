@@ -1,9 +1,16 @@
 import { resolve } from 'path'
 import { URL, fileURLToPath } from 'url'
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
+import AutoImport from 'unplugin-auto-import/vite'
+import VueMacros from 'unplugin-vue-macros/vite'
+import { defineConfig } from 'vitest/config'
+
+const externals = [
+  'vue',
+  '@floating-ui/vue',
+  'colord',
+  'defu',
+]
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,30 +20,45 @@ export default defineConfig({
       name: 'anu-vue',
       fileName: 'anu-vue',
     },
+    emptyOutDir: false,
     outDir: 'dist',
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: [
-        'vue',
-        '@floating-ui/dom',
-      ],
+      external: externals,
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          vue: 'Vue',
+          'vue': 'Vue',
+          '@floating-ui/vue': 'FloatingVue',
+          'colord': 'Colord',
+          'defu': 'Defu',
         },
       },
     },
   },
-  plugins: [vue(), vueJsx(), dts({
-    outputDir: 'dist/types',
-    insertTypesEntry: true,
-  })],
+  plugins: [
+    VueMacros({
+      plugins: {
+        vue: vue(),
+      },
+    }),
+    AutoImport({
+      imports: ['vue', '@vueuse/core'],
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./test/setup.vitest.ts'],
+    transformMode: {
+      web: [/.[tj]sx$/],
     },
   },
 })

@@ -1,2 +1,1 @@
-export { ABadge } from './ABadge'
-
+export { default as ABadge } from './ABadge.vue'

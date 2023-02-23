@@ -1,2 +1,1 @@
-export { ASwitch } from './ASwitch'
-
+export { default as ASwitch } from './ASwitch.vue'

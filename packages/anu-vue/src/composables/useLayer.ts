@@ -1,12 +1,25 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { ComponentObjectPropsOptions, Ref } from 'vue'
+import { defu } from 'defu'
+import type { ComponentObjectPropsOptions } from 'vue'
 import { ref, unref, watch } from 'vue'
+import { isThemeColor } from '@/composables/useColor'
 import type { ColorProp } from '@/composables/useProps'
 import { color } from '@/composables/useProps'
-import { contrast } from '@/utils/color'
+import { useTypographyColor } from '@/composables/useTypographyColor'
+import { colord } from '@/utils/colord'
 
+export interface LayerProps {
+  color: ColorProp
+  variant: 'fill' | 'outline' | 'light' | 'text'
+  states: boolean
+}
+
+// Thanks: https://youtu.be/a_m7jxrTlaw
+// type LooseAutocomplete<T extends string> = T | Omit<string, T>
+
+// TODO: Use `useColor` composable to removed the color calculation
 export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
-  const props = {
+  let props = {
     /**
      * Layer color
      */
@@ -17,7 +30,8 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
      */
     variant: {
       type: String,
-      validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
+
+      // validator: (value: string) => ['fill', 'outline', 'light', 'text'].includes(value),
       default: 'text',
     },
 
@@ -30,9 +44,8 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
     },
   }
 
-  // Add `defaults` property in `props` if it is provided via `defaults` argument
   if (propOverrides)
-    Object.assign(props, propOverrides)
+    props = defu(propOverrides, props) as typeof props
 
   return props
 }
@@ -42,74 +55,116 @@ interface UseLayerConfig {
 }
 export const useLayer = () => {
   // TODO(TS): Improve typing
-  const computeClassesStyles = (propColor: ColorProp, propVariant: string, propsStates: boolean, config?: UseLayerConfig) => {
-    // 👉 Classes
-    const classes: string[] = [
-      propsStates
-        ? (config && config.statesClass ? config.statesClass : 'states')
-        : '',
-    ]
-
-    const isThemeColor = propColor && ['primary', 'success', 'info', 'warning', 'danger'].includes(propColor)
-    const isHexColor = propColor && /^#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3}$/.test(propColor)
-
+  const computeClassesStyles = (propColor: ColorProp, propVariant: string, propsStates: boolean, config: UseLayerConfig = {}) => {
     // 👉 Styles
     const styles = []
 
-    // If it's not theme color => Set color we received as prop to `--a-layer-color`
-    if (!isThemeColor) {
-      styles.push({ '--a-layer-color': propColor })
+    // 👉 Classes
+    const _config = defu(config, { statesClass: 'states' })
+    const classes: any[] = [
+      propsStates && _config.statesClass,
+    ]
 
-      // If color isn't theme color & is HEX color => Calculate contrast color => Assign it to `--a-layer-text`
-      if (isHexColor) {
-        const contrastColor = contrast(propColor)
+    // Handle typography for card
+    const { typographyClasses, typographyStyles } = useTypographyColor(propColor, propVariant)
 
-        styles.push(`--a-layer-text: ${contrastColor}`)
-        styles.push(`--un-ring-color: ${propColor}`)
-      }
-    }
+    classes.push(typographyClasses.value)
+    styles.push(typographyStyles.value)
 
-    // If it's theme color => Use color's CSS var to `--a-layer-color` and to ring color '--un-ring-color'
-    else {
-      styles.push({ '--a-layer-color': `hsla(var(--a-${propColor}),var(--un-bg-opacity))` }, { '--un-ring-color': `hsl(var(--a-${propColor}))` })
-
-      // ℹ️ We need to set un-bg-opacity just like UnoCSS class
-      classes.push('[--un-bg-opacity:1]')
-    }
+    const _isThemeColor = isThemeColor(propColor)
 
     /*
-      ℹ️ This is CSS var name
+      ❗ Below code is intentionally not DRY.
 
-      If theme color
-        If variant is fill => white
-        Else => passed color
-      Else
-        string 'layer-text'
+      Frequently we are visiting useLayer composable while building new component. Hence, we made it:
+        - Simple to understand
+        - Easy to read
+        - Quicker to update
 
-      Once we attach the proper class, text color will be handled by CSS variables
+      We also have colord as dependency for now. We might remove this in future once Anu is more popular and mature.
     */
-    const textColor = isThemeColor
-      ? propVariant === 'fill' ? 'white' : propColor
-      : 'layer-text'
 
-    // ℹ️ `typography-title-${color}` does uses CSS variable however `text-${color}` don't so we need to attach the color our self
-    // TODO: Check is it convenient to add `typography-title-$color` like in above line to identify the color as CSS var 🤔
-    const textClasses = `text-${isThemeColor ? textColor : `\$a-${textColor}`} typography-title-${textColor} typography-subtitle-${textColor} typography-text-${textColor}`
+    if (_isThemeColor.value) {
+      styles.push({ '--a-layer-c': `var(--a-${propColor})` })
 
-    if (propColor) {
-      // common classes
-      classes.push(textClasses)
-      classes.push('typography-subtitle-opacity-100 typography-text-opacity-100')
+      if (propVariant === 'fill') {
+        // Background
+        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
+        classes.push('[--a-layer-opacity:1]')
 
-      // Add classes based on variant
-      if (propVariant === 'text') { classes.push('text-$a-layer-color') }
-      else {
-        if (propVariant === 'fill')
-          classes.push('bg-$a-layer-color')
-        if (propVariant === 'light')
-          classes.push('bg-$a-layer-color bg-opacity-15')
-        if (propVariant === 'outline')
-          classes.push('border-width-1 uno-layer-base-border-solid border-$a-layer-color')
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          classes.push('text-white')
+      }
+
+      else if (propVariant === 'light') {
+        // Background
+        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
+        classes.push('[--a-layer-opacity:0.15]')
+
+        // text
+        if (propColor !== undefined && propColor !== null)
+          classes.push(`text-${propColor}`)
+      }
+
+      else if (propVariant === 'outline') {
+        // Border
+        classes.push('border-width-1', 'border-solid')
+        styles.push({ borderColor: 'hsl(var(--a-layer-c)' })
+
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          classes.push('text-[hsl(var(--a-layer-c))]')
+      }
+
+      else if (propVariant === 'text') {
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          classes.push('text-[hsl(var(--a-layer-c))]')
+      }
+    }
+    else if (propColor === 'inherit') {
+      classes.push('text-inherit')
+
+      if (propVariant === 'outline')
+        classes.push('border-width-1 border-solid border-current')
+    }
+    else if (propColor) {
+      const _colord = colord(propColor as string)
+
+      styles.push({ '--a-layer-c': _colord.toHslValue() })
+
+      if (propVariant === 'fill') {
+        // Background
+        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
+        classes.push('[--a-layer-opacity:1]')
+
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          styles.push({ color: _colord.contrasting().toHslString() })
+      }
+      else if (propVariant === 'light') {
+        // Background
+        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
+        classes.push('[--a-layer-opacity:0.15]')
+
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          styles.push({ color: 'hsl(var(--a-layer-c))' })
+      }
+      else if (propVariant === 'outline') {
+        // Border
+        classes.push('border-width-1', 'border-solid')
+        styles.push({ borderColor: 'hsl(var(--a-layer-c))' })
+
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          styles.push({ color: 'hsl(var(--a-layer-c))' })
+      }
+      else if (propVariant === 'text') {
+        // Text
+        if (propColor !== undefined && propColor !== null)
+          styles.push({ color: 'hsl(var(--a-layer-c))' })
       }
     }
 
@@ -119,12 +174,13 @@ export const useLayer = () => {
     }
   }
 
-  const getLayerClasses = (propColor: Ref<ColorProp>, propVariant: Ref<string>, propsStates: Ref<boolean>, config?: MaybeRef<UseLayerConfig>) => {
+  // TODO: Even if params are MaybeRef, we still has to pass refs. E.g. In ARating can't passing static values.
+  const getLayerClasses = (propColor: MaybeRef<ColorProp>, propVariant: MaybeRef<string>, propsStates: MaybeRef<boolean>, config?: MaybeRef<UseLayerConfig>) => {
     const classes = ref<any>([])
     const styles = ref<any>([])
 
-    watch([propColor, propVariant, propsStates, () => config], () => {
-      const { classes: _classes, styles: _styles } = computeClassesStyles(propColor.value, propVariant.value, propsStates.value, unref(config))
+    watch([propColor, propVariant, propsStates, () => unref(config)], () => {
+      const { classes: _classes, styles: _styles } = computeClassesStyles(unref(propColor), unref(propVariant), unref(propsStates), unref(config))
       classes.value = _classes
       styles.value = _styles
     }, { immediate: true })

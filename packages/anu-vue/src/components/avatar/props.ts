@@ -1,42 +1,40 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { ConfigurableValue } from '@/composables/useConfigurable'
+import type { ExtractPropTypes } from 'vue'
+import { useProps as useLayerProps } from '@/composables/useLayer'
+import { configurable } from '@/composables/useProps'
 
-export const avatarOnlyProps = {
+export const avatarProps = {
+
+  ...useLayerProps({
+    color: {
+      default: 'primary',
+    },
+    variant: {
+      default: 'light',
+    },
+  }),
+
   /**
    * Icon to render in avatar
    */
-  icon: {
-    type: [Array, String] as PropType<ConfigurableValue>,
-    required: false,
-    default: undefined,
-  },
+  icon: configurable,
 
   /**
    * Content to render inside avatar
    */
-  content: {
-    type: String,
-    required: false,
-    default: undefined,
-  },
+  content: String,
 
   /**
    * Render image using this prop
    */
-  src: {
-    type: String,
-    required: false,
-    default: undefined,
-  },
+  src: String,
 
   /**
    * Provide alt attribute for image given by `src` prop
    */
   alt: {
     type: String,
-    required: false,
     default: 'avatar',
   },
 }
 
-export type AvatarOnlyProps = ExtractPropTypes<typeof avatarOnlyProps>
+export type AvatarProps = ExtractPropTypes<typeof avatarProps>

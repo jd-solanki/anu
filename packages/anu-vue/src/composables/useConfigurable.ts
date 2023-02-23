@@ -15,9 +15,9 @@ export const useConfigurable = (value: MaybeRef<ConfigurableValue>) => computed(
 
   const [content, classes, attrs] = _value === undefined
     ? []
-    : typeof _value === 'string' || typeof _value === 'number'
-      ? [_value]
-      : _value
+    : (typeof _value === 'string' || typeof _value === 'number')
+        ? [_value]
+        : _value
 
   return { content, classes, attrs }
 },

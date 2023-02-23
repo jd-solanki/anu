@@ -55,9 +55,8 @@ export function useGroupModel<T>(params: ComposableParams<T>) {
       if (!(picked.value instanceof Set)) {
         picked.value = new Set([option])
       }
-
-      // Else toggle option in set
       else {
+        // Else toggle option in set
         if (picked.value.has(option))
           picked.value.delete(option)
         else picked.value.add(option)

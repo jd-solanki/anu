@@ -1,2 +1,1 @@
-export { ASelect } from './ASelect'
-
+export { default as ASelect } from './ASelect.vue'

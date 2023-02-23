@@ -50,7 +50,10 @@
         "vue"
     ],
     // Extension: Comment Anchors
+    "commentAnchors.tags.displayLineNumber": false,
+    "commentAnchors.workspace.enabled": false,
     "commentAnchors.showCursor": true,
+    "commentAnchors.tags.displayTagName": false,
     "commentAnchors.tags.list": [
         {
             "tag": "ℹ️",
@@ -80,7 +83,13 @@
     // Extention: Code Spell Checker
     "cSpell.words": [
         "composables",
-        "Vite"
+        "defu",
+        "endregion",
+        "globby",
+        "nuxt",
+        "Vite",
+        "vitepress",
+        "Vuetify's"
     ],
     // Extension: UnoCSS
     "unocss.root": "packages/documentation",

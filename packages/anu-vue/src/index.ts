@@ -1,35 +1,21 @@
-import type { App } from 'vue'
-import * as components from './components'
-import { provideAppSpacing } from '@/composables/useSpacing'
-import './presets/theme-default/scss/index.scss'
-import './scss/index.scss'
-
-export interface PluginOptions {
-  registerComponents: boolean
-}
-
-const plugin = {
-  install(app: App, options?: PluginOptions) {
-    provideAppSpacing(app)
-
-    // console.log('components :>> ', components);
-    if (options && options.registerComponents) {
-      for (const prop in components) {
-      // @ts-expect-error: I want to index import using string
-        const component = components[prop]
-        app.component(component.name, component)
-      }
-    }
-  },
-}
+import '@/scss/index.scss'
 
 export { AnuComponentResolver } from './componentResolver'
 export * from './components'
 export * from './composables'
-export { presetCore } from './presets/core'
-export {
-  colors as defaultThemeColors, presetThemeDefault,
-} from './presets/theme-default'
+export * as composables from './composables'
+export { plugin as anu } from './plugin'
+export type { PluginOptions, ThemeColors, ThemeOptions as ThemeOption } from './plugin'
+export { defaultThemeColors, presetAnu } from './preset'
 export * from './symbols'
-export { plugin as anu }
 
+export const presetIconExtraProperties = {
+  'height': '1.2em',
+  'width': '1.2em',
+
+  // ℹ️ We also have to find a way to inject this without this config. (e.g. [class^=i-])
+  'vertical-align': 'text-top',
+  'flex-shrink': '0',
+  'display': 'inline-block',
+  'backface-visibility': 'hidden',
+}

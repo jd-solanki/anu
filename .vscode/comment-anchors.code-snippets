@@ -19,5 +19,14 @@
             "❗"
         ],
         "description": "Add warning emoji"
+    },
+    "Create comment anchor SECTION": {
+        "prefix": "ca-html-section",
+        "body": [
+            "<!-- SECTION ${1:name} -->",
+            "  ${2}",
+            "<!-- !SECTION -->"
+        ],
+        "description": "Create comment anchor SECTION"
     }
 }

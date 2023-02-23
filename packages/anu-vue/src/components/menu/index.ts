@@ -1,3 +1,1 @@
-export { AMenu } from './AMenu'
-export { sameWidth as sameWidthFloatingUIMiddleware } from './middlewares'
-
+export { default as AMenu } from './AMenu.vue'
