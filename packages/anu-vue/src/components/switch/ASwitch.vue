@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
 import { color as colorProp, disabled as disabledProp } from '@/composables/useProps'
 
 const props = defineProps({
@@ -20,7 +20,23 @@ const props = defineProps({
      * Bind v-model value
      */
   modelValue: {
-    type: [Boolean, Array, Set] as PropType<any[] | Set<any> | boolean>,
+    type: [Boolean, Number, String],
+    default: true,
+  },
+
+  /**
+   * Switch value when in on state
+   */
+  activeValue: {
+    type: [Boolean, Number, String],
+    default: true,
+  },
+
+  /**
+   * Switch value when in off state
+   */
+  inactiveValue: {
+    type: [Boolean, Number, String],
     default: false,
   },
 
@@ -39,7 +55,6 @@ const props = defineProps({
      */
   disabled: disabledProp,
 })
-
 const emit = defineEmits<{
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
@@ -50,11 +65,17 @@ defineOptions({
 
 const attrs = useAttrs()
 
+const checked = computed(() => props.modelValue === props.activeValue)
+
+const handleChange = () => {
+  const val = checked.value ? props.inactiveValue : props.activeValue
+  emit('update:modelValue', val)
+}
+
 const elementId = `a-switch-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`
-const data = useVModel(props, 'modelValue', emit)
 
 const dotPosition = computed(() => {
-  if (!data.value)
+  if (!checked.value)
     return { transform: 'translateX(0)' }
   else return { transform: 'translateX(calc(var(--a-switch-track-size) - 100% - (var(--a-switch-thumb-margin) *2 )))' }
 })
@@ -74,10 +95,10 @@ const dotPosition = computed(() => {
 
     <input
       :id="elementId"
-      v-model="data"
       class="hidden"
       role="switch"
       type="checkbox"
+      @change="handleChange"
     >
 
     <!-- 👉 Label -->
@@ -89,7 +110,7 @@ const dotPosition = computed(() => {
     <!-- min width should be double the dot size -->
     <div
       class="a-switch-toggle flex rounded-inherit min-w-$a-switch-track-size"
-      :class="data
+      :class="checked
         ? `bg-${props.color}`
         : 'bg-[hsl(var(--a-switch-default-color))]'"
     >
@@ -100,7 +121,7 @@ const dotPosition = computed(() => {
         <div
           class="a-switch-icon color-$a-switch-icon-color"
           :class="[
-            data
+            checked
               ? `${props.onIcon} text-${props.color}`
               : props.offIcon,
           ]"

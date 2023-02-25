@@ -89,6 +89,17 @@ You can adjust switch roundness using border-radius utilities.
 
 ::::
 
+<!-- Extended value Types -->
+::::card Extended value Types
+
+You can set active-value and inactive-value attributes.
+
+:::code DemoSwitchExtendedValue
+<<< @/components/demos/switch/DemoSwitchExtendedValue.vue{13,14}
+:::
+
+::::
+
 <!-- 👉 API -->
 ## API
 
