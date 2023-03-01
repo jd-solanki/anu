@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
 import { defineConfig } from 'vitest/config'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 const externals = [
   'vue',
@@ -44,6 +45,7 @@ export default defineConfig({
         vue: vue(),
       },
     }),
+    vueJsx(),
     AutoImport({
       imports: ['vue', '@vueuse/core'],
     }),

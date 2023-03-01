@@ -56,6 +56,17 @@ Use `on-icon` & `off-icon` prop to render icons inside switch dot.
 
 ::::
 
+<!-- Custom model values -->
+::::card Custom model values
+
+You can use `on-value` and `off-value` props to set custom `v-model` value.
+
+:::code DemoSwitchCustomModelValue
+<<< @/components/demos/switch/DemoSwitchCustomModelValue.vue{13,14}
+:::
+
+::::
+
 <!-- 👉 Sizing -->
 ::::card Sizing
 
