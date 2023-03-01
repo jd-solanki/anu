@@ -27,7 +27,7 @@ const props = defineProps({
   /**
    * Switch value when in on state
    */
-  activeValue: {
+  onValue: {
     type: [Boolean, Number, String],
     default: true,
   },
@@ -35,7 +35,7 @@ const props = defineProps({
   /**
    * Switch value when in off state
    */
-  inactiveValue: {
+  offValue: {
     type: [Boolean, Number, String],
     default: false,
   },
@@ -65,17 +65,17 @@ defineOptions({
 
 const attrs = useAttrs()
 
-const checked = computed(() => props.modelValue === props.activeValue)
+const isChecked = computed(() => props.modelValue === props.onValue)
 
 const handleChange = () => {
-  const val = checked.value ? props.inactiveValue : props.activeValue
+  const val = isChecked.value ? props.offValue : props.onValue
   emit('update:modelValue', val)
 }
 
 const elementId = `a-switch-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`
 
 const dotPosition = computed(() => {
-  if (!checked.value)
+  if (!isChecked.value)
     return { transform: 'translateX(0)' }
   else return { transform: 'translateX(calc(var(--a-switch-track-size) - 100% - (var(--a-switch-thumb-margin) *2 )))' }
 })
@@ -110,7 +110,7 @@ const dotPosition = computed(() => {
     <!-- min width should be double the dot size -->
     <div
       class="a-switch-toggle flex rounded-inherit min-w-$a-switch-track-size"
-      :class="checked
+      :class="isChecked
         ? `bg-${props.color}`
         : 'bg-[hsl(var(--a-switch-default-color))]'"
     >
@@ -121,7 +121,7 @@ const dotPosition = computed(() => {
         <div
           class="a-switch-icon color-$a-switch-icon-color"
           :class="[
-            checked
+            isChecked
               ? `${props.onIcon} text-${props.color}`
               : props.offIcon,
           ]"

@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import { ref } from 'vue'
 import { ASwitch } from '../src/components'
 
@@ -12,8 +12,8 @@ describe('Testing ASwitch', () => {
     const wrapper = mount(() => (
       <ASwitch
         v-model={modelValue.value}
-        activeValue={onValue.value}
-        inactiveValue={offValue.value}
+        onValue={onValue.value}
+        offValue={offValue.value}
       />
     ), {
       // trigger click on a label have an issue

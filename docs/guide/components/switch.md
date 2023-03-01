@@ -56,6 +56,17 @@ Use `on-icon` & `off-icon` prop to render icons inside switch dot.
 
 ::::
 
+<!-- Custom model values -->
+::::card Custom model values
+
+You can use `on-value` and `off-value` props to set custom `v-model` value.
+
+:::code DemoSwitchCustomModelValue
+<<< @/components/demos/switch/DemoSwitchCustomModelValue.vue{13,14}
+:::
+
+::::
+
 <!-- 👉 Sizing -->
 ::::card Sizing
 
@@ -85,17 +96,6 @@ You can adjust switch roundness using border-radius utilities.
 
 :::code DemoSwitchRoundness
 <<< @/components/demos/switch/DemoSwitchRoundness.vue{12,16}
-:::
-
-::::
-
-<!-- Extended value Types -->
-::::card Extended value Types
-
-You can set active-value and inactive-value attributes.
-
-:::code DemoSwitchExtendedValue
-<<< @/components/demos/switch/DemoSwitchExtendedValue.vue{13,14}
 :::
 
 ::::
