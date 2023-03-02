@@ -52,6 +52,14 @@ defineOptions({
   name: 'AChip',
 })
 
+defineSlots<{
+
+  /**
+   * Default slot for rendering chip content
+   */
+  default: {}
+}>()
+
 const attrs = useAttrs()
 
 const { getLayerClasses } = useLayer()

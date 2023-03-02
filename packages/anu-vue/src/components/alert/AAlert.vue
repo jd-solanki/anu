@@ -40,13 +40,29 @@ const props = defineProps({
 })
 
 const emit = defineEmits<{
+
+  /**
+   * Emitted when append icon is clicked, including close icon in closable alert.
+   */
   (e: 'click:appendIcon'): void
+
+  /**
+   * Emitted when `modelValue` is updated
+   */
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
 
 defineOptions({
   name: 'AAlert',
 })
+
+defineSlots<{
+
+  /**
+   * Default slot for rendering alert content
+   */
+  default: {}
+}>()
 
 const { internalState: isAlertVisible, toggle: toggleAlertVisibility } = useInternalBooleanState(toRef(props, 'modelValue'), emit, 'update:modelValue', true)
 

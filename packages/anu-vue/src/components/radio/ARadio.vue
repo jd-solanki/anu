@@ -41,6 +41,14 @@ defineOptions({
   inheritAttrs: false,
 })
 
+defineSlots<{
+
+  /**
+   * Default slot for rendering radio label. If default slot is used `label` prop will be discarded.
+   */
+  default: {}
+}>()
+
 const attrs = useAttrs()
 
 const elementId = `a-radio-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`

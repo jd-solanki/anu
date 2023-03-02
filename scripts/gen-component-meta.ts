@@ -77,7 +77,7 @@ const filterMeta = (meta: ComponentMeta): ComponentApi => {
   return {
     props,
     events: meta.events,
-    slots: meta.slots,
+    slots: meta.slots.map(s => ({ ...s, description: md.render(s.description) })),
   }
 }
 

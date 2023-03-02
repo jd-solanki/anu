@@ -63,6 +63,14 @@ defineOptions({
   name: 'ASwitch',
 })
 
+defineSlots<{
+
+  /**
+   * Default slot for rendering switch label. If default slot is used `label` prop will be discarded.
+   */
+  default: {}
+}>()
+
 const attrs = useAttrs()
 
 const isChecked = computed(() => props.modelValue === props.onValue)

@@ -1,37 +1,21 @@
 <script lang="ts" setup>
+import { btnProps } from './props'
 import { ASpinner } from '@/components/spinner'
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
-import { configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
+import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps({
-  ...useLayerProps({
-    color: {
-      default: 'primary',
-    },
-    variant: {
-      default: 'fill',
-    },
-    states: {
-      default: true,
-    },
-  }),
-  icon: configurableProp,
-  appendIcon: configurableProp,
-  iconOnly: Boolean,
-  disabled: disabledProp,
-
-  /**
-   * Set loading state
-   */
-  loading: {
-    type: Boolean,
-    default: undefined,
-  },
-})
+const props = defineProps(btnProps)
 
 defineOptions({
   name: 'ABtn',
 })
+
+defineSlots<{
+
+  /**
+   * Default slot for rendering button content
+   */
+  default: {}
+}>()
 
 const { getLayerClasses } = useLayer()
 

@@ -3,9 +3,10 @@ import type { ExtractPropTypes } from 'vue'
 import type { ListPropItems } from './props'
 import { listProps } from './props'
 import type { listSlots } from './slots'
-import { listItemSlots } from './slots'
-import { isObject } from '@/utils/helpers'
+import { listItemSlotsPrefix } from './slots'
+import { isObject, prefixObjectKeysWithMeta } from '@/utils/helpers'
 import { useGroupModel } from '@/composables'
+import { listItemSlots as listItemComponentSlots } from '@/components/list-item/slots'
 import { AListItem } from '@/components/list-item'
 
 const props = defineProps(listProps)
@@ -39,6 +40,8 @@ const handleListItemClick = (item: ListPropItems[number]) => {
     item,
   })
 }
+
+const listItemPrefixedSlots = prefixObjectKeysWithMeta(listItemComponentSlots, listItemSlotsPrefix)
 </script>
 
 <template>
@@ -70,7 +73,7 @@ const handleListItemClick = (item: ListPropItems[number]) => {
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in listItemSlots"
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in listItemPrefixedSlots"
           #[originalSlotName]="slotProps"
         >
           <slot

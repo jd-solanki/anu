@@ -91,6 +91,14 @@ defineOptions({
   inheritAttrs: false,
 })
 
+defineSlots<{
+
+  /**
+   * Default slot for rendering badge content
+   */
+  default: {}
+}>()
+
 const formatMaxContent = (content: unknown) => {
   if (!isNumeric(content) || props.max === undefined)
     return content

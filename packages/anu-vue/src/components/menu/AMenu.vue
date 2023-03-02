@@ -6,6 +6,15 @@ import { useParentEl } from '@/composables'
 
 const props = defineProps(menuProps)
 
+defineSlots<{
+
+  /**
+   * Default slot for rendering menu content
+   * Generally, you will use `AList` component here.
+   */
+  default: {}
+}>()
+
 defineOptions({
   name: 'AMenu',
 })

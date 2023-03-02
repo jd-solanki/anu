@@ -3,32 +3,29 @@ import { listItemSlots as listItemComponentSlots } from '@/components/list-item/
 import { prefixObjectKeys } from '@/utils/helpers'
 
 export const listOwnSlots = {
+  /**
+   * Render custom content before list items
+   */
   before: {},
+
+  /**
+   * Default slot to render custom content instead of `AListItem`
+   */
   default: {
     handleListItemClick: Function as unknown as (item: ListPropItems[number], index: number) => void,
   },
+
+  /**
+   * Render custom content after list items
+   */
   after: {},
-} as const
+}
 
-// export const listItemSlots = {
-//   'item-prepend': {
-//     item: listItemComponentSlots.prepend.item,
-//     index: Number(),
-//   },
-//   'item-item': {
-//     item: listItemComponentSlots.item.item,
-//     index: Number(),
-//   },
-//   'item-append': {
-//     item: listItemComponentSlots.append.item,
-//     index: Number(),
-//   },
-// } as const
-
-const { 'item-default': _, ...listItemSlots } = prefixObjectKeys(listItemComponentSlots, 'item-')
+export const listItemSlotsPrefix = 'item-'
+const { 'item-default': _, ...listItemSlots } = prefixObjectKeys(listItemComponentSlots, listItemSlotsPrefix)
 export { listItemSlots }
 
 export const listSlots = {
   ...listItemSlots,
   ...listOwnSlots,
-} as const
+}

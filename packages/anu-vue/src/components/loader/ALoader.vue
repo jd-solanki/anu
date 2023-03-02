@@ -12,6 +12,15 @@ defineOptions({
   name: 'ALoader',
 })
 
+defineSlots<{
+
+  /**
+   * Default slot for rendering loader content.
+   * `ATypography` content like title & subtitle will be rendered along with this slot.
+   */
+  default: {}
+}>()
+
 const slots = useSlots()
 
 // TODO: Create composable useLazyVShow

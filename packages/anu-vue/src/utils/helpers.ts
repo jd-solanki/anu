@@ -34,34 +34,54 @@ export const removeKeys = <T, K extends keyof T>(obj: T, keys: K[]): Prettify<Om
   return copy
 }
 
-// 👉 Prefix object keys
-// Thanks: https://stackoverflow.com/a/70387184
-// type AddPrefixToObjectKeys<T, P extends string> = {
-//   [K in keyof T as K extends string ? `${P}${K}` : never]: T[K]
-// }
+export const prefixObjectKeys = <T extends Record<string, any>, P extends string>(
+  obj: T,
+  prefix: P,
+): { [K in keyof T as `${P}${string & K}`]: T[K] } => {
+  const prefixedEntries = Object.entries(obj).map(([key, value]) => [
+    `${prefix}${key}`,
+    value,
+  ])
 
-// export const prefixObjectKeys = <T extends Record<string, any>, K extends string>(
-//   obj: T,
-//   prefix: K,
-// ): Prettify<AddPrefixToObjectKeys<T, K>> => {
-//   return Object.fromEntries(
-//     Object.entries(obj).map(([k, v]) => [`${prefix}${k}`, v]),
-//   ) as AddPrefixToObjectKeys<T, K>
-// }
+  return Object.fromEntries(prefixedEntries) as any
+}
 
-export interface PrefixObjectKey<T, P extends string, K extends keyof T> {
-  originalKey: keyof T
+export interface PrefixObjectKeyWithMeta<T, P extends string, K extends keyof T> {
+  originalKey: K
   prefixedKey: K extends string ? `${P}${K}` : never
   value: T[K]
 }
 
-export const prefixObjectKeys = <T extends Record<string, any>, K extends string>(
+/**
+ * prefixObjectKeys function that prefixes all keys of an object with a given string and returns a new object with the prefixed keys
+ * @param obj - The object to prefix keys
+ * @param prefix - The prefix to add to the keys
+ * @returns A new object with the prefixed keys
+ *
+ * Return type should be type of `PrefixObjectKey` interface
+ *
+ * @example
+ * const obj = { a: 1, b: 'b', c: false }
+ * const prefixedObj = prefixObjectKeys(obj, 'new_')
+ * // { new_a: { originalKey: 'a', prefixedKey: 'new_a', value: 1 }, new_b: { originalKey: 'b', prefixedKey: 'new_b', value: 'b' }, new_c: { originalKey: 'c', prefixedKey: 'new_c', value: false } }
+ *
+ * Return type is inferred as: { new_a: { originalKey: 'a', prefixedKey: 'new_a', value: number }, new_b: { originalKey: 'b', prefixedKey: 'new_b', value: string }, new_c: { originalKey: 'c', prefixedKey: 'new_c', value: boolean } }
+ */
+export const prefixObjectKeysWithMeta = <T extends Record<string, any>, K extends string>(
   obj: T,
   prefix: K,
-): { [P in keyof T as P extends string ? `${K}${P}` : never]: PrefixObjectKey<T, K, Extract<P, keyof T>> } => {
-  return Object.fromEntries(
-    Object.entries(obj).map(([k, v]) => [`${prefix}${k}`, { originalKey: k, prefixedKey: `${prefix}${k}`, value: v }]),
-  ) as any
+): { [P in keyof T as P extends string ? `${K}${P}` : never]: Prettify<PrefixObjectKeyWithMeta<T, K, Extract<P, keyof T>>> } => {
+  const prefixedObj = {} as any
+
+  for (const key in obj) {
+    prefixedObj[`${prefix}${key}`] = {
+      originalKey: key,
+      prefixedKey: `${prefix}${key}`,
+      value: obj[key],
+    }
+  }
+
+  return prefixedObj
 }
 
 export const renameObjKey = <T extends Record<string, any>, K extends keyof T, R extends string>(

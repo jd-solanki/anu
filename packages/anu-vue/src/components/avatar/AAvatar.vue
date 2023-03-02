@@ -9,6 +9,14 @@ defineOptions({
   name: 'AAvatar',
 })
 
+defineSlots<{
+
+  /**
+   * Default slot for rendering avatar content. If default slots is used `src`, `alt`, `icon` & `content` prop usage will be ignored.
+   */
+  default: {}
+}>()
+
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
   toRef(props, 'color'),

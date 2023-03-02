@@ -3,12 +3,12 @@ import { flip, offset, shift } from '@floating-ui/vue'
 import { defu } from 'defu'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { selectSlots } from './slots'
-import { selectBaseInputSlots, selectCardSlots, selectListSlots } from './slots'
+import { selectBaseInputSlots, selectCardSlots, selectListDefaultSlot, selectListRestSlots, selectListSlotsPrefix } from './slots'
 import { ACard, AList } from '@/components'
 import { ABaseInput, baseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { ListPropItems } from '@/components/list'
-import { isObject } from '@/utils/helpers'
+import { isObject, prefixObjectKeysWithMeta } from '@/utils/helpers'
 
 export interface ObjectOption { label: string; value: string | number }
 
@@ -92,6 +92,11 @@ const middleware = () => [
 
 const slots = useSlots()
 const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectCardSlots).filter(([slotName]) => slots[slotName])))
+
+const selectListPrefixedSlots = {
+  ...prefixObjectKeysWithMeta(selectListRestSlots, selectListSlotsPrefix),
+  ...prefixObjectKeysWithMeta(selectListDefaultSlot, ''),
+}
 </script>
 
 <template>
@@ -159,7 +164,7 @@ const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectC
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in selectListSlots"
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in selectListPrefixedSlots"
           #[originalSlotName]="slotProps"
         >
           <slot

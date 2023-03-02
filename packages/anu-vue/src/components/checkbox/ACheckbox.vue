@@ -50,6 +50,14 @@ defineOptions({
   inheritAttrs: false,
 })
 
+defineSlots<{
+
+  /**
+   * Default slot for rendering checkbox label. If default slot is used `label` prop will be discarded.
+   */
+  default: {}
+}>()
+
 const attrs = useAttrs()
 
 const elementId = `a-checkbox-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`

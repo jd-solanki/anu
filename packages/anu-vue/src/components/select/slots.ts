@@ -7,20 +7,29 @@ import { prefixObjectKeys } from '@/utils/helpers'
 const { default: _, ...selectBaseInputSlots } = baseInputSlots
 const { default: __, ...selectCardSlots } = cardSlots
 
+const { default: selectListDefaultSlot, ...selectListRestSlots } = listSlots
+
+export const selectListSlotsPrefix = 'options-'
+export const selectListSlots = {
+  ...prefixObjectKeys(selectListRestSlots, selectListSlotsPrefix),
+
+  // ℹ️ We don't want to rename the default slot
+  default: selectListDefaultSlot,
+}
+
+// 🚀 Exports
+//
+// Select base input slots
 export { selectBaseInputSlots }
 export { selectCardSlots }
 
-const { default: selectListDefaultSlot, ...selectListRestSlots } = listSlots
+// Select list slots
+export { selectListDefaultSlot }
+export { selectListRestSlots }
 
-export const selectListSlots = {
-  ...prefixObjectKeys(selectListRestSlots, 'options-'),
-
-  // ℹ️ We aren't renaming default slot but we want to get `prefixObjectKeys` return value like object
-  ...prefixObjectKeys({ default: selectListDefaultSlot }, ''),
-}
-
+// Select slots
 export const selectSlots = {
   ...selectBaseInputSlots,
   ...selectCardSlots,
   ...selectListSlots,
-} as const
+}
