@@ -6,7 +6,6 @@ import { ref } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
 import { floatingProps } from './props'
 import { useTeleport } from '@/composables/useTeleport'
-import { useInternalBooleanState } from '@/composables/useInternalBooleanState'
 
 const props = defineProps(floatingProps)
 
@@ -21,7 +20,7 @@ defineOptions({
 
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
-const { internalState: isFloatingElVisible, toggle: toggleFloatingElVisibility } = useInternalBooleanState(toRef(props, 'modelValue'), emit, 'update:modelValue', false)
+const isFloatingElVisible = useVModel(props, 'modelValue', emit, { defaultValue: false, passive: true })
 
 // Template refs
 // const props.referenceEl = ref()
@@ -72,33 +71,28 @@ if (props.modelValue === undefined) {
     // TODO: Try to refactor multiple listeners via https://github.com/vueuse/vueuse/pull/2180
     // Reference
     useEventListener(toRef(props, 'referenceEl'), 'mouseenter', () => {
-      if (isFloatingElVisible.value === false)
-        toggleFloatingElVisibility()
+      isFloatingElVisible.value = true
     })
     useEventListener(toRef(props, 'referenceEl'), 'mouseleave', () => {
-      if (isFloatingElVisible.value === true)
-        toggleFloatingElVisibility()
+      isFloatingElVisible.value = false
     })
 
     // Floating
     useEventListener(refFloating, 'mouseenter', () => {
-      if (isFloatingElVisible.value === false)
-        toggleFloatingElVisibility()
+      isFloatingElVisible.value = true
     })
     useEventListener(refFloating, 'mouseleave', () => {
-      if (isFloatingElVisible.value === true)
-        toggleFloatingElVisibility()
+      isFloatingElVisible.value = false
     })
   }
   else {
-    useEventListener(toRef(props, 'referenceEl'), 'click', toggleFloatingElVisibility)
+    useEventListener(toRef(props, 'referenceEl'), 'click', useToggle(isFloatingElVisible))
 
     if (props.persist !== true) {
       onClickOutside(
         toRef(props, 'referenceEl'),
         _event => {
-          if (isFloatingElVisible.value)
-            toggleFloatingElVisibility()
+          isFloatingElVisible.value = false
         },
         {
           ignore: props.persist === 'content' ? [refFloating] : [],

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { ExtractPropTypes } from 'vue'
-import { useInternalBooleanState } from '@/composables/useInternalBooleanState'
 import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp } from '@/composables/useProps'
 
@@ -64,7 +63,7 @@ defineSlots<{
   default: {}
 }>()
 
-const { internalState: isAlertVisible, toggle: toggleAlertVisibility } = useInternalBooleanState(toRef(props, 'modelValue'), emit, 'update:modelValue', true)
+const isAlertVisible = useVModel(props, 'modelValue', emit, { defaultValue: true, passive: true })
 
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
@@ -76,9 +75,7 @@ const { styles, classes } = getLayerClasses(
 // 👉 Append icon
 const appendIcon = props.appendIcon || (props.dismissible ? 'i-bx-x' : null)
 const handleAppendIconClick = () => {
-  // If alert is dismissible remove/close alert
-  if (props.dismissible)
-    toggleAlertVisibility()
+  isAlertVisible.value = false
 
   // Emit append icon click event
   emit('click:appendIcon')
