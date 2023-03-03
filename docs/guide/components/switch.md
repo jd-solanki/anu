@@ -56,6 +56,17 @@ Use `on-icon` & `off-icon` prop to render icons inside switch dot.
 
 ::::
 
+<!-- 👉 Array -->
+::::card Array
+
+Just like `ACheckbox`, `ASwitch` also supports array.
+
+:::code DemoSwitchArray
+<<< @/components/demos/switch/DemoSwitchArray.vue
+:::
+
+::::
+
 <!-- Custom model values -->
 ::::card Custom model values
 

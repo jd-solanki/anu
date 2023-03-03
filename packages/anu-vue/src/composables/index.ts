@@ -1,4 +1,5 @@
 export * from './useAnu'
+export * from './useCheckbox'
 export * from './useColor'
 export * from './useConfigurable'
 export * from './useDOMScrollLock'

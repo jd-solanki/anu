@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
+import { useCheckbox } from '@/composables'
 import { color as colorProp, disabled as disabledProp } from '@/composables/useProps'
 
 const props = defineProps({
@@ -20,23 +21,20 @@ const props = defineProps({
      * Bind v-model value
      */
   modelValue: {
-    type: [Boolean, Number, String],
+    type: [Boolean, Number, String, Array, Set] as PropType<string | number | boolean | unknown[]>,
     default: true,
   },
 
   /**
    * Switch value when in on state
    */
-  onValue: {
-    type: [Boolean, Number, String],
-    default: true,
-  },
+  onValue: [Boolean, Number, String, Array, Set] as PropType<string | number | boolean | unknown[]>,
 
   /**
    * Switch value when in off state
    */
   offValue: {
-    type: [Boolean, Number, String],
+    type: [Boolean, Number, String, Array, Set] as PropType<string | number | boolean | unknown[]>,
     default: false,
   },
 
@@ -51,6 +49,11 @@ const props = defineProps({
   offIcon: String,
 
   /**
+   * Bind classes to input element
+   */
+  inputClasses: { type: null },
+
+  /**
      * Disable switch
      */
   disabled: disabledProp,
@@ -61,6 +64,7 @@ const emit = defineEmits<{
 
 defineOptions({
   name: 'ASwitch',
+  inheritAttrs: false,
 })
 
 defineSlots<{
@@ -73,12 +77,8 @@ defineSlots<{
 
 const attrs = useAttrs()
 
-const isChecked = computed(() => props.modelValue === props.onValue)
-
-const handleChange = () => {
-  const val = isChecked.value ? props.offValue : props.onValue
-  emit('update:modelValue', val)
-}
+const _trueValue = computed(() => props.onValue || attrs.value || true)
+const { isChecked, onChange } = useCheckbox(toRef(props, 'modelValue'), emit, _trueValue, toRef(props, 'offValue'))
 
 const elementId = `a-switch-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`
 
@@ -94,6 +94,7 @@ const dotPosition = computed(() => {
     :for="elementId"
     class="a-switch cursor-pointer rounded-full justify-between items-center"
     :class="[
+      $attrs.class,
       props.label || $slots.default
         ? 'flex'
         : 'inline-flex',
@@ -102,11 +103,13 @@ const dotPosition = computed(() => {
   >
 
     <input
+      v-bind="{ ...$attrs, class: props.inputClasses }"
       :id="elementId"
+      :checked="isChecked"
       class="hidden"
       role="switch"
       type="checkbox"
-      @change="handleChange"
+      @change="onChange"
     >
 
     <!-- 👉 Label -->
