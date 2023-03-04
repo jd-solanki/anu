@@ -1,9 +1,3 @@
-/**
- * `useCheckbox` vue composable using VueUse library that accepts v-model for checkbox state
- * It accepts modelValue of type boolean, string, number, array of unknown
- * Moreover, it also accepts trueValue and falseValue for customizing the values for true and false states
- */
-
 import type { MaybeComputedRef } from '@vueuse/core'
 import type { ExtractPropTypes, PropType } from 'vue'
 
@@ -21,12 +15,12 @@ export const useCheckboxProps = {
   /**
    * Switch value when in on state
    */
-  onValue: [Boolean, Number, String, Array] as PropType<CheckboxModelValue>,
+  checkedValue: [Boolean, Number, String, Array] as PropType<CheckboxModelValue>,
 
   /**
    * Switch value when in off state
    */
-  offValue: {
+  uncheckedValue: {
     type: [Boolean, Number, String, Array] as PropType<CheckboxModelValue>,
     default: false,
   },
@@ -53,8 +47,8 @@ export type UseCheckboxProps = ExtractPropTypes<typeof useCheckboxProps>
 export function useCheckbox<Name extends string>(
   modelValue: MaybeComputedRef<CheckboxModelValue>,
   emit: (event: Name, ...args: any[]) => void,
-  trueValue: MaybeComputedRef<CheckboxModelValue> = true,
-  falseValue: MaybeComputedRef<CheckboxModelValue> = false,
+  checkedValue: MaybeComputedRef<CheckboxModelValue> = true,
+  uncheckedValue: MaybeComputedRef<CheckboxModelValue> = false,
   indeterminateValue: MaybeComputedRef<CheckboxModelValue> = null,
   cycleIndeterminate: MaybeComputedRef<boolean> = false,
 ) {
@@ -62,15 +56,15 @@ export function useCheckbox<Name extends string>(
     const _cycleIndeterminate = resolveUnref(cycleIndeterminate)
     const _modelValue = resolveUnref(modelValue)
 
-    const _trueValue = resolveUnref(trueValue)
-    const _falseValue = resolveUnref(falseValue)
+    const _checkedValue = resolveUnref(checkedValue)
+    const _uncheckedValue = resolveUnref(uncheckedValue)
     const _indeterminateValue = resolveUnref(indeterminateValue)
 
     const cycleInitialValue = Array.isArray(_modelValue)
-      ? (_modelValue.includes(_trueValue) ? _trueValue : _falseValue)
+      ? (_modelValue.includes(_checkedValue) ? _checkedValue : _uncheckedValue)
       : _modelValue
     const { next } = useCycleList(
-      [...(_cycleIndeterminate ? [_indeterminateValue] : []), _trueValue, _falseValue],
+      [...(_cycleIndeterminate ? [_indeterminateValue] : []), _checkedValue, _uncheckedValue],
       { initialValue: cycleInitialValue },
     )
 
@@ -79,11 +73,11 @@ export function useCheckbox<Name extends string>(
 
     if (Array.isArray(_modelValue)) {
       // ℹ️ Only add true values in the array
-      if (newValue === _trueValue)
-        emit('update:modelValue' as Name, [..._modelValue, _trueValue])
+      if (newValue === _checkedValue)
+        emit('update:modelValue' as Name, [..._modelValue, _checkedValue])
 
       else
-        emit('update:modelValue' as Name, _modelValue.filter(item => item !== _trueValue))
+        emit('update:modelValue' as Name, _modelValue.filter(item => item !== _checkedValue))
     }
     else {
       emit('update:modelValue' as Name, newValue)
@@ -97,12 +91,12 @@ export function useCheckbox<Name extends string>(
   const isChecked = computed({
     get: () => {
       const _modelValue = resolveUnref(modelValue)
-      const _trueValue = resolveUnref(trueValue)
+      const _checkedValue = resolveUnref(checkedValue)
 
       if (Array.isArray(_modelValue))
-        return _modelValue.includes(_trueValue)
+        return _modelValue.includes(_checkedValue)
 
-      return _modelValue === _trueValue
+      return _modelValue === _checkedValue
     },
     set: handleModelValueChange,
   })

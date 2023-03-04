@@ -73,7 +73,7 @@ Just like `ACheckbox`, `ASwitch` also supports array.
 You can use `on-value` and `off-value` props to set custom `v-model` value.
 
 :::code DemoSwitchCustomModelValue
-<<< @/components/demos/switch/DemoSwitchCustomModelValue.vue{13,14}
+<<< @/components/demos/switch/DemoSwitchCustomModelValue.vue{11-12}
 :::
 
 ::::

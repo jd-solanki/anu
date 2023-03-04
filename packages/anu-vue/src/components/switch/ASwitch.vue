@@ -24,8 +24,13 @@ defineSlots<{
 
 const attrs = useAttrs()
 
-const _trueValue = computed<Exclude<SwitchProps['onValue'], undefined>>(() => props.onValue || attrs.value as Exclude<SwitchProps['onValue'], undefined> || true)
-const { isChecked, onChange } = useCheckbox(toRef(props, 'modelValue'), emit, _trueValue, toRef(props, 'offValue'))
+const _onValue = computed<Exclude<SwitchProps['onValue'], undefined>>(() => props.onValue || attrs.value as Exclude<SwitchProps['onValue'], undefined> || true)
+const { isChecked, onChange } = useCheckbox(
+  toRef(props, 'modelValue'),
+  emit,
+  _onValue,
+  toRef(props, 'offValue'),
+)
 
 const elementId = `a-switch-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`
 

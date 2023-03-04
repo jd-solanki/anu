@@ -3,8 +3,15 @@ import type { ExtractPropTypes } from 'vue'
 import { useCheckboxProps } from '@/composables'
 import { color as colorProp, disabled as disabledProp } from '@/composables/useProps'
 
+const { checkedValue: onValue, uncheckedValue: offValue, ...useCheckboxSwitchProps } = useCheckboxProps
+
 export const switchProps = {
-  ...useCheckboxProps,
+  // ℹ️ Rename `checkedValue` and `uncheckedValue` to `onValue` and `offValue` respectively
+  ...{
+    ...useCheckboxSwitchProps,
+    onValue,
+    offValue,
+  },
 
   /**
    * Switch color

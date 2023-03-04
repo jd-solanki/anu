@@ -6,10 +6,10 @@ describe('useCheckbox', () => {
   it('should have `isChecked` as `false` when `modelValue` is `false`', () => {
     const modelValue = ref(false)
     const emitMock = vitest.fn()
-    const trueValue = true
-    const falseValue = false
+    const checkedValue = true
+    const unCheckedValue = false
 
-    const { isChecked } = useCheckbox(modelValue, emitMock, trueValue, falseValue)
+    const { isChecked } = useCheckbox(modelValue, emitMock, checkedValue, unCheckedValue)
 
     expect(isChecked.value).toBe(false)
   })
@@ -20,10 +20,10 @@ describe('useCheckbox', () => {
       if (fnName === 'update:modelValue')
         modelValue.value = value
     })
-    const trueValue = true
-    const falseValue = false
+    const checkedValue = true
+    const unCheckedValue = false
 
-    const { isChecked, onChange } = useCheckbox(modelValue, emitMock, trueValue, falseValue)
+    const { isChecked, onChange } = useCheckbox(modelValue, emitMock, checkedValue, unCheckedValue)
 
     // modelValue.value = true
     onChange()
@@ -44,11 +44,11 @@ describe('useCheckbox', () => {
       if (fnName === 'update:modelValue')
         modelValue.value = value
     })
-    const trueValue = true
-    const falseValue = false
+    const checkedValue = true
+    const unCheckedValue = false
     const indeterminateValue = null
 
-    const { isChecked, isIndeterminate, onChange } = useCheckbox(modelValue, emitMock, trueValue, falseValue, indeterminateValue, true)
+    const { isChecked, isIndeterminate, onChange } = useCheckbox(modelValue, emitMock, checkedValue, unCheckedValue, indeterminateValue, true)
 
     // `isChecked` should be false because `modelValue` is false
     expect(isChecked.value).toBe(false)
@@ -81,42 +81,42 @@ describe('useCheckbox', () => {
   })
 
   it('should have `isChecked` as `true` when `modelValue` is changed to `true`', () => {
-    const trueValue = 'on'
-    const falseValue = 'off'
+    const checkedValue = 'on'
+    const unCheckedValue = 'off'
 
-    const modelValue = ref<CheckboxModelValue>(falseValue)
+    const modelValue = ref<CheckboxModelValue>(unCheckedValue)
 
     const emitMock = vitest.fn((fnName: string, value: CheckboxModelValue) => {
       if (fnName === 'update:modelValue')
         modelValue.value = value
     })
 
-    const { isChecked, onChange } = useCheckbox(modelValue, emitMock, trueValue, falseValue)
+    const { isChecked, onChange } = useCheckbox(modelValue, emitMock, checkedValue, unCheckedValue)
 
     expect(isChecked.value).toBe(false)
-    expect(modelValue.value).toBe(falseValue)
+    expect(modelValue.value).toBe(unCheckedValue)
 
-    modelValue.value = trueValue
+    modelValue.value = checkedValue
     expect(isChecked.value).toBe(true)
 
     onChange()
 
-    expect(modelValue.value).toBe(falseValue)
+    expect(modelValue.value).toBe(unCheckedValue)
   })
 
-  it('`trueValue`, `falseValue` & `indeterminateValue` should cycle when `cycleIndeterminate` is true', () => {
-    const trueValue = 'on'
-    const falseValue = 'off'
+  it('`checkedValue`, `unCheckedValue` & `indeterminateValue` should cycle when `cycleIndeterminate` is true', () => {
+    const checkedValue = 'on'
+    const unCheckedValue = 'off'
     const indeterminateValue = 'unknown'
 
-    const modelValue = ref<CheckboxModelValue>(falseValue)
+    const modelValue = ref<CheckboxModelValue>(unCheckedValue)
 
     const emitMock = vitest.fn((fnName: string, value: CheckboxModelValue) => {
       if (fnName === 'update:modelValue')
         modelValue.value = value
     })
 
-    const { isChecked, isIndeterminate, onChange } = useCheckbox(modelValue, emitMock, trueValue, falseValue, indeterminateValue, true)
+    const { isChecked, isIndeterminate, onChange } = useCheckbox(modelValue, emitMock, checkedValue, unCheckedValue, indeterminateValue, true)
 
     // `isChecked` should be false because `modelValue` is false
     expect(isChecked.value).toBe(false)
@@ -124,8 +124,8 @@ describe('useCheckbox', () => {
     // `isIndeterminate` should be false because `modelValue` is false and not `null`
     expect(isIndeterminate.value).toBe(false)
 
-    // `modelValue` should be `falseValue` initially
-    expect(modelValue.value).toBe(falseValue)
+    // `modelValue` should be `unCheckedValue` initially
+    expect(modelValue.value).toBe(unCheckedValue)
 
     // trigger checkbox click/update
     onChange()
@@ -146,8 +146,8 @@ describe('useCheckbox', () => {
     // `isIndeterminate` should be false
     expect(isIndeterminate.value).toBe(false)
 
-    // `modelValue` should be `trueValue` after the second click
-    expect(modelValue.value).toBe(trueValue)
+    // `modelValue` should be `checkedValue` after the second click
+    expect(modelValue.value).toBe(checkedValue)
 
     // trigger checkbox click/update again to cycle through the values (modelValue will be `false`)
     onChange()
@@ -158,25 +158,25 @@ describe('useCheckbox', () => {
     // `isIndeterminate` should be false
     expect(isIndeterminate.value).toBe(false)
 
-    // `modelValue` should be `falseValue` after the third click
-    expect(modelValue.value).toBe(falseValue)
+    // `modelValue` should be `unCheckedValue` after the third click
+    expect(modelValue.value).toBe(unCheckedValue)
   })
 
-  it('`trueValue` and `falseValue` should cycle only when `cycleIndeterminate` is false', () => {
-    const trueValue = 'on'
-    const falseValue = 'off'
+  it('`checkedValue` and `unCheckedValue` should cycle only when `cycleIndeterminate` is false', () => {
+    const checkedValue = 'on'
+    const unCheckedValue = 'off'
 
     // ℹ️ We are just using & passing indeterminateValue to make sure even if it is passed, it is not used
     const indeterminateValue = 'unknown'
 
-    const modelValue = ref<CheckboxModelValue>(falseValue)
+    const modelValue = ref<CheckboxModelValue>(unCheckedValue)
 
     const emitMock = vitest.fn((fnName: string, value: CheckboxModelValue) => {
       if (fnName === 'update:modelValue')
         modelValue.value = value
     })
 
-    const { isChecked, isIndeterminate, onChange } = useCheckbox(modelValue, emitMock, trueValue, falseValue, indeterminateValue, false)
+    const { isChecked, isIndeterminate, onChange } = useCheckbox(modelValue, emitMock, checkedValue, unCheckedValue, indeterminateValue, false)
 
     // `isChecked` should be false because `modelValue` is false
     expect(isChecked.value).toBe(false)
@@ -184,8 +184,8 @@ describe('useCheckbox', () => {
     // `isIndeterminate` should be false because `modelValue` is false and not `null`
     expect(isIndeterminate.value).toBe(false)
 
-    // `modelValue` should be `falseValue` initially
-    expect(modelValue.value).toBe(falseValue)
+    // `modelValue` should be `unCheckedValue` initially
+    expect(modelValue.value).toBe(unCheckedValue)
 
     // trigger checkbox click/update
     onChange()
@@ -194,8 +194,8 @@ describe('useCheckbox', () => {
     expect(isChecked.value).toBe(true)
     expect(isIndeterminate.value).toBe(false)
 
-    // `modelValue` should be `trueValue` after the first click
-    expect(modelValue.value).toBe(trueValue)
+    // `modelValue` should be `checkedValue` after the first click
+    expect(modelValue.value).toBe(checkedValue)
 
     // trigger checkbox click/update again to cycle through the values (modelValue will be `false`)
     onChange()
@@ -206,8 +206,8 @@ describe('useCheckbox', () => {
     // `isIndeterminate` should be false
     expect(isIndeterminate.value).toBe(false)
 
-    // `modelValue` should be `falseValue` after the second click
-    expect(modelValue.value).toBe(falseValue)
+    // `modelValue` should be `unCheckedValue` after the second click
+    expect(modelValue.value).toBe(unCheckedValue)
   })
 
   // TODO: Add array tests

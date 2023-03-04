@@ -25,8 +25,8 @@ defineSlots<{
 
 const attrs = useAttrs()
 
-const _trueValue = computed<Exclude<CheckboxProps['onValue'], undefined>>(() => props.onValue || attrs.value as Exclude<CheckboxProps['onValue'], undefined> || true)
-const { isChecked, isIndeterminate, onChange } = useCheckbox(toRef(props, 'modelValue'), emit, _trueValue, toRef(props, 'offValue'), toRef(props, 'indeterminateValue'), toRef(props, 'cycleIndeterminate'))
+const _checkedValue = computed<Exclude<CheckboxProps['checkedValue'], undefined>>(() => props.checkedValue || attrs.value as Exclude<CheckboxProps['checkedValue'], undefined> || true)
+const { isChecked, isIndeterminate, onChange } = useCheckbox(toRef(props, 'modelValue'), emit, _checkedValue, toRef(props, 'uncheckedValue'), toRef(props, 'indeterminateValue'), toRef(props, 'cycleIndeterminate'))
 
 const elementId = `a-checkbox-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`
 
@@ -35,7 +35,6 @@ const _icon = computed<ConfigurableValue>(() => {
     return 'i-bx-minus'
   else if (isChecked.value)
     return props.icon
-  else return ''
 })
 </script>
 
