@@ -46,6 +46,10 @@ Use `before` & `after` slot to add custom content before and after list items. T
 
 ::::
 
+:::info
+Default theme preset provides helpful class `.kbd` to render keyboard keys just like `kbd` element.
+:::
+
 <!-- 👉 Avatar -->
 ::::card Avatar
 

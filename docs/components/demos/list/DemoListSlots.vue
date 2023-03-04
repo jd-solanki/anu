@@ -21,14 +21,9 @@ const items = [
 
         <!-- 👉 Slot: Append -->
         <template #item-append="{ index }">
-          <ABtn
-            variant="outline"
-            class="text-sm opacity-35 min-h-[24px] spacing-50"
-            color="inherit"
-            :states="false"
-          >
+          <span class="kbd">
             &#8984; {{ index + 1 }}
-          </ABtn>
+          </span>
         </template>
 
         <!-- 👉 Slot: After -->

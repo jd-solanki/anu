@@ -165,6 +165,8 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     // !SECTION Components
 
     'overlay': 'absolute inset-0 content-empty bg-[hsla(var(--a-loader-overlay-bg-c),var(--a-loader-overlay-bg-opacity))] opacity-0 rounded-inherit transition-opacity transition-duration-250',
+
+    'kbd': 'outline-1 outline-solid outline-a-border p-[0.2em_0.45em] rounded-lg min-w-[33px] opacity-60',
   },
 ]
 
