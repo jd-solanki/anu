@@ -1,63 +1,10 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
+import type { SwitchProps } from './props'
+import { switchProps } from './props'
 import { useCheckbox } from '@/composables'
-import { color as colorProp, disabled as disabledProp } from '@/composables/useProps'
 
-const props = defineProps({
-  /**
-     * Switch color
-     */
-  color: defu({
-    default: 'primary',
-  }, colorProp),
-
-  /**
-     * Define label text
-     */
-  label: String,
-
-  /**
-     * Bind v-model value
-     */
-  modelValue: {
-    type: [Boolean, Number, String, Array, Set] as PropType<string | number | boolean | unknown[]>,
-    default: true,
-  },
-
-  /**
-   * Switch value when in on state
-   */
-  onValue: [Boolean, Number, String, Array, Set] as PropType<string | number | boolean | unknown[]>,
-
-  /**
-   * Switch value when in off state
-   */
-  offValue: {
-    type: [Boolean, Number, String, Array, Set] as PropType<string | number | boolean | unknown[]>,
-    default: false,
-  },
-
-  /**
-     * Icon to render when switch is on
-     */
-  onIcon: String,
-
-  /**
-     * Icon to render when switch is off
-     */
-  offIcon: String,
-
-  /**
-   * Bind classes to input element
-   */
-  inputClasses: { type: null },
-
-  /**
-     * Disable switch
-     */
-  disabled: disabledProp,
-})
+const props = defineProps(switchProps)
 const emit = defineEmits<{
   (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
 }>()
@@ -77,7 +24,7 @@ defineSlots<{
 
 const attrs = useAttrs()
 
-const _trueValue = computed(() => props.onValue || attrs.value || true)
+const _trueValue = computed<Exclude<SwitchProps['onValue'], undefined>>(() => props.onValue || attrs.value as Exclude<SwitchProps['onValue'], undefined> || true)
 const { isChecked, onChange } = useCheckbox(toRef(props, 'modelValue'), emit, _trueValue, toRef(props, 'offValue'))
 
 const elementId = `a-switch-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`

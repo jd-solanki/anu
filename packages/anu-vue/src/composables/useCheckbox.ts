@@ -4,13 +4,15 @@
  * Moreover, it also accepts trueValue and falseValue for customizing the values for true and false states
  */
 
-import type { MaybeRef } from '@vueuse/core'
+import type { MaybeComputedRef } from '@vueuse/core'
 
-export function useCheckbox(
-  modelValue: MaybeRef<string | number | boolean | unknown[]>,
-  emit: (event: string, ...args: any[]) => void,
-  trueValue: MaybeRef<string | number | boolean> = true,
-  falseValue: MaybeRef<string | number | boolean> = false,
+export type CheckboxModelValue = string | number | boolean | unknown[]
+
+export function useCheckbox<Name extends string>(
+  modelValue: MaybeComputedRef<CheckboxModelValue>,
+  emit: (event: Name, ...args: any[]) => void,
+  trueValue: MaybeComputedRef<CheckboxModelValue> = true,
+  falseValue: MaybeComputedRef<CheckboxModelValue> = false,
 ) {
   const handleModelValueChange = (val: typeof modelValue) => {
     const _modelValue = resolveUnref(modelValue)
@@ -19,13 +21,13 @@ export function useCheckbox(
 
     if (Array.isArray(_modelValue)) {
       if (val)
-        emit('update:modelValue', [..._modelValue, _trueValue])
+        emit('update:modelValue' as Name, [..._modelValue, _trueValue])
 
       else
-        emit('update:modelValue', _modelValue.filter((item: any) => item !== _trueValue))
+        emit('update:modelValue' as Name, _modelValue.filter((item: any) => item !== _trueValue))
     }
     else {
-      emit('update:modelValue', val ? _trueValue : _falseValue)
+      emit('update:modelValue' as Name, val ? _trueValue : _falseValue)
     }
   }
 

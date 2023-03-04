@@ -1,4 +1,6 @@
 import { describe, expect, it, vitest } from 'vitest'
+import { nextTick } from 'vue'
+import type { CheckboxModelValue } from '../../src/composables/useCheckbox'
 import { useCheckbox } from '../../src/composables/useCheckbox'
 
 describe('useCheckbox', () => {
@@ -13,22 +15,27 @@ describe('useCheckbox', () => {
     expect(isChecked.value).toBe(false)
   })
 
-  it('should have `isChecked` as `true` when `modelValue` is changed to `true`', () => {
-    const modelValue = ref(false)
-    const emitMock = vitest.fn()
+  it('should have `isChecked` as `true` when `modelValue` is changed to `true`', async () => {
+    const modelValue = ref<CheckboxModelValue>(false)
+    const emitMock = vitest.fn((fnName: string, value: CheckboxModelValue) => {
+      if (fnName === 'update:modelValue')
+        modelValue.value = value
+    })
     const trueValue = true
     const falseValue = false
 
-    const { isChecked } = useCheckbox(modelValue, emitMock, trueValue, falseValue)
+    const { isChecked, onChange } = useCheckbox(modelValue, emitMock, trueValue, falseValue)
 
-    modelValue.value = true
+    // modelValue.value = true
+    onChange({ target: { checked: true } } as unknown as Event)
+
+    await nextTick()
 
     expect(isChecked.value).toBe(true)
 
-    // TODO: Why it isn't working?
     // Check if `emit` was called with `update:modelValue` and `true` as arguments
-    // expect(emitMock).toBeCalledTimes(1)
-    // expect(emitMock).toHaveBeenCalledWith('update:modelValue', true)
+    expect(emitMock).toBeCalledTimes(1)
+    expect(emitMock).toHaveBeenCalledWith('update:modelValue', true)
   })
 
   // Test passing trueValue and falseValue
@@ -36,8 +43,12 @@ describe('useCheckbox', () => {
     const trueValue = 'on'
     const falseValue = 'off'
 
-    const modelValue = ref(falseValue)
-    const emitMock = vitest.fn()
+    const modelValue = ref<CheckboxModelValue>(falseValue)
+
+    const emitMock = vitest.fn((fnName: string, value: CheckboxModelValue) => {
+      if (fnName === 'update:modelValue')
+        modelValue.value = value
+    })
 
     const { isChecked, onChange } = useCheckbox(modelValue, emitMock, trueValue, falseValue)
 
@@ -48,7 +59,6 @@ describe('useCheckbox', () => {
 
     onChange({ target: { checked: false } } as unknown as Event)
 
-    // TODO: Why it isn't working?
-    // expect(modelValue.value).toBe(falseValue)
+    expect(modelValue.value).toBe(falseValue)
   })
 })
