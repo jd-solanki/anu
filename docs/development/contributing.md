@@ -2,6 +2,13 @@
 
 > _This project's workflow is similar to [antfu](https://github.com/antfu)'s projects' workflow so this contribution guide might look a bit similar to [his](https://github.com/antfu/contribute/commits?author=antfu)._
 
+<!-- Just adds some space -->
+<div class="pt-1"></div>
+
+:::tip
+You can checkout volunteer tasks in [GitHub Projects](https://github.com/users/jd-solanki/projects/2?query=is%3Aopen+sort%3Aupdated-desc) if you don't know where to start.
+:::
+
 ## 🏗 Repository Setup
 
 I use `pnpm` for my OpenSource projects. I also use [yarn](https://classic.yarnpkg.com/) & npm as well, just like you. So, I highly recommend using [ni](https://github.com/antfu/ni).
