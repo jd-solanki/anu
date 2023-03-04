@@ -1,4 +1,4 @@
-import type { PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export interface PropColumn {
   name: string
@@ -32,3 +32,5 @@ export const tableProps = {
     default: 'No records found!',
   },
 }
+
+export type TableProps = ExtractPropTypes<typeof tableProps>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
-import type { ExtractPropTypes, Ref } from 'vue'
-import type { DataTablePropColumn, ItemsFunction } from './props'
+import type { Ref } from 'vue'
+import type { DataTablePropColumn, DataTableProps, ItemsFunction } from './props'
 import { dataTableColDefaults, dataTableProps } from './props'
 import { ABtn, AInput, ASelect, ATable } from '@/components'
 import { tableProps } from '@/components/table'
@@ -15,7 +15,7 @@ const props = defineProps(dataTableProps)
 const emit = defineEmits<{
 
   // TODO: Duplicated from `ATable` because of import interface issue
-  (e: 'click:header', col: Exclude<(ExtractPropTypes<typeof props>)['cols'], undefined>): void
+  (e: 'click:header', col: Exclude<DataTableProps['cols'], undefined>): void
 
   // ---
 

@@ -1,4 +1,4 @@
-import type { PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { PropColumn as TablePropColumn } from '@/components/table'
 import { tableProps } from '@/components/table'
 import { defuProps } from '@/composables/useProps'
@@ -81,3 +81,5 @@ export const dataTableColDefaults: Partial<DataTablePropColumn> = {
   sortBy: undefined,
   isFilterable: true,
 }
+
+export type DataTableProps = ExtractPropTypes<typeof dataTableProps>

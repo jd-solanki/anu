@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
-import type { PropColumn } from './props'
+import type { PropColumn, TableProps } from './props'
 import { tableProps } from './props'
 import { ACard, cardProps } from '@/components/card'
 
@@ -9,7 +8,7 @@ const props = defineProps(defu(tableProps, cardProps))
 
 // TODO: We aren't getting type error for click:header
 defineEmits<{
-  (e: 'click:header', col: Exclude<(ExtractPropTypes<typeof props>)['cols'], undefined>): void
+  (e: 'click:header', col: Exclude<TableProps['cols'], undefined>): void
 }>()
 
 defineOptions({
