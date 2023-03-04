@@ -61,6 +61,10 @@ module.exports = {
     'vue/no-restricted-class': ['error', '/^(p|m)(l|r)-/'],
     'vue/no-required-prop-with-default': 'error',
     'vue/v-on-event-hyphenation': ['error', 'never'],
+    'vue/first-attribute-linebreak': ['error', {
+      singleline: 'beside',
+      multiline: 'below',
+    }],
 
     // 'vue/require-prop-comment': ['error', {
     //   type: 'JSDoc',

@@ -1,48 +1,13 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { CheckboxProps } from './props'
+import { checkboxProps } from './props'
+import { useCheckbox } from '@/composables'
 import type { ConfigurableValue } from '@/composables/useConfigurable'
-import { color as colorProp, configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
-const props = defineProps({
-  /**
-   * Checkbox color
-   */
-  color: defu({ default: 'primary' }, colorProp),
-
-  /**
-   * Bind v-model value to check/uncheck the checkbox.
-   */
-  modelValue: [Boolean, Array, Set] as PropType<boolean | unknown[] | Set<unknown>>,
-
-  /**
-   * Label text
-   */
-  label: String,
-
-  /**
-   * Icon to render in checkbox square instead of check
-   */
-  icon: defu({ default: 'i-bx-check' }, configurableProp),
-
-  /**
-   * Bind classes to input element
-   */
-  inputClasses: { type: null },
-
-  /**
-   * Disable checkbox
-   */
-  disabled: disabledProp,
-
-  /**
-   * Mark checkbox indeterminate
-   */
-  indeterminate: Boolean,
-})
+const props = defineProps(checkboxProps)
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
+  (e: 'update:modelValue', value: CheckboxProps['modelValue']): void
 }>()
 
 defineOptions({
@@ -60,28 +25,17 @@ defineSlots<{
 
 const attrs = useAttrs()
 
+const _trueValue = computed<Exclude<CheckboxProps['onValue'], undefined>>(() => props.onValue || attrs.value as Exclude<CheckboxProps['onValue'], undefined> || true)
+const { isChecked, isIndeterminate, onChange } = useCheckbox(toRef(props, 'modelValue'), emit, _trueValue, toRef(props, 'offValue'), toRef(props, 'indeterminateValue'), toRef(props, 'cycleIndeterminate'))
+
 const elementId = `a-checkbox-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`
-const data = useVModel(props, 'modelValue', emit)
 
-// Template refs
-const refCheckbox = ref()
-
-const _icon = ref<ConfigurableValue>('')
-
-watch([data, () => props.indeterminate], ([checked, indeterminate], [_, prevIndeterminate]) => {
-  // Set indeterminate state of HTMLInputElement
-  if (refCheckbox.value)
-    refCheckbox.value.indeterminate = indeterminate
-
-  _icon.value = (!indeterminate && (!prevIndeterminate || checked)) ? props.icon : 'i-bx-minus'
-}, { immediate: true })
-
-const state = computed(() => {
-  return typeof data.value === 'boolean'
-    ? data.value
-    : Array.isArray(data.value)
-      ? data.value.includes(attrs.value)
-      : data.value?.has(attrs.value) // For Set type
+const _icon = computed<ConfigurableValue>(() => {
+  if (isIndeterminate.value)
+    return 'i-bx-minus'
+  else if (isChecked.value)
+    return props.icon
+  else return ''
 })
 </script>
 
@@ -97,14 +51,15 @@ const state = computed(() => {
     <input
       v-bind="{ ...$attrs, class: props.inputClasses }"
       :id="elementId"
-      :ref="refCheckbox"
-      v-model="data"
+      :checked="isChecked"
       class="hidden"
       type="checkbox"
+      :indeterminate="isIndeterminate"
+      @change="onChange"
     >
     <div
       class="a-checkbox-box flex items-center justify-center shrink-0"
-      :class="[(props.indeterminate || state) && `bg-${props.color} border-${props.color} children:scale-full`]"
+      :class="[(isChecked || isIndeterminate) && `bg-${props.color} border-${props.color} children:scale-full`]"
     >
       <i
         class="a-checkbox-icon scale-0 text-white"

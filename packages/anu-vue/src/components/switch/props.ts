@@ -1,50 +1,31 @@
 import { defu } from 'defu'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { CheckboxModelValue } from '@/composables/useCheckbox'
+import type { ExtractPropTypes } from 'vue'
+import { useCheckboxProps } from '@/composables'
 import { color as colorProp, disabled as disabledProp } from '@/composables/useProps'
 
 export const switchProps = {
+  ...useCheckboxProps,
+
   /**
-     * Switch color
-     */
+   * Switch color
+   */
   color: defu({
     default: 'primary',
   }, colorProp),
 
   /**
-     * Define label text
-     */
+   * Define label text
+   */
   label: String,
 
   /**
-     * Bind v-model value
-     */
-  modelValue: {
-    type: [Boolean, Number, String, Array, Set] as PropType<CheckboxModelValue>,
-    default: true,
-  },
-
-  /**
-   * Switch value when in on state
+   * Icon to render when switch is on
    */
-  onValue: [Boolean, Number, String, Array, Set] as PropType<CheckboxModelValue>,
-
-  /**
-   * Switch value when in off state
-   */
-  offValue: {
-    type: [Boolean, Number, String, Array, Set] as PropType<CheckboxModelValue>,
-    default: false,
-  },
-
-  /**
-     * Icon to render when switch is on
-     */
   onIcon: String,
 
   /**
-     * Icon to render when switch is off
-     */
+   * Icon to render when switch is off
+   */
   offIcon: String,
 
   /**
@@ -53,8 +34,8 @@ export const switchProps = {
   inputClasses: { type: null },
 
   /**
-     * Disable switch
-     */
+   * Disable switch
+   */
   disabled: disabledProp,
 }
 

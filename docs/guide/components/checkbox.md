@@ -49,10 +49,12 @@ You can use `color` prop to change the checkbox color.
 <!-- 👉 Indeterminate -->
 ::::card Indeterminate
 
-You can use `indeterminate` prop to change the status of the checkbox.
+You can trigger indeterminate state of checkbox by setting `v-model` value to `null`. Moreover, you can also customize the indeterminate value by setting `indeterminate-value` prop.
+
+By default, indeterminate value doesn't get cycled through the options. If you want to cycle through the options, you can set `cycle-indeterminate` prop to `true`.
 
 :::code DemoCheckboxIndeterminate
-<<< @/components/demos/checkbox/DemoCheckboxIndeterminate.vue{25,32}
+<<< @/components/demos/checkbox/DemoCheckboxIndeterminate.vue{4,11}
 :::
 
 ::::
