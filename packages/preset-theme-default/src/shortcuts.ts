@@ -162,6 +162,11 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-textarea': '[&_.a-base-input-input-wrapper]-px-0',
     'a-textarea-textarea': 'em:spacing:py-4 overflow-x-hidden em:spacing:px-4',
 
+    // 👉 Tooltip
+    'a-tooltip-wrapper': 'z-[54]',
+    'a-tooltip': 'bg-[hsl(0,0%,8%)] em:px-2 em:py-1 em:rounded-lg',
+    'a-tooltip-text': 'em:text-sm text-white text-center',
+
     // !SECTION Components
 
     'overlay': 'absolute inset-0 content-empty bg-[hsla(var(--a-loader-overlay-bg-c),var(--a-loader-overlay-bg-opacity))] opacity-0 rounded-inherit transition-opacity transition-duration-250',

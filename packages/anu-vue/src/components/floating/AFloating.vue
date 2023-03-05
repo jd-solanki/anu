@@ -3,15 +3,14 @@ import type { Middleware } from '@floating-ui/vue'
 import { autoUpdate, flip, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
 import { ref } from 'vue'
+import type { FloatingEvents } from './events'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
 import { floatingProps } from './props'
 import { useTeleport } from '@/composables/useTeleport'
 
 const props = defineProps(floatingProps)
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
+const emit = defineEmits<FloatingEvents>()
 
 defineOptions({
   name: 'AFloating',
@@ -20,7 +19,21 @@ defineOptions({
 
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
+
+// ℹ️ If floating element is already visible then use `hideDelay` otherwise use `showDelay` for debounce
+const _delay = ref(props.modelValue ? props.hideDelay : props.delay)
+
 const isFloatingElVisible = useVModel(props, 'modelValue', emit, { defaultValue: false, passive: true })
+watch(isFloatingElVisible, isShown => {
+  // Set hide delay when element is visible and show delay when element is hidden
+  _delay.value = isShown ? props.hideDelay : props.delay
+
+  // Trigger events on visibility change
+  isShown
+    ? emit('show')
+    : emit('hide')
+})
+const isFloatingElVisibleDebounced = refDebounced(isFloatingElVisible, _delay)
 
 // Template refs
 // const props.referenceEl = ref()
@@ -86,7 +99,11 @@ if (props.modelValue === undefined) {
     })
   }
   else {
-    useEventListener(toRef(props, 'referenceEl'), 'click', useToggle(isFloatingElVisible))
+    useEventListener(
+      toRef(props, 'referenceEl'),
+      'click',
+      () => { isFloatingElVisible.value = !isFloatingElVisible.value },
+    )
 
     if (props.persist !== true) {
       onClickOutside(
@@ -116,7 +133,7 @@ defineExpose({
     <!-- ℹ️ Transition component don't accept null as value of name prop so we need `props.transition || undefined` -->
     <Transition :name="props.transition || undefined">
       <div
-        v-show="props.modelValue ?? isFloatingElVisible"
+        v-show="isFloatingElVisibleDebounced"
         v-bind="$attrs"
         ref="refFloating"
         class="a-floating"

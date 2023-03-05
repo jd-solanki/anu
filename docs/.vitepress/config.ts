@@ -75,6 +75,7 @@ export default defineConfig({
             { text: 'Switch', link: '/guide/components/switch' },
             { text: 'Table', link: '/guide/components/table' },
             { text: 'Textarea', link: '/guide/components/textarea' },
+            { text: 'Tooltip', link: '/guide/components/tooltip' },
           ],
         },
         {

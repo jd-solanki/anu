@@ -31,6 +31,22 @@ export const floatingProps = {
   },
 
   /**
+   * Delay before showing floating element
+   */
+  delay: {
+    type: Number,
+    default: 0,
+  },
+
+  /**
+   * Delay before hiding floating element
+   */
+  hideDelay: {
+    type: Number,
+    default: 0,
+  },
+
+  /**
    * Transition to add while showing/hiding floating element
    */
   transition: {
