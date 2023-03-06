@@ -61,6 +61,8 @@ $body-color: hsla(var(--a-base-c), 0.68);
       As this will be always on light background we will keep it static and choose color from light scheme
     */
     --a-switch-icon-color: hsla(0, 10%, 20%, 0.68);
+
+    --a-tooltip-bg-c: 0,0%,8%;
     // #endregion all-css-vars
 
     // !SECTION
@@ -77,6 +79,9 @@ $body-color: hsla(var(--a-base-c), 0.68);
 
   // 👉 Switch
     --a-switch-default-color: 0, 0%, 16%;
+
+    // 👉 Tooltip
+    --a-tooltip-bg-c: 0,0%,25%;
     
   // !SECTION
 }

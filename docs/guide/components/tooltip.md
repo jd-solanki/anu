@@ -12,7 +12,7 @@ Use `ATooltip` component's `text` prop to show passed text in tooltip.
 You can also use `default` slot to render custom content.
 
 :::code DemoTooltipBasic
-<<< @/components/demos/tooltip/DemoTooltipBasic.vue{3,8-13}
+<<< @/components/demos/tooltip/DemoTooltipBasic.vue{3,9-14}
 :::
 
 ::::

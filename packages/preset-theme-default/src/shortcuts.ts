@@ -164,7 +164,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // 👉 Tooltip
     'a-tooltip-wrapper': 'z-[54]',
-    'a-tooltip': 'bg-[hsl(0,0%,8%)] em:px-2 em:py-1 em:rounded-lg',
+    'a-tooltip': 'bg-[hsl(var(--a-tooltip-bg-c))] em:px-2 em:py-1 em:rounded-lg',
     'a-tooltip-text': 'em:text-sm text-white text-center',
 
     // !SECTION Components
