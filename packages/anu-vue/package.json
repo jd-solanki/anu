@@ -26,6 +26,7 @@
   "module": "./dist/anu-vue.js",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/anu-vue.js",
       "require": "./dist/anu-vue.umd.cjs"
     },
