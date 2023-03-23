@@ -10,6 +10,6 @@ const tabs = [
   <ATabs
     class="a-tabs-bordered"
     :tabs="tabs"
-    justify="center"
+    justify="stretch"
   />
 </template>

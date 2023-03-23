@@ -158,6 +158,10 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-data-table-per-page-select--options-wrapper-classes': 'em:text-sm', // ℹ️ optionsWrapperClasses prop
     'a-data-table-pagination-navigation': '[&_.a-data-table-paginate-previous]-!rounded-full em:[&_.a-data-table-paginate-previous]-spacing:me-2 [&_.a-data-table-paginate-next]-!rounded-full em:spacing:gap-x-2',
 
+    // 👉 Tabs
+    'a-tab': 'text-center em:spacing:px-5 em:spacing:py-3',
+    'a-tabs': '[&.a-tabs-bordered:not(.a-tabs-vertical)]-border-b [&.a-tabs-bordered]-border-a-border [&.a-tabs-bordered.a-tabs-vertical_.a-tabs-wrapper]-border-r [&.a-tabs-bordered.a-tabs-vertical_.a-tabs-wrapper]-border-a-border',
+
     // 👉 Textarea
     'a-textarea': '[&_.a-base-input-input-wrapper]-px-0',
     'a-textarea-textarea': 'em:spacing:py-4 overflow-x-hidden em:spacing:px-4',
