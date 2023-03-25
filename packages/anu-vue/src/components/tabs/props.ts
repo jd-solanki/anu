@@ -34,7 +34,7 @@ export const tabsProps = {
   /**
    * Mark all `ATab` as stacked
    */
-  tabStacked: {
+  stackedTabs: {
     type: Boolean,
     default: false,
   },

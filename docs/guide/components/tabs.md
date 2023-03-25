@@ -3,7 +3,9 @@
 <!-- 👉 Basic -->
 ::::card Basic
 
-description
+You can render the tabs component by using the `ATabs` component.
+
+You can use `tabs` prop to pass the tabs data. The `tabs` prop is an array of strings or objects. Each object should have `title` property to render tab title.
 
 :::code DemoTabsBasic
 <<< @/components/demos/tabs/DemoTabsBasic.vue
@@ -11,10 +13,31 @@ description
 
 ::::
 
+:::tip `.a-tabs-bordered` class
+Tabs component doesn't have the border button by default. If you want to add the border button, you can add the `.a-tabs-bordered` class to the `ATabs` component.
+:::
+
+<!-- 👉 Icons -->
+::::card Icons
+
+You can use `icon` property to render the icon with the tab title.
+
+Additionally, you can also use `stacked-tabs` boolean prop to stack the tabs vertically.
+
+:::code DemoTabsIcons
+<<< @/components/demos/tabs/DemoTabsIcons.vue
+:::
+
+::::
+
+:::tip
+Use icon only tabs in mobile devices for better user experience.
+:::
+
 <!-- 👉 `v-model` Support -->
 ::::card `v-model` Support
 
-description
+You can use `v-model` to bind the value of the selected tab.
 
 :::code DemoTabsVModelSupport
 <<< @/components/demos/tabs/DemoTabsVModelSupport.vue
@@ -25,7 +48,7 @@ description
 <!-- 👉 Vertical -->
 ::::card Vertical
 
-description
+Use `vertical` prop to render the vertical tabs.
 
 :::code DemoTabsVertical
 <<< @/components/demos/tabs/DemoTabsVertical.vue
@@ -54,3 +77,14 @@ description
 :::
 
 ::::
+
+<!-- 👉 Dynamic Tabs -->
+<!-- ::::card Dynamic Tabs
+
+description
+
+:::code DemoTabsDynamicTabs
+<<< @/components/demos/tabs/DemoTabsDynamicTabs.vue
+:::
+
+:::: -->

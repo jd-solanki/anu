@@ -2,16 +2,26 @@
 const tabs = [
   { title: 'Account', icon: 'i-bx-user' },
   { title: 'Notifications', icon: 'i-bx-bell' },
-  { title: 'Security', icon: 'i-bx-lock' },
-  { title: 'Connections', icon: 'i-bx-link' },
-  { title: 'Billing', icon: 'i-bx-credit-card' },
   { title: 'Settings', icon: 'i-bx-cog' },
 ]
 </script>
 
 <template>
-  <ATabs
-    class="a-tabs-bordered"
-    :tabs="tabs"
-  />
+  <div class="cards-demo-container container mx-auto mt-16">
+    <ATabs
+      class="a-tabs-bordered [&_.a-tabs-wrapper]-mb-6 [&_.a-tabs-content]--m-8 [&_.a-views]-p-8"
+      :tabs="tabs"
+    >
+      <template #0>
+        <div>
+          <ACard
+            title="Card Title"
+            subtitle="This is subtitle"
+            text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est sed minima, sit mollitia corporis animi!"
+            class="shadow-xl"
+          />
+        </div>
+      </template>
+    </ATabs>
+  </div>
 </template>

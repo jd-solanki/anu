@@ -185,6 +185,14 @@ const handleScroll = () => {
     isRightNavArrowEnabled.value = refTabsWrapper.value.scrollWidth - (refTabsWrapper.value.scrollLeft + refTabsWrapper.value.clientWidth) > 1
   }
 }
+
+// Check arrows and update active indicator style on tabs change
+watch(() => props.tabs.length, () => {
+  nextTick(() => {
+    checkAreTabsOverflowed()
+    calculateActiveIndicatorStyle()
+  })
+})
 </script>
 
 <template>
@@ -223,7 +231,7 @@ const handleScroll = () => {
           ref="refTabs"
           v-bind="typeof tab === 'string' ? { title: tab } : tab"
           :class="[tabJustifyClasses.tabClasses]"
-          :stacked="props.tabStacked"
+          :stacked="props.stackedTabs"
           :style="{
             scrollSnapAlign,
           }"

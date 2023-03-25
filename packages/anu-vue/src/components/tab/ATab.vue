@@ -23,7 +23,10 @@ defineOptions({
       />
     </slot>
 
-    <p class="a-tab-title whitespace-nowrap">
+    <p
+      v-if="props.title"
+      class="a-tab-title whitespace-nowrap"
+    >
       {{ props.title }}
     </p>
 
