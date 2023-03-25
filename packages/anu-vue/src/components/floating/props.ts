@@ -51,7 +51,7 @@ export const floatingProps = {
    */
   transition: {
     type: [String, null] as PropType<string | null>,
-    default: 'slide-up',
+    default: 'slide-y',
   },
 
   // -- Floating UI based Props

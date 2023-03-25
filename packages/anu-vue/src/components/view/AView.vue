@@ -3,7 +3,7 @@ import { ViewGroupModel } from '@/components/views/symbol'
 
 const props = defineProps({
   value: {
-    type: Number,
+    type: null,
     default: undefined,
   },
 })
@@ -21,11 +21,10 @@ if (!groupModel)
 </script>
 
 <template>
+  <!-- TODO: Fix type -->
   <div
-    v-show="groupModel.value.value === props.value"
-    class="a-view"
-    :data-active="groupModel.value.value === props.value"
-    :data-current="groupModel.value.value"
+    v-show="(groupModel.value as any).value === props.value"
+    class="a-view w-full"
   >
     <slot />
   </div>

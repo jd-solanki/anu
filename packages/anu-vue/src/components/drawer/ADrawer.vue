@@ -76,7 +76,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
             v-show="props.modelValue"
             ref="refCard"
             class="a-drawer backface-hidden transform translate-z-0"
-            :class="[props.anchor === 'bottom' && '[--a-transition-slide-up-transform:100%]']"
+            :class="[props.anchor === 'bottom' && '[--slide-y-translateY:100%]']"
             v-bind="{ ...$attrs, ...props }"
           >
             <!-- ℹ️ Recursively pass down slots to child -->

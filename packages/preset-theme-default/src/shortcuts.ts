@@ -119,7 +119,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-loader': '[&.a-loader-full-page]-text-4xl',
 
     // 👉 Menu
-    'a-menu': 'z-[51] shadow-xl [--a-transition-slide-up-transform:10px]',
+    'a-menu': 'z-[51] shadow-xl [--slide-y-translateY:10px]',
 
     // 👉 Rating
     'a-rating': 'text-xl',
@@ -131,7 +131,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-radio-disabled': 'opacity-50',
 
     // 👉 Select
-    'a-select-floating': '[--a-transition-slide-up-transform:6px]',
+    'a-select-floating': '[--slide-y-translateY:6px]',
     'a-select-options-container': 'z-10',
     'a-select-options-list': 'spacing-75',
 
@@ -160,7 +160,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // 👉 Tabs
     'a-tab': 'text-center em:spacing:px-5 em:spacing:py-3',
-    'a-tabs': '[&.a-tabs-bordered:not(.a-tabs-vertical)]-border-b [&.a-tabs-bordered]-border-a-border [&.a-tabs-bordered.a-tabs-vertical_.a-tabs-wrapper]-border-r [&.a-tabs-bordered.a-tabs-vertical_.a-tabs-wrapper]-border-a-border',
+    'a-tabs': '[&.a-tabs-bordered:not(.a-tabs-vertical)_.a-tabs-wrapper]-border-b [&.a-tabs-bordered_.a-tabs-wrapper]-border-a-border [&.a-tabs-bordered.a-tabs-vertical_.a-tabs-wrapper]-border-r [&.a-tabs-bordered.a-tabs-vertical_.a-tabs-wrapper]-border-a-border',
 
     // 👉 Textarea
     'a-textarea': '[&_.a-base-input-input-wrapper]-px-0',

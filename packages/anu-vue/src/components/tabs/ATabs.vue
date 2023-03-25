@@ -1,79 +1,79 @@
 <script lang="ts" setup>
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { TabsProps } from './props'
+import { tabsProps } from './props'
 import { TabBindingsSymbol } from './symbol'
 import type { TabProps } from '@/components/tab'
 import { ATab } from '@/components/tab'
+import { AView } from '@/components/view'
+import { AViews } from '@/components/views'
 import { ActiveViewSymbol } from '@/components/views/symbol'
 import { useGroupModel } from '@/composables'
-import { isObject } from '@/utils/helpers'
 
-const props = defineProps({
-  /**
-   * Active tab
-   */
-  modelValue: { type: null },
-
-  /**
-   * Tabs to be rendered. Array of ATab props.
-   */
-  tabs: {
-    type: Array as PropType<(TabProps | string)[]>,
-    default: () => [],
-  },
-
-  /**
-   * Create vertical tabs
-   */
-  vertical: {
-    type: Boolean,
-    default: false,
-  },
-
-  /**
-   * Specify how tabs should be justified. Can be 'start', 'center', 'end', 'stretch''
-   */
-  // justify: {
-  //   type: String as PropType<'start' | 'center' | 'end' | 'stretch'>,
-  //   default: 'start',
-  // },
-
-  /**
-   * Mark all `ATab` as stacked
-   */
-  tabStacked: {
-    type: Boolean,
-    default: false,
-  },
-})
+const props = defineProps(tabsProps)
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
+  (e: 'update:modelValue', value: TabsProps['modelValue']): void
 }>()
 
 defineOptions({
   name: 'ATabs',
 })
 
-const extractItemValueFromItemOption = (item: TabProps | string) => isObject(item) ? (item.value || item) : item
+// DOM refs
+const refTabsWrapper = ref<HTMLElement>()
+const refTabs = ref<ATab[]>([])
+const refActiveTab = ref<ATab>()
+
+// TODO: Check do we need this elsewhere
+const groupModelOptions = computed(() => {
+  /**
+   * If props.tabs is array of string => array of string
+   * If props.tabs is array of object
+   *  - If object has value prop => array of value
+   *  - else => array length
+   */
+
+  if (props.tabs.length === 0)
+    return []
+
+  const firstTab = props.tabs[0]
+  if (typeof firstTab === 'string') {
+    return props.tabs
+  }
+
+  else {
+    if (firstTab.value)
+      return props.tabs.map(tab => (tab as TabProps).value)
+
+    return props.tabs.length
+  }
+})
 
 const { options, select: selectTab, value: activeTab } = useGroupModel({
-  options: props.tabs.map(tab => extractItemValueFromItemOption(tab)),
+  options: groupModelOptions.value,
 })
 
 // ℹ️ Inject active tab so we don't have to use `v-model` on `ATabs` and `AViews`
 provide(ActiveViewSymbol, activeTab)
+provide(TabBindingsSymbol, refTabs)
 
-// get tabs ref
-const refTabsWrapper = ref<HTMLElement>()
-
-const refTabs = ref<ATab[]>([])
-
-const refActiveTab = ref<ATab>()
-
+// Flag to check if tabs are overflowed (For showing arrows)
 const areTabsOverflowed = ref<boolean>()
 const shouldShowArrows = computed(() => !props.vertical && areTabsOverflowed.value)
 
-provide(TabBindingsSymbol, refTabs)
+const checkAreTabsOverflowed = () => {
+  if (props.vertical)
+    return
+
+  const tabsWrapper = refTabsWrapper.value
+  if (tabsWrapper) {
+    const { scrollWidth, clientWidth } = tabsWrapper
+    areTabsOverflowed.value = scrollWidth > clientWidth
+  }
+
+  else { areTabsOverflowed.value = false }
+}
+useEventListener('resize', useDebounceFn(checkAreTabsOverflowed))
 
 // Calculate classes for justify props
 const tabJustifyClasses = computed(() => {
@@ -102,26 +102,9 @@ const tabJustifyClasses = computed(() => {
   }
 })
 
-const handleTabClick = (tab: TabProps | string, index: number) => {
-  const value = extractItemValueFromItemOption(tab)
-  selectTab(value)
-  emit('update:modelValue', value)
-
-  // Set active tab ref to set active indicator styles
-  refActiveTab.value = refTabs.value[index]
-
-  refActiveTab.value.$el.scrollIntoView({
-    behavior: 'smooth',
-    block: 'nearest',
-    inline: 'nearest',
-  })
-  calculateActiveIndicatorStyle()
-}
-
 const activeIndicatorStyle = ref({})
 
 const calculateActiveIndicatorStyle = () => {
-  console.log('calculating...')
   if (!refActiveTab.value)
     return
 
@@ -144,17 +127,34 @@ const calculateActiveIndicatorStyle = () => {
     }
   }
 }
+
+const handleTabClick = (tab: TabProps | string, index: number) => {
+  const value = options.value[index].value
+  selectTab(value)
+  emit('update:modelValue', value)
+
+  // Set active tab ref to set active indicator styles
+  refActiveTab.value = refTabs.value[index]
+
+  refActiveTab.value.$el.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'nearest',
+  })
+  calculateActiveIndicatorStyle()
+}
+
 onMounted(calculateActiveIndicatorStyle)
 
 // ℹ️ useGroupModel doesn't support initial value yet so we have to do it manually
 onMounted(() => {
   if (props.modelValue)
-    selectTab(props.modelValue)
+    handleTabClick(props.tabs[props.modelValue], props.modelValue)
   else
     handleTabClick(props.tabs[0], 0)
 })
 
-// Arrow navigation
+// Arrow navigation & Scroll snapping
 const scrollSnapAlign = refAutoReset<'start' | 'end' | undefined>(undefined, 1500)
 const scrollForward = async () => {
   scrollSnapAlign.value = 'end'
@@ -252,7 +252,18 @@ const handleScroll = () => {
 
     <div class="a-tabs-content">
       <!-- 👉 Slot: Default => For rendering `AViews` -->
-      <slot />
+      <AViews
+        v-model="activeTab"
+        :transition="transition"
+      >
+        <AView
+          v-for="(option, index) in options"
+          :key="index"
+          :value="option.value"
+        >
+          <slot :name="option.value" />
+        </AView>
+      </AViews>
     </div>
   </div>
 </template>

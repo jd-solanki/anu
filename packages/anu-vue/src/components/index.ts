@@ -1,3 +1,4 @@
+export * from '@/transitions'
 export { AAlert } from './alert'
 export { AAvatar } from './avatar'
 export { ABadge } from './badge'

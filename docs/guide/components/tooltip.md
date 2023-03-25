@@ -61,7 +61,7 @@ As we regularly configure delay for showing tooltip only and not for hiding, we 
 <!-- 👉 Transition -->
 ::::card Transition
 
-`ATooltip` also support transition. Default transition is `slide-up`. Set it to available transition to use different transition. e.g. `transition="fade"`.
+`ATooltip` also support transition. Default transition is `slide-y`. Set it to available transition to use different transition. e.g. `transition="fade"`.
 
 To disable the transition you can set `transition` prop to `null`.
 

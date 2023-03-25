@@ -11,6 +11,17 @@ description
 
 ::::
 
+<!-- 👉 `v-model` Support -->
+::::card `v-model` Support
+
+description
+
+:::code DemoTabsVModelSupport
+<<< @/components/demos/tabs/DemoTabsVModelSupport.vue
+:::
+
+::::
+
 <!-- 👉 Vertical -->
 ::::card Vertical
 
@@ -29,6 +40,17 @@ description
 
 :::code DemoTabsArrows
 <<< @/components/demos/tabs/DemoTabsArrows.vue
+:::
+
+::::
+
+<!-- 👉 With Views -->
+::::card With Views
+
+description
+
+:::code DemoTabsWithViews
+<<< @/components/demos/tabs/DemoTabsWithViews.vue{24-44}
 :::
 
 ::::
