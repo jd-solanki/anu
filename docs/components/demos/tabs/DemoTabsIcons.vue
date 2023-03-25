@@ -19,22 +19,23 @@ const tabs = computed(() => {
 </script>
 
 <template>
-  <div class="flex gap-4 mb-4">
-    <ARadio
-      v-for="iconType in iconTypes"
-      :key="iconType"
-      v-model="iconsType"
-      :value="iconType"
-      :name="iconType"
-      :label="iconType"
+  <!-- ℹ️ `min-h-118px` class is to avoid height jerk  -->
+  <div class="min-h-118px">
+    <div class="flex gap-4 mb-4">
+      <ARadio
+        v-for="iconType in iconTypes"
+        :key="iconType"
+        v-model="iconsType"
+        :value="iconType"
+        :name="iconType"
+        :label="iconType"
+      />
+    </div>
+    <ATabs
+      :key="iconsType"
+      class="a-tabs-bordered"
+      :tabs="tabs"
+      :stacked-tabs="iconsType === 'stacked'"
     />
   </div>
-
-  <!-- `min-h-80px` class is to avoid height jerk  -->
-  <ATabs
-    :key="iconsType"
-    class="a-tabs-bordered min-h-80px"
-    :tabs="tabs"
-    :stacked-tabs="iconsType === 'stacked'"
-  />
 </template>

@@ -197,71 +197,71 @@ watch(() => props.tabs.length, () => {
 
 <template>
   <div
-    class="a-tabs relative"
+    class="a-tabs"
     :class="[
       props.vertical ? 'a-tabs-vertical' : 'a-tabs-horizontal',
       shouldShowArrows && 'a-tabs-with-arrows',
     ]"
   >
-    <!-- 👉 Previous arrow -->
-    <div
-      v-if="shouldShowArrows"
-      class="a-tabs-navigation-arrow-wrapper absolute top-0 left-0 grid h-full place-items-center cursor-pointer"
-      :class="[!isLeftNavArrowEnabled && 'pointer-events-none']"
-      @click="scrollBackward"
-    >
-      <!-- ℹ️ Adding opacity-50 above makes border bottom less visible -->
+    <div class="a-tabs-header relative">
+      <!-- 👉 Previous arrow -->
       <div
-        class="a-tabs-navigation-arrow-previous transition-opacity"
-        :class="[!isLeftNavArrowEnabled && 'opacity-50']"
-      />
-    </div>
-    <div
-      ref="refTabsWrapper"
-      class="a-tabs-wrapper relative overflow-x-auto snap-x snap-mandatory"
-      :class="[
-        tabJustifyClasses.tabsWrapperClasses,
-        props.vertical && 'flex-col',
-        props.vertical ? 'inline-flex items-start' : 'flex items-center',
-      ]"
-      @scroll="handleScroll"
-    >
-      <slot name="tabs">
-        <ATab
-          v-for="(tab, i) in props.tabs"
-          :key="i"
-          ref="refTabs"
-          v-bind="typeof tab === 'string' ? { title: tab } : tab"
-          :class="[tabJustifyClasses.tabClasses]"
-          :stacked="props.stackedTabs"
-          :style="{
-            scrollSnapAlign,
-          }"
-          @click="handleTabClick(tab, i)"
+        v-if="shouldShowArrows"
+        class="a-tabs-navigation-arrow-wrapper absolute top-0 left-0 grid h-full place-items-center cursor-pointer"
+        :class="[!isLeftNavArrowEnabled && 'pointer-events-none']"
+        @click="scrollBackward"
+      >
+        <!-- ℹ️ Adding opacity-50 above makes border bottom less visible -->
+        <div
+          class="a-tabs-navigation-arrow-previous transition-opacity"
+          :class="[!isLeftNavArrowEnabled && 'opacity-50']"
         />
-      </slot>
-
+      </div>
       <div
-        class="a-tabs-active-indicator absolute"
-        :class="[props.vertical ? 'right-0 top-0' : 'left-0']"
-        :style="activeIndicatorStyle"
-      />
-    </div>
-
-    <!-- 👉 Next arrow -->
-    <div
-      v-if="shouldShowArrows"
-      class="a-tabs-navigation-arrow-wrapper absolute top-0 right-0 grid h-full place-items-center cursor-pointer"
-      :class="[
-        !isRightNavArrowEnabled && 'pointer-events-none',
-      ]"
-      @click="scrollForward"
-    >
-      <!-- ℹ️ Adding opacity-50 above makes border bottom less visible -->
+        ref="refTabsWrapper"
+        class="a-tabs-wrapper relative overflow-x-auto snap-x snap-mandatory"
+        :class="[
+          tabJustifyClasses.tabsWrapperClasses,
+          props.vertical && 'flex-col',
+          props.vertical ? 'inline-flex items-start' : 'flex items-center',
+        ]"
+        @scroll="handleScroll"
+      >
+        <slot name="tabs">
+          <ATab
+            v-for="(tab, i) in props.tabs"
+            :key="i"
+            ref="refTabs"
+            v-bind="typeof tab === 'string' ? { title: tab } : tab"
+            :class="[tabJustifyClasses.tabClasses]"
+            :stacked="props.stackedTabs"
+            :style="{
+              scrollSnapAlign,
+            }"
+            @click="handleTabClick(tab, i)"
+          />
+        </slot>
+        <div
+          class="a-tabs-active-indicator absolute"
+          :class="[props.vertical ? 'right-0 top-0' : 'left-0']"
+          :style="activeIndicatorStyle"
+        />
+      </div>
+      <!-- 👉 Next arrow -->
       <div
-        class="a-tabs-navigation-arrow-next transition-opacity"
-        :class="[!isRightNavArrowEnabled && 'opacity-50']"
-      />
+        v-if="shouldShowArrows"
+        class="a-tabs-navigation-arrow-wrapper absolute top-0 right-0 grid h-full place-items-center cursor-pointer"
+        :class="[
+          !isRightNavArrowEnabled && 'pointer-events-none',
+        ]"
+        @click="scrollForward"
+      >
+        <!-- ℹ️ Adding opacity-50 above makes border bottom less visible -->
+        <div
+          class="a-tabs-navigation-arrow-next transition-opacity"
+          :class="[!isRightNavArrowEnabled && 'opacity-50']"
+        />
+      </div>
     </div>
 
     <div class="a-tabs-content">

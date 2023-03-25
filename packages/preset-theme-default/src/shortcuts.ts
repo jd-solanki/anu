@@ -159,12 +159,13 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-data-table-pagination-navigation': '[&_.a-data-table-paginate-previous]-!rounded-full em:[&_.a-data-table-paginate-previous]-spacing:me-2 [&_.a-data-table-paginate-next]-!rounded-full em:spacing:gap-x-2',
 
     // 👉 Tabs
-    'a-tabs': '[--a-tabs-arrow-spacing:2em]',
+    'a-tabs': '[--a-tabs-arrow-spacing:2.5em]',
+    'a-tabs-header': '[.a-tabs-vertical_&]-w-min',
     'a-tabs-wrapper': '[.a-tabs-with-arrows_&]-mx-$a-tabs-arrow-spacing [.a-tabs-with-arrows_&]-max-w-[calc(100%-(var(--a-tabs-arrow-spacing)/2))]',
     'a-tabs-navigation-arrow-wrapper': 'w-$a-tabs-arrow-spacing',
     'a-tabs-active-indicator': 'bg-primary bottom-0 transition-all duration-200 ease-in-out will-change-transform,width,height [.a-tabs-vertical_&]-w-2px [.a-tabs.a-tabs-horizontal_&]-h-2px',
 
-    'a-tabs-bordered': '[&_.a-tabs-wrapper]-border-a-border [&.a-tabs-horizontal_.a-tabs-wrapper]-border-b [&.a-tabs-vertical_.a-tabs-wrapper]-border-r [&_.a-tabs-navigation-arrow-wrapper]-border-a-border [&_.a-tabs-navigation-arrow-wrapper]-border-b',
+    'a-tabs-bordered': '[&_.a-tabs-header]-border-a-border [&.a-tabs-horizontal_.a-tabs-header]-border-b [&.a-tabs-vertical_.a-tabs-header]-border-r',
 
     'a-tab': 'text-center em:spacing:px-5 em:spacing:py-3 em:gap-2',
 
