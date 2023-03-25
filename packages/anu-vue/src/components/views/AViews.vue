@@ -50,10 +50,11 @@ provide(ViewGroupModel, groupModel)
 </script>
 
 <template>
-  <div class="a-views relative overflow-hidden">
+  <div class="a-views overflow-hidden">
     <TransitionGroup
       tag="div"
       :class="`${props.transition}-group`"
+      class="relative"
       :name="props.transition"
     >
       <slot>

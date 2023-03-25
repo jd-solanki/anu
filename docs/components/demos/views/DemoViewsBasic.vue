@@ -5,7 +5,7 @@ const activeView = ref('first')
 </script>
 
 <template>
-  <div>
+  <div class="cards-demo-container">
     <div class="flex gap-4 my-6">
       <ARadio
         v-model="activeView"
@@ -29,7 +29,7 @@ const activeView = ref('first')
 
     <AViews
       v-model="activeView"
-      class="[--fade-opacity-duration:.35s]"
+      class="[--fade-opacity-duration:.35s] p-8 -m-8"
     >
       <AView value="first">
         <ACard
