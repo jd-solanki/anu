@@ -212,7 +212,7 @@ watch(() => props.tabs.length, () => {
     >
       <!-- ℹ️ Adding opacity-50 above makes border bottom less visible -->
       <div
-        class="a-tabs-navigation-arrow-previous"
+        class="a-tabs-navigation-arrow-previous transition-opacity"
         :class="[!isLeftNavArrowEnabled && 'opacity-50']"
       />
     </div>
@@ -259,7 +259,7 @@ watch(() => props.tabs.length, () => {
     >
       <!-- ℹ️ Adding opacity-50 above makes border bottom less visible -->
       <div
-        class="a-tabs-navigation-arrow-next"
+        class="a-tabs-navigation-arrow-next transition-opacity"
         :class="[!isRightNavArrowEnabled && 'opacity-50']"
       />
     </div>

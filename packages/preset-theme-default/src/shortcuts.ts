@@ -160,9 +160,11 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // 👉 Tabs
     'a-tabs': '[--a-tabs-arrow-spacing:2em]',
-    'a-tabs-wrapper': '[.a-tabs-bordered_&]-border-a-border [.a-tabs-bordered.a-tabs-horizontal_&]-border-b [.a-tabs-bordered.a-tabs-vertical_&]-border-r [.a-tabs-with-arrows_&]-mx-$a-tabs-arrow-spacing [.a-tabs-with-arrows_&]-max-w-[calc(100%-(var(--a-tabs-arrow-spacing)/2))]',
-    'a-tabs-navigation-arrow-wrapper': '[.a-tabs-bordered_&]-border-b [.a-tabs-bordered_&]-border-a-border w-$a-tabs-arrow-spacing',
+    'a-tabs-wrapper': '[.a-tabs-with-arrows_&]-mx-$a-tabs-arrow-spacing [.a-tabs-with-arrows_&]-max-w-[calc(100%-(var(--a-tabs-arrow-spacing)/2))]',
+    'a-tabs-navigation-arrow-wrapper': 'w-$a-tabs-arrow-spacing',
     'a-tabs-active-indicator': 'bg-primary bottom-0 transition-all duration-200 ease-in-out will-change-transform,width,height [.a-tabs-vertical_&]-w-2px [.a-tabs.a-tabs-horizontal_&]-h-2px',
+
+    'a-tabs-bordered': '[&_.a-tabs-wrapper]-border-a-border [&.a-tabs-horizontal_.a-tabs-wrapper]-border-b [&.a-tabs-vertical_.a-tabs-wrapper]-border-r [&_.a-tabs-navigation-arrow-wrapper]-border-a-border [&_.a-tabs-navigation-arrow-wrapper]-border-b',
 
     'a-tab': 'text-center em:spacing:px-5 em:spacing:py-3 em:gap-2',
 
