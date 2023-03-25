@@ -274,7 +274,10 @@ const handleTabsContentSwipe = useDebounceFn((direction: SwipeDirection) => {
             :key="i"
             ref="refTabs"
             v-bind="typeof tab === 'string' ? { title: tab } : tab"
-            :class="[tabJustifyClasses.tabClasses]"
+            :class="[
+              options[i].isSelected && 'a-tab-active',
+              tabJustifyClasses.tabClasses,
+            ]"
             :stacked="props.stackedTabs"
             :hide-title-on-mobile="props.hideTitleOnMobile"
             :style="{
