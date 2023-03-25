@@ -14,7 +14,7 @@ You can use `tabs` prop to pass the tabs data. The `tabs` prop is an array of st
 ::::
 
 :::tip `.a-tabs-bordered` class
-Tabs component doesn't have the border button by default. If you want to add the border button, you can add the `.a-tabs-bordered` class to the `ATabs` component.
+Tabs component doesn't have the border bottom by default. If you want to add the border bottom, you can add the `.a-tabs-bordered` class to the `ATabs` component.
 :::
 
 <!-- 👉 Icons -->
