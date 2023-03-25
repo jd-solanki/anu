@@ -207,18 +207,18 @@ watch(() => props.tabs.length, () => {
     <div
       v-if="shouldShowArrows"
       class="a-tabs-navigation-arrow-wrapper absolute top-0 left-0 grid h-full place-items-center cursor-pointer"
-      :class="[
-        !isLeftNavArrowEnabled && 'opacity-50 pointer-events-none',
-      ]"
+      :class="[!isLeftNavArrowEnabled && 'pointer-events-none']"
       @click="scrollBackward"
     >
-      <div class="a-tabs-navigation-arrow-previous" />
+      <!-- ℹ️ Adding opacity-50 above makes border bottom less visible -->
+      <div
+        class="a-tabs-navigation-arrow-previous"
+        :class="[!isLeftNavArrowEnabled && 'opacity-50']"
+      />
     </div>
-    <!-- TODO: align mx-8 amd w-8 & calc -->
     <div
       ref="refTabsWrapper"
-      class="a-tabs-wrapper relative overflow-x-auto"
-      style="scroll-snap-type: inline mandatory;"
+      class="a-tabs-wrapper relative overflow-x-auto snap-x snap-mandatory"
       :class="[
         tabJustifyClasses.tabsWrapperClasses,
         props.vertical && 'flex-col',
@@ -253,11 +253,15 @@ watch(() => props.tabs.length, () => {
       v-if="shouldShowArrows"
       class="a-tabs-navigation-arrow-wrapper absolute top-0 right-0 grid h-full place-items-center cursor-pointer"
       :class="[
-        !isRightNavArrowEnabled && 'opacity-50 pointer-events-none',
+        !isRightNavArrowEnabled && 'pointer-events-none',
       ]"
       @click="scrollForward"
     >
-      <div class="a-tabs-navigation-arrow-previous" />
+      <!-- ℹ️ Adding opacity-50 above makes border bottom less visible -->
+      <div
+        class="a-tabs-navigation-arrow-next"
+        :class="[!isRightNavArrowEnabled && 'opacity-50']"
+      />
     </div>
 
     <div class="a-tabs-content">
