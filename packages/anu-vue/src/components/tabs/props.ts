@@ -1,5 +1,7 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { TabProps } from '@/components/tab'
+import type { Transitions } from '@/transitions'
+import type { LooseAutocomplete } from '@/utils/typescripts'
 
 export const tabsProps = {
   /**
@@ -16,7 +18,7 @@ export const tabsProps = {
   },
 
   /**
-   * Create vertical tabs
+   * Render tabs in vertical direction
    */
   vertical: {
     type: Boolean,
@@ -47,8 +49,11 @@ export const tabsProps = {
     default: false,
   },
 
+  /**
+   * Change tab transition
+   */
   transition: {
-    type: String,
+    type: String as PropType<LooseAutocomplete<Transitions>>,
     default: 'view-next',
   },
 }

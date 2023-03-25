@@ -168,6 +168,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-tabs-bordered': '[&_.a-tabs-header]-border-a-border [&.a-tabs-horizontal_.a-tabs-header]-border-b [&.a-tabs-vertical_.a-tabs-header]-border-r',
 
     'a-tab': 'text-center em:spacing:px-5 em:spacing:py-3 em:gap-2',
+    'a-tab-title ': 'capitalize',
 
     'a-tabs-navigation-arrow-previous': 'i-bx-left-arrow-alt',
     'a-tabs-navigation-arrow-next': 'i-bx-right-arrow-alt',

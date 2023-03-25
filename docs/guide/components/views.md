@@ -1,3 +1,8 @@
+<script lang="ts" setup>
+import viewApi from '@anu/component-meta/AView.json';
+import viewsApi from '@anu/component-meta/AViews.json';
+</script>
+
 # Views
 
 `AViews` is low level component that allows you render slider or carousel like functionality. It is used by `ATabs` component internally.
@@ -25,3 +30,9 @@ You can create carousel like functionality by using `AViews` component.
 :::
 
 ::::
+
+<!-- 👉 API -->
+## API
+
+<Api title="Views" :api="viewsApi" class="mb-8"></Api>
+<Api title="View" :api="viewApi"></Api>

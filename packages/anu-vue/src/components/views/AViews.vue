@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import type { SwipeDirection } from '@vueuse/core'
-import type { VNode } from 'vue'
+import type { PropType, VNode } from 'vue'
 import { h } from 'vue'
 import { ActiveViewSymbol, ViewGroupModel } from './symbol'
-import { useGroupModel } from '@/composables'
 import { AView } from '@/components/view'
+import { useGroupModel } from '@/composables'
+import type { Transitions } from '@/transitions'
+import type { LooseAutocomplete } from '@/utils/typescripts'
 
 const props = defineProps({
   /**
@@ -19,7 +21,7 @@ const props = defineProps({
    * Transition to use
    */
   transition: {
-    type: String,
+    type: String as PropType<LooseAutocomplete<Transitions>>,
     default: 'fade',
   },
 })
@@ -75,7 +77,7 @@ watch(direction, value => {
       tag="div"
       :class="`${props.transition}-group`"
       class="a-views-wrapper relative"
-      :name="props.transition"
+      :name="props.transition as string"
     >
       <slot>
         <template

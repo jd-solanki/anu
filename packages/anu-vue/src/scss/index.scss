@@ -92,6 +92,33 @@ $transition-name: 'slide-y';
   }
 }
 
+// 👉 Slide Y Reverse
+$transition-name: 'slide-y-reverse';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: var(--#{$transition-name}-opacity, 0);
+    transform: translateY(var(--#{$transition-name}-translateY, -8px)) !important;
+  }
+
+  // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
 // 👉 Scroll Y
 $transition-name: 'scroll-y';
 .#{$transition-name} {
@@ -144,33 +171,6 @@ $transition-name: 'scroll-y-reverse';
   }
 
     // Transition group
-  @at-root {
-    &-group {
-      .#{$transition-name}-leave-active {
-        position: absolute;
-        inset: 0;
-      }
-    }
-  }
-}
-
-// 👉 Slide Y Reverse
-$transition-name: 'slide-y-reverse';
-.#{$transition-name} {
-  &-move,
-  &-enter-active,
-  &-leave-active {
-    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
-      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
-  }
-
-  &-enter-from,
-  &-leave-to {
-    opacity: var(--#{$transition-name}-opacity, 0);
-    transform: translateY(var(--#{$transition-name}-translateY, -8px)) !important;
-  }
-
-  // Transition group
   @at-root {
     &-group {
       .#{$transition-name}-leave-active {

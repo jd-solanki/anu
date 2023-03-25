@@ -26,16 +26,21 @@ const tabs = [
         :tabs="tabs"
         transition="view-next"
       >
+        <!-- 👉 Account -->
         <template #account>
           <div class="a-card-body">
             Bear claw sweet dessert sweet chocolate bar sesame snaps shortbread.
           </div>
         </template>
+
+        <!-- 👉 Notifications -->
         <template #notifications>
           <div class="a-card-body">
             Lollipop marzipan cotton candy pie macaroon wafer jelly beans shortbread.
           </div>
         </template>
+
+        <!-- 👉 Settings -->
         <template #settings>
           <div class="a-card-body">
             Pastry biscuit tart I love gummies wafer oat cake.

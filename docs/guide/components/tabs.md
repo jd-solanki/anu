@@ -1,3 +1,8 @@
+<script lang="ts" setup>
+import tabApi from '@anu/component-meta/ATab.json';
+import tabsApi from '@anu/component-meta/ATabs.json';
+</script>
+
 # Tabs
 
 <!-- 👉 Basic -->
@@ -25,7 +30,7 @@ You can use `icon` property to render the icon with the tab title.
 Additionally, you can also use `stacked-tabs` boolean prop to stack the tabs vertically.
 
 :::code DemoTabsIcons
-<<< @/components/demos/tabs/DemoTabsIcons.vue
+<<< @/components/demos/tabs/DemoTabsIcons.vue{13-18,38}
 :::
 
 ::::
@@ -40,7 +45,7 @@ Use icon only tabs in mobile devices for better user experience.
 You can use `v-model` to bind the value of the selected tab.
 
 :::code DemoTabsVModelSupport
-<<< @/components/demos/tabs/DemoTabsVModelSupport.vue
+<<< @/components/demos/tabs/DemoTabsVModelSupport.vue{15}
 :::
 
 ::::
@@ -51,7 +56,7 @@ You can use `v-model` to bind the value of the selected tab.
 Use `vertical` prop to render the vertical tabs.
 
 :::code DemoTabsVertical
-<<< @/components/demos/tabs/DemoTabsVertical.vue
+<<< @/components/demos/tabs/DemoTabsVertical.vue{13}
 :::
 
 ::::
@@ -59,7 +64,9 @@ Use `vertical` prop to render the vertical tabs.
 <!-- 👉 Arrows -->
 ::::card Arrows
 
-description
+If you have more tabs than the available space, `ATabs` will automatically add the arrows to navigate between tabs.
+
+If you noticed from below example, Anu added [scroll snapping](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap/Basic_concepts) features to tab navigation so the tabs will snap to the nearest tab when you scroll via arrows.
 
 :::code DemoTabsArrows
 <<< @/components/demos/tabs/DemoTabsArrows.vue
@@ -67,16 +74,30 @@ description
 
 ::::
 
+:::tip Great UX
+As scroll snapping is enabled, users will no longer have to fight with the scroll to avoid cutting off the tab title.
+
+Anu might be the first UI library to implement scroll snapping in tabs. <i class="i-fluent-emoji-sparkles"></i>
+:::
+
 <!-- 👉 With Views -->
 ::::card With Views
 
-description
+`ATabs` uses `AViews` component under the hood to render the tab content. Use dynamically created slots to render the tab content.
+
+If you are passing array of strings to the `tabs` prop, you can use that string as the slot name to render the tab content. e.g. `<template #title>`
+
+If you are passing array of object that doesn't has `value` property to the `tabs` prop, you can use index as the slot name to render the tab content. e.g. `<template #1>`
 
 :::code DemoTabsWithViews
-<<< @/components/demos/tabs/DemoTabsWithViews.vue{24-44}
+<<< @/components/demos/tabs/DemoTabsWithViews.vue{24-49}
 :::
 
 ::::
+
+:::tip DX Improved 🚀
+Comparing other frameworks, You don't have to write a separate component for each tab. You can just use dynamic slot to render the tab content.
+:::
 
 <!-- 👉 Dynamic Tabs -->
 <!-- ::::card Dynamic Tabs
@@ -88,3 +109,9 @@ description
 :::
 
 :::: -->
+
+<!-- 👉 API -->
+## API
+
+<Api title="Tabs" :api="tabsApi" class="mb-8"></Api>
+<Api title="Tab" :api="tabApi"></Api>
