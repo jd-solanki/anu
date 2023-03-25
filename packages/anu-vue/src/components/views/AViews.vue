@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { SwipeDirection } from '@vueuse/core'
 import type { VNode } from 'vue'
 import { h } from 'vue'
 import { ActiveViewSymbol, ViewGroupModel } from './symbol'
@@ -22,6 +23,14 @@ const props = defineProps({
     default: 'fade',
   },
 })
+
+const emit = defineEmits<{
+
+  /**
+   * Emitted when the view is swiped
+   */
+  (e: 'swipe', direction: SwipeDirection): void
+}>()
 
 defineOptions({
   name: 'AViews',
@@ -47,10 +56,21 @@ watch(() => props.modelValue, value => groupModel.select(value))
 // ℹ️ Inject active tab so we don't have to use `v-model` on `ATabs` and `AViews`
 provide(ActiveViewSymbol, activeTab)
 provide(ViewGroupModel, groupModel)
+
+// Swipe
+const refViews = ref()
+const { direction } = useSwipe(refViews)
+watch(direction, value => {
+  if (value)
+    emit('swipe', value)
+})
 </script>
 
 <template>
-  <div class="a-views overflow-hidden">
+  <div
+    ref="refViews"
+    class="a-views overflow-hidden"
+  >
     <TransitionGroup
       tag="div"
       :class="`${props.transition}-group`"

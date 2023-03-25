@@ -39,6 +39,14 @@ export const tabsProps = {
     default: false,
   },
 
+  /**
+   * Hide tab title on mobile
+   */
+  hideTitleOnMobile: {
+    type: Boolean,
+    default: false,
+  },
+
   transition: {
     type: String,
     default: 'view-next',

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { SwipeDirection } from '@vueuse/core'
 import type { TabsProps } from './props'
 import { tabsProps } from './props'
 import { TabBindingsSymbol } from './symbol'
@@ -155,7 +156,7 @@ onMounted(() => {
 })
 
 // Arrow navigation & Scroll snapping
-const scrollSnapAlign = refAutoReset<'start' | 'end' | undefined>(undefined, 1500)
+const scrollSnapAlign = refAutoReset<'start' | 'end' | 'center' | undefined>(undefined, 1500)
 const scrollForward = async () => {
   scrollSnapAlign.value = 'end'
   await nextTick()
@@ -193,6 +194,46 @@ watch(() => props.tabs.length, () => {
     calculateActiveIndicatorStyle()
   })
 })
+
+// SECTION: Swipe navigation
+useSwipe(refTabsWrapper, {
+  threshold: 10,
+  onSwipe: useDebounceFn(() => {
+    scrollSnapAlign.value = 'center'
+  }),
+})
+
+const handleTabsContentSwipe = useDebounceFn((direction: SwipeDirection) => {
+  // ℹ️ Flag to check if the next tab is found because forEach doesn't support `break` statement
+  let nextTabFound = false
+
+  /**
+   * Loop over `options` and find the index of the active tab
+   * Then, check if the direction is left or right and navigate accordingly
+   */
+  options.value.forEach((option, index) => {
+    if (nextTabFound || option.value !== activeTab.value)
+      return
+
+    if (direction === SwipeDirection.LEFT) {
+      const nextTabIndex = index + 1
+      if (nextTabIndex < options.value.length) {
+        nextTabFound = true
+        handleTabClick(props.tabs[nextTabIndex], nextTabIndex)
+      }
+    }
+
+    else if (direction === SwipeDirection.RIGHT) {
+      const prevTabIndex = index - 1
+      if (prevTabIndex >= 0) {
+        nextTabFound = true
+        handleTabClick(props.tabs[prevTabIndex], prevTabIndex)
+      }
+    }
+  })
+})
+
+// !SECTION
 </script>
 
 <template>
@@ -235,6 +276,7 @@ watch(() => props.tabs.length, () => {
             v-bind="typeof tab === 'string' ? { title: tab } : tab"
             :class="[tabJustifyClasses.tabClasses]"
             :stacked="props.stackedTabs"
+            :hide-title-on-mobile="props.hideTitleOnMobile"
             :style="{
               scrollSnapAlign,
             }"
@@ -269,6 +311,7 @@ watch(() => props.tabs.length, () => {
       <AViews
         v-model="activeTab"
         :transition="transition"
+        @swipe="handleTabsContentSwipe"
       >
         <AView
           v-for="(option, index) in options"

@@ -1,10 +1,20 @@
 <script lang="ts" setup>
+import { breakpointsTailwind } from '@vueuse/core'
 import { tabProps } from './props'
 
 const props = defineProps(tabProps)
 
 defineOptions({
   name: 'ATab',
+})
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const isBpSmall = breakpoints.smaller('sm')
+const shouldHideTitle = computed(() => {
+  if (props.hideTitleOnMobile) {
+    if (props.icon)
+      return isBpSmall
+  }
 })
 </script>
 
@@ -24,7 +34,7 @@ defineOptions({
     </slot>
 
     <p
-      v-if="props.title"
+      v-if="props.title && !shouldHideTitle"
       class="a-tab-title whitespace-nowrap"
     >
       {{ props.title }}
