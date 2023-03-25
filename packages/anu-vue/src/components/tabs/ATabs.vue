@@ -198,18 +198,21 @@ watch(() => props.tabs.length, () => {
 <template>
   <div
     class="a-tabs relative"
-    :class="[props.vertical && 'a-tabs-vertical']"
+    :class="[
+      props.vertical ? 'a-tabs-vertical' : 'a-tabs-horizontal',
+      shouldShowArrows && 'a-tabs-with-arrows',
+    ]"
   >
     <!-- 👉 Previous arrow -->
     <div
       v-if="shouldShowArrows"
-      class="a-tabs-navigation-arrow-wrapper w-8 absolute top-0 left-0 grid h-full place-items-center cursor-pointer"
+      class="a-tabs-navigation-arrow-wrapper absolute top-0 left-0 grid h-full place-items-center cursor-pointer"
       :class="[
         !isLeftNavArrowEnabled && 'opacity-50 pointer-events-none',
       ]"
       @click="scrollBackward"
     >
-      <div class="a-tabs-navigation-arrow-previous i-bx-left-arrow-alt" />
+      <div class="a-tabs-navigation-arrow-previous" />
     </div>
     <!-- TODO: align mx-8 amd w-8 & calc -->
     <div
@@ -220,7 +223,6 @@ watch(() => props.tabs.length, () => {
         tabJustifyClasses.tabsWrapperClasses,
         props.vertical && 'flex-col',
         props.vertical ? 'inline-flex items-start' : 'flex items-center',
-        shouldShowArrows && 'mx-8 max-w-[calc(100%-4rem)]',
       ]"
       @scroll="handleScroll"
     >
@@ -240,8 +242,8 @@ watch(() => props.tabs.length, () => {
       </slot>
 
       <div
-        class="a-active-indicator absolute bg-primary bottom-0 transition-all duration-200 ease-in-out will-change-transform,width,height"
-        :class="[props.vertical ? 'w-2px right-0 top-0' : 'left-0 h-2px']"
+        class="a-tabs-active-indicator absolute"
+        :class="[props.vertical ? 'right-0 top-0' : 'left-0']"
         :style="activeIndicatorStyle"
       />
     </div>
@@ -249,13 +251,13 @@ watch(() => props.tabs.length, () => {
     <!-- 👉 Next arrow -->
     <div
       v-if="shouldShowArrows"
-      class="a-tabs-navigation-arrow-wrapper w-8 absolute top-0 right-0 grid h-full place-items-center cursor-pointer"
+      class="a-tabs-navigation-arrow-wrapper absolute top-0 right-0 grid h-full place-items-center cursor-pointer"
       :class="[
         !isRightNavArrowEnabled && 'opacity-50 pointer-events-none',
       ]"
       @click="scrollForward"
     >
-      <div class="a-tabs-navigation-arrow-previous i-bx-right-arrow-alt" />
+      <div class="a-tabs-navigation-arrow-previous" />
     </div>
 
     <div class="a-tabs-content">
@@ -279,13 +281,13 @@ watch(() => props.tabs.length, () => {
 <style lang="scss">
 .a-tabs-wrapper {
   &::-webkit-scrollbar {
-  display: none;
-}
+    display: none;
+  }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-& {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
+  /* Hide scrollbar for IE, Edge and Firefox */
+  & {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
 </style>

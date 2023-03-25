@@ -54,7 +54,7 @@ provide(ViewGroupModel, groupModel)
     <TransitionGroup
       tag="div"
       :class="`${props.transition}-group`"
-      class="relative"
+      class="a-views-wrapper relative"
       :name="props.transition"
     >
       <slot>

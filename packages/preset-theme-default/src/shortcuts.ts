@@ -159,8 +159,13 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-data-table-pagination-navigation': '[&_.a-data-table-paginate-previous]-!rounded-full em:[&_.a-data-table-paginate-previous]-spacing:me-2 [&_.a-data-table-paginate-next]-!rounded-full em:spacing:gap-x-2',
 
     // 👉 Tabs
-    'a-tab': 'text-center em:spacing:px-5 em:spacing:py-3',
-    'a-tabs': '[&.a-tabs-bordered:not(.a-tabs-vertical)_.a-tabs-wrapper]-border-b [&.a-tabs-bordered_.a-tabs-wrapper]-border-a-border [&.a-tabs-bordered.a-tabs-vertical_.a-tabs-wrapper]-border-r [&.a-tabs-bordered.a-tabs-vertical_.a-tabs-wrapper]-border-a-border',
+    'a-tabs': 'border-b border-b-red [--a-tabs-arrow-spacing:2em]',
+    'a-tabs-wrapper': '[.a-tabs-bordered_&]-border-a-border [.a-tabs-horizontal_&]-border-b [.a-tabs-bordered.a-tabs-vertical_&]-border-r [.a-tabs-with-arrows_&]-mx-$a-tabs-arrow-spacing [.a-tabs-with-arrows_&]-max-w-[calc(100%-(var(--a-tabs-arrow-spacing)/2))]',
+    'a-tab': 'text-center em:spacing:px-5 em:spacing:py-3 em:gap-2',
+    'a-tabs-navigation-arrow-wrapper': 'w-$a-tabs-arrow-spacing',
+    'a-tabs-active-indicator': 'bg-primary bottom-0 transition-all duration-200 ease-in-out will-change-transform,width,height [.a-tabs-vertical_&]-w-2px [.a-tabs:not(.a-tabs-vertical)_&]-h-2px',
+    'a-tabs-navigation-arrow-previous': 'i-bx-left-arrow-alt',
+    'a-tabs-navigation-arrow-next': 'i-bx-right-arrow-alt',
 
     // 👉 Textarea
     'a-textarea': '[&_.a-base-input-input-wrapper]-px-0',

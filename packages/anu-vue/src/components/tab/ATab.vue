@@ -10,7 +10,7 @@ defineOptions({
 
 <template>
   <div
-    class="a-tab flex justify-center items-center gap-2 cursor-pointer"
+    class="a-tab flex justify-center items-center cursor-pointer"
     :class="[
       props.disabled && 'a-tab-disabled opacity-50 pointer-events-none',
       props.stacked && 'flex-col',
