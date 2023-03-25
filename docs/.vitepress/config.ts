@@ -51,6 +51,7 @@ export default defineConfig({
             { text: 'Arbitrary Sizes', link: '/guide/features/arbitrary-sizes' },
             { text: 'Spacing', link: '/guide/features/spacing' },
             { text: 'Theme', link: '/guide/features/theme' },
+            { text: 'Transitions', link: '/guide/features/transitions' },
           ],
         },
         {
@@ -74,8 +75,10 @@ export default defineConfig({
             { text: 'Select', link: '/guide/components/select' },
             { text: 'Switch', link: '/guide/components/switch' },
             { text: 'Table', link: '/guide/components/table' },
+            { text: 'Tabs', link: '/guide/components/tabs' },
             { text: 'Textarea', link: '/guide/components/textarea' },
             { text: 'Tooltip', link: '/guide/components/tooltip' },
+            { text: 'Views', link: '/guide/components/views' },
           ],
         },
         {

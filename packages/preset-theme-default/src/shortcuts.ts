@@ -119,7 +119,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-loader': '[&.a-loader-full-page]-text-4xl',
 
     // 👉 Menu
-    'a-menu': 'z-[51] shadow-xl [--a-transition-slide-up-transform:10px]',
+    'a-menu': 'z-[51] shadow-xl [--slide-y-translateY:10px]',
 
     // 👉 Rating
     'a-rating': 'text-xl',
@@ -131,7 +131,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-radio-disabled': 'opacity-50',
 
     // 👉 Select
-    'a-select-floating': '[--a-transition-slide-up-transform:6px]',
+    'a-select-floating': '[--slide-y-translateY:6px]',
     'a-select-options-container': 'z-10',
     'a-select-options-list': 'spacing-75',
 
@@ -157,6 +157,21 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-data-table-per-page': '[&_.a-base-input-input-wrapper]-rounded-0 [&_.a-base-input-input-wrapper]-!border-transparent [&_.a-base-input-input-wrapper]-!border-b-a-border [&_.a-base-input-root]-max-w-[70px]',
     'a-data-table-per-page-select--options-wrapper-classes': 'em:text-sm', // ℹ️ optionsWrapperClasses prop
     'a-data-table-pagination-navigation': '[&_.a-data-table-paginate-previous]-!rounded-full em:[&_.a-data-table-paginate-previous]-spacing:me-2 [&_.a-data-table-paginate-next]-!rounded-full em:spacing:gap-x-2',
+
+    // 👉 Tabs
+    'a-tabs': '[--a-tabs-arrow-spacing:2.5em]',
+    'a-tabs-header': '[.a-tabs-vertical_&]-w-min',
+    'a-tabs-wrapper': '[.a-tabs-with-arrows_&]-mx-$a-tabs-arrow-spacing [.a-tabs-with-arrows_&]-max-w-[calc(100%-(var(--a-tabs-arrow-spacing)/2))]',
+    'a-tabs-navigation-arrow-wrapper': 'w-$a-tabs-arrow-spacing',
+    'a-tabs-active-indicator': 'bg-primary bottom-0 transition-all duration-200 ease-in-out will-change-transform,width,height [.a-tabs-vertical_&]-w-2px [.a-tabs.a-tabs-horizontal_&]-h-2px',
+
+    'a-tabs-bordered': '[&_.a-tabs-header]-border-a-border [&.a-tabs-horizontal_.a-tabs-header]-border-b [&.a-tabs-vertical_.a-tabs-header]-border-r',
+
+    'a-tab': 'text-center em:spacing:px-5 em:spacing:py-3 em:gap-2',
+    'a-tab-title ': 'capitalize',
+
+    'a-tabs-navigation-arrow-previous': 'i-bx-left-arrow-alt',
+    'a-tabs-navigation-arrow-next': 'i-bx-right-arrow-alt',
 
     // 👉 Textarea
     'a-textarea': '[&_.a-base-input-input-wrapper]-px-0',

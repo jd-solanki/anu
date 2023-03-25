@@ -131,7 +131,7 @@ defineExpose({
     :to="teleportTarget"
   >
     <!-- ℹ️ Transition component don't accept null as value of name prop so we need `props.transition || undefined` -->
-    <Transition :name="props.transition || undefined">
+    <Transition :name="props.transition as any || undefined">
       <div
         v-show="isFloatingElVisibleDebounced"
         v-bind="$attrs"

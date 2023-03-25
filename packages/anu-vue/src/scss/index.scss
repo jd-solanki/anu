@@ -1,6 +1,6 @@
 /*
   Prevent scroll lock
-  
+
   Thanks: Quasar.
   I have also taken inspiration from Quasar framework which makes it super easy to handle scrollbar jerk
 */
@@ -14,14 +14,358 @@ html.scroll-lock {
 // SECTION Transitions
 
 // 👉 Fade
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.15s ease-in-out;
+$transition-name: 'fade';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: var(--#{$transition-name}-opacity, 0);
+  }
+
+  // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
 }
 
-.fade-enter-from,
-.fade-leave-to {
+// 👉 Scale
+$transition-name: 'scale';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: var(--#{$transition-name}-opacity, 0);
+    transform: scale(var(--#{$transition-name}-scale, 0.8)) !important;
+  }
+
+  // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
+// 👉 Slide Y
+$transition-name: 'slide-y';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: var(--#{$transition-name}-opacity, 0);
+    transform: translateY(var(--#{$transition-name}-translateY, 8px)) !important;
+  }
+
+  // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
+// 👉 Slide Y Reverse
+$transition-name: 'slide-y-reverse';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: var(--#{$transition-name}-opacity, 0);
+    transform: translateY(var(--#{$transition-name}-translateY, -8px)) !important;
+  }
+
+  // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
+// 👉 Scroll Y
+$transition-name: 'scroll-y';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from {
+    opacity: var(--#{$transition-name}-from-opacity, 0);
+    transform: translateY(var(--#{$transition-name}-from-translateY, 8px)) !important;
+  }
+
+  &-leave-to {
+    opacity: var(--#{$transition-name}-to-opacity, 0);
+    transform: translateY(var(--#{$transition-name}-to-translateY, -8px)) !important;
+  }
+
+    // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
+// 👉 Scroll Y Reverse
+$transition-name: 'scroll-y-reverse';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from {
+    opacity: var(--#{$transition-name}-from-opacity, 0);
+    transform: translateY(var(--#{$transition-name}-from-translateY, -8px)) !important;
+  }
+
+  &-leave-to {
+    opacity: var(--#{$transition-name}-to-opacity, 0);
+    transform: translateY(var(--#{$transition-name}-to-translateY, 8px)) !important;
+  }
+
+    // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
+// 👉 Slide X
+$transition-name: 'slide-x';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: var(--#{$transition-name}-opacity, 0);
+    transform: translateX(var(--#{$transition-name}-translateX, -8px)) !important;
+  }
+
+  // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
+// 👉 Slide X Reverse
+$transition-name: 'slide-x-reverse';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: var(--#{$transition-name}-opacity, 0);
+    transform: translateX(var(--#{$transition-name}-translateX, 8px)) !important;
+  }
+
+  // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
+// 👉 Scroll X
+$transition-name: 'scroll-x';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from {
+    opacity: var(--#{$transition-name}-from-opacity, 0);
+    transform: translateX(var(--#{$transition-name}-from-translateX, -8px)) !important;
+  }
+
+  &-leave-to {
+    opacity: var(--#{$transition-name}-to-opacity, 0);
+    transform: translateX(var(--#{$transition-name}-to-translateX, 8px)) !important;
+  }
+
+    // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
+// 👉 Scroll X Reverse
+$transition-name: 'scroll-x-reverse';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1)),
+      opacity var(--#{$transition-name}-opacity-duration, 0.15s) var(--#{$transition-name}-opacity-timing, ease-in-out);
+  }
+
+  &-enter-from {
+    opacity: var(--#{$transition-name}-from-opacity, 0);
+    transform: translateX(var(--#{$transition-name}-from-translateX, 8px)) !important;
+  }
+
+  &-leave-to {
+    opacity: var(--#{$transition-name}-to-opacity, 0);
+    transform: translateX(var(--#{$transition-name}-to-translateX, -8px)) !important;
+  }
+
+    // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+
+// 👉 Dialog
+.dialog-enter-active {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.18s cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+.dialog-leave-active {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.dialog-enter-from,
+.dialog-leave-to {
   opacity: 0;
+  transform: scale(0.45) !important;
+}
+
+// 👉 View (component)
+$transition-name: 'view-next';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1));
+  }
+
+  &-enter-from {
+    transform: translateX(var(--#{$transition-name}-from-translateX, 100%)) !important;
+  }
+
+  &-leave-to {
+    transform: translateX(var(--#{$transition-name}-to-translateX, -100%)) !important;
+  }
+
+  // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+}
+$transition-name: 'view-previous';
+.#{$transition-name} {
+  &-move,
+  &-enter-active,
+  &-leave-active {
+    transition: transform var(--#{$transition-name}-transform-duration, 0.35s) var(--#{$transition-name}-transform-timing, cubic-bezier(0.33, 1, 0.68, 1));
+  }
+
+  &-enter-from {
+    transform: translateX(var(--#{$transition-name}-from-translateX, -100%)) !important;
+  }
+
+  &-leave-to {
+    transform: translateX(var(--#{$transition-name}-to-translateX, 100%)) !important;
+  }
+
+  // Transition group
+  @at-root {
+    &-group {
+      .#{$transition-name}-leave-active {
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
 }
 
 // 👉 Bg
@@ -35,73 +379,5 @@ html.scroll-lock {
   background-color: transparent !important;
 }
 
-// 👉 Slide up
-.slide-up-enter-active,
-.slide-up-leave-active {
-  transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1),
-    opacity 0.15s ease-in-out;
-}
-
-.slide-up-enter-from,
-.slide-up-leave-to {
-  opacity: 0;
-  transform: translateY(var(--a-transition-slide-up-transform, 25px)) !important;
-}
-
-// 👉 Slide down
-.slide-down-enter-active,
-.slide-down-leave-active {
-  transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1),
-    opacity 0.15s ease-in-out;
-}
-
-.slide-down-enter-from,
-.slide-down-leave-to {
-  opacity: 0;
-  transform: translateY(-100%) !important;
-}
-
-// 👉 Slide right
-.slide-right-enter-active,
-.slide-right-leave-active {
-  transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1),
-    opacity 0.15s ease-in-out;
-}
-
-.slide-right-enter-from,
-.slide-right-leave-to {
-  opacity: 0;
-  transform: translateX(100%) !important;
-}
-
-// 👉 Slide left
-.slide-left-enter-active,
-.slide-left-leave-active {
-  transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1),
-    opacity 0.15s ease-in-out;
-}
-
-.slide-left-enter-from,
-.slide-left-leave-to {
-  opacity: 0;
-  transform: translateX(-100%) !important;
-}
-
-// 👉 Scale
-.scale-enter-active {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.18s cubic-bezier(0.5, 1, 0.89, 1);
-}
-
-.scale-leave-active {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.25s cubic-bezier(0, 0.55, 0.45, 1);
-}
-
-.scale-enter-from,
-.scale-leave-to {
-  opacity: 0;
-  transform: scale(0.45) !important;
-}
-
 // !SECTION
+

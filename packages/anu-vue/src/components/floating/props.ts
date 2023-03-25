@@ -1,5 +1,7 @@
 import type { Middleware, Placement, Strategy } from '@floating-ui/vue'
 import type { ExtractPropTypes, PropType, Ref } from 'vue'
+import type { Transitions } from '@/transitions'
+import type { LooseAutocomplete } from '@/utils/typescripts'
 
 export const floatingProps = {
   referenceEl: {
@@ -50,8 +52,8 @@ export const floatingProps = {
    * Transition to add while showing/hiding floating element
    */
   transition: {
-    type: [String, null] as PropType<string | null>,
-    default: 'slide-up',
+    type: [String, null] as PropType<LooseAutocomplete<Transitions> | null>,
+    default: 'slide-y',
   },
 
   // -- Floating UI based Props

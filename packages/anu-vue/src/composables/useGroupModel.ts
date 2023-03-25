@@ -4,12 +4,12 @@ import { computed, ref, toRaw, unref, watch } from 'vue'
 
 // TODO: Improve typings
 
-interface ComposableParams<T> {
+export interface ComposableParams<T> {
   multi?: MaybeComputedRef<boolean>
   options: T[] | number
 }
 
-interface OptionsOut<T> {
+export interface OptionsOut<T> {
   value: T
   isSelected: ComputedRef<boolean>
 }

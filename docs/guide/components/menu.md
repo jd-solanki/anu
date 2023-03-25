@@ -53,7 +53,7 @@ Default value is `false`, it will close the menu on any click. Set it to `true` 
 <!-- 👉 Transition -->
 ::::card Transition
 
-`AMenu` also support transition. Default transition is `slide-up`. Set it to available transition to use different transition. e.g. `transition="fade"`.
+`AMenu` also support transition. Default transition is `slide-y`. Set it to available transition to use different transition. e.g. `transition="fade"`.
 
 To disable the transition you can set `transition` prop to `null`.
 

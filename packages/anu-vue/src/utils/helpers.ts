@@ -34,6 +34,10 @@ export const removeKeys = <T, K extends keyof T>(obj: T, keys: K[]): Prettify<Om
   return copy
 }
 
+export const clampNumber = (num: number, min: number, max: number) => Math.min(Math.max(num, min), max)
+
+export const capitalize = (str: string) => str[0].toUpperCase() + str.slice(1)
+
 export const prefixObjectKeys = <T extends Record<string, any>, P extends string>(
   obj: T,
   prefix: P,

@@ -55,7 +55,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
         v-show="props.modelValue"
         class="a-dialog-wrapper grid place-items-center fixed inset-0 bg-[hsla(var(--a-backdrop-c),var(--a-backdrop-opacity))]"
       >
-        <Transition name="scale">
+        <Transition name="dialog">
           <ACard
             v-show="props.modelValue"
             ref="refCard"

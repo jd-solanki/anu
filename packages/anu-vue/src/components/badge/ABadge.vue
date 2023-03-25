@@ -132,7 +132,7 @@ const positionStyles = computed(() => {
 <template>
   <div class="a-badge-wrapper relative">
     <slot />
-    <Transition name="scale">
+    <Transition name="dialog">
       <div
         v-show="props.modelValue"
         v-bind="$attrs"
