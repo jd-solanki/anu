@@ -1,63 +1,42 @@
 /* Styles adjusting VitePress according to theme */
 :root {
-    --vp-background: 0, 0%, 100%;
-    --vp-c-text-1: hsla(var(--a-base-c), var(--a-text-emphasis-medium-opacity));
-    --vp-c-bg: hsl(var(--vp-background));
-    --vp-c-bg-alt: hsl(var(--vp-background));
 
-    /* Branding */
-    --vp-brand-hue: 265;
-    --vp-c-brand-lighter: hsl(var(--vp-brand-hue), 97%, 75%);
-    --vp-c-brand-light: hsl(var(--vp-brand-hue), 97%, 70%);
-    --vp-c-brand: hsl(var(--vp-brand-hue), 97%, 66%);
-    --vp-c-brand-dark: hsl(var(--vp-brand-hue), 97%, 60%);
-    --vp-c-brand-darker: hsl(var(--vp-brand-hue), 97%, 55%);
+  /* Background colors */
+  --vp-background: #f5f4f4;
+  --vp-c-bg: var(--vp-background);
+  --vp-c-bg-alt: var(--vp-background);
+  --vp-sidebar-bg-color: var(--vp-background);
 
-    /* We need this because menu component has 51 index which overlaps on navbar on scroll */
-    --vp-z-index-nav: 52;
+  /* Text color */
+  --vp-c-text-1: hsla(var(--a-base-c), var(--a-text-emphasis-medium-opacity));
+
+  /* Font family */
+  --vp-font-family-base: 'Inter', sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', monospace;
+
+  /* Branding */
+  --vp-c-brand-lighter: hsl(var(--a-primary-hue), 97%, 75%);
+  --vp-c-brand-light: hsl(var(--a-primary-hue), 97%, 70%);
+  --vp-c-brand: hsl(var(--a-primary-hue), 97%, 66%);
+  --vp-c-brand-dark: hsl(var(--a-primary-hue), 97%, 60%);
+  --vp-c-brand-darker: hsl(var(--a-primary-hue), 97%, 55%);
+
+  /* We need this because menu component has 51 index which overlaps on navbar on scroll */
+  /* --vp-z-index-nav: 52; */
+
+  --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 40%);
 }
 
 :root.dark {
-    /* Branding */
-    --vp-brand-hue: 261;
-    --vp-c-brand-lighter: hsl(var(--vp-brand-hue), 73%, 75%);
-    --vp-c-brand-light: hsl(var(--vp-brand-hue), 73%, 70%);
-    --vp-c-brand: hsl(var(--vp-brand-hue), 73%, 66%);
-    --vp-c-brand-dark: hsl(var(--vp-brand-hue), 73%, 60%);
-    --vp-c-brand-darker: hsl(var(--vp-brand-hue), 73%, 55%);
-}
+  /* Branding */
+  --a-primary-hue: 261;
+  --vp-c-brand-lighter: hsl(var(--a-primary-hue), 73%, 75%);
+  --vp-c-brand-light: hsl(var(--a-primary-hue), 73%, 70%);
+  --vp-c-brand: hsl(var(--a-primary-hue), 73%, 66%);
+  --vp-c-brand-dark: hsl(var(--a-primary-hue), 73%, 60%);
+  --vp-c-brand-darker: hsl(var(--a-primary-hue), 73%, 55%);
 
-/* ==========================
-SECTION VitePress
-========================== */
-
-#VPSidebarNav .group+.group {
-    border-top: none !important;
-}
-
-.VPNavBarTitle {
-    border-bottom: none !important;
-}
-
-@media (min-width: 960px) {
-    .VPNavBar>.container {
-        border-bottom: thin solid hsla(var(--a-base-c), var(--a-border-opacity));
-    }
-}
-
-.no-sidebar .VPNavBar .container {
-    border-bottom-color: transparent;
-}
-
-@media (min-width: 960px) {
-    .VPNavBar .content {
-        /* background: hsla(250, 10%, 6%, .7) !important; */
-        background: hsla(var(--vp-background), 0.7) !important;
-    }
-}
-
-.dark .VPNav.no-sidebar {
-    background-color: transparent !important;
+  --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 25%);
 }
 
 /* ==========================
@@ -65,50 +44,103 @@ SECTION VitePress
 ========================== */
 
 .VPNavBarSearch.search {
-    flex-grow: unset;
-    margin-inline-end: 2rem;
+  flex-grow: unset;
+  margin-inline-end: 2rem;
 }
 
 @media (min-width: 768px) {
-    .VPNavBarSearch .DocSearch.DocSearch-Button {
-        background-color: hsla(var(--a-base-c), 0.04) !important;
-    }
+  .VPNavBarSearch .DocSearch.DocSearch-Button {
+    background-color: hsla(var(--a-base-c), 0.045) !important;
+  }
 }
 
 /* ==========================
-👉 Sidebar scrollbar style
+👉 Navbar
 ========================== */
 
-.VPSidebar::-webkit-scrollbar {
-    display: none;
-    scrollbar-width: none;
+/* Add border bottom instead of shadow */
+.VPNav {
+  border-bottom: thin solid hsla(var(--a-base-c), var(--a-border-opacity));
 }
 
-/*
-    Enable below style for styled scrollbar
-*/
-/* .VPSidebar::-webkit-scrollbar {
-    background: rgb(var(--a-layer-c));
-    block-size: 8px;
-    border-end-end-radius: 14px;
-    border-start-end-radius: 14px;
-    inline-size: 8px;
-} */
+/* Remove shadow effect on scroll */
+.VPNavBar .curtain {
+  display: none;
+}
+
+/* There's height - 1 in VitePress site for maybe shadow, Use actual height */
+.VPNavBar .content-body {
+  height: var(--vp-nav-height);
+}
+
+/* Remove border bottom from title in navbar */
+.VPNavBarTitle.has-sidebar .title {
+  border-bottom: none;
+}
+
+/* Remove double border in mobile */
+.VPNavBar.has-sidebar {
+  border-bottom: none;
+}
+
+/* ==========================
+👉 Sidebar
+========================== */
+
+/* Custom scrollbar */
+.VPSidebar::-webkit-scrollbar {
+  background: rgb(var(--a-layer-c));
+  block-size: 8px;
+  border-end-end-radius: 14px;
+  border-start-end-radius: 14px;
+  inline-size: 8px;
+}
 
 /* Track */
-/* .VPSidebar::-webkit-scrollbar-track {
-    background: transparent;
-} */
+.VPSidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
 
 /* Handle */
-/* .VPSidebar::-webkit-scrollbar-thumb {
-    background: hsl(0, 0%, 10%);
-    border-radius: 0.5rem;
-} */
+.VPSidebar::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 90%);
+  border-radius: 0.5rem;
+}
 
-/* .VPSidebar::-webkit-scrollbar-corner {
-    display: none;
-} */
+.VPSidebar::-webkit-scrollbar-corner {
+  display: none;
+}
+
+/* Add border on right */
+.VPSidebar {
+  border-right: thin solid hsla(var(--a-base-c), var(--a-border-opacity));
+}
+
+/* Make sidebar starts from bottom of navbar */
+@media (min-width: 960px) {
+  .VPSidebar {
+    padding-top: 0 !important;
+    margin-top: var(--vp-nav-height);
+  }
+}
+
+/* Shift links due to emoji */
+.VPSidebar .VPLink {
+  transform: translateX(28px);
+}
+
+/* Hide scrollbar when not hovering */
+.VPSidebar:not(:hover)::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.VPSidebar:not(:hover) {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
 
 
 /* ==========================
@@ -116,20 +148,25 @@ SECTION VitePress
 ========================== */
 
 :root.dark {
-    --vp-c-bg-alt: hsl(var(--vp-brand-hue), 0%, 6%);
-    --vp-code-line-highlight-color: hsl(0, 0%, 12%);
-    --vp-background: 0, 0%, 6%;
+  --vp-background: hsl(var(--a-primary-hue), 15%, 5%);
+  --vp-c-bg-alt: var(--vp-background);
+  --vp-code-line-highlight-color: hsl(0, 0%, 12%);
+}
+
+.dark .VPSidebar::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 10%);
+  border-radius: 0.5rem;
 }
 
 /* code blocks */
 .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
-    border: 1px solid transparent;
+  border: 1px solid transparent;
 }
 
 .dark .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
-    border: 1px solid hsla(var(--a-base-c), var(--a-border-opacity));
-    opacity: 0.85;
-    font-weight: 500;
+  border: 1px solid hsla(var(--a-base-c), var(--a-border-opacity));
+  opacity: 0.85;
+  font-weight: 500;
 }
 
 /* ==========================
@@ -137,13 +174,21 @@ SECTION VitePress
 ========================== */
 
 .cards-demo-container {
-    /* rounded-lg border-dashed border border-a-border p-8 bg-[hsla(var(--a-base-c), .05)] */
-    @apply rounded-lg border-dashed border border-a-border p-8;
-    background: hsla(var(--a-base-c), 0.05);
+  /* rounded-lg border-dashed border border-a-border p-8 bg-[hsla(var(--a-base-c), .05)] */
+  @apply rounded-lg border-dashed border border-a-border p-8;
+  background: hsla(var(--a-base-c), 0.05);
 }
 
 .dark .cards-demo-container {
-    background: hsla(var(--a-base-c), 0.01);
+  background: hsla(var(--a-base-c), 0.01);
+}
+
+/* ==========================
+👉 Typography
+========================== */
+
+.vp-doc h2:not(:where(.vp-raw *)) {
+  letter-spacing: inherit;
 }
 
 /* ==========================
@@ -151,20 +196,52 @@ SECTION VitePress
 ========================== */
 
 .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
-    border-radius: 8px !important;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
+  border-radius: 8px !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
-/* !SECTION */
+/* Custom scrollbar */
+.vp-doc [class*='language-'] pre:not(:where(.vp-raw *))::-webkit-scrollbar {
+  background: transparent;
+  block-size: 8px;
+  border-end-end-radius: 14px;
+  border-start-end-radius: 14px;
+  inline-size: 8px;
+}
 
-/* SECTION Home */
+/* Track */
+.vp-doc [class*='language-'] pre:not(:where(.vp-raw *))::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.vp-doc [class*='language-'] pre:not(:where(.vp-raw *))::-webkit-scrollbar-thumb {
+  background: var(--vp-code-scrollbar-thumb-bg);
+  border-radius: 0.5rem;
+}
+
+.vp-doc [class*='language-'] pre:not(:where(.vp-raw *))::-webkit-scrollbar-corner {
+  display: none;
+}
+
+
+/* ==========================
+👉 Home page
+========================== */
 .VPHome {
-    padding-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .VPHero.VPHomeHero .text {
-    color: hsla(var(--a-base-c), 0.87)
+  color: hsla(var(--a-base-c), 0.87)
 }
 
-/* !SECTION */
+
+/* ==========================
+👉 Misc
+========================== */
+
+.vp-doc>div>p>img:only-child {
+  border-radius: 6px;
+}

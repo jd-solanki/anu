@@ -18,21 +18,23 @@ Use `color` prop to change the button color.
 ::::
 
 <!-- 👉 Outlined -->
-::::card Outlined
+:::::card Outlined
 
 You can use `variant="outline"` to create outlined button.
 
-:::code DemoButtonOutlined
+::::code DemoButtonOutlined
 <<< @/components/demos/button/DemoButtonOutlined.vue{3,9,16,23,30}
-:::
-
 ::::
 
+::::after-demo
 :::details Customize `border-style` of outlined buttons
 To create outlined button with different border style just add relevant class.
 
 e.g. To create outline button with dashed border, add `border-dashed` class.
 :::
+::::
+
+:::::
 
 <!-- 👉 Light -->
 ::::card Light
@@ -57,17 +59,17 @@ Use `variant="text"` to create a text button.
 ::::
 
 <!-- 👉 Icons -->
-::::card Icons
+:::::card Icons
 
 You can use `icon` prop to render icon in button.
 
 Use `append-icon` prop to render icon after default slot.
 
-:::code DemoButtonIcons
+::::code DemoButtonIcons
 <<< @/components/demos/button/DemoButtonIcons.vue{4,10,17,23,33,41,49,57,67,75,83,91}
-:::
-
 ::::
+
+::::after-demo
 :::details You can also use default slot to render icon.
 
 ```vue{3}
@@ -80,6 +82,9 @@ Use `append-icon` prop to render icon after default slot.
 ```
 
 :::
+::::
+
+:::::
 
 <!-- 👉 Block -->
 ::::card Block
@@ -104,19 +109,21 @@ Use `icon-only` prop to render icon with icon only button.
 ::::
 
 <!-- 👉 Sizing -->
-::::card Sizing
+:::::card Sizing
 
 You can use font-size utility to adjust the size of button.
 
-:::code DemoButtonSizing
+::::code DemoButtonSizing
 <<< @/components/demos/button/DemoButtonSizing.vue{4,12,17}
-:::
-
 ::::
 
+::::after-demo
 :::tip
 If you have container with bigger font size and need default sized button use `text-base` class.
 :::
+::::
+
+:::::
 
 <!-- 👉 Roundness -->
 ::::card Roundness

@@ -7,10 +7,12 @@ body {
 }
 
 $body-color: hsla(var(--a-base-c), 0.68);
+$body-font-family: 'Inter', sans-serif;
+$header-font-family: $body-font-family;
 
 :root {
     // #region all-css-vars
-    --a-base-c: 0, 10%, 20%;
+    --a-base-c: var(--a-primary-hue), 10%, 20%;
 
     --a-spacing: 1;
 
@@ -19,7 +21,7 @@ $body-color: hsla(var(--a-base-c), 0.68);
 
     // ℹ️ Used for background on body like select options, card, etc
     --a-surface-c: 0, 0%, 100%;
-    
+
     --a-border-opacity: 0.12;
     --a-loader-overlay-bg-c: var(--a-theme-c);
     --a-loader-overlay-bg-opacity: 0.85;
@@ -69,7 +71,7 @@ $body-color: hsla(var(--a-base-c), 0.68);
 }
 
 :root.dark {
-  --a-base-c: 0, 0%, 94%;
+  --a-base-c: var(--a-primary-hue), 0%, 94%;
   --a-theme-c: 0, 0%, 0%;
   --a-surface-c: 0, 0%, 12%;
   --a-loader-overlay-bg-opacity: 0.75;
@@ -82,7 +84,7 @@ $body-color: hsla(var(--a-base-c), 0.68);
 
     // 👉 Tooltip
     --a-tooltip-bg-c: 0,0%,25%;
-    
+
   // !SECTION
 }
 
@@ -92,7 +94,9 @@ body {
   color: $body-color;
 
   // Disable mobile tap blue color
-  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+
+  font-family: $body-font-family;
 }
 
 h1,
@@ -101,7 +105,8 @@ h3,
 h4,
 h5,
 h6 {
-  color: hsla(var(--a-base-c), 0.87)
+  color: hsla(var(--a-base-c), 0.87);
+  font-family: $header-font-family;
 }
 
 // 👉 Misc
@@ -135,7 +140,7 @@ textarea {
 
 // ℹ️ Remove autocomplete styles
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,

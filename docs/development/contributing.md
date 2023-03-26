@@ -163,6 +163,10 @@ Make sure you are add snippet of the same demo you rendered.
 
 For better UX you can [highlight the lines](https://vitepress.vuejs.org/guide/markdown#line-highlighting-in-code-blocks) in demo snippet as we done in other components.
 
+:::tip
+If you want to insert additional content after demo is shown in the above snippet, you can use `:::after-demo` container. However, if you use this container you have to increase number of `:` (_marker_) in above snippet by 1. Please refer to this related [issue](https://github.com/vuejs/vitepress/issues/764#issuecomment-1151195457).
+:::
+
 :::details Inspirations
 
 - [GUI challenges](https://www.youtube.com/playlist?list=PLNYkxOF6rcIAaV1wwI9540OC_3XoIzMjQ)

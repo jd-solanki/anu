@@ -5,7 +5,7 @@ import api from '@anu/component-meta/ACard.json';
 # Card
 
 <!-- 👉 Basic -->
-::::card Basic
+:::::card Basic {bordered}
 
 Card component uses [`ATypography`](/guide/base-components/typography) component for its typography.
 
@@ -13,11 +13,11 @@ Moreover, you can also use `.card-body` in default slot to render card content.
 
 You can use `.card-spacer` helper class to add margin bottom to each of its children except last.
 
-:::code DemoCardBasic
+::::code DemoCardBasic
 <<< @/components/demos/card/DemoCardBasic.vue
-:::
-
 ::::
+
+::::after-demo
 
 :::details Card text font size
 If you pass `text` prop directly on `ACard` then `ACard` will add `text-sm` class before passing down it to `ATypography`. Hence, when you don't use `text` prop and manually write text as show in second card, for small text you have to add `text-sm` class.
@@ -28,6 +28,10 @@ This way if you want 16px font for your card text instead of 14px you can omit a
 :::tip
 You can customize the applied `margin-bottom` by configuring `--a-card-spacer` CSS variable.
 :::
+
+::::
+
+:::::
 
 <!-- 👉 Various Elements -->
 ::::card Various Elements

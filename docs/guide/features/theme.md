@@ -1,5 +1,7 @@
 # Theme
 
+:::card Introduction
+
 Anu officially supports light & dark theme. Anu also allows users to customize the appearance of their application by providing a custom theme or modifying the existing.
 
 This is achieved through the use of CSS variables, which can be defined and modified at runtime (via `useAnu` composable). This means that users can change the theme of their application on the fly. This allows for a more flexible and dynamic user experience, as users can tailor the appearance of their application to their personal preferences or to match the branding of their organization.
@@ -20,7 +22,9 @@ app.use(anu, {
 })
 ```
 
-## How to customize the theme?
+:::
+
+:::card How to customize the theme?
 
 To customize any of the existing theme, light or dark, you just have to override the theme option.
 
@@ -42,7 +46,9 @@ Done 🥳
 
 Do note that, this will only update the primary color for light theme.
 
-## How to create custom theme?
+:::
+
+:::card How to create custom theme?
 
 Creating a custom theme is as easy as defining new values for the existing theme colors.
 
@@ -66,7 +72,9 @@ Now just add class `coffee` to the html element: `html.coffee`.
 
 Don't forget to include the CSS file in your entrypoint 😜
 
-## How to add new color?
+:::
+
+::::card How to add new color?
 
 Anu provides **primary**, **success**, **info**, **warning** & **danger** colors by default.
 
@@ -133,9 +141,13 @@ import { defaultThemeColors } from 'anu-vue'
 
 :::
 
-<br>
+::::
+
+:::card
 
 Related documentation:
 
 - [`useAnu` composable](/guide/composables/useAnu.md)
 - [Colors](/guide/getting-started/customization.html#color)
+
+:::

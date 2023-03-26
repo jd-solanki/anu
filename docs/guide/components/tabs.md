@@ -6,21 +6,25 @@ import tabsApi from '@anu/component-meta/ATabs.json';
 # Tabs
 
 <!-- 👉 Basic -->
-::::card Basic
+:::::card Basic
 
 You can render the tabs component by using the `ATabs` component.
 
 You can use `tabs` prop to pass the tabs data. The `tabs` prop is an array of strings or objects. Each object should have `title` property to render tab title.
 
-:::code DemoTabsBasic
+::::code DemoTabsBasic
 <<< @/components/demos/tabs/DemoTabsBasic.vue
-:::
-
 ::::
+
+::::after-demo
 
 :::tip `.a-tabs-bordered` class
 Tabs component doesn't have the border bottom by default. If you want to add the border bottom, you can add the `.a-tabs-bordered` class to the `ATabs` component.
 :::
+
+::::
+
+:::::
 
 <!-- 👉 Icons -->
 ::::card Icons

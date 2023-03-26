@@ -2,7 +2,7 @@
 
 > Anu means [Atom](https://en.wikipedia.org/wiki/Atom) in [Sanskrit](https://en.wikipedia.org/wiki/Sanskrit) ⚛️
 
-## Why anu?
+:::card Why anu?
 
 - Yes, there's UnoCSS, TailwindCSS, etc but they don't provide ready to use components
 - DX Focused. You will enjoy writing code 💯
@@ -10,9 +10,11 @@
 - It is for lazy people by a lazy person
 - I co-authored premium templates such as [Vuexy](https://themeforest.net/item/vuexy-vuejs-html-laravel-admin-dashboard-template/23328599), [Materio](https://themeselection.com/item/materio-vuetify-vuejs-admin-template), etc so you can expect neat & lovable UI from Anu.
 - Thanks to UnoCSS, VueUse, etc You can now build your desired UI  & functionalities in no time using battle tested features.
-- Customization is a piece of cake with Anu. It is as simple as overriding an object 🤯
+- Customization is a piece of cake with Anu. It is as simple as overriding object 🤯
 
-## Motivation
+:::
+
+:::card Motivation
 
 I work at [ThemeSelection](https://themeselection.com) and for a couple of times I had to build small Vue projects that required UI flexibility. I couldn't use Bootstrap because customization is not straight forward compared to frameworks like UnoCSS, WindiCSS & TailwindCSS.
 
@@ -27,3 +29,5 @@ You probably didn't read the UnoCSS [README](https://github.com/unocss/unocss#re
 ### Why dependencies
 
 Anu is based on [UnoCSS](https://github.com/unocss/unocss), [VueUse](https://vueuse.org/) & [Floating UI](https://floating-ui.com/). Anu is dependent on these dependencies because there is a saying that goes, "_Don't reinvent the wheel_."
+
+:::
