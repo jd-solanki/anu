@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { flip, offset, shift } from '@floating-ui/vue'
-import { defu } from 'defu'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { selectSlots } from './slots'
-import { selectBaseInputSlots, selectCardSlots, selectListDefaultSlot, selectListRestSlots, selectListSlotsPrefix } from './slots'
 import { ACard, AList } from '@/components'
 import { ABaseInput, baseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { ListPropItems } from '@/components/list'
 import { isObject, prefixObjectKeysWithMeta } from '@/utils/helpers'
+import { flip, offset, shift } from '@floating-ui/vue'
+import { defu } from 'defu'
+import type { ExtractPropTypes, PropType } from 'vue'
+import type { selectSlots } from './slots'
+import { selectBaseInputSlots, selectCardSlots, selectListDefaultSlot, selectListRestSlots, selectListSlotsPrefix } from './slots'
 
 export interface ObjectOption { label: string; value: string | number }
 
@@ -157,7 +157,7 @@ const selectListPrefixedSlots = {
       </template>
       <AList
         :items="options"
-        :value="props.modelValue"
+        :model-value="props.modelValue"
         class="a-select-options-list"
         :class="props.listClasses"
         @click:item="({ item, value }) => handleOptionClick(value, item)"
