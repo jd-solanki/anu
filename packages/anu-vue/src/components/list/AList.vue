@@ -63,7 +63,7 @@ const listItemPrefixedSlots = prefixObjectKeysWithMeta(listItemComponentSlots, l
         :color="props.color"
         :variant="props.variant"
         :states="props.states"
-        :is-active="options[index].isSelected as unknown as boolean"
+        :is-active="options[index]?.isSelected as unknown as boolean"
         :value="props.modelValue !== undefined ? options[index] : undefined"
         v-on="{
           click: props['onClick:item'] || (props.modelValue !== undefined)
