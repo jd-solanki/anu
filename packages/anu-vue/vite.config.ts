@@ -1,5 +1,5 @@
-import { resolve } from 'path'
-import { URL, fileURLToPath } from 'url'
+import { resolve } from 'node:path'
+import { URL, fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
