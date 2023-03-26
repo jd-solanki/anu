@@ -27,34 +27,38 @@ You can use `color` prop to change the rating color.
 ::::
 
 <!-- 👉 Sizing -->
-::::card Sizing
+:::::card Sizing
 
 You can use font-size utility to adjust the size of rating.
 
-:::code DemoRatingSizing
+::::code DemoRatingSizing
 <<< @/components/demos/rating/DemoRatingSizing.vue{11,15,19,21,24}
-:::
-
 ::::
 
+::::after-demo
 :::tip
 You can use padding utilities along with `all:` variant (`all:px-3`) to increase the gap between each rating icon.
 :::
+::::
+
+:::::
 
 <!-- 👉 Custom icon -->
-::::card Custom icon
+:::::card Custom icon
 
 You can use custom icon by providing `empty-icon` and `full-icon` props.
 
-:::code DemoRatingCustomIcon
+::::code DemoRatingCustomIcon
 <<< @/components/demos/rating/DemoRatingCustomIcon.vue{10-11}
-:::
-
 ::::
 
+::::after-demo
 :::tip
 `ARating` component also supports `half-icon` prop to customize the half icon when using `halve` prop.
 :::
+::::
+
+:::::
 
 <!-- 👉 Halve -->
 ::::card Halve
@@ -90,36 +94,41 @@ You can use `length` prop to change the amount of items.
 ::::
 
 <!-- 👉 Animate -->
-::::card Animate
+:::::card Animate
 
 Use `animate` prop to animate hovered rating icon.
 
-:::code DemoRatingAnimate
+::::code DemoRatingAnimate
 <<< @/components/demos/rating/DemoRatingAnimate.vue{10}
-:::
-
 ::::
 
+::::after-demo
 :::tip
 You can use `no-hover-hint` prop along with `animate` prop to only animate and prevent filling the rating icon on hover.
 :::
+::::
+
+:::::
 
 <!-- 👉 States -->
-::::card States
+:::::card States
 
 `ARating` also supports readonly & disabled states.
 
 When rating is readonly or disabled, rating won't animate and you won't get hover hint. This means, when you set rating in readonly or disabled state, you are implicitly setting `:animate="false"` & `:no-hover-hint="true"`.
 
-:::code DemoRatingStates
+::::code DemoRatingStates
 <<< @/components/demos/rating/DemoRatingStates.vue{10,14}
-:::
-
 ::::
 
+::::after-demo
 :::info NOTE
 When rating is readonly or disabled, `a-rating-animated` class won't apply.
 :::
+::::
+
+:::::
+
 <!-- 👉 API -->
 ## API
 

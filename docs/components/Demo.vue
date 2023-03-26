@@ -24,7 +24,10 @@ const showCode = ref(false)
     </div>
     <div class="vp-demo-body">
       <slot />
-      <div class="vp-raw">
+      <div
+        v-if="$slots.demo"
+        class="vp-raw"
+      >
         <slot name="demo" />
       </div>
       <div
@@ -34,6 +37,7 @@ const showCode = ref(false)
         <slot name="after-demo" />
       </div>
       <div
+        v-if="$slots.code"
         v-show="showCode"
         class="vp-demo-code-container mt-4"
       >
@@ -90,12 +94,16 @@ $card-padding: 1.5rem;
   margin: 0 !important;
 }
 
-.vp-doc > div > :not(.vp-demo) {
+.vp-doc > div > :not(.vp-demo):not(.custom-block) {
   transform: translateX($card-padding);
 }
 
 // If there's no header remove margin top from first child
 .vp-demo > .vp-demo-body:first-child > :first-child {
   margin-top: 0;
+}
+
+.vp-demo-body > p:only-child {
+  margin-bottom: 0 !important;
 }
 </style>

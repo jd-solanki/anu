@@ -34,13 +34,11 @@ const fetchItems = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPa
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ADataTable
-      search
-      :rows="fetchItems"
-      :cols="cols"
-      :page-size="5"
-      @fetch="fetchItems"
-    />
-  </div>
+  <ADataTable
+    search
+    :rows="fetchItems"
+    :cols="cols"
+    :page-size="5"
+    @fetch="fetchItems"
+  />
 </template>

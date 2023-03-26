@@ -20,49 +20,47 @@ const handlePrev = () => {
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <AViews
-      v-model="state"
-      :transition="transition"
-      class="rounded-lg"
+  <AViews
+    v-model="state"
+    :transition="transition"
+    class="rounded-lg"
+  >
+    <AView value="first">
+      <ACard
+        title="First Card"
+        class="shadow-none"
+        text="Bear claw sweet dessert sweet chocolate bar sesame snaps shortbread."
+      />
+    </AView>
+    <AView value="second">
+      <ACard
+        title="Second Card"
+        class="shadow-none"
+        text="Lollipop marzipan cotton candy pie macaroon wafer jelly beans shortbread."
+      />
+    </AView>
+    <AView value="third">
+      <ACard
+        title="Third Card"
+        class="shadow-none"
+        text="Pastry biscuit tart I love gummies wafer oat cake."
+      />
+    </AView>
+  </AViews>
+  <div class="flex justify-between items-center mt-6 text-sm">
+    <ABtn
+      icon="i-bx-left-arrow-alt"
+      variant="text"
+      @click="handlePrev"
     >
-      <AView value="first">
-        <ACard
-          title="First Card"
-          class="shadow-none"
-          text="Bear claw sweet dessert sweet chocolate bar sesame snaps shortbread."
-        />
-      </AView>
-      <AView value="second">
-        <ACard
-          title="Second Card"
-          class="shadow-none"
-          text="Lollipop marzipan cotton candy pie macaroon wafer jelly beans shortbread."
-        />
-      </AView>
-      <AView value="third">
-        <ACard
-          title="Third Card"
-          class="shadow-none"
-          text="Pastry biscuit tart I love gummies wafer oat cake."
-        />
-      </AView>
-    </AViews>
-    <div class="flex justify-between items-center mt-6 text-sm">
-      <ABtn
-        icon="i-bx-left-arrow-alt"
-        variant="text"
-        @click="handlePrev"
-      >
-        Previous
-      </ABtn>
-      <ABtn
-        append-icon="i-bx-right-arrow-alt"
-        variant="text"
-        @click="handleNext"
-      >
-        Next
-      </ABtn>
-    </div>
+      Previous
+    </ABtn>
+    <ABtn
+      append-icon="i-bx-right-arrow-alt"
+      variant="text"
+      @click="handleNext"
+    >
+      Next
+    </ABtn>
   </div>
 </template>

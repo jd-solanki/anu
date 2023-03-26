@@ -3,10 +3,8 @@ import { rows } from './data'
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ADataTable
-      :rows="rows"
-      search
-    />
-  </div>
+  <ADataTable
+    :rows="rows"
+    search
+  />
 </template>

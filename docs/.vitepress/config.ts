@@ -85,7 +85,6 @@ export default defineConfig({
             { text: 'Tabs', link: '/guide/components/tabs' },
             { text: 'Textarea', link: '/guide/components/textarea' },
             { text: 'Tooltip', link: '/guide/components/tooltip' },
-            { text: 'Views', link: '/guide/components/views' },
           ],
         },
         {
@@ -94,6 +93,7 @@ export default defineConfig({
           items: [
             // { text: 'Base Input', link: '/guide/base-components/base-input' },
             { text: 'Typography', link: '/guide/base-components/typography' },
+            { text: 'Views', link: '/guide/base-components/views' },
           ],
         },
         {

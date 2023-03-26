@@ -9,10 +9,8 @@ const cols = [
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ATable
-      :rows="rows"
-      :cols="cols"
-    />
-  </div>
+  <ATable
+    :rows="rows"
+    :cols="cols"
+  />
 </template>

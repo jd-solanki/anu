@@ -27,21 +27,23 @@ You can use `placeholder` attribute to add placeholder to the input.
 ::::
 
 <!-- 👉 Label -->
-::::card Label
+:::::card Label
 
 You can use `label` prop to add label to the input.
 
 For maximum flexibility you can use `label` slot.
 
-:::code DemoInputLabel
+::::code DemoInputLabel
 <<< @/components/demos/input/DemoInputLabel.vue{4,15-20}
-:::
-
 ::::
 
+::::after-demo
 :::warning
 When you use **label slot**, Note that label's `for` attribute needs to prefix the `a-input-` when binding it to input's `id` attribute.
 :::
+::::
+
+:::::
 
 <!-- 👉 Hint -->
 ::::card Hint
@@ -66,34 +68,38 @@ You can use various icon location prop to add icon to the input.
 ::::
 
 <!-- 👉 Sizing -->
-::::card Sizing
+:::::card Sizing
 
 You can use font-size utility to adjust the size of input.
 
-:::code DemoInputSizing
+::::code DemoInputSizing
 <<< @/components/demos/input/DemoInputSizing.vue{5,11,17,23,29}
-:::
-
 ::::
 
+::::after-demo
 :::tip
 Like `AInput`, `ASelect` & `ATextarea` also built on top of `ABaseInput` base component. Hence, This demo also applies to `ASelect` & `ATextarea`.
 :::
+::::
+
+:::::
 
 <!-- 👉 Roundness -->
-::::card Roundness
+:::::card Roundness
 
 You can adjust input roundness by providing border-radius utilities to `input-wrapper-classes` prop.
 
-:::code DemoInputRoundness
+::::code DemoInputRoundness
 <<< @/components/demos/input/DemoInputRoundness.vue{5,11,20,26}
-:::
-
 ::::
 
+::::after-demo
 :::tip
 Like `AInput`, `ASelect` & `ATextarea` also built on top of `ABaseInput` base component. Hence, This demo also applies to `ASelect` & `ATextarea`.
 :::
+::::
+
+:::::
 
 <!-- 👉 Types -->
 ::::card Types

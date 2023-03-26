@@ -9,10 +9,12 @@
     - We can't set height less than h-32 for textarea.
     - Use `AList` instead of v-for + div
 -->
-::::card Comments
+::::card Comments {bordered}
+
+<br>
 
 :::code UIMiscComments
-<<< @/components/ui/misc/UIMiscComments.vue{2}
+<<< @/components/ui/misc/UIMiscComments.vue
 :::
 
 ::::

@@ -34,7 +34,7 @@ You can customize the applied `margin-bottom` by configuring `--a-card-spacer` C
 :::::
 
 <!-- 👉 Various Elements -->
-::::card Various Elements
+::::card Various Elements {bordered}
 
 Mix and match the different components to achieve desired UI.
 
@@ -45,7 +45,7 @@ Mix and match the different components to achieve desired UI.
 ::::
 
 <!-- 👉 Variants -->
-::::card Variants
+::::card Variants {bordered}
 
 Card component uses layer composable as it's base. You can use `variant` prop to create various card variants.
 
@@ -56,19 +56,21 @@ Card component uses layer composable as it's base. You can use `variant` prop to
 ::::
 
 <!-- 👉 Slot -->
-::::card Slot
+:::::card Slot {bordered}
 
 You can use `ATypography` slots to render custom content in header.
 
-:::code DemoCardSlot
+::::code DemoCardSlot
 <<< @/components/demos/card/DemoCardSlot.vue{8-17,25-34}
-:::
-
 ::::
 
+::::after-demo
 :::tip
 Above demo adds content to the right of title. If you want to add content on the right of both title & subtitle use `header-right` slot.
 :::
+::::
+
+:::::
 
 <!-- 👉 API -->
 ## API

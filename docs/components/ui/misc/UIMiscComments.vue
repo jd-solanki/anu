@@ -32,7 +32,7 @@ const comments = [
 </script>
 
 <template>
-  <div class="cards-demo-container max-w-550px">
+  <div class="max-w-550px">
     <ACard title="Comments">
       <!-- 👉 Card body -->
       <div class="a-card-body a-card-spacer">

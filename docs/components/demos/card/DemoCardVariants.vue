@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-row md:grid-cols-2 cards-demo-container">
+  <div class="grid-row md:grid-cols-2">
     <!-- 👉 Fill -->
     <ACard
       title="Card title"
