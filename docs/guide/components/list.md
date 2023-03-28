@@ -89,19 +89,6 @@ If you are using `AListItem` in default slot of `AList` you can use `handleListI
 For selection, `AList` uses [`useGroupModel`](/guide/composables/useGroupModel). Hence, you can also use the `multi` prop to allow multiple selection.
 :::
 
-
-<!-- 👉 `Responsive Item` Support -->
-::::card `ref(items)` Support
-
-`ref(item)` make items update
-
-:::code DemoListDynamicItems
-<<< @/components/demos/list/DemoListDynamicItems.vue{20}
-:::
-
-::::
-
-
 <!-- 👉 Variants -->
 ::::card Variants
 
