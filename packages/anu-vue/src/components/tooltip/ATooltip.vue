@@ -21,10 +21,6 @@ defineOptions({
 })
 
 const parentEl = useParentElement()
-onMounted(() => {
-  const vm = getCurrentInstance()
-  console.log('vm :>> ', vm)
-})
 
 // const arrowEl = ref()
 
