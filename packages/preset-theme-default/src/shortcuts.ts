@@ -4,6 +4,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
   // 👉 States
   [/^states:?(\d+)?$/, ([, op]) => `\
       relative \
+      before:pointer-events-none \
       before:content-empty \
       before:absolute \
       before:inset-0 \
@@ -20,7 +21,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
   [
     /^a-drawer-anchor-(left|right|top|bottom)$/,
     ([, dir]) => {
-      const classes = dir === 'left' || dir === 'right'
+      const classes = (dir === 'left' || dir === 'right')
         ? 'w-[300px] max-w-[calc(100vw-2rem)]'
         : 'h-[300px] max-h-[calc(100vh-2rem)]'
 
