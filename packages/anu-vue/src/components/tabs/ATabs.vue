@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { SwipeDirection } from '@vueuse/core'
+import type { UseSwipeDirection } from '@vueuse/core'
 import type { TabsProps } from './props'
 import { tabsProps } from './props'
 import { TabBindingsSymbol } from './symbol'
@@ -203,7 +203,7 @@ useSwipe(refTabsWrapper, {
   }),
 })
 
-const handleTabsContentSwipe = useDebounceFn((direction: SwipeDirection) => {
+const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
   // ℹ️ Flag to check if the next tab is found because forEach doesn't support `break` statement
   let nextTabFound = false
 
@@ -215,7 +215,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: SwipeDirection) => {
     if (nextTabFound || option.value !== activeTab.value)
       return
 
-    if (direction === SwipeDirection.LEFT) {
+    if (direction === 'left') {
       const nextTabIndex = index + 1
       if (nextTabIndex < options.value.length) {
         nextTabFound = true
@@ -223,7 +223,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: SwipeDirection) => {
       }
     }
 
-    else if (direction === SwipeDirection.RIGHT) {
+    else if (direction === 'right') {
       const prevTabIndex = index - 1
       if (prevTabIndex >= 0) {
         nextTabFound = true

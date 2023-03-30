@@ -2,7 +2,6 @@
 import { menuProps } from './props'
 import { ACard } from '@/components'
 import { AFloating } from '@/components/floating'
-import { useParentEl } from '@/composables'
 
 const props = defineProps(menuProps)
 
@@ -19,13 +18,13 @@ defineOptions({
   name: 'AMenu',
 })
 
-const { parentEL } = useParentEl()
+const parentEl = useParentElement()
 </script>
 
 <template>
   <AFloating
     v-bind="props"
-    :reference-el="parentEL"
+    :reference-el="parentEl"
   >
     <ACard>
       <slot />

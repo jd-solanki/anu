@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SwipeDirection } from '@vueuse/core'
+import type { UseSwipeDirection } from '@vueuse/core'
 import type { PropType, VNode } from 'vue'
 import { h } from 'vue'
 import { ActiveViewSymbol, ViewGroupModel } from './symbol'
@@ -31,7 +31,7 @@ const emit = defineEmits<{
   /**
    * Emitted when the view is swiped
    */
-  (e: 'swipe', direction: SwipeDirection): void
+  (e: 'swipe', direction: UseSwipeDirection): void
 }>()
 
 defineOptions({

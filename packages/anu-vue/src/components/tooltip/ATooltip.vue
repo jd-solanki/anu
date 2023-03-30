@@ -5,7 +5,6 @@ import type { Middleware } from '@floating-ui/vue'
 import { flip, offset, shift } from '@floating-ui/vue'
 import { tooltipProps } from './props'
 import { AFloating } from '@/components/floating'
-import { useParentEl } from '@/composables'
 
 const props = defineProps(tooltipProps)
 
@@ -21,7 +20,11 @@ defineOptions({
   name: 'ATooltip',
 })
 
-const { parentEL } = useParentEl()
+const parentEl = useParentElement()
+onMounted(() => {
+  const vm = getCurrentInstance()
+  console.log('vm :>> ', vm)
+})
 
 // const arrowEl = ref()
 
@@ -39,7 +42,7 @@ const floatingMiddleware = [
 <template>
   <AFloating
     v-bind="props"
-    :reference-el="parentEL"
+    :reference-el="parentEl"
     class="a-tooltip-wrapper"
     :middleware="() => floatingMiddleware"
   >
