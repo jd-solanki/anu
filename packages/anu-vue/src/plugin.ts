@@ -35,7 +35,9 @@ const configDefaults: PluginOptions = {
         warning: '42.4, 100%, 50%',
         danger: '358.3, 100%, 64.9%',
       },
-      cssVars: {},
+      cssVars: {
+        'body-bg-c': '0,4.8%,95.9%',
+      },
     },
     dark: {
       class: 'dark',
@@ -46,7 +48,9 @@ const configDefaults: PluginOptions = {
         warning: '42.4, 73%, 50%',
         danger: '358.3, 73%, 64.9%',
       },
-      cssVars: {},
+      cssVars: {
+        'body-bg-c': 'var(--a-primary-hue), 15%, 5%',
+      },
     },
   },
 }

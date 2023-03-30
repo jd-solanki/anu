@@ -91,6 +91,7 @@ $header-font-family: $body-font-family;
 // 👉 Typography
 
 body {
+  background-color: hsl(var(--a-body-bg-c));
   color: $body-color;
 
   // Disable mobile tap blue color

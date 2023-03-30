@@ -2,7 +2,7 @@
 :root {
 
   /* Background colors */
-  --vp-background: #f5f4f4;
+  --vp-background: hsl(var(--a-body-bg-c));
   --vp-c-bg: var(--vp-background);
   --vp-c-bg-alt: var(--vp-background);
   --vp-sidebar-bg-color: var(--vp-background);
@@ -148,7 +148,6 @@
 ========================== */
 
 :root.dark {
-  --vp-background: hsl(var(--a-primary-hue), 15%, 5%);
   --vp-c-bg-alt: var(--vp-background);
   --vp-code-line-highlight-color: hsl(0, 0%, 12%);
 }
