@@ -48,6 +48,28 @@ if (!props.persistent) {
   })
 }
 
+const transitionName = computed(() => {
+  if (props.anchor === 'bottom')
+    return 'slide-y'
+  else if (props.anchor === 'top')
+    return 'slide-y-reverse'
+  else if (props.anchor === 'right')
+    return 'slide-x-reverse'
+
+  return 'slide-x'
+})
+
+const transitionClasses = computed(() => {
+  if (props.anchor === 'bottom')
+    return '[--slide-y-translateY:100%]'
+  else if (props.anchor === 'top')
+    return '[--slide-y-reverse-translateY:-100%]'
+  else if (props.anchor === 'right')
+    return '[--slide-x-reverse-translateX:100%]'
+
+  return '[--slide-x-translateX:-100%]'
+})
+
 // Lock DOM scroll when modelValue is `true`
 // ℹ️ We need to use type assertion here because of this issue: https://github.com/johnsoncodehk/volar/issues/2219
 useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
@@ -71,12 +93,16 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
           ['right', 'bottom'].includes(props.anchor) && 'justify-end',
         ]"
       >
-        <Transition :name="`slide-${props.anchor === 'bottom' ? 'up' : props.anchor === 'top' ? 'down' : props.anchor}`">
+        <Transition
+          :duration="30000"
+          :name="transitionName"
+        >
           <ACard
             v-show="props.modelValue"
             ref="refCard"
+            :style="[`--${transitionName}-opacity: 1`, `--${transitionName}--transform-timing: ease-in-out`]"
             class="a-drawer backface-hidden transform translate-z-0"
-            :class="[props.anchor === 'bottom' && '[--slide-y-translateY:100%]']"
+            :class="transitionClasses"
             v-bind="{ ...$attrs, ...props }"
           >
             <!-- ℹ️ Recursively pass down slots to child -->

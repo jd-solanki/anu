@@ -20,7 +20,7 @@ All props & slots available in `ACard` is available in `ADrawer`.
 <!-- 👉 Anchor -->
 ::::card Anchor
 
-You can change the position of the drawer by providing the values `left`、`right`、`top` or `bottom` to the `anchor` prop.
+You can change the position of the drawer by providing the values `left`,`right`,`top` or `bottom` to the `anchor` prop.
 
 :::code DemoDrawerAnchor
 <<< @/components/demos/drawer/DemoDrawerAnchor.vue{22,30}

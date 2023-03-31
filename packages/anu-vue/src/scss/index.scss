@@ -51,7 +51,9 @@ $transition-name: 'scale';
   &-enter-from,
   &-leave-to {
     opacity: var(--#{$transition-name}-opacity, 0);
-    transform: scale(var(--#{$transition-name}-scale, 0.8)) !important;
+    // transform: scale(var(--#{$transition-name}-scale, 0.8)) !important;
+    --un-scale-x: var(--#{$transition-name}-scale, 0.8);
+    --un-scale-y: var(--#{$transition-name}-scale, 0.8);
   }
 
   // Transition group
@@ -78,7 +80,8 @@ $transition-name: 'slide-y';
   &-enter-from,
   &-leave-to {
     opacity: var(--#{$transition-name}-opacity, 0);
-    transform: translateY(var(--#{$transition-name}-translateY, 8px)) !important;
+    // transform: translateY(var(--#{$transition-name}-translateY, 8px));
+    --un-translate-y: var(--#{$transition-name}-translateY, 8px);
   }
 
   // Transition group
@@ -105,7 +108,8 @@ $transition-name: 'slide-y-reverse';
   &-enter-from,
   &-leave-to {
     opacity: var(--#{$transition-name}-opacity, 0);
-    transform: translateY(var(--#{$transition-name}-translateY, -8px)) !important;
+    // transform: translateY(var(--#{$transition-name}-translateY, -8px));
+    --un-translate-y: var(--#{$transition-name}-translateY, -8px);
   }
 
   // Transition group
@@ -131,12 +135,14 @@ $transition-name: 'scroll-y';
 
   &-enter-from {
     opacity: var(--#{$transition-name}-from-opacity, 0);
-    transform: translateY(var(--#{$transition-name}-from-translateY, 8px)) !important;
+    // transform: translateY(var(--#{$transition-name}-from-translateY, 8px)) !important;
+    --un-translate-y: var(--#{$transition-name}-from-translateY, 8px);
   }
 
   &-leave-to {
     opacity: var(--#{$transition-name}-to-opacity, 0);
-    transform: translateY(var(--#{$transition-name}-to-translateY, -8px)) !important;
+    // transform: translateY(var(--#{$transition-name}-to-translateY, -8px)) !important;
+    --un-translate-y: var(--#{$transition-name}-to-translateY, -8px);
   }
 
     // Transition group
@@ -162,12 +168,14 @@ $transition-name: 'scroll-y-reverse';
 
   &-enter-from {
     opacity: var(--#{$transition-name}-from-opacity, 0);
-    transform: translateY(var(--#{$transition-name}-from-translateY, -8px)) !important;
+    // transform: translateY(var(--#{$transition-name}-from-translateY, -8px)) !important;
+    --un-translate-y: var(--#{$transition-name}-from-translateY, -8px);
   }
 
   &-leave-to {
     opacity: var(--#{$transition-name}-to-opacity, 0);
-    transform: translateY(var(--#{$transition-name}-to-translateY, 8px)) !important;
+    // transform: translateY(var(--#{$transition-name}-to-translateY, 8px)) !important;
+    --un-translate-y: var(--#{$transition-name}-to-translateY, 8px);
   }
 
     // Transition group
@@ -194,7 +202,8 @@ $transition-name: 'slide-x';
   &-enter-from,
   &-leave-to {
     opacity: var(--#{$transition-name}-opacity, 0);
-    transform: translateX(var(--#{$transition-name}-translateX, -8px)) !important;
+    // transform: translateX(var(--#{$transition-name}-translateX, -8px)) !important;
+    --un-translate-x: var(--#{$transition-name}-translateX, -8px);
   }
 
   // Transition group
@@ -221,7 +230,8 @@ $transition-name: 'slide-x-reverse';
   &-enter-from,
   &-leave-to {
     opacity: var(--#{$transition-name}-opacity, 0);
-    transform: translateX(var(--#{$transition-name}-translateX, 8px)) !important;
+    // transform: translateX(var(--#{$transition-name}-translateX, 8px)) !important;
+    --un-translate-x: var(--#{$transition-name}-translateX, 8px);
   }
 
   // Transition group
@@ -247,12 +257,14 @@ $transition-name: 'scroll-x';
 
   &-enter-from {
     opacity: var(--#{$transition-name}-from-opacity, 0);
-    transform: translateX(var(--#{$transition-name}-from-translateX, -8px)) !important;
+    // transform: translateX(var(--#{$transition-name}-from-translateX, -8px)) !important;
+    --un-translate-x: var(--#{$transition-name}-from-translateX, -8px);
   }
 
   &-leave-to {
     opacity: var(--#{$transition-name}-to-opacity, 0);
-    transform: translateX(var(--#{$transition-name}-to-translateX, 8px)) !important;
+    // transform: translateX(var(--#{$transition-name}-to-translateX, 8px)) !important;
+    --un-translate-x: var(--#{$transition-name}-to-translateX, 8px);
   }
 
     // Transition group
@@ -278,12 +290,14 @@ $transition-name: 'scroll-x-reverse';
 
   &-enter-from {
     opacity: var(--#{$transition-name}-from-opacity, 0);
-    transform: translateX(var(--#{$transition-name}-from-translateX, 8px)) !important;
+    // transform: translateX(var(--#{$transition-name}-from-translateX, 8px)) !important;
+    --un-translate-x: var(--#{$transition-name}-from-translateX, 8px);
   }
 
   &-leave-to {
     opacity: var(--#{$transition-name}-to-opacity, 0);
-    transform: translateX(var(--#{$transition-name}-to-translateX, -8px)) !important;
+    // transform: translateX(var(--#{$transition-name}-to-translateX, -8px)) !important;
+    --un-translate-x: var(--#{$transition-name}-to-translateX, -8px);
   }
 
     // Transition group
@@ -311,7 +325,9 @@ $transition-name: 'scroll-x-reverse';
 .dialog-enter-from,
 .dialog-leave-to {
   opacity: 0;
-  transform: scale(0.45) !important;
+  // transform: scale(0.45) !important;
+  --un-scale-x: 0.45;
+  --un-scale-y: 0.45;
 }
 
 // 👉 View (component)
@@ -324,11 +340,13 @@ $transition-name: 'view-next';
   }
 
   &-enter-from {
-    transform: translateX(var(--#{$transition-name}-from-translateX, 100%)) !important;
+    // transform: translateX(var(--#{$transition-name}-from-translateX, 100%)) !important;
+    --un-translate-x: var(--#{$transition-name}-from-translateX, 100%);
   }
 
   &-leave-to {
-    transform: translateX(var(--#{$transition-name}-to-translateX, -100%)) !important;
+    // transform: translateX(var(--#{$transition-name}-to-translateX, -100%)) !important;
+    --un-translate-x: var(--#{$transition-name}-to-translateX, -100%);
   }
 
   // Transition group
@@ -341,6 +359,7 @@ $transition-name: 'view-next';
     }
   }
 }
+
 $transition-name: 'view-previous';
 .#{$transition-name} {
   &-move,
@@ -350,11 +369,13 @@ $transition-name: 'view-previous';
   }
 
   &-enter-from {
-    transform: translateX(var(--#{$transition-name}-from-translateX, -100%)) !important;
+    // transform: translateX(var(--#{$transition-name}-from-translateX, -100%)) !important;
+    --un-translate-x: var(--#{$transition-name}-from-translateX, -100%);
   }
 
   &-leave-to {
-    transform: translateX(var(--#{$transition-name}-to-translateX, 100%)) !important;
+    // transform: translateX(var(--#{$transition-name}-to-translateX, 100%)) !important;
+    --un-translate-x: var(--#{$transition-name}-to-translateX, 100%);
   }
 
   // Transition group

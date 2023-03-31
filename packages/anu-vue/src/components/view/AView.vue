@@ -24,7 +24,7 @@ if (!groupModel)
   <!-- TODO: Fix type -->
   <div
     v-show="(groupModel.value as any).value === props.value"
-    class="a-view w-full"
+    class="a-view w-full transform"
   >
     <slot />
   </div>
