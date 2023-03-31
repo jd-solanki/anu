@@ -12,14 +12,12 @@ const selected = ref(0)
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ACard>
-      <AList
-        v-model="selected"
-        :items="items"
-        variant="light"
-        class="a-list-items-pill"
-      />
-    </ACard>
-  </div>
+  <ACard>
+    <AList
+      v-model="selected"
+      :items="items"
+      variant="light"
+      class="a-list-items-pill"
+    />
+  </ACard>
 </template>

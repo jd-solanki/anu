@@ -13,7 +13,7 @@ const slotSelection = ref<typeof items[number] | null>(null)
 </script>
 
 <template>
-  <div class="cards-demo-container flex gap-12 all:flex-grow">
+  <div class="grid-row grid-cols-2 place-items-stretch all:flex-grow">
     <!-- 👉 Using `items` prop -->
     <ACard>
       <AList

@@ -6,14 +6,14 @@ import listItemApi from '@anu/component-meta/AListItem.json';
 # List
 
 <!-- 👉 Basic -->
-:::::card Basic
+:::::card Basic {bordered}
 
 `AList` is fully customizable and provides easy to use API to render list. It support `ATypography` props to render text quickly.
 
 You can also use `default` slot to render your custom content if you don't want to use typography props.
 
 ::::code DemoListBasic
-<<< @/components/demos/list/DemoListBasic.vue{2-7,13}
+<<< @/components/demos/list/DemoListBasic.vue{2-7,12}
 ::::
 
 ::::after-demo
@@ -40,12 +40,12 @@ For in library example you can check `.a-list-items-pill` class styles.
 :::::
 
 <!-- 👉 Slots -->
-:::::card Slots
+:::::card Slots {bordered}
 
 Use `before` & `after` slot to add custom content before and after list items. There's also `prepend` & `append` slot for list item to append & prepend custom content.
 
 ::::code DemoListSlots
-<<< @/components/demos/list/DemoListSlots.vue{18-20,23-32,35-41}
+<<< @/components/demos/list/DemoListSlots.vue{17-20,22-26,29-35}
 ::::
 
 ::::after-demo
@@ -57,7 +57,7 @@ Default theme preset provides helpful class `.kbd` to render keyboard keys just 
 :::::
 
 <!-- 👉 Avatar -->
-:::::card Avatar
+:::::card Avatar {bordered}
 
 You can also pass avatar props like `src` or `icon` to list item under `$avatar` property to render the desired avatar without writing extra markup.
 
@@ -80,7 +80,7 @@ Just like `avatar-append`, you can also use `icon-append` to render the action b
 :::::
 
 <!-- 👉 `v-model` Support -->
-:::::card `v-model` Support
+:::::card `v-model` Support {bordered}
 
 `AList` also support `v-model`. Use any value other than `undefined` to enable the `v-model` support.
 
@@ -101,12 +101,12 @@ For selection, `AList` uses [`useGroupModel`](/guide/composables/useGroupModel).
 :::::
 
 <!-- 👉 Variants -->
-:::::card Variants
+:::::card Variants {bordered}
 
 `AList` also accepts layer props like `variant`, `color` & `states` to change the appearance of list.
 
 ::::code DemoListVariants
-<<< @/components/demos/list/DemoListVariants.vue{20}
+<<< @/components/demos/list/DemoListVariants.vue{19}
 ::::
 
 ::::after-demo
@@ -119,7 +119,7 @@ Use `a-list-items-pill` to create pill shaped list items. It just modifies some 
 
 :::card CSS Variables
 
-`AList` comes with various CSS variables to customize the UI according to your need. You can check them in this [file](https://github.com/jd-solanki/anu/blob/main/packages/preset-theme-default/src/scss/index.scss).
+`AList` comes with various CSS variables to customize the UI according to your need. You can check them in this [section](/guide/getting-started/customization.html#css-variables).
 
 :::
 

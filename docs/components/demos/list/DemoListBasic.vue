@@ -8,9 +8,7 @@ const items = [
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ACard>
-      <AList :items="items" />
-    </ACard>
-  </div>
+  <ACard>
+    <AList :items="items" />
+  </ACard>
 </template>

@@ -117,7 +117,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-list-items-pill': '[--a-list-margin:calc(0.75em*var(--a-spacing))_0] em:spacing:children-[.a-list-item]-rounded-lg [--a-list-item-margin:calc(0.18em*var(--a-spacing))_calc(0.75em*var(--a-spacing))] [--a-list-item-padding:calc(0.5em*var(--a-spacing))_calc(0.75em*var(--a-spacing))]',
 
     // 👉 Loader
-    'a-loader': '[&.a-loader-full-page]-text-4xl',
+    'a-loader': '[&.a-loader-full-page]-text-3xl',
 
     // 👉 Menu
     'a-menu': 'z-[51] shadow-xl [--slide-y-translateY:10px]',

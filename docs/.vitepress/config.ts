@@ -4,6 +4,8 @@ import Unocss from 'unocss/vite'
 import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
 
+const isDev = process.env.NODE_ENV !== 'production'
+
 const nav: DefaultTheme.Config['nav'] = [
   { text: 'Guide', link: '/guide/getting-started/installation', activeMatch: '/guide/' },
   { text: 'Anu UI', link: '/ui/introduction', activeMatch: '/ui/' },
@@ -15,7 +17,7 @@ const nav: DefaultTheme.Config['nav'] = [
   },
 ]
 
-if (process.env.NODE_ENV !== 'production')
+if (isDev)
   nav.push({ text: 'Playground', link: '/playground' })
 
 export default defineConfig({
@@ -136,7 +138,7 @@ export default defineConfig({
   },
   markdown: {
     // ℹ️ We only enabled this in development so that we can highlight code lines by seeing line number without calculating it in our editor.
-    lineNumbers: process.env.NODE_ENV === 'development',
+    lineNumbers: isDev,
     theme: 'dracula',
     config: md => {
       md.use(Container, 'card', {

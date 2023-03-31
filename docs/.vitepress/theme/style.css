@@ -175,11 +175,7 @@
 .cards-demo-container {
   /* rounded-lg border-dashed border border-a-border p-8 bg-[hsla(var(--a-base-c), .05)] */
   @apply rounded-lg border-dashed border border-a-border p-8;
-  background: hsla(var(--a-base-c), 0.05);
-}
-
-.dark .cards-demo-container {
-  background: hsla(var(--a-base-c), 0.01);
+  background: hsla(var(--a-body-bg-c));
 }
 
 /* ==========================
@@ -228,12 +224,24 @@
 /* ==========================
 👉 Home page
 ========================== */
+html:not(.dark) .VPContent.is-home {
+  background: hsl(var(--a-surface-c));
+}
+
+html:not(.dark) .VPContent.is-home+.VPFooter {
+  background: hsl(var(--a-surface-c));
+}
+
 .VPHome {
   padding-bottom: 0 !important;
 }
 
 .VPHero.VPHomeHero .text {
   color: hsla(var(--a-base-c), 0.87)
+}
+
+.VPFooter {
+  border-top: thin solid hsla(var(--a-base-c), var(--a-border-opacity)) !important;
 }
 
 

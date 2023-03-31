@@ -143,7 +143,7 @@ You can use the `loading` prop to inform about a background process or asynchron
 This property will display a `ALoading` component (by default) instead of the icon and/or label of the button.
 
 :::code DemoButtonLoading
-<<< @/components/demos/button/DemoButtonLoading.vue{10,17,24,32,39,50}
+<<< @/components/demos/button/DemoButtonLoading.vue{12,18-21,25}
 :::
 
 ::::

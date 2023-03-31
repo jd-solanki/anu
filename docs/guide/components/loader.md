@@ -16,7 +16,7 @@ Use `ASpinner` component to render a spinner. For adjusting size of the spinner 
 ::::
 
 <!-- 👉 Components -->
-:::::card Components
+:::::card Components {bordered}
 
 Anu already integrated loading for components that requires loading.
 
