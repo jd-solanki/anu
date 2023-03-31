@@ -22,9 +22,6 @@ defineOptions({
 })
 
 const parentEl = useParent()
-onMounted(() => {
-  console.log('parentEl :>> ', parentEl.value)
-})
 
 // const arrowEl = ref()
 
