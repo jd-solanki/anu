@@ -218,7 +218,7 @@ When sending a pull request, make sure your PR's title also follows the [Commit 
 
 If your PR fixes or resolves an existing issue, please add the following line in your PR description (replace `123` with a real issue number):
 
-```plaintext
+```
 fix #123
 ```
 
