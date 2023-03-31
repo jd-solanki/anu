@@ -5,6 +5,7 @@ import type { Middleware } from '@floating-ui/vue'
 import { flip, offset, shift } from '@floating-ui/vue'
 import { tooltipProps } from './props'
 import { AFloating } from '@/components/floating'
+import { useParent } from '@/composables'
 
 const props = defineProps(tooltipProps)
 
@@ -20,7 +21,10 @@ defineOptions({
   name: 'ATooltip',
 })
 
-const parentEl = useParentElement()
+const parentEl = useParent()
+onMounted(() => {
+  console.log('parentEl :>> ', parentEl.value)
+})
 
 // const arrowEl = ref()
 
