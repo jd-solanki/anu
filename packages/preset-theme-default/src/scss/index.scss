@@ -19,9 +19,6 @@ $header-font-family: $body-font-family;
     // ℹ️ Represents theme color. light => white, dark => black. ATM, it's used for backdrop & badge outline color.
     --a-theme-c: 0, 0%, 100%;
 
-    // ℹ️ Used for background on body like select options, card, etc
-    --a-surface-c: 0, 0%, 100%;
-
     --a-border-opacity: 0.12;
     --a-loader-overlay-bg-c: var(--a-theme-c);
     --a-loader-overlay-bg-opacity: 0.85;
@@ -73,7 +70,6 @@ $header-font-family: $body-font-family;
 :root.dark {
   --a-base-c: var(--a-primary-hue), 0%, 94%;
   --a-theme-c: 0, 0%, 0%;
-  --a-surface-c: 0, 0%, 12%;
   --a-loader-overlay-bg-opacity: 0.75;
   --a-backdrop-opacity: 0.5;
 

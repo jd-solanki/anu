@@ -37,6 +37,9 @@ const configDefaults: PluginOptions = {
       },
       cssVars: {
         'body-bg-c': '0,4.8%,95.9%',
+
+        // ℹ️ Used for background on body like select options, card, etc
+        'surface-c': '0, 0%, 100%',
       },
     },
     dark: {
@@ -50,6 +53,7 @@ const configDefaults: PluginOptions = {
       },
       cssVars: {
         'body-bg-c': 'var(--a-primary-hue), 15%, 5%',
+        'surface-c': 'var(--a-primary-hue), 7%, 10%',
       },
     },
   },

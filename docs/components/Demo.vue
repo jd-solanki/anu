@@ -5,7 +5,7 @@ const showCode = ref(false)
 </script>
 
 <template>
-  <div class="vp-demo">
+  <div class="vp-demo rounded-lg shadow bg-[hsl(var(--a-surface-c))]">
     <div
       v-if="$slots.title || $slots.code"
       class="vp-demo-header flex flex-wrap items-center justify-between"
@@ -55,10 +55,7 @@ $card-padding: 1.5rem;
 }
 
 .vp-demo {
-  background: white;
   padding: $card-padding;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px 3px hsl(0, 0%, 0%, 0.05);
   margin-top: var(--vp-demo-mt);
 
   & + & {
@@ -73,15 +70,10 @@ $card-padding: 1.5rem;
 
   // Remove bg & shadow if bordered demo. Add border for separation
   &.vp-demo-bordered {
-    background: transparent;
-    box-shadow: none;
-    border: 1px solid hsla(var(--a-base-c), var(--a-border-opacity));
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 1px solid hsla(var(--a-base-c), var(--a-border-opacity)) !important;
   }
-}
-
-.dark .vp-demo {
-  background: hsl(var(--a-primary-hue), 7%, 10%);
-  box-shadow: 0 0 10px 3px hsl(0, 0%, 0%, 0.25);
 }
 
 .vp-after-demo {
