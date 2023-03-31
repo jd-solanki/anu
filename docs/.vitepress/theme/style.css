@@ -125,7 +125,7 @@
 }
 
 /* Shift links due to emoji */
-.VPSidebar .VPLink {
+.VPSidebar .VPSidebarItem.is-link {
   transform: translateX(28px);
 }
 
