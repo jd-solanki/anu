@@ -143,6 +143,35 @@ import { defaultThemeColors } from 'anu-vue'
 
 ::::
 
+:::card Adding Theme Based CSS Variables
+
+You can also add theme based CSS variables. For example, Anu already adds `--a-body-bg-c` & `--a-surface-c` via theme.
+
+```ts{5-8,13-14}
+app.use(anu, {
+  themes: {
+    light: {
+      cssVars: {
+        'body-bg-c': '0,4.8%,95.9%',
+
+        // ℹ️ Used for background on body like select options, card, etc
+        'surface-c': '0, 0%, 100%',
+      },
+    },
+    dark: {
+      cssVars: {
+        'body-bg-c': 'var(--a-primary-hue), 15%, 5%',
+        'surface-c': 'var(--a-primary-hue), 7%, 10%',
+      },
+    },
+  },
+})
+```
+
+Adding CSS vars will result in `--a-body-bg-c` & `--a-surface-c` being added to the theme CSS variables.
+
+:::
+
 :::card
 
 Related documentation:
