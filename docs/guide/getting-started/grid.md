@@ -77,3 +77,12 @@ However, with our grid, you can achieve the same by adding `justify-items-stretc
 | 2xl        | 1536px        | `@media (min-width: 1536px) { ... }` |
 
 :::
+
+<!-- 👉 Learning CSS Grid -->
+:::card Learning CSS Grid
+
+- [CSS Tricks - A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+- [web.dev - Grid](https://web.dev/learn/css/grid/)
+- [MDN - CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
+
+:::
