@@ -48,14 +48,20 @@ const showCode = ref(false)
 </template>
 
 <style lang="scss">
-$card-padding: 1.5rem;
+:root {
+  --vp-demo-card-padding: 1.5rem;
+
+  @media (max-width: 768px) {
+    --vp-demo-card-padding: 1.25rem;
+  }
+}
 
 :root {
   --vp-demo-mt: 2rem;
 }
 
 .vp-demo {
-  padding: $card-padding;
+  padding: var(--vp-demo-card-padding);
   margin-top: var(--vp-demo-mt);
 
   & + & {
@@ -87,7 +93,7 @@ $card-padding: 1.5rem;
 }
 
 .vp-doc > div > :not(.vp-demo):not(.custom-block):not(.vp-api-card) {
-  transform: translateX($card-padding);
+  transform: translateX(var(--vp-demo-card-padding));
 }
 
 // If there's no header remove margin top from first child
