@@ -15,7 +15,7 @@ import viewsApi from '@anu/component-meta/AViews.json';
 This can be useful for tabs, carousels, etc.
 
 :::code DemoViewsBasic
-<<< @/components/demos/Views/DemoViewsBasic.vue{29-51}
+<<< @/components/demos/views/DemoViewsBasic.vue{29-51}
 :::
 
 ::::
@@ -26,7 +26,7 @@ This can be useful for tabs, carousels, etc.
 You can create carousel like functionality by using `AViews` component.
 
 :::code DemoViewsCarousel
-<<< @/components/demos/Views/DemoViewsCarousel.vue{23-49}
+<<< @/components/demos/views/DemoViewsCarousel.vue{23-49}
 :::
 
 ::::
