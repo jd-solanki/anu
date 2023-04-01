@@ -86,7 +86,7 @@ $card-padding: 1.5rem;
   margin: 0 !important;
 }
 
-.vp-doc > div > :not(.vp-demo):not(.custom-block) {
+.vp-doc > div > :not(.vp-demo):not(.custom-block):not(.vp-api-card) {
   transform: translateX($card-padding);
 }
 

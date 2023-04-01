@@ -62,7 +62,7 @@ onMounted(() => {
 <template>
   <ACard
     ref="apiCard"
-    class="shadow-none border-solid border-1 border-a-border"
+    class="vp-api-card"
     :style="{
       minHeight: apiCardMinHeight,
     }"
@@ -102,9 +102,7 @@ onMounted(() => {
           :key="prop.name"
           class="not-last-mb-4"
         >
-          <span
-            class="font-semibold text-[hsla(var(--a-title-c),var(--a-title-opacity))]"
-          >{{ prop.name.replace('?', '') }}</span>
+          <span class="font-semibold text-[hsla(var(--a-title-c),var(--a-title-opacity))]">{{ prop.name.replace('?', '') }}</span>
           <span class="text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))]"> : {{ prop.type.replace(/\s*\| (undefined)$/, '') }}</span>
           <span
             v-if="prop.default !== 'unknown'"

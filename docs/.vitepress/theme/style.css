@@ -252,3 +252,9 @@ html:not(.dark) .VPContent.is-home+.VPFooter {
 .vp-doc>div>p>img:only-child {
   border-radius: 6px;
 }
+
+/* API heading */
+h2[id="api"] {
+  border-top: none;
+  margin-top: 5rem;
+}
