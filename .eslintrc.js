@@ -55,6 +55,10 @@ module.exports = {
         '/^(click):[a-z]+[a-zA-Z]+$/',
       ],
     }],
+    'vue/component-name-in-template-casing': ['error', 'PascalCase', {
+      registeredComponentsOnly: false,
+      ignores: [],
+    }],
 
     // Vue
     'vue/require-default-prop': 'off',

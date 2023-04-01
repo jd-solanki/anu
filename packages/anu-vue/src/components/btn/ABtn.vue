@@ -46,6 +46,7 @@ const { styles, classes } = getLayerClasses(
     />
     <div
       class="a-btn-content"
+      data-no-reference
       :class="[props.loading && 'opacity-0']"
     >
       <i

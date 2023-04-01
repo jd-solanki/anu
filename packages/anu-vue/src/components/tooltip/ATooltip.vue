@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { Middleware } from '@floating-ui/vue';
+import type { Middleware } from '@floating-ui/vue'
 
 // import { arrow } from '@floating-ui/vue'
-import { AFloating } from '@/components/floating';
-import { useParent } from '@/composables';
-import { flip, offset, shift } from '@floating-ui/vue';
-import { tooltipProps } from './props';
+import { flip, offset, shift } from '@floating-ui/vue'
+import { tooltipProps } from './props'
+import { AFloating } from '@/components/floating'
+import { useParent } from '@/composables'
 
 const props = defineProps(tooltipProps)
 
@@ -44,9 +44,11 @@ const floatingMiddleware = [
     :middleware="() => floatingMiddleware"
   >
     <div class="a-tooltip">
-      <slot>
-        <span class="a-tooltip-text">{{ props.text }}</span>
-      </slot>
+      <span class="a-tooltip-text">
+        <slot>
+          {{ props.text }}
+        </slot>
+      </span>
       <!-- <div
         ref="arrowEl"
         class="a-tooltip-arrow absolute"

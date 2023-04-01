@@ -12,6 +12,7 @@ declare module 'vue' {
     ADialog: typeof import('anu-vue')['ADialog']
     ADrawer: typeof import('anu-vue')['ADrawer']
     AFloating: typeof import('anu-vue')['AFloating']
+    AIcon: typeof import('anu-vue')['AIcon']
     AInput: typeof import('anu-vue')['AInput']
     AList: typeof import('anu-vue')['AList']
     AListItem: typeof import('anu-vue')['AListItem']

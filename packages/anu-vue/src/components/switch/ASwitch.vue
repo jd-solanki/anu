@@ -65,7 +65,10 @@ const dotPosition = computed(() => {
     >
 
     <!-- 👉 Label -->
-    <div class="a-switch-label">
+    <div
+      class="a-switch-label"
+      data-no-reference
+    >
       <slot>{{ props.label }}</slot>
     </div>
 
