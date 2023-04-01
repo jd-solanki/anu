@@ -30,6 +30,11 @@ defineOptions({
 const _tableProps = reactivePick(props, Object.keys(tableProps).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof typeof tableProps>)
 
 const _rows = ref<Record<string, unknown>[]>(typeof props.rows !== 'function' ? props.rows : [])
+watchDeep(() => props.rows, val => {
+  if (Array.isArray(val))
+    _rows.value = val
+})
+
 const _total = ref(typeof props.rows === 'function' ? 0 : props.rows.length)
 
 // SECTION Calculate column
