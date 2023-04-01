@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import type { ExtractPropTypes } from 'vue'
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
-import { configurable as configurableProp } from '@/composables/useProps'
+import { AIcon } from '@/components';
+import { useLayer, useProps as useLayerProps } from '@/composables/useLayer';
+import { configurable as configurableProp } from '@/composables/useProps';
+import type { ExtractPropTypes } from 'vue';
 
 const props = defineProps({
 
@@ -80,10 +81,23 @@ const handleAppendIconClick = () => {
   // Emit append icon click event
   emit('click:appendIcon')
 }
+
+const appendIconBindings = computed(() => {
+  if (props.dismissible)
+    return {
+      icon: appendIcon,
+      ariaLabel: 'close'
+    }
+
+  return {
+    class: appendIcon
+  }
+})
 </script>
 
 <template>
   <div
+    role="alert"
     class="a-alert items-start w-full"
     :class="[
       ...classes,
@@ -98,17 +112,16 @@ const handleAppendIconClick = () => {
     <div class="flex-grow">
       <slot />
     </div>
-    <div v-if="appendIcon">
-      <div>
-        <span
+    <div>
+      <slot name="append">
+        <Component
+          v-if="appendIcon"
+          :is="props.dismissible ? AIcon : 'i'"
           class="align-text-top"
-          :class="[
-            appendIcon,
-            { 'cursor-pointer': props.dismissible },
-          ]"
+          v-bind="appendIconBindings"
           @click="handleAppendIconClick"
         />
-      </div>
+      </slot>
     </div>
   </div>
 </template>
