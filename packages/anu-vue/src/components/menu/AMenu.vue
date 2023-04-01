@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { menuProps } from './props'
-import { ACard } from '@/components'
-import { AFloating } from '@/components/floating'
+import { ACard } from '@/components';
+import { AFloating } from '@/components/floating';
+import { useParent } from '@/composables';
+import { menuProps } from './props';
 
 const props = defineProps(menuProps)
 
@@ -18,7 +19,7 @@ defineOptions({
   name: 'AMenu',
 })
 
-const parentEl = useParentElement()
+const parentEl = useParent()
 </script>
 
 <template>
