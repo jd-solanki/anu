@@ -2,7 +2,6 @@
 import { menuProps } from './props'
 import { ACard } from '@/components'
 import { AFloating } from '@/components/floating'
-import { useParent } from '@/composables'
 
 const props = defineProps(menuProps)
 
@@ -19,7 +18,7 @@ defineOptions({
   name: 'AMenu',
 })
 
-const parentEl = useParent()
+const parentEl = useParentElement()
 </script>
 
 <template>
