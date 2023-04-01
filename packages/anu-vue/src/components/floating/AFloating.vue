@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useTeleport } from '@/composables/useTeleport'
 import type { Middleware } from '@floating-ui/vue'
 import { autoUpdate, flip, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
@@ -6,7 +7,6 @@ import { ref } from 'vue'
 import type { FloatingEvents } from './events'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
 import { floatingProps } from './props'
-import { useTeleport } from '@/composables/useTeleport'
 
 const props = defineProps(floatingProps)
 
@@ -136,7 +136,7 @@ defineExpose({
         v-show="isFloatingElVisibleDebounced"
         v-bind="$attrs"
         ref="refFloating"
-        class="a-floating"
+        class="a-floating transform"
         :style="{
           top: `${y ?? 0}px`,
           left: `${x ?? 0}px`,
