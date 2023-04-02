@@ -1,14 +1,12 @@
 export function useParent() {
-  const parentEl = ref()
+  const parentEl = ref<HTMLElement | null>()
 
   onMounted(() => {
     const vm = getCurrentInstance()
-    let parent: ParentNode | null = vm?.proxy?.$el.parentNode
+    let parent: HTMLElement | null = vm?.proxy?.$el.parentElement
 
-    // TODO: Fix types
-    // @ts-expect-error hasAttribute doesn't exist on parentNode type
     while (parent && parent.hasAttribute('data-no-reference'))
-      parent = parent.parentNode
+      parent = parent.parentElement
 
     parentEl.value = parent
   })
