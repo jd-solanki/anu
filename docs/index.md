@@ -17,7 +17,7 @@ hero:
       link: /guide/components/alert
     - theme: alt
       text: CodeSandbox
-      link: https://codesandbox.io/s/anu-demo-psqxec
+      link: https://codesandbox.io/p/github/jd-solanki/anu-demo/master
 ---
 
 <div class="px-16">
