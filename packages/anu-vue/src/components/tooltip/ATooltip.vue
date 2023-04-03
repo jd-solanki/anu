@@ -25,15 +25,17 @@ const parentEl = useParent()
 
 // const arrowEl = ref()
 
-const floatingMiddleware = [
-  offset(10),
-  flip(),
-  shift({ padding: 10 }),
+const floatingMiddleware = computed(() => {
+  return props.middleware ?? (() => [
+    offset(10),
+    flip(),
+    shift({ padding: 10 }),
 
-  // arrow({
-  //   element: arrowEl,
-  // }),
-] as Middleware[]
+    // arrow({
+    //   element: arrowEl,
+    // }),
+  ] as Middleware[])
+})
 </script>
 
 <template>
@@ -41,7 +43,7 @@ const floatingMiddleware = [
     v-bind="props"
     :reference-el="parentEl"
     class="a-tooltip-wrapper"
-    :middleware="() => floatingMiddleware"
+    :middleware="floatingMiddleware"
   >
     <div class="a-tooltip">
       <span class="a-tooltip-text">
