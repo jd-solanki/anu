@@ -258,3 +258,10 @@ h2[id="api"] {
   border-top: none;
   margin-top: 5rem;
 }
+
+/* HACK: Vue components get red underlined text instead of blue */
+.language-vue span[style="color: rgb(255, 85, 85); font-style: italic; text-decoration: underline;"],
+.language-vue span[style="color:#FF5555;font-style:italic;text-decoration:underline;"] {
+  color: #8BE9FD !important;
+  text-decoration: none !important;
+}
