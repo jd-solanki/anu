@@ -1,6 +1,6 @@
 # Theme
 
-:::card Introduction
+::::card Introduction
 
 Anu officially supports light & dark theme. Anu also allows users to customize the appearance of their application by providing a custom theme or modifying the existing.
 
@@ -22,7 +22,22 @@ app.use(anu, {
 })
 ```
 
+:::details Retrieving configured (plugin) options
+In rare case if you ever want to retrieve the configured options, you can use [`inject`](https://vuejs.org/guide/components/provide-inject.html#provide-inject) like below.
+
+```vue
+<script lang="ts" setup>
+import { ANU_CONFIG, PluginOptions } from 'anu-vue';
+import { inject } from 'vue';
+
+const config = inject<PluginOptions>(ANU_CONFIG)
+console.log(config)
+</script>
+```
+
 :::
+
+::::
 
 :::card How to customize the theme?
 
