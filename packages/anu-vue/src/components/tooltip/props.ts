@@ -4,7 +4,7 @@ import type { MiddlewareFunc } from '@/components/floating'
 import { floatingProps } from '@/components/floating'
 import { defuProps } from '@/composables/useProps'
 
-const { referenceEl: _, middleware, ...floatingRestProps } = floatingProps
+const { referenceEl: _, middleware: __, ...floatingRestProps } = floatingProps
 export const middlewareFunc: MiddlewareFunc = () => [
   offset(10),
   flip(),

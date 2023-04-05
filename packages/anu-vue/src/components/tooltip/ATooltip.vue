@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-// import { arrow } from '@floating-ui/vue'
 import { tooltipProps } from './props'
 import { AFloating } from '@/components/floating'
 import { useParent } from '@/composables'
+
+// import { arrow } from '@floating-ui/vue'
 
 const props = defineProps(tooltipProps)
 
