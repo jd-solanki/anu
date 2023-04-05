@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { ACard } from '@/components';
-import { AFloating } from '@/components/floating';
-import { useParent } from '@/composables';
-import { menuProps } from './props';
+import { menuProps } from './props'
+import { ACard } from '@/components'
+import { AFloating } from '@/components/floating'
+import { useParent } from '@/composables'
 
 const props = defineProps(menuProps)
 

@@ -85,7 +85,7 @@ watch(direction, value => {
           :key="index"
         >
           <slot :name="index">
-            <component :is="h(view, { value: index })" />
+            <Component :is="h(view, { value: index })" />
           </slot>
         </template>
       </slot>

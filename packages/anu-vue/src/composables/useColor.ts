@@ -1,7 +1,7 @@
-import { useAnu } from '@/composables/useAnu'
-import type { ColorProp } from '@/composables/useProps'
 import type { MaybeRef } from '@vueuse/core'
 import type { ComputedRef, StyleValue } from 'vue'
+import { useAnu } from '@/composables/useAnu'
+import type { ColorProp } from '@/composables/useProps'
 
 export const isThemeColor = (color: ColorProp | null): ComputedRef<boolean> => computed(() => {
   let activeThemeColors: string[] = []

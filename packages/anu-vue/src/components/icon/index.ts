@@ -1,1 +1,1 @@
-export { default as AIcon } from './AIcon.vue';
+export { default as AIcon } from './AIcon.vue'

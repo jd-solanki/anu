@@ -25,7 +25,7 @@ const text = useConfigurable(toRef(props, 'text'))
     >
       <div class="flex-grow">
         <!-- 👉 Title -->
-        <component
+        <Component
           :is="props.titleTag"
           v-if="(Array.isArray(props.title) ? props.title[0] : props.title) || $slots.title"
           v-bind="title.attrs"
@@ -35,10 +35,10 @@ const text = useConfigurable(toRef(props, 'text'))
           <slot name="title">
             {{ title.content }}
           </slot>
-        </component>
+        </Component>
 
         <!-- 👉 Subtitle -->
-        <component
+        <Component
           :is="props.subtitleTag"
           v-if="(Array.isArray(props.subtitle) ? props.subtitle[0] : props.subtitle) || $slots.subtitle"
           v-bind="subtitle.attrs"
@@ -48,7 +48,7 @@ const text = useConfigurable(toRef(props, 'text'))
           <slot name="subtitle">
             {{ subtitle.content }}
           </slot>
-        </component>
+        </Component>
       </div>
       <!-- 👉 Slot: header-right -->
       <slot name="header-right" />
@@ -56,7 +56,7 @@ const text = useConfigurable(toRef(props, 'text'))
     <!-- !SECTION -->
 
     <!-- 👉 Text -->
-    <component
+    <Component
       :is="props.textTag"
       v-if="(Array.isArray(props.text) ? props.text[0] : props.text) || $slots.text"
       v-bind="text.attrs"
@@ -66,6 +66,6 @@ const text = useConfigurable(toRef(props, 'text'))
       <slot>
         {{ text.content }}
       </slot>
-    </component>
+    </Component>
   </div>
 </template>
