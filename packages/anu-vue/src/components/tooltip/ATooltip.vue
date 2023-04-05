@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import type { Middleware } from '@floating-ui/vue'
-
 // import { arrow } from '@floating-ui/vue'
-import { flip, offset, shift } from '@floating-ui/vue'
 import { tooltipProps } from './props'
 import { AFloating } from '@/components/floating'
 import { useParent } from '@/composables'
@@ -24,18 +21,6 @@ defineOptions({
 const parentEl = useParent()
 
 // const arrowEl = ref()
-
-const floatingMiddleware = computed(() => {
-  return props.middleware ?? (() => [
-    offset(10),
-    flip(),
-    shift({ padding: 10 }),
-
-    // arrow({
-    //   element: arrowEl,
-    // }),
-  ] as Middleware[])
-})
 </script>
 
 <template>
@@ -43,7 +28,6 @@ const floatingMiddleware = computed(() => {
     v-bind="props"
     :reference-el="parentEl"
     class="a-tooltip-wrapper"
-    :middleware="floatingMiddleware"
   >
     <div class="a-tooltip">
       <span class="a-tooltip-text">
