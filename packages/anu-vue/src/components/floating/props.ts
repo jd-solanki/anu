@@ -1,7 +1,19 @@
 import type { Middleware, Placement, Strategy } from '@floating-ui/vue'
+import { flip, shift } from '@floating-ui/vue'
 import type { ExtractPropTypes, PropType, Ref } from 'vue'
-import type { Transitions } from '@/transitions'
+import { sameWidth as sameWidthMiddleware } from './middlewares'
 import type { LooseAutocomplete } from '@/utils/typescripts'
+import type { Transitions } from '@/transitions'
+
+export type MiddlewareFunc = (referenceEl: Ref<HTMLElement | null | undefined>, floatingEl: Ref<HTMLElement>) => Middleware[]
+export const middlewareFunc: MiddlewareFunc = (referenceEl, refFloating) => [
+  // ℹ️ For this we need need bridge to handle keep menu content open
+  // offset(6),
+
+  sameWidthMiddleware(refFloating),
+  flip(),
+  shift({ padding: 10 }),
+]
 
 export const floatingProps = {
   referenceEl: {
@@ -80,7 +92,10 @@ export const floatingProps = {
   /**
    * Middleware option from Floating UI
    */
-  middleware: Function as PropType<(referenceEl: Ref<HTMLElement>, floatingEl: Ref<HTMLElement>) => Middleware[]>,
+  middleware: {
+    type: Function as PropType<MiddlewareFunc>,
+    default: middlewareFunc,
+  },
 }
 
 export type FloatingProps = ExtractPropTypes<typeof floatingProps>
