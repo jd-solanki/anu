@@ -37,3 +37,21 @@ jobs:
         run: pnpm -r publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Notify on Discord
+        uses: Ilshidur/action-discord@v3
+        env:
+          DISCORD_EMBEDS: |
+            [{
+                "title": "✨ Anu ${{ github.event.release.tag_name }} has been released!",
+                "author": {
+                    "name": "${{ github.actor }}",
+                    "url": "https://github.com/${{github.actor}}",
+                    "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}"
+                },
+                "url": "${{ github.event.release.html_url }}",
+                "description": "Please refer to the release notes for the changes",
+                "color": 0
+            }]
+          DISCORD_AVATAR: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOKS_RELEASE }}
