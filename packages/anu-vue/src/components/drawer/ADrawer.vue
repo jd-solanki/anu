@@ -38,15 +38,15 @@ const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
 
 const refCard = ref()
-if (!props.persistent) {
-  onClickOutside(refCard, () => {
-    // If dialog is not open => Don't execute
-    if (!props.modelValue)
-      return
+onClickOutside(refCard, () => {
+  // If dialog is not open => Don't execute
+  if (!props.modelValue)
+    return
+  if (props.persistent)
+    return
 
-    emit('update:modelValue', false)
-  })
-}
+  emit('update:modelValue', false)
+})
 
 const transitionName = computed(() => {
   if (props.anchor === 'bottom')
