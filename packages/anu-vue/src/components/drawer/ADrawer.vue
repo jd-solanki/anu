@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { PropType, Ref } from 'vue'
 import { ACard, cardProps } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useTeleport } from '@/composables/useTeleport'
+import { defu } from 'defu'
+import type { PropType, Ref } from 'vue'
 
 const props = defineProps(defu({
   /**
@@ -39,13 +39,9 @@ const isMounted = useMounted()
 
 const refCard = ref()
 onClickOutside(refCard, () => {
-  // If dialog is not open => Don't execute
-  if (!props.modelValue)
-    return
-  if (props.persistent)
-    return
-
-  emit('update:modelValue', false)
+  // If dialog is open & persistent prop is false => Close drawer
+  if (props.modelValue && !props.persistent)
+    emit('update:modelValue', false)
 })
 
 const transitionName = computed(() => {
