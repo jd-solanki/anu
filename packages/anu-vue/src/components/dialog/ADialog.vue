@@ -31,7 +31,7 @@ const isMounted = useMounted()
 
 const refCard = ref()
 onClickOutside(refCard, () => {
-  // If dialog is open & persistent prop is false => Close drawer
+  // If dialog is open & persistent prop is false => Close dialog
   if (props.modelValue && !props.persistent)
     emit('update:modelValue', false)
 })
