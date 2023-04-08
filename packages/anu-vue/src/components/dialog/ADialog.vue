@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { Ref } from 'vue'
 import { ACard, cardProps } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { defuProps } from '@/composables/useProps'
 import { useTeleport } from '@/composables/useTeleport'
+import type { Ref } from 'vue'
 
 const props = defineProps(defuProps({
   /**
@@ -30,15 +30,11 @@ const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
 
 const refCard = ref()
-if (!props.persistent) {
-  onClickOutside(refCard, () => {
-    // If dialog is not open => Don't execute
-    if (!props.modelValue)
-      return
-
+onClickOutside(refCard, () => {
+  // If dialog is open & persistent prop is false => Close dialog
+  if (props.modelValue && !props.persistent)
     emit('update:modelValue', false)
-  })
-}
+})
 
 // Lock DOM scroll when modelValue is `true`
 // ℹ️ We need to use type assertion here because of this issue: https://github.com/johnsoncodehk/volar/issues/2219
