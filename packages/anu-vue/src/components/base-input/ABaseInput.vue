@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { baseInputProps } from './props'
-import type { baseInputSlots } from './slots'
 import { ALoader } from '@/components/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
+import { baseInputProps } from './props'
+import type { baseInputSlots } from './slots'
 
 // TODO: Provide a way to attach classes to root element
 const props = defineProps(baseInputProps)
@@ -29,10 +29,12 @@ const elementId = _elementIdToken ? `a-input-${_elementIdToken}-${Math.random().
 
 const refRoot = ref()
 const refInputContainer = ref()
+const refInputWrapper = ref()
 
 defineExpose({
   refRoot,
   refInputContainer,
+  refInputWrapper,
 })
 </script>
 
@@ -76,6 +78,7 @@ defineExpose({
       <!-- SECTION Input Wrapper -->
       <!-- ❗ relative class is required for loader on `.a-base-input-input-wrapper` -->
       <div
+        ref="refInputWrapper"
         :class="[props.inputWrapperClasses, props.error ? 'border-danger' : 'focus-within:border-primary']"
         class="a-base-input-input-wrapper cursor-text em:spacing:px-4 spacing:gap-x-2 relative i:focus-within:text-primary items-center border border-solid border-a-border w-full"
         @click="$emit('click:inputWrapper')"

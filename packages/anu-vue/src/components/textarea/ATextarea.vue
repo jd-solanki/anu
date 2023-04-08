@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
-import { ABaseInput, baseInputProps } from '@/components/base-input'
+import { ABaseInput, baseInputProps } from '@/components/base-input';
+import { defu } from 'defu';
+import type { ExtractPropTypes } from 'vue';
 
 const props = defineProps(defu({
   modelValue: String,
   height: String,
+  autoSize: Boolean,
 }, baseInputProps))
 
 const emit = defineEmits<{
@@ -17,6 +18,8 @@ defineOptions({
   inheritAttrs: false,
 })
 
+const textareaValue = useVModel(props, 'modelValue', emit, { defaultValue: '', passive: true })
+
 const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
 
 const textarea = ref<HTMLTextAreaElement>()
@@ -24,14 +27,27 @@ const textarea = ref<HTMLTextAreaElement>()
 const handleInputWrapperClick = () => {
   textarea.value?.focus()
 }
+
+
+const refBaseInput = ref<ABaseInput>()
+if (props.autoSize) {
+  const refInputWrapper = computed(() => refBaseInput.value?.refInputWrapper)
+  useTextareaAutosize({
+    element: textarea,
+    input: textareaValue,
+    styleTarget: refInputWrapper
+  })
+}
 </script>
 
 <template>
   <!-- ℹ️ `overflow-hidden` on input wrapper will prevent square edge when textarea will have scrollbar -->
   <ABaseInput
+    ref="refBaseInput"
     v-bind="{ ..._baseInputProps, class: $attrs.class }"
-    :input-wrapper-classes="['min-h-32 overflow-hidden', props.height, props.inputWrapperClasses]"
+    :input-wrapper-classes="['h-32 overflow-hidden', props.height, props.inputWrapperClasses]"
     class="a-textarea !pointer-events-auto"
+    :class="[props.autoSize && 'a-textarea-auto-size']"
     @click:inputWrapper="handleInputWrapperClick"
   >
     <!-- ℹ️ Recursively pass down slots to child -->
@@ -50,8 +66,7 @@ const handleInputWrapperClick = () => {
         v-bind="{ ...$attrs, ...slotProps }"
         ref="textarea"
         class="a-textarea-textarea bg-transparent resize-none"
-        :value="props.modelValue"
-        @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+        v-model="textareaValue"
       />
     </template>
   </ABaseInput>

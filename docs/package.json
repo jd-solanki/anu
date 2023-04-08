@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@anu-vue/preset-theme-default": "workspace:*",
-    "@vueuse/core": "^9.12.0",
+    "@vueuse/core": "10.0.0-beta.2",
     "anu-vue": "workspace:*",
     "vee-validate": "^4.7.3",
     "vue": "^3.2.47"
