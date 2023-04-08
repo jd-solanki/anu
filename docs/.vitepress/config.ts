@@ -112,7 +112,7 @@ export default defineConfig({
       ],
       '/ui/': [
         {
-          text: 'UI',
+          text: '🎨&nbsp;&nbsp; UI',
           items: [
             {
               text: 'Introduction',
