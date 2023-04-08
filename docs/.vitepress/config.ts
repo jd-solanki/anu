@@ -1,5 +1,5 @@
-import { fileURLToPath } from 'node:url'
 import Container from 'markdown-it-container'
+import { fileURLToPath } from 'node:url'
 import Unocss from 'unocss/vite'
 import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
@@ -119,12 +119,16 @@ export default defineConfig({
               link: '/ui/introduction',
             },
             {
-              text: 'Misc',
-              link: '/ui/misc',
+              text: 'Cards',
+              link: '/ui/cards',
             },
             {
               text: 'Form',
               link: '/ui/form',
+            },
+            {
+              text: 'Misc',
+              link: '/ui/misc',
             },
           ],
         },

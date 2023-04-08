@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { toRef } from 'vue'
-import { avatarProps } from './props'
-import { useLayer } from '@/composables/useLayer'
+import { useLayer } from '@/composables/useLayer';
+import { toRef } from 'vue';
+import { avatarProps } from './props';
 
 const props = defineProps(avatarProps)
 
@@ -27,7 +27,7 @@ const { styles, classes } = getLayerClasses(
 
 <template>
   <div
-    class="a-avatar overflow-hidden inline-flex items-center justify-center"
+    class="a-avatar overflow-hidden inline-flex items-center justify-center flex-shrink-0"
     :class="classes"
     :style="styles"
   >
