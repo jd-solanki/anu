@@ -63,7 +63,7 @@ onClickOutside(
 // !SECTION
 // TODO: You can use it as utility in another components
 // TODO: Add some style to indicate currently selected item
-const handleInputClick = () => {
+function handleInputClick() {
   if (!(props.disabled || props.readonly)) {
     isOptionsVisible.value = !isOptionsVisible.value
     selectRef.value?.focus()
@@ -71,24 +71,26 @@ const handleInputClick = () => {
 }
 
 // 👉 Options
-const handleOptionClick = (value: any, item?: ListPropItems[number]) => {
+function handleOptionClick(value: any, item?: ListPropItems[number]) {
   const valueToEmit = (item && props.emitObject) ? item : value
   emit('change', valueToEmit)
   emit('input', valueToEmit)
   emit('update:modelValue', valueToEmit)
 }
-const closeOptions = (event: MouseEvent) => {
+function closeOptions(event: MouseEvent) {
   if (event.target !== refFloating.value)
     isOptionsVisible.value = false
 }
 
 // 👉 Middleware
-const middleware = () => [
-  offset(6),
-  sameWidthFloatingUIMiddleware(refFloating),
-  flip(),
-  shift({ padding: 10 }),
-]
+function middleware() {
+  return [
+    offset(6),
+    sameWidthFloatingUIMiddleware(refFloating),
+    flip(),
+    shift({ padding: 10 }),
+  ]
+}
 
 const slots = useSlots()
 const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectCardSlots).filter(([slotName]) => slots[slotName])))

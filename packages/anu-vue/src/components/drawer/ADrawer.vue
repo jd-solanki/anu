@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import { defu } from 'defu'
+import type { PropType, Ref } from 'vue'
 import { ACard, cardProps } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useTeleport } from '@/composables/useTeleport'
-import { defu } from 'defu'
-import type { PropType, Ref } from 'vue'
 
 const props = defineProps(defu({
   /**

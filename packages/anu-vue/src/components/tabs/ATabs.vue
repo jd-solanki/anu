@@ -62,7 +62,7 @@ provide(TabBindingsSymbol, refTabs)
 const areTabsOverflowed = ref<boolean>()
 const shouldShowArrows = computed(() => !props.vertical && areTabsOverflowed.value)
 
-const checkAreTabsOverflowed = () => {
+function checkAreTabsOverflowed() {
   if (props.vertical)
     return
 
@@ -105,7 +105,7 @@ const tabJustifyClasses = computed(() => {
 
 const activeIndicatorStyle = ref({})
 
-const calculateActiveIndicatorStyle = () => {
+function calculateActiveIndicatorStyle() {
   if (!refActiveTab.value)
     return
 
@@ -129,7 +129,7 @@ const calculateActiveIndicatorStyle = () => {
   }
 }
 
-const handleTabClick = (tab: TabProps | string, index: number) => {
+function handleTabClick(tab: TabProps | string, index: number) {
   const value = options.value[index].value
   selectTab(value)
   emit('update:modelValue', value)
@@ -157,7 +157,7 @@ onMounted(() => {
 
 // Arrow navigation & Scroll snapping
 const scrollSnapAlign = refAutoReset<'start' | 'end' | 'center' | undefined>(undefined, 1500)
-const scrollForward = async () => {
+async function scrollForward() {
   scrollSnapAlign.value = 'end'
   await nextTick()
   refTabsWrapper.value?.scrollBy({
@@ -166,7 +166,7 @@ const scrollForward = async () => {
   })
 }
 
-const scrollBackward = async () => {
+async function scrollBackward() {
   scrollSnapAlign.value = 'start'
   await nextTick()
   refTabsWrapper.value?.scrollBy({
@@ -178,7 +178,7 @@ const scrollBackward = async () => {
 // scroll
 const isLeftNavArrowEnabled = ref()
 const isRightNavArrowEnabled = ref(true)
-const handleScroll = () => {
+function handleScroll() {
   if (refTabsWrapper.value) {
     isLeftNavArrowEnabled.value = !(refTabsWrapper.value.scrollLeft === 0)
 

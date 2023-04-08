@@ -24,7 +24,9 @@ defineOptions({
 
 defineSlots<typeof listSlots>()
 
-const extractItemValueFromItemOption = (item: ListPropItems[number]) => isObject(item) ? (item.value || item) : item
+function extractItemValueFromItemOption(item: ListPropItems[number]) {
+  return isObject(item) ? (item.value || item) : item
+}
 
 const { options, select: selectListItem, value } = useGroupModel({
   options: props.items.map(i => extractItemValueFromItemOption(i)),
@@ -32,7 +34,7 @@ const { options, select: selectListItem, value } = useGroupModel({
 })
 
 // const isActive = computed(() => options.value[itemIndex].isSelected)
-const handleListItemClick = (item: ListPropItems[number]) => {
+function handleListItemClick(item: ListPropItems[number]) {
   selectListItem(extractItemValueFromItemOption(item))
   emit('update:modelValue', value.value)
   emit('click:item', {

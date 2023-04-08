@@ -217,7 +217,7 @@ export type NamedColors = keyof typeof namedColors
 //   return darkContrastColor
 // }
 
-export const getContrastColor = (color: string): string => {
+export function getContrastColor(color: string): string {
   const darkContrastColor = 'var(--a-contrast-dark)'
   const lightContrastColor = 'var(--a-contrast-light)'
 

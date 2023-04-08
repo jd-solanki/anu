@@ -1,7 +1,7 @@
 import { Transition, TransitionGroup, defineComponent, h } from 'vue'
 import { capitalize } from '@/utils/helpers'
 
-export const createTransition = (name: string) => {
+export function createTransition(name: string) {
   return defineComponent({
     name: `A${capitalize(name)}Transition`,
     props: {

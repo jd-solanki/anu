@@ -3,16 +3,18 @@ import type { ComputedRef, StyleValue } from 'vue'
 import { useAnu } from '@/composables/useAnu'
 import type { ColorProp } from '@/composables/useProps'
 
-export const isThemeColor = (color: ColorProp | null): ComputedRef<boolean> => computed(() => {
-  let activeThemeColors: string[] = []
+export function isThemeColor(color: ColorProp | null): ComputedRef<boolean> {
+  return computed(() => {
+    let activeThemeColors: string[] = []
 
-  const { activeTheme } = useAnu()
-  activeThemeColors = Object.keys(activeTheme.value.theme.colors)
+    const { activeTheme } = useAnu()
+    activeThemeColors = Object.keys(activeTheme.value.theme.colors)
 
-  return !!(color && (activeThemeColors as ColorProp[]).includes(color))
-})
+    return !!(color && (activeThemeColors as ColorProp[]).includes(color))
+  })
+}
 
-export const useColor = (color: MaybeRef<ColorProp>, cssVarName: MaybeRef<string>, as: 'text' | 'bg' = 'text') => {
+export function useColor(color: MaybeRef<ColorProp>, cssVarName: MaybeRef<string>, as: 'text' | 'bg' = 'text') {
   const styles = computed(() => {
     const _color = unref(color)
     const cssVar = computed(() => `--a-${unref(cssVarName)}`)

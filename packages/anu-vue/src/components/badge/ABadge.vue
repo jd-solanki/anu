@@ -99,7 +99,7 @@ defineSlots<{
   default: {}
 }>()
 
-const formatMaxContent = (content: unknown) => {
+function formatMaxContent(content: unknown) {
   if (!isNumeric(content) || props.max === undefined)
     return content
 

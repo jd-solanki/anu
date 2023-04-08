@@ -22,7 +22,7 @@ export type typeFilterBy<T> = (string
 
   For cases other than mentioned above you need to pass custom filter via filterBy param
 */
-export const useSearch = <T>(search: MaybeRef<string>, data: MaybeRef<T[]>, filterBy: MaybeRef<typeFilterBy<T>> | undefined = undefined, strict: MaybeRef<boolean> = false): { results: ComputedRef<T[]> | Ref<T[]> } => {
+export function useSearch<T>(search: MaybeRef<string>, data: MaybeRef<T[]>, filterBy: MaybeRef<typeFilterBy<T>> | undefined = undefined, strict: MaybeRef<boolean> = false): { results: ComputedRef<T[]> | Ref<T[]> } {
   const extractStringValueFromObj = (obj: Record<string, unknown>, key: string, strict: boolean): string | null => {
     const extractedVal = obj[key]
 

@@ -105,11 +105,11 @@ const items = computed(() =>
   ),
 )
 
-const handleClick = () => {
+function handleClick() {
   emit('update:modelValue', rating.value)
 }
 
-const onMouseEnter = (e: MouseEvent, index: number) => {
+function onMouseEnter(e: MouseEvent, index: number) {
   isHovered.value = true
 
   const { offsetX, target } = e
@@ -121,7 +121,7 @@ const onMouseEnter = (e: MouseEvent, index: number) => {
   }
 }
 
-const onMouseLeave = () => {
+function onMouseLeave() {
   isHovered.value = false
 }
 </script>

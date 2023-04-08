@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     // 'airbnb-base',
-    '@antfu/eslint-config-vue',
+    '@antfu',
     'plugin:vue/vue3-recommended',
   ],
   parser: 'vue-eslint-parser',

@@ -72,7 +72,7 @@ const { styles, classes } = getLayerClasses(
   isClickable,
 )
 
-const closeChip = () => {
+function closeChip() {
   emit('update:modelValue', false)
   emit('click:close')
 }

@@ -1,7 +1,7 @@
 import type { ComputedRef, Ref } from 'vue'
 import type { SortBy } from '@/components/data-table'
 
-export const getComputedCols = <PropColumn>(rows: Ref<Record<string, unknown>[]>, cols: Ref<PropColumn[]>) => {
+export function getComputedCols<PropColumn>(rows: Ref<Record<string, unknown>[]>, cols: Ref<PropColumn[]>) {
   return computed<PropColumn[]>(() => {
   // If custom cols are provided => Use them
     if (cols.value.length)
@@ -16,6 +16,6 @@ export const getComputedCols = <PropColumn>(rows: Ref<Record<string, unknown>[]>
   })
 }
 
-export const getSortedCols = <PropColumn extends { isSortable: boolean; sortBy: SortBy }>(cols: ComputedRef<PropColumn[]>) => {
+export function getSortedCols<PropColumn extends { isSortable: boolean; sortBy: SortBy }>(cols: ComputedRef<PropColumn[]>) {
   return computed(() => cols.value.filter(col => col.isSortable && col.sortBy !== undefined))
 }

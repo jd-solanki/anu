@@ -19,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@antfu/eslint-config-vue": "^0.35.1",
+    "@antfu/eslint-config": "^0.38.4",
     "@antfu/ni": "^0.19.0",
     "@types/node": "^18.11.19",
     "@typescript-eslint/eslint-plugin": "^5.50.0",

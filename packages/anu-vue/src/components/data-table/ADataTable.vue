@@ -52,9 +52,11 @@ watch(() => props.cols, _cols => {
 }, { immediate: true })
 
 // Little helper utility to generate columns from column names applying column defaults
-const genColsFromNames = (names: string[]) => names.map(rowProperty => {
-  return defu({ ...dataTableColDefaults, name: rowProperty }) as DataTablePropColumn
-})
+function genColsFromNames(names: string[]) {
+  return names.map(rowProperty => {
+    return defu({ ...dataTableColDefaults, name: rowProperty }) as DataTablePropColumn
+  })
+}
 
 /*
   This is where we component optimization starts.
@@ -100,7 +102,7 @@ if (!props.cols.length) {
 const q = ref(typeof props.search === 'boolean' ? '' : props.search)
 watch(q, value => {
   emit('update:search', value)
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+
   fetchRows()
 })
 
@@ -108,7 +110,7 @@ watch(q, value => {
 const sortedCols = computed(() => cols.value.filter(col => col.isSortable && col.sortBy !== undefined))
 
 // 👉 fetch rows
-const fetchRows = () => {
+function fetchRows() {
   // Use type check instead of isSST to prevent type aliases further
   if (typeof props.rows === 'function') {
     (props.rows as ItemsFunction)({
@@ -185,7 +187,7 @@ const {
 fetchRows()
 
 // 👉 Handle header click
-const handleHeaderClick = (clickedCol: any) => {
+function handleHeaderClick(clickedCol: any) {
   // TODO: Remove this and fix handler type error
   clickedCol = clickedCol as DataTablePropColumn
   const tableCol = cols.value.find(_col => clickedCol.name === _col.name)

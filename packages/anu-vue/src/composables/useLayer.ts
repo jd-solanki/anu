@@ -18,7 +18,7 @@ export interface LayerProps {
 // type LooseAutocomplete<T extends string> = T | Omit<string, T>
 
 // TODO: Use `useColor` composable to removed the color calculation
-export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
+export function useProps(propOverrides?: Partial<ComponentObjectPropsOptions>) {
   let props = {
     /**
      * Layer color
@@ -53,7 +53,7 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
 interface UseLayerConfig {
   statesClass?: string
 }
-export const useLayer = () => {
+export function useLayer() {
   // TODO(TS): Improve typing
   const computeClassesStyles = (propColor: ColorProp, propVariant: string, propsStates: boolean, config: UseLayerConfig = {}) => {
     // 👉 Styles

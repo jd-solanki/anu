@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useLayer } from '@/composables/useLayer';
-import { toRef } from 'vue';
-import { avatarProps } from './props';
+import { toRef } from 'vue'
+import { avatarProps } from './props'
+import { useLayer } from '@/composables/useLayer'
 
 const props = defineProps(avatarProps)
 

@@ -23,7 +23,7 @@ const input = ref<HTMLInputElement>()
 
 const isInputTypeFile = attrs.type && attrs.type === 'file'
 
-const handleInputWrapperClick = () => {
+function handleInputWrapperClick() {
   input.value?.focus()
 }
 </script>

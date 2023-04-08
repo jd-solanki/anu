@@ -1,7 +1,7 @@
 import type { MaybeComputedRef } from '@vueuse/core'
 import type { Ref } from 'vue'
 
-export const useIndeterminateCheckbox = <T>(selected: Ref<T[]>, options: MaybeComputedRef<T[]>) => {
+export function useIndeterminateCheckbox<T>(selected: Ref<T[]>, options: MaybeComputedRef<T[]>) {
   const _options = resolveRef(options)
 
   const vModel = computed({

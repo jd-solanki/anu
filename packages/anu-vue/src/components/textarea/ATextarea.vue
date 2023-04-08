@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ABaseInput, baseInputProps } from '@/components/base-input';
-import { defu } from 'defu';
-import type { ExtractPropTypes } from 'vue';
+import { defu } from 'defu'
+import type { ExtractPropTypes } from 'vue'
+import { ABaseInput, baseInputProps } from '@/components/base-input'
 
 const props = defineProps(defu({
   modelValue: String,
@@ -32,10 +32,9 @@ const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array
 
 const textarea = ref<HTMLTextAreaElement>()
 
-const handleInputWrapperClick = () => {
+function handleInputWrapperClick() {
   textarea.value?.focus()
 }
-
 
 const refBaseInput = ref<ABaseInput>()
 if (props.autoSize) {
@@ -43,7 +42,7 @@ if (props.autoSize) {
   useTextareaAutosize({
     element: textarea,
     input: textareaValue,
-    styleTarget: refInputWrapper
+    styleTarget: refInputWrapper,
   })
 }
 </script>
@@ -60,8 +59,8 @@ if (props.autoSize) {
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-    v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
-    #[name]="slotProps"
+      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+      #[name]="slotProps"
     >
       <slot
         v-if="name !== 'default'"
@@ -73,8 +72,8 @@ if (props.autoSize) {
       <textarea
         v-bind="{ ...$attrs, ...slotProps }"
         ref="textarea"
-        class="a-textarea-textarea bg-transparent resize-none"
         v-model="textareaValue"
+        class="a-textarea-textarea bg-transparent resize-none"
       />
     </template>
   </ABaseInput>

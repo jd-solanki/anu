@@ -4,7 +4,7 @@ import type { ColorProp } from './useProps'
 import { colord } from '@/utils/colord'
 import { isThemeColor } from '@/composables/useColor'
 
-const calculateColor = (_isThemeColor: boolean, _color: ColorProp | null, _variant: string) => {
+function calculateColor(_isThemeColor: boolean, _color: ColorProp | null, _variant: string) {
   const classes = []
   const styles = []
 
@@ -39,7 +39,7 @@ const calculateColor = (_isThemeColor: boolean, _color: ColorProp | null, _varia
   }
 }
 
-export const useTypographyColor = (color: MaybeComputedRef<ColorProp | null>, variant: MaybeComputedRef<string>) => {
+export function useTypographyColor(color: MaybeComputedRef<ColorProp | null>, variant: MaybeComputedRef<string>) {
   const typographyClasses = ref<string[]>([])
   const typographyStyles = ref<string[]>([])
 

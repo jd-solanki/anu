@@ -75,7 +75,7 @@ const { styles, classes } = getLayerClasses(
 
 // 👉 Append icon
 const appendIcon = props.appendIcon || (props.dismissible ? 'i-bx-x' : null)
-const handleAppendIconClick = () => {
+function handleAppendIconClick() {
   isAlertVisible.value = false
 
   // Emit append icon click event

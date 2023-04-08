@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import { baseInputProps } from './props'
+import type { baseInputSlots } from './slots'
 import { ALoader } from '@/components/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
-import { baseInputProps } from './props'
-import type { baseInputSlots } from './slots'
 
 // TODO: Provide a way to attach classes to root element
 const props = defineProps(baseInputProps)

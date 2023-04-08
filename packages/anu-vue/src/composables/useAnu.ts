@@ -1,7 +1,7 @@
 import type { ConfigThemes, PluginOptions } from '../plugin'
 import { createCustomGlobalState } from '@/composables/useCustomCreateGlobalState'
 
-const getThemeColorsCss = (themes: ConfigThemes) => {
+function getThemeColorsCss(themes: ConfigThemes) {
   return Object.values(themes)
     .map(theme =>
       `${theme.class ? `.${theme.class}` : ':root'}{${Object.entries(theme.colors).concat(Object.entries(theme.cssVars)).concat([['primary-hue', theme.colors.primary.split(',')[0]]]).map(([varName, val]) => `--a-${varName}:${val};`).join('')}}`,
