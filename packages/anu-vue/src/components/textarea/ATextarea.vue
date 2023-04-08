@@ -5,7 +5,15 @@ import type { ExtractPropTypes } from 'vue';
 
 const props = defineProps(defu({
   modelValue: String,
+
+  /**
+   * Textarea height. Provide valid CSS height class with `!` prefixed.
+   */
   height: String,
+
+  /**
+   * Automatically update the height of a textarea depending on the content.
+   */
   autoSize: Boolean,
 }, baseInputProps))
 
@@ -45,15 +53,15 @@ if (props.autoSize) {
   <ABaseInput
     ref="refBaseInput"
     v-bind="{ ..._baseInputProps, class: $attrs.class }"
-    :input-wrapper-classes="['h-32 overflow-hidden', props.height, props.inputWrapperClasses]"
+    :input-wrapper-classes="['overflow-hidden', props.height, props.inputWrapperClasses]"
     class="a-textarea !pointer-events-auto"
     :class="[props.autoSize && 'a-textarea-auto-size']"
     @click:inputWrapper="handleInputWrapperClick"
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
-      #[name]="slotProps"
+    v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+    #[name]="slotProps"
     >
       <slot
         v-if="name !== 'default'"

@@ -175,7 +175,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-tabs-navigation-arrow-next': 'i-bx-right-arrow-alt',
 
     // 👉 Textarea
-    'a-textarea': '[&_.a-base-input-input-wrapper]-px-0 [&_.a-base-input-input-wrapper]-box-content',
+    'a-textarea': '[&_.a-base-input-input-wrapper]-px-0 [&_.a-base-input-input-wrapper]-box-content [&_.a-base-input-input-wrapper]-h-32',
     'a-textarea-textarea': 'em:spacing:py-4 overflow-x-hidden em:spacing:px-4',
 
     // 👉 Tooltip

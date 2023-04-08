@@ -40,7 +40,7 @@ You can use `label` prop to add label to the textarea.
 <!-- 👉 Height -->
 ::::card Height
 
-You can adjust the height of ATextarea component by providing `height` prop with the value of valid height class.
+You can adjust the height of ATextarea component by providing `height` prop with the value of valid height class. You have to prefix `!` to override the default height for using custom height.
 
 :::code DemoTextareaHeight
 <<< @/components/demos/textarea/DemoTextareaHeight.vue

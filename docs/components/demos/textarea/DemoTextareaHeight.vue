@@ -1,3 +1,3 @@
 <template>
-  <ATextarea height="h-200px" />
+  <ATextarea height="!h-200px" />
 </template>
