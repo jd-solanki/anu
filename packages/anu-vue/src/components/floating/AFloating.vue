@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { autoUpdate, useFloating } from '@floating-ui/vue'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
+import type { CSSProperties } from 'vue'
 import { ref } from 'vue'
 import type { FloatingEvents } from './events'
 import { floatingProps } from './props'
 import { useTeleport } from '@/composables/useTeleport'
+import { useZIndex } from '@/composables/useZIndex'
 
 const props = defineProps(floatingProps)
 
@@ -45,6 +47,17 @@ const { x, y, strategy } = useFloating(toRef(props, 'referenceEl'), refFloating,
   placement: toRef(props, 'placement'),
   middleware: _middleware,
   whileElementsMounted: autoUpdate,
+})
+
+const { nextZIndex } = useZIndex()
+const zIndex = nextZIndex()
+
+const contentStyle = computed<CSSProperties>(() => {
+  return {
+    top: `${unref(y) ?? 0}px`,
+    left: `${unref(x) ?? 0}px`,
+    zIndex,
+  }
 })
 
 // onMounted(() => {
@@ -119,10 +132,7 @@ defineExpose({
         v-bind="$attrs"
         ref="refFloating"
         class="a-floating transform"
-        :style="{
-          top: `${y ?? 0}px`,
-          left: `${x ?? 0}px`,
-        }"
+        :style="contentStyle"
         :class="strategy"
       >
         <slot />
