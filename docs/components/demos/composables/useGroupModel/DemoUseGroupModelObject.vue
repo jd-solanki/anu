@@ -1,13 +1,14 @@
 <script lang="ts" setup>
-import { useGroupModel } from 'anu-vue'
+import { useSelection } from 'anu-vue'
 
-const { options, select, value } = useGroupModel({
-  options: [
+const { options, select, value } = useSelection({
+  items: [
     { title: 'Home', icon: 'i-bx-home' },
     { title: 'Categories', icon: 'i-bx-category' },
     { title: 'Cart', icon: 'i-bx-basket' },
     { title: 'Profile', icon: 'i-bx-user-circle' },
   ],
+  initialValue: { title: 'Profile', icon: 'i-bx-user-circle' },
 })
 </script>
 

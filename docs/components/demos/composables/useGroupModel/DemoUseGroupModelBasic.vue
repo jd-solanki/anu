@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { useGroupModel } from 'anu-vue'
+import { useSelection } from 'anu-vue'
 import { ref } from 'vue'
 
-const isMultiEnabled = ref(false)
-const { options, select, value } = useGroupModel<string>({
-  options: ['apple', 'banana', 'orange', 'watermelon'],
+const isMultiEnabled = ref(true)
+const { options, select, value } = useSelection({
+  items: ['apple', 'banana', 'orange', 'watermelon'],
   multi: isMultiEnabled,
+  initialValue: ['apple'],
 })
 </script>
 

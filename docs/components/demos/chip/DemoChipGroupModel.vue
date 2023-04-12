@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useGroupModel } from 'anu-vue'
+import { useSelection } from 'anu-vue'
 
-const { options, select, value } = useGroupModel({
-  options: [
+const { options, select, value } = useSelection({
+  items: [
     'VueJS',
     'Pinia',
     'Vue Router',
@@ -25,4 +25,3 @@ const { options, select, value } = useGroupModel({
     </AChip>
   </div>
 </template>
-
