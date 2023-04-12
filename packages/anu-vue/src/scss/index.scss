@@ -13,6 +13,7 @@ html.scroll-lock {
 
 // SECTION Transitions
 
+// #region fade-transition
 // 👉 Fade
 $transition-name: 'fade';
 .#{$transition-name} {
@@ -37,6 +38,7 @@ $transition-name: 'fade';
     }
   }
 }
+// #endregion fade-transition
 
 // 👉 Scale
 $transition-name: 'scale';
