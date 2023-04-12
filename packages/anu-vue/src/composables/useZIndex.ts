@@ -8,8 +8,8 @@ export const zIndexContextKey: InjectionKey<Ref<number | undefined>> = Symbol('z
 const zIndexCounter = ref(0)
 export const defaultBaseZIndex = 2000 as const
 
-export function useZIndex(customZIndex?: Ref<number>) {
-  const injectedZIndex = customZIndex || inject(zIndexContextKey, undefined)
+export function useZIndex() {
+  const injectedZIndex = inject(zIndexContextKey)
 
   const baseZIndex = computed(() => {
     const injectedZIndexValue = unref(injectedZIndex)
