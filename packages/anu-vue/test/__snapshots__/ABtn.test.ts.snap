@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Testing ABtn > can mount component 1`] = `
+"<button tabindex=\\"0\\" class=\\"inline-flex whitespace-nowrap justify-center items-center relative a-btn states a-title-opacity-100 a-subtitle-opacity-100 [--a-layer-opacity:1] text-white\\" style=\\"--a-title-c:0, 0%, 100%; --a-subtitle-c:0, 0%, 100%; --a-layer-c:var(--a-primary); background: hsla(var(--a-layer-c),var(--a-layer-opacity));\\">
+  <!-- ℹ️ Don't render spinner if not using loading -->
+  <!--v-if-->
+  <div class=\\"a-btn-content\\" data-no-reference=\\"\\">
+    <!--v-if-->Click me
+    <!--v-if-->
+  </div>
+</button>"
+`;
+
+exports[`Testing ABtn > has proper classes 1`] = `
+[
+  "inline-flex",
+  "whitespace-nowrap",
+  "justify-center",
+  "items-center",
+  "relative",
+  "a-btn",
+  "states",
+  "a-title-opacity-100",
+  "a-subtitle-opacity-100",
+  "[--a-layer-opacity:1]",
+  "text-white",
+]
+`;

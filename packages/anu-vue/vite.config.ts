@@ -43,9 +43,9 @@ export default defineConfig({
   },
   plugins: [
     VueMacros({
-      betterDefine: {
-        include: [/\.vue(\?v=\d+)?$/],
-      },
+      // betterDefine: {
+      //   include: [/\.vue(\?v=\d+)?$/],
+      // },
       plugins: {
         vue: vue(),
       },
@@ -95,8 +95,8 @@ export default defineConfig({
       onServerRestart: noop,
       onUserConsoleLog: noop,
     }, 'default'],
+    setupFiles: ['./test/setup.vitest.ts'],
 
-    // setupFiles: ['./test/setup.vitest.ts'],
     // transformMode: {
     //   web: [/.[tj]sx$/],
     // },

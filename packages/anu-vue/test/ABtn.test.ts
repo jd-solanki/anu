@@ -11,8 +11,9 @@ describe('Testing ABtn', () => {
 
     expect(wrapper.classes()).toContain('a-btn')
 
-    const btnStyles = window.getComputedStyle(wrapper.find('button').element)._values
-    expect(btnStyles['--a-layer-c']).toBe('var(--a-primary)')
+    // In browser mode, this is invalid
+    // const btnStyles = window.getComputedStyle(wrapper.find('button').element)._values
+    // expect(btnStyles['--a-layer-c']).toBe('var(--a-primary)')
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -29,13 +30,14 @@ describe('Testing ABtn', () => {
     expect(wrapper.emitted('click')).toBeDefined()
   })
 
-  it('color prop changes button color', () => {
-    const wrapper = shallowMount(ABtn, { props: { color: 'warning' }, slots: { default: 'Click me' } })
+  // Invalid in browser
+  // it('color prop changes button color', () => {
+  //   const wrapper = shallowMount(ABtn, { props: { color: 'warning' }, slots: { default: 'Click me' } })
 
-    const btnStyles = window.getComputedStyle(wrapper.find('button').element)._values
+  //   const btnStyles = window.getComputedStyle(wrapper.find('button').element)._values
 
-    expect(btnStyles['--a-layer-c']).toBe('var(--a-warning)')
-  })
+  //   expect(btnStyles['--a-layer-c']).toBe('var(--a-warning)')
+  // })
 
   it('icon prop adds an icon', () => {
     const wrapper = shallowMount(ABtn, { props: { icon: 'i-bx-heart' }, slots: { default: 'Click me' } })

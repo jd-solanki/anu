@@ -1,0 +1,89 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Testing ATable & ADataTable > mount component 1`] = `
+"<div class=\\"a-card relative overflow-hidden bg-[hsla(var(--a-surface-c),var(--un-bg-opacity,1))] a-table a-data-table\\">
+  <!-- 👉 Loader  -->
+  <!--
+        ℹ️ We have intentionally placed loader on top.
+        Because we have card content style based on last child pseudo selector.
+    -->
+  <!--v-if-->
+  <!-- 👉 Image -->
+  <!--v-if-->
+  <!-- 👉 Typography -->
+  <!--v-if-->
+  <!-- 👉 Slot: Default -->
+  <div class=\\"overflow-x-auto\\">
+    <table class=\\"a-table-table overflow-x-auto w-full max-w-full\\">
+      <!-- 👉 thead -->
+      <thead>
+        <tr>
+          <th class=\\"a-table-table-th whitespace-nowrap cursor-pointer select-none\\"><span>name</span><i class=\\"i-bx-up-arrow-alt\\" style=\\"display: none;\\"></i><i class=\\"i-bx-down-arrow-alt\\" style=\\"display: none;\\"></i></th>
+        </tr>
+      </thead><!-- 👉 tbody -->
+      <tbody>
+        <!-- If there's rows to render => Render them -->
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name1</span></td>
+        </tr>
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name2</span></td>
+        </tr>
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name3</span></td>
+        </tr>
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name4</span></td>
+        </tr>
+        <tr>
+          <td class=\\"a-table-table-td whitespace-nowrap\\"><span class=\\"a-table-td-text\\">name5</span></td>
+        </tr>
+      </tbody>
+      <!--v-if-->
+    </table>
+  </div>
+  <div class=\\"a-data-table-pagination flex items-center w-full\\"><span class=\\"a-subtitle a-data-table-pagination-meta\\">1 - 5 of 10</span>
+    <div class=\\"flex-grow\\"></div>
+    <div class=\\"a-data-table-per-page flex items-center\\"><span class=\\"sm:inline hidden\\">per page</span><!-- 👉 Select Input -->
+      <div class=\\"a-base-input-root i:children:focus-within:text-primary flex flex-col flex-grow flex-shrink-0 a-base-input-interactive a-select\\">
+        <!-- 👉 Label -->
+        <!--v-if-->
+        <!-- SECTION Input Container -->
+        <div class=\\"a-base-input-input-container flex items-center\\">
+          <!-- 👉 Slot: Prepend -->
+          <!--v-if-->
+          <!-- SECTION Input Wrapper -->
+          <!-- ❗ relative class is required for loader on \`.a-base-input-input-wrapper\` -->
+          <div class=\\"focus-within:border-primary a-base-input-input-wrapper cursor-text em:spacing:px-4 spacing:gap-x-2 relative i:focus-within:text-primary items-center border border-solid border-a-border w-full\\">
+            <!-- 👉 Slot: Prepend Inner -->
+            <!--v-if-->
+            <!-- 👉 Slot: Default -->
+            <!-- TODO: We need to improve default slot implementation so that we can provide selected slot to selection component --><input readonly=\\"\\" class=\\"a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent a-base-input-w-prepend-inner a-base-input-w-append-inner a-select-input\\"><!-- 👉 Slot: Append Inner --><i class=\\"a-base-input-append-inner-icon ms-auto transition duration-150 ease-in i-bx-chevron-down\\"></i>
+          </div><!-- !SECTION -->
+          <!-- 👉 Slot: Append -->
+          <!--v-if-->
+        </div><!-- !SECTION -->
+        <!-- 👉 Slot: Bottom -->
+        <transition-stub data-v-0762f2f7=\\"\\" name=\\"expand\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
+          <div class=\\"h-8\\" style=\\"display: none;\\"><small class=\\"inline-block text-light-emphasis\\"></small></div>
+        </transition-stub>
+      </div><!-- 👉 Select options -->
+      <!--teleport start-->
+      <!--teleport end-->
+    </div>
+    <div class=\\"a-data-table-pagination-navigation\\"><button tabindex=\\"-1\\" class=\\"inline-flex whitespace-nowrap justify-center items-center relative a-btn-icon-only opacity-50 pointer-events-none states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-previous\\" disabled=\\"\\" style=\\"--a-layer-c:var(--a-primary);\\">
+        <!-- ℹ️ Don't render spinner if not using loading -->
+        <!--v-if-->
+        <div class=\\"a-btn-content\\" data-no-reference=\\"\\"><i class=\\"i-bx-left-arrow-alt\\"></i>
+          <!--v-if-->
+        </div>
+      </button><button tabindex=\\"0\\" class=\\"inline-flex whitespace-nowrap justify-center items-center relative a-btn-icon-only states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-next\\" style=\\"--a-layer-c:var(--a-primary);\\">
+        <!-- ℹ️ Don't render spinner if not using loading -->
+        <!--v-if-->
+        <div class=\\"a-btn-content\\" data-no-reference=\\"\\"><i class=\\"i-bx-right-arrow-alt\\"></i>
+          <!--v-if-->
+        </div>
+      </button></div>
+  </div>
+</div>"
+`;
