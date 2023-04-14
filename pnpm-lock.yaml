@@ -13549,7 +13549,7 @@ packages:
     dev: true
 
   file:packages/anu-vue/vitest-browser-0.30.1.tgz(vitest@0.30.1):
-    resolution: {integrity: sha512-0RfBadLRhzq9FRr3eHLTpnm0DmQppMCtvtxgNqhZx6NW27KYFgFWUiYnrWxJyL6QWUzo1OL/ASwFudDlop7avg==, tarball: file:packages/anu-vue/vitest-browser-0.30.1.tgz}
+    resolution: {integrity: sha512-keeLOXSs2UVko1Gc6lTv2u0K9OSEt/Zp8eNZAPTXYglW8HSXoeqLbGAzBXVWQP/9Wee/j5VKtMWruK5lyjSqPw==, tarball: file:packages/anu-vue/vitest-browser-0.30.1.tgz}
     id: file:packages/anu-vue/vitest-browser-0.30.1.tgz
     name: '@vitest/browser'
     version: 0.30.1
