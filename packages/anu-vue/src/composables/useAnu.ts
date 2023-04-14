@@ -1,5 +1,4 @@
 import type { ConfigThemes, PluginOptions } from '../plugin'
-import { createCustomGlobalState } from '@/composables/useCustomCreateGlobalState'
 
 function getThemeColorsCss(themes: ConfigThemes) {
   return Object.values(themes)
@@ -14,7 +13,10 @@ export interface AnuComposableOptions {
   initialTheme: PluginOptions['initialTheme']
 }
 
-export const useAnu = createCustomGlobalState((options: AnuComposableOptions) => {
+export const useAnu = createGlobalState((options?: AnuComposableOptions) => {
+  if (!options)
+    throw new Error('Anu: useAnu composable must be initialized with options first time!')
+
   const themes = ref(options.themes)
   const activeThemeName = ref(options.initialTheme)
   const activeTheme = computed(() => ({
