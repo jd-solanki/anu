@@ -6,6 +6,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
 import { defineConfig } from 'vitest/config'
 
+function noop() {}
+
 const externals = [
   'vue',
   '@floating-ui/vue',
@@ -41,6 +43,9 @@ export default defineConfig({
   },
   plugins: [
     VueMacros({
+      betterDefine: {
+        include: [/\.vue(\?v=\d+)?$/],
+      },
       plugins: {
         vue: vue(),
       },
@@ -51,19 +56,45 @@ export default defineConfig({
     }),
   ],
   resolve: {
+    dedupe: ['vue'],
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  optimizeDeps: {
+    exclude: ['vitest', 'vitest/utils', 'vitest/browser', 'vitest/runners', '@vitest/utils'],
+    include: [
+      ...externals,
+      '@vitest/utils > concordance',
+      '@vitest/utils > loupe',
+      '@vitest/utils > pretty-format',
+      'vitest > chai',
+    ],
+  },
   test: {
     // globals: true,
     // environment: 'jsdom',
+    include: ['test/*.test.*'],
+    open: true,
+    isolate: false,
     browser: {
       enabled: true,
       name: 'chrome',
       headless: false,
       provider: 'webdriverio',
     },
+    reporters: ['json', {
+      onInit: noop,
+      onPathsCollected: noop,
+      onCollected: noop,
+      onFinished: noop,
+      onTaskUpdate: noop,
+      onTestRemoved: noop,
+      onWatcherStart: noop,
+      onWatcherRerun: noop,
+      onServerRestart: noop,
+      onUserConsoleLog: noop,
+    }, 'default'],
 
     // setupFiles: ['./test/setup.vitest.ts'],
     // transformMode: {
