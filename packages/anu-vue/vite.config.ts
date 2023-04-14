@@ -62,13 +62,14 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['vitest', 'vitest/utils', 'vitest/browser', 'vitest/runners', '@vitest/utils'],
+    // exclude: ['vitest', 'vitest/utils', 'vitest/browser', 'vitest/runners', '@vitest/utils'],
     include: [
       ...externals,
-      '@vitest/utils > concordance',
-      '@vitest/utils > loupe',
-      '@vitest/utils > pretty-format',
-      'vitest > chai',
+
+      // '@vitest/utils > concordance',
+      // '@vitest/utils > loupe',
+      // '@vitest/utils > pretty-format',
+      // 'vitest > chai',
     ],
   },
   test: {
