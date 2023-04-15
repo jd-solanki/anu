@@ -5,26 +5,15 @@ import api from '@anu/component-meta/ALoader.json';
 # Loader
 
 <!-- 👉 Spinner -->
-:::::card Spinner
+::::card Spinner
 
 Use `ASpinner` component to render a spinner. For adjusting size of the spinner you can use font size utilities or if you want to set it to fixed size then use width utilities `em:w-5`. Spinner have `aspect-square` so height will be matched.
 
-::::code DemoLoaderSpinner
+:::code DemoLoaderSpinner
 <<< @/components/demos/loader/DemoLoaderSpinner.vue{3,4}
-::::
-
-::::after-demo
-:::details Difference between SVG spinner icons and custom vue component
-
-<div class="flex items-center gap-4">
-  <i class="i-svg-spinners-180-ring-with-bg text-4xl" />
-  <ASpinner class="text-4xl"></ASpinner>
-</div>
-
 :::
-::::
 
-:::::
+::::
 
 <!-- 👉 Components -->
 :::::card Components {bordered}

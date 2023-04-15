@@ -257,7 +257,7 @@ importers:
         version: 1.3.3(rollup@2.79.1)(vue@3.2.47)
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)(sass@1.62.0)
+        version: 4.2.1(sass@1.62.0)
       vite-plugin-dts:
         specifier: ^1.7.3
         version: 1.7.3(@types/node@18.15.11)(rollup@2.79.1)(vite@4.2.1)
@@ -1906,24 +1906,24 @@ packages:
       - supports-color
     dev: true
 
-  /@microsoft/api-extractor-model@7.26.3(@types/node@18.15.11):
+  /@microsoft/api-extractor-model@7.26.3:
     resolution: {integrity: sha512-1Y/JOkaCF5zE6P56saA0yPzEb7ZJwoF2d8fUYdzZY4I0p1gmqGbNk1h9WguvrN5hANg+2CaqcOX0eh+l4SAhJw==}
     dependencies:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.55.1(@types/node@18.15.11)
+      '@rushstack/node-core-library': 3.55.1
     transitivePeerDependencies:
       - '@types/node'
     dev: true
 
-  /@microsoft/api-extractor@7.34.3(@types/node@18.15.11):
+  /@microsoft/api-extractor@7.34.3:
     resolution: {integrity: sha512-vXpU+i/MMinVzDxbLo3of1Sx/IS5bwOZl4XrX8YyqNBXFvovEer5ex0wckWumkBErDZtLOMp3zhZfYL3W7h3cg==}
     hasBin: true
     dependencies:
-      '@microsoft/api-extractor-model': 7.26.3(@types/node@18.15.11)
+      '@microsoft/api-extractor-model': 7.26.3
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.55.1(@types/node@18.15.11)
+      '@rushstack/node-core-library': 3.55.1
       '@rushstack/rig-package': 0.3.17
       '@rushstack/ts-command-line': 4.13.1
       colors: 1.2.5
@@ -2143,8 +2143,8 @@ packages:
       '@nuxt/kit': 3.4.0(rollup@3.20.2)
       '@nuxt/schema': 3.4.0(rollup@3.20.2)
       execa: 7.1.1
-      nuxt: 3.4.0(@types/node@18.15.11)(eslint@8.38.0)(rollup@3.20.2)(typescript@5.0.4)
-      vite: 4.2.1(@types/node@18.15.11)(sass@1.62.0)
+      nuxt: 3.4.0(@types/node@18.15.11)(rollup@3.20.2)(typescript@5.0.4)
+      vite: 4.2.1(@types/node@18.15.11)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -2773,7 +2773,6 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': 18.15.11
       colors: 1.2.5
       fs-extra: 7.0.1
       import-lazy: 4.0.0
@@ -3574,7 +3573,27 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.2.12
       magic-string: 0.30.0
-      vite: 4.2.1(@types/node@18.15.11)(sass@1.62.0)
+      vite: 4.2.1(@types/node@18.15.11)
+    transitivePeerDependencies:
+      - rollup
+    dev: true
+
+  /@unocss/vite@0.51.4(vite@4.2.1):
+    resolution: {integrity: sha512-zrACPc6c99Phipi1totFjGzUvcucP+HZoeSTr4VDPQQk/vo7CuSmYFNMzWEw2NynWJgkv/FUdLTnK0tZj08LCA==}
+    peerDependencies:
+      vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0
+    dependencies:
+      '@ampproject/remapping': 2.2.1
+      '@rollup/pluginutils': 5.0.2
+      '@unocss/config': 0.51.4
+      '@unocss/core': 0.51.4
+      '@unocss/inspector': 0.51.4
+      '@unocss/scope': 0.51.4
+      '@unocss/transformer-directives': 0.51.4
+      chokidar: 3.5.3
+      fast-glob: 3.2.12
+      magic-string: 0.30.0
+      vite: 4.2.1
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -3639,7 +3658,7 @@ packages:
       '@babel/core': 7.20.12
       '@babel/plugin-transform-typescript': 7.20.13(@babel/core@7.20.12)
       '@vue/babel-plugin-jsx': 1.1.1(@babel/core@7.20.12)
-      vite: 4.2.1(@types/node@18.15.11)(sass@1.62.0)
+      vite: 4.2.1(sass@1.62.0)
       vue: 3.2.47
     transitivePeerDependencies:
       - supports-color
@@ -3663,7 +3682,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.2.1(@types/node@18.15.11)(sass@1.62.0)
+      vite: 4.2.1(sass@1.62.0)
       vue: 3.2.47
     dev: true
 
@@ -6678,7 +6697,7 @@ packages:
       debug: 4.3.4
       enhanced-resolve: 5.12.0
       eslint: 8.38.0
-      eslint-module-utils: 2.7.4(@typescript-eslint/parser@5.58.0)(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.5.5)(eslint@8.38.0)
+      eslint-module-utils: 2.7.4(@typescript-eslint/parser@5.58.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.38.0)
       eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.58.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.38.0)
       get-tsconfig: 4.5.0
       globby: 13.1.4
@@ -12731,6 +12750,27 @@ packages:
       '@vue/devtools-api': 6.5.0
       vue: 3.2.47
 
+  /vite-node@0.30.1(@types/node@18.15.11):
+    resolution: {integrity: sha512-vTikpU/J7e6LU/8iM3dzBo8ZhEiKZEKRznEMm+mJh95XhWaPrJQraT/QsT2NWmuEf+zgAoMe64PKT7hfZ1Njmg==}
+    engines: {node: '>=v14.18.0'}
+    hasBin: true
+    dependencies:
+      cac: 6.7.14
+      debug: 4.3.4
+      mlly: 1.2.0
+      pathe: 1.1.0
+      picocolors: 1.0.0
+      vite: 4.2.1(@types/node@18.15.11)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+    dev: true
+
   /vite-node@0.30.1(@types/node@18.15.11)(sass@1.62.0):
     resolution: {integrity: sha512-vTikpU/J7e6LU/8iM3dzBo8ZhEiKZEKRznEMm+mJh95XhWaPrJQraT/QsT2NWmuEf+zgAoMe64PKT7hfZ1Njmg==}
     engines: {node: '>=v14.18.0'}
@@ -12788,7 +12828,6 @@ packages:
       chalk: 4.1.2
       chokidar: 3.5.3
       commander: 8.3.0
-      eslint: 8.38.0
       fast-glob: 3.2.12
       fs-extra: 11.1.1
       lodash.debounce: 4.0.8
@@ -12819,7 +12858,7 @@ packages:
       kolorist: 1.7.0
       magic-string: 0.29.0
       ts-morph: 17.0.1
-      vite: 4.2.1(@types/node@18.15.11)(sass@1.62.0)
+      vite: 4.2.1(sass@1.62.0)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
@@ -12862,7 +12901,7 @@ packages:
       kolorist: 1.7.0
       magic-string: 0.30.0
       shell-quote: 1.8.0
-      vite: 4.2.1(@types/node@18.15.11)(sass@1.62.0)
+      vite: 4.2.1(@types/node@18.15.11)
     transitivePeerDependencies:
       - supports-color
     dev: true

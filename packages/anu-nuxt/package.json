@@ -48,7 +48,6 @@
     "anu-vue": "workspace:*"
   },
   "devDependencies": {
-    "@iconify-json/svg-spinners": "^1.1.1",
     "@nuxt/devtools": "0.4.0",
     "@nuxt/devtools-ui-kit": "0.4.0",
     "@nuxt/module-builder": "^0.3.0",
