@@ -1,10 +1,10 @@
 import { resolve } from 'node:path'
 import { URL, fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
 import { defineConfig } from 'vitest/config'
-import vueJsx from '@vitejs/plugin-vue-jsx'
 
 const externals = [
   'vue',
@@ -51,16 +51,24 @@ export default defineConfig({
     }),
   ],
   resolve: {
+    dedupe: ['vue'],
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  optimizeDeps: {
+    include: [
+      ...externals,
+    ],
+  },
   test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./test/setup.vitest.ts'],
-    transformMode: {
-      web: [/.[tj]sx$/],
+    open: true,
+    browser: {
+      enabled: true,
+      name: 'chrome',
+      headless: true,
+      provider: 'webdriverio',
     },
+    setupFiles: ['./test/setup.vitest.ts'],
   },
 })
