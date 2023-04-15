@@ -64,3 +64,22 @@ Go hack the transitions and make them your own. <i class="i-fluent-emoji-smiling
 :::
 
 ::::
+
+<!-- 👉 Creating Custom Transition Components -->
+::::card Creating Custom Transition Components
+
+Anu provides `createTransition` composable to create your own transition components that you can reuse. This composable takes a transition name as an argument and returns a transition component.
+
+```ts
+import { createTransition } from 'anu-vue'
+
+export const AFadeTransition = createTransition('fade')
+```
+
+You have transition component now, but you have to write the styles for it. You can write the styles for your transition component in the same way as you write for any other transition.
+
+Here's example of fade transition styles used in anu.
+
+<<< @/../packages/anu-vue/src/scss/index.scss#fade-transition
+
+::::
