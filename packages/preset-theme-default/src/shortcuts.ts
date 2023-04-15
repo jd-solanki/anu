@@ -107,7 +107,17 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-drawer': 'shadow-2xl z-[53] !rounded-none',
 
     // 👉 Input
-    'a-input-type-file': 'all-[.a-base-input-child]-file:(rounded-lg border-none mr-4 px-4 py-3 text-gray-500 rounded-r-none bg-[hsla(var(--a-base-c),0.05)]) !all-[.a-base-input-input-wrapper]-px-0',
+    'a-input-type-file': `
+      file:[&_.a-base-input-child]-rounded-lg
+      file:[&_.a-base-input-child]-border-none
+      file:[&_.a-base-input-child]-mr-4
+      file:[&_.a-base-input-child]-px-4
+      file:[&_.a-base-input-child]-py-3
+      file:[&_.a-base-input-child]-text-gray-500
+      file:[&_.a-base-input-child]-rounded-r-none
+      file:[&_.a-base-input-child]-bg-[hsla(var(--a-base-c),0.05)]
+      !all-[.a-base-input-input-wrapper]-px-0
+    `,
 
     // 👉 List
     'a-list': 'em:spacing:rounded-lg m-[var(--a-list-margin,calc(0.5em*var(--a-spacing))_0)] gap-[var(--a-list-gap)]',
