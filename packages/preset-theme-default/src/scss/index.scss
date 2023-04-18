@@ -19,14 +19,8 @@ body {
     --a-loader-overlay-bg-c: var(--a-theme-c);
     --a-loader-overlay-bg-opacity: 0.85;
 
-    // TODO: This should be backdrop not overlay
     --a-backdrop-c: 0, 0%, 0%;
     --a-backdrop-opacity: 0.35;
-
-    // TODO: Add support to customize contrast color in => packages/anu-vue/src/utils/colord.ts
-    // Contrast colors
-    // --a-contrast-dark: #000;
-    // --a-contrast-light: #fff;
 
     // text emphasis
     --a-text-emphasis-high-opacity: 0.87;

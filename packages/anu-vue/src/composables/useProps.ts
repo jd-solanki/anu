@@ -17,7 +17,6 @@ export const readonly = { type: Boolean } as const
 
 export const configurable = { type: [Array, String, Number, Object, undefined] as PropType<ConfigurableValue> } as const
 
-// TODO: Use this prop merger
 export const defuProps = createDefu((obj, key, value) => {
   // If merging type => Just override the existing type
   if (key === 'type') {
