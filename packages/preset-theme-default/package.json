@@ -9,8 +9,7 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
-    "./dist/style.css": "./dist/style.css",
-    "./dist/style.scss": "./dist/style.scss"
+    "./dist/style.css": "./dist/style.css"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
