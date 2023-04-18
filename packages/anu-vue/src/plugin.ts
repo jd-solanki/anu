@@ -36,6 +36,7 @@ const configDefaults: PluginOptions = {
         danger: '358.3, 100%, 64.9%',
       },
       cssVars: {
+        'body-color': 'hsla(var(--a-base-c), 0.68)',
         'body-bg-c': '0,4.8%,95.9%',
 
         // ℹ️ Used for background on body like select options, card, etc
@@ -52,6 +53,7 @@ const configDefaults: PluginOptions = {
         danger: '358.3, 73%, 64.9%',
       },
       cssVars: {
+        'body-color': 'hsla(var(--a-base-c), 0.68)',
         'body-bg-c': 'var(--a-primary-hue), 15%, 5%',
         'surface-c': 'var(--a-primary-hue), 7%, 10%',
       },

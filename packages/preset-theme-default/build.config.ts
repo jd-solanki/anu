@@ -17,7 +17,8 @@ export default defineBuildConfig({
   ],
   hooks: {
     'mkdist:done': () => {
-      fs.copyFileSync('src/scss/index.scss', 'dist/style.scss')
+      // ℹ️ We no longer need to ship SCSS file
+      // fs.copyFileSync('src/scss/index.scss', 'dist/style.scss')
 
       const compiledSass = sass.compile('./src/scss/index.scss', { style: 'compressed', loadPaths: ['./node_modules/'] })
 
