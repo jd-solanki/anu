@@ -265,3 +265,9 @@ h2[id="api"] {
   color: #8BE9FD !important;
   text-decoration: none !important;
 }
+
+/* Fix code snippet overlaps on floating element (menu, select, etc) */
+.vp-doc .line-numbers-wrapper:not(:where(.vp-raw *)),
+.vp-doc [class*=language-] pre:not(:where(.vp-raw *)) {
+  z-index: 0;
+}

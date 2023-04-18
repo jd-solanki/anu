@@ -1,5 +1,5 @@
-import Container from 'markdown-it-container'
 import { fileURLToPath } from 'node:url'
+import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
 import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
@@ -23,10 +23,6 @@ if (isDev)
 export default defineConfig({
   title: 'Anu',
   description: 'DX focused utility based vue component library',
-  head: [
-    ['link', { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap', rel: 'stylesheet' }],
-    ['link', { href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap', rel: 'stylesheet' }],
-  ],
   themeConfig: {
     footer: {
       message: 'Released under the MIT License.',
