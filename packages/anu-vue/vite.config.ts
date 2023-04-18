@@ -6,6 +6,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
 import { defineConfig } from 'vitest/config'
 
+function noop() {}
+
 const externals = [
   'vue',
   '@floating-ui/vue',
@@ -62,13 +64,29 @@ export default defineConfig({
     ],
   },
   test: {
-    open: true,
+    open: !process.env.HEADLESS,
+    isolate: false,
     browser: {
       enabled: true,
+
+      // @ts-expect-error ignore, we don't have the type here
+      enableUI: true,
       name: 'chrome',
-      headless: true,
+      headless: !!process.env.HEADLESS,
       provider: 'webdriverio',
     },
+    reporters: ['json', {
+      onInit: noop,
+      onPathsCollected: noop,
+      onCollected: noop,
+      onFinished: noop,
+      onTaskUpdate: noop,
+      onTestRemoved: noop,
+      onWatcherStart: noop,
+      onWatcherRerun: noop,
+      onServerRestart: noop,
+      onUserConsoleLog: noop,
+    }, 'default'],
     setupFiles: ['./test/setup.vitest.ts'],
   },
 })
