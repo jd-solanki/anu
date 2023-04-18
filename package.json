@@ -52,5 +52,5 @@
     "unplugin-vue-macros": "^2.0.0",
     "vue-component-meta": "^1.2.0"
   },
-  "packageManager": "pnpm@7.18.0"
+  "packageManager": "pnpm@8.2.0"
 }

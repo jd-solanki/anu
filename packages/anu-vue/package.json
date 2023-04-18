@@ -44,7 +44,8 @@
     "build": "pnpm gen-volar && pnpm gen-comp-meta && vite build && vue-tsc --declaration --emitDeclarationOnly",
     "preview": "vite preview",
     "lint": "eslint . --fix",
-    "test": "vitest"
+    "test": "HEADLESS=true vitest",
+    "test-ui": "vitest"
   },
   "dependencies": {
     "@floating-ui/vue": "^0.2.1",
