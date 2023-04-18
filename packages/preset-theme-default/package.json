@@ -17,8 +17,7 @@
   "files": [
     "dist",
     "*.d.ts",
-    "*.css",
-    "*.scss"
+    "*.css"
   ],
   "scripts": {
     "build": "unbuild",
