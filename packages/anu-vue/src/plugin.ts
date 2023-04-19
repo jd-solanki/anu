@@ -4,6 +4,8 @@ import type { App } from 'vue'
 import * as components from '@/components'
 import { useAnu } from '@/composables/useAnu'
 import { ANU_CONFIG } from '@/symbols'
+import { provideConfig } from '@/composables/useConfig'
+import { defaultBaseZIndex } from '@/composables/useZIndex'
 
 export type ThemeColors = 'primary' | 'success' | 'info' | 'warning' | 'danger'
 export type DefaultThemes = 'light' | 'dark'
@@ -20,11 +22,13 @@ export interface PluginOptions {
   registerComponents: boolean
   initialTheme: keyof ConfigThemes
   themes: ConfigThemes
+  zIndex: number
 }
 
 const configDefaults: PluginOptions = {
   registerComponents: true,
   initialTheme: 'light',
+  zIndex: 2000,
   themes: {
     light: {
       class: '',
@@ -74,6 +78,9 @@ export const plugin = {
     }
 
     app.provide(ANU_CONFIG, config)
+
+    if (options)
+      provideConfig({ zIndex: options.zIndex || defaultBaseZIndex }, app)
 
     // Initialize Anu instance with config values
     useAnu({
