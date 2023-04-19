@@ -1,38 +1,39 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
-        "lib": [
-            "esnext"
-        ],
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "strict": true,
-        "strictNullChecks": true,
-        "resolveJsonModule": true,
-        "skipDefaultLibCheck": true,
-        "skipLibCheck": true,
-        "noUncheckedIndexedAccess": true,
-        "jsx": "preserve",
-        "types": [
-            "node",
-            "unplugin-vue-macros/macros-global"
-        ]
-    },
-    "vueCompilerOptions": {
-        "target": 3,
-        "plugins": [
-            "@vue-macros/volar/define-model",
-            "@vue-macros/volar/define-props",
-            "@vue-macros/volar/define-props-refs",
-            "@vue-macros/volar/short-vmodel",
-            "@vue-macros/volar/define-slots",
-            "@vue-macros/volar/export-props"
-        ]
-    },
-    "exclude": [
-        "**/dist/**",
-        "**/node_modules/**",
-        "**/playground/**"
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "esnext"
+    ],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "jsx": "preserve",
+    "types": [
+      "node",
+      "unplugin-vue-macros/macros-global"
     ]
+  },
+  "vueCompilerOptions": {
+    "target": 3,
+    "plugins": [
+      "@vue-macros/volar/define-options",
+      "@vue-macros/volar/define-models",
+      "@vue-macros/volar/define-props",
+      "@vue-macros/volar/define-props-refs",
+      "@vue-macros/volar/short-vmodel",
+      "@vue-macros/volar/define-slots",
+      "@vue-macros/volar/export-props"
+    ]
+  },
+  "exclude": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/playground/**"
+  ]
 }
