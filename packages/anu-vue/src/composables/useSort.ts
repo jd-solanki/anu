@@ -1,8 +1,7 @@
 import type { MaybeRef } from '@vueuse/core'
-import { isNumber } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, unref } from 'vue'
-import { isEmpty, isObject } from '@/utils/helpers'
+import { isEmpty, isNumeric, isObject } from '@/utils/helpers'
 
 export type CustomSort = ((a: unknown, b: unknown) => number)
 
@@ -23,8 +22,8 @@ export function useSort<T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | u
   }
 
   const sortValues = (a: unknown, b: unknown): number => {
-    if (isNumber(a) && isNumber(b))
-      return a - b
+    if (isNumeric(a) && isNumeric(b))
+      return (a as number) - (b as number)
 
     if (isDate(a) && isDate(b)) {
       // @ts-expect-error Date.parse can't take Date object as argument

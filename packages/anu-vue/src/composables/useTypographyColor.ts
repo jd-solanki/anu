@@ -1,4 +1,4 @@
-import type { MaybeComputedRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from '@vueuse/core'
 import { resolveUnref } from '@vueuse/core'
 import type { ColorProp } from './useProps'
 import { colord } from '@/utils/colord'
@@ -39,7 +39,7 @@ function calculateColor(_isThemeColor: boolean, _color: ColorProp | null, _varia
   }
 }
 
-export function useTypographyColor(color: MaybeComputedRef<ColorProp | null>, variant: MaybeComputedRef<string>) {
+export function useTypographyColor(color: MaybeRefOrGetter<ColorProp | null>, variant: MaybeRefOrGetter<string>) {
   const typographyClasses = ref<string[]>([])
   const typographyStyles = ref<string[]>([])
 

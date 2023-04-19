@@ -44,15 +44,15 @@
     "@anu-vue/preset-theme-default": "workspace:*",
     "@floating-ui/dom": "^1.2.6",
     "@iconify-json/bx": "latest",
-    "@nuxt/kit": "^3.4.0",
+    "@nuxt/kit": "^3.4.1",
     "anu-vue": "workspace:*"
   },
   "devDependencies": {
-    "@nuxt/devtools": "0.4.0",
-    "@nuxt/devtools-ui-kit": "0.4.0",
+    "@nuxt/devtools": "0.4.1",
+    "@nuxt/devtools-ui-kit": "0.4.1",
     "@nuxt/module-builder": "^0.3.0",
-    "@nuxt/schema": "^3.4.0",
+    "@nuxt/schema": "^3.4.1",
     "@unocss/nuxt": "^0.51.4",
-    "nuxt": "^3.4.0"
+    "nuxt": "^3.4.1"
   }
 }

@@ -15,23 +15,23 @@
   "devDependencies": {
     "@iconify-json/bx": "^1.1.6",
     "@iconify-json/fluent-emoji": "^1.1.13",
-    "@iconify-json/logos": "^1.1.24",
+    "@iconify-json/logos": "^1.1.25",
     "@unocss/preset-icons": "^0.51.4",
     "@unocss/preset-uno": "0.51.4",
     "@unocss/preset-web-fonts": "^0.51.4",
-    "@vee-validate/zod": "^4.8.4",
+    "@vee-validate/zod": "^4.8.6",
     "markdown-it": "^13.0.1",
     "markdown-it-container": "^3.0.0",
     "postcss-prefix-selector": "^1.16.0",
     "unocss": "^0.51.4",
-    "vitepress": "1.0.0-alpha.65",
+    "vitepress": "1.0.0-alpha.72",
     "zod": "3.21.4"
   },
   "dependencies": {
     "@anu-vue/preset-theme-default": "workspace:*",
-    "@vueuse/core": "10.0.0-beta.2",
+    "@vueuse/core": "10.0.2",
     "anu-vue": "workspace:*",
-    "vee-validate": "^4.8.4",
+    "vee-validate": "^4.8.6",
     "vue": "^3.2.47"
   }
 }

@@ -1,4 +1,4 @@
-import type { MaybeComputedRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { ExtractPropTypes, PropType } from 'vue'
 
 export type CheckboxModelValue = null | string | number | boolean | unknown[]
@@ -45,12 +45,12 @@ export const useCheckboxProps = {
 export type UseCheckboxProps = ExtractPropTypes<typeof useCheckboxProps>
 
 export function useCheckbox<Name extends string>(
-  modelValue: MaybeComputedRef<CheckboxModelValue>,
+  modelValue: MaybeRefOrGetter<CheckboxModelValue>,
   emit: (event: Name, ...args: any[]) => void,
-  checkedValue: MaybeComputedRef<CheckboxModelValue> = true,
-  uncheckedValue: MaybeComputedRef<CheckboxModelValue> = false,
-  indeterminateValue: MaybeComputedRef<CheckboxModelValue> = null,
-  cycleIndeterminate: MaybeComputedRef<boolean> = false,
+  checkedValue: MaybeRefOrGetter<CheckboxModelValue> = true,
+  uncheckedValue: MaybeRefOrGetter<CheckboxModelValue> = false,
+  indeterminateValue: MaybeRefOrGetter<CheckboxModelValue> = null,
+  cycleIndeterminate: MaybeRefOrGetter<boolean> = false,
 ) {
   const handleModelValueChange = () => {
     const _cycleIndeterminate = resolveUnref(cycleIndeterminate)

@@ -1,11 +1,11 @@
-import type { MaybeComputedRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, ref, toRaw, unref, watch } from 'vue'
 
 // TODO: Improve typings
 
 export interface ComposableParams<T> {
-  multi?: MaybeComputedRef<boolean>
+  multi?: MaybeRefOrGetter<boolean>
   options: T[] | number
 }
 
