@@ -13,7 +13,8 @@
     "release": "bumpp package.json packages/**/package.json",
     "lint": "pnpm --filter anu-vue lint",
     "update:deps": "taze -r -w --install",
-    "test": "nr --filter anu-vue test"
+    "test": "nr --filter anu-vue test",
+    "test-ui": "nr --filter anu-vue test-ui"
   },
   "keywords": [],
   "author": "",

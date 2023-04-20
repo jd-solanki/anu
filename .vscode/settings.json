@@ -89,7 +89,8 @@
         "nuxt",
         "Vite",
         "vitepress",
-        "Vuetify's"
+        "Vuetify's",
+        "webdriverio"
     ],
     // Extension: UnoCSS
     "unocss.root": "packages/documentation",
