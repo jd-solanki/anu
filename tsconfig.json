@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "esnext",
     "module": "esnext",
     "lib": [
@@ -9,6 +10,7 @@
     "esModuleInterop": true,
     "strict": true,
     "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
@@ -17,7 +19,27 @@
     "types": [
       "node",
       "unplugin-vue-macros/macros-global"
-    ]
+    ],
+    "paths": {
+      "@/*": [
+        "./packages/anu-vue/src/*"
+      ],
+      "@anu-vue/core": [
+        "./packages/anu-vue/src/index.ts"
+      ],
+      "@anu-vue/core/*": [
+        "./packages/anu-vue/src/*"
+      ],
+      "@anu-vue/preset-theme-default": [
+        "./packages/preset-theme-default/src/index.ts"
+      ],
+      "@anu-vue/preset-theme-default/*": [
+        "./packages/preset-theme-default/src/*"
+      ],
+      "@anu-vue/nuxt": [
+        "./packages/anu-nuxt/src/module.ts"
+      ]
+    }
   },
   "vueCompilerOptions": {
     "target": 3,
