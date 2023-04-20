@@ -7,8 +7,11 @@ import Unocss from 'unocss/vite'
 import { defineConfig, mergeConfig } from 'vitest/config'
 import vitestBaseConfig from '../../vitest.config'
 
-// import { presetThemeDefault } from '../preset-theme-default/src/index'
-// import { presetAnu, presetIconExtraProperties } from './src'
+import { presetThemeDefault } from '../preset-theme-default/src/index'
+
+import { presetIconExtraProperties } from './src/preset/icons'
+
+import { presetAnu } from './src/preset'
 import viteConfig from './vite.config'
 
 const vitestConfig = mergeConfig(vitestBaseConfig, defineConfig({
@@ -19,8 +22,7 @@ const vitestConfig = mergeConfig(vitestBaseConfig, defineConfig({
         presetIcons({
           scale: 1.2,
           unit: 'em',
-
-          // extraProperties: presetIconExtraProperties,
+          extraProperties: presetIconExtraProperties,
         }),
         presetWebFonts({
           fonts: {
@@ -30,8 +32,8 @@ const vitestConfig = mergeConfig(vitestBaseConfig, defineConfig({
         }),
 
         // anu-vue presets
-        // presetAnu(),
-        // presetThemeDefault(),
+        presetAnu(),
+        presetThemeDefault(),
       ],
       include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
     }),
