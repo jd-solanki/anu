@@ -17,15 +17,6 @@
       "dom"
     ]
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.d.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.vue",
-    "./auto-imports.d.ts",
-    "./shims.d.ts",
-    "./volar.d.ts"
-  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

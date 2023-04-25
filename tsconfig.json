@@ -21,6 +21,9 @@
       "unplugin-vue-macros/macros-global"
     ],
     "paths": {
+      "anu-vue": [
+        "./packages/anu-vue/src/index.ts"
+      ],
       "@/*": [
         "./packages/anu-vue/src/*"
       ],
@@ -53,6 +56,14 @@
       "@vue-macros/volar/export-props"
     ]
   },
+  "include": [
+    "./packages/**/src/**/*",
+    "./packages/anu-vue/auto-imports.d.ts",
+    "./packages/anu-vue/shims.d.ts",
+    "./packages/anu-vue/volar.d.ts",
+    "./docs/**/*",
+    "./docs/.vitepress/shims.d.ts"
+  ],
   "exclude": [
     "**/dist/**",
     "**/node_modules/**",
