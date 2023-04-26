@@ -1,29 +1,29 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import type { PropColumn as TablePropColumn } from '@/components/table'
 import { tableProps } from '@/components/table'
 import { defuProps } from '@/composables/useProps'
 import type { CustomFilter } from '@/composables/useSearch'
 import type { CustomSort } from '@/composables/useSort'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export type SortBy = 'asc' | 'desc' | undefined
 
 export interface DataTablePropColumn extends TablePropColumn {
   isSortable?: boolean
   sortBy?: SortBy
-  isFilterable: Boolean
+  isFilterable?: Boolean
   filterFunc?: CustomFilter<any>
   sortFunc?: CustomSort
 }
 
-export interface ItemsFunctionParams {
+export interface DataTableItemsFunctionParams {
   q: string
   currentPage: number
   rowsPerPage: number
   sortedCols: DataTablePropColumn[]
 }
 
-export interface ItemsFunction {
-  (props: ItemsFunctionParams): Promise<{ rows: Record<string, unknown>[]; total: number }>
+export interface DataTableItemsFunction {
+  (props: DataTableItemsFunctionParams): Promise<{ rows: Record<string, unknown>[]; total: number }>
 }
 
 export const dataTableProps = defuProps({
@@ -31,7 +31,7 @@ export const dataTableProps = defuProps({
    * Function that returns resolves array.
    */
   rows: {
-    type: [Array, Function] as PropType<ItemsFunction | Record<string, unknown>[]>,
+    type: [Array, Function] as PropType<DataTableItemsFunction | Record<string, unknown>[]>,
     required: true,
   },
 

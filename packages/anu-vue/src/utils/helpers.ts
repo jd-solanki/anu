@@ -41,7 +41,7 @@ export function clampNumber(num: number, min: number, max: number) {
 }
 
 export function capitalize(str: string) {
-  return str[0].toUpperCase() + str.slice(1)
+  return (str[0] as string).toUpperCase() + str.slice(1)
 }
 
 export function prefixObjectKeys<T extends Record<string, any>, P extends string>(obj: T,

@@ -238,9 +238,9 @@ export function getContrastColor(color: string): string {
     }
     else if (color.length === 4) {
       // #RGB
-      const r = parseInt(color[1], 16) * 0x11
-      const g = parseInt(color[2], 16) * 0x11
-      const b = parseInt(color[3], 16) * 0x11
+      const r = parseInt(color[1] as string, 16) * 0x11
+      const g = parseInt(color[2] as string, 16) * 0x11
+      const b = parseInt(color[3] as string, 16) * 0x11
       const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
 
       return luminance > 128 ? darkContrastColor : lightContrastColor
@@ -250,9 +250,9 @@ export function getContrastColor(color: string): string {
   // Check if the color is an RGB or RGBA string
   if (color.substring(0, 3) === 'rgb' || color.substring(0, 4) === 'rgba') {
     const parts = color.substring(color[3] === 'a' ? 5 : 4).split(',')
-    const r = parseInt(parts[0])
-    const g = parseInt(parts[1])
-    const b = parseInt(parts[2])
+    const r = parseInt(parts[0] as string)
+    const g = parseInt(parts[1] as string)
+    const b = parseInt(parts[2] as string)
     const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
 
     return luminance > 128 ? darkContrastColor : lightContrastColor
@@ -261,7 +261,8 @@ export function getContrastColor(color: string): string {
   // Check if the color is an HSL or HSLA string
   if (color.substring(0, 3) === 'hsl' || color.substring(0, 4) === 'hsla') {
     const parts = color.substring(color[3] === 'a' ? 5 : 4).split(',')
-    const l = parseInt(parts[2].substring(0, parts[2].length - 1))
+
+    const l = parseInt((parts[2] as string).substring(0, (parts[2] as string).length - 1))
 
     return l > 50 ? darkContrastColor : lightContrastColor
   }

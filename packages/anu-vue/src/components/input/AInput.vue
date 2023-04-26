@@ -51,7 +51,7 @@ function handleInputWrapperClick() {
         ref="input"
         class="a-input-input"
         :value="props.modelValue"
-        @input="e => { $emit('update:modelValue', (e.target as HTMLInputElement).value) }"
+        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       >
     </template>
   </ABaseInput>

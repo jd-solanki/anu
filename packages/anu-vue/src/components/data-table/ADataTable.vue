@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
 import type { Ref } from 'vue'
-import type { DataTablePropColumn, DataTableProps, ItemsFunction } from './props'
+import type { DataTableItemsFunction, DataTablePropColumn, DataTableProps } from './props'
 import { dataTableColDefaults, dataTableProps } from './props'
 import { ABtn, AInput, ASelect, ATable } from '@/components'
 import { tableProps } from '@/components/table'
@@ -113,7 +113,7 @@ const sortedCols = computed(() => cols.value.filter(col => col.isSortable && col
 function fetchRows() {
   // Use type check instead of isSST to prevent type aliases further
   if (typeof props.rows === 'function') {
-    (props.rows as ItemsFunction)({
+    (props.rows as DataTableItemsFunction)({
       q: q.value,
       /* eslint-disable @typescript-eslint/no-use-before-define */
       currentPage: currentPage.value,

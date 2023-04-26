@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { useCycleList } from '@vueuse/core'
 
 const items = [
   { text: 'Donut jujubes' },
   { text: 'Sesame snaps' },
   { text: 'I love jelly' },
-  { text: 'Cake gummi', disable: true },
+  { text: 'Cake gummi', disabled: true },
 ]
-
-const menuPlacement = ref('bottom-start')
 
 const placementOptions = [
   'top',
@@ -24,14 +22,7 @@ const placementOptions = [
   'left-start',
   'left-end',
 ]
-
-const selectNext = () => {
-  const index = placementOptions.findIndex(o => o === menuPlacement.value)
-
-  const nextIndex = (index === placementOptions.length - 1) ? 0 : index + 1
-
-  menuPlacement.value = placementOptions[nextIndex]
-}
+const { state: menuPlacement, next: selectNext } = useCycleList(placementOptions)
 </script>
 
 <template>

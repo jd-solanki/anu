@@ -43,7 +43,7 @@ const groupModelOptions = computed(() => {
   }
 
   else {
-    if (firstTab.value)
+    if (firstTab?.value)
       return props.tabs.map(tab => (tab as TabProps).value)
 
     return props.tabs.length
@@ -130,14 +130,14 @@ function calculateActiveIndicatorStyle() {
 }
 
 function handleTabClick(tab: TabProps | string, index: number) {
-  const value = options.value[index].value
+  const value = options.value[index]?.value
   selectTab(value)
   emit('update:modelValue', value)
 
   // Set active tab ref to set active indicator styles
   refActiveTab.value = refTabs.value[index]
 
-  refActiveTab.value.$el.scrollIntoView({
+  refActiveTab.value?.$el.scrollIntoView({
     behavior: 'smooth',
     block: 'nearest',
     inline: 'nearest',
@@ -149,10 +149,14 @@ onMounted(calculateActiveIndicatorStyle)
 
 // ℹ️ useGroupModel doesn't support initial value yet so we have to do it manually
 onMounted(() => {
-  if (props.modelValue)
-    handleTabClick(props.tabs[props.modelValue], props.modelValue)
-  else
-    handleTabClick(props.tabs[0], 0)
+  if (props.modelValue) {
+    const tabToSelect = props.tabs[props.modelValue]
+    tabToSelect && handleTabClick(tabToSelect, props.modelValue)
+  }
+  else {
+    const tabToSelect = props.tabs[0]
+    tabToSelect && handleTabClick(tabToSelect, 0)
+  }
 })
 
 // Arrow navigation & Scroll snapping
@@ -219,7 +223,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
       const nextTabIndex = index + 1
       if (nextTabIndex < options.value.length) {
         nextTabFound = true
-        handleTabClick(props.tabs[nextTabIndex], nextTabIndex)
+        handleTabClick(props.tabs[nextTabIndex] as string | TabProps, nextTabIndex)
       }
     }
 
@@ -227,7 +231,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
       const prevTabIndex = index - 1
       if (prevTabIndex >= 0) {
         nextTabFound = true
-        handleTabClick(props.tabs[prevTabIndex], prevTabIndex)
+        handleTabClick(props.tabs[prevTabIndex] as string | TabProps, prevTabIndex)
       }
     }
   })
@@ -275,7 +279,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
             ref="refTabs"
             v-bind="typeof tab === 'string' ? { title: tab } : tab"
             :class="[
-              options[i].isSelected && 'a-tab-active',
+              options[i]?.isSelected && 'a-tab-active',
               tabJustifyClasses.tabClasses,
             ]"
             :stacked="props.stackedTabs"

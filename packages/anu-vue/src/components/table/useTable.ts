@@ -1,4 +1,4 @@
-import type { ComputedRef, Ref } from 'vue'
+import type { ComputedRef, Ref, UnwrapRef } from 'vue'
 import type { SortBy } from '@/components/data-table'
 
 export function getComputedCols<PropColumn>(rows: Ref<Record<string, unknown>[]>, cols: Ref<PropColumn[]>) {
@@ -12,7 +12,7 @@ export function getComputedCols<PropColumn>(rows: Ref<Record<string, unknown>[]>
       return []
 
     // Else generate cols from first row
-    return Object.keys(rows.value[0]).map(rowObjProperty => ({ name: rowObjProperty } as PropColumn))
+    return Object.keys((rows.value[0]) as UnwrapRef<(typeof rows)>[number]).map(rowObjProperty => ({ name: rowObjProperty } as PropColumn))
   })
 }
 
