@@ -38,9 +38,6 @@ export const aLayerProps = ({
   },
 } as const) satisfies ComponentObjectPropsOptions<ALayerProps>
 
-// Thanks: https://youtu.be/a_m7jxrTlaw
-// type LooseAutocomplete<T extends string> = T | Omit<string, T>
-
 // TODO: Use `useColor` composable to removed the color calculation
 export function useProps(propOverrides?: Partial<ComponentObjectPropsOptions>) {
   let props = {
@@ -154,7 +151,7 @@ export function useLayer() {
         classes.push('border-width-1 border-solid border-current')
     }
     else if (propColor) {
-      const _colord = colord(propColor as string)
+      const _colord = colord(propColor)
 
       styles.push({ '--a-layer-c': _colord.toHslValue() })
 

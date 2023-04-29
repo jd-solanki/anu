@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { ATextareaEvents, aTextareaSlots } from './meta'
 import { aTextareaBaseInputSlots, aTextareaProps } from './meta'
-import type { ABaseInputProps } from '@/components/base-input'
 import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 
 const props = defineProps(aTextareaProps)
@@ -15,7 +14,8 @@ defineOptions({
 
 const textareaValue = useVModel(props, 'modelValue', emit, { defaultValue: '', passive: true })
 
-const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
+// const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as any)
 
 const textarea = ref<HTMLTextAreaElement>()
 

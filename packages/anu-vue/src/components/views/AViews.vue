@@ -53,7 +53,7 @@ watch(direction, value => {
       tag="div"
       :class="`${props.transition}-group`"
       class="a-views-wrapper relative"
-      :name="props.transition as string"
+      :name="props.transition"
     >
       <slot>
         <template

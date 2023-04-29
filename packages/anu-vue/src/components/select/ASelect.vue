@@ -3,7 +3,6 @@ import { flip, offset, shift } from '@floating-ui/vue'
 import type { ASelectEvents, aSelectSlots } from './meta'
 import { aSelectBaseInputSlots, aSelectCardSlots, aSelectListSlotsWithPrefixMeta, aSelectProps } from './meta'
 import { ACard, AList } from '@/components'
-import type { ABaseInputProps } from '@/components/base-input'
 import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { AListPropItems } from '@/components/list'
@@ -20,7 +19,8 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
+// const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as any)
 
 // SECTION Floating
 // Template refs
@@ -120,7 +120,6 @@ function middleware() {
     <ACard
       v-show="isOptionsVisible"
       ref="refFloating"
-      :data-slots="Object.keys($slots)"
       class="a-select-options-container bg-[hsl(var(--a-surface-c))]"
       :class="props.optionsWrapperClasses"
       @click="closeOptions"

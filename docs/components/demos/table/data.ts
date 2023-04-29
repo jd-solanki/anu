@@ -1,4 +1,4 @@
-import type { DataTableItemsFunctionParams, typeSortBy } from 'anu-vue'
+import type { ADataTableItemsFunctionParams, typeSortBy } from 'anu-vue'
 import { useSearch, useSort } from 'anu-vue'
 
 export const rows = [
@@ -288,7 +288,7 @@ export const fakeDatabase: User[] = [
   },
 ]
 
-export function fakeAPICall({ q, currentPage, rowsPerPage, sortedCols }: DataTableItemsFunctionParams) {
+export function fakeAPICall({ q, currentPage, rowsPerPage, sortedCols }: ADataTableItemsFunctionParams) {
   return new Promise(resolve => {
     // Added some timeout to delay the request response
     setTimeout(() => {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { AInputEvents, AInputProps } from './meta'
+import type { AInputEvents } from './meta'
 import { aInputProps, aTextareaBaseInputSlots } from './meta'
 import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 
@@ -11,7 +11,8 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof AInputProps>)
+// const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof AInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as any)
 const attrs = useAttrs()
 
 const input = ref<HTMLInputElement>()

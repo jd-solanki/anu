@@ -1,7 +1,8 @@
 import type { UseSwipeDirection } from '@vueuse/core'
+import type { LiteralUnion } from 'type-fest'
 import type { ComponentObjectPropsOptions } from 'vue'
+import type { NoUndefined } from '@/utils/typescripts'
 import type { Transitions } from '@/transitions'
-import type { LooseAutocomplete, NoUndefined } from '@/utils/typescripts'
 
 // ℹ️ Make sure to checkout meta definition rules
 
@@ -16,7 +17,7 @@ export interface AViewsProps {
   /**
    * Transition to use
    */
-  transition?: LooseAutocomplete<Transitions>
+  transition?: LiteralUnion<Transitions, string>
 }
 
 export const aViewsProps = ({

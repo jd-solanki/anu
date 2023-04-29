@@ -1,8 +1,9 @@
 import type { Middleware, Placement, Strategy } from '@floating-ui/vue'
 import { flip, shift } from '@floating-ui/vue'
+import type { LiteralUnion } from 'type-fest'
 import type { ComponentObjectPropsOptions } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
-import type { LooseAutocomplete, NoUndefined } from '@/utils/typescripts'
+import type { NoUndefined } from '@/utils/typescripts'
 import type { Transitions } from '@/transitions'
 
 // ℹ️ Make sure to checkout meta definition rules
@@ -51,7 +52,7 @@ export interface AFloatingProps {
   /**
    * Transition to add while showing/hiding floating element
    */
-  transition?: LooseAutocomplete<Transitions> | null
+  transition?: LiteralUnion<Transitions, string> | null
 
   // -- Floating UI based Props
 

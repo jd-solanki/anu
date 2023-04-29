@@ -3,6 +3,7 @@ import type { UseSwipeDirection } from '@vueuse/core'
 import type { ATabsEvents } from './meta'
 import { aTabsProps } from './meta'
 import { ATabBindingsSymbol } from './symbol'
+import type { ATabProps } from '@/components/tab'
 import { ATab } from '@/components/tab'
 import { AView } from '@/components/view'
 import { AViews } from '@/components/views'
@@ -44,7 +45,7 @@ const groupModelOptions = computed(() => {
 
   else {
     if (firstTab?.value)
-      return props.tabs.map(tab => (tab as TabProps).value)
+      return props.tabs.map(tab => (tab as ATabProps).value)
 
     return props.tabs.length
   }
@@ -129,7 +130,7 @@ function calculateActiveIndicatorStyle() {
   }
 }
 
-function handleTabClick(tab: TabProps | string, index: number) {
+function handleTabClick(tab: ATabProps | string, index: number) {
   const value = options.value[index]?.value
   selectTab(value)
   emit('update:modelValue', value)
@@ -223,7 +224,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
       const nextTabIndex = index + 1
       if (nextTabIndex < options.value.length) {
         nextTabFound = true
-        handleTabClick(props.tabs[nextTabIndex] as string | TabProps, nextTabIndex)
+        handleTabClick(props.tabs[nextTabIndex] as string | ATabProps, nextTabIndex)
       }
     }
 
@@ -231,7 +232,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
       const prevTabIndex = index - 1
       if (prevTabIndex >= 0) {
         nextTabFound = true
-        handleTabClick(props.tabs[prevTabIndex] as string | TabProps, prevTabIndex)
+        handleTabClick(props.tabs[prevTabIndex] as string | ATabProps, prevTabIndex)
       }
     }
   })
