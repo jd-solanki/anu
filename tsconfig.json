@@ -4,7 +4,8 @@
     "target": "esnext",
     "module": "esnext",
     "lib": [
-      "esnext"
+      "esnext",
+      "DOM"
     ],
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -46,6 +47,7 @@
   },
   "vueCompilerOptions": {
     "target": 3,
+    "strictTemplates": true,
     "plugins": [
       "@vue-macros/volar/define-options",
       "@vue-macros/volar/define-models",

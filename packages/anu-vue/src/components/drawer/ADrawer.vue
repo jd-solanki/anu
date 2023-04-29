@@ -1,33 +1,14 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { PropType, Ref } from 'vue'
-import { ACard, cardProps } from '@/components/card'
+import type { Ref } from 'vue'
+import type { ADrawerEvents } from './meta'
+import { aDrawerProps, aDrawerSlots } from './meta'
+import { ACard } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useTeleport } from '@/composables/useTeleport'
 
-const props = defineProps(defu({
-  /**
-   * Show/Hide drawer base on v-model value
-   */
-  modelValue: Boolean,
-
-  /**
-   * Persistence of drawer when clicked outside of reference element
-   */
-  persistent: Boolean,
-
-  /**
-   * Drawer anchor/position
-   */
-  anchor: {
-    type: String as PropType<'left' | 'right' | 'top' | 'bottom'>,
-    default: 'left',
-  },
-}, cardProps))
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
+const props = defineProps(aDrawerProps)
+const emit = defineEmits<ADrawerEvents>()
+defineSlots<typeof aDrawerSlots>()
 
 defineOptions({
   name: 'ADrawer',
@@ -103,7 +84,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
           >
             <!-- ℹ️ Recursively pass down slots to child -->
             <template
-              v-for="(_, name) in $slots"
+              v-for="(_, name) in aDrawerSlots"
               #[name]="slotProps"
             >
               <slot

@@ -1,19 +1,13 @@
 <script lang="ts" setup>
-import { tooltipProps } from './props'
+import type { aTooltipSlots } from './meta'
+import { aTooltipProps } from './meta'
 import { AFloating } from '@/components/floating'
 import { useParent } from '@/composables'
 
 // import { arrow } from '@floating-ui/vue'
 
-const props = defineProps(tooltipProps)
-
-defineSlots<{
-
-  /**
-   * Default slot for rendering tooltip content. If default slot is used `text` prop will be discarded.
-   */
-  default: {}
-}>()
+const props = defineProps(aTooltipProps)
+defineSlots<typeof aTooltipSlots>()
 
 defineOptions({
   name: 'ATooltip',

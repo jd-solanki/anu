@@ -1,12 +1,8 @@
 <script lang="ts" setup>
+import { aViewProps } from './meta'
 import { ViewGroupModel } from '@/components/views/symbol'
 
-const props = defineProps({
-  value: {
-    type: null,
-    default: undefined,
-  },
-})
+const props = defineProps(aViewProps)
 
 defineOptions({
   name: 'AView',

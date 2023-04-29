@@ -1,28 +1,63 @@
 {
-    "Create SFC": {
-        "prefix": "sfc",
-        "body": [
-            "<script lang=\"ts\" setup>",
-            "defineOptions({",
-            "  name: 'A${1}',",
-            "})",
-            "</script>",
-            "",
-            "<template>",
-            "",
-            "</template>",
-            "",
-            "<style lang=\"scss\">",
-            "",
-            "</style>"
-        ],
-        "description": "Create SFC"
-    },
-    "Create template with v-if": {
-        "prefix": "tif",
-        "body": [
-            "<template v-if=\"${1}\"></template>"
-        ],
-        "description": "Create template with v-if"
-    }
+  "Create SFC": {
+    "prefix": "sfc",
+    "body": [
+      "<script lang=\"ts\" setup>",
+      "defineOptions({",
+      "  name: 'A${1}',",
+      "})",
+      "</script>",
+      "",
+      "<template>",
+      "",
+      "</template>",
+      "",
+      "<style lang=\"scss\">",
+      "",
+      "</style>"
+    ],
+    "description": "Create SFC"
+  },
+  "Create template with v-if": {
+    "prefix": "tif",
+    "body": [
+      "<template v-if=\"${1}\"></template>"
+    ],
+    "description": "Create template with v-if"
+  },
+  "Generate component meta": {
+    "prefix": "cmeta",
+    "body": [
+      "import type { ComponentObjectPropsOptions } from 'vue'",
+      "",
+      "// ℹ️ Make sure to checkout meta definition rules",
+      "",
+      "// 👉 Props",
+      "export interface A${1:Component}Props {}",
+      "",
+      "export const a${1:Component}Props = ({",
+      "} as const) satisfies Required<ComponentObjectPropsOptions<A${1:Component}Props>>",
+      "",
+      "// 👉 Slots",
+      "export const a${1:Component}Slots = {} as const",
+      "",
+      "// 👉 Events",
+      "export interface A${1:Component}Events {}"
+    ],
+    "description": "Generate component meta"
+  },
+  "Generate component index": {
+    "prefix": "cindex",
+    "body": [
+      "import A${1:component} from './A${1:component}.vue'",
+      "",
+      "export { A${1:component} }",
+      "export * from './meta'",
+      "",
+      "// eslint-disable-next-line @typescript-eslint/no-redeclare",
+      "export type A${1:component} = InstanceType<typeof A${1:component}>",
+      ""
+    ],
+    "description": "Generate component index"
+  }
 }

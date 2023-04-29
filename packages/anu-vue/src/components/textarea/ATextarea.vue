@@ -1,25 +1,12 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
-import { ABaseInput, baseInputProps } from '@/components/base-input'
+import type { ATextareaEvents, aTextareaSlots } from './meta'
+import { aTextareaBaseInputSlots, aTextareaProps } from './meta'
+import type { ABaseInputProps } from '@/components/base-input'
+import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 
-const props = defineProps(defu({
-  modelValue: String,
-
-  /**
-   * Textarea height. Provide valid CSS height class with `!` prefixed.
-   */
-  height: String,
-
-  /**
-   * Automatically update the height of a textarea depending on the content.
-   */
-  autoSize: Boolean,
-}, baseInputProps))
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aTextareaProps)
+const emit = defineEmits<ATextareaEvents>()
+defineSlots<typeof aTextareaSlots>()
 
 defineOptions({
   name: 'ATextarea',
@@ -28,7 +15,7 @@ defineOptions({
 
 const textareaValue = useVModel(props, 'modelValue', emit, { defaultValue: '', passive: true })
 
-const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
 
 const textarea = ref<HTMLTextAreaElement>()
 
@@ -59,11 +46,10 @@ if (props.autoSize) {
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+      v-for="(_, name) in aTextareaBaseInputSlots"
       #[name]="slotProps"
     >
       <slot
-        v-if="name !== 'default'"
         :name="name"
         v-bind="slotProps || {}"
       />

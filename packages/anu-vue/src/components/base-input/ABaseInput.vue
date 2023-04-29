@@ -1,22 +1,18 @@
 <script lang="ts" setup>
-import { baseInputProps } from './props'
-import type { baseInputSlots } from './slots'
+import type { ABaseInputEvents, aBaseInputSlots } from './meta'
+import { aBaseInputProps } from './meta'
 import { ALoader } from '@/components/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
 // TODO: Provide a way to attach classes to root element
-const props = defineProps(baseInputProps)
-
-defineEmits<{
-  (e: 'click:inputWrapper'): void
-}>()
+const props = defineProps(aBaseInputProps)
+defineEmits<ABaseInputEvents>()
+defineSlots<typeof aBaseInputSlots>()
 
 defineOptions({
   name: 'ABaseInput',
 })
-
-defineSlots<typeof baseInputSlots>()
 
 const attrs = useAttrs()
 

@@ -1,45 +1,26 @@
 <script lang="ts" setup>
 import { flip, offset, shift } from '@floating-ui/vue'
-import { defu } from 'defu'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { selectSlots } from './slots'
-import { selectBaseInputSlots, selectCardSlots, selectListDefaultSlot, selectListRestSlots, selectListSlotsPrefix } from './slots'
+import type { ASelectEvents, aSelectSlots } from './meta'
+import { aSelectBaseInputSlots, aSelectCardSlots, aSelectListSlotsWithPrefixMeta, aSelectProps } from './meta'
 import { ACard, AList } from '@/components'
-import { ABaseInput, baseInputProps } from '@/components/base-input'
+import type { ABaseInputProps } from '@/components/base-input'
+import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
-import type { ListPropItems } from '@/components/list'
-import { isObject, prefixObjectKeysWithMeta } from '@/utils/helpers'
+import type { AListPropItems } from '@/components/list'
+import { isObject } from '@/utils/helpers'
 
 export interface ObjectOption { label: string; value: string | number }
 
-const props = defineProps(defu({
-  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
-  modelValue: { type: null },
-  options: {
-    type: Array as PropType<ListPropItems>,
-    default: () => [],
-  },
-  emitObject: Boolean,
-
-  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
-  optionsWrapperClasses: { type: null },
-  listClasses: { type: null },
-}, baseInputProps))
-
-const emit = defineEmits<{
-  (e: 'change', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-  (e: 'input', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aSelectProps)
+const emit = defineEmits<ASelectEvents>()
+defineSlots<typeof aSelectSlots>()
 
 defineOptions({
   name: 'ASelect',
   inheritAttrs: false,
 })
 
-defineSlots<typeof selectSlots>()
-
-const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
 
 // SECTION Floating
 // Template refs
@@ -70,9 +51,14 @@ function handleInputClick() {
   }
 }
 
+function extractItemValueFromItemOption(item: AListPropItems[number]) {
+  return isObject(item) ? (item.value || item) : item
+}
+
 // 👉 Options
-function handleOptionClick(value: any, item?: ListPropItems[number]) {
-  const valueToEmit = (item && props.emitObject) ? item : value
+function handleOptionClick(item: AListPropItems[number]) {
+  const _val = extractItemValueFromItemOption
+  const valueToEmit = props.emitObject ? item : _val
   emit('change', valueToEmit)
   emit('input', valueToEmit)
   emit('update:modelValue', valueToEmit)
@@ -91,14 +77,6 @@ function middleware() {
     shift({ padding: 10 }),
   ]
 }
-
-const slots = useSlots()
-const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectCardSlots).filter(([slotName]) => slots[slotName])))
-
-const selectListPrefixedSlots = {
-  ...prefixObjectKeysWithMeta(selectListRestSlots, selectListSlotsPrefix),
-  ...prefixObjectKeysWithMeta(selectListDefaultSlot, ''),
-}
 </script>
 
 <template>
@@ -114,7 +92,7 @@ const selectListPrefixedSlots = {
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys(selectBaseInputSlots)"
+      v-for="(_, name) in aSelectBaseInputSlots"
       #[name]="slotProps"
     >
       <slot
@@ -149,7 +127,7 @@ const selectListPrefixedSlots = {
     >
       <!-- ℹ️ Recursively pass down slots to child -->
       <template
-        v-for="name in Object.keys(cardSlotsToPass)"
+        v-for="(_, name) in aSelectCardSlots"
         #[name]="slotProps"
       >
         <slot
@@ -162,18 +140,21 @@ const selectListPrefixedSlots = {
         :value="props.modelValue"
         class="a-select-options-list"
         :class="props.listClasses"
-        @click:item="({ item, value }) => handleOptionClick(value, item)"
+        @click:item="(item) => handleOptionClick(item)"
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in selectListPrefixedSlots"
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in aSelectListSlotsWithPrefixMeta"
           #[originalSlotName]="slotProps"
         >
           <slot
             :name="updatedSlotName"
             v-bind="{
               ...(slotProps || {}),
-              ...({ handleOptionClick }),
+              ...({
+                handleOptionClick,
+                attrs: $attrs,
+              }),
             }"
           />
         </template>

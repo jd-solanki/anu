@@ -1,25 +1,18 @@
 <script lang="ts" setup>
-import { listItemProps } from './props'
-import type { listItemSlots } from './slots'
+import type { AListItemEvents, aListItemSlots } from './meta'
+import { aListItemProps } from './meta'
 import { AAvatar } from '@/components/avatar'
 import { ATypography } from '@/components/typography'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(listItemProps)
-
-defineEmits<{
-  (e: 'click:icon'): void
-  (e: 'click:avatar'): void
-  (e: 'click:iconAppend'): void
-  (e: 'click:avatarAppend'): void
-}>()
+const props = defineProps(aListItemProps)
+defineEmits<AListItemEvents>()
+defineSlots<typeof aListItemSlots>()
 
 defineOptions({
   name: 'AListItem',
 })
-
-defineSlots<typeof listItemSlots>()
 
 const { getLayerClasses } = useLayer()
 

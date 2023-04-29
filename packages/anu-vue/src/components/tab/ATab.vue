@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { breakpointsTailwind } from '@vueuse/core'
-import { tabProps } from './props'
+import type { aTabSlots } from './meta'
+import { aTabProps } from './meta'
 
-const props = defineProps(tabProps)
+const props = defineProps(aTabProps)
+defineSlots<typeof aTabSlots>()
 
 defineOptions({
   name: 'ATab',

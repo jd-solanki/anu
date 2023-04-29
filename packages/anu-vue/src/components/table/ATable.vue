@@ -1,34 +1,36 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { PropColumn, TableProps } from './props'
-import { tableProps } from './props'
-import { ACard, cardProps } from '@/components/card'
+import type { ATableEvents, ATablePropColumn } from './meta'
+import { aTableCardSlots, aTableProps } from './meta'
+import type { ACardProps } from '@/components/card'
+import { aCardProps } from '@/components/card'
 
-const props = defineProps(defu(tableProps, cardProps))
+// import type { aTableSlots } from './meta'
+
+const props = defineProps(aTableProps)
 
 // TODO: We aren't getting type error for click:header
-defineEmits<{
-  (e: 'click:header', col: Exclude<TableProps['cols'], undefined>): void
-}>()
+defineEmits<ATableEvents>()
+
+// defineSlots<typeof aTableSlots>()
 
 defineOptions({
   name: 'ATable',
 })
 
-// TODO: What about spacing? Table & Card both support spacing 🤔
-const _cardProps = reactivePick(props, Object.keys(cardProps) as Array<keyof typeof cardProps>)
+const _cardProps = reactivePick(props, Object.keys(aCardProps) as Array<keyof ACardProps>)
 
-const _cols = computed<PropColumn[]>(() => {
+const _cols = computed<ATablePropColumn[]>(() => {
   // If custom cols are provided => Use them
   if (props.cols.length)
     return props.cols
 
   // if there's no rows => Don't generate col definition
-  if (!props.rows.length)
+  const firstRow = props.rows[0]
+  if (!firstRow)
     return []
 
   // Else generate cols from first row
-  return Object.keys(props.rows[0]).map(rowObjProperty => ({ name: rowObjProperty }))
+  return Object.keys(firstRow).map(rowObjProperty => ({ name: rowObjProperty }))
 })
 </script>
 
@@ -107,7 +109,7 @@ const _cols = computed<PropColumn[]>(() => {
 
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+      v-for="(_, name) in aTableCardSlots"
       #[name]="slotProps"
     >
       <slot

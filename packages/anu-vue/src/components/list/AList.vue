@@ -1,30 +1,19 @@
 <script lang="ts" setup>
-import type { ExtractPropTypes } from 'vue'
-import type { ListPropItems } from './props'
-import { listProps } from './props'
-import type { listSlots } from './slots'
-import { listItemSlotsPrefix } from './slots'
-import { isObject, prefixObjectKeysWithMeta } from '@/utils/helpers'
-import { useGroupModel } from '@/composables'
-import { listItemSlots as listItemComponentSlots } from '@/components/list-item/slots'
+import type { AListEvents, AListPropItems, aListSlots } from './meta'
+import { aListListItemSlotsWithPrefixMeta, aListProps } from './meta'
 import { AListItem } from '@/components/list-item'
+import { useGroupModel } from '@/composables'
+import { isObject } from '@/utils/helpers'
 
-const props = defineProps(listProps)
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-
-  // ℹ️ Fix type => (e: 'click:item', value: (ExtractPropTypes<typeof props>)['items'][number]): void
-  (e: 'click:item', value: { item: ListPropItems[number]; value: any }): void
-}>()
+const props = defineProps(aListProps)
+const emit = defineEmits<AListEvents>()
+defineSlots<typeof aListSlots>()
 
 defineOptions({
   name: 'AList',
 })
 
-defineSlots<typeof listSlots>()
-
-function extractItemValueFromItemOption(item: ListPropItems[number]) {
+function extractItemValueFromItemOption(item: AListPropItems[number]) {
   return isObject(item) ? (item.value || item) : item
 }
 
@@ -34,16 +23,13 @@ const { options, select: selectListItem, value } = useGroupModel({
 })
 
 // const isActive = computed(() => options.value[itemIndex].isSelected)
-function handleListItemClick(item: ListPropItems[number]) {
+function handleListItemClick(item: AListPropItems[number]) {
   selectListItem(extractItemValueFromItemOption(item))
   emit('update:modelValue', value.value)
-  emit('click:item', {
-    value: value.value,
-    item,
-  })
-}
 
-const listItemPrefixedSlots = prefixObjectKeysWithMeta(listItemComponentSlots, listItemSlotsPrefix)
+  // ℹ️ This even is not triggered because we use accepting `onClick:item` as a prop
+  // emit('click:item', { value: value.value })
+}
 </script>
 
 <template>
@@ -75,7 +61,7 @@ const listItemPrefixedSlots = prefixObjectKeysWithMeta(listItemComponentSlots, l
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in listItemPrefixedSlots"
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in aListListItemSlotsWithPrefixMeta"
           #[originalSlotName]="slotProps"
         >
           <slot

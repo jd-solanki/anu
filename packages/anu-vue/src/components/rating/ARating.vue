@@ -1,81 +1,10 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
+import type { ARatingEvents } from './meta'
+import { aRatingProps } from './meta'
 import { useColor } from '@/composables'
-import { color as colorProp, disabled as disabledProp, readonly as readonlyProp } from '@/composables/useProps'
 
-const props = defineProps({
-  /**
-   * Rating color
-   */
-  color: defu({ default: 'warning' }, colorProp),
-
-  /**
-   * Bind v-model value to rating
-   */
-  modelValue: Number,
-
-  /**
-   * Sets amount of rating items
-   */
-  length: {
-    type: [Number, String],
-    default: 5,
-  },
-
-  /**
-   * Allows the award of half a point
-   */
-  halve: Boolean,
-
-  /**
-   * Sets empty icon
-   */
-  emptyIcon: {
-    type: String,
-    default: 'i-bx:star',
-  },
-
-  /**
-   * Sets half-filled icon
-   */
-  halfIcon: {
-    type: String,
-    default: 'i-bx:bxs-star-half',
-  },
-
-  /**
-   * Sets filled icon
-   */
-  fullIcon: {
-    type: String,
-    default: 'i-bx:bxs-star',
-  },
-
-  /**
-   * Allows to see visual changes of value on hover
-   */
-  noHoverHint: Boolean,
-
-  /**
-   * Animate icon on hover
-   */
-  animate: Boolean,
-
-  /**
-   * Make rating component readonly
-   */
-  readonly: readonlyProp,
-
-  /**
-   * Disable rating selection
-   */
-  disabled: disabledProp,
-})
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aRatingProps)
+const emit = defineEmits<ARatingEvents>()
 
 defineOptions({
   name: 'ARating',

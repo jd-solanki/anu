@@ -8,11 +8,35 @@ import { color } from '@/composables/useProps'
 import { useTypographyColor } from '@/composables/useTypographyColor'
 import { colord } from '@/utils/colord'
 
-export interface LayerProps {
-  color: ColorProp
-  variant: 'fill' | 'outline' | 'light' | 'text'
-  states: boolean
+export type LayerVariant = 'fill' | 'outline' | 'light' | 'text'
+
+export interface ALayerProps {
+  color?: ColorProp
+  variant?: LayerVariant
+  states?: boolean
 }
+
+export const aLayerProps = ({
+  /**
+   * Layer color
+   */
+  color,
+
+  /**
+   * Layer variant
+   */
+  variant: {
+    type: String as PropType<LayerVariant>,
+    default: 'text',
+  },
+
+  /**
+   * Interaction states like hover & active
+   */
+  states: {
+    type: Boolean,
+  },
+} as const) satisfies ComponentObjectPropsOptions<ALayerProps>
 
 // Thanks: https://youtu.be/a_m7jxrTlaw
 // type LooseAutocomplete<T extends string> = T | Omit<string, T>

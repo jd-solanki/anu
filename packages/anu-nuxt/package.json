@@ -42,17 +42,17 @@
   },
   "dependencies": {
     "@anu-vue/preset-theme-default": "workspace:*",
-    "@floating-ui/dom": "^1.2.6",
+    "@floating-ui/dom": "^1.2.7",
     "@iconify-json/bx": "latest",
-    "@nuxt/kit": "^3.4.1",
+    "@nuxt/kit": "^3.4.3",
     "anu-vue": "workspace:*"
   },
   "devDependencies": {
-    "@nuxt/devtools": "0.4.1",
-    "@nuxt/devtools-ui-kit": "0.4.1",
+    "@nuxt/devtools": "0.4.2",
+    "@nuxt/devtools-ui-kit": "0.4.2",
     "@nuxt/module-builder": "^0.3.0",
-    "@nuxt/schema": "^3.4.1",
-    "@unocss/nuxt": "^0.51.4",
-    "nuxt": "^3.4.1"
+    "@nuxt/schema": "^3.4.3",
+    "@unocss/nuxt": "^0.51.8",
+    "nuxt": "^3.4.3"
   }
 }

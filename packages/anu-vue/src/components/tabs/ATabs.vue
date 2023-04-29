@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import type { UseSwipeDirection } from '@vueuse/core'
-import type { TabsProps } from './props'
-import { tabsProps } from './props'
-import { TabBindingsSymbol } from './symbol'
-import type { TabProps } from '@/components/tab'
+import type { ATabsEvents } from './meta'
+import { aTabsProps } from './meta'
+import { ATabBindingsSymbol } from './symbol'
 import { ATab } from '@/components/tab'
 import { AView } from '@/components/view'
 import { AViews } from '@/components/views'
 import { ActiveViewSymbol } from '@/components/views/symbol'
 import { useGroupModel } from '@/composables'
 
-const props = defineProps(tabsProps)
+// import { aTabsSlots } from './meta';
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: TabsProps['modelValue']): void
-}>()
+const props = defineProps(aTabsProps)
+const emit = defineEmits<ATabsEvents>()
+
+// defineSlots<typeof aTabsSlots>()
 
 defineOptions({
   name: 'ATabs',
@@ -56,7 +56,7 @@ const { options, select: selectTab, value: activeTab } = useGroupModel({
 
 // ℹ️ Inject active tab so we don't have to use `v-model` on `ATabs` and `AViews`
 provide(ActiveViewSymbol, activeTab)
-provide(TabBindingsSymbol, refTabs)
+provide(ATabBindingsSymbol, refTabs)
 
 // Flag to check if tabs are overflowed (For showing arrows)
 const areTabsOverflowed = ref<boolean>()

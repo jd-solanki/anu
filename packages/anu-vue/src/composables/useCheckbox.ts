@@ -1,9 +1,17 @@
 import type { MaybeRefOrGetter } from '@vueuse/core'
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ComponentObjectPropsOptions, PropType } from 'vue'
 
 export type CheckboxModelValue = null | string | number | boolean | unknown[]
 
-export const useCheckboxProps = {
+export interface UseCheckboxProps {
+  modelValue?: CheckboxModelValue
+  checkedValue?: CheckboxModelValue
+  uncheckedValue?: CheckboxModelValue
+  indeterminateValue?: CheckboxModelValue
+  cycleIndeterminate?: boolean
+}
+
+export const useCheckboxProps = ({
   /**
    * Bind v-model value
    */
@@ -40,9 +48,7 @@ export const useCheckboxProps = {
     type: Boolean,
     default: false,
   },
-}
-
-export type UseCheckboxProps = ExtractPropTypes<typeof useCheckboxProps>
+} as const) satisfies ComponentObjectPropsOptions<UseCheckboxProps>
 
 export function useCheckbox<Name extends string>(
   modelValue: MaybeRefOrGetter<CheckboxModelValue>,

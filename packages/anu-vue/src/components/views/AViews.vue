@@ -1,38 +1,14 @@
 <script lang="ts" setup>
-import type { UseSwipeDirection } from '@vueuse/core'
-import type { PropType, VNode } from 'vue'
+import type { VNode } from 'vue'
 import { h } from 'vue'
+import type { AViewsEvents } from './meta'
+import { aViewsProps } from './meta'
 import { ActiveViewSymbol, ViewGroupModel } from './symbol'
-import { AView } from '@/components/view'
 import { useGroupModel } from '@/composables'
-import type { Transitions } from '@/transitions'
-import type { LooseAutocomplete } from '@/utils/typescripts'
+import { AView } from '@/components/view'
 
-const props = defineProps({
-  /**
-   * Active view value
-   */
-  modelValue: {
-    type: null,
-    default: 0,
-  },
-
-  /**
-   * Transition to use
-   */
-  transition: {
-    type: String as PropType<LooseAutocomplete<Transitions>>,
-    default: 'fade',
-  },
-})
-
-const emit = defineEmits<{
-
-  /**
-   * Emitted when the view is swiped
-   */
-  (e: 'swipe', direction: UseSwipeDirection): void
-}>()
+const props = defineProps(aViewsProps)
+const emit = defineEmits<AViewsEvents>()
 
 defineOptions({
   name: 'AViews',

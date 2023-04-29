@@ -1,7 +1,6 @@
 import ABaseInput from './ABaseInput.vue'
 
-export * from './props'
-export * from './slots'
+export * from './meta'
 export { ABaseInput }
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

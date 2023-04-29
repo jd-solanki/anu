@@ -1,4 +1,4 @@
-import type { Prettify } from './typescripts'
+import type { ExtendNested, Prettify } from './typescripts'
 
 // 👉 IsEmpty
 export function isEmpty(value: unknown): boolean {
@@ -99,4 +99,15 @@ export function renameObjKey<T extends Record<string, any>, K extends keyof T, R
     ...rest,
     [replaceWith]: value,
   } as Omit<T, K> & Record<R, T[K]>
+}
+
+export function extendNestedObject<T extends Record<string, object>, U>(
+  obj: T,
+  extraProps: U,
+): ExtendNested<T, U> {
+  const result = {} as any
+  for (const key in obj)
+    result[key] = { ...obj[key], ...extraProps }
+
+  return result as ExtendNested<T, U>
 }

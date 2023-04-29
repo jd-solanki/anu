@@ -1,28 +1,36 @@
-import type { ExtractPropTypes } from 'vue'
-import { useProps as useLayerProps } from '@/composables/useLayer'
+import type { ComponentObjectPropsOptions } from 'vue'
+import type { ConfigurableValue } from '@/composables/useConfigurable'
+import type { ALayerProps } from '@/composables/useLayer'
+import { aLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
-export const btnProps = {
+// ℹ️ Make sure to checkout meta definition rules
 
-  // let vue-component-meta found it
+// 👉 Props
+export interface ABtnProps extends ALayerProps {
+  icon?: ConfigurableValue
+  appendIcon?: ConfigurableValue
+  iconOnly?: boolean
+  disabled?: boolean
+  loading?: boolean
+}
 
-  /* @ts-expect-error We need to redefine default value so volar can use it for generating component meta */
-  color: { default: 'primary' },
-
-  /* @ts-expect-error We need to redefine default value so volar can use it for generating component meta */
-  variant: { default: 'fill' },
-
-  ...useLayerProps({
+export const aBtnProps = ({
+  ...{
+    ...aLayerProps,
     color: {
+      ...aLayerProps.color,
       default: 'primary',
     },
     variant: {
+      ...aLayerProps.variant,
       default: 'fill',
     },
     states: {
+      ...aLayerProps.states,
       default: true,
     },
-  }),
+  },
 
   /**
    * Render icon before button text
@@ -53,6 +61,16 @@ export const btnProps = {
     type: Boolean,
     default: undefined,
   },
-}
+} as const) satisfies Required<ComponentObjectPropsOptions<ABtnProps>>
 
-export type BtnProps = ExtractPropTypes<typeof btnProps>
+// 👉 Slots
+export const aBtnSlots = {
+
+  /**
+   * Default slot for rendering button content
+   */
+  default: {},
+} as const
+
+// 👉 Events
+export interface ABtnEvents {}

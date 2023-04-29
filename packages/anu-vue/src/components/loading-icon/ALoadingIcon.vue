@@ -1,18 +1,8 @@
 <script lang="ts" setup>
+import { aLoadingIconProps } from './meta'
 import { ASpinner } from '@/components'
-import { configurable as configurableProp } from '@/composables/useProps'
 
-const props = defineProps({
-  icon: configurableProp,
-
-  /**
-   * Set loading state
-   */
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-})
+const props = defineProps(aLoadingIconProps)
 
 defineOptions({
   name: 'ALoadingIcon',

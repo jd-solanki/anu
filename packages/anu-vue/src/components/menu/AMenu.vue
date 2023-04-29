@@ -1,19 +1,12 @@
 <script lang="ts" setup>
-import { menuProps } from './props'
+import type { aMenuSlots } from './meta'
+import { aMenuProps } from './meta'
 import { ACard } from '@/components'
 import { AFloating } from '@/components/floating'
 import { useParent } from '@/composables'
 
-const props = defineProps(menuProps)
-
-defineSlots<{
-
-  /**
-   * Default slot for rendering menu content
-   * Generally, you will use `AList` component here.
-   */
-  default: {}
-}>()
+const props = defineProps(aMenuProps)
+defineSlots<typeof aMenuSlots>()
 
 defineOptions({
   name: 'AMenu',

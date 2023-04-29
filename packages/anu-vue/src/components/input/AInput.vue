@@ -1,22 +1,17 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
-import { ABaseInput, baseInputProps } from '@/components/base-input'
+import type { AInputEvents, AInputProps } from './meta'
+import { aInputProps, aTextareaBaseInputSlots } from './meta'
+import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 
-const props = defineProps(defu({
-  modelValue: [String, Number],
-}, baseInputProps))
-
-defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aInputProps)
+defineEmits<AInputEvents>()
 
 defineOptions({
   name: 'AInput',
   inheritAttrs: false,
 })
 
-const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof AInputProps>)
 const attrs = useAttrs()
 
 const input = ref<HTMLInputElement>()
@@ -37,7 +32,7 @@ function handleInputWrapperClick() {
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+      v-for="(_, name) in aTextareaBaseInputSlots"
       #[name]="slotProps"
     >
       <slot

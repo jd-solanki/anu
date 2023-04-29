@@ -6,7 +6,7 @@ const items = [
   { text: 'Cake gummi', disable: true },
 ]
 
-const middleware = (referenceEl: HTMLElement, floatingEl: HTMLElement) => {
+function middleware(referenceEl: HTMLElement, floatingEl: HTMLElement) {
   // console.log('referenceEl :>> ', referenceEl)
   // console.log('floatingEl :>> ', floatingEl)
 

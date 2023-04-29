@@ -1,53 +1,15 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
-import { color as colorProp, disabled as disabledProp } from '@/composables/useProps'
+import type { ARadioEvents, aRadioSlots } from './meta'
+import { aRadioProps } from './meta'
 
-const props = defineProps({
-  /**
-   * Radio color
-   */
-  color: defu({
-    default: 'primary',
-  }, colorProp),
-
-  /**
-   * Bind v-model value to radio
-   */
-  modelValue: String,
-
-  /**
-   * Bind classes to input element
-   */
-  inputClasses: { type: null },
-
-  /**
-   * Define label text
-   */
-  label: String,
-
-  /**
-   * Disable radio
-   */
-  disabled: disabledProp,
-})
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aRadioProps)
+const emit = defineEmits<ARadioEvents>()
+defineSlots<typeof aRadioSlots>()
 
 defineOptions({
   name: 'ARadio',
   inheritAttrs: false,
 })
-
-defineSlots<{
-
-  /**
-   * Default slot for rendering radio label. If default slot is used `label` prop will be discarded.
-   */
-  default: {}
-}>()
 
 const attrs = useAttrs()
 
