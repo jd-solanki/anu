@@ -136,7 +136,7 @@ function middleware() {
       </template>
       <AList
         :items="options"
-        :value="props.modelValue"
+        :model-value="props.modelValue"
         class="a-select-options-list"
         :class="props.listClasses"
         @click:item="(item) => handleOptionClick(item)"
