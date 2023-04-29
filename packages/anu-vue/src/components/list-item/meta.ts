@@ -77,7 +77,7 @@ export const aListItemSlots = {
    */
   default: {
     item: Object as unknown as AListItemProps,
-    attrs: Object,
+    attrs: Object as unknown as Record<string, unknown>,
   },
 
   /**
@@ -85,7 +85,7 @@ export const aListItemSlots = {
    */
   prepend: {
     item: Object as unknown as AListItemProps,
-    attrs: Object,
+    attrs: Object as unknown as Record<string, unknown>,
   },
 
   /**
@@ -93,7 +93,7 @@ export const aListItemSlots = {
    */
   content: {
     item: Object as unknown as AListItemProps,
-    attrs: Object,
+    attrs: Object as unknown as Record<string, unknown>,
   },
 
   /**
@@ -101,7 +101,7 @@ export const aListItemSlots = {
    */
   append: {
     item: Object as unknown as AListItemProps,
-    attrs: Object,
+    attrs: Object as unknown as Record<string, unknown>,
   },
 } as const
 

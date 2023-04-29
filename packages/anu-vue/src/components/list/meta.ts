@@ -70,7 +70,7 @@ export const aListOwnSlots = {
    * Default slot to render custom content instead of `AListItem`
    */
   default: {
-    handleListItemClick: Function as unknown as (item: AListPropItems[number], index: number) => void,
+    handleListItemClick: Function as unknown as (item: AListPropItems[number]) => void,
   },
 
   /**

@@ -1,7 +1,7 @@
 import type { Middleware, Placement, Strategy } from '@floating-ui/vue'
 import { flip, shift } from '@floating-ui/vue'
 import type { LiteralUnion } from 'type-fest'
-import type { ComponentObjectPropsOptions } from 'vue'
+import type { ComponentObjectPropsOptions, Ref } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
 import type { NoUndefined } from '@/utils/typescripts'
 import type { Transitions } from '@/transitions'

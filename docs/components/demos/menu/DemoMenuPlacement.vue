@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { Placement } from '@floating-ui/vue'
 import { useCycleList } from '@vueuse/core'
 
 const items = [
@@ -8,7 +9,7 @@ const items = [
   { text: 'Cake gummi', disabled: true },
 ]
 
-const placementOptions = [
+const placementOptions: Placement[] = [
   'top',
   'top-start',
   'top-end',

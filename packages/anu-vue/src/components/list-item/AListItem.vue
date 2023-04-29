@@ -3,7 +3,7 @@ import type { AListItemEvents, aListItemSlots } from './meta'
 import { aListItemProps } from './meta'
 import { AAvatar } from '@/components/avatar'
 import { ATypography } from '@/components/typography'
-import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
 
 const props = defineProps(aListItemProps)

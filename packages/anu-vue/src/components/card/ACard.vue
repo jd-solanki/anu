@@ -4,7 +4,7 @@ import type { aCardSlots } from './meta'
 import { aCardProps, aCardTypographySlots } from './meta'
 import { ALoader } from '@/components/loader'
 import { isTypographyUsed } from '@/components/typography/utils'
-import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
 
 const props = defineProps(aCardProps)

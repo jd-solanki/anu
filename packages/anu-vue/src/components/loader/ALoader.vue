@@ -4,7 +4,7 @@ import type { aLoaderSlots } from './meta'
 import { aLoaderProps, aLoaderTypographySlots } from './meta'
 import { ASpinner } from '@/components'
 import { isTypographyUsed } from '@/components/typography/utils'
-import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 
 const props = defineProps(aLoaderProps)

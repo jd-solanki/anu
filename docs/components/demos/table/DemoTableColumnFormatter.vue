@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { DataTablePropColumn } from 'anu-vue'
+import type { ADataTableProps } from 'anu-vue'
 import { rows } from './data'
 
-const cols: DataTablePropColumn[] = [
+const cols: ADataTableProps['cols'] = [
   { name: 'name' },
   { name: 'username', formatter: row => `@${(row as (typeof rows)[number]).username}` },
   { name: 'website' },

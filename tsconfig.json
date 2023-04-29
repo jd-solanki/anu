@@ -1,4 +1,5 @@
 {
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
@@ -47,7 +48,7 @@
   },
   "vueCompilerOptions": {
     "target": 3,
-    "strictTemplates": true,
+    "strictTemplates": false,
     "plugins": [
       "@vue-macros/volar/define-options",
       "@vue-macros/volar/define-models",

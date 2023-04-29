@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import type { Placement } from '@floating-ui/vue'
 
-const tooltipPlacement = ref('bottom')
-
-const placementOptions = [
+const placementOptions: Placement[] = [
   'top',
   'top-start',
   'top-end',
@@ -18,13 +16,7 @@ const placementOptions = [
   'left-end',
 ]
 
-const selectNext = () => {
-  const index = placementOptions.findIndex(o => o === tooltipPlacement.value)
-
-  const nextIndex = (index === placementOptions.length - 1) ? 0 : index + 1
-
-  tooltipPlacement.value = placementOptions[nextIndex] as string
-}
+const { state: tooltipPlacement, next: selectNext } = useCycleList(placementOptions)
 </script>
 
 <template>

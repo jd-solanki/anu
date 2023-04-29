@@ -13,15 +13,13 @@ const frameworks = [
 
 <template>
   <div class="grid-row sm:grid-cols-2 place-items-stretch">
-    <ASelect
-      v-model="selected"
-    >
-      <template #default="{ handleOptionClick }">
+    <ASelect v-model="selected">
+      <template #default="{ handleListItemClick }">
         <AListItem
           v-for="framework in frameworks"
-          :key="framework"
+          :key="JSON.stringify(framework)"
           :style="`color: ${framework.brandColor}`"
-          @click="handleOptionClick(framework.value)"
+          @click="handleListItemClick(framework.value)"
         >
           <div :class="framework.icon" />
           <span>{{ framework.text }}</span>

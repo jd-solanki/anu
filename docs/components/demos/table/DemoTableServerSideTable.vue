@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DataTableItemsFunctionParams } from 'anu-vue'
+import type { ADataTableItemsFunctionParams } from 'anu-vue'
 import { fakeAPICall } from './data'
 
 // 👉 Columns
@@ -11,7 +11,7 @@ const cols = [
 ]
 
 // 👉 rows function
-function fetchItems({ q, currentPage, rowsPerPage, sortedCols }: DataTableItemsFunctionParams) {
+function fetchItems({ q, currentPage, rowsPerPage, sortedCols }: ADataTableItemsFunctionParams) {
   // ℹ️ You can use q, currentPage, rowsPerPage, sortedCols to fetch data from API
   // console.log('q :>> ', q, typeof q)
   // console.log('currentPage :>> ', currentPage)
