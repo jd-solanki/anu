@@ -1,5 +1,7 @@
 # Presets
 
+::::card Introduction
+
 Apart from theming just colors, Anu also gives full flexibility on customizing the components. Anu allows defining your own preset that changes how components should look.
 
 With presets feature, You can even replicate Bootstrap or Material design <i class="i-fluent-emoji-exploding-head"></i>
@@ -21,7 +23,9 @@ If you had noticed in the installation section, to use Anu you need to use two p
 Actually, [presets](https://github.com/unocss/unocss#presets) feature is from UnoCSS. Anu leverages this to provide component styles in separate preset so you can customize the framework however you like.
 :::
 
-## How to customize the theme default preset?
+::::
+
+:::card How to customize the theme default preset?
 
 To change the look of a single component, you don't have to create the preset from scratch or copy-paste the existing preset.
 
@@ -35,10 +39,14 @@ presetThemeDefault({
 })
 ```
 
-## How to create your own preset?
+:::
+
+:::card How to create your own preset?
 
 Creating your own UnoCSS preset is really simple. We recommend you first checkout the UnoCSS documentation on [presets](https://github.com/unocss/unocss#presets).
 
 Next, you can refer to our `presetThemeDefault` preset to create you own preset.
 
 > _If you want more details, feel free to let us know that you are building your own preset so we can focus more on this part of documentation._
+
+:::

@@ -1,67 +1,16 @@
 <script lang="ts" setup>
-import type { ExtractPropTypes } from 'vue'
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
-import { configurable as configurableProp } from '@/composables/useProps'
+import type { AAlertEvents, aAlertSlots } from './meta'
+import { aAlertProps } from './meta'
+import { AIcon } from '@/components'
+import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps({
-
-  ...useLayerProps({
-    color: {
-      default: 'primary',
-    },
-    variant: {
-      default: 'light',
-    },
-  }),
-
-  /**
-   * prepend icon
-   */
-  icon: configurableProp,
-
-  /**
-   * append (close) icon
-   */
-  appendIcon: configurableProp,
-
-  /**
-   * Make alert dismissible using this prop. Adds close icon as appended icon.
-   */
-  dismissible: Boolean,
-
-  /**
-   * Hide/Show alert based on v-model value
-   */
-  modelValue: {
-    type: Boolean,
-    default: undefined,
-  },
-})
-
-const emit = defineEmits<{
-
-  /**
-   * Emitted when append icon is clicked, including close icon in closable alert.
-   */
-  (e: 'click:appendIcon'): void
-
-  /**
-   * Emitted when `modelValue` is updated
-   */
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aAlertProps)
+const emit = defineEmits<AAlertEvents>()
+defineSlots<typeof aAlertSlots>()
 
 defineOptions({
   name: 'AAlert',
 })
-
-defineSlots<{
-
-  /**
-   * Default slot for rendering alert content
-   */
-  default: {}
-}>()
 
 const isAlertVisible = useVModel(props, 'modelValue', emit, { defaultValue: true, passive: true })
 
@@ -74,16 +23,30 @@ const { styles, classes } = getLayerClasses(
 
 // 👉 Append icon
 const appendIcon = props.appendIcon || (props.dismissible ? 'i-bx-x' : null)
-const handleAppendIconClick = () => {
+function handleAppendIconClick() {
   isAlertVisible.value = false
 
   // Emit append icon click event
   emit('click:appendIcon')
 }
+
+const appendIconBindings = computed(() => {
+  if (props.dismissible) {
+    return {
+      icon: appendIcon,
+      ariaLabel: 'close',
+    }
+  }
+
+  return {
+    class: appendIcon,
+  }
+})
 </script>
 
 <template>
   <div
+    role="alert"
     class="a-alert items-start w-full"
     :class="[
       ...classes,
@@ -95,20 +58,22 @@ const handleAppendIconClick = () => {
     <div v-if="props.icon">
       <i :class="props.icon" />
     </div>
-    <div class="flex-grow">
+    <div
+      class="flex-grow"
+      data-no-reference
+    >
       <slot />
     </div>
-    <div v-if="appendIcon">
-      <div>
-        <span
+    <div>
+      <slot name="append">
+        <Component
+          :is="props.dismissible ? AIcon : 'i'"
+          v-if="appendIcon"
           class="align-text-top"
-          :class="[
-            appendIcon,
-            { 'cursor-pointer': props.dismissible },
-          ]"
+          v-bind="appendIconBindings"
           @click="handleAppendIconClick"
         />
-      </div>
+      </slot>
     </div>
   </div>
 </template>

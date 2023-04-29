@@ -28,13 +28,11 @@ const items = [
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ACard>
-      <AList
-        :items="items"
-        icon-append
-        class="[--a-list-item-gap:1rem]"
-      />
-    </ACard>
-  </div>
+  <ACard>
+    <AList
+      :items="items"
+      icon-append
+      class="[--a-list-item-gap:1rem]"
+    />
+  </ACard>
 </template>

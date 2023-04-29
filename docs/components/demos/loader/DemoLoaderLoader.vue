@@ -15,7 +15,7 @@ const isDrawerShown = ref(false)
     <!-- Alert -->
     <AAlert
       variant="fill"
-      class="relative"
+      class="relative cursor-pointer"
       icon="i-bx-info-circle"
       @click="alertLoading = !alertLoading"
     >

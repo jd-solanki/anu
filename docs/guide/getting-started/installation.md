@@ -1,6 +1,6 @@
 # Installation
 
-## Adding library
+:::card Adding library
 
 1. Add `anu-vue` and its supporting libraries
 
@@ -15,7 +15,9 @@
     npm install anu-vue @anu-vue/preset-theme-default && npm install -D unocss @iconify-json/bx
     ```
 
-## Usage
+:::
+
+:::card Usage
 
 1. Add UnoCSS to `vite.config.js`
 
@@ -90,13 +92,7 @@ Now, Just refer to the component in your vue files:
 </template>
 ```
 
-<br>
-
----
-
-<br>
-
-Probably you might not want to globally register the components. You can also follow the approaches below:
+<em class="block mt-12 mb-10">Probably you might not want to globally register the components. You can also follow the approaches below:</em>
 
 ### Tree Shaking
 
@@ -167,7 +163,7 @@ You can also follow À la carte fashion if you don't want to register all the co
           ]
         }),
       ],
-    
+
       // other config
     })
     ```
@@ -180,7 +176,9 @@ You can also follow À la carte fashion if you don't want to register all the co
     </template>
     ```
 
-## Nuxt
+:::
+
+:::card Nuxt
 
 1. Instead of installing `anu-vue` package, install `@anu-vue/nuxt`.
 
@@ -195,7 +193,7 @@ You can also follow À la carte fashion if you don't want to register all the co
     npm install @anu-vue/nuxt && npm install -D @unocss/nuxt
     ```
 
-2. Add Anu & UnoCSS in the nuxt modules array in the `nuxt.config.ts` file as shown below: 
+2. Add Anu & UnoCSS in the nuxt modules array in the `nuxt.config.ts` file as shown below:
 
     ```ts
     import { defineNuxtConfig } from 'nuxt/config'
@@ -223,7 +221,9 @@ It's done, Let's try the button component 🥳
 </template>
 ```
 
-## Volar Support
+:::
+
+:::card Volar Support
 
 If you are using [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar), you can specify global component types by adding the configuration below in your [`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig).
 
@@ -239,3 +239,5 @@ If you are using [Volar](https://marketplace.visualstudio.com/items?itemName=Vue
 If you have a typescript project, you will have to configure the above in the `tsconfig.json` file.
 
 That's it, enjoy the autocompletion 🥳
+
+:::

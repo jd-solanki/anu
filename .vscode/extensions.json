@@ -12,6 +12,8 @@
         "davidanson.vscode-markdownlint",
         "yzhang.markdown-all-in-one",
         "streetsidesoftware.code-spell-checker",
-        "matijao.vue-nuxt-snippets"
+        "matijao.vue-nuxt-snippets",
+        "webhint.vscode-webhint",
+        "johnsoncodehk.vscode-tsconfig-helper"
     ]
 }

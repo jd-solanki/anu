@@ -4,6 +4,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
   // 👉 States
   [/^states:?(\d+)?$/, ([, op]) => `\
       relative \
+      before:pointer-events-none \
       before:content-empty \
       before:absolute \
       before:inset-0 \
@@ -20,7 +21,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
   [
     /^a-drawer-anchor-(left|right|top|bottom)$/,
     ([, dir]) => {
-      const classes = dir === 'left' || dir === 'right'
+      const classes = (dir === 'left' || dir === 'right')
         ? 'w-[300px] max-w-[calc(100vw-2rem)]'
         : 'h-[300px] max-h-[calc(100vh-2rem)]'
 
@@ -32,7 +33,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'grid-row': 'grid gap-6 place-items-start w-full',
 
     // 👉 Typography
-    'a-title': 'font-medium block em:text-lg text-[hsla(var(--a-title-c),var(--a-title-opacity))]',
+    'a-title': 'font-medium block em:text-lg text-[hsla(var(--a-title-c),var(--a-title-opacity))] whitespace-nowrap',
     'a-subtitle': 'block em:text-sm text-[hsla(var(--a-subtitle-c),var(--a-subtitle-opacity))]',
     'a-text': '',
     'text-high-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-high-opacity))]',
@@ -106,7 +107,17 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-drawer': 'shadow-2xl z-[53] !rounded-none',
 
     // 👉 Input
-    'a-input-type-file': 'all-[.a-base-input-child]-file:(rounded-lg border-none mr-4 px-4 py-3 text-gray-500 rounded-r-none bg-[hsla(var(--a-base-c),0.05)]) !all-[.a-base-input-input-wrapper]-px-0',
+    'a-input-type-file': `
+      file:[&_.a-base-input-child]-rounded-lg
+      file:[&_.a-base-input-child]-border-none
+      file:[&_.a-base-input-child]-mr-4
+      file:[&_.a-base-input-child]-px-4
+      file:[&_.a-base-input-child]-py-3
+      file:[&_.a-base-input-child]-text-gray-500
+      file:[&_.a-base-input-child]-rounded-r-none
+      file:[&_.a-base-input-child]-bg-[hsla(var(--a-base-c),0.05)]
+      !all-[.a-base-input-input-wrapper]-px-0
+    `,
 
     // 👉 List
     'a-list': 'em:spacing:rounded-lg m-[var(--a-list-margin,calc(0.5em*var(--a-spacing))_0)] gap-[var(--a-list-gap)]',
@@ -116,10 +127,10 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-list-items-pill': '[--a-list-margin:calc(0.75em*var(--a-spacing))_0] em:spacing:children-[.a-list-item]-rounded-lg [--a-list-item-margin:calc(0.18em*var(--a-spacing))_calc(0.75em*var(--a-spacing))] [--a-list-item-padding:calc(0.5em*var(--a-spacing))_calc(0.75em*var(--a-spacing))]',
 
     // 👉 Loader
-    'a-loader': '[&.a-loader-full-page]-text-4xl',
+    'a-loader': '[&.a-loader-full-page]-text-3xl',
 
     // 👉 Menu
-    'a-menu': 'z-[51] shadow-xl [--a-transition-slide-up-transform:10px]',
+    'a-menu': 'z-[51] shadow-xl [--slide-y-translateY:10px]',
 
     // 👉 Rating
     'a-rating': 'text-xl',
@@ -131,7 +142,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-radio-disabled': 'opacity-50',
 
     // 👉 Select
-    'a-select-floating': '[--a-transition-slide-up-transform:6px]',
+    'a-select-floating': '[--slide-y-translateY:6px]',
     'a-select-options-container': 'z-10',
     'a-select-options-list': 'spacing-75',
 
@@ -158,8 +169,23 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-data-table-per-page-select--options-wrapper-classes': 'em:text-sm', // ℹ️ optionsWrapperClasses prop
     'a-data-table-pagination-navigation': '[&_.a-data-table-paginate-previous]-!rounded-full em:[&_.a-data-table-paginate-previous]-spacing:me-2 [&_.a-data-table-paginate-next]-!rounded-full em:spacing:gap-x-2',
 
+    // 👉 Tabs
+    'a-tabs': '[--a-tabs-arrow-spacing:2.5em]',
+    'a-tabs-header': '[.a-tabs-vertical_&]-w-min',
+    'a-tabs-wrapper': '[.a-tabs-with-arrows_&]-mx-$a-tabs-arrow-spacing [.a-tabs-with-arrows_&]-max-w-[calc(100%-(var(--a-tabs-arrow-spacing)/2))]',
+    'a-tabs-navigation-arrow-wrapper': 'w-$a-tabs-arrow-spacing',
+    'a-tabs-active-indicator': 'bg-primary bottom-0 transition-all duration-200 ease-in-out will-change-transform,width,height [.a-tabs-vertical_&]-w-2px [.a-tabs.a-tabs-horizontal_&]-h-2px',
+
+    'a-tabs-bordered': '[&_.a-tabs-header]-border-a-border [&.a-tabs-horizontal_.a-tabs-header]-border-b [&.a-tabs-vertical_.a-tabs-header]-border-r',
+
+    'a-tab': 'text-center em:spacing:px-5 em:spacing:py-3 em:gap-2',
+    'a-tab-title ': 'capitalize',
+
+    'a-tabs-navigation-arrow-previous': 'i-bx-left-arrow-alt',
+    'a-tabs-navigation-arrow-next': 'i-bx-right-arrow-alt',
+
     // 👉 Textarea
-    'a-textarea': '[&_.a-base-input-input-wrapper]-px-0',
+    'a-textarea': '[&_.a-base-input-input-wrapper]-px-0 [&_.a-base-input-input-wrapper]-box-content [&_.a-base-input-input-wrapper]-h-32',
     'a-textarea-textarea': 'em:spacing:py-4 overflow-x-hidden em:spacing:px-4',
 
     // 👉 Tooltip

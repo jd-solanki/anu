@@ -1,21 +1,15 @@
 <script lang="ts" setup>
-import { btnProps } from './props'
+import type { aBtnSlots } from './meta'
+import { aBtnProps } from './meta'
 import { ASpinner } from '@/components/spinner'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(btnProps)
+const props = defineProps(aBtnProps)
+defineSlots<typeof aBtnSlots>()
 
 defineOptions({
   name: 'ABtn',
 })
-
-defineSlots<{
-
-  /**
-   * Default slot for rendering button content
-   */
-  default: {}
-}>()
 
 const { getLayerClasses } = useLayer()
 
@@ -46,6 +40,7 @@ const { styles, classes } = getLayerClasses(
     />
     <div
       class="a-btn-content"
+      data-no-reference
       :class="[props.loading && 'opacity-0']"
     >
       <i

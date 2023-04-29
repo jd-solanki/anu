@@ -1,16 +1,14 @@
 <script lang="ts" setup>
-import type { Middleware } from '@floating-ui/vue'
-import { autoUpdate, flip, shift, useFloating } from '@floating-ui/vue'
+import { autoUpdate, useFloating } from '@floating-ui/vue'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
 import { ref } from 'vue'
-import type { FloatingEvents } from './events'
-import { sameWidth as sameWidthMiddleware } from './middlewares'
-import { floatingProps } from './props'
+import type { AFloatingEvents, aFloatingSlots } from './meta'
+import { aFloatingProps } from './meta'
 import { useTeleport } from '@/composables/useTeleport'
 
-const props = defineProps(floatingProps)
-
-const emit = defineEmits<FloatingEvents>()
+const props = defineProps(aFloatingProps)
+const emit = defineEmits<AFloatingEvents>()
+defineSlots<typeof aFloatingSlots>()
 
 defineOptions({
   name: 'AFloating',
@@ -39,23 +37,7 @@ const isFloatingElVisibleDebounced = refDebounced(isFloatingElVisible, _delay)
 // const props.referenceEl = ref()
 const refFloating = ref()
 
-/*
-    ℹ️ We need to construct the internal middleware variable
-
-    If user don't pass the middleware prop then prop value will be `undefined` which will easy to tackle with simple if condition as shown below
-
-    Here, we will use user's middleware if passed via props or we will use our defaults
-    */
-const _middleware = props.middleware === undefined
-  ? [
-      // ℹ️ For this we need need bridge to handle keep menu content open
-      // offset(6),
-
-      sameWidthMiddleware(refFloating),
-      flip(),
-      shift({ padding: 10 }),
-    ] as Middleware[]
-  : props.middleware(props.referenceEl, refFloating)
+const _middleware = computed(() => props.middleware(toRef(props, 'referenceEl'), refFloating))
 
 // Calculate position of floating element
 const { x, y, strategy } = useFloating(toRef(props, 'referenceEl'), refFloating, {
@@ -136,7 +118,7 @@ defineExpose({
         v-show="isFloatingElVisibleDebounced"
         v-bind="$attrs"
         ref="refFloating"
-        class="a-floating"
+        class="a-floating transform"
         :style="{
           top: `${y ?? 0}px`,
           left: `${x ?? 0}px`,

@@ -33,35 +33,33 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ACard>
-      <div class="a-card-body py-18">
-        <form
-          class="grid-row mx-auto max-w-1/2 grid-flow-rows justify-items-stretch content-center"
-          @submit="onSubmit"
-        >
-          <ATypography
-            :title="['Hello Again!', 'text-2xl']"
-            subtitle="Welcome back, You've been missed"
-            class="mb-4"
-          />
-          <AInput
-            v-model="email"
-            name="email"
-            type="email"
-            label="Email"
-            :error="errors.email"
-          />
-          <AInput
-            v-model="password"
-            name="password"
-            type="password"
-            label="Password"
-            :error="errors.password"
-          />
-          <ABtn>Submit</ABtn>
-        </form>
-      </div>
-    </ACard>
-  </div>
+  <ACard>
+    <div class="a-card-body py-18">
+      <form
+        class="grid-row mx-auto max-w-1/2 grid-flow-rows justify-items-stretch content-center"
+        @submit="onSubmit"
+      >
+        <ATypography
+          :title="['Hello Again!', 'text-2xl']"
+          subtitle="Welcome back, You've been missed"
+          class="mb-4"
+        />
+        <AInput
+          v-model="email"
+          name="email"
+          type="email"
+          label="Email"
+          :error="errors.email"
+        />
+        <AInput
+          v-model="password"
+          name="password"
+          type="password"
+          label="Password"
+          :error="errors.password"
+        />
+        <ABtn>Submit</ABtn>
+      </form>
+    </div>
+  </ACard>
 </template>

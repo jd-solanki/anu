@@ -1,25 +1,18 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
-import { loaderProps } from './props'
+import type { aLoaderSlots } from './meta'
+import { aLoaderProps, aLoaderTypographySlots } from './meta'
 import { ASpinner } from '@/components'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 
-const props = defineProps(loaderProps)
+const props = defineProps(aLoaderProps)
+defineSlots<typeof aLoaderSlots>()
 
 defineOptions({
   name: 'ALoader',
 })
-
-defineSlots<{
-
-  /**
-   * Default slot for rendering loader content.
-   * `ATypography` content like title & subtitle will be rendered along with this slot.
-   */
-  default: {}
-}>()
 
 const slots = useSlots()
 
@@ -74,7 +67,7 @@ if (props.fullPage) {
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+          v-for="(_, name) in aLoaderTypographySlots"
           #[name]="slotProps"
         >
           <slot

@@ -1,18 +1,27 @@
 {
-    "Docs: create demo card": {
-        "prefix": "dc",
-        "body": [
-            "<!-- 👉 $1 -->",
-            "::::card ${1:Title}",
-            "",
-            "description",
-            "",
-            ":::code Demo$2$1",
-            "<<< @/components/demos/$2/DemoMenu$1.vue",
-            ":::",
-            "",
-            "::::"
-        ],
-        "description": "Docs: create demo card"
-    }
+  "Docs: create demo card": {
+    "prefix": "dc",
+    "body": [
+      "<!-- 👉 $1 -->",
+      "::::card ${1:Title}",
+      "",
+      "description",
+      "",
+      ":::code Demo$2$1",
+      "<<< @/components/demos/$2/DemoMenu$1.vue",
+      ":::",
+      "",
+      "::::"
+    ],
+    "description": "Docs: create demo card"
+  },
+  "asdasd": {
+    "prefix": "ad",
+    "body": [
+      "::::after-demo",
+      "${1:example}",
+      "::::"
+    ],
+    "description": "asdasd"
+  }
 }

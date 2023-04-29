@@ -1,105 +1,17 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { PropType } from 'vue'
-import { color as colorProp } from '@/composables/useProps'
+import type { aBadgeSlots } from './meta'
+import { aBadgeDefaultOffset, aBadgeDefaultOverlapOffset, aBadgeProps } from './meta'
 import { isNumeric } from '@/utils/helpers'
 
-type VerticalAnchor = 'top' | 'bottom'
-type HorizontalAnchor = 'left' | 'right'
-type Anchor = `${VerticalAnchor} ${HorizontalAnchor}`
-
-const props = defineProps({
-
-  /**
-   * Show/Hide badge based on v-model value
-   */
-  modelValue: {
-    type: Boolean,
-    default: true,
-  },
-
-  /**
-   * Sets badge color
-   */
-  color: defu({
-    default: 'primary',
-  }, colorProp),
-
-  /**
-   * Converts badge to a dot
-   */
-  dot: Boolean,
-
-  /**
-  * Adds badge border
-  */
-  bordered: {
-    type: Boolean,
-    default: true,
-  },
-
-  /**
-   * Sets the highest possible value
-   */
-  max: Number,
-
-  /**
-   * Use to pass numeric values
-   */
-  content: [Number, String],
-
-  /**
-   * Sets the badge position
-   */
-  anchor: {
-    type: String as PropType<Anchor>,
-    default: 'top right',
-  },
-
-  /**
-   * Adjusts position of badge
-   */
-  overlap: {
-    type: Boolean,
-    default: true,
-  },
-
-  /**
-   * Sets offset on x-axis
-   */
-  offsetX: {
-    type: [Number, String],
-    default: 4,
-  },
-
-  /**
-   * Sets offset on y-axis
-   */
-  offsetY: {
-    type: [Number, String],
-    default: 4,
-  },
-})
-
-// ❗ Make sure to sync it with props `offsetX` & `offsetY`
-const defaultOffset = 4
-
-const defaultOverlapOffset = 12
+const props = defineProps(aBadgeProps)
+defineSlots<typeof aBadgeSlots>()
 
 defineOptions({
   name: 'ABadge',
   inheritAttrs: false,
 })
 
-defineSlots<{
-
-  /**
-   * Default slot for rendering badge content
-   */
-  default: {}
-}>()
-
-const formatMaxContent = (content: unknown) => {
+function formatMaxContent(content: unknown) {
   if (!isNumeric(content) || props.max === undefined)
     return content
 
@@ -111,8 +23,8 @@ const formatMaxContent = (content: unknown) => {
 }
 
 const anchorOffset = computed(() => {
-  const newOffsetY = (props.overlap && defaultOffset === props.offsetY) ? defaultOverlapOffset : props.offsetY
-  const newOffsetX = (props.overlap && defaultOffset === props.offsetX) ? defaultOverlapOffset : props.offsetX
+  const newOffsetY = (props.overlap && aBadgeDefaultOffset === props.offsetY) ? aBadgeDefaultOverlapOffset : props.offsetY
+  const newOffsetX = (props.overlap && aBadgeDefaultOffset === props.offsetX) ? aBadgeDefaultOverlapOffset : props.offsetX
 
   return { y: newOffsetY, x: newOffsetX }
 })
@@ -132,7 +44,7 @@ const positionStyles = computed(() => {
 <template>
   <div class="a-badge-wrapper relative">
     <slot />
-    <Transition name="scale">
+    <Transition name="dialog">
       <div
         v-show="props.modelValue"
         v-bind="$attrs"
@@ -146,7 +58,7 @@ const positionStyles = computed(() => {
       >
         <template v-if="!props.dot">
           <template v-if="$slots.content">
-            {{ formatMaxContent($slots.content()[0].children) }}
+            {{ formatMaxContent($slots.content()[0]?.children) }}
           </template>
           <template v-else-if="props.content">
             {{ formatMaxContent(props.content) }}

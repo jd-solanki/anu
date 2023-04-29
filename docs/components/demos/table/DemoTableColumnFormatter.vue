@@ -1,18 +1,17 @@
 <script setup lang="ts">
+import type { DataTablePropColumn } from 'anu-vue'
 import { rows } from './data'
 
-const cols = [
+const cols: DataTablePropColumn[] = [
   { name: 'name' },
-  { name: 'username', formatter: row => `@${row.username}` },
+  { name: 'username', formatter: row => `@${(row as (typeof rows)[number]).username}` },
   { name: 'website' },
 ]
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ATable
-      :rows="rows"
-      :cols="cols"
-    />
-  </div>
+  <ATable
+    :rows="rows"
+    :cols="cols"
+  />
 </template>

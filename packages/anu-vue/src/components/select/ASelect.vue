@@ -1,45 +1,26 @@
 <script lang="ts" setup>
-import { ACard, AList } from '@/components'
-import { ABaseInput, baseInputProps } from '@/components/base-input'
-import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
-import type { ListPropItems } from '@/components/list'
-import { isObject, prefixObjectKeysWithMeta } from '@/utils/helpers'
 import { flip, offset, shift } from '@floating-ui/vue'
-import { defu } from 'defu'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { selectSlots } from './slots'
-import { selectBaseInputSlots, selectCardSlots, selectListDefaultSlot, selectListRestSlots, selectListSlotsPrefix } from './slots'
+import type { ASelectEvents, aSelectSlots } from './meta'
+import { aSelectBaseInputSlots, aSelectCardSlots, aSelectListSlotsWithPrefixMeta, aSelectProps } from './meta'
+import { ACard, AList } from '@/components'
+import { ABaseInput, aBaseInputProps } from '@/components/base-input'
+import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
+import type { AListPropItems } from '@/components/list'
+import { isObject } from '@/utils/helpers'
 
 export interface ObjectOption { label: string; value: string | number }
 
-const props = defineProps(defu({
-  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
-  modelValue: { type: null },
-  options: {
-    type: Array as PropType<ListPropItems>,
-    default: () => [],
-  },
-  emitObject: Boolean,
-
-  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
-  optionsWrapperClasses: { type: null },
-  listClasses: { type: null },
-}, baseInputProps))
-
-const emit = defineEmits<{
-  (e: 'change', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-  (e: 'input', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aSelectProps)
+const emit = defineEmits<ASelectEvents>()
+defineSlots<typeof aSelectSlots>()
 
 defineOptions({
   name: 'ASelect',
   inheritAttrs: false,
 })
 
-defineSlots<typeof selectSlots>()
-
-const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
+// const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as any)
 
 // SECTION Floating
 // Template refs
@@ -63,39 +44,38 @@ onClickOutside(
 // !SECTION
 // TODO: You can use it as utility in another components
 // TODO: Add some style to indicate currently selected item
-const handleInputClick = () => {
+function handleInputClick() {
   if (!(props.disabled || props.readonly)) {
     isOptionsVisible.value = !isOptionsVisible.value
     selectRef.value?.focus()
   }
 }
 
+function extractItemValueFromItemOption(item: AListPropItems[number]) {
+  return isObject(item) ? (item.value || item) : item
+}
+
 // 👉 Options
-const handleOptionClick = (value: any, item?: ListPropItems[number]) => {
-  const valueToEmit = (item && props.emitObject) ? item : value
+function handleOptionClick(item: AListPropItems[number]) {
+  const _val = extractItemValueFromItemOption
+  const valueToEmit = props.emitObject ? item : _val
   emit('change', valueToEmit)
   emit('input', valueToEmit)
   emit('update:modelValue', valueToEmit)
 }
-const closeOptions = (event: MouseEvent) => {
+function closeOptions(event: MouseEvent) {
   if (event.target !== refFloating.value)
     isOptionsVisible.value = false
 }
 
 // 👉 Middleware
-const middleware = () => [
-  offset(6),
-  sameWidthFloatingUIMiddleware(refFloating),
-  flip(),
-  shift({ padding: 10 }),
-]
-
-const slots = useSlots()
-const cardSlotsToPass = computed(() => Object.fromEntries(Object.entries(selectCardSlots).filter(([slotName]) => slots[slotName])))
-
-const selectListPrefixedSlots = {
-  ...prefixObjectKeysWithMeta(selectListRestSlots, selectListSlotsPrefix),
-  ...prefixObjectKeysWithMeta(selectListDefaultSlot, ''),
+function middleware() {
+  return [
+    offset(6),
+    sameWidthFloatingUIMiddleware(refFloating),
+    flip(),
+    shift({ padding: 10 }),
+  ]
 }
 </script>
 
@@ -112,7 +92,7 @@ const selectListPrefixedSlots = {
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys(selectBaseInputSlots)"
+      v-for="(_, name) in aSelectBaseInputSlots"
       #[name]="slotProps"
     >
       <slot
@@ -140,14 +120,13 @@ const selectListPrefixedSlots = {
     <ACard
       v-show="isOptionsVisible"
       ref="refFloating"
-      :data-slots="Object.keys($slots)"
       class="a-select-options-container bg-[hsl(var(--a-surface-c))]"
       :class="props.optionsWrapperClasses"
       @click="closeOptions"
     >
       <!-- ℹ️ Recursively pass down slots to child -->
       <template
-        v-for="name in Object.keys(cardSlotsToPass)"
+        v-for="(_, name) in aSelectCardSlots"
         #[name]="slotProps"
       >
         <slot
@@ -160,18 +139,21 @@ const selectListPrefixedSlots = {
         :model-value="props.modelValue"
         class="a-select-options-list"
         :class="props.listClasses"
-        @click:item="({ item, value }) => handleOptionClick(value, item)"
+        @click:item="(item) => handleOptionClick(item)"
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in selectListPrefixedSlots"
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in aSelectListSlotsWithPrefixMeta"
           #[originalSlotName]="slotProps"
         >
           <slot
             :name="updatedSlotName"
             v-bind="{
               ...(slotProps || {}),
-              ...({ handleOptionClick }),
+              ...({
+                handleOptionClick,
+                attrs: $attrs,
+              }),
             }"
           />
         </template>

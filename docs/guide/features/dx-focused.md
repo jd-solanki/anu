@@ -25,7 +25,7 @@ const items = [
 
 Frameworks are nice, they help you write more maintainable and less code. In the long run, developer experience does matter.
 
-## Configurable Array
+:::card Configurable Array
 
 Assume you have a list as shown below and you want to just change the size of the avatar/icon in the list.
 
@@ -123,7 +123,9 @@ const items = [
 </template>
 ```
 
-## Atomic
+:::
+
+:::card Atomic
 
 With Anu's atomic behavior, you can pass the existing props like `title`, `subtitle`, etc to certain components creating UI quickly without extra hassle.
 
@@ -139,7 +141,9 @@ The code below will create a drawer with title & subtitle. This is because `ADra
 </template>
 ```
 
-## Easy Customization On The Fly
+:::
+
+:::card Easy Customization On The Fly
 
 As Anu is built on top of utility classes, it has edge over the frameworks that uses SCSS or don't have utility classes.
 
@@ -153,4 +157,4 @@ Thanks to utility classes at some point if you want to change anything regarding
 
 This customization is not limited to top level component. You can use selectors with utility classes to customize the nested component. e.g. `children-[.a-card]-rounded-3xl`
 
-> _More to come..._
+:::

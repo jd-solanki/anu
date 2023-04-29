@@ -8,17 +8,38 @@ import { color } from '@/composables/useProps'
 import { useTypographyColor } from '@/composables/useTypographyColor'
 import { colord } from '@/utils/colord'
 
-export interface LayerProps {
-  color: ColorProp
-  variant: 'fill' | 'outline' | 'light' | 'text'
-  states: boolean
+export type LayerVariant = 'fill' | 'outline' | 'light' | 'text'
+
+export interface ALayerProps {
+  color?: ColorProp
+  variant?: LayerVariant
+  states?: boolean
 }
 
-// Thanks: https://youtu.be/a_m7jxrTlaw
-// type LooseAutocomplete<T extends string> = T | Omit<string, T>
+export const aLayerProps = ({
+  /**
+   * Layer color
+   */
+  color,
+
+  /**
+   * Layer variant
+   */
+  variant: {
+    type: String as PropType<LayerVariant>,
+    default: 'text',
+  },
+
+  /**
+   * Interaction states like hover & active
+   */
+  states: {
+    type: Boolean,
+  },
+} as const) satisfies ComponentObjectPropsOptions<ALayerProps>
 
 // TODO: Use `useColor` composable to removed the color calculation
-export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) => {
+export function useProps(propOverrides?: Partial<ComponentObjectPropsOptions>) {
   let props = {
     /**
      * Layer color
@@ -53,7 +74,7 @@ export const useProps = (propOverrides?: Partial<ComponentObjectPropsOptions>) =
 interface UseLayerConfig {
   statesClass?: string
 }
-export const useLayer = () => {
+export function useLayer() {
   // TODO(TS): Improve typing
   const computeClassesStyles = (propColor: ColorProp, propVariant: string, propsStates: boolean, config: UseLayerConfig = {}) => {
     // 👉 Styles
@@ -130,7 +151,7 @@ export const useLayer = () => {
         classes.push('border-width-1 border-solid border-current')
     }
     else if (propColor) {
-      const _colord = colord(propColor as string)
+      const _colord = colord(propColor)
 
       styles.push({ '--a-layer-c': _colord.toHslValue() })
 

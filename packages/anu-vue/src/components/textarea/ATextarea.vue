@@ -1,46 +1,55 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
-import { ABaseInput, baseInputProps } from '@/components/base-input'
+import type { ATextareaEvents, aTextareaSlots } from './meta'
+import { aTextareaBaseInputSlots, aTextareaProps } from './meta'
+import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 
-const props = defineProps(defu({
-  modelValue: String,
-  height: String,
-}, baseInputProps))
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aTextareaProps)
+const emit = defineEmits<ATextareaEvents>()
+defineSlots<typeof aTextareaSlots>()
 
 defineOptions({
   name: 'ATextarea',
   inheritAttrs: false,
 })
 
-const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
+const textareaValue = useVModel(props, 'modelValue', emit, { defaultValue: '', passive: true })
+
+// const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as any)
 
 const textarea = ref<HTMLTextAreaElement>()
 
-const handleInputWrapperClick = () => {
+function handleInputWrapperClick() {
   textarea.value?.focus()
+}
+
+const refBaseInput = ref<ABaseInput>()
+if (props.autoSize) {
+  const refInputWrapper = computed(() => refBaseInput.value?.refInputWrapper)
+  useTextareaAutosize({
+    element: textarea,
+    input: textareaValue,
+    styleTarget: refInputWrapper,
+  })
 }
 </script>
 
 <template>
   <!-- ℹ️ `overflow-hidden` on input wrapper will prevent square edge when textarea will have scrollbar -->
   <ABaseInput
+    ref="refBaseInput"
     v-bind="{ ..._baseInputProps, class: $attrs.class }"
-    :input-wrapper-classes="['min-h-32 overflow-hidden', props.height, props.inputWrapperClasses]"
+    :input-wrapper-classes="['overflow-hidden', props.height, props.inputWrapperClasses]"
     class="a-textarea !pointer-events-auto"
+    :class="[props.autoSize && 'a-textarea-auto-size']"
     @click:inputWrapper="handleInputWrapperClick"
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+      v-for="(_, name) in aTextareaBaseInputSlots"
       #[name]="slotProps"
     >
       <slot
-        v-if="name !== 'default'"
         :name="name"
         v-bind="slotProps || {}"
       />
@@ -49,9 +58,8 @@ const handleInputWrapperClick = () => {
       <textarea
         v-bind="{ ...$attrs, ...slotProps }"
         ref="textarea"
+        v-model="textareaValue"
         class="a-textarea-textarea bg-transparent resize-none"
-        :value="props.modelValue"
-        @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />
     </template>
   </ABaseInput>

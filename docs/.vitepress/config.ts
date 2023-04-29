@@ -1,8 +1,10 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
 import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
+
+const isDev = process.env.NODE_ENV !== 'production'
 
 const nav: DefaultTheme.Config['nav'] = [
   { text: 'Guide', link: '/guide/getting-started/installation', activeMatch: '/guide/' },
@@ -15,7 +17,7 @@ const nav: DefaultTheme.Config['nav'] = [
   },
 ]
 
-if (process.env.NODE_ENV !== 'production')
+if (isDev)
   nav.push({ text: 'Playground', link: '/playground' })
 
 export default defineConfig({
@@ -34,7 +36,8 @@ export default defineConfig({
     sidebar: {
       '/guide/': [
         {
-          text: 'Getting Started',
+          text: '🚀&nbsp;&nbsp; Getting Started',
+          collapsed: false,
           items: [
             { text: 'Introduction', link: '/guide/getting-started/' },
             { text: 'Installation', link: '/guide/getting-started/installation' },
@@ -44,17 +47,20 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Features',
+          text: '✨&nbsp;&nbsp; Features',
+          collapsed: false,
           items: [
             { text: 'Presets', link: '/guide/features/presets' },
             { text: 'DX Focused', link: '/guide/features/dx-focused' },
             { text: 'Arbitrary Sizes', link: '/guide/features/arbitrary-sizes' },
             { text: 'Spacing', link: '/guide/features/spacing' },
             { text: 'Theme', link: '/guide/features/theme' },
+            { text: 'Transitions', link: '/guide/features/transitions' },
           ],
         },
         {
-          text: 'Components',
+          text: '📦&nbsp;&nbsp; Components',
+          collapsed: false,
           items: [
             { text: 'Alert', link: '/guide/components/alert' },
             { text: 'Avatar', link: '/guide/components/avatar' },
@@ -74,19 +80,23 @@ export default defineConfig({
             { text: 'Select', link: '/guide/components/select' },
             { text: 'Switch', link: '/guide/components/switch' },
             { text: 'Table', link: '/guide/components/table' },
+            { text: 'Tabs', link: '/guide/components/tabs' },
             { text: 'Textarea', link: '/guide/components/textarea' },
             { text: 'Tooltip', link: '/guide/components/tooltip' },
           ],
         },
         {
-          text: 'Base Components',
+          text: '🌱&nbsp;&nbsp; Base Components',
+          collapsed: false,
           items: [
             // { text: 'Base Input', link: '/guide/base-components/base-input' },
             { text: 'Typography', link: '/guide/base-components/typography' },
+            { text: 'Views', link: '/guide/base-components/views' },
           ],
         },
         {
-          text: 'Composables',
+          text: '🎛&nbsp;&nbsp; Composables',
+          collapsed: false,
           items: [
             // { text: 'useSearch', link: '/guide/composables/useSearch' },
             // { text: 'useSort', link: '/guide/composables/useSort' },
@@ -98,19 +108,23 @@ export default defineConfig({
       ],
       '/ui/': [
         {
-          text: 'UI',
+          text: '🎨&nbsp;&nbsp; UI',
           items: [
             {
               text: 'Introduction',
               link: '/ui/introduction',
             },
             {
-              text: 'Misc',
-              link: '/ui/misc',
+              text: 'Cards',
+              link: '/ui/cards',
             },
             {
               text: 'Form',
               link: '/ui/form',
+            },
+            {
+              text: 'Misc',
+              link: '/ui/misc',
             },
           ],
         },
@@ -124,19 +138,21 @@ export default defineConfig({
   },
   markdown: {
     // ℹ️ We only enabled this in development so that we can highlight code lines by seeing line number without calculating it in our editor.
-    lineNumbers: process.env.NODE_ENV === 'development',
+    lineNumbers: isDev,
     theme: 'dracula',
     config: md => {
       md.use(Container, 'card', {
         render: (tokens, idx) => {
           const token = tokens[idx]
 
-          // console.log('token :>> ', token)
-
           const title = token.info.trim().slice(5).trim()
-          const titleHtml = md.render(`## ${title}`)
 
-          return token.nesting === 1 ? `<Demo>${titleHtml}` : '</Demo>\n'
+          const isCardBordered = token.attrs && token.attrs.some(([key, _]) => key === 'bordered')
+
+          const titleHtml = md.render(`## ${title}`)
+          const demoContent = title ? `<template #title>${titleHtml}</template>` : ''
+
+          return token.nesting === 1 ? `<Demo :class="[${isCardBordered} && 'vp-demo-bordered']">${demoContent}` : '</Demo>\n'
         },
       })
 
@@ -148,6 +164,14 @@ export default defineConfig({
           const demoName = token.info.trim().slice(5).trim()
 
           return token.nesting === 1 ? `<template #demo><${demoName} /></template><template #code>` : '</template>\n'
+        },
+      })
+
+      md.use(Container, 'after-demo', {
+        render: (tokens, idx) => {
+          const token = tokens[idx]
+
+          return token.nesting === 1 ? '<template #after-demo>' : '</template>\n'
         },
       })
     },

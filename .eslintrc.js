@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     // 'airbnb-base',
-    '@antfu/eslint-config-vue',
+    '@antfu',
     'plugin:vue/vue3-recommended',
   ],
   parser: 'vue-eslint-parser',
@@ -54,6 +54,10 @@ module.exports = {
       ignores: [
         '/^(click):[a-z]+[a-zA-Z]+$/',
       ],
+    }],
+    'vue/component-name-in-template-casing': ['error', 'PascalCase', {
+      registeredComponentsOnly: false,
+      ignores: [],
     }],
 
     // Vue

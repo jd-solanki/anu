@@ -1,25 +1,14 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
-import { ACard, cardProps } from '@/components/card'
+import type { ADialogEvents } from './meta'
+import { aDialogProps, aDialogSlots } from './meta'
+import { ACard } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
-import { defuProps } from '@/composables/useProps'
 import { useTeleport } from '@/composables/useTeleport'
 
-const props = defineProps(defuProps({
-  /**
-   * Show/Hide menu base on v-model value
-   */
-  modelValue: Boolean,
-
-  /**
-   * Persistence of dialog when clicked outside of reference element
-   */
-  persistent: Boolean,
-}, cardProps))
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
+const props = defineProps(aDialogProps)
+const emit = defineEmits<ADialogEvents>()
+defineSlots<typeof aDialogSlots>()
 
 defineOptions({
   name: 'ADialog',
@@ -30,15 +19,11 @@ const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
 
 const refCard = ref()
-if (!props.persistent) {
-  onClickOutside(refCard, () => {
-    // If dialog is not open => Don't execute
-    if (!props.modelValue)
-      return
-
+onClickOutside(refCard, () => {
+  // If dialog is open & persistent prop is false => Close dialog
+  if (props.modelValue && !props.persistent)
     emit('update:modelValue', false)
-  })
-}
+})
 
 // Lock DOM scroll when modelValue is `true`
 // ℹ️ We need to use type assertion here because of this issue: https://github.com/johnsoncodehk/volar/issues/2219
@@ -55,7 +40,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
         v-show="props.modelValue"
         class="a-dialog-wrapper grid place-items-center fixed inset-0 bg-[hsla(var(--a-backdrop-c),var(--a-backdrop-opacity))]"
       >
-        <Transition name="scale">
+        <Transition name="dialog">
           <ACard
             v-show="props.modelValue"
             ref="refCard"
@@ -64,7 +49,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
           >
             <!-- ℹ️ Recursively pass down slots to child -->
             <template
-              v-for="(_, name) in $slots"
+              v-for="(_, name) in aDialogSlots"
               #[name]="slotProps"
             >
               <slot

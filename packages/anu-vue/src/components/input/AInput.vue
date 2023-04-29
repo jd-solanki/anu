@@ -1,29 +1,25 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
-import { ABaseInput, baseInputProps } from '@/components/base-input'
+import type { AInputEvents } from './meta'
+import { aInputProps, aTextareaBaseInputSlots } from './meta'
+import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 
-const props = defineProps(defu({
-  modelValue: [String, Number],
-}, baseInputProps))
-
-defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aInputProps)
+defineEmits<AInputEvents>()
 
 defineOptions({
   name: 'AInput',
   inheritAttrs: false,
 })
 
-const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
+// const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof AInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as any)
 const attrs = useAttrs()
 
 const input = ref<HTMLInputElement>()
 
 const isInputTypeFile = attrs.type && attrs.type === 'file'
 
-const handleInputWrapperClick = () => {
+function handleInputWrapperClick() {
   input.value?.focus()
 }
 </script>
@@ -37,7 +33,7 @@ const handleInputWrapperClick = () => {
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+      v-for="(_, name) in aTextareaBaseInputSlots"
       #[name]="slotProps"
     >
       <slot
@@ -51,7 +47,7 @@ const handleInputWrapperClick = () => {
         ref="input"
         class="a-input-input"
         :value="props.modelValue"
-        @input="e => { $emit('update:modelValue', (e.target as HTMLInputElement).value) }"
+        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       >
     </template>
   </ABaseInput>

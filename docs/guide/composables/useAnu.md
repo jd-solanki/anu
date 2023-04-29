@@ -1,8 +1,8 @@
-# useAnu
+# `useAnu`
 
 `useAnu` composable provides API for interactive with Anu.
 
-## Basic
+:::card Basic
 
 `useAnu` provides following reactive variables:
 
@@ -16,7 +16,9 @@ import { useAnu } from 'anu-vue';
 const { themes, activeThemeName, activeTheme } = useAnu()
 ```
 
-## Changing Active Theme
+:::
+
+:::card Changing Active Theme
 
 You can change the active theme at runtime by modifying the `activeThemeName` ref.
 
@@ -28,7 +30,9 @@ const { activeThemeName } = useAnu()
 activeThemeName.value = 'dark'
 ```
 
-## Active Theme Details
+:::
+
+:::::card Active Theme Details
 
 Use `activeTheme` computed property to get the details of active theme.
 
@@ -42,11 +46,16 @@ const activeThemeName = computed(() => activeTheme.value.name)
 const primaryColor = computed(() => activeTheme.value.theme.colors.primary)
 ```
 
+<!-- ℹ️ We used after-demo slot to avoid unwanted mb -->
+::::after-demo
 :::warning
 Modifying `activeTheme` computed property won't do anything so never mutate this computed property.
 :::
+::::
 
-## Modifying Themes
+:::::
+
+:::card Modifying Themes
 
 You can modify any theme at runtime via `theme` ref.
 
@@ -65,13 +74,11 @@ for (const themeName in themes.value) {
 themes.value.light.colors.primary = '235, 97.7%, 66.3%'
 ```
 
-<br>
+:::
 
----
-
-<br>
-
+:::card
 Related documentation:
 
 - [Theme](/guide/features/theme.md)
 - [Colors](/guide/getting-started/customization.html#color)
+:::

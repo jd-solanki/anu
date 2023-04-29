@@ -1,20 +1,18 @@
 <script lang="ts" setup>
 import { ATypography } from '../typography'
-import { cardProps } from './props'
-import type { cardSlots } from './slots'
-import { cardTypographySlots } from './slots'
+import type { aCardSlots } from './meta'
+import { aCardProps, aCardTypographySlots } from './meta'
 import { ALoader } from '@/components/loader'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(cardProps)
+const props = defineProps(aCardProps)
+defineSlots<typeof aCardSlots>()
 
 defineOptions({
   name: 'ACard',
 })
-
-defineSlots<typeof cardSlots>()
 
 const slots = useSlots()
 
@@ -72,7 +70,7 @@ else
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="name in Object.keys(cardTypographySlots)"
+          v-for="(_, name) in aCardTypographySlots"
           #[name]="slotProps"
         >
           <slot

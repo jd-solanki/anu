@@ -1,4 +1,4 @@
-# useGroupModel
+# `useGroupModel`
 
 <!-- 👉 Basic -->
 ::::card Basic

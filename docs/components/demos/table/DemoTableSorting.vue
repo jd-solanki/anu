@@ -9,11 +9,9 @@ const cols = [
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <!-- Columns inferred from rows will have sorting enabled by default -->
-    <ADataTable
-      :cols="cols"
-      :rows="rows"
-    />
-  </div>
+  <!-- Columns inferred from rows will have sorting enabled by default -->
+  <ADataTable
+    :cols="cols"
+    :rows="rows"
+  />
 </template>

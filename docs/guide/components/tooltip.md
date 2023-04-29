@@ -5,21 +5,23 @@ import api from '@anu/component-meta/ATooltip.json';
 # Tooltip
 
 <!-- 👉 Basic -->
-::::card Basic
+:::::card Basic
 
 Use `ATooltip` component's `text` prop to show passed text in tooltip.
 
 You can also use `default` slot to render custom content.
 
-:::code DemoTooltipBasic
+::::code DemoTooltipBasic
 <<< @/components/demos/tooltip/DemoTooltipBasic.vue{3,9-14}
-:::
-
 ::::
 
+::::after-demo
 :::tip
 While rendering custom content, You can use `.a-tooltip-text` class to add default styles of tooltip text.
 :::
+::::
+
+:::::
 
 <!-- 👉 Trigger -->
 ::::card Trigger
@@ -44,24 +46,26 @@ To open menu on click use set `trigger` prop to `click`.
 ::::
 
 <!-- 👉 Delay -->
-::::card Delay
+:::::card Delay
 
 You can delay showing and hiding of tooltip by setting `delay` (_show delay_) and `hideDelay` props.
 
-:::code DemoTooltipDelay
+::::code DemoTooltipDelay
 <<< @/components/demos/tooltip/DemoTooltipDelay.vue{5-6}
-:::
-
 ::::
 
+::::after-demo
 :::tip `delay` - DX focused prop name
 As we regularly configure delay for showing tooltip only and not for hiding, we named prop for delaying tooltip `delay` instead of `showDelay`.
 :::
+::::
+
+:::::
 
 <!-- 👉 Transition -->
 ::::card Transition
 
-`ATooltip` also support transition. Default transition is `slide-up`. Set it to available transition to use different transition. e.g. `transition="fade"`.
+`ATooltip` also support transition. Default transition is `slide-y`. Set it to available transition to use different transition. e.g. `transition="fade"`.
 
 To disable the transition you can set `transition` prop to `null`.
 

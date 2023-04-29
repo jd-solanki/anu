@@ -12,8 +12,6 @@ const loading = ref(false)
   <ALoader
     :loading="loading"
     full-page
-    title="Full page loading"
-    subtitle="Click anywhere to stop loading"
     @click="loading = false"
   />
 </template>

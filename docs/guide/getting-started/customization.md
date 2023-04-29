@@ -24,7 +24,7 @@ const updatePrimaryColor = () => {
 
 # Customization
 
-## Color
+:::card Color
 
 Anu uses [HSL](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl) color format to define and use colors. You can update theme colors via [themes](/guide/features/theme.md) configurations.
 
@@ -47,7 +47,9 @@ Also checkout related documentation:
 
 - [`useAnu` composable](/guide/composables/useAnu.md)
 
-## CSS variables
+:::
+
+::::card CSS variables
 
 For the most part, Anu uses CSS variables for other stuff to providing maximum flexibility and customization on the fly. All anu's CSS variables are prefixed with `a-`.
 
@@ -59,7 +61,10 @@ Below is CSS vars defined for preset theme default's light theme:
 
 Moreover, It's recommended that you [learn](/development/contributing.html#css-vars) CSS vars naming convention for color to know when you should wrap `hsl()` or use CSS var directly.
 
-## Component customization
+Additionally, theme can also [add](/guide/features/theme.html#adding-theme-based-css-variables) CSS variables based on the theme.
+::::
+
+::::card Component customization
 
 All the UI configurable styles are applied using theme preset. If you have noticed in installation section there's a preset called `presetThemeDefault`.
 
@@ -93,3 +98,5 @@ If you like this simple customization don't forget to give a **star on Github**.
         Give a star
     </ABtn>
 </a>
+
+::::

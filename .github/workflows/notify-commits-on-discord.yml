@@ -1,0 +1,27 @@
+name: Notify on Discord
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify on Discord
+        env:
+          DISCORD_EMBEDS: |
+            [{
+              "title": "${{ github.event.head_commit.message }}",
+              "author": {
+                "name": "${{ github.actor }}",
+                "url": "https://github.com/${{github.actor}}",
+                "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}"
+              },
+              "url": "${{ github.event.head_commit.url }}",
+              "color": 8421504
+             }]
+          DISCORD_AVATAR: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOKS_COMMIT }}
+        uses: Ilshidur/action-discord@0.3.2

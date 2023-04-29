@@ -1,33 +1,14 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { PropType, Ref } from 'vue'
-import { ACard, cardProps } from '@/components/card'
+import type { Ref } from 'vue'
+import type { ADrawerEvents } from './meta'
+import { aDrawerProps, aDrawerSlots } from './meta'
+import { ACard } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useTeleport } from '@/composables/useTeleport'
 
-const props = defineProps(defu({
-  /**
-   * Show/Hide drawer base on v-model value
-   */
-  modelValue: Boolean,
-
-  /**
-   * Persistence of drawer when clicked outside of reference element
-   */
-  persistent: Boolean,
-
-  /**
-   * Drawer anchor/position
-   */
-  anchor: {
-    type: String as PropType<'left' | 'right' | 'top' | 'bottom'>,
-    default: 'left',
-  },
-}, cardProps))
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
+const props = defineProps(aDrawerProps)
+const emit = defineEmits<ADrawerEvents>()
+defineSlots<typeof aDrawerSlots>()
 
 defineOptions({
   name: 'ADrawer',
@@ -38,15 +19,33 @@ const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
 
 const refCard = ref()
-if (!props.persistent) {
-  onClickOutside(refCard, () => {
-    // If dialog is not open => Don't execute
-    if (!props.modelValue)
-      return
-
+onClickOutside(refCard, () => {
+  // If dialog is open & persistent prop is false => Close drawer
+  if (props.modelValue && !props.persistent)
     emit('update:modelValue', false)
-  })
-}
+})
+
+const transitionName = computed(() => {
+  if (props.anchor === 'bottom')
+    return 'slide-y'
+  else if (props.anchor === 'top')
+    return 'slide-y-reverse'
+  else if (props.anchor === 'right')
+    return 'slide-x-reverse'
+
+  return 'slide-x'
+})
+
+const transitionClasses = computed(() => {
+  if (props.anchor === 'bottom')
+    return '[--slide-y-translateY:100%]'
+  else if (props.anchor === 'top')
+    return '[--slide-y-reverse-translateY:-100%]'
+  else if (props.anchor === 'right')
+    return '[--slide-x-reverse-translateX:100%]'
+
+  return '[--slide-x-translateX:-100%]'
+})
 
 // Lock DOM scroll when modelValue is `true`
 // ℹ️ We need to use type assertion here because of this issue: https://github.com/johnsoncodehk/volar/issues/2219
@@ -71,17 +70,21 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
           ['right', 'bottom'].includes(props.anchor) && 'justify-end',
         ]"
       >
-        <Transition :name="`slide-${props.anchor === 'bottom' ? 'up' : props.anchor === 'top' ? 'down' : props.anchor}`">
+        <Transition
+          :duration="30000"
+          :name="transitionName"
+        >
           <ACard
             v-show="props.modelValue"
             ref="refCard"
+            :style="[`--${transitionName}-opacity: 1`, `--${transitionName}--transform-timing: ease-in-out`]"
             class="a-drawer backface-hidden transform translate-z-0"
-            :class="[props.anchor === 'bottom' && '[--a-transition-slide-up-transform:100%]']"
+            :class="transitionClasses"
             v-bind="{ ...$attrs, ...props }"
           >
             <!-- ℹ️ Recursively pass down slots to child -->
             <template
-              v-for="(_, name) in $slots"
+              v-for="(_, name) in aDrawerSlots"
               #[name]="slotProps"
             >
               <slot

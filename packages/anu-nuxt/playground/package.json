@@ -1,4 +1,5 @@
 {
   "private": true,
-  "name": "my-module-playground"
+  "name": "my-module-playground",
+  "version": "0.13.1"
 }

@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Testing ATable & ADataTable > mount component 1`] = `
 "<div class=\\"a-card relative overflow-hidden bg-[hsla(var(--a-surface-c),var(--un-bg-opacity,1))] a-table a-data-table\\">
@@ -71,16 +71,16 @@ exports[`Testing ATable & ADataTable > mount component 1`] = `
       <!--teleport start-->
       <!--teleport end-->
     </div>
-    <div class=\\"a-data-table-pagination-navigation\\"><button tabindex=\\"-1\\" style=\\"--a-layer-c: var(--a-primary);\\" class=\\"inline-flex whitespace-nowrap justify-center items-center relative a-btn-icon-only opacity-50 pointer-events-none states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-previous\\" disabled=\\"\\">
+    <div class=\\"a-data-table-pagination-navigation\\"><button tabindex=\\"-1\\" class=\\"inline-flex whitespace-nowrap justify-center items-center relative a-btn-icon-only opacity-50 pointer-events-none states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-previous\\" disabled=\\"\\" style=\\"--a-layer-c:var(--a-primary);\\">
         <!-- ℹ️ Don't render spinner if not using loading -->
         <!--v-if-->
-        <div class=\\"a-btn-content\\"><i class=\\"i-bx-left-arrow-alt\\"></i>
+        <div class=\\"a-btn-content\\" data-no-reference=\\"\\"><i class=\\"i-bx-left-arrow-alt\\"></i>
           <!--v-if-->
         </div>
-      </button><button tabindex=\\"0\\" style=\\"--a-layer-c: var(--a-primary);\\" class=\\"inline-flex whitespace-nowrap justify-center items-center relative a-btn-icon-only states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-next\\">
+      </button><button tabindex=\\"0\\" class=\\"inline-flex whitespace-nowrap justify-center items-center relative a-btn-icon-only states a-title-opacity-100 a-subtitle-opacity-100 a-title-primary a-subtitle-primary a-data-table-paginate-next\\" style=\\"--a-layer-c:var(--a-primary);\\">
         <!-- ℹ️ Don't render spinner if not using loading -->
         <!--v-if-->
-        <div class=\\"a-btn-content\\"><i class=\\"i-bx-right-arrow-alt\\"></i>
+        <div class=\\"a-btn-content\\" data-no-reference=\\"\\"><i class=\\"i-bx-right-arrow-alt\\"></i>
           <!--v-if-->
         </div>
       </button></div>

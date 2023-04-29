@@ -1,5 +1,7 @@
 # Theme
 
+::::card Introduction
+
 Anu officially supports light & dark theme. Anu also allows users to customize the appearance of their application by providing a custom theme or modifying the existing.
 
 This is achieved through the use of CSS variables, which can be defined and modified at runtime (via `useAnu` composable). This means that users can change the theme of their application on the fly. This allows for a more flexible and dynamic user experience, as users can tailor the appearance of their application to their personal preferences or to match the branding of their organization.
@@ -20,7 +22,24 @@ app.use(anu, {
 })
 ```
 
-## How to customize the theme?
+:::details Retrieving configured (plugin) options
+In rare case if you ever want to retrieve the configured options, you can use [`inject`](https://vuejs.org/guide/components/provide-inject.html#provide-inject) like below.
+
+```vue
+<script lang="ts" setup>
+import { ANU_CONFIG, PluginOptions } from 'anu-vue';
+import { inject } from 'vue';
+
+const config = inject<PluginOptions>(ANU_CONFIG)
+console.log(config)
+</script>
+```
+
+:::
+
+::::
+
+:::card How to customize the theme?
 
 To customize any of the existing theme, light or dark, you just have to override the theme option.
 
@@ -42,7 +61,9 @@ Done 🥳
 
 Do note that, this will only update the primary color for light theme.
 
-## How to create custom theme?
+:::
+
+:::card How to create custom theme?
 
 Creating a custom theme is as easy as defining new values for the existing theme colors.
 
@@ -66,7 +87,9 @@ Now just add class `coffee` to the html element: `html.coffee`.
 
 Don't forget to include the CSS file in your entrypoint 😜
 
-## How to add new color?
+:::
+
+::::card How to add new color?
 
 Anu provides **primary**, **success**, **info**, **warning** & **danger** colors by default.
 
@@ -133,9 +156,42 @@ import { defaultThemeColors } from 'anu-vue'
 
 :::
 
-<br>
+::::
+
+:::card Adding Theme Based CSS Variables
+
+You can also add theme based CSS variables. For example, Anu already adds `--a-body-bg-c` & `--a-surface-c` via theme.
+
+```ts{5-8,13-14}
+app.use(anu, {
+  themes: {
+    light: {
+      cssVars: {
+        'body-bg-c': '0,4.8%,95.9%',
+
+        // ℹ️ Used for background on body like select options, card, etc
+        'surface-c': '0, 0%, 100%',
+      },
+    },
+    dark: {
+      cssVars: {
+        'body-bg-c': 'var(--a-primary-hue), 15%, 5%',
+        'surface-c': 'var(--a-primary-hue), 7%, 10%',
+      },
+    },
+  },
+})
+```
+
+Adding CSS vars will result in `--a-body-bg-c` & `--a-surface-c` being added to the theme CSS variables.
+
+:::
+
+:::card
 
 Related documentation:
 
 - [`useAnu` composable](/guide/composables/useAnu.md)
 - [Colors](/guide/getting-started/customization.html#color)
+
+:::

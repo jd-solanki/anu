@@ -1,55 +1,22 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "src",
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
+    "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
-    "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "outDir": "dist/types",
     "lib": [
       "esnext",
       "dom"
-    ],
-    "skipLibCheck": true,
-    "paths": {
-      "@/*": [
-        "*"
-      ],
-      "anu-vue": [
-        "."
-      ]
-    },
-    "types": [
-      "vitest/globals",
-      "unplugin-vue-macros/macros-global"
     ]
   },
-  "vueCompilerOptions": {
-    "target": 3,
-    "plugins": [
-      "@vue-macros/volar/define-model",
-      "@vue-macros/volar/define-props",
-      "@vue-macros/volar/define-props-refs",
-      "@vue-macros/volar/short-vmodel",
-      "@vue-macros/volar/define-slots",
-      "@vue-macros/volar/export-props"
-    ]
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "auto-imports.d.ts",
-    "shims.d.ts",
-    "volar.d.ts"
-  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

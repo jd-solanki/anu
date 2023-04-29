@@ -12,6 +12,7 @@ declare module 'vue' {
     ADialog: typeof import('anu-vue')['ADialog']
     ADrawer: typeof import('anu-vue')['ADrawer']
     AFloating: typeof import('anu-vue')['AFloating']
+    AIcon: typeof import('anu-vue')['AIcon']
     AInput: typeof import('anu-vue')['AInput']
     AList: typeof import('anu-vue')['AList']
     AListItem: typeof import('anu-vue')['AListItem']
@@ -23,9 +24,14 @@ declare module 'vue' {
     ASelect: typeof import('anu-vue')['ASelect']
     ASpinner: typeof import('anu-vue')['ASpinner']
     ASwitch: typeof import('anu-vue')['ASwitch']
+    ATab: typeof import('anu-vue')['ATab']
     ATable: typeof import('anu-vue')['ATable']
+    ATabs: typeof import('anu-vue')['ATabs']
     ATextarea: typeof import('anu-vue')['ATextarea']
+    ATooltip: typeof import('anu-vue')['ATooltip']
     ATypography: typeof import('anu-vue')['ATypography']
+    AView: typeof import('anu-vue')['AView']
+    AViews: typeof import('anu-vue')['AViews']
   }
 }
 

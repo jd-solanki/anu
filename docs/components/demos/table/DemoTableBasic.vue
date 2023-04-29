@@ -3,7 +3,5 @@ import { rows } from './data'
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ATable :rows="rows" />
-  </div>
+  <ATable :rows="rows" />
 </template>

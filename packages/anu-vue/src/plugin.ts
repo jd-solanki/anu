@@ -35,7 +35,13 @@ const configDefaults: PluginOptions = {
         warning: '42.4, 100%, 50%',
         danger: '358.3, 100%, 64.9%',
       },
-      cssVars: {},
+      cssVars: {
+        'body-color': 'hsla(var(--a-base-c), 0.68)',
+        'body-bg-c': '0,4.8%,95.9%',
+
+        // ℹ️ Used for background on body like select options, card, etc
+        'surface-c': '0, 0%, 100%',
+      },
     },
     dark: {
       class: 'dark',
@@ -46,7 +52,11 @@ const configDefaults: PluginOptions = {
         warning: '42.4, 73%, 50%',
         danger: '358.3, 73%, 64.9%',
       },
-      cssVars: {},
+      cssVars: {
+        'body-color': 'hsla(var(--a-base-c), 0.68)',
+        'body-bg-c': 'var(--a-primary-hue), 15%, 5%',
+        'surface-c': 'var(--a-primary-hue), 7%, 10%',
+      },
     },
   },
 }

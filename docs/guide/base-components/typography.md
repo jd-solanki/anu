@@ -16,18 +16,17 @@ Anu provides useful classes like `.a-title` & `.a-subtitle` for rendering typogr
 ::::
 
 <!-- 👉 Basic -->
-::::card Basic
+:::::card Basic
 
 `ATypography` component provides customizable typography to render title, subtitle & text using single component.
 
 You might feel like this is useless but this greatly improves DX and boosts component reusability. This will completely change how you work with typography.
 
-:::code DemoTypographyBasic
+::::code DemoTypographyBasic
 <<< @/components/demos/typography/DemoTypographyBasic.vue
-:::
-
 ::::
 
+::::after-demo
 :::details When not to use `ATypography` component?
 If you want to render either title, subtitle or text only, prefer using respective class (_for text you don't need any class, please read below note_) instead of component.
 
@@ -65,6 +64,9 @@ Instead you can just insert text using `text` prop.
 
 When you use `text` prop of `ATypography` component, it adds class `.a-text` to customize that particular text rendered using `ATypography` component.
 :::
+::::
+
+:::::
 
 <!-- 👉 Sizing -->
 ::::card Sizing

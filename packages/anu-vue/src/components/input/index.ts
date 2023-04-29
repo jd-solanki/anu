@@ -1,3 +1,7 @@
-export { default as AInput } from './AInput.vue'
+import AInput from './AInput.vue'
 
-// export { AInput } from './AInput'
+export * from './meta'
+export { AInput }
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export type AInput = InstanceType<typeof AInput>

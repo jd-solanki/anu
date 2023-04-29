@@ -1,30 +1,21 @@
 <script lang="ts" setup>
-import type { ExtractPropTypes } from 'vue'
-import type { SwitchProps } from './props'
-import { switchProps } from './props'
+import type { ASwitchEvents, ASwitchProps, aSwitchSlots } from './meta'
+import { aSwitchProps } from './meta'
 import { useCheckbox } from '@/composables'
 
-const props = defineProps(switchProps)
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+const props = defineProps(aSwitchProps)
+const emit = defineEmits<ASwitchEvents>()
 
 defineOptions({
   name: 'ASwitch',
   inheritAttrs: false,
 })
 
-defineSlots<{
-
-  /**
-   * Default slot for rendering switch label. If default slot is used `label` prop will be discarded.
-   */
-  default: {}
-}>()
+defineSlots<typeof aSwitchSlots>()
 
 const attrs = useAttrs()
 
-const _onValue = computed<Exclude<SwitchProps['onValue'], undefined>>(() => props.onValue || attrs.value as Exclude<SwitchProps['onValue'], undefined> || true)
+const _onValue = computed<Exclude<ASwitchProps['onValue'], undefined>>(() => props.onValue || attrs.value as Exclude<ASwitchProps['onValue'], undefined> || true)
 const { isChecked, onChange } = useCheckbox(
   toRef(props, 'modelValue'),
   emit,
@@ -65,7 +56,10 @@ const dotPosition = computed(() => {
     >
 
     <!-- 👉 Label -->
-    <div class="a-switch-label">
+    <div
+      class="a-switch-label"
+      data-no-reference
+    >
       <slot>{{ props.label }}</slot>
     </div>
 

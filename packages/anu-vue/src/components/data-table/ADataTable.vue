@@ -1,35 +1,33 @@
 <script lang="ts" setup>
 import { defu } from 'defu'
 import type { Ref } from 'vue'
-import type { DataTablePropColumn, DataTableProps, ItemsFunction } from './props'
-import { dataTableColDefaults, dataTableProps } from './props'
+import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
+import { aDataTableColDefaults, aDataTableProps } from './meta'
 import { ABtn, AInput, ASelect, ATable } from '@/components'
-import { tableProps } from '@/components/table'
+import type { ATableProps } from '@/components/table'
+import { aTableProps } from '@/components/table'
 import { useSearch } from '@/composables/useSearch'
 import type { typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
 
-const props = defineProps(dataTableProps)
+// TODO: Check usage with useDebounceFn. Can we limit the # of req to server?
 
-// TODO: Check usage with usedebouncefn. Can we limit the # of req to server?
-const emit = defineEmits<{
-
-  // TODO: Duplicated from `ATable` because of import interface issue
-  (e: 'click:header', col: Exclude<DataTableProps['cols'], undefined>): void
-
-  // ---
-
-  (e: 'update:search', q: string): void
-}>()
+const props = defineProps(aDataTableProps)
+const emit = defineEmits<ADataTableEvents>()
 
 defineOptions({
   name: 'ADataTable',
 })
 
 // TODO: https://twitter.com/mattpocockuk/status/1606656367078539264
-const _tableProps = reactivePick(props, Object.keys(tableProps).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof typeof tableProps>)
+const _tableProps = reactivePick(props, Object.keys(aTableProps).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof ATableProps>)
 
 const _rows = ref<Record<string, unknown>[]>(typeof props.rows !== 'function' ? props.rows : [])
+watchDeep(() => props.rows, val => {
+  if (Array.isArray(val))
+    _rows.value = val
+})
+
 const _total = ref(typeof props.rows === 'function' ? 0 : props.rows.length)
 
 // SECTION Calculate column
@@ -39,17 +37,23 @@ const _total = ref(typeof props.rows === 'function' ? 0 : props.rows.length)
 */
 
 // We are initializing with empty array to for calculating column headers manually
-const cols: Ref<DataTablePropColumn[]> = ref([])
+const cols: Ref<ADataTablePropColumn[]> = ref([])
 
 // This will handle assigning defaults to column on render & further prop updates
-watch(() => props.cols, _cols => {
-  cols.value = _cols.map(col => defu(col, dataTableColDefaults))
-}, { immediate: true })
+watch(
+  () => props.cols,
+  _cols => {
+    cols.value = _cols.map(col => defu(col, aDataTableColDefaults))
+  },
+  { immediate: true },
+)
 
 // Little helper utility to generate columns from column names applying column defaults
-const genColsFromNames = (names: string[]) => names.map(rowProperty => {
-  return defu({ ...dataTableColDefaults, name: rowProperty }) as DataTablePropColumn
-})
+function genColsFromNames(names: string[]) {
+  return names.map(rowProperty => {
+    return defu({ ...aDataTableColDefaults, name: rowProperty }) as ADataTablePropColumn
+  })
+}
 
 /*
   This is where we component optimization starts.
@@ -60,7 +64,14 @@ const genColsFromNames = (names: string[]) => names.map(rowProperty => {
 if (!props.cols.length) {
   // If we have rows via prop => Get columns from first row.
   if (Array.isArray(props.rows) && props.rows.length) {
-    cols.value = genColsFromNames(Object.keys(props.rows[0]))
+    // ℹ️ We aren't watching for rows reactivity here
+    // eslint-disable-next-line vue/no-setup-props-destructure
+    const firstRow = props.rows[0]
+
+    if (!firstRow)
+      console.warn('Unable to calculate headers for the table, Please add at least one row or use `cols` prop')
+    else
+      cols.value = genColsFromNames(Object.keys(firstRow))
   }
 
   /*
@@ -82,9 +93,9 @@ if (!props.cols.length) {
       Because when server side table is used we want to get headers when we get rows in _rows array after async request.
     */
     watchOnce(numOfRows, () => {
-      cols.value = genColsFromNames(
-        Object.keys((typeof props.rows === 'function' ? _rows.value : props.rows)[0]),
-      )
+      const firstRow = (typeof props.rows === 'function' ? _rows.value : props.rows)[0]
+      if (firstRow)
+        cols.value = genColsFromNames(Object.keys(firstRow))
     })
   }
 }
@@ -95,7 +106,7 @@ if (!props.cols.length) {
 const q = ref(typeof props.search === 'boolean' ? '' : props.search)
 watch(q, value => {
   emit('update:search', value)
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+
   fetchRows()
 })
 
@@ -103,10 +114,10 @@ watch(q, value => {
 const sortedCols = computed(() => cols.value.filter(col => col.isSortable && col.sortBy !== undefined))
 
 // 👉 fetch rows
-const fetchRows = () => {
+function fetchRows() {
   // Use type check instead of isSST to prevent type aliases further
   if (typeof props.rows === 'function') {
-    (props.rows as ItemsFunction)({
+    (props.rows as ADataTableItemsFunction)({
       q: q.value,
       /* eslint-disable @typescript-eslint/no-use-before-define */
       currentPage: currentPage.value,
@@ -180,9 +191,9 @@ const {
 fetchRows()
 
 // 👉 Handle header click
-const handleHeaderClick = (clickedCol: any) => {
+function handleHeaderClick(clickedCol: any) {
   // TODO: Remove this and fix handler type error
-  clickedCol = clickedCol as DataTablePropColumn
+  clickedCol = clickedCol as ADataTablePropColumn
   const tableCol = cols.value.find(_col => clickedCol.name === _col.name)
 
   // If we can't find clicked column in table columns
@@ -319,7 +330,7 @@ const paginationMeta = computed(() => {
             class="a-data-table-paginate-previous"
             icon="i-bx-left-arrow-alt"
             icon-only
-            variant="default"
+            variant="text"
             :disabled="isFirstPage"
             @click="goToPreviousPage"
           />
@@ -327,7 +338,7 @@ const paginationMeta = computed(() => {
             class="a-data-table-paginate-next"
             icon="i-bx-right-arrow-alt"
             icon-only
-            variant="default"
+            variant="text"
             :disabled="isLastPage"
             @click="goToNextPage"
           />

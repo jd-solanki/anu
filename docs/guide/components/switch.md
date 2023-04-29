@@ -27,7 +27,7 @@ You can use `color` prop to change the switch color.
 ::::
 
 <!-- 👉 Label -->
-::::card Label
+:::::card Label
 
 You can use `label` prop to add label to switch component.
 
@@ -35,15 +35,17 @@ Label and switch have `justify-between` added as this is how generally used but 
 
 <br>
 
-:::code DemoSwitchLabel
+::::code DemoSwitchLabel
 <<< @/components/demos/switch/DemoSwitchLabel.vue{13,17,21}
-:::
-
 ::::
 
+::::after-demo
 :::tip
 You can also use default slot to render the label.
 :::
+::::
+
+:::::
 
 <!-- 👉 Icons -->
 ::::card Icons

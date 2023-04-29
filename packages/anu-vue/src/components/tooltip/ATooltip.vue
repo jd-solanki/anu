@@ -1,52 +1,35 @@
 <script lang="ts" setup>
-import type { Middleware } from '@floating-ui/vue'
+import type { aTooltipSlots } from './meta'
+import { aTooltipProps } from './meta'
+import { AFloating } from '@/components/floating'
+import { useParent } from '@/composables'
 
 // import { arrow } from '@floating-ui/vue'
-import { flip, offset, shift } from '@floating-ui/vue'
-import { tooltipProps } from './props'
-import { AFloating } from '@/components/floating'
-import { useParentEl } from '@/composables'
 
-const props = defineProps(tooltipProps)
-
-defineSlots<{
-
-  /**
-   * Default slot for rendering tooltip content. If default slot is used `text` prop will be discarded.
-   */
-  default: {}
-}>()
+const props = defineProps(aTooltipProps)
+defineSlots<typeof aTooltipSlots>()
 
 defineOptions({
   name: 'ATooltip',
 })
 
-const { parentEL } = useParentEl()
+const parentEl = useParent()
 
 // const arrowEl = ref()
-
-const floatingMiddleware = [
-  offset(10),
-  flip(),
-  shift({ padding: 10 }),
-
-  // arrow({
-  //   element: arrowEl,
-  // }),
-] as Middleware[]
 </script>
 
 <template>
   <AFloating
     v-bind="props"
-    :reference-el="parentEL"
+    :reference-el="parentEl"
     class="a-tooltip-wrapper"
-    :middleware="() => floatingMiddleware"
   >
     <div class="a-tooltip">
-      <slot>
-        <span class="a-tooltip-text">{{ props.text }}</span>
-      </slot>
+      <span class="a-tooltip-text">
+        <slot>
+          {{ props.text }}
+        </slot>
+      </span>
       <!-- <div
         ref="arrowEl"
         class="a-tooltip-arrow absolute"

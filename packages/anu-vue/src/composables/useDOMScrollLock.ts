@@ -4,7 +4,7 @@ import { ref, watch } from 'vue'
 
 // Thanks: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
 // ❗ Caveat: If scroll-behavior: smooth is applied to body then dialog close will scroll the body
-export const useDOMScrollLock = (modelValue: Ref<boolean>) => {
+export function useDOMScrollLock(modelValue: Ref<boolean>) {
   const refRoot = ref()
 
   const scrollbarWidth = useCssVar('--scrollbar-width', refRoot)

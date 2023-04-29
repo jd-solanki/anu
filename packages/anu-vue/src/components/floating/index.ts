@@ -1,4 +1,8 @@
-export { default as AFloating } from './AFloating.vue'
-export * from './events'
+import AFloating from './AFloating.vue'
+
+export * from './meta'
 export { sameWidth as sameWidthFloatingUIMiddleware } from './middlewares'
-export * from './props'
+export { AFloating }
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export type AFloating = InstanceType<typeof AFloating>

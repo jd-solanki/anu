@@ -1,8 +1,8 @@
 import type { Ref, Slots, ToRef } from 'vue'
-import type { TypographyProps } from './props'
+import type { ATypographyProps } from './meta'
 import type { ConfigurableValue } from '@/composables/useConfigurable'
 
-export const isTypographyUsed = (props: { [K in keyof TypographyProps]: ToRef<TypographyProps[K]> }, slots: Slots) => {
+export function isTypographyUsed(props: { [K in keyof ATypographyProps]: ToRef<ATypographyProps[K]> }, slots: Slots) {
   const { title, subtitle, text } = props
 
   const validateProp = (prop?: Ref<ConfigurableValue>): boolean => {

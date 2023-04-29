@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ItemsFunctionParams } from 'anu-vue'
+import type { DataTableItemsFunctionParams } from 'anu-vue'
 import { fakeAPICall } from './data'
 
 // 👉 Columns
@@ -11,7 +11,7 @@ const cols = [
 ]
 
 // 👉 rows function
-const fetchItems = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
+function fetchItems({ q, currentPage, rowsPerPage, sortedCols }: DataTableItemsFunctionParams) {
   // ℹ️ You can use q, currentPage, rowsPerPage, sortedCols to fetch data from API
   // console.log('q :>> ', q, typeof q)
   // console.log('currentPage :>> ', currentPage)
@@ -26,21 +26,19 @@ const fetchItems = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPa
   return fakeAPICall({ q, currentPage, rowsPerPage, sortedCols })
 
     // response.data => { rows: [...], total: 10 }
-    .then(response => response.data)
+    .then(response => (response as any).data)
     .catch(() => {
-      console.log('Error fetching rows...')
+      throw new Error('Error fetching rows...')
     })
 }
 </script>
 
 <template>
-  <div class="cards-demo-container">
-    <ADataTable
-      search
-      :rows="fetchItems"
-      :cols="cols"
-      :page-size="5"
-      @fetch="fetchItems"
-    />
-  </div>
+  <ADataTable
+    search
+    :rows="fetchItems"
+    :cols="cols"
+    :page-size="5"
+    @fetch="fetchItems"
+  />
 </template>

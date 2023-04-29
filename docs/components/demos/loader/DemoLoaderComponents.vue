@@ -7,7 +7,7 @@ const cardLoading = ref(false)
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-6">
+  <div class="flex flex-wrap gap-x-4 gap-y-6">
     <ABtn
       :loading="btnLoading"
       @click="btnLoading = !btnLoading"
@@ -23,14 +23,12 @@ const cardLoading = ref(false)
     />
 
     <!-- Card -->
-    <div class="cards-demo-container">
-      <ACard
-        title="Card title"
-        subtitle="Chocolate cake tiramisu donut"
-        text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
-        :loading="cardLoading"
-        @click="cardLoading = !cardLoading"
-      />
-    </div>
+    <ACard
+      title="Click me"
+      subtitle="Chocolate cake tiramisu donut"
+      text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
+      :loading="cardLoading"
+      @click="cardLoading = !cardLoading"
+    />
   </div>
 </template>

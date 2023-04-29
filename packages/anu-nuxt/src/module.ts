@@ -195,7 +195,6 @@ export default defineNuxtModule<ModuleOptions>({
         })
       })
 
-    // @ts-expect-error - This is a API that is exposed if the devtools module is installed or enabled globally.
     nuxt.hook('devtools:customTabs', tabs => {
       tabs.push({
         name: 'anu-vue',

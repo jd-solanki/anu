@@ -1,21 +1,15 @@
 <script lang="ts" setup>
 import { toRef } from 'vue'
-import { avatarProps } from './props'
+import type { aAvatarSlots } from './meta'
+import { aAvatarProps } from './meta'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(avatarProps)
+const props = defineProps(aAvatarProps)
+defineSlots<typeof aAvatarSlots>()
 
 defineOptions({
   name: 'AAvatar',
 })
-
-defineSlots<{
-
-  /**
-   * Default slot for rendering avatar content. If default slots is used `src`, `alt`, `icon` & `content` prop usage will be ignored.
-   */
-  default: {}
-}>()
 
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
@@ -27,7 +21,7 @@ const { styles, classes } = getLayerClasses(
 
 <template>
   <div
-    class="a-avatar overflow-hidden inline-flex items-center justify-center"
+    class="a-avatar overflow-hidden inline-flex items-center justify-center flex-shrink-0"
     :class="classes"
     :style="styles"
   >
