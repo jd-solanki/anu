@@ -20,7 +20,7 @@ If you had noticed in the installation section, to use Anu you need to use two p
 `presetThemeDefault` is where all the styling magic happens.
 
 :::info
-Actually, [presets](https://github.com/unocss/unocss#presets) feature is from UnoCSS. Anu leverages this to provide component styles in separate preset so you can customize the framework however you like.
+Actually, [presets](https://unocss.dev/config/presets) feature is from UnoCSS. Anu leverages this to provide component styles in separate preset so you can customize the framework however you like.
 :::
 
 ::::
@@ -43,7 +43,7 @@ presetThemeDefault({
 
 :::card How to create your own preset?
 
-Creating your own UnoCSS preset is really simple. We recommend you first checkout the UnoCSS documentation on [presets](https://github.com/unocss/unocss#presets).
+Creating your own UnoCSS preset is really simple. We recommend you first checkout the UnoCSS documentation on [presets](https://unocss.dev/config/presets).
 
 Next, you can refer to our `presetThemeDefault` preset to create you own preset.
 
