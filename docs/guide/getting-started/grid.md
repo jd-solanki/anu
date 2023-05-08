@@ -7,7 +7,7 @@ Anu's grid uses [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/C
 
 UnoCSS provides various utility classes for creating CSS grid layout.
 
-For creating row, you need `grid`, `gap-4` & `place-items-start` classes. Anu's default theme preset provides `grid-row` [shortcut](https://github.com/unocss/unocss#shortcuts) for adding these classes.
+For creating row, you need `grid`, `gap-4` & `place-items-start` classes. Anu's default theme preset provides `grid-row` [shortcut](https://unocss.dev/config/shortcuts) for adding these classes.
 
 For columns you can use utility classes according to your column needs.
 
