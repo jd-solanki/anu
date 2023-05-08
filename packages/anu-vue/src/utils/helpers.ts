@@ -116,7 +116,7 @@ export function extendNestedObject<T extends Record<string, object>, U>(
 export function omitObjKeys<Obj extends Object, Keys extends (keyof Obj)[]>(obj: Obj, keys: Keys): Simplify<Omit<Obj, Keys[number]>> {
   return Object.fromEntries(
     Object.entries(obj)
-      .filter(([key]) => keys.includes(key as keyof Obj)),
+      .filter(([key]) => !keys.includes(key as keyof Obj)),
   ) as any
 }
 

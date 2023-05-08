@@ -101,11 +101,16 @@ export function aDataTableTableSlots<Row extends Record<string, unknown>>(colKey
   */
   return omitObjKeys(aTableSlots<Row>(colKeys), ['after-table', 'header-right'])
 }
+
+export const aDataTableOwnSlots = {
+  'before-search': (_: any) => null as any,
+  'after-search': (_: any) => null as any,
+} as const
+
 export function aDataTableSlots<Row extends Record<string, unknown>>(colKeys: RowKey<Row>[]) {
   return {
     ...aDataTableTableSlots<Row>(colKeys),
-    'before-search': (_: any) => null,
-    'after-search': (_: any) => null,
+    ...aDataTableOwnSlots,
   }
 }
 

@@ -363,7 +363,7 @@ const paginationMeta = computed(() => {
     <!-- TODO: If you are using child component props in component => Filter them out -->
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in _aDataTableTableSlots"
+      v-for="(_, name) in _aDataTableTableSlots"
       #[name]="slotProps"
     >
       <slot

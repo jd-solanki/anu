@@ -51,39 +51,39 @@ const { default: _, ...aTableCardSlots } = aCardSlots
 
 export { aTableCardSlots }
 export function aTableSlots<Row extends Record<string, unknown>>(colKeys: RowKey<Row>[]) {
-  return ({
+  return {
     ...aTableCardSlots,
 
     /**
      * Render content before table
      */
-    'before-table': (_: any) => null,
+    'before-table': (_: any) => null as any,
 
     /**
      * Render custom header for column.
      */
     ...colKeys.reduce((a, colKey) => (
-      { ...a, [`header-${colKey}`]: Function }
-    ), {} as Record<`header-${RowKey<Row>}`, (_: { col: ATablePropColumn<Row> }) => any>),
+      { ...a, [`header-${colKey}`]: Function } as const
+    ), {} as Readonly<Record<`header-${RowKey<Row>}`, (_: { col: ATablePropColumn<Row> }) => any>>),
 
     // TODO: How to get type of dynamic col?
     /**
      * Render custom content for column cell for each row
      */
     ...colKeys.reduce((a, colKey) => (
-      { ...a, [`col-${colKey}`]: Function }
-    ), {} as Record<`col-${RowKey<Row>}`, (_: { row: Row; colIndex: number }) => any>),
+      { ...a, [`col-${colKey}`]: Function } as const
+    ), {} as Readonly<Record<`col-${RowKey<Row>}`, (_: { row: Row; colIndex: number }) => any>>),
 
     /**
      * Render custom content in table footer
      */
-    'footer': (_: any) => null,
+    'footer': (_: any) => null as any,
 
     /**
      * Render custom content after table
      */
-    'after-table': (_: any) => null,
-  }) as const
+    'after-table': (_: any) => null as any,
+  } as const
 }
 
 // 👉 Events
