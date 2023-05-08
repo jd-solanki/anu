@@ -1,18 +1,14 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ABaseInputProps } from '@/components/base-input'
+import type { ExtractPublicPropTypes } from 'vue'
 import { aBaseInputProps, aBaseInputSlots } from '@/components/base-input'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface AInputProps extends ABaseInputProps {
-  modelValue?: string | number
-}
-
-export const aInputProps = ({
+export const aInputProps = {
   ...aBaseInputProps,
-  modelValue: [String, Number] as PropType<AInputProps['modelValue']>,
-} as const) satisfies Required<ComponentObjectPropsOptions<AInputProps>>
+  modelValue: [String, Number] as PropType<string | number>,
+} as const
+export type AInputProps = ExtractPublicPropTypes<typeof aInputProps>
 
 // 👉 Slots
 const { default: _, ...aTextareaBaseInputSlots } = aBaseInputSlots

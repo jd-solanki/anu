@@ -1,35 +1,29 @@
 import type { UseSwipeDirection } from '@vueuse/core'
 import type { LiteralUnion } from 'type-fest'
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { NoUndefined } from '@/utils/typescripts'
+import type { ExtractPublicPropTypes } from 'vue'
 import type { Transitions } from '@/transitions'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface AViewsProps {
-
+export const aViewsProps = {
   /**
    * Active view value
    */
-  modelValue?: any
-
-  /**
-   * Transition to use
-   */
-  transition?: LiteralUnion<Transitions, string>
-}
-
-export const aViewsProps = ({
   modelValue: {
     type: null,
     default: 0,
   },
+
+  /**
+   * Transition to use
+   */
   transition: {
-    type: String as PropType<NoUndefined<AViewsProps['transition']>>,
+    type: String as PropType<LiteralUnion<Transitions, string>>,
     default: 'fade',
   },
-} as const) satisfies Required<ComponentObjectPropsOptions<AViewsProps>>
+} as const
+export type AViewsProps = ExtractPublicPropTypes<typeof aViewsProps>
 
 // 👉 Slots
 // TODO: It has nested dynamic slots inside default slot

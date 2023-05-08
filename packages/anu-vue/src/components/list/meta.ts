@@ -1,8 +1,7 @@
-import type { ComponentObjectPropsOptions } from 'vue'
+import type { ExtractPublicPropTypes } from 'vue'
 import type { AListItemProps } from '@/components/list-item'
 import { aListItemProps, aListItemSlots } from '@/components/list-item'
-import { extendNestedObject, prefixObjectKeys, prefixObjectKeysWithMeta } from '@/utils/helpers'
-import type { NoUndefined } from '@/utils/typescripts'
+import { prefixObjectKeys, prefixObjectKeysWithMeta } from '@/utils/helpers'
 
 // ℹ️ Make sure to checkout meta definition rules
 
@@ -10,40 +9,27 @@ import type { NoUndefined } from '@/utils/typescripts'
 export type AListPropItems = (AListItemProps | string | number)[]
 
 const { avatarAppend, iconAppend, color, variant, states } = aListItemProps
-
-export interface AListProps extends Pick<AListItemProps, 'avatarAppend' | 'iconAppend' | 'color' | 'variant' | 'states'> {
-
+export const aListProps = {
   /**
    * Items to render in list
    */
-  items?: AListPropItems
+  'items': {
+    type: Array as PropType<AListPropItems>,
+    default: () => [],
+  },
 
   /**
    * Enable selecting multiple list items
    */
-  multi?: boolean
+  'multi': Boolean,
 
   /**
    * Bind v-model value to selected list item
    */
-  modelValue?: any
-
-  // ℹ️ Workaround for checking if event is present on component instance: https://github.com/vuejs/core/issues/5220#issuecomment-1007488240
-  'onClick:item'?: (item: AListPropItems[number]) => void
-}
-
-export const aListProps = ({
-  'items': {
-    type: Array as PropType<NoUndefined<AListProps['items']>>,
-    default: () => [],
-  },
-
-  'multi': Boolean,
-
   'modelValue': null,
 
   // ℹ️ Workaround for checking if event is present on component instance: https://github.com/vuejs/core/issues/5220#issuecomment-1007488240
-  'onClick:item': Function as PropType<AListProps['onClick:item']>,
+  'onClick:item': Function as PropType<(item: AListPropItems[number]) => void>,
 
   // ℹ️ Below is list item props that will be passed to each list item
   avatarAppend,
@@ -51,7 +37,8 @@ export const aListProps = ({
   color,
   variant,
   states,
-} as const) satisfies Required<ComponentObjectPropsOptions<AListProps>>
+} as const
+export type AListProps = ExtractPublicPropTypes<typeof aListProps>
 
 // 👉 Slots
 const aListItemSlotsPrefix = 'item-'
@@ -64,26 +51,26 @@ export const aListOwnSlots = {
   /**
    * Render custom content before list items
    */
-  before: {},
+  before: (_: any) => null as any,
 
   /**
    * Default slot to render custom content instead of `AListItem`
    */
-  default: {
-    handleListItemClick: Function as unknown as (item: AListPropItems[number]) => void,
-  },
+  default: (_: {
+    handleListItemClick: (item: AListPropItems[number]) => void
+  }) => null as any,
 
   /**
    * Render custom content after list items
    */
-  after: {},
+  after: (_: any) => null as any,
 } as const
 
-// We are inject `index` as well
-const extendedAListItemSlots = extendNestedObject(aListListItemSlots, { index: Number() })
+// We inject `index` as well
+// const extendedAListItemSlots = extendNestedObject(aListListItemSlots, { index: Number() })
 
 export const aListSlots = {
-  ...extendedAListItemSlots,
+  ...aListListItemSlots,
   ...aListOwnSlots,
 } as const
 

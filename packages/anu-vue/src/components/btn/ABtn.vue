@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { aBtnSlots } from './meta'
-import { aBtnProps } from './meta'
-import { ASpinner } from '@/components/spinner'
-import { useLayer } from '@/composables/useLayer'
+import { ASpinner } from '@/components/spinner';
+import { useLayer } from '@/composables/useLayer';
+import type { aBtnSlots } from './meta';
+import { aBtnProps } from './meta';
 
 const props = defineProps(aBtnProps)
 defineSlots<typeof aBtnSlots>()

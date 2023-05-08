@@ -1,4 +1,5 @@
-import type { ExtendNested, Prettify } from './typescripts'
+import type { Simplify } from 'type-fest'
+import { type ExtendNested, type Prettify } from './typescripts'
 
 // 👉 IsEmpty
 export function isEmpty(value: unknown): boolean {
@@ -111,3 +112,14 @@ export function extendNestedObject<T extends Record<string, object>, U>(
 
   return result as ExtendNested<T, U>
 }
+
+export function omitObjKeys<Obj extends Object, Keys extends (keyof Obj)[]>(obj: Obj, keys: Keys): Simplify<Omit<Obj, Keys[number]>> {
+  return Object.fromEntries(
+    Object.entries(obj)
+      .filter(([key]) => keys.includes(key as keyof Obj)),
+  ) as any
+}
+
+// export function excludeKeysStartsWith<Obj extends Object, Prefix extends string>(obj: Obj, prefix: Prefix): Omit<Obj, keyof PickStartsWith<Obj, Prefix>> {
+//   return objectKeys(obj).filter(v => String(v).startsWith(prefix)).map(e => obj[e]) as any
+// }

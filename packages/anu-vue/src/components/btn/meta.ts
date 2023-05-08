@@ -1,21 +1,11 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ConfigurableValue } from '@/composables/useConfigurable'
-import type { ALayerProps } from '@/composables/useLayer'
+import type { ExtractPublicPropTypes } from 'vue'
 import { aLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface ABtnProps extends ALayerProps {
-  icon?: ConfigurableValue
-  appendIcon?: ConfigurableValue
-  iconOnly?: boolean
-  disabled?: boolean
-  loading?: boolean
-}
-
-export const aBtnProps = ({
+export const aBtnProps = {
   ...{
     ...aLayerProps,
     color: {
@@ -61,7 +51,8 @@ export const aBtnProps = ({
     type: Boolean,
     default: undefined,
   },
-} as const) satisfies Required<ComponentObjectPropsOptions<ABtnProps>>
+} as const
+export type ABtnProps = ExtractPublicPropTypes<typeof aBtnProps>
 
 // 👉 Slots
 export const aBtnSlots = {
@@ -69,7 +60,7 @@ export const aBtnSlots = {
   /**
    * Default slot for rendering button content
    */
-  default: {},
+  default: (_: any) => null as any,
 } as const
 
 // 👉 Events

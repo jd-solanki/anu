@@ -1,16 +1,16 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ATableEvents, ATablePropColumn, ATableProps } from '@/components/table'
-import { aTableProps } from '@/components/table'
+import type { ExtractPublicPropTypes } from 'vue'
+import type { ATableEvents, ATablePropColumn, RowKey } from '@/components/table'
+import { aTableProps, aTableSlots } from '@/components/table'
 import type { CustomFilter } from '@/composables/useSearch'
 import type { CustomSort } from '@/composables/useSort'
-import type { NoUndefined } from '@/utils/typescripts'
+import { omitObjKeys } from '@/utils/helpers'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
 export type SortBy = 'asc' | 'desc' | undefined
 
-export interface ADataTablePropColumn extends ATablePropColumn {
+export interface ADataTablePropColumn<Row extends Record<string, unknown>> extends ATablePropColumn<Row> {
   isSortable?: boolean
   sortBy?: SortBy
   isFilterable?: Boolean
@@ -18,84 +18,96 @@ export interface ADataTablePropColumn extends ATablePropColumn {
   sortFunc?: CustomSort
 }
 
-export interface ADataTableItemsFunctionParams {
+export interface ADataTableItemsFunctionParams<Row extends Record<string, unknown>> {
   q: string
   currentPage: number
   rowsPerPage: number
-  sortedCols: ADataTablePropColumn[]
+  sortedCols: ADataTablePropColumn<Row>[]
 }
 
-export interface ADataTableItemsFunction {
-  (props: ADataTableItemsFunctionParams): Promise<{ rows: Record<string, unknown>[]; total: number }>
+export interface ADataTableItemsFunction<Row extends Record<string, unknown>> {
+  (props: ADataTableItemsFunctionParams<Row>): Promise<{ rows: Row[]; total: number }>
 }
 
-export interface ADataTableProps extends Omit<ATableProps, 'rows'> {
+export function aDataTableProps<Row extends Record<string, unknown>>() {
+  const { rows: _, ...aTableRestProps } = aTableProps<Row>()
 
-  /**
+  return {
+    ...aTableRestProps,
+
+    /**
    * Function that returns resolves array.
    */
-  rows: ADataTableItemsFunction | Record<string, unknown>[]
+    rows: {
+      type: [Array, Function] as PropType<ADataTableItemsFunction<Row> | Row[]>,
+      required: true,
+    },
 
-  /**
+    /**
    * By default table will infer the column definition from first row. You can also manually provide the column definition for more control.
    */
-  cols?: ADataTablePropColumn[]
+    cols: {
+      type: [Array] as PropType<ADataTablePropColumn<Row>[]>,
+      default: () => [],
+    },
 
-  /**
+    /**
    * Enable filtering/searching in table
    */
-  search?: boolean | string
+    search: {
+      type: [Boolean, String] as PropType<boolean | string>,
+      default: false,
+    },
 
-  /**
+    /**
    * Enable/Disable sorting table
    */
-  isSortable?: boolean
+    isSortable: {
+      type: Boolean,
+      default: true,
+    },
 
-  /**
+    /**
    * By default you can only sort single column. You can enable sorting multiple columns at the same time using this prop.
    */
-  multiSort?: boolean
+    multiSort: Boolean,
 
-  /**
+    /**
    * Set rows to show per page
    */
-  pageSize?: number
+    pageSize: {
+      type: Number,
+      default: 10,
+    },
+  } as const
 }
+export type ADataTableProps = ExtractPublicPropTypes<ReturnType<typeof aDataTableProps>>
 
-export const aDataTableProps = ({
-  ...aTableProps,
-  rows: {
-    type: [Array, Function] as PropType<ADataTableProps['rows']>,
-    required: true,
-  },
-  cols: {
-    type: [Array] as PropType<NoUndefined<ADataTableProps['cols']>>,
-    default: () => [],
-  },
-  search: {
-    type: [Boolean, String] as PropType<NoUndefined<ADataTableProps['search']>>,
-    default: false,
-  },
-  isSortable: {
-    type: Boolean,
-    default: true,
-  },
-  multiSort: Boolean,
-  pageSize: {
-    type: Number,
-    default: 10,
-  },
-} as const) satisfies Required<ComponentObjectPropsOptions<ADataTableProps>>
-
-export const aDataTableColDefaults: Partial<ADataTablePropColumn> = {
-  isSortable: true,
-  headerClasses: (col: ADataTablePropColumn) => col.isSortable && 'cursor-pointer select-none',
-  sortBy: undefined,
-  isFilterable: true,
+export function aDataTableColDefaults<Row extends Record<string, unknown>>(): Partial<ADataTablePropColumn<Row>> {
+  return {
+    isSortable: true,
+    headerClasses: (col: ADataTablePropColumn<Row>) => col.isSortable && 'cursor-pointer select-none',
+    sortBy: undefined,
+    isFilterable: true,
+  }
 }
 
 // 👉 Slots
-export const aDataTableSlots = {}
+export function aDataTableTableSlots<Row extends Record<string, unknown>>(colKeys: RowKey<Row>[]) {
+  /*
+    Slot we consumed in ADataTable and aren't forwarding:
+    - after-table
+    - header-right
+  */
+  return omitObjKeys(aTableSlots<Row>(colKeys), ['after-table', 'header-right'])
+}
+export function aDataTableSlots<Row extends Record<string, unknown>>(colKeys: RowKey<Row>[]) {
+  return {
+    ...aDataTableTableSlots<Row>(colKeys),
+    'before-search': (_: any) => null,
+    'after-search': (_: any) => null,
+  }
+}
 
 // 👉 Events
 export interface ADataTableEvents extends ATableEvents<ADataTableProps> {

@@ -1,74 +1,62 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ConfigurableValue } from '@/composables/useConfigurable'
+import type { ExtractPublicPropTypes } from 'vue'
 import { configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface ATabProps {
-
+export const aTabProps = {
   /**
    * Tab title
    */
-  title: string
-
-  /**
-   * Render icon before tab title
-   */
-  icon?: ConfigurableValue
-
-  /**
-   * Append icon after tab title
-   */
-  appendIcon?: ConfigurableValue
-
-  /**
-   * Stack tab title and icons vertically
-   */
-  stacked?: boolean
-
-  /**
-   * Tab value to be used for v-model binding
-   */
-  value?: any
-
-  /**
-   * Hide tab title on mobile
-   */
-  hideTitleOnMobile?: boolean
-
-  /**
-   * Set component in disabled state
-   */
-  disabled?: boolean
-}
-
-export const aTabProps = ({
   title: {
     type: String,
     required: true,
   },
+
+  /**
+   * Render icon before tab title
+   */
   icon: configurableProp,
+
+  /**
+   * Append icon after tab title
+   */
   appendIcon: configurableProp,
+
+  /**
+   * Stack tab title and icons vertically
+   */
   stacked: Boolean,
+
+  /**
+   * Hide tab title on mobile
+   */
   hideTitleOnMobile: Boolean,
+
+  /**
+   * Set component in disabled state
+   */
   disabled: disabledProp,
 
   // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
+  /**
+   * Tab value to be used for v-model binding
+   */
   value: { type: null },
-} as const) satisfies Required<ComponentObjectPropsOptions<ATabProps>>
+} as const
+export type ATabProps = ExtractPublicPropTypes<typeof aTabProps>
 
 // 👉 Slots
 export const aTabSlots = {
   /**
    * Prepend content to the title
    */
-  prepend: {},
+  prepend: (_: any) => null as any,
 
   /**
    * Append content to the title
    */
-  append: {},
+  append: (_: any) => null as any,
 
 } as const
 

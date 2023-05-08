@@ -1,28 +1,42 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="Row extends Record<string, unknown>">
 import { defu } from 'defu'
 import type { Ref } from 'vue'
 import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
-import { aDataTableColDefaults, aDataTableProps } from './meta'
+import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTableSlots } from './meta'
 import { ABtn, AInput, ASelect, ATable } from '@/components'
 import type { ATableProps } from '@/components/table'
 import { aTableProps } from '@/components/table'
 import { useSearch } from '@/composables/useSearch'
 import type { typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
+import { objectKeys } from '@/utils/typescripts'
 
 // TODO: Check usage with useDebounceFn. Can we limit the # of req to server?
 
-const props = defineProps(aDataTableProps)
+const props = defineProps(aDataTableProps<Row>())
 const emit = defineEmits<ADataTableEvents>()
+
+const _slots = aDataTableSlots<Row>(
+  typeof props.rows === 'function'
+    ? []
+    : objectKeys(props.rows[0] || {}),
+)
+defineSlots<typeof _slots>()
+
+const _aDataTableTableSlots = aDataTableTableSlots<Row>(
+  typeof props.rows === 'function'
+    ? []
+    : objectKeys(props.rows[0] || {}),
+)
 
 defineOptions({
   name: 'ADataTable',
 })
 
 // TODO: https://twitter.com/mattpocockuk/status/1606656367078539264
-const _tableProps = reactivePick(props, Object.keys(aTableProps).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof ATableProps>)
+const _tableProps = reactivePick(props, Object.keys(aTableProps<Row>()).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof ATableProps>)
 
-const _rows = ref<Record<string, unknown>[]>(typeof props.rows !== 'function' ? props.rows : [])
+const _rows = ref<Row[]>(typeof props.rows !== 'function' ? props.rows : []) as Ref<Row[]>
 watchDeep(() => props.rows, val => {
   if (Array.isArray(val))
     _rows.value = val
@@ -37,13 +51,13 @@ const _total = ref(typeof props.rows === 'function' ? 0 : props.rows.length)
 */
 
 // We are initializing with empty array to for calculating column headers manually
-const cols: Ref<ADataTablePropColumn[]> = ref([])
+const cols: Ref<ADataTablePropColumn<Row>[]> = ref([])
 
 // This will handle assigning defaults to column on render & further prop updates
 watch(
   () => props.cols,
   _cols => {
-    cols.value = _cols.map(col => defu(col, aDataTableColDefaults))
+    cols.value = _cols.map(col => defu(col, aDataTableColDefaults<Row>()))
   },
   { immediate: true },
 )
@@ -51,7 +65,7 @@ watch(
 // Little helper utility to generate columns from column names applying column defaults
 function genColsFromNames(names: string[]) {
   return names.map(rowProperty => {
-    return defu({ ...aDataTableColDefaults, name: rowProperty }) as ADataTablePropColumn
+    return defu({ ...aDataTableColDefaults, name: rowProperty }) as ADataTablePropColumn<Row>
   })
 }
 
@@ -117,7 +131,7 @@ const sortedCols = computed(() => cols.value.filter(col => col.isSortable && col
 function fetchRows() {
   // Use type check instead of isSST to prevent type aliases further
   if (typeof props.rows === 'function') {
-    (props.rows as ADataTableItemsFunction)({
+    (props.rows as ADataTableItemsFunction<Row>)({
       q: q.value,
       /* eslint-disable @typescript-eslint/no-use-before-define */
       currentPage: currentPage.value,
@@ -193,7 +207,7 @@ fetchRows()
 // 👉 Handle header click
 function handleHeaderClick(clickedCol: any) {
   // TODO: Remove this and fix handler type error
-  clickedCol = clickedCol as ADataTablePropColumn
+  clickedCol = clickedCol as ADataTablePropColumn<Row>
   const tableCol = cols.value.find(_col => clickedCol.name === _col.name)
 
   // If we can't find clicked column in table columns
@@ -349,7 +363,7 @@ const paginationMeta = computed(() => {
     <!-- TODO: If you are using child component props in component => Filter them out -->
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => !slotName.startsWith('header-'))"
+      v-for="name in _aDataTableTableSlots"
       #[name]="slotProps"
     >
       <slot

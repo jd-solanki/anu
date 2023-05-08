@@ -1,28 +1,24 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ACardProps } from '@/components/card'
+import type { ExtractPublicPropTypes } from 'vue'
 import { aCardProps, aCardSlots } from '@/components/card'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface ADialogProps extends ACardProps {
+export const aDialogProps = {
+  ...aCardProps,
 
   /**
    * Show/Hide menu base on v-model value
    */
-  modelValue?: boolean
+  modelValue: Boolean,
 
   /**
    * Persistence of dialog when clicked outside of reference element
    */
-  persistent?: boolean
-}
-
-export const aDialogProps = ({
-  ...aCardProps,
-  modelValue: Boolean,
   persistent: Boolean,
-} as const) satisfies Required<ComponentObjectPropsOptions<ADialogProps>>
+} as const
+
+export type ADialogProps = ExtractPublicPropTypes<typeof aDialogProps>
 
 // 👉 Slots
 export const aDialogSlots = {

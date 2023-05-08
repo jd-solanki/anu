@@ -1,40 +1,10 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ConfigurableValue } from '@/composables/useConfigurable'
-import type { ALayerProps } from '@/composables/useLayer'
+import type { ExtractPublicPropTypes } from 'vue'
 import { aLayerProps } from '@/composables/useLayer'
 import { configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface AChipProps extends ALayerProps {
-
-  /**
-   * Bind v-model value to show/hide the chip.
-   */
-  modelValue?: boolean
-
-  /**
-   * Allow to close chip
-   */
-  closable?: boolean
-
-  /**
-   * prepend icon
-   */
-  icon?: ConfigurableValue
-
-  /**
-   * append icon
-   */
-  appendIcon?: ConfigurableValue
-
-  /**
-   * Disable state of component
-   */
-  disabled?: boolean
-}
-
 export const aChipProps = ({
   ...{
     ...aLayerProps,
@@ -47,15 +17,36 @@ export const aChipProps = ({
       default: 'light',
     },
   },
+
+  /**
+   * Bind v-model value to show/hide the chip.
+   */
   modelValue: {
     type: Boolean as PropType<boolean>,
     default: true,
   },
+
+  /**
+   * Allow to close chip
+   */
   closable: Boolean,
+
+  /**
+   * prepend icon
+   */
   icon: configurableProp,
+
+  /**
+   * append icon
+   */
   appendIcon: configurableProp,
+
+  /**
+   * Disable state of component
+   */
   disabled: disabledProp,
-} as const) satisfies Required<ComponentObjectPropsOptions<AChipProps>>
+} as const)
+export type AChipProps = ExtractPublicPropTypes<typeof aChipProps>
 
 // 👉 Slots
 export const aChipSlots = {
@@ -63,7 +54,7 @@ export const aChipSlots = {
   /**
    * Default slot for rendering chip content
    */
-  default: {},
+  default: (_: any) => null as any,
 } as const
 
 // 👉 Events

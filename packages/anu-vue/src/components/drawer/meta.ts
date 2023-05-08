@@ -1,5 +1,4 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ACardProps } from '@/components/card'
+import type { ExtractPublicPropTypes } from 'vue'
 import { aCardProps, aCardSlots } from '@/components/card'
 
 // ℹ️ Make sure to checkout meta definition rules
@@ -7,33 +6,29 @@ import { aCardProps, aCardSlots } from '@/components/card'
 export type ADrawerAnchor = 'left' | 'right' | 'top' | 'bottom'
 
 // 👉 Props
-export interface ADrawerProps extends ACardProps {
+export const aDrawerProps = {
+  ...aCardProps,
 
   /**
    * Show/Hide menu base on v-model value
    */
-  modelValue?: boolean
+  modelValue: Boolean,
 
   /**
    * Persistence of drawer when clicked outside of reference element
    */
-  persistent?: boolean
+  persistent: Boolean,
 
   /**
    * Drawer anchor/position
    */
-  anchor: ADrawerAnchor
-}
-
-export const aDrawerProps = ({
-  ...aCardProps,
-  modelValue: Boolean,
-  persistent: Boolean,
   anchor: {
-    type: String as PropType<ADrawerProps['anchor']>,
+    type: String as PropType<ADrawerAnchor>,
     default: 'left',
   },
-} as const) satisfies Required<ComponentObjectPropsOptions<ADrawerProps>>
+} as const
+
+export type ADrawerProps = ExtractPublicPropTypes<typeof aDrawerProps>
 
 // 👉 Slots
 export const aDrawerSlots = {

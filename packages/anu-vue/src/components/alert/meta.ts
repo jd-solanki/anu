@@ -1,35 +1,11 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ConfigurableValue } from '@/composables/useConfigurable'
-import type { ALayerProps } from '@/composables/useLayer'
+import type { ExtractPublicPropTypes } from 'vue'
 import { aLayerProps } from '@/composables/useLayer'
 import { configurable } from '@/composables/useProps'
 
-// 👉 Props
 // ℹ️ Make sure to checkout prop definition rules
-export interface AAlertProps extends ALayerProps {
 
-  /**
-   * prepend icon
-   */
-  icon?: ConfigurableValue
-
-  /**
-   * append (close) icon
-   */
-  appendIcon?: ConfigurableValue
-
-  /**
-   * Make alert dismissible using this prop. Adds close icon as appended icon.
-   */
-  dismissible?: boolean
-
-  /**
-   * Hide/Show alert based on v-model value
-   */
-  modelValue?: boolean
-}
-
-export const aAlertProps = ({
+// 👉 Props
+export const aAlertProps = {
   ...{
     ...aLayerProps,
     color: {
@@ -41,14 +17,31 @@ export const aAlertProps = ({
       default: 'light',
     },
   },
+
+  /**
+   * prepend icon
+   */
   icon: configurable,
+
+  /**
+   * append (close) icon
+   */
   appendIcon: configurable,
+
+  /**
+   * Make alert dismissible using this prop. Adds close icon as appended icon.
+   */
   dismissible: Boolean,
+
+  /**
+   * Hide/Show alert based on v-model value
+   */
   modelValue: {
     type: Boolean,
     default: undefined,
   },
-} as const) satisfies Required<ComponentObjectPropsOptions<AAlertProps>>
+} as const
+export type AAlertProps = ExtractPublicPropTypes<typeof aAlertProps>
 
 // 👉 Slots
 export const aAlertSlots = {
@@ -56,12 +49,12 @@ export const aAlertSlots = {
   /**
    * Default slot for rendering alert content
    */
-  default: {},
+  default: (_: any) => null,
 
   /**
    * Slot for appending content to alert
    */
-  append: {},
+  append: (_: any) => null,
 } as const
 
 // 👉 Events

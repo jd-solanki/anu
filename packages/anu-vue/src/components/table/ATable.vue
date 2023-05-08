@@ -1,17 +1,19 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="Row extends Record<string, unknown>">
 import type { ATableEvents, ATablePropColumn } from './meta'
-import { aTableCardSlots, aTableProps } from './meta'
+import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
 import type { ACardProps } from '@/components/card'
 import { aCardProps } from '@/components/card'
+import { objectKeys } from '@/utils/typescripts'
 
-// import type { aTableSlots } from './meta'
-
-const props = defineProps(aTableProps)
+const props = defineProps(aTableProps<Row>())
 
 // TODO: We aren't getting type error for click:header
 defineEmits<ATableEvents>()
 
-// defineSlots<typeof aTableSlots>()
+const _slots = aTableSlots<Row>(
+  objectKeys(props.rows[0] || {}),
+)
+defineSlots<typeof _slots>()
 
 defineOptions({
   name: 'ATable',
@@ -19,7 +21,7 @@ defineOptions({
 
 const _cardProps = reactivePick(props, Object.keys(aCardProps) as Array<keyof ACardProps>)
 
-const _cols = computed<ATablePropColumn[]>(() => {
+const _cols = computed<ATablePropColumn<Row>[]>(() => {
   // If custom cols are provided => Use them
   if (props.cols.length)
     return props.cols

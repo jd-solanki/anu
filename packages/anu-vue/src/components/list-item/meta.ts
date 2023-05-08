@@ -1,55 +1,13 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { AAvatarProps } from '@/components/avatar'
+import type { ExtractPublicPropTypes } from 'vue'
 import { configurable, disabled } from '@/composables/useProps'
 
-import type { ATypographyProps } from '@/components/typography'
 import { aTypographyProps } from '@/components/typography'
-import type { ConfigurableValue } from '@/composables/useConfigurable'
-import type { ALayerProps } from '@/composables/useLayer'
 import { aLayerProps } from '@/composables/useLayer'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface AListItemProps extends ALayerProps, ATypographyProps {
-
-  /**
-   * List item value, makes list item clickable.
-   */
-  value?: any
-
-  /**
-   * List item icon
-   */
-  icon?: ConfigurableValue
-
-  /**
-   * Render icon at the end instead of starting of list item
-   */
-  iconAppend?: boolean
-
-  /**
-   * Mark list item disabled
-   */
-  disabled?: boolean
-
-  /**
-   * Props for rendering avatar.
-   */
-  avatarProps?: AAvatarProps
-
-  /**
-   * Render avatar at the end instead of starting of list item
-   */
-  avatarAppend?: boolean
-
-  /**
-   * Mark list item as active
-   */
-  isActive?: boolean
-}
-
-export const aListItemProps = ({
+export const aListItemProps = {
   ...{
     ...aLayerProps,
     states: {
@@ -61,48 +19,76 @@ export const aListItemProps = ({
   ...aTypographyProps,
 
   // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
+  /**
+   * List item value, makes list item clickable.
+   */
   value: { type: null },
+
+  /**
+   * List item icon
+   */
   icon: configurable,
+
+  /**
+   * Render icon at the end instead of starting of list item
+   */
   iconAppend: Boolean,
+
+  /**
+   * Mark list item disabled
+   */
   disabled,
+
+  /**
+   * Props for rendering avatar.
+   */
   avatarProps: Object,
+
+  /**
+   * Render avatar at the end instead of starting of list item
+   */
   avatarAppend: Boolean,
+
+  /**
+   * Mark list item as active
+   */
   isActive: Boolean,
-} as const) satisfies ComponentObjectPropsOptions<AListItemProps>
+} as const
+export type AListItemProps = ExtractPublicPropTypes<typeof aListItemProps>
 
 // 👉 Slots
 export const aListItemSlots = {
   /**
    * Render custom content and override other slots.
    */
-  default: {
-    item: Object as unknown as AListItemProps,
-    attrs: Object as unknown as Record<string, unknown>,
-  },
+  default: (_: {
+    item: AListItemProps
+    attrs: Record<string, unknown>
+  }) => null as any,
 
   /**
    * Prepend custom content to the list item
    */
-  prepend: {
-    item: Object as unknown as AListItemProps,
-    attrs: Object as unknown as Record<string, unknown>,
-  },
+  prepend: (_: {
+    item: AListItemProps
+    attrs: Record<string, unknown>
+  }) => null as any,
 
   /**
    * Render custom content instead of `ATypography` preserving `prepend` and `append` slot usage
    */
-  content: {
-    item: Object as unknown as AListItemProps,
-    attrs: Object as unknown as Record<string, unknown>,
-  },
+  content: (_: {
+    item: AListItemProps
+    attrs: Record<string, unknown>
+  }) => null as any,
 
   /**
    * Append custom content to the list item
    */
-  append: {
-    item: Object as unknown as AListItemProps,
-    attrs: Object as unknown as Record<string, unknown>,
-  },
+  append: (_: {
+    item: AListItemProps
+    attrs: Record<string, unknown>
+  }) => null as any,
 } as const
 
 // 👉 Events

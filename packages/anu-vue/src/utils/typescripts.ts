@@ -1,6 +1,10 @@
 import type { IsAny, SetOptional } from 'type-fest'
 import type { ExtractPropTypes } from 'vue'
 
+export function objectKeys<T extends {}>(obj: T) {
+  return Object.keys(obj) as Array<keyof T>
+}
+
 export type GetBooleanProps<T> = NonNullable<{
   [K in keyof T]: T[K] extends boolean
     ? IsAny<T[K]> extends true ? never : K
@@ -19,4 +23,8 @@ export type ExtendNested<T, U> = {
   [K in keyof T]: T[K] extends object
     ? U & ExtendNested<T[K], U>
     : U;
+}
+
+export type PickStartsWith<T extends object, S extends string> = {
+  [K in keyof T as K extends `${S}${infer R}` ? K : never]: T[K]
 }

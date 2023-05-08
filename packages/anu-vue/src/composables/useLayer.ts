@@ -1,6 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
 import { defu } from 'defu'
-import type { ComponentObjectPropsOptions } from 'vue'
+import type { ComponentObjectPropsOptions, ExtractPublicPropTypes } from 'vue'
 import { ref, unref, watch } from 'vue'
 import { isThemeColor } from '@/composables/useColor'
 import type { ColorProp } from '@/composables/useProps'
@@ -10,13 +10,7 @@ import { colord } from '@/utils/colord'
 
 export type LayerVariant = 'fill' | 'outline' | 'light' | 'text'
 
-export interface ALayerProps {
-  color?: ColorProp
-  variant?: LayerVariant
-  states?: boolean
-}
-
-export const aLayerProps = ({
+export const aLayerProps = {
   /**
    * Layer color
    */
@@ -33,10 +27,10 @@ export const aLayerProps = ({
   /**
    * Interaction states like hover & active
    */
-  states: {
-    type: Boolean,
-  },
-} as const) satisfies ComponentObjectPropsOptions<ALayerProps>
+  states: Boolean,
+} as const
+
+export type ALayerProps = ExtractPublicPropTypes<typeof aLayerProps>
 
 // TODO: Use `useColor` composable to removed the color calculation
 export function useProps(propOverrides?: Partial<ComponentObjectPropsOptions>) {

@@ -1,16 +1,10 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ConfigurableValue } from '@/composables/useConfigurable'
+import type { ExtractPublicPropTypes } from 'vue'
 import { configurable as configurableProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface ALoadingIconProps {
-  icon?: ConfigurableValue
-  loading?: boolean
-}
-
-export const aLoadingIconProps = ({
+export const aLoadingIconProps = {
   icon: configurableProp,
 
   /**
@@ -20,7 +14,8 @@ export const aLoadingIconProps = ({
     type: Boolean,
     default: false,
   },
-} as const) satisfies Required<ComponentObjectPropsOptions<ALoadingIconProps>>
+} as const
+export type ALoadingIconProps = ExtractPublicPropTypes<typeof aLoadingIconProps>
 
 // 👉 Slots
 export const aLoadingIconSlots = {} as const

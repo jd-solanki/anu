@@ -1,36 +1,27 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ABaseInputProps } from '@/components/base-input'
+import type { ExtractPublicPropTypes } from 'vue'
 import { aBaseInputProps, aBaseInputSlots } from '@/components/base-input'
 import { aCardSlots } from '@/components/card/meta'
 import type { AListProps } from '@/components/list'
 import { aListSlots } from '@/components/list'
 import { prefixObjectKeys, prefixObjectKeysWithMeta } from '@/utils/helpers'
-import type { NoUndefined } from '@/utils/typescripts'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface ASelectProps extends ABaseInputProps {
-  modelValue?: any
-  options: AListProps['items']
-  emitObject?: boolean
-  optionsWrapperClasses: any
-  listClasses: any
-}
-
-export const aSelectProps = ({
+export const aSelectProps = {
   ...aBaseInputProps,
-  modelValue: [String, Number] as PropType<ASelectProps['modelValue']>,
   options: {
-    type: Array as PropType<NoUndefined<ASelectProps['options']>>,
+    type: Array as PropType<AListProps['items']>,
     default: () => [],
   },
   emitObject: Boolean,
 
   // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
+  modelValue: { type: null },
   optionsWrapperClasses: { type: null },
   listClasses: { type: null },
-} as const) satisfies Required<ComponentObjectPropsOptions<ASelectProps>>
+} as const
+export type ASelectProps = ExtractPublicPropTypes<typeof aSelectProps>
 
 // 👉 Slots
 const { default: _, ...aSelectBaseInputSlots } = aBaseInputSlots

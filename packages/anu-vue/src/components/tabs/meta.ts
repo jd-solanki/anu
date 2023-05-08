@@ -1,8 +1,7 @@
 import type { LiteralUnion } from 'type-fest'
-import type { ComponentObjectPropsOptions } from 'vue'
+import type { ExtractPublicPropTypes } from 'vue'
 import type { ATabProps } from '@/components/tab'
 import type { Transitions } from '@/transitions'
-import type { NoUndefined } from '@/utils/typescripts'
 
 // ℹ️ Make sure to checkout meta definition rules
 
@@ -15,60 +14,49 @@ import type { NoUndefined } from '@/utils/typescripts'
  */
 
 // 👉 Props
-export interface ATabsProps {
-
+export const aTabsProps = {
   /**
    * Active tab
    */
-  modelValue?: any
+  modelValue: { type: null },
 
   /**
    * Tabs to be rendered. Array of ATab props.
    */
-  tabs?: (ATabProps | string)[]
+  tabs: {
+    type: Array as PropType<(ATabProps | string)[]>,
+    default: () => [],
+  },
 
   /**
    * Render tabs in vertical direction
    */
-  vertical?: boolean
+  vertical: Boolean,
 
   /**
    * Mark all `ATab` as stacked
    */
-  stackedTabs?: boolean
+  stackedTabs: Boolean,
 
   /**
    * Hide tab title on mobile
    */
-  hideTitleOnMobile?: boolean
+  hideTitleOnMobile: Boolean,
 
   /**
    * Change tab transition
    */
-  transition?: LiteralUnion<Transitions, string>
-}
-
-export const aTabsProps = ({
-  modelValue: { type: null },
-  tabs: {
-    type: Array as PropType<NoUndefined<ATabsProps['tabs']>>,
-    default: () => [],
-  },
-  vertical: Boolean,
-  stackedTabs: Boolean,
-  hideTitleOnMobile: Boolean,
   transition: {
-    type: String as PropType<NoUndefined<ATabsProps['transition']>>,
+    type: String as PropType<LiteralUnion<Transitions, string>>,
     default: 'view-next',
   },
-} as const) satisfies Required<ComponentObjectPropsOptions<ATabsProps>>
+} as const
+export type ATabsProps = ExtractPublicPropTypes<typeof aTabsProps>
 
 // 👉 Slots
 export const aTabsSlots = {
-  tabs: {},
-
-  // TODO: fix type
-  default: { name: Object as any },
+  tabs: (_: any) => null as any,
+  default: (_: { name: any }) => null as any,
 } as const
 
 // 👉 Events

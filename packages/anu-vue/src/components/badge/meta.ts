@@ -1,7 +1,5 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ColorProp } from '@/composables/useProps'
+import type { ExtractPublicPropTypes } from 'vue'
 import { color as colorProp } from '@/composables/useProps'
-import type { NoUndefined } from '@/utils/typescripts'
 
 export type AVerticalAnchor = 'top' | 'bottom'
 export type AHorizontalAnchor = 'left' | 'right'
@@ -11,94 +9,82 @@ export const aBadgeDefaultOffset = 4
 
 export const aBadgeDefaultOverlapOffset = 12
 
-// 👉 Props
 // ℹ️ Make sure to checkout prop definition rules
-export interface ABadgeProps {
 
+// 👉 Props
+export const aBadgeProps = {
   /**
    * Show/Hide badge based on v-model value
    */
-  modelValue?: boolean
-
-  /**
-   * Sets badge color
-   */
-  color?: ColorProp
-
-  /**
-   * Converts badge to a dot
-   */
-  dot: boolean
-
-  /**
-  * Adds badge border
-  */
-  bordered?: boolean
-
-  /**
-   * Sets the highest possible value
-   */
-  max?: number
-
-  /**
-   * Use to pass numeric values
-   */
-  content?: number | string
-
-  /**
-   * Sets the badge position
-   */
-  anchor?: AAnchor
-
-  /**
-   * Adjusts position of badge
-   */
-  overlap?: boolean
-
-  /**
-   * Sets offset on x-axis
-   */
-  offsetX?: number | string
-
-  /**
-   * Sets offset on y-axis
-   */
-  offsetY?: number | string
-}
-
-export const aBadgeProps = ({
   modelValue: {
     type: Boolean,
     default: true,
   },
+
+  /**
+   * Sets badge color
+   */
   color: {
     ...colorProp,
     default: 'primary',
   },
+
+  /**
+   * Converts badge to a dot
+   */
   dot: Boolean,
+
+  /**
+  * Adds badge border
+  */
   bordered: {
     type: Boolean,
     default: true,
   },
+
+  /**
+   * Sets the highest possible value
+   */
   max: Number,
-  content: [Number, String] as PropType<ABadgeProps['content']>,
+
+  /**
+   * Use to pass numeric values
+   */
+  content: [Number, String] as PropType<number | string>,
+
+  /**
+   * Sets the badge position
+   */
   anchor: {
-    type: String as PropType<NoUndefined<ABadgeProps['anchor']>>,
+    type: String as PropType<AAnchor>,
     default: 'top right',
   },
+
+  /**
+   * Adjusts position of badge
+   */
   overlap: {
     type: Boolean,
     default: true,
   },
+
+  /**
+   * Sets offset on x-axis
+   */
   offsetX: {
-    type: [Number, String] as PropType<NoUndefined<ABadgeProps['offsetX']>>,
-    default: 4,
+    type: [Number, String] as PropType<number | string>,
+    default: aBadgeDefaultOffset,
   },
+
+  /**
+   * Sets offset on y-axis
+   */
   offsetY: {
-    type: [Number, String] as PropType<NoUndefined<ABadgeProps['offsetY']>>,
-    default: 4,
+    type: [Number, String] as PropType<number | string>,
+    default: aBadgeDefaultOffset,
   },
-} as const) satisfies Required<ComponentObjectPropsOptions<ABadgeProps>>
+} as const
+export type ABadgeProps = ExtractPublicPropTypes<typeof aBadgeProps>
 
 // 👉 Slots
 export const aBadgeSlots = {
@@ -106,5 +92,5 @@ export const aBadgeSlots = {
   /**
    * Default slot for rendering badge content
    */
-  default: {},
+  default: (_: any) => null as any,
 } as const

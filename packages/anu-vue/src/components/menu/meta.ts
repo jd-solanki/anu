@@ -1,16 +1,15 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { AFloatingProps } from '@/components/floating'
+import type { ExtractPublicPropTypes } from 'vue'
 import { aFloatingProps } from '@/components/floating'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
 const { referenceEl: _, ...aFloatingRestProps } = aFloatingProps
-export interface AMenuProps extends Omit<AFloatingProps, 'referenceEl'> {}
 
-export const aMenuProps = ({
+export const aMenuProps = {
   ...aFloatingRestProps,
-} as const) satisfies Required<ComponentObjectPropsOptions<AMenuProps>>
+} as const
+export type AMenuProps = ExtractPublicPropTypes<typeof aMenuProps>
 
 // 👉 Slots
 export const aMenuSlots = {
@@ -19,7 +18,7 @@ export const aMenuSlots = {
    * Default slot for rendering menu content
    * Generally, you will use `AList` component here.
    */
-  default: {},
+  default: (_: any) => null as any,
 } as const
 
 // 👉 Events

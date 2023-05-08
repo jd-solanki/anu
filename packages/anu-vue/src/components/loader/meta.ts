@@ -1,34 +1,29 @@
-import type { ComponentObjectPropsOptions } from 'vue'
-import type { ATypographyProps } from '@/components/typography'
+import type { ExtractPublicPropTypes } from 'vue'
 import { aTypographyProps, aTypographySlots } from '@/components/typography'
 
 // ℹ️ Make sure to checkout meta definition rules
 
 // 👉 Props
-export interface ALoaderProps extends ATypographyProps {
+export const aLoaderProps = ({
+  ...aTypographyProps,
 
   /**
    * Toggle loading state
    */
-  loading?: boolean
-
-  /**
-   * Display loader in full page mode
-   */
-  fullPage?: boolean
-}
-
-export const aLoaderProps = ({
-  ...aTypographyProps,
   loading: {
     type: Boolean,
     default: true,
   },
+
+  /**
+   * Display loader in full page mode
+   */
   fullPage: {
     type: Boolean,
     default: false,
   },
-} as const) satisfies Required<ComponentObjectPropsOptions<ALoaderProps>>
+} as const)
+export type ALoaderProps = ExtractPublicPropTypes<typeof aLoaderProps>
 
 // 👉 Slots
 const { default: _, ...aLoaderTypographySlots } = aTypographySlots
@@ -39,7 +34,7 @@ export const aLoaderOwnSlots = {
    * Default slot for rendering loader content.
    * `ATypography` content like title & subtitle will be rendered along with this slot.
    */
-  default: {},
+  default: (_: any) => null as any,
 } as const
 
 export const aLoaderSlots = {

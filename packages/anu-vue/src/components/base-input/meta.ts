@@ -1,112 +1,95 @@
-import type { ComponentObjectPropsOptions, HTMLAttributes, PropType } from 'vue'
-import type { ConfigurableValue } from '@/composables/useConfigurable'
+import type { ExtractPublicPropTypes, HTMLAttributes, PropType } from 'vue'
 import { configurable, disabled, readonly } from '@/composables/useProps'
 
-// 👉 Props
 // ℹ️ Make sure to checkout prop definition rules
-export interface ABaseInputProps {
 
+// 👉 Props
+export const aBaseInputProps = ({
+
+  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
   /**
    * Input wrapper classes
    */
-  inputWrapperClasses?: any
+  inputWrapperClasses: { type: null },
 
+  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
   /**
    * Input classes
    */
-  inputClasses?: any
+  inputClasses: { type: null },
 
   /**
    * Input container classes
    */
-  inputContainerAttrs?: HTMLAttributes
+  inputContainerAttrs: Object as PropType<HTMLAttributes>,
 
   /**
    * Add hint below the form component
    */
-  hint?: string
+  hint: String,
 
   /**
    * Error text to render. This will replace hint text if provided.
    */
-  error?: string
+  error: String,
 
   /**
    * Label of the form component
    */
-  label?: ConfigurableValue
+  label: configurable,
 
   /**
    * Prepend icon
    */
-  prependIcon?: string
+  prependIcon: String,
 
   /**
    * Append icon
    */
-  appendIcon?: string
+  appendIcon: String,
 
   /**
    * Prepend icon inside input
    */
-  prependInnerIcon?: string
+  prependInnerIcon: String,
 
   /**
    * Append icon inside input
    */
-  appendInnerIcon?: string
+  appendInnerIcon: String,
 
   /**
    * Set component in disabled state
    */
-  disabled?: boolean
+  disabled,
 
   /**
    * Set component in readonly mode
    */
-  readonly?: boolean
+  readonly,
 
   /**
    * Set loading state
    */
-  loading?: boolean
-}
-
-export const aBaseInputProps = ({
-
-  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
-  inputWrapperClasses: { type: null },
-
-  // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
-  inputClasses: { type: null },
-
-  inputContainerAttrs: Object as PropType<HTMLAttributes>,
-  hint: String,
-  error: String,
-  label: configurable,
-  prependIcon: String,
-  appendIcon: String,
-  prependInnerIcon: String,
-  appendInnerIcon: String,
-  disabled,
-  readonly,
   loading: Boolean,
-} as const) satisfies Required<ComponentObjectPropsOptions<ABaseInputProps>>
+} as const)
+
+export type ABaseInputProps = ExtractPublicPropTypes<typeof aBaseInputProps>
 
 // 👉 Slots
 export const aBaseInputSlots = {
-  'label': {},
-  'prepend': {},
-  'prepend-inner': {},
-  'append-inner': {},
-  'append': {},
-  'bottom': {},
-  'default': {
-    id: String() as string | undefined,
-    readonly: Boolean as unknown as boolean,
-    disabled: Boolean as unknown as boolean,
-    class: Object as any,
-  },
+  'label': (_: any) => null as any,
+  'prepend': (_: any) => null as any,
+  'prepend-inner': (_: any) => null as any,
+  'append-inner': (_: any) => null as any,
+  'append': (_: any) => null as any,
+  'bottom': (_: any) => null as any,
+  'default': (_: {
+    id: string | undefined
+    readonly: boolean
+    disabled: boolean
+    class: any
+  }) => null as any,
 } as const
 
 // 👉 Events

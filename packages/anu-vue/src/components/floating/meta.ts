@@ -1,9 +1,8 @@
 import type { Middleware, Placement, Strategy } from '@floating-ui/vue'
 import { flip, shift } from '@floating-ui/vue'
 import type { LiteralUnion } from 'type-fest'
-import type { ComponentObjectPropsOptions, Ref } from 'vue'
+import type { ExtractPublicPropTypes, Ref } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
-import type { NoUndefined } from '@/utils/typescripts'
 import type { Transitions } from '@/transitions'
 
 // ℹ️ Make sure to checkout meta definition rules
@@ -21,38 +20,58 @@ export const middlewareFunc: AFloatingMiddlewareFunc = (referenceEl, refFloating
   shift({ padding: 10 }),
 ]
 
-export interface AFloatingProps {
-  referenceEl?: AFloatingReferenceEl
+export const aFloatingProps = {
+  referenceEl: {
+    type: Object as PropType<AFloatingReferenceEl>,
+  },
 
   /**
    * Show/Hide floating element base on v-model value
    */
-  modelValue?: boolean
+  modelValue: {
+    type: Boolean,
+    default: undefined,
+  },
 
   /**
    * Persistence of floating element when clicked outside of reference element
    */
-  persist?: boolean | 'content'
+  persist: {
+    type: [Boolean, String] as PropType<boolean | 'content'>,
+    default: false,
+  },
 
   /**
    * Trigger event to open the floating element
    */
-  trigger?: 'click' | 'hover'
+  trigger: {
+    type: String as PropType<'click' | 'hover'>,
+    default: 'click',
+  },
 
   /**
    * Delay before showing floating element
    */
-  delay?: number
+  delay: {
+    type: Number,
+    default: 0,
+  },
 
   /**
    * Delay before hiding floating element
    */
-  hideDelay?: number
+  hideDelay: {
+    type: Number,
+    default: 0,
+  },
 
   /**
    * Transition to add while showing/hiding floating element
    */
-  transition?: LiteralUnion<Transitions, string> | null
+  transition: {
+    type: [String, null] as PropType<LiteralUnion<Transitions, string> | null>,
+    default: 'slide-y',
+  },
 
   // -- Floating UI based Props
 
@@ -60,68 +79,34 @@ export interface AFloatingProps {
   /**
    * Placement option from Floating UI
    */
-  placement?: Placement
+  placement: {
+    type: String as PropType<Placement>,
+    default: 'bottom-start',
+  },
 
   // https://floating-ui.com/docs/computePosition#strategy
   /**
    * Strategy option from Floating UI
    */
-  strategy?: Strategy
+  strategy: {
+    type: String as PropType<Strategy>,
+    default: 'absolute',
+  },
 
   // https://floating-ui.com/docs/tutorial#middleware
   /**
    * Middleware option from Floating UI
    */
-  middleware?: AFloatingMiddlewareFunc
-}
-
-export const aFloatingProps = ({
-  referenceEl: {
-    type: Object as PropType<AFloatingProps['referenceEl']>,
-  },
-
-  modelValue: {
-    type: Boolean,
-    default: undefined,
-  },
-  persist: {
-    type: [Boolean, String] as PropType<NoUndefined<AFloatingProps['persist']>>,
-    default: false,
-  },
-  trigger: {
-    type: String as PropType<NoUndefined<AFloatingProps['trigger']>>,
-    default: 'click',
-  },
-  delay: {
-    type: Number,
-    default: 0,
-  },
-  hideDelay: {
-    type: Number,
-    default: 0,
-  },
-  transition: {
-    type: [String, null] as PropType<NoUndefined<AFloatingProps['transition']>>,
-    default: 'slide-y',
-  },
-
-  placement: {
-    type: String as PropType<Placement>,
-    default: 'bottom-start',
-  },
-  strategy: {
-    type: String as PropType<Strategy>,
-    default: 'absolute',
-  },
   middleware: {
     type: Function as PropType<AFloatingMiddlewareFunc>,
     default: middlewareFunc,
   },
-} as const) satisfies Required<ComponentObjectPropsOptions<AFloatingProps>>
+} as const
+export type AFloatingProps = ExtractPublicPropTypes<typeof aFloatingProps>
 
 // 👉 Slots
 export const aFloatingSlots = {
-  default: {},
+  default: (_: any) => null as any,
 } as const
 
 // 👉 Events
