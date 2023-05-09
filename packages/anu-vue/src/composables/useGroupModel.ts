@@ -1,84 +1,77 @@
-import type { MaybeComputedRef } from '@vueuse/core'
-import type { ComputedRef, Ref } from 'vue'
-import { computed, ref, toRaw, unref, watch } from 'vue'
+import type { MaybeRefOrGetter } from '@vueuse/core'
+import type { Ref, UnwrapRef } from 'vue'
 
-// TODO: Improve typings
+type Nullable<T> = T | null | undefined
 
-export interface ComposableParams<T> {
-  multi?: MaybeComputedRef<boolean>
-  options: T[] | number
+interface Params<Item, Multi extends boolean, InitialValue extends Item> {
+  items: MaybeRefOrGetter<Item[]>
+  multi?: MaybeRefOrGetter<Multi>
+  initialValue?: MaybeRefOrGetter<UnwrapRef<Multi> extends true ? InitialValue[] : InitialValue>
 }
 
-export interface OptionsOut<T> {
-  value: T
-  isSelected: ComputedRef<boolean>
+export interface OptionsOut<Item> {
+  value: Item
+  isSelected: boolean
 }
 
-// TODO: Improve typing
-export function useGroupModel<T extends number>(param: ComposableParams<T>): { options: Ref<OptionsOut<T>[]>; value: T; select: (option: T) => void }
-export function useGroupModel<T>(param: ComposableParams<T>): { options: Ref<OptionsOut<T>[]>; value: T; select: (option: T) => void }
-export function useGroupModel<T>(params: ComposableParams<T>) {
-  const { options, multi } = params
+interface ReturnValue<Item, Multi extends boolean> {
+  select: (option: Item) => void
+  value: Ref<UnwrapRef<Multi> extends true ? Item[] : Nullable<Item>>
+  options: Ref<OptionsOut<Item>[]>
+}
 
-  const value = ref<T | number | Set<T | number> | undefined>()
+export function useGroupModel<const Item, Multi extends boolean, InitialValue extends Item>(params: Params<Item, Multi, InitialValue>): ReturnValue<Item, Multi> {
+  const { items, multi = false, initialValue = undefined } = params
 
-  const select = (option: T | number) => {
+  const _items = toRef(items)
+  const _multi = toRef(multi)
+  const _initialValue = toRef(initialValue)
+
+  const _val = ref(
+    _initialValue.value,
+
+    // _items.value.find(i => {
+    //   // ℹ️ If initial value is object compare using `JSON.stringify` else just use `===`
+    //   return (isObject(_initialValue.value) && isObject(i))
+    //     ? JSON.stringify(_initialValue.value) === JSON.stringify(i)
+    //     : _initialValue.value === i
+    // }),
+  ) as ReturnValue<Item, Multi>['value']
+
+  const select = (option: Item) => {
     // If multiple selection is enabled
-    if (unref(multi)) {
+    if (_multi.value) {
       // If value is not set (Means previously multi was false) => Initialize new set and assign it to value
-      if (!(value.value instanceof Set)) {
-        value.value = new Set([option])
+      if (!(Array.isArray(_val.value))) {
+        _val.value = [option] as UnwrapRef<ReturnValue<Item, Multi>['value']>
       }
       else {
-        // Else toggle option in set
-        if (value.value.has(option))
-          value.value.delete(option)
-        else value.value.add(option)
+        // Else toggle option in array
+        const index = _val.value.indexOf(option)
+        if (index === -1)
+          _val.value.push(option)
+        else
+          _val.value.splice(index, 1)
       }
     }
     else {
-      value.value = option
+      _val.value = option as UnwrapRef<ReturnValue<Item, Multi>['value']>
     }
   }
-  watch(
-    () => unref(multi),
-    () => {
-      value.value = undefined
-    },
-  )
+  watch(_multi, val => {
+    _val.value = (val ? [] : undefined) as UnwrapRef<ReturnValue<Item, Multi>['value']>
+  })
 
-  const _options = ref([]) as Ref<OptionsOut<T>[]>
-
-  if (typeof options === 'number') {
-    _options.value = [...Array(options)].map((_, i) => ({
-      value: i as T,
-      isSelected: computed(() => unref(multi)
-        ? value.value instanceof Set ? value.value.has(i) : false
-        : i === value.value,
-      ),
-    }))
-  }
-  else {
-    _options.value = options.map(option => ({
-      value: option,
-      isSelected: computed(() => {
-        // If multiple selection is enabled
-        if (unref(multi))
-
-          // If value is Set => if value exist in set then its Selected else not
-          return value.value instanceof Set ? value.value.has(option) : false
-
-        else
-
-          // If multiple selection is not enabled just compare the values
-          return option === toRaw(value.value)
-      }),
-    }))
-  }
+  const _options = computed(() => _items.value.map(item => ({
+    value: item,
+    isSelected: _multi.value
+      ? Array.isArray(_val.value) ? _val.value.includes(item) : false
+      : item === _val.value,
+  }))) as ReturnValue<Item, Multi>['options']
 
   return {
-    options: _options,
-    value,
+    value: _val,
     select,
+    options: _options,
   }
 }
