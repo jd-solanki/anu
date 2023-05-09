@@ -76,7 +76,7 @@
     // default theme styles
     import '@anu-vue/preset-theme-default/dist/style.css'
 
-    // Using `app.use(anu)` will register all the components globally
+    // Using `app.use(anu)` will register anu plugin
     createApp(App)
       .use(anu)
       .mount('#app')
@@ -98,13 +98,14 @@ Now, Just refer to the component in your vue files:
 
 You can also follow À la carte fashion if you don't want to register all the components globally.
 
-1. Remove anu plugin use in `main.js` file.
+1. Set `registerComponents` option to `false` while registering anu plugin.
 
     ```diff
-    -  import { anu } from 'anu-vue'
+      import { anu } from 'anu-vue'
 
       createApp(App)
     -   .use(anu)
+    +   .use(anu, { registerComponents: false })
         .mount('#app')
     ```
 
@@ -124,13 +125,14 @@ You can also follow À la carte fashion if you don't want to register all the co
 
 [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) lets you auto import components on demand. With this you can omit import statement and still get benefits of tree shaking.
 
-1. Remove the anu plugin in the `main.js` file if you haven't
+1. Make sure to set `registerComponents` to `false` in the `main.js` file if you haven't
 
     ```diff
-    -  import { anu } from 'anu-vue'
+      import { anu } from 'anu-vue'
 
       createApp(App)
     -   .use(anu)
+    +   .use(anu, { registerComponents: false })
         .mount('#app')
     ```
 
