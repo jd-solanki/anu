@@ -61,7 +61,6 @@ defineExpose({
     <div
       ref="refInputContainer"
       class="a-base-input-input-container flex items-center"
-      v-bind="props.inputContainerAttrs"
     >
       <!-- 👉 Slot: Prepend -->
       <slot name="prepend">
@@ -75,6 +74,7 @@ defineExpose({
       <!-- ❗ relative class is required for loader on `.a-base-input-input-wrapper` -->
       <div
         ref="refInputWrapper"
+        v-bind="props.inputWrapperAttrs"
         :class="[props.inputWrapperClasses, props.error ? 'border-danger' : 'focus-within:border-primary']"
         class="a-base-input-input-wrapper cursor-text em:spacing:px-4 spacing:gap-x-2 relative i:focus-within:text-primary items-center border border-solid border-a-border w-full"
         @click="$emit('click:inputWrapper')"

@@ -82,11 +82,15 @@ function middleware() {
 <template>
   <!-- 👉 Select Input -->
   <ABaseInput
-    v-bind="{ ..._baseInputProps, class: $attrs.class }"
+    v-bind="{
+      ..._baseInputProps,
+      inputWrapperClasses: ['!cursor-pointer', _baseInputProps.inputWrapperClasses],
+      class: $attrs.class,
+    }"
     ref="refReference"
     append-inner-icon="i-bx-chevron-down"
     class="a-select"
-    :input-container-attrs="{
+    :input-wrapper-attrs="{
       onClick: handleInputClick,
     }"
   >
@@ -105,7 +109,7 @@ function middleware() {
         v-bind="{ ...$attrs, ...slotProps }"
         ref="selectRef"
         readonly
-        class="a-select-input"
+        class="a-select-input cursor-pointer"
         :value="isObject(modelValue) ? modelValue.text : modelValue"
       >
     </template>

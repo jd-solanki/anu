@@ -19,9 +19,9 @@ export const aBaseInputProps = ({
   inputClasses: { type: null },
 
   /**
-   * Input container classes
+   * Input wrapper attributes
    */
-  inputContainerAttrs: Object as PropType<HTMLAttributes>,
+  inputWrapperAttrs: Object as PropType<HTMLAttributes>,
 
   /**
    * Add hint below the form component
