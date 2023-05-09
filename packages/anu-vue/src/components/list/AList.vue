@@ -2,7 +2,7 @@
 import type { AListEvents, AListPropItems, aListSlots } from './meta'
 import { aListListItemSlotsWithPrefixMeta, aListProps } from './meta'
 import { AListItem } from '@/components/list-item'
-import { useGroupModel } from '@/composables'
+import { useSelection } from '@/composables'
 import { isObject } from '@/utils/helpers'
 
 const props = defineProps(aListProps)
@@ -17,8 +17,8 @@ function extractItemValueFromItemOption(item: AListPropItems[number]) {
   return isObject(item) ? (item.value || item) : item
 }
 
-const { options, select: selectListItem, value } = useGroupModel({
-  options: props.items.map(i => extractItemValueFromItemOption(i)),
+const { options, select: selectListItem, value } = useSelection({
+  items: props.items.map(i => extractItemValueFromItemOption(i)),
   multi: props.multi,
 })
 

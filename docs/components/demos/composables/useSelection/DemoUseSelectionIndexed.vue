@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { useGroupModel } from 'anu-vue'
-const { options, select, value } = useGroupModel({
-  options: 3,
+import { numRange, useSelection } from 'anu-vue'
+
+const { options, select, value } = useSelection({
+  items: numRange(3),
 })
 </script>
 

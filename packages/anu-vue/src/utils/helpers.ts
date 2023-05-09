@@ -1,5 +1,5 @@
 import type { Simplify } from 'type-fest'
-import { type ExtendNested, type Prettify } from './typescripts'
+import { type ExtendNested, type IntRange, type Prettify } from './typescripts'
 
 // 👉 IsEmpty
 export function isEmpty(value: unknown): boolean {
@@ -123,3 +123,7 @@ export function omitObjKeys<Obj extends Object, Keys extends (keyof Obj)[]>(obj:
 // export function excludeKeysStartsWith<Obj extends Object, Prefix extends string>(obj: Obj, prefix: Prefix): Omit<Obj, keyof PickStartsWith<Obj, Prefix>> {
 //   return objectKeys(obj).filter(v => String(v).startsWith(prefix)).map(e => obj[e]) as any
 // }
+
+export function numRange<const N extends number>(n: N) {
+  return [...Array(n).keys()] as IntRange<0, N>[]
+}

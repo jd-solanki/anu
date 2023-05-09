@@ -4,7 +4,8 @@ import { h } from 'vue'
 import type { AViewsEvents } from './meta'
 import { aViewsProps } from './meta'
 import { ActiveViewSymbol, ViewGroupModel } from './symbol'
-import { useGroupModel } from '@/composables'
+import { numRange } from '@/utils/helpers'
+import { useSelection } from '@/composables'
 import { AView } from '@/components/view'
 
 const props = defineProps(aViewsProps)
@@ -25,8 +26,8 @@ if (slots.default)
 const isValuePropUsedByView = childViews.some(vnode => vnode.props && vnode.props.value)
 
 const activeTab = ref(0)
-const groupModel = useGroupModel({
-  options: isValuePropUsedByView ? childViews.map(vnode => vnode.props && vnode.props.value) : childViews.length,
+const groupModel = useSelection({
+  items: isValuePropUsedByView ? childViews.map(vnode => vnode.props && vnode.props.value) : numRange(childViews.length),
 })
 groupModel.select(props.modelValue)
 watch(() => props.modelValue, value => groupModel.select(value))

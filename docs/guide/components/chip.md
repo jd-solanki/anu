@@ -63,13 +63,13 @@ Use `append-icon` prop to render icon after default slot.
 
 ::::
 
-<!-- 👉 UseGroupModel -->
-::::card UseGroupModel
+<!-- 👉 UseSelection -->
+::::card UseSelection
 
-You can use [`useGroupModel`](/guide/composables/useGroupModel) composable to create a group of chips.
+You can use [`useSelection`](/guide/composables/useSelection) composable to create a group of chips.
 
-:::code DemoChipGroupModel
-<<< @/components/demos/chip/DemoChipGroupModel.vue{4-12}
+:::code DemoChipSelection
+<<< @/components/demos/chip/DemoChipSelection.vue{4-12}
 :::
 
 ::::

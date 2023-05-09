@@ -28,3 +28,9 @@ export type ExtendNested<T, U> = {
 export type PickStartsWith<T extends object, S extends string> = {
   [K in keyof T as K extends `${S}${infer R}` ? K : never]: T[K]
 }
+
+type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] extends N
+  ? Acc[number]
+  : Enumerate<N, [...Acc, Acc['length']]>
+
+export type IntRange<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>>

@@ -8,7 +8,8 @@ import { ATab } from '@/components/tab'
 import { AView } from '@/components/view'
 import { AViews } from '@/components/views'
 import { ActiveViewSymbol } from '@/components/views/symbol'
-import { useGroupModel } from '@/composables'
+import { useSelection } from '@/composables'
+import { numRange } from '@/utils/helpers'
 
 // import { aTabsSlots } from './meta';
 
@@ -47,12 +48,17 @@ const groupModelOptions = computed(() => {
     if (firstTab?.value)
       return props.tabs.map(tab => (tab as ATabProps).value)
 
-    return props.tabs.length
+    return numRange(props.tabs.length)
   }
 })
 
-const { options, select: selectTab, value: activeTab } = useGroupModel({
-  options: groupModelOptions.value,
+const { options, select: selectTab, value: activeTab } = useSelection({
+  items: groupModelOptions.value,
+  initialValue: toRef(() => {
+    const initialVal = props.modelValue || groupModelOptions.value[0]
+
+    return initialVal.value ?? initialVal
+  }),
 })
 
 // ℹ️ Inject active tab so we don't have to use `v-model` on `ATabs` and `AViews`
@@ -134,6 +140,10 @@ function handleTabClick(tab: ATabProps | string, index: number) {
   const value = options.value[index]?.value
   selectTab(value)
   emit('update:modelValue', value)
+}
+
+const { trigger: triggerActiveTabWatcher } = watchTriggerable(activeTab, val => {
+  const index = options.value.findIndex(option => option.value === val)
 
   // Set active tab ref to set active indicator styles
   refActiveTab.value = refTabs.value[index]
@@ -144,21 +154,21 @@ function handleTabClick(tab: ATabProps | string, index: number) {
     inline: 'nearest',
   })
   calculateActiveIndicatorStyle()
-}
-
-onMounted(calculateActiveIndicatorStyle)
-
-// ℹ️ useGroupModel doesn't support initial value yet so we have to do it manually
-onMounted(() => {
-  if (props.modelValue) {
-    const tabToSelect = props.tabs[props.modelValue]
-    tabToSelect && handleTabClick(tabToSelect, props.modelValue)
-  }
-  else {
-    const tabToSelect = props.tabs[0]
-    tabToSelect && handleTabClick(tabToSelect, 0)
-  }
 })
+
+onMounted(triggerActiveTabWatcher)
+
+// ℹ️ useSelection doesn't support initial value yet so we have to do it manually
+// onMounted(() => {
+//   if (props.modelValue) {
+//     const tabToSelect = props.tabs[props.modelValue]
+//     tabToSelect && handleTabClick(tabToSelect, props.modelValue)
+//   }
+//   else {
+//     const tabToSelect = props.tabs[0]
+//     tabToSelect && handleTabClick(tabToSelect, 0)
+//   }
+// })
 
 // Arrow navigation & Scroll snapping
 const scrollSnapAlign = refAutoReset<'start' | 'end' | 'center' | undefined>(undefined, 1500)

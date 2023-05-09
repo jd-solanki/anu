@@ -94,7 +94,7 @@ If you are using `AListItem` in default slot of `AList` you can use `handleListI
 
 ::::after-demo
 :::tip
-For selection, `AList` uses [`useGroupModel`](/guide/composables/useGroupModel). Hence, you can also use the `multi` prop to allow multiple selection.
+For selection, `AList` uses [`useSelection`](/guide/composables/useSelection). Hence, you can also use the `multi` prop to allow multiple selection.
 :::
 ::::
 

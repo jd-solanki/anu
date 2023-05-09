@@ -101,7 +101,7 @@ export default defineConfig({
             // { text: 'useSearch', link: '/guide/composables/useSearch' },
             // { text: 'useSort', link: '/guide/composables/useSort' },
             { text: 'useAnu', link: '/guide/composables/useAnu' },
-            { text: 'useGroupModel', link: '/guide/composables/useGroupModel' },
+            { text: 'useSelection', link: '/guide/composables/useSelection' },
             { text: 'useIndeterminateCheckbox', link: '/guide/composables/useIndeterminateCheckbox' },
           ],
         },
