@@ -14,30 +14,28 @@
 */
 
 import type { MaybeRefOrGetter } from '@vueuse/core'
-import { toRef, toValue } from '@vueuse/core'
 import type { Ref, UnwrapRef } from 'vue'
-import type { IsMaybeRefTrue } from '@/utils/typescripts'
 
 type Nullable<T> = T | null | undefined
 
-interface Params<T, M extends boolean> {
-  items: MaybeRefOrGetter<T[]>
-  multi?: MaybeRefOrGetter<M>
-  initialValue?: MaybeRefOrGetter<IsMaybeRefTrue<M> extends true ? T[] : Nullable<T>>
+interface Params<Item, Multi extends boolean, InitialValue extends Item> {
+  items: MaybeRefOrGetter<Item[]>
+  multi?: MaybeRefOrGetter<Multi>
+  initialValue?: MaybeRefOrGetter<UnwrapRef<Multi> extends true ? InitialValue[] : InitialValue>
 }
 
-export interface OptionsOut<T> {
-  value: T
+export interface OptionsOut<Item> {
+  value: Item
   isSelected: boolean
 }
 
-interface ReturnValue<T, M extends boolean> {
-  select: (option: T) => void
-  value: IsMaybeRefTrue<M> extends true ? Ref<T[]> : Ref<Nullable<T>>
-  options: Ref<OptionsOut<T>[]>
+interface ReturnValue<Item, Multi extends boolean> {
+  select: (option: Item) => void
+  value: Ref<UnwrapRef<Multi> extends true ? Item[] : Nullable<Item>>
+  options: Ref<OptionsOut<Item>[]>
 }
 
-export function useSelection<T, M extends boolean>(params: Params<T, M>): ReturnValue<T, M> {
+export function useSelection<const Item, Multi extends boolean, InitialValue extends Item>(params: Params<Item, Multi, InitialValue>): ReturnValue<Item, Multi> {
   const { items, multi = false, initialValue = undefined } = params
 
   const _items = toRef(items)
@@ -52,14 +50,14 @@ export function useSelection<T, M extends boolean>(params: Params<T, M>): Return
     //     ? JSON.stringify(_initialValue.value) === JSON.stringify(i)
     //     : _initialValue.value === i
     // }),
-  ) as IsMaybeRefTrue<M> extends true ? Ref<T[]> : Ref<Nullable<T>>
+  ) as ReturnValue<Item, Multi>['value']
 
-  const select = (option: T) => {
+  const select = (option: Item) => {
     // If multiple selection is enabled
     if (_multi.value) {
       // If value is not set (Means previously multi was false) => Initialize new set and assign it to value
       if (!(Array.isArray(_val.value))) {
-        _val.value = [option]
+        _val.value = [option] as UnwrapRef<ReturnValue<Item, Multi>['value']>
       }
       else {
         // Else toggle option in array
@@ -71,11 +69,11 @@ export function useSelection<T, M extends boolean>(params: Params<T, M>): Return
       }
     }
     else {
-      _val.value = option
+      _val.value = option as UnwrapRef<ReturnValue<Item, Multi>['value']>
     }
   }
   watch(_multi, val => {
-    _val.value = val ? [] : undefined
+    _val.value = (val ? [] : undefined) as UnwrapRef<ReturnValue<Item, Multi>['value']>
   })
 
   const _options = computed(() => _items.value.map(item => ({
@@ -83,7 +81,7 @@ export function useSelection<T, M extends boolean>(params: Params<T, M>): Return
     isSelected: _multi.value
       ? Array.isArray(_val.value) ? _val.value.includes(item) : false
       : item === _val.value,
-  })))
+  }))) as ReturnValue<Item, Multi>['options']
 
   return {
     value: _val,
@@ -118,58 +116,3 @@ const { options: options7, value: value7 } = useSelection({ items: ref(['1', '2'
 const { options: options8, value: value8 } = useSelection({ items: ref(['1', '2', '3']), multi: true, initialValue: ['i dont exist'] })
 const { options: options9, value: value9 } = useSelection({ items: ref(['1', '2', '3']), multi: false, initialValue: ['array passed as initial value multi is false'] })
 const { options: options10, value: value10 } = useSelection({ items: ref(['1', '2', '3']), multi: true, initialValue: 'single value is passed when multi is true' })
-
-// --------------
-
-const x = ref(false)
-type XUnWrappedBoolean = UnwrapRef<typeof x>
-//   ^?
-
-// --------------
-
-type QUnWrappedBoolean<B extends MaybeRefOrGetter<boolean>> = B extends Ref<infer P> ? P : B
-//   ^?
-type A = QUnWrappedBoolean<false>
-//   ^?
-
-type B = QUnWrappedBoolean<Ref<true>>
-//   ^?
-
-// --------------
-
-// eslint-disable-next-line antfu/top-level-function
-const returnNum = <T extends number, B extends boolean>(num: T, isMulti: MaybeRefOrGetter<B>): B extends Ref<infer M>
-  ? M extends true ? T[] : T
-  : B extends true ? T[] : T => {
-  return (toValue(isMulti) ? [num] : num) as B extends Ref<infer M>
-    ? M extends true ? T[] : T
-    : B extends true ? T[] : T
-}
-
-const val = returnNum(1, ref(true))
-//    ^?
-
-// --------------
-
-type IsTrue<B> = (
-  B extends Ref<infer M>
-    ? M extends true ? true : false
-    : B extends true ? true : false
-)
-
-// eslint-disable-next-line antfu/top-level-function
-const returnNum2 = <T extends number, B extends boolean>(num: T, isMulti: MaybeRefOrGetter<B>): IsTrue<B> extends true ? T[] : T => {
-  return (toValue(isMulti) ? [num] : num) as IsTrue<B> extends true ? T[] : T
-}
-
-const val2 = returnNum2(2, ref(true))
-//    ^?
-
-const val21 = returnNum2(2, true)
-//    ^?
-
-const val22 = returnNum2(2, ref(false))
-//    ^?
-
-const val23 = returnNum2(2, false)
-//    ^?
