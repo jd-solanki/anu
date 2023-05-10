@@ -44,15 +44,11 @@ const { styles, classes } = getLayerClasses(
         : '',
     ]"
   >
-    <slot
-      :item="props"
-      :attrs="$attrs"
-    >
+    <slot :item="props">
       <!-- 👉 Slot: prepend -->
       <slot
         name="prepend"
         :item="props"
-        :attrs="$attrs"
       >
         <i
           v-if="props.icon && !props.iconAppend"
@@ -70,7 +66,6 @@ const { styles, classes } = getLayerClasses(
       <slot
         name="content"
         :item="props"
-        :attrs="$attrs"
       >
         <ATypography
           class="flex-grow"
@@ -83,7 +78,6 @@ const { styles, classes } = getLayerClasses(
       <slot
         name="append"
         :item="props"
-        :attrs="$attrs"
       >
         <i
           v-if="props.icon && props.iconAppend"

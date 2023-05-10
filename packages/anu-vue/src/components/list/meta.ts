@@ -31,6 +31,11 @@ export const aListProps = {
   // ℹ️ Workaround for checking if event is present on component instance: https://github.com/vuejs/core/issues/5220#issuecomment-1007488240
   'onClick:item': Function as PropType<(item: AListPropItems[number]) => void>,
 
+  /**
+   * Emit whole object when item is select instead of `item.value`
+   */
+  'emitObject': Boolean,
+
   // ℹ️ Below is list item props that will be passed to each list item
   avatarAppend,
   iconAppend,

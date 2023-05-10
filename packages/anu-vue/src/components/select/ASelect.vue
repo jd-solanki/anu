@@ -6,6 +6,7 @@ import { ACard, AList } from '@/components'
 import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { AListPropItems } from '@/components/list'
+import { extractItemValueFromItemOption } from '@/composables/useSelection'
 import { isObject } from '@/utils/helpers'
 
 export interface ObjectOption { label: string; value: string | number }
@@ -51,18 +52,15 @@ function handleInputClick() {
   }
 }
 
-function extractItemValueFromItemOption(item: AListPropItems[number]) {
-  return isObject(item) ? (item.value || item) : item
-}
-
 // 👉 Options
 function handleOptionClick(item: AListPropItems[number]) {
-  const _val = extractItemValueFromItemOption
-  const valueToEmit = props.emitObject ? item : _val
+  const valueToEmit = props.emitObject ? item : extractItemValueFromItemOption(item)
+
   emit('change', valueToEmit)
   emit('input', valueToEmit)
   emit('update:modelValue', valueToEmit)
 }
+
 function closeOptions(event: MouseEvent) {
   if (event.target !== refFloating.value)
     isOptionsVisible.value = false
@@ -141,6 +139,7 @@ function middleware() {
       <AList
         :items="options"
         :model-value="props.modelValue"
+        :emit-object="props.emitObject"
         class="a-select-options-list"
         :class="props.listClasses"
         @click:item="(item) => handleOptionClick(item)"
@@ -155,7 +154,6 @@ function middleware() {
             v-bind="{
               ...slotProps,
               handleOptionClick,
-              attrs: $attrs,
             }"
           />
         </template>

@@ -14,6 +14,10 @@ export const aSelectProps = {
     type: Array as PropType<AListProps['items']>,
     default: () => [],
   },
+
+  /**
+   * Emit whole object when item is select instead of `item.value`
+   */
   emitObject: Boolean,
 
   // ℹ️ If we want any type need to set `propName: { type: null }`. Using `propName: null` will omit (disable) the prop.
@@ -33,7 +37,7 @@ export const aSelectListSlots = {
   ...prefixObjectKeys(aSelectListRestSlots, aSelectListSlotsPrefix),
 
   // ℹ️ We don't want to rename the default slot and we are passing $attrs to it
-  default: { ...aSelectListDefaultSlot, attrs: Object as any },
+  default: aSelectListDefaultSlot,
 }
 
 const aSelectListSlotsWithPrefixMeta = {

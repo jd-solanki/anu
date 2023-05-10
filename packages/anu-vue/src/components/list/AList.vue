@@ -20,12 +20,17 @@ const { options, select: selectListItem, value } = useSelection({
 
 // const isActive = computed(() => options.value[itemIndex].isSelected)
 function handleListItemClick(item: AListPropItems[number]) {
-  console.log('object', item, props['onClick:item'])
-  selectListItem(extractItemValueFromItemOption(item))
-  emit('update:modelValue', value.value)
+  const _val = props.emitObject ? item : extractItemValueFromItemOption(item)
+  selectListItem(_val)
+  emit('update:modelValue', _val)
 
-  // ℹ️ This even is not triggered because we use accepting `onClick:item` as a prop
-  // emit('click:item', { value: value.value })
+  /*
+    ℹ️ This even is not triggered because we use accepting `onClick:item` as a prop
+    Hence we will trigger that prop instead of emitting this event
+  */
+  props['onClick:item']?.(_val)
+
+  // emit('click:item', { value: _val })
 }
 </script>
 
@@ -52,10 +57,7 @@ function handleListItemClick(item: AListPropItems[number]) {
         :value="props.modelValue !== undefined ? options[index] : undefined"
         v-on="{
           click: props['onClick:item'] || (props.modelValue !== undefined)
-            ? () => {
-              console.log('cliked');
-              handleListItemClick(item)
-            }
+            ? () => { handleListItemClick(item) }
             : null,
         }"
       >

@@ -63,7 +63,6 @@ export const aListItemSlots = {
    */
   default: (_: {
     item: AListItemProps
-    attrs: Record<string, unknown>
   }) => null as any,
 
   /**
@@ -71,7 +70,6 @@ export const aListItemSlots = {
    */
   prepend: (_: {
     item: AListItemProps
-    attrs: Record<string, unknown>
   }) => null as any,
 
   /**
@@ -79,7 +77,6 @@ export const aListItemSlots = {
    */
   content: (_: {
     item: AListItemProps
-    attrs: Record<string, unknown>
   }) => null as any,
 
   /**
@@ -87,7 +84,6 @@ export const aListItemSlots = {
    */
   append: (_: {
     item: AListItemProps
-    attrs: Record<string, unknown>
   }) => null as any,
 } as const
 

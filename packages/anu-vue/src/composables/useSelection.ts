@@ -83,7 +83,7 @@ export function useSelection<const Item, Multi extends boolean, InitialValue ext
   }
 }
 
-export function calculateSelectionItems(items: MaybeRefOrGetter<unknown[]>) {
+export function calculateSelectionItems<T>(items: MaybeRefOrGetter<T[]>) {
   return computed(() => {
     const _items = toRef(items)
 
@@ -93,13 +93,15 @@ export function calculateSelectionItems(items: MaybeRefOrGetter<unknown[]>) {
     const firstItem = _items.value[0]
     if (isObject(firstItem)) {
       if ('value' in firstItem)
-        return _items.value.map(item => (item as { value: unknown }).value)
+        return _items.value.map(item => (item as { value: T }).value)
     }
 
     return _items.value
   })
 }
 
-export function extractItemValueFromItemOption(item: unknown) {
-  return isObject(item) ? (item.value || item) : item
+export function extractItemValueFromItemOption<T>(item: T): T extends { value: infer V } ? V : T {
+  return isObject(item)
+    ? ('value' in item ? item.value : item)
+    : item as any
 }

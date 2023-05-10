@@ -20,7 +20,7 @@ export function isEmptyArray(arr: unknown): boolean {
 }
 
 // 👉 IsObject
-export function isObject(obj: unknown): obj is Record<string, unknown> {
+export function isObject(obj: unknown): obj is object {
   return obj !== null && !!obj && typeof obj === 'object' && !Array.isArray(obj)
 }
 
