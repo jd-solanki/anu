@@ -116,7 +116,7 @@ const _cols = computed<ATablePropColumn<Row>[]>(() => {
     >
       <slot
         :name="name"
-        v-bind="slotProps || {}"
+        v-bind="slotProps"
       />
     </template>
   </ACard>

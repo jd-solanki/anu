@@ -368,7 +368,7 @@ const paginationMeta = computed(() => {
     >
       <slot
         :name="name"
-        v-bind="slotProps || {}"
+        v-bind="slotProps"
       />
     </template>
   </ATable>

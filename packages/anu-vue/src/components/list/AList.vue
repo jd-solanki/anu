@@ -20,6 +20,7 @@ const { options, select: selectListItem, value } = useSelection({
 
 // const isActive = computed(() => options.value[itemIndex].isSelected)
 function handleListItemClick(item: AListPropItems[number]) {
+  console.log('object', item, props['onClick:item'])
   selectListItem(extractItemValueFromItemOption(item))
   emit('update:modelValue', value.value)
 
@@ -51,7 +52,10 @@ function handleListItemClick(item: AListPropItems[number]) {
         :value="props.modelValue !== undefined ? options[index] : undefined"
         v-on="{
           click: props['onClick:item'] || (props.modelValue !== undefined)
-            ? () => handleListItemClick(item)
+            ? () => {
+              console.log('cliked');
+              handleListItemClick(item)
+            }
             : null,
         }"
       >
@@ -63,7 +67,7 @@ function handleListItemClick(item: AListPropItems[number]) {
           <slot
             :name="updatedSlotName"
             :index="index"
-            v-bind="slotProps || {}"
+            v-bind="slotProps"
           />
         </template>
       </AListItem>

@@ -72,7 +72,7 @@ if (props.fullPage) {
         >
           <slot
             :name="name"
-            v-bind="slotProps || {}"
+            v-bind="slotProps"
           />
         </template>
       </ATypography>

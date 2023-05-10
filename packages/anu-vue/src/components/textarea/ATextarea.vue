@@ -51,7 +51,7 @@ if (props.autoSize) {
     >
       <slot
         :name="name"
-        v-bind="slotProps || {}"
+        v-bind="slotProps"
       />
     </template>
     <template #default="slotProps">

@@ -89,7 +89,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
             >
               <slot
                 :name="name"
-                v-bind="slotProps || {}"
+                v-bind="slotProps"
               />
             </template>
           </ACard>

@@ -101,7 +101,7 @@ function middleware() {
     >
       <slot
         :name="name"
-        v-bind="slotProps || {}"
+        v-bind="slotProps"
       />
     </template>
     <template #default="slotProps">
@@ -135,7 +135,7 @@ function middleware() {
       >
         <slot
           :name="name"
-          v-bind="slotProps || {}"
+          v-bind="slotProps"
         />
       </template>
       <AList
@@ -153,11 +153,9 @@ function middleware() {
           <slot
             :name="updatedSlotName"
             v-bind="{
-              ...(slotProps || {}),
-              ...({
-                handleOptionClick,
-                attrs: $attrs,
-              }),
+              ...slotProps,
+              handleOptionClick,
+              attrs: $attrs,
             }"
           />
         </template>
