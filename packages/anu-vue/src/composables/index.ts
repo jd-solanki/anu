@@ -7,7 +7,7 @@ export * from './useIndeterminateCheckbox'
 export * from './useLayer'
 export * from './useParent'
 export * from './useSearch'
-export * from './useSelection'
+export { useSelection } from './useSelection'
 export * from './useSort'
 export * from './useTeleport'
 

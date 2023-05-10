@@ -32,7 +32,7 @@ export function useSelection<const Item, Multi extends boolean, InitialValue ext
 
     // _initialValue.value,
 
-    _items.value.find(i => {
+    (_items.value as Item[]).find(i => {
       // ℹ️ If initial value is object compare using `JSON.stringify` else just use `===`
       return (isObject(_initialValue.value) && isObject(i))
         ? JSON.stringify(_initialValue.value) === JSON.stringify(i)
@@ -71,9 +71,35 @@ export function useSelection<const Item, Multi extends boolean, InitialValue ext
       : item === _val.value,
   }))) as ReturnValue<Item, Multi>['options']
 
+  // Watch for external changes to initialValue aka modelValue
+  watch(_initialValue, val => {
+    select(val as Item)
+  })
+
   return {
     value: _val,
     select,
     options: _options,
   }
+}
+
+export function calculateSelectionItems(items: MaybeRefOrGetter<unknown[]>) {
+  return computed(() => {
+    const _items = toRef(items)
+
+    if (_items.value.length === 0)
+      return []
+
+    const firstItem = _items.value[0]
+    if (isObject(firstItem)) {
+      if ('value' in firstItem)
+        return _items.value.map(item => (item as { value: unknown }).value)
+    }
+
+    return _items.value
+  })
+}
+
+export function extractItemValueFromItemOption(item: unknown) {
+  return isObject(item) ? (item.value || item) : item
 }

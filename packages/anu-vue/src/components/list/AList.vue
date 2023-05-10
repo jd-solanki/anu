@@ -2,8 +2,7 @@
 import type { AListEvents, AListPropItems, aListSlots } from './meta'
 import { aListListItemSlotsWithPrefixMeta, aListProps } from './meta'
 import { AListItem } from '@/components/list-item'
-import { useSelection } from '@/composables'
-import { isObject } from '@/utils/helpers'
+import { calculateSelectionItems, extractItemValueFromItemOption, useSelection } from '@/composables/useSelection'
 
 const props = defineProps(aListProps)
 const emit = defineEmits<AListEvents>()
@@ -13,13 +12,10 @@ defineOptions({
   name: 'AList',
 })
 
-function extractItemValueFromItemOption(item: AListPropItems[number]) {
-  return isObject(item) ? (item.value || item) : item
-}
-
 const { options, select: selectListItem, value } = useSelection({
-  items: props.items.map(i => extractItemValueFromItemOption(i)),
-  multi: props.multi,
+  items: calculateSelectionItems(toRef(() => props.items)),
+  multi: toRef(() => props.multi),
+  initialValue: toRef(() => props.modelValue),
 })
 
 // const isActive = computed(() => options.value[itemIndex].isSelected)

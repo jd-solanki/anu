@@ -8,7 +8,6 @@ const { options, select, value } = useSelection({
     { title: 'Cart', icon: 'i-bx-basket' },
     { title: 'Profile', icon: 'i-bx-user-circle' },
   ],
-  initialValue: { title: 'Home', icon: 'i-bx-home' },
 })
 </script>
 

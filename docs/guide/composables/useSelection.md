@@ -34,3 +34,20 @@ description
 :::
 
 ::::
+
+<!-- 👉 Initial Value -->
+:::::card Initial Value
+
+You can set initial value for selection by passing it to `initialValue` property.
+
+::::code DemoUseSelectionInitialValue
+<<< @/components/demos/composables/useSelection/DemoUseSelectionInitialValue.vue
+::::
+
+::::after-demo
+:::info
+`useSelection` will watch for changes in `initialValue` and update selection.
+:::
+::::
+
+:::::
