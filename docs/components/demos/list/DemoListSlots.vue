@@ -19,9 +19,13 @@ const items = [
       </template>
 
       <!-- 👉 Slot: Append -->
-      <template #item-append="{ index }">
+      <!--
+        ℹ️ If you want to access index you have to make slotProps as any as shown below.
+        This will get resolved as soon as Vue supports short syntax for `defineSlots()`.
+      -->
+      <template #item-append="slotProps">
         <span class="kbd">
-          &#8984; {{ index + 1 }}
+          &#8984; {{ (slotProps as any).index + 1 }}
         </span>
       </template>
 
