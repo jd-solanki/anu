@@ -60,11 +60,12 @@
     ]
   },
   "include": [
-    "./packages/**/src/**/*",
+    "./packages/*/src/**/*",
     "./packages/anu-vue/auto-imports.d.ts",
     "./packages/anu-vue/shims.d.ts",
     "./packages/anu-vue/volar.d.ts",
-    "./docs/**/*",
+    "./docs/components/**/*",
+    "./docs/utils/*",
     "./docs/.vitepress/shims.d.ts"
   ],
   "exclude": [
