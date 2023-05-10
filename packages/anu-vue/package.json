@@ -51,7 +51,7 @@
     "@floating-ui/vue": "^1.0.0",
     "colord": "^2.9.3",
     "defu": "^6.1.2",
-    "vue": "3.3.0-beta.4"
+    "vue": "3.3.0-beta.5"
   },
   "devDependencies": {
     "@unocss/core": "^0.51.12",
@@ -73,8 +73,8 @@
     "vite-plugin-dts": "^2.3.0",
     "vitest": "^0.31.0",
     "vue-router": "^4.1.6",
-    "vue-tsc": "^1.6.4",
-    "webdriverio": "^8.10.0"
+    "vue-tsc": "^1.7.1",
+    "webdriverio": "^8.10.1"
   },
   "peerDependencies": {
     "@unocss/reset": "^0.41.1",

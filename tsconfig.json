@@ -46,19 +46,6 @@
       ]
     }
   },
-  "vueCompilerOptions": {
-    "target": 3,
-    "strictTemplates": false,
-    "plugins": [
-      "@vue-macros/volar/define-options",
-      "@vue-macros/volar/define-models",
-      "@vue-macros/volar/define-props",
-      "@vue-macros/volar/define-props-refs",
-      "@vue-macros/volar/short-vmodel",
-      "@vue-macros/volar/define-slots",
-      "@vue-macros/volar/export-props"
-    ]
-  },
   "include": [
     "./packages/*/src/**/*",
     "./packages/anu-vue/auto-imports.d.ts",
