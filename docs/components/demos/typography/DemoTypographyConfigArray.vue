@@ -9,7 +9,7 @@
       />
       <ATypography
         :title="['Sales', 'text-sm font-normal !text-medium-emphasis']"
-        :subtitle="['2.5k', 'text-xl font-bold !text-high-emphasis']"
+        :subtitle="['2.5k', 'text-xl font-semibold !text-high-emphasis']"
       />
     </div>
 
@@ -21,7 +21,7 @@
       />
       <ATypography
         :title="['Revenue', 'text-sm !text-medium-emphasis font-normal']"
-        :subtitle="['$816', 'text-xl font-bold !text-high-emphasis']"
+        :subtitle="['$816', 'text-xl font-semibold !text-high-emphasis']"
       />
     </div>
 
@@ -34,7 +34,7 @@
       />
       <ATypography
         :title="['Customers', 'text-sm !text-medium-emphasis font-normal']"
-        :subtitle="['1.5', 'text-xl font-bold !text-high-emphasis']"
+        :subtitle="['1.5', 'text-xl font-semibold !text-high-emphasis']"
       />
     </div>
 
@@ -47,7 +47,7 @@
       />
       <ATypography
         :title="['Returns', 'text-sm !text-medium-emphasis font-normal']"
-        :subtitle="['1.5', 'text-xl font-bold !text-high-emphasis']"
+        :subtitle="['1.5', 'text-xl font-semibold !text-high-emphasis']"
       />
     </div>
   </div>

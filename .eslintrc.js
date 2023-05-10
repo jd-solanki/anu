@@ -62,7 +62,7 @@ module.exports = {
 
     // Vue
     'vue/require-default-prop': 'off',
-    'vue/no-restricted-class': ['error', '/^(p|m)(l|r)-/'],
+    'vue/no-restricted-class': ['error', '/^(p|m)(l|r)-/', '/^font-(100|200|700|800|900|bold|black)$/'],
     'vue/no-required-prop-with-default': 'error',
     'vue/v-on-event-hyphenation': ['error', 'never'],
     'vue/first-attribute-linebreak': ['error', {

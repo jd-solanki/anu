@@ -5,7 +5,7 @@ const isDialogShown = ref(false)
 <template>
   <div class="max-w-2xl mx-auto space-y-10 my-8">
     <ATypography
-      class="text-2xl font-bold"
+      class="text-2xl font-semibold"
       title="Anu Playground"
     />
     <div class="grid-row items-center grid-cols-[auto_1fr_auto]">
