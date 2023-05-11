@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Placement } from '@floating-ui/vue'
+import { useCycleList } from '@vueuse/core'
 
 const placementOptions: Placement[] = [
   'top',
