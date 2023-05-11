@@ -19,8 +19,7 @@
     "noUncheckedIndexedAccess": true,
     "jsx": "preserve",
     "types": [
-      "node",
-      "unplugin-vue-macros/macros-global"
+      "node"
     ],
     "paths": {
       "anu-vue": [

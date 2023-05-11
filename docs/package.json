@@ -19,7 +19,7 @@
     "@unocss/preset-icons": "^0.51.12",
     "@unocss/preset-uno": "0.51.12",
     "@unocss/preset-web-fonts": "^0.51.12",
-    "@vee-validate/zod": "^4.9.2",
+    "@vee-validate/zod": "^4.9.3",
     "markdown-it": "^13.0.1",
     "markdown-it-container": "^3.0.0",
     "postcss-prefix-selector": "^1.16.0",
@@ -31,7 +31,7 @@
     "@anu-vue/preset-theme-default": "workspace:*",
     "@vueuse/core": "10.1.2",
     "anu-vue": "workspace:*",
-    "vee-validate": "^4.9.2",
-    "vue": "3.3.0-beta.5"
+    "vee-validate": "^4.9.3",
+    "vue": "3.3.1"
   }
 }
