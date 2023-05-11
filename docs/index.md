@@ -3,6 +3,7 @@ layout: home
 
 hero:
   name: Anu
+  image: /logo.svg
   text: Build better interfaces faster
   tagline: DX focused utility based Vue component library
   actions:

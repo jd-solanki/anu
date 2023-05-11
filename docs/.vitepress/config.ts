@@ -30,6 +30,7 @@ export default defineConfig({
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap' }],
   ],
   themeConfig: {
+    logo: '/logo.svg',
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2022-present JD Solanki',

@@ -224,6 +224,11 @@
 /* ==========================
 👉 Home page
 ========================== */
+.VPImage.image-src {
+  width: 270px;
+  height: auto;
+}
+
 html:not(.dark) .VPContent.is-home {
   background: hsl(var(--a-surface-c));
 }
