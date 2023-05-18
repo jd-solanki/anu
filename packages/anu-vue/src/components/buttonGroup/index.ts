@@ -1,1 +1,1 @@
-import { default as ABtnGroup } from "./index.vue"
+export { default as ABtnGroup } from "./index.vue"
