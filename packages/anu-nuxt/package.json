@@ -1,6 +1,6 @@
 {
   "name": "@anu-vue/nuxt",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "Nuxt 3 Anu UI library",
   "author": "Mehmet - @productdevbook <hi@productdevbook.com>",
   "license": "MIT",
