@@ -94,8 +94,9 @@ defineExpose({
           :id="elementId"
           :readonly="props.readonly"
           :disabled="props.disabled"
-          class="a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent"
           :class="[
+            // eslint-disable-next-line vue/prefer-separate-static-class
+            'a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent',
             props.inputClasses,
             $slots['prepend-inner'] || props.prependInnerIcon
               ? 'a-base-input-w-prepend-inner'
