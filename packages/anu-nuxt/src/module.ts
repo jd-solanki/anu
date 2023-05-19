@@ -1,17 +1,18 @@
 import { presetThemeDefault } from '@anu-vue/preset-theme-default'
 import { addCustomTab } from '@nuxt/devtools-kit'
 import {
-addComponent,
-addImports,
-addPluginTemplate,
-defineNuxtModule,
-extendViteConfig,
-useLogger,
+  addComponent,
+  addImports,
+  addPluginTemplate,
+  defineNuxtModule,
+  extendViteConfig,
+  useLogger,
 } from '@nuxt/kit'
 import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-uno'
 import type { PluginOptions } from 'anu-vue'
 import { components as AnuComponents, composables as AnuComposables, presetAnu, presetIconExtraProperties } from 'anu-vue'
+import type { PartialDeep } from 'type-fest'
 
 import type { UnocssNuxtOptions } from '@unocss/nuxt'
 
@@ -88,7 +89,7 @@ export interface ModuleOptions {
    * }
    * ```
    */
-  themes?: PluginOptions['themes']
+  themes?: PartialDeep<PluginOptions['themes']>
 }
 
 export default defineNuxtModule<ModuleOptions>({
