@@ -1,6 +1,7 @@
+import { aCardProps, aCardSlots } from '@/components/card'
+import type { LiteralUnion } from 'type-fest'
 import type { ExtractPublicPropTypes } from 'vue'
 import type { NoUndefined } from './../../utils/typescripts'
-import { aCardProps, aCardSlots } from '@/components/card'
 
 // ℹ️ Make sure to checkout meta definition rules
 
@@ -8,9 +9,10 @@ export type RowKey<Row extends Record<string, unknown>> = keyof Row & string
 
 // 👉 Props
 export interface ATablePropColumn<Row extends Record<string, unknown>> {
-  name: RowKey<Row>
+  name: LiteralUnion<RowKey<Row>, string>
   classes?: any
   formatter?: (val: unknown) => unknown
+  // TODO: Do we need to pass col as param?
   headerClasses?: ((col: ATablePropColumn<Row>) => any) | any
 }
 

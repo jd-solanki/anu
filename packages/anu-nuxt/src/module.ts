@@ -1,4 +1,5 @@
 import { presetThemeDefault } from '@anu-vue/preset-theme-default'
+import { addCustomTab } from '@nuxt/devtools-kit'
 import {
 addComponent,
 addImports,
@@ -195,17 +196,15 @@ export default defineNuxtModule<ModuleOptions>({
         })
       })
 
-    // @ts-expect-error Internal API
-    nuxt.hook('devtools:customTabs', tabs => {
-      tabs.push({
-        name: 'anu-vue',
-        title: 'AnuVue',
-        icon: 'noto-v1:paintbrush',
-        view: {
-          type: 'iframe',
-          src: 'https://anu-vue.netlify.app/',
-        },
-      })
+    // Add devtools tab for Anu
+    addCustomTab({
+      name: 'anu-vue',
+      title: 'Anu',
+      icon: 'bx:atom',
+      view: {
+        type: 'iframe',
+        src: 'https://anu-vue.netlify.app/',
+      },
     })
 
     // Fixes auto-imports for Anu Composables

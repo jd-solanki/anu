@@ -1,6 +1,6 @@
+import { isObject } from '@/utils/helpers'
 import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { Ref, UnwrapRef } from 'vue'
-import { isObject } from '@/utils/helpers'
 
 type Nullable<T> = T | null | undefined
 
@@ -15,7 +15,7 @@ export interface OptionsOut<Item> {
   isSelected: boolean
 }
 
-interface ReturnValue<Item, Multi extends boolean> {
+export interface ReturnValue<Item, Multi extends boolean> {
   select: (option: Item) => void
   value: Ref<UnwrapRef<Multi> extends true ? Item[] : Nullable<Item>>
   options: Ref<OptionsOut<Item>[]>

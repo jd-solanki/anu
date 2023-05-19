@@ -31,7 +31,7 @@ export const rows = [
 
 // 👉 For Server side table
 
-export interface User {
+export type User = {
   id: number
   name: string
   username: string
@@ -288,7 +288,7 @@ export const fakeDatabase: User[] = [
   },
 ]
 
-export function fakeAPICall({ q, currentPage, rowsPerPage, sortedCols }: ADataTableItemsFunctionParams) {
+export function fakeAPICall({ q, currentPage, rowsPerPage, sortedCols }: ADataTableItemsFunctionParams<User>) {
   return new Promise(resolve => {
     // Added some timeout to delay the request response
     setTimeout(() => {

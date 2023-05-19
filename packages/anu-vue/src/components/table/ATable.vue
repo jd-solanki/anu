@@ -1,9 +1,9 @@
 <script lang="ts" setup generic="Row extends Record<string, unknown>">
-import type { ATableEvents, ATablePropColumn } from './meta'
-import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
 import type { ACardProps } from '@/components/card'
 import { aCardProps } from '@/components/card'
 import { objectKeys } from '@/utils/typescripts'
+import type { ATableEvents, ATablePropColumn } from './meta'
+import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
 
 const props = defineProps(aTableProps<Row>())
 
@@ -13,7 +13,9 @@ defineEmits<ATableEvents>()
 const _slots = aTableSlots<Row>(
   objectKeys(props.rows[0] || {}),
 )
-defineSlots<typeof _slots>()
+
+// TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
+defineSlots<any>()
 
 defineOptions({
   name: 'ATable',

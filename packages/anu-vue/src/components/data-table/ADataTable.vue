@@ -1,8 +1,4 @@
 <script lang="ts" setup generic="Row extends Record<string, unknown>">
-import { defu } from 'defu'
-import type { Ref } from 'vue'
-import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
-import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTableSlots } from './meta'
 import { ABtn, AInput, ASelect, ATable } from '@/components'
 import type { ATableProps } from '@/components/table'
 import { aTableProps } from '@/components/table'
@@ -10,6 +6,10 @@ import { useSearch } from '@/composables/useSearch'
 import type { typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
 import { objectKeys } from '@/utils/typescripts'
+import { defu } from 'defu'
+import type { Ref } from 'vue'
+import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
+import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTableSlots } from './meta'
 
 // TODO: Check usage with useDebounceFn. Can we limit the # of req to server?
 
@@ -21,7 +21,9 @@ const _slots = aDataTableSlots<Row>(
     ? []
     : objectKeys(props.rows[0] || {}),
 )
-defineSlots<typeof _slots>()
+
+// TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
+defineSlots<any>()
 
 const _aDataTableTableSlots = aDataTableTableSlots<Row>(
   typeof props.rows === 'function'
