@@ -28,7 +28,7 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       ? shortcuts
       : Array.isArray(options.shortcutOverrides)
         ? [...options.shortcutOverrides, ...shortcuts]
-        : [...Object.entries(options.shortcutOverrides), ...shortcuts],
+        : [...shortcuts, ...Object.entries(options.shortcutOverrides)],
     variants,
   }
 }
