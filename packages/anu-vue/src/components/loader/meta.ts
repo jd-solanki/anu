@@ -41,6 +41,3 @@ export const aLoaderSlots = {
   ...aLoaderTypographySlots,
   ...aLoaderOwnSlots,
 } as const
-
-// 👉 Events
-export interface ALoaderEvents {}

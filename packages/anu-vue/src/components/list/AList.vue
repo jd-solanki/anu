@@ -12,7 +12,7 @@ defineOptions({
   name: 'AList',
 })
 
-const { options, select: selectListItem, value } = useSelection({
+const { options, select: selectListItem } = useSelection({
   items: calculateSelectionItems(toRef(() => props.items)),
   multi: toRef(() => props.multi),
   initialValue: toRef(() => props.modelValue),

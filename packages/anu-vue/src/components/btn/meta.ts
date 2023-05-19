@@ -62,6 +62,3 @@ export const aBtnSlots = {
    */
   default: (_: any) => null as any,
 } as const
-
-// 👉 Events
-export interface ABtnEvents {}

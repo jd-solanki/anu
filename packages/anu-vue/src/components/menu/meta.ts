@@ -20,6 +20,3 @@ export const aMenuSlots = {
    */
   default: (_: any) => null as any,
 } as const
-
-// 👉 Events
-export interface AMenuEvents {}

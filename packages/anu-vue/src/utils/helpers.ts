@@ -1,5 +1,5 @@
 import type { Simplify } from 'type-fest'
-import { type ExtendNested, type IntRange, type Prettify } from './typescripts'
+import { type ExtendNested, type IntRange } from './typescripts'
 
 // 👉 IsEmpty
 export function isEmpty(value: unknown): boolean {
@@ -30,7 +30,7 @@ export function isNumeric(value: unknown): boolean {
 }
 
 // 👉 Remove object keys
-export function removeKeys<T, K extends keyof T>(obj: T, keys: K[]): Prettify<Omit<T, K>> {
+export function removeKeys<T, K extends keyof T>(obj: T, keys: K[]): Simplify<Omit<T, K>> {
   const copy: T = JSON.parse(JSON.stringify(obj))
   keys.forEach(key => delete copy[key])
 
@@ -77,7 +77,7 @@ export interface PrefixObjectKeyWithMeta<T, P extends string, K extends keyof T>
  * Return type is inferred as: { new_a: { originalKey: 'a', prefixedKey: 'new_a', value: number }, new_b: { originalKey: 'b', prefixedKey: 'new_b', value: string }, new_c: { originalKey: 'c', prefixedKey: 'new_c', value: boolean } }
  */
 export function prefixObjectKeysWithMeta<T extends Record<string, any>, K extends string>(obj: T,
-  prefix: K): { [P in keyof T as P extends string ? `${K}${P}` : never]: Prettify<PrefixObjectKeyWithMeta<T, K, Extract<P, keyof T>>> } {
+  prefix: K): { [P in keyof T as P extends string ? `${K}${P}` : never]: Simplify<PrefixObjectKeyWithMeta<T, K, Extract<P, keyof T>>> } {
   const prefixedObj = {} as any
 
   for (const key in obj) {
@@ -93,7 +93,7 @@ export function prefixObjectKeysWithMeta<T extends Record<string, any>, K extend
 
 export function renameObjKey<T extends Record<string, any>, K extends keyof T, R extends string>(obj: T,
   key: K,
-  replaceWith: R): Prettify<Omit<T, K> & Record<R, T[K]>> {
+  replaceWith: R): Simplify<Omit<T, K> & Record<R, T[K]>> {
   const { [key]: value, ...rest } = obj
 
   return {
@@ -113,7 +113,7 @@ export function extendNestedObject<T extends Record<string, object>, U>(
   return result as ExtendNested<T, U>
 }
 
-export function omitObjKeys<Obj extends Object, Keys extends (keyof Obj)[]>(obj: Obj, keys: Keys): Simplify<Omit<Obj, Keys[number]>> {
+export function omitObjKeys<Obj extends object, Keys extends (keyof Obj)[]>(obj: Obj, keys: Keys): Simplify<Omit<Obj, Keys[number]>> {
   return Object.fromEntries(
     Object.entries(obj)
       .filter(([key]) => !keys.includes(key as keyof Obj)),

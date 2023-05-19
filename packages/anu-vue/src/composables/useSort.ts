@@ -1,8 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck We are going to update this composable later
-import { isEmpty, isNumeric, isObject } from '@/utils/helpers'
 import type { MaybeRef } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, unref } from 'vue'
+import { isEmpty, isNumeric, isObject } from '@/utils/helpers'
 
 export type CustomSort = ((a: unknown, b: unknown) => number)
 

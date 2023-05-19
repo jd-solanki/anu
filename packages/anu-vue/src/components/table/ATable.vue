@@ -1,15 +1,16 @@
 <script lang="ts" setup generic="Row extends Record<string, unknown>">
+import type { ATableEvents, ATablePropColumn } from './meta'
+import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
 import type { ACardProps } from '@/components/card'
 import { aCardProps } from '@/components/card'
 import { objectKeys } from '@/utils/typescripts'
-import type { ATableEvents, ATablePropColumn } from './meta'
-import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
 
 const props = defineProps(aTableProps<Row>())
 
 // TODO: We aren't getting type error for click:header
 defineEmits<ATableEvents>()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _slots = aTableSlots<Row>(
   objectKeys(props.rows[0] || {}),
 )

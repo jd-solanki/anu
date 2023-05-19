@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
@@ -7,6 +8,8 @@ module.exports = {
     // 'airbnb-base',
     '@antfu',
     'plugin:vue/vue3-recommended',
+    'plugin:import/recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -20,8 +23,6 @@ module.exports = {
   plugins: [
     'vue',
     '@typescript-eslint',
-    'import',
-    'react',
   ],
   ignorePatterns: ['node_modules/*', 'dist/*', '*.yaml', '*.yml', '*.json', '*.md'],
   rules: {
@@ -94,6 +95,14 @@ module.exports = {
 
     '@typescript-eslint/consistent-type-imports': 'error',
 
+    // Ignore _ as unused variable
+    '@typescript-eslint/no-unused-vars': [
+      'error', {
+        varsIgnorePattern: '^_+$',
+        argsIgnorePattern: '^_+$',
+      },
+    ],
+
     // JSX rules
     // 'react/jsx-boolean-value': ['error', 'never'],
     // 'react/jsx-child-element-spacing': 'error',
@@ -132,7 +141,7 @@ module.exports = {
     'import/resolver': {
       typescript: {
         alwaysTryTypes: true,
-        project: 'packages/*/tsconfig.json',
+        project: 'tsconfig.json',
       },
     },
   },

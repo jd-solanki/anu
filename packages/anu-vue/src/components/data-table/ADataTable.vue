@@ -1,4 +1,8 @@
 <script lang="ts" setup generic="Row extends Record<string, unknown>">
+import { defu } from 'defu'
+import type { Ref } from 'vue'
+import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
+import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTableSlots } from './meta'
 import { ABtn, AInput, ASelect, ATable } from '@/components'
 import type { ATableProps } from '@/components/table'
 import { aTableProps } from '@/components/table'
@@ -6,16 +10,13 @@ import { useSearch } from '@/composables/useSearch'
 import type { typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
 import { objectKeys } from '@/utils/typescripts'
-import { defu } from 'defu'
-import type { Ref } from 'vue'
-import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
-import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTableSlots } from './meta'
 
 // TODO: Check usage with useDebounceFn. Can we limit the # of req to server?
 
 const props = defineProps(aDataTableProps<Row>())
 const emit = defineEmits<ADataTableEvents>()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _slots = aDataTableSlots<Row>(
   typeof props.rows === 'function'
     ? []

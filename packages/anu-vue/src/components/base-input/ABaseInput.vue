@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import type { ABaseInputEvents, aBaseInputSlots } from './meta'
+import { aBaseInputProps } from './meta'
 import { ALoader } from '@/components/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
-import type { ABaseInputEvents, aBaseInputSlots } from './meta'
-import { aBaseInputProps } from './meta'
 
 // TODO: Provide a way to attach classes to root element
 const props = defineProps(aBaseInputProps)
@@ -94,8 +94,8 @@ defineExpose({
           :id="elementId"
           :readonly="props.readonly"
           :disabled="props.disabled"
+          class="a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent"
           :class="[
-            'a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent',
             props.inputClasses,
             $slots['prepend-inner'] || props.prependInnerIcon
               ? 'a-base-input-w-prepend-inner'

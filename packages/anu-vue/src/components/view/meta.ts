@@ -13,6 +13,3 @@ export type AViewProps = ExtractPublicPropTypes<typeof aViewProps>
 
 // 👉 Slots
 export const aViewSlots = {} as const
-
-// 👉 Events
-export interface AViewEvents {}

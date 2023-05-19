@@ -19,6 +19,3 @@ export type ALoadingIconProps = ExtractPublicPropTypes<typeof aLoadingIconProps>
 
 // 👉 Slots
 export const aLoadingIconSlots = {} as const
-
-// 👉 Events
-export interface ALoadingIconEvents {}

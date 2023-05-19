@@ -46,6 +46,3 @@ export const aCardSlots = {
   ...aCardTypographySlots,
   ...aCardOwnSlots,
 } as const
-
-// 👉 Events
-export interface ACardEvents {}

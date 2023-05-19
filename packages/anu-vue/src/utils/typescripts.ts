@@ -1,7 +1,7 @@
 import type { IsAny, SetOptional } from 'type-fest'
 import type { ExtractPropTypes } from 'vue'
 
-export function objectKeys<T extends {}>(obj: T) {
+export function objectKeys<T extends object>(obj: T) {
   return Object.keys(obj) as Array<keyof T>
 }
 
@@ -13,10 +13,6 @@ export type GetBooleanProps<T> = NonNullable<{
 
 export type ExtractExternalPropTypes<TObj, IProps = ExtractPropTypes<TObj>> = SetOptional<IProps, GetBooleanProps<IProps>>
 
-export type Prettify<T> = {
-  [k in keyof T]: T[k]
-} & {}
-
 export type NoUndefined<T> = T extends undefined ? never : T
 
 export type ExtendNested<T, U> = {
@@ -26,6 +22,7 @@ export type ExtendNested<T, U> = {
 }
 
 export type PickStartsWith<T extends object, S extends string> = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   [K in keyof T as K extends `${S}${infer R}` ? K : never]: T[K]
 }
 

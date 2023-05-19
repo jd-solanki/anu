@@ -69,6 +69,3 @@ export const aTypographySlots = {
    */
   'default': (_: any) => null as any,
 } as const
-
-// 👉 Events
-export interface ATypographyEvents {}

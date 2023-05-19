@@ -90,7 +90,7 @@ if (props.modelValue === undefined) {
     if (props.persist !== true) {
       onClickOutside(
         toRef(props, 'referenceEl'),
-        _event => {
+        () => {
           isFloatingElVisible.value = false
         },
         {

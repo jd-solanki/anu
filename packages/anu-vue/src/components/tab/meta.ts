@@ -59,6 +59,3 @@ export const aTabSlots = {
   append: (_: any) => null as any,
 
 } as const
-
-// 👉 Events
-export interface ATabEvents {}

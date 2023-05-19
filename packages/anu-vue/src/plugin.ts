@@ -67,7 +67,8 @@ export const plugin = {
 
     if (config.registerComponents) {
       for (const prop in components) {
-      // @ts-expect-error: I want to index import using string
+        // @ts-expect-error: I want to index import using string
+        // eslint-disable-next-line import/namespace
         const component = components[prop]
         app.component(component.name, component)
       }

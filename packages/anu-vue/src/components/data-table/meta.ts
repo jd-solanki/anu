@@ -13,7 +13,7 @@ export type SortBy = 'asc' | 'desc' | undefined
 export interface ADataTablePropColumn<Row extends Record<string, unknown>> extends ATablePropColumn<Row> {
   isSortable?: boolean
   sortBy?: SortBy
-  isFilterable?: Boolean
+  isFilterable?: boolean
   filterFunc?: CustomFilter<any>
   sortFunc?: CustomSort
 }
