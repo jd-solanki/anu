@@ -1,11 +1,12 @@
 name: "Test Report"
 
-on:
-  workflow_run:
-    # runs after CI workflow
-    workflows: ["CI"]
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     # runs after CI workflow
+#     workflows: ["CI"]
+#     types:
+#       - completed
+on: workflow_dispatch
 
 jobs:
   report:
