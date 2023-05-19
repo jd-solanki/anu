@@ -226,8 +226,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1(vite@4.3.8)(vue@3.3.4)
       '@vitest/browser':
-        specifier: file:vitest-browser-0.30.1.tgz
-        version: file:packages/anu-vue/vitest-browser-0.30.1.tgz(vitest@0.31.1)
+        specifier: ^0.31.1
+        version: 0.31.1(rollup@2.79.1)(vitest@0.31.1)
       '@vue/test-utils':
         specifier: ^2.3.2
         version: 2.3.2(vue@3.3.4)
@@ -266,7 +266,7 @@ importers:
         version: 2.3.0(@types/node@20.2.1)(rollup@2.79.1)(vite@4.3.8)
       vitest:
         specifier: ^0.31.1
-        version: 0.31.1(@vitest/browser@0.30.1)(jsdom@22.0.0)(sass@1.62.1)(webdriverio@8.10.2)
+        version: 0.31.1(@vitest/browser@0.31.1)(jsdom@22.0.0)(sass@1.62.1)(webdriverio@8.10.2)
       vue-router:
         specifier: ^4.2.1
         version: 4.2.1(vue@3.3.4)
@@ -2061,17 +2061,6 @@ packages:
       rollup: 3.21.6
     dev: true
 
-  /@rollup/plugin-inject@4.0.4(rollup@2.79.1):
-    resolution: {integrity: sha512-4pbcU4J/nS+zuHk+c+OL3WtmEQhqxlZ9uqfjQMQDOHOPld7PsCd8k5LWs8h5wjwJN7MgnAn768F2sDxEP4eNFQ==}
-    peerDependencies:
-      rollup: ^1.20.0 || ^2.0.0
-    dependencies:
-      '@rollup/pluginutils': 3.1.0(rollup@2.79.1)
-      estree-walker: 2.0.2
-      magic-string: 0.25.9
-      rollup: 2.79.1
-    dev: true
-
   /@rollup/plugin-inject@5.0.3(rollup@3.21.6):
     resolution: {integrity: sha512-411QlbL+z2yXpRWFXSmw/teQRMkXcAAC8aYTemc15gwJRpvEVDQwoe+N/HTFD8RFG8+88Bme9DK2V9CVm7hJdA==}
     engines: {node: '>=14.0.0'}
@@ -2894,6 +2883,18 @@ packages:
     dependencies:
       vite: 4.3.8(@types/node@20.2.1)(sass@1.62.1)
       vue: 3.3.4
+    dev: true
+
+  /@vitest/browser@0.31.1(rollup@2.79.1)(vitest@0.31.1):
+    resolution: {integrity: sha512-EG1aCVBHIo+u3z9WjFFTDQWH9OHyrD2v1Q7JBF3GdALDUGFx2y2fNpx2cwrEXn+Q5nJr87O6K9uZa/wwQtLWcQ==}
+    peerDependencies:
+      vitest: '>=0.31.0'
+    dependencies:
+      modern-node-polyfills: 0.1.3(rollup@2.79.1)
+      sirv: 2.0.3
+      vitest: 0.31.1(@vitest/browser@0.31.1)(jsdom@22.0.0)(sass@1.62.1)(webdriverio@8.10.2)
+    transitivePeerDependencies:
+      - rollup
     dev: true
 
   /@vitest/expect@0.31.1:
@@ -7634,12 +7635,6 @@ packages:
       magic-string: 0.30.0
     dev: true
 
-  /magic-string@0.25.9:
-    resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
-    dependencies:
-      sourcemap-codec: 1.4.8
-    dev: true
-
   /magic-string@0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
     engines: {node: '>=12'}
@@ -8047,15 +8042,15 @@ packages:
       pkg-types: 1.0.3
       ufo: 1.1.2
 
-  /modern-node-polyfills@0.1.0:
-    resolution: {integrity: sha512-/Z9mlC56KBxjLZvdNSLqSEFw9jSav43dsUxhLYLN3bZgcSX5VFdixat+QGjb/4NxaGCwW09ABJhZA5oHFj4W4A==}
+  /modern-node-polyfills@0.1.3(rollup@2.79.1):
+    resolution: {integrity: sha512-/4dB85Sdkt9MjWwtpKnsNTYhh0+fqjFC4ZEgDP4B0e6kyzbGUnX4NDxTUCaVwRLVF9gcEDcRQjol8pn05B3TUQ==}
     dependencies:
       '@jspm/core': 2.0.0-beta.24
-      '@rollup/plugin-inject': 4.0.4(rollup@2.79.1)
-      acorn: 8.8.2
+      '@rollup/pluginutils': 3.1.0(rollup@2.79.1)
       esbuild: 0.14.54
       local-pkg: 0.4.3
-      rollup: 2.79.1
+    transitivePeerDependencies:
+      - rollup
     dev: true
 
   /mri@1.2.0:
@@ -10097,11 +10092,6 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /sourcemap-codec@1.4.8:
-    resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
-    deprecated: Please use @jridgewell/sourcemap-codec instead
-    dev: true
-
   /spawn-command@0.0.2-1:
     resolution: {integrity: sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==}
     dev: true
@@ -11383,7 +11373,7 @@ packages:
       - universal-cookie
     dev: true
 
-  /vitest@0.31.1(@vitest/browser@0.30.1)(jsdom@22.0.0)(sass@1.62.1)(webdriverio@8.10.2):
+  /vitest@0.31.1(@vitest/browser@0.31.1)(jsdom@22.0.0)(sass@1.62.1)(webdriverio@8.10.2):
     resolution: {integrity: sha512-/dOoOgzoFk/5pTvg1E65WVaobknWREN15+HF+0ucudo3dDG/vCZoXTQrjIfEaWvQXmqScwkRodrTbM/ScMpRcQ==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -11417,7 +11407,7 @@ packages:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
       '@types/node': 20.2.1
-      '@vitest/browser': file:packages/anu-vue/vitest-browser-0.30.1.tgz(vitest@0.31.1)
+      '@vitest/browser': 0.31.1(rollup@2.79.1)(vitest@0.31.1)
       '@vitest/expect': 0.31.1
       '@vitest/runner': 0.31.1
       '@vitest/snapshot': 0.31.1
@@ -12028,17 +12018,4 @@ packages:
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
-    dev: true
-
-  file:packages/anu-vue/vitest-browser-0.30.1.tgz(vitest@0.31.1):
-    resolution: {integrity: sha512-rdStUtDbPrx6JurWq5/27IkWduNrrojB8i5niJWzgNBYOnjE2oTgU5HvKJX34chOpAgqejkb7D7pxMMH+SMvfA==, tarball: file:packages/anu-vue/vitest-browser-0.30.1.tgz}
-    id: file:packages/anu-vue/vitest-browser-0.30.1.tgz
-    name: '@vitest/browser'
-    version: 0.30.1
-    peerDependencies:
-      vitest: '>=0.29.4'
-    dependencies:
-      modern-node-polyfills: 0.1.0
-      sirv: 2.0.3
-      vitest: 0.31.1(@vitest/browser@0.30.1)(jsdom@22.0.0)(sass@1.62.1)(webdriverio@8.10.2)
     dev: true
