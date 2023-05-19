@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const items = [
   { text: 'Donut jujubes' },
@@ -46,7 +46,7 @@ const slotSelection = ref<typeof items[number] | null>(null)
             :value="index"
             :disabled="item.disabled"
             :is-active="slotSelection?.text === item.text"
-            @click="handleListItemClick(item, index)"
+            @click="handleListItemClick(item)"
           />
         </template>
         <template #after>

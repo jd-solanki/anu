@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useSearch } from 'anu-vue'
-import { ref } from 'vue'
+import { useSearch } from 'anu-vue';
+import { ref } from 'vue';
 
 const data = [
   {
@@ -91,14 +91,12 @@ const { results } = useSearch(q, data, filterBy, isSearchStrict)
 
 <template>
   <ASelect
-    v-slot="{ attrs }"
     v-model="filterBy"
     :hint="`value: ${filterBy}`"
   >
     <li
       v-for="op in filterByOptions"
-      v-bind="attrs"
-      :key="op"
+      :key="JSON.stringify(op)"
       @click="filterBy = op"
     >
       {{ JSON.stringify(op) || typeof op }}

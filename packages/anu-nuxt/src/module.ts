@@ -1,11 +1,11 @@
 import { presetThemeDefault } from '@anu-vue/preset-theme-default'
 import {
-  addComponent,
-  addImports,
-  addPluginTemplate,
-  defineNuxtModule,
-  extendViteConfig,
-  useLogger,
+addComponent,
+addImports,
+addPluginTemplate,
+defineNuxtModule,
+extendViteConfig,
+useLogger,
 } from '@nuxt/kit'
 import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-uno'
@@ -195,6 +195,7 @@ export default defineNuxtModule<ModuleOptions>({
         })
       })
 
+    // @ts-expect-error Internal API
     nuxt.hook('devtools:customTabs', tabs => {
       tabs.push({
         name: 'anu-vue',

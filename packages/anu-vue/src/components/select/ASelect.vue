@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import { flip, offset, shift } from '@floating-ui/vue'
-import type { ASelectEvents, aSelectSlots } from './meta'
-import { aSelectBaseInputSlots, aSelectCardSlots, aSelectListSlotsWithPrefixMeta, aSelectProps } from './meta'
 import { ACard, AList } from '@/components'
 import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { AListPropItems } from '@/components/list'
 import { extractItemValueFromItemOption } from '@/composables/useSelection'
-import { isObject } from '@/utils/helpers'
+import { flip, offset, shift } from '@floating-ui/vue'
+import type { ASelectEvents, aSelectSlots } from './meta'
+import { aSelectBaseInputSlots, aSelectCardSlots, aSelectListSlotsWithPrefixMeta, aSelectProps } from './meta'
 
 export interface ObjectOption { label: string; value: string | number }
 
@@ -108,7 +107,7 @@ function middleware() {
         ref="selectRef"
         readonly
         class="a-select-input cursor-pointer"
-        :value="isObject(modelValue) ? modelValue.text : modelValue"
+        :value="modelValue.text ?? modelValue"
       >
     </template>
   </ABaseInput>
