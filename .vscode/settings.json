@@ -6,6 +6,7 @@
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
+  "markdown.extension.completion.root": "../docs/",
   // JS
   "javascript.updateImportsOnFileMove.enabled": "always",
   "[javascript]": {

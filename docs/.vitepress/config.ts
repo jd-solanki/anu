@@ -49,6 +49,7 @@ export default defineConfig({
             { text: 'Installation', link: '/guide/getting-started/installation' },
             { text: 'Customization', link: '/guide/getting-started/customization' },
             { text: 'Grid', link: '/guide/getting-started/grid' },
+            { text: 'FAQ', link: '/guide/getting-started/faq' },
             { text: 'Edge Releases', link: '/guide/getting-started/edge-releases' },
           ],
         },
