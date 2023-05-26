@@ -1,6 +1,6 @@
-import type { ExtractPublicPropTypes } from 'vue'
 import { aLayerProps } from '@/composables/useLayer'
 import { configurable } from '@/composables/useProps'
+import type { ExtractPublicPropTypes } from 'vue'
 
 // ℹ️ Make sure to checkout prop definition rules
 
@@ -56,6 +56,15 @@ export const aAlertSlots = {
    */
   append: (_: any) => null,
 } as const
+
+export const getProps = () => {
+  // const defaults = inject(ANU_DEFAULTS)
+
+  // console.log('defaults :>> ', defaults);
+
+  // return defu(aAlertProps, ...(defaults.alert || {}))
+  return aAlertProps
+}
 
 // 👉 Events
 export interface AAlertEvents {

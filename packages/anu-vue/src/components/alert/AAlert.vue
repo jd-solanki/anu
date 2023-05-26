@@ -1,16 +1,27 @@
 <script lang="ts" setup>
-import type { AAlertEvents, aAlertSlots } from './meta'
-import { aAlertProps } from './meta'
-import { AIcon } from '@/components'
-import { useLayer } from '@/composables/useLayer'
+import { AIcon } from '@/components';
+import { useLayer } from '@/composables/useLayer';
+// import { ANU_DEFAULTS } from '@/symbols';
+import { ANU_DEFAULTS } from '@/symbols';
+import { PartialDeep } from 'type-fest';
+import type { AAlertEvents, AAlertProps, aAlertSlots } from './meta';
+import { getProps } from './meta';
 
-const props = defineProps(aAlertProps)
+const props = defineProps(getProps())
 const emit = defineEmits<AAlertEvents>()
 defineSlots<typeof aAlertSlots>()
 
 defineOptions({
   name: 'AAlert',
 })
+
+// console.log(inject(ANU_DEFAULTS));
+const _appliedProps = getCurrentInstance()?.vnode.props as PartialDeep<AAlertProps>
+
+const defaults = inject(ANU_DEFAULTS)
+const _colorProp = _appliedProps?.color ?? defaults?.alert?.color ?? props.color
+
+console.log('_colorProp :>> ', _colorProp);
 
 const isAlertVisible = useVModel(props, 'modelValue', emit, { defaultValue: true, passive: true })
 

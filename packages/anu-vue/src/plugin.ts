@@ -1,9 +1,9 @@
+import * as components from '@/components'
+import { useAnu } from '@/composables/useAnu'
+import { ANU_CONFIG, ANU_DEFAULTS } from '@/symbols'
 import { defu } from 'defu'
 import type { PartialDeep } from 'type-fest'
 import type { App } from 'vue'
-import * as components from '@/components'
-import { useAnu } from '@/composables/useAnu'
-import { ANU_CONFIG } from '@/symbols'
 
 export type ThemeColors = 'primary' | 'success' | 'info' | 'warning' | 'danger'
 export type DefaultThemes = 'light' | 'dark'
@@ -20,6 +20,7 @@ export interface PluginOptions {
   registerComponents: boolean
   initialTheme: keyof ConfigThemes
   themes: ConfigThemes
+  defaults: any
 }
 
 const configDefaults: PluginOptions = {
@@ -59,6 +60,7 @@ const configDefaults: PluginOptions = {
       },
     },
   },
+  defaults: {},
 }
 
 export const plugin = {
@@ -75,6 +77,7 @@ export const plugin = {
     }
 
     app.provide(ANU_CONFIG, config)
+    app.provide(ANU_DEFAULTS, config.defaults)
 
     // Initialize Anu instance with config values
     useAnu({
