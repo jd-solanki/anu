@@ -19,7 +19,7 @@ defineOptions({
   name: 'ABaseInput',
 })
 
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ABaseInput', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

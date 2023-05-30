@@ -11,7 +11,7 @@ defineSlots<typeof aTabSlots>()
 defineOptions({
   name: 'ATab',
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ATab', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

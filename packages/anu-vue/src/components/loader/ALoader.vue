@@ -15,7 +15,7 @@ defineSlots<typeof aLoaderSlots>()
 defineOptions({
   name: 'ALoader',
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ALoader', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

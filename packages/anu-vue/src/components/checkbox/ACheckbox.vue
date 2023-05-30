@@ -14,7 +14,7 @@ defineOptions({
   name: 'ACheckbox',
   inheritAttrs: false,
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ACheckbox', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 const attrs = useAttrs()

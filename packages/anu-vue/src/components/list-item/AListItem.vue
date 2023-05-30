@@ -15,7 +15,7 @@ defineSlots<typeof aListItemSlots>()
 defineOptions({
   name: 'AListItem',
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('AListItem', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

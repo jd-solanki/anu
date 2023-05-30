@@ -12,7 +12,7 @@ defineOptions({
   name: 'ARadio',
   inheritAttrs: false,
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ARadio', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

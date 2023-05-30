@@ -13,14 +13,18 @@ interface ReturnType<Props> {
   defaultsAttrs: Record<string, unknown> | undefined
 }
 
-export function useDefaults<Props extends Record<string, unknown>>(componentName: keyof PluginOptionDefaults, definitionProps: Props): ReturnType<Props> {
+export function useDefaults<Props extends Record<string, unknown>>(definitionProps: Props, componentName?: keyof PluginOptionDefaults): ReturnType<Props> {
   const defaults = inject(ANU_DEFAULTS, {})
 
   // console.log('defaults :>> ', defaults);
 
   const vm = getCurrentInstance()
+  const _componentName = (componentName ?? vm?.type.name ?? vm?.type.__name) as keyof PluginOptionDefaults | undefined
 
-  const { class: defaultsClass, style: defaultsStyle, attrs: defaultsAttrs, ...restProps } = defaults[componentName] || {}
+  if (!_componentName)
+    throw new Error('Unable to identify the component name. Please define component name or use the `componentName` parameter while using `useDefaults` composable.')
+
+  const { class: defaultsClass, style: defaultsStyle, attrs: defaultsAttrs, ...restProps } = defaults[_componentName] || {}
 
   // console.log('restProps :>> ', restProps);
 

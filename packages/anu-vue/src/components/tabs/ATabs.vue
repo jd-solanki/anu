@@ -23,7 +23,7 @@ const emit = defineEmits<ATabsEvents>()
 defineOptions({
   name: 'ATabs',
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ATabs', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

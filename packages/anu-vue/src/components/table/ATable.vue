@@ -23,7 +23,7 @@ defineSlots<any>()
 defineOptions({
   name: 'ATable',
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ATable', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

@@ -20,7 +20,7 @@ defineOptions({
   name: 'ASelect',
   inheritAttrs: false,
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ASelect', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

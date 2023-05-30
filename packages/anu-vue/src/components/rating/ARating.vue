@@ -11,7 +11,7 @@ const emit = defineEmits<ARatingEvents>()
 defineOptions({
   name: 'ARating',
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ARating', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

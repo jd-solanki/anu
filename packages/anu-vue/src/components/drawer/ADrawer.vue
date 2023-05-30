@@ -16,7 +16,7 @@ defineOptions({
   name: 'ADrawer',
   inheritAttrs: false,
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ADrawer', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

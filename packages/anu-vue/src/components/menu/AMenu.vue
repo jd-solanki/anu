@@ -13,7 +13,7 @@ defineSlots<typeof aMenuSlots>()
 defineOptions({
   name: 'AMenu',
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('AMenu', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

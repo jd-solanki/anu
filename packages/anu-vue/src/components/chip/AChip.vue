@@ -12,7 +12,7 @@ defineSlots<typeof aChipSlots>()
 defineOptions({
   name: 'AChip',
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('AChip', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 const attrs = useAttrs()

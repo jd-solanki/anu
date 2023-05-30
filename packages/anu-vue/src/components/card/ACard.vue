@@ -16,7 +16,7 @@ defineSlots<typeof aCardSlots>()
 defineOptions({
   name: 'ACard',
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ACard', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

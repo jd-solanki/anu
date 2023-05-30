@@ -10,7 +10,7 @@ defineOptions({
   name: 'ALoadingIcon',
   inheritAttrs: false,
 })
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ALoadingIcon', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 </script>

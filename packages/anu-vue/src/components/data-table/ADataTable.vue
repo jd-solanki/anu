@@ -17,7 +17,7 @@ import { objectKeys } from '@/utils/typescripts'
 // SECTION Meta
 const _props = defineProps(aDataTableProps<Row>())
 const emit = defineEmits<ADataTableEvents>()
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ADataTable', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

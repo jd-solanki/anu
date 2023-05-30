@@ -14,7 +14,7 @@ defineOptions({
 })
 
 defineSlots<typeof aSwitchSlots>()
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ASwitch', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

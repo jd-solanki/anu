@@ -16,7 +16,7 @@ defineOptions({
   name: 'AAlert',
 })
 
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('AAlert', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 

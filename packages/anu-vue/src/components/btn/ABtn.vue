@@ -14,7 +14,7 @@ defineOptions({
   name: 'ABtn',
 })
 
-const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ABtn', _props)
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
 
