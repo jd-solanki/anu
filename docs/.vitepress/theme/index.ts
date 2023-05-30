@@ -12,23 +12,7 @@ import './style.css'
 export default {
   ...DefaultTheme,
   enhanceApp({ app }: { app: App }) {
-    app.use(anu, {
-      defaults: {
-        AAlert: {
-          color: 'warning',
-          dismissible: true,
-          ABtn: {
-            variant: 'text',
-            class: 'text-sm',
-          },
-        },
-        ATextarea: {
-          attrs: {
-            placeholder: 'Enter your message here',
-          },
-        },
-      },
-    })
+    app.use(anu)
 
     // Register demos as components
     const demos = import.meta.globEager('../../components/demos/**/*.vue')

@@ -43,7 +43,7 @@ if (props.autoSize) {
   <!-- ℹ️ `overflow-hidden` on input wrapper will prevent square edge when textarea will have scrollbar -->
   <ABaseInput
     ref="refBaseInput"
-    v-bind="{ ..._baseInputProps, class: $attrs.class, ...defaultsAttrs }"
+    v-bind="{ ..._baseInputProps, class: $attrs.class }"
     :style="defaultsStyle"
     class="a-textarea !pointer-events-auto"
     :class="[
@@ -65,7 +65,7 @@ if (props.autoSize) {
     </template>
     <template #default="slotProps">
       <textarea
-        v-bind="{ ...$attrs, ...slotProps }"
+        v-bind="{ ...defaultsAttrs, ...$attrs, ...slotProps }"
         ref="textarea"
         v-model="textareaValue"
         class="a-textarea-textarea bg-transparent resize-none"
