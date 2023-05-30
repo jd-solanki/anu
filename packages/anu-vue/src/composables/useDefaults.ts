@@ -1,9 +1,13 @@
-import { deepmerge } from 'deepmerge-ts'
+import { deepmergeCustom } from 'deepmerge-ts'
 import { type StyleValue } from 'vue'
 import type { PluginOptionDefaults } from '@/pluginDefaults'
 import { ANU_DEFAULTS } from '@/symbols'
 import { pick } from '@/utils/helpers'
 import { objectKeys } from '@/utils/typescripts'
+
+const mergePropsDefaults = deepmergeCustom({
+  mergeArrays: false,
+})
 
 interface ReturnType<Props> {
   props: Props
@@ -51,7 +55,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
   // console.log('definitionProps :>> ', toRaw(definitionProps));
 
   // Provide subProps to the nested component
-  provide(ANU_DEFAULTS, deepmerge(defaults, subProps))
+  provide(ANU_DEFAULTS, mergePropsDefaults(defaults, subProps))
 
   const propsRef = computedWithControl(
     () => definitionProps,
@@ -59,7 +63,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
       const explicitPropsNames = objectKeys(vm?.vnode.props || {}) as unknown as (keyof Props)[]
       const explicitProps = pick(definitionProps, ...explicitPropsNames)
 
-      return deepmerge(definitionProps, defaultsProps, explicitProps) as Props
+      return mergePropsDefaults(definitionProps, defaultsProps, explicitProps) as Props
     },
   )
 
