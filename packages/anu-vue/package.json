@@ -50,6 +50,7 @@
   "dependencies": {
     "@floating-ui/vue": "^1.0.0",
     "colord": "^2.9.3",
+    "deepmerge-ts": "^5.1.0",
     "defu": "^6.1.2",
     "vue": "3.3.4"
   },

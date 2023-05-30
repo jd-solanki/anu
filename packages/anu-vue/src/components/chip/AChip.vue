@@ -1,16 +1,20 @@
 <script lang="ts" setup>
 import type { AChipEvents, aChipSlots } from './meta'
 import { aChipProps } from './meta'
+import { useDefaults } from '@/composables/useDefaults'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(aChipProps)
+// SECTION Meta
+const _props = defineProps(aChipProps)
 const emit = defineEmits<AChipEvents>()
 defineSlots<typeof aChipSlots>()
 
 defineOptions({
   name: 'AChip',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('AChip', _props)
 
+// !SECTION
 const attrs = useAttrs()
 
 const { getLayerClasses } = useLayer()
@@ -32,7 +36,8 @@ function closeChip() {
 <template>
   <div
     v-if="props.modelValue"
-    :style="styles"
+    v-bind="defaultsAttrs"
+    :style="[styles, defaultsStyle]"
     class="a-chip"
     :class="[
       {
@@ -40,6 +45,7 @@ function closeChip() {
         'cursor-pointer': isClickable,
       },
       classes,
+      defaultsClass,
     ]"
   >
     <!-- Prepend icon -->

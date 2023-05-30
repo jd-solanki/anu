@@ -5,14 +5,20 @@ import { aCardProps, aCardTypographySlots } from './meta'
 import { ALoader } from '@/components/loader'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { useDefaults } from '@/composables/useDefaults'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(aCardProps)
+// SECTION Meta
+const _props = defineProps(aCardProps)
+
 defineSlots<typeof aCardSlots>()
 
 defineOptions({
   name: 'ACard',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ACard', _props)
+
+// !SECTION
 
 const slots = useSlots()
 
@@ -38,8 +44,9 @@ else
 <template>
   <div
     class="a-card relative overflow-hidden bg-[hsla(var(--a-surface-c),var(--un-bg-opacity,1))]"
-    :class="classes"
-    :style="styles"
+    :class="[classes, defaultsClass]"
+    :style="[styles, defaultsStyle]"
+    v-bind="defaultsAttrs"
   >
     <!-- 👉 Loader  -->
     <!--

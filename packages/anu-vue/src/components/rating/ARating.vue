@@ -2,13 +2,18 @@
 import type { ARatingEvents } from './meta'
 import { aRatingProps } from './meta'
 import { useColor } from '@/composables'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(aRatingProps)
+// SECTION Meta
+const _props = defineProps(aRatingProps)
 const emit = defineEmits<ARatingEvents>()
 
 defineOptions({
   name: 'ARating',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ARating', _props)
+
+// !SECTION
 
 const { styles } = useColor(toRef(props, 'color'), 'rating-color')
 
@@ -57,12 +62,14 @@ function onMouseLeave() {
 
 <template>
   <div
-    :style="styles"
+    v-bind="defaultsAttrs"
+    :style="[styles, defaultsStyle]"
     class="a-rating flex"
     :class="[
       (props.animate && !props.readonly && !props.disabled) && 'a-rating-animated',
       props.readonly && 'a-rating-readonly pointer-events-none',
       props.disabled && 'a-rating-disabled pointer-events-none',
+      defaultsClass,
     ]"
   >
     <i

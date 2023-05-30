@@ -9,11 +9,13 @@ import { AView } from '@/components/view'
 import { AViews } from '@/components/views'
 import { ActiveViewSymbol } from '@/components/views/symbol'
 import { useSelection } from '@/composables'
+import { useDefaults } from '@/composables/useDefaults'
 import { numRange } from '@/utils/helpers'
 
 // import { aTabsSlots } from './meta';
 
-const props = defineProps(aTabsProps)
+// SECTION Meta
+const _props = defineProps(aTabsProps)
 const emit = defineEmits<ATabsEvents>()
 
 // defineSlots<typeof aTabsSlots>()
@@ -21,6 +23,9 @@ const emit = defineEmits<ATabsEvents>()
 defineOptions({
   name: 'ATabs',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ATabs', _props)
+
+// !SECTION
 
 // DOM refs
 const refTabsWrapper = ref<HTMLElement>()
@@ -253,10 +258,13 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
 
 <template>
   <div
+    v-bind="defaultsAttrs"
+    :style="defaultsStyle"
     class="a-tabs"
     :class="[
       props.vertical ? 'a-tabs-vertical' : 'a-tabs-horizontal',
       shouldShowArrows && 'a-tabs-with-arrows',
+      defaultsClass,
     ]"
   >
     <div class="a-tabs-header relative">

@@ -6,13 +6,18 @@ import { ASpinner } from '@/components'
 import { isTypographyUsed } from '@/components/typography/utils'
 import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(aLoaderProps)
+// SECTION Meta
+const _props = defineProps(aLoaderProps)
 defineSlots<typeof aLoaderSlots>()
 
 defineOptions({
   name: 'ALoader',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ALoader', _props)
+
+// !SECTION
 
 const slots = useSlots()
 
@@ -47,8 +52,10 @@ if (props.fullPage) {
   <div
     v-if="isShownOnce"
     v-show="props.loading"
+    v-bind="defaultsAttrs"
+    :style="defaultsStyle"
     class="a-loader overlay flex items-center justify-center flex-col text-center gap-4"
-    :class="[props.loading && 'opacity-100', props.fullPage && 'a-loader-full-page fixed inset-0 z-54']"
+    :class="[props.loading && 'opacity-100', props.fullPage && 'a-loader-full-page fixed inset-0 z-54', defaultsClass]"
   >
     <!-- 👉 Slot: default -->
     <slot>

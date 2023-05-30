@@ -2,18 +2,27 @@
 import type { AAlertEvents, aAlertSlots } from './meta'
 import { aAlertProps } from './meta'
 import { AIcon } from '@/components'
+import { useDefaults } from '@/composables/useDefaults'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(aAlertProps)
+// SECTION Meta
+const _props = defineProps(aAlertProps)
+
 const emit = defineEmits<AAlertEvents>()
+
 defineSlots<typeof aAlertSlots>()
 
 defineOptions({
   name: 'AAlert',
 })
 
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('AAlert', _props)
+
+// !SECTION
+
 const isAlertVisible = useVModel(props, 'modelValue', emit, { defaultValue: true, passive: true })
 
+// console.log('props.variant :>> ', props.variant);
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
   toRef(props, 'color'),
@@ -22,7 +31,7 @@ const { styles, classes } = getLayerClasses(
 )
 
 // 👉 Append icon
-const appendIcon = props.appendIcon || (props.dismissible ? 'i-bx-x' : null)
+const appendIcon = computed(() => props.appendIcon || (props.dismissible ? 'i-bx-x' : null))
 function handleAppendIconClick() {
   isAlertVisible.value = false
 
@@ -33,13 +42,13 @@ function handleAppendIconClick() {
 const appendIconBindings = computed(() => {
   if (props.dismissible) {
     return {
-      icon: appendIcon,
+      icon: appendIcon.value,
       ariaLabel: 'close',
     }
   }
 
   return {
-    class: appendIcon,
+    class: appendIcon.value,
   }
 })
 </script>
@@ -48,11 +57,13 @@ const appendIconBindings = computed(() => {
   <div
     role="alert"
     class="a-alert items-start w-full"
+    v-bind="defaultsAttrs"
     :class="[
+      defaultsClass,
       ...classes,
       isAlertVisible ? 'flex' : 'hidden',
     ]"
-    :style="styles"
+    :style="[styles, defaultsStyle]"
   >
     <!-- ℹ️ We need div as wrapper with span having `vertical-align: text-top` to center the icon with the text -->
     <div v-if="props.icon">

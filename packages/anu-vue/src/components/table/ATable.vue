@@ -3,16 +3,18 @@ import type { ATableEvents, ATablePropColumn } from './meta'
 import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
 import type { ACardProps } from '@/components/card'
 import { aCardProps } from '@/components/card'
+import { useDefaults } from '@/composables/useDefaults'
 import { objectKeys } from '@/utils/typescripts'
 
-const props = defineProps(aTableProps<Row>())
+// SECTION Meta
+const _props = defineProps(aTableProps<Row>())
 
 // TODO: We aren't getting type error for click:header
 defineEmits<ATableEvents>()
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _slots = aTableSlots<Row>(
-  objectKeys(props.rows[0] || {}),
+  objectKeys(_props.rows[0] || {}),
 )
 
 // TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
@@ -21,6 +23,9 @@ defineSlots<any>()
 defineOptions({
   name: 'ATable',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ATable', _props)
+
+// !SECTION
 
 const _cardProps = reactivePick(props, Object.keys(aCardProps) as Array<keyof ACardProps>)
 
@@ -41,8 +46,10 @@ const _cols = computed<ATablePropColumn<Row>[]>(() => {
 
 <template>
   <ACard
-    v-bind="_cardProps"
+    v-bind="{ ..._cardProps, ...defaultsAttrs }"
+    :style="defaultsStyle"
     class="a-table"
+    :class="defaultsClass"
   >
     <slot name="before-table" />
     <div class="overflow-x-auto">

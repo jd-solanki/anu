@@ -3,16 +3,25 @@ import type { ABaseInputEvents, aBaseInputSlots } from './meta'
 import { aBaseInputProps } from './meta'
 import { ALoader } from '@/components/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
+import { useDefaults } from '@/composables/useDefaults'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
+// SECTION Meta
+
 // TODO: Provide a way to attach classes to root element
-const props = defineProps(aBaseInputProps)
+const _props = defineProps(aBaseInputProps)
+
 defineEmits<ABaseInputEvents>()
+
 defineSlots<typeof aBaseInputSlots>()
 
 defineOptions({
   name: 'ABaseInput',
 })
+
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('ABaseInput', _props)
+
+// !SECTION
 
 const attrs = useAttrs()
 
@@ -42,7 +51,10 @@ defineExpose({
       props.disabled && 'a-base-input-disabled',
       (props.disabled || props.readonly) && 'pointer-events-none',
       !(props.disabled || props.readonly) && 'a-base-input-interactive',
+      defaultsClass,
     ]"
+    :style="defaultsStyle"
+    v-bind="defaultsAttrs"
   >
     <!-- 👉 Label -->
     <slot name="label">

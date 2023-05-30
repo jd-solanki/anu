@@ -4,20 +4,27 @@ import { aMenuProps } from './meta'
 import { ACard } from '@/components'
 import { AFloating } from '@/components/floating'
 import { useParent } from '@/composables'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(aMenuProps)
+// SECTION Meta
+const _props = defineProps(aMenuProps)
 defineSlots<typeof aMenuSlots>()
 
 defineOptions({
   name: 'AMenu',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults('AMenu', _props)
+
+// !SECTION
 
 const parentEl = useParent()
 </script>
 
 <template>
   <AFloating
-    v-bind="props"
+    v-bind="{ ...props, ...defaultsAttrs }"
+    :class="defaultsClass"
+    :style="defaultsStyle"
     :reference-el="parentEl"
   >
     <ACard>

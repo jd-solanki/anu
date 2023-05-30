@@ -127,3 +127,12 @@ export function omitObjKeys<Obj extends object, Keys extends (keyof Obj)[]>(obj:
 export function numRange<const N extends number>(n: N) {
   return [...Array(n).keys()] as IntRange<0, N>[]
 }
+
+// Thanks: https://stackoverflow.com/a/56592365
+export function pick<T extends object, K extends keyof T>(obj: T, ...keys: K[]) {
+  return Object.fromEntries(
+    keys
+      .filter(key => key in obj)
+      .map(key => [key, obj[key]]),
+  ) as Simplify<Pick<T, K>>
+}
