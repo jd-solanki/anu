@@ -1,6 +1,5 @@
 import type { Simplify } from 'type-fest'
 
-import type { StyleValue } from 'vue'
 import type { AAlertProps } from '@/components/alert'
 import type { AAvatarProps } from '@/components/avatar'
 import type { ABadgeProps } from '@/components/badge'
@@ -13,8 +12,7 @@ import type { ADataTableProps } from '@/components/data-table'
 import type { ADialogProps } from '@/components/dialog'
 import type { ADrawerProps } from '@/components/drawer'
 import type { AFloatingProps } from '@/components/floating'
-
-// import type { AIconProps } from '@/components/icon'
+import type { AIconProps } from '@/components/icon'
 import type { AInputProps } from '@/components/input'
 import type { AListProps } from '@/components/list'
 import type { AListItemProps } from '@/components/list-item'
@@ -24,6 +22,7 @@ import type { AMenuProps } from '@/components/menu'
 import type { ARadioProps } from '@/components/radio'
 import type { ARatingProps } from '@/components/rating'
 import type { ASelectProps } from '@/components/select'
+import type { StyleValue } from 'vue'
 
 // import type { ASpinnerProps } from '@/components/spinner'
 import type { ASwitchProps } from '@/components/switch'
@@ -34,8 +33,7 @@ import type { ATextareaProps } from '@/components/textarea'
 import type { ATooltipProps } from '@/components/tooltip'
 import type { ATypographyProps } from '@/components/typography'
 import type { AViewProps } from '@/components/view'
-
-// import type { AViewsProps } from '@/components/views'
+import type { AViewsProps } from '@/components/views'
 
 interface ComponentProps {
   AAlert: AAlertProps
@@ -50,8 +48,7 @@ interface ComponentProps {
   ADialog: ADialogProps
   ADrawer: ADrawerProps
   AFloating: AFloatingProps
-
-  // AIcon: AIconProps
+  AIcon: AIconProps
   AInput: AInputProps
   AList: AListProps
   AListItem: AListItemProps
@@ -71,8 +68,7 @@ interface ComponentProps {
   ATooltip: ATooltipProps
   ATypography: ATypographyProps
   AView: AViewProps
-
-  // AViews: AViewsProps
+  AViews: AViewsProps
 }
 
 export type PluginOptionDefaults = {
