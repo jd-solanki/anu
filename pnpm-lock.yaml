@@ -79,6 +79,9 @@ importers:
       pnpm:
         specifier: ^8.5.1
         version: 8.5.1
+      resize-observer-polyfill:
+        specifier: ^1.5.1
+        version: 1.5.1
       rimraf:
         specifier: ^5.0.1
         version: 5.0.1
@@ -9635,6 +9638,10 @@ packages:
 
   /requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
+    dev: true
+
+  /resize-observer-polyfill@1.5.1:
+    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
     dev: true
 
   /resolve-alpn@1.2.1:
