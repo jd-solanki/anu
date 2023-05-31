@@ -1,4 +1,5 @@
 import type { Simplify } from 'type-fest'
+import type { StyleValue } from 'vue'
 
 import type { AAlertProps } from '@/components/alert'
 import type { AAvatarProps } from '@/components/avatar'
@@ -22,7 +23,6 @@ import type { AMenuProps } from '@/components/menu'
 import type { ARadioProps } from '@/components/radio'
 import type { ARatingProps } from '@/components/rating'
 import type { ASelectProps } from '@/components/select'
-import type { StyleValue } from 'vue'
 
 // import type { ASpinnerProps } from '@/components/spinner'
 import type { ASwitchProps } from '@/components/switch'

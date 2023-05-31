@@ -21,6 +21,7 @@ export interface PluginOptions {
   registerComponents: boolean
   initialTheme: keyof ConfigThemes
   themes: ConfigThemes
+  aliases: Record<string, any>
   defaults: PartialDeep<PluginOptionDefaults>
 }
 
@@ -61,6 +62,7 @@ const configDefaults: PluginOptions = {
       },
     },
   },
+  aliases: {},
   defaults: {},
 }
 
@@ -76,6 +78,16 @@ export const plugin = {
         app.component(component.name, component)
       }
     }
+
+    console.log(config.aliases)
+
+    // for (const componentName in config.aliases) {
+    //   app.component(key, defineComponent({
+    //     ...config.aliases[componentName],
+    //     name: componentName,
+    //     aliasName: config.aliases[componentName].name,
+    //   }))
+    // }
 
     app.provide(ANU_CONFIG, config)
     app.provide(ANU_DEFAULTS, config.defaults)

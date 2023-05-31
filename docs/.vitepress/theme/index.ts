@@ -1,10 +1,10 @@
 import '@anu-vue/preset-theme-default/dist/style.css'
+import { ABtn, anu } from 'anu-vue'
 import DefaultTheme from 'vitepress/theme'
 import type { App } from 'vue'
 
 import 'uno.css'
 
-import { anu } from 'anu-vue'
 import 'anu-vue/dist/style.css'
 
 import Api from '../../components/Api.vue'
@@ -15,7 +15,11 @@ import './style.css'
 export default {
   ...DefaultTheme,
   enhanceApp({ app }: { app: App }) {
-    app.use(anu)
+    app.use(anu, {
+      aliases: {
+        AppBtn: ABtn,
+      },
+    })
 
     // Register demos as components
     const demos = import.meta.glob('../../components/demos/**/*.vue', { eager: true })
