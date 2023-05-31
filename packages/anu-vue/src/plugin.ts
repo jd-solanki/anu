@@ -1,8 +1,10 @@
 import { defu } from 'defu'
 import type { PartialDeep } from 'type-fest'
 import type { App } from 'vue'
+import { defineComponent } from 'vue'
 import type { PluginOptionDefaults } from './pluginDefaults'
 import { ANU_CONFIG, ANU_DEFAULTS } from '@/symbols'
+import { useDefaults } from '@/composables/useDefaults'
 import { useAnu } from '@/composables/useAnu'
 import * as components from '@/components'
 
@@ -68,7 +70,7 @@ const configDefaults: PluginOptions = {
 
 export const plugin = {
   install(app: App, options: PartialDeep<PluginOptions> = {}) {
-    const config = defu(options, configDefaults)
+    const config: PluginOptions = defu(options, configDefaults)
 
     if (config.registerComponents) {
       for (const prop in components) {
@@ -79,15 +81,22 @@ export const plugin = {
       }
     }
 
-    console.log(config.aliases)
+    for (const aliasComponentName in config.aliases) {
+      const baseComponent = config.aliases[aliasComponentName]
 
-    // for (const componentName in config.aliases) {
-    //   app.component(key, defineComponent({
-    //     ...config.aliases[componentName],
-    //     name: componentName,
-    //     aliasName: config.aliases[componentName].name,
-    //   }))
-    // }
+      app.component(aliasComponentName, defineComponent({
+        ...baseComponent,
+        name: aliasComponentName,
+
+        // TODO: (types) Why we have to use ts-expect-error here?
+        // @ts-expect-error: TS/Vue unable to get types correctly
+        setup(props, ctx) {
+          const { props: modifiedProps, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(props)
+
+          return () => h(baseComponent, { ...modifiedProps, defaultsClass, defaultsStyle, defaultsAttrs }, ctx.slots)
+        },
+      }))
+    }
 
     app.provide(ANU_CONFIG, config)
     app.provide(ANU_DEFAULTS, config.defaults)

@@ -20,8 +20,6 @@ interface ReturnType<Props> {
 export function useDefaults<Props extends Record<string, unknown>>(definitionProps: Props, componentName?: keyof PluginOptionDefaults): ReturnType<Props> {
   const defaults = inject(ANU_DEFAULTS, {})
 
-  // console.log('defaults :>> ', defaults);
-
   const vm = getCurrentInstance()
   const _componentName = (componentName ?? vm?.type.name ?? vm?.type.__name) as keyof PluginOptionDefaults | undefined
 
@@ -49,10 +47,6 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
 
     return { componentProps, otherProps }
   })()
-
-  // console.log('defaultsProps :>> ', defaultsProps);
-  // console.log('subProps :>> ', subProps);
-  // console.log('definitionProps :>> ', toRaw(definitionProps));
 
   // Provide subProps to the nested component
   provide(ANU_DEFAULTS, mergePropsDefaults(defaults, subProps))
