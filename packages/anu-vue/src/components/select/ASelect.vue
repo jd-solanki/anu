@@ -30,6 +30,14 @@ const selectRef = ref<HTMLSelectElement>()
 
 const isOptionsVisible = ref(false)
 
+const selectedValueText = computed(() => {
+  const { modelValue } = props
+  if (modelValue)
+    return modelValue.text ? modelValue.text : modelValue
+  else
+    return undefined
+})
+
 onClickOutside(
   refFloating,
   () => {
@@ -107,7 +115,7 @@ function middleware() {
         ref="selectRef"
         readonly
         class="a-select-input cursor-pointer"
-        :value="modelValue.text ?? modelValue"
+        :value="selectedValueText"
       >
     </template>
   </ABaseInput>
