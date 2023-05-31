@@ -107,7 +107,7 @@ function middleware() {
         ref="selectRef"
         readonly
         class="a-select-input cursor-pointer"
-        :value="modelValue.text ?? modelValue"
+        :value="props.modelValue ? props.modelValue.text ?? props.modelValue : undefined"
       >
     </template>
   </ABaseInput>
