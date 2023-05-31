@@ -1,6 +1,9 @@
-import { afterAll, beforeAll } from 'vitest'
+import { afterAll, beforeAll, vi } from 'vitest'
 import { createApp } from 'vue'
+import ResizeObserver from 'resize-observer-polyfill'
 import { plugin } from '../src/plugin'
+
+vi.stubGlobal('ResizeObserver', ResizeObserver)
 
 beforeAll(() => {
   const app = createApp({})
