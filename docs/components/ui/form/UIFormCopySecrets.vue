@@ -3,7 +3,7 @@ import { useClipboard } from '@vueuse/core'
 import { ref } from 'vue'
 
 // Fetch secret from API
-const mySecret = ref('mySecret')
+const mySecret = ref('7PDyLiPNRu58nhJe2DxK')
 
 const { copy, copied } = useClipboard({ source: mySecret })
 </script>
