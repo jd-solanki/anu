@@ -28,3 +28,14 @@ We are not using `.a-card-spacer` class here because we get spacing between card
 :::
 
 ::::
+
+<!-- 👉 Copy Secrets -->
+::::card Copy Secrets {bordered}
+
+<br>
+
+:::code UIFormCopySecrets
+<<< @/components/ui/form/UIFormCopySecrets.vue
+:::
+
+::::
