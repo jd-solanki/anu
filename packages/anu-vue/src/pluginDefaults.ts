@@ -74,32 +74,12 @@ interface ComponentProps {
 type PluginOptionDefaultsKeys = LiteralUnion<keyof ComponentProps, string>
 
 export type PluginOptionDefaults = {
-  [key in PluginOptionDefaultsKeys]: Simplify<
-    (key extends keyof ComponentProps ? ComponentProps[key] : any)
-
-    /* TODO: (types) We need to enable this (`PluginOptionDefaults`) but this causes type issue if we use defaults while registering plugin
-
-    Try below in /docs/.vitepress/index.ts after enabling `PluginOptionDefaults`
-
-      ```ts
-        app.use(anu, {
-          aliases: {
-            AppBtn: ABtn,
-          },
-          defaults: {
-            AAlert: {
-              color: 'primary',
-            },
-          },
-        })
-      ```
-    */
-    // & PluginOptionDefaults
-    & {
+  [key in keyof ComponentProps]: Simplify<ComponentProps[key]>
+  & PluginOptionDefaults
+  & {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      class: any
-      style: StyleValue
-      attrs: Record<string, unknown>
-    }
-  >
+    class: any
+    style: StyleValue
+    attrs: Record<string, unknown>
+  }
 }

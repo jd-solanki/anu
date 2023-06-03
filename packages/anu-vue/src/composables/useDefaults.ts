@@ -5,7 +5,7 @@ import { ANU_DEFAULTS } from '@/symbols'
 import { pick } from '@/utils/helpers'
 import { objectKeys } from '@/utils/typescripts'
 
-const mergePropsDefaults = deepmergeCustom({
+export const mergePropsDefaults = deepmergeCustom({
   mergeArrays: false,
 })
 
