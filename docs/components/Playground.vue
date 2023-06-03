@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { AConfig } from 'anu-vue'
 import { ref } from 'vue'
 
 const color = ref('primary')
