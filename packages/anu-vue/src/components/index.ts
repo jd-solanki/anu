@@ -7,7 +7,9 @@ export { ABtn } from './btn'
 export { ACard } from './card'
 export { ACheckbox } from './checkbox'
 export { AChip } from './chip'
-export { AConfig } from './config'
+
+// ℹ️ It's not ready yet
+// export { AConfig } from './config'
 export { ADataTable } from './data-table'
 export type { ADataTableItemsFunction, ADataTableItemsFunctionParams, ADataTableProps } from './data-table'
 export { ADialog } from './dialog'

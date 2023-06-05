@@ -24,7 +24,7 @@ export interface PluginOptions {
   initialTheme: keyof ConfigThemes
   themes: ConfigThemes
   aliases: Record<string, any>
-  defaults: PartialDeep<PluginOptionDefaults>
+  propsDefaults: PartialDeep<PluginOptionDefaults>
 }
 
 const configDefaults: PluginOptions = {
@@ -65,7 +65,7 @@ const configDefaults: PluginOptions = {
     },
   },
   aliases: {},
-  defaults: {},
+  propsDefaults: {},
 }
 
 export const plugin = {
@@ -99,7 +99,7 @@ export const plugin = {
     }
 
     app.provide(ANU_CONFIG, config)
-    app.provide(ANU_DEFAULTS, config.defaults)
+    app.provide(ANU_DEFAULTS, config.propsDefaults)
 
     // Initialize Anu instance with config values
     useAnu({

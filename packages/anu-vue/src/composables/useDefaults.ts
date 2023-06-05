@@ -18,7 +18,7 @@ interface ReturnType<Props> {
 }
 
 export function useDefaults<Props extends Record<string, unknown>>(definitionProps: Props, componentName?: keyof PluginOptionDefaults): ReturnType<Props> {
-  const defaults = inject(ANU_DEFAULTS, {})
+  const propsDefaults = inject(ANU_DEFAULTS, {})
 
   const vm = getCurrentInstance()
   const _componentName = (componentName ?? vm?.type.name ?? vm?.type.__name) as keyof PluginOptionDefaults | undefined
@@ -26,7 +26,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
   if (!_componentName)
     throw new Error('Unable to identify the component name. Please define component name or use the `componentName` parameter while using `useDefaults` composable.')
 
-  const { class: defaultsClass, style: defaultsStyle, attrs: defaultsAttrs, ...restProps } = defaults[_componentName] || {}
+  const { class: defaultsClass, style: defaultsStyle, attrs: defaultsAttrs, ...restProps } = propsDefaults[_componentName] || {}
 
   // console.log('restProps :>> ', restProps);
 
@@ -49,7 +49,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
   })()
 
   // Provide subProps to the nested component
-  provide(ANU_DEFAULTS, mergePropsDefaults(defaults, subProps))
+  provide(ANU_DEFAULTS, mergePropsDefaults(propsDefaults, subProps))
 
   const propsRef = computedWithControl(
     () => definitionProps,

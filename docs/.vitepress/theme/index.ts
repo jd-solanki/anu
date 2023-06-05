@@ -15,26 +15,7 @@ import './style.css'
 export default {
   ...DefaultTheme,
   enhanceApp({ app }: { app: App }) {
-    app.use(anu, {
-      defaults: {
-        ABtn: {
-          variant: 'outline',
-          color: 'info',
-        },
-        AAlert: {
-          color: 'success',
-          ABtn: {
-            variant: 'text',
-            color: 'red',
-          },
-        },
-        ACard: {
-          AAlert: {
-            variant: 'outline',
-          },
-        },
-      },
-    })
+    app.use(anu)
 
     // Register demos as components
     const demos = import.meta.glob('../../components/demos/**/*.vue', { eager: true })

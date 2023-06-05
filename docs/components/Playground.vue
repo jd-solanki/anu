@@ -1,36 +1,30 @@
 <script lang="ts" setup>
-import { AConfig } from 'anu-vue'
-import { ref } from 'vue'
-
-const color = ref('primary')
-
-setTimeout(() => {
-  console.log('Updating color...')
-  color.value = 'warning'
-}, 2000)
+const colors = [
+  'primary',
+  'success',
+  'info',
+  'warning',
+  'danger',
+]
 </script>
 
 <template>
-  <div class="m-8">
-    <div
-      class="p-4 rounded-lg"
-      style="background: hsla(var(--a-surface-c),var(--un-bg-opacity,1))"
+  <div class="container mx-auto min-h-screen">
+    <ACard
+      title="Playground"
+      class="m-8"
     >
-      <ACard>
-        <ABtn>Button Before</ABtn>
-        <AAlert>
-          Awesome
-          <ABtn :color="color">
-            Button
-          </ABtn>
-          <AConfig :props="{ ABtn: { color } }">
-            <ABtn>configured</ABtn>
-          </AConfig>
-          <ABtn>Un</ABtn>
-        </AAlert>
-        <ABtn>Button</ABtn>
-      </ACard>
-      <AAlert>Alert outside card</AAlert>
-    </div>
+      <div class="a-card-body flex items-center gap-4">
+        <ABtn
+          v-for="color in colors"
+          :key="color"
+          class="focus:ring-4 transition-shadow transition-ease-both ring-offset-0 ring-[hsla(var(--a-layer-c),.35)]"
+          :color="color"
+        >
+          {{ color }}
+        </ABtn>
+        <AIcon icon="i-bx-home" />
+      </div>
+    </ACard>
   </div>
 </template>
