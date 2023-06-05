@@ -2,15 +2,20 @@
 import type { AListEvents, AListPropItems, aListSlots } from './meta'
 import { aListListItemSlotsWithPrefixMeta, aListProps } from './meta'
 import { AListItem } from '@/components/list-item'
+import { useDefaults } from '@/composables/useDefaults'
 import { calculateSelectionItems, extractItemValueFromItemOption, useSelection } from '@/composables/useSelection'
 
-const props = defineProps(aListProps)
+// SECTION Meta
+const _props = defineProps(aListProps)
 const emit = defineEmits<AListEvents>()
 defineSlots<typeof aListSlots>()
 
 defineOptions({
   name: 'AList',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const { options, select: selectListItem } = useSelection({
   items: calculateSelectionItems(toRef(() => props.items)),
@@ -35,7 +40,12 @@ function handleListItemClick(item: AListPropItems[number]) {
 </script>
 
 <template>
-  <ul class="a-list grid">
+  <ul
+    v-bind="defaultsAttrs"
+    class="a-list grid"
+    :class="defaultsClass"
+    :style="defaultsStyle"
+  >
     <!-- 👉 Slot: before -->
     <li v-if="$slots.before">
       <slot name="before" />

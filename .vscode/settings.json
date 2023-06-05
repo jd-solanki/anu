@@ -83,6 +83,7 @@
   // Extention: Code Spell Checker
   "cSpell.words": [
     "composables",
+    "deepmerge",
     "defu",
     "endregion",
     "globby",
@@ -98,4 +99,5 @@
   // Extension: Volar
   "volar.vueserver.vitePress.processMdFile": true,
   "references.preferredLocation": "peek",
+  "commentAnchors.tagHighlights.enabled": true,
 }

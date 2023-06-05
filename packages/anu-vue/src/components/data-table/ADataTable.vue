@@ -6,6 +6,7 @@ import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTabl
 import { ABtn, AInput, ASelect, ATable } from '@/components'
 import type { ATableProps } from '@/components/table'
 import { aTableProps } from '@/components/table'
+import { useDefaults } from '@/composables/useDefaults'
 import { useSearch } from '@/composables/useSearch'
 import type { typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
@@ -13,8 +14,12 @@ import { objectKeys } from '@/utils/typescripts'
 
 // TODO: Check usage with useDebounceFn. Can we limit the # of req to server?
 
-const props = defineProps(aDataTableProps<Row>())
+// SECTION Meta
+const _props = defineProps(aDataTableProps<Row>())
 const emit = defineEmits<ADataTableEvents>()
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _slots = aDataTableSlots<Row>(
@@ -82,7 +87,7 @@ if (!props.cols.length) {
   // If we have rows via prop => Get columns from first row.
   if (Array.isArray(props.rows) && props.rows.length) {
     // ℹ️ We aren't watching for rows reactivity here
-    // eslint-disable-next-line vue/no-setup-props-destructure
+
     const firstRow = props.rows[0]
 
     if (!firstRow)
@@ -282,10 +287,12 @@ const paginationMeta = computed(() => {
 
 <template>
   <ATable
-    v-bind="_tableProps"
+    v-bind="{ ..._tableProps, ...defaultsAttrs }"
     :cols="cols"
     :rows="_rows"
     class="a-data-table"
+    :style="defaultsStyle"
+    :class="defaultsClass"
     @click:header="handleHeaderClick"
   >
     <!-- 👉 Search -->

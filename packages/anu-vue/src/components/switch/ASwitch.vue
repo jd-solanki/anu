@@ -2,8 +2,10 @@
 import type { ASwitchEvents, ASwitchProps, aSwitchSlots } from './meta'
 import { aSwitchProps } from './meta'
 import { useCheckbox } from '@/composables'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(aSwitchProps)
+// SECTION Meta
+const _props = defineProps(aSwitchProps)
 const emit = defineEmits<ASwitchEvents>()
 
 defineOptions({
@@ -12,6 +14,9 @@ defineOptions({
 })
 
 defineSlots<typeof aSwitchSlots>()
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const attrs = useAttrs()
 
@@ -34,7 +39,9 @@ const dotPosition = computed(() => {
 
 <template>
   <label
+    v-bind="defaultsAttrs"
     :for="elementId"
+    :style="defaultsStyle"
     class="a-switch cursor-pointer rounded-full justify-between items-center"
     :class="[
       $attrs.class,
@@ -42,6 +49,7 @@ const dotPosition = computed(() => {
         ? 'flex'
         : 'inline-flex',
       props.disabled && 'a-switch-disabled pointer-events-none',
+      defaultsClass,
     ]"
   >
 

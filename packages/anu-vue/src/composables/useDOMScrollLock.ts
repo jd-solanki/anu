@@ -25,7 +25,7 @@ export function useDOMScrollLock(modelValue: Ref<boolean>) {
     else {
       const scrollY = windowScrollTop.value
       classes.remove('scroll-lock')
-      window.scrollTo(0, parseInt(scrollY || '0') * -1)
+      window.scrollTo(0, Number.parseInt(scrollY || '0') * -1)
     }
   })
 }

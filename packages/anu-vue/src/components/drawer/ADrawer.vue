@@ -4,9 +4,11 @@ import type { ADrawerEvents } from './meta'
 import { aDrawerProps, aDrawerSlots } from './meta'
 import { ACard } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
+import { useDefaults } from '@/composables/useDefaults'
 import { useTeleport } from '@/composables/useTeleport'
 
-const props = defineProps(aDrawerProps)
+// SECTION Meta
+const _props = defineProps(aDrawerProps)
 const emit = defineEmits<ADrawerEvents>()
 defineSlots<typeof aDrawerSlots>()
 
@@ -14,6 +16,9 @@ defineOptions({
   name: 'ADrawer',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
@@ -60,6 +65,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
     <Transition name="bg">
       <div
         v-show="props.modelValue"
+        v-bind="defaultsAttrs"
         class="a-drawer-wrapper flex fixed inset-0 bg-[hsla(var(--a-backdrop-c),var(--a-backdrop-opacity))]"
         :class="[
           `a-drawer-anchor-${props.anchor}`,
@@ -68,7 +74,9 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
 
           // set drawer to end of flex container of anchor is right or bottom
           ['right', 'bottom'].includes(props.anchor) && 'justify-end',
+          defaultsClass,
         ]"
+        :style="defaultsStyle"
       >
         <Transition
           :duration="30000"

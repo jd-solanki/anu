@@ -26,7 +26,7 @@ export function isObject(obj: unknown): obj is object {
 
 // 👉 IsNumeric
 export function isNumeric(value: unknown): boolean {
-  return (typeof value === 'string' || typeof value === 'number') && value !== '' && !isNaN(Number(value))
+  return (typeof value === 'string' || typeof value === 'number') && value !== '' && !Number.isNaN(Number(value))
 }
 
 // 👉 Remove object keys

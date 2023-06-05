@@ -23,6 +23,7 @@ export const aViewsProps = {
     default: 'fade',
   },
 } as const
+
 export type AViewsProps = ExtractPublicPropTypes<typeof aViewsProps>
 
 // 👉 Slots

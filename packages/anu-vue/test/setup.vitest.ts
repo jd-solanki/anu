@@ -6,11 +6,12 @@ import { plugin } from '../src/plugin'
 vi.stubGlobal('ResizeObserver', ResizeObserver)
 
 beforeAll(() => {
+  // eslint-disable-next-line vue/require-name-property
   const app = createApp({})
   app.use(plugin)
-  global.app = app
+  globalThis.app = app
 })
 
 afterAll(() => {
-  delete global.app
+  delete globalThis.app
 })
