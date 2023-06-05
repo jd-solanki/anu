@@ -1,9 +1,8 @@
+import { objectKeys, objectPick } from '@antfu/utils'
 import { deepmergeCustom } from 'deepmerge-ts'
 import { type StyleValue } from 'vue'
-import type { PluginOptionDefaults } from '@/pluginDefaults'
 import { ANU_DEFAULTS } from '@/symbols'
-import { pick } from '@/utils/helpers'
-import { objectKeys } from '@/utils/typescripts'
+import type { PluginOptionDefaults } from '@/pluginDefaults'
 
 export const mergePropsDefaults = deepmergeCustom({
   mergeArrays: false,
@@ -55,7 +54,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
     () => definitionProps,
     () => {
       const explicitPropsNames = objectKeys(vm?.vnode.props || {}) as unknown as (keyof Props)[]
-      const explicitProps = pick(definitionProps, ...explicitPropsNames)
+      const explicitProps = objectPick(definitionProps, explicitPropsNames)
 
       return mergePropsDefaults(definitionProps, defaultsProps, explicitProps) as Props
     },
