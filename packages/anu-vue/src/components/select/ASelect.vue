@@ -8,8 +8,6 @@ import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { AListPropItems } from '@/components/list'
 import { extractItemValueFromItemOption } from '@/composables/useSelection'
 
-export interface ObjectOption { label: string; value: string | number }
-
 const props = defineProps(aSelectProps)
 const emit = defineEmits<ASelectEvents>()
 const slots = defineSlots<typeof aSelectSlots>()
@@ -146,7 +144,7 @@ function middleware() {
         />
       </template>
       <AList
-        :items="options"
+        :items="props.options"
         :model-value="props.modelValue"
         :emit-object="props.emitObject"
         class="a-select-options-list"
