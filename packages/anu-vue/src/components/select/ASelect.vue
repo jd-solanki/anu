@@ -12,11 +12,21 @@ export interface ObjectOption { label: string; value: string | number }
 
 const props = defineProps(aSelectProps)
 const emit = defineEmits<ASelectEvents>()
-defineSlots<typeof aSelectSlots>()
+const slots = defineSlots<typeof aSelectSlots>()
 
 defineOptions({
   name: 'ASelect',
   inheritAttrs: false,
+})
+
+const cardSlots = computed(() => {
+  const result = {}
+  for (const key in aSelectCardSlots) {
+    if (aSelectCardSlots[key] && slots[key])
+      result[key] = slots[key]
+  }
+
+  return result
 })
 
 // const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
@@ -127,7 +137,7 @@ function middleware() {
     >
       <!-- ℹ️ Recursively pass down slots to child -->
       <template
-        v-for="(_, name) in aSelectCardSlots"
+        v-for="(_, name) in cardSlots"
         #[name]="slotProps"
       >
         <slot
