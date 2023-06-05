@@ -1,7 +1,7 @@
-import type { Transitions } from '@/transitions'
 import type { UseSwipeDirection } from '@vueuse/core'
 import type { LiteralUnion } from 'type-fest'
 import type { ExtractPublicPropTypes } from 'vue'
+import type { Transitions } from '@/transitions'
 
 // ℹ️ Make sure to checkout meta definition rules
 

@@ -20,7 +20,7 @@ export type typeSortBy = string
 export function useSort<T>(data: MaybeRef<T[]>, sortBy: MaybeRef<typeSortBy> | undefined = undefined, isAsc: MaybeRef<boolean> = true): { results: ComputedRef<T[]> | Ref<T[]> } {
   const isDate = (val: unknown) => {
     // @ts-expect-error Date can't be passed to isNaN
-    return val instanceof Date && !isNaN(val)
+    return val instanceof Date && !Number.isNaN(val)
   }
 
   const sortValues = (a: unknown, b: unknown): number => {

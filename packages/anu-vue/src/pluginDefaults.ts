@@ -71,6 +71,7 @@ interface ComponentProps {
   AViews: AViewsProps
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type PluginOptionDefaultsKeys = LiteralUnion<keyof ComponentProps, string>
 
 export type PluginOptionDefaults = {
