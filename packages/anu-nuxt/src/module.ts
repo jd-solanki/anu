@@ -33,6 +33,7 @@ interface PresetThemeOptions {
   style?: 'css' | 'scss'
 }
 
+// TODO: (types) We don't get nested autocompletion for options
 export interface ModuleOptions {
 
   /**
@@ -90,6 +91,11 @@ export interface ModuleOptions {
    * ```
    */
   themes?: PartialDeep<PluginOptions['themes']>
+
+  // TODO: Aliases doesn't work ATM because we JSON.stringify the options.
+  // aliases?: PluginOptions['aliases']
+
+  propsDefaults?: PluginOptions['propsDefaults']
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -154,6 +160,9 @@ export default defineNuxtModule<ModuleOptions>({
     const pluginOptions = {
       initialTheme: opts.initialTheme,
       themes: opts.themes,
+
+      // aliases: opts.aliases,
+      propsDefaults: opts.propsDefaults,
     }
 
     addPluginTemplate({
