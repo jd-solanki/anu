@@ -6,7 +6,7 @@ import type { PluginOptions } from '@/plugin'
 // 👉 Props
 export const aConfigProps = {
   props: {
-    type: Object as PropType<PluginOptions['defaults']>,
+    type: Object as PropType<PluginOptions['propsDefaults']>,
     default: {},
   },
 } as const

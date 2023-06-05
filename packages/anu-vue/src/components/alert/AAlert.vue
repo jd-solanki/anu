@@ -22,7 +22,6 @@ const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_prop
 
 const isAlertVisible = useVModel(props, 'modelValue', emit, { defaultValue: true, passive: true })
 
-// console.log('props.variant :>> ', props.variant);
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(
   toRef(props, 'color'),
