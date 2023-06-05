@@ -52,6 +52,12 @@ You can disable closing dialog on outside click via `persistent` prop.
 
 ::::
 
+<br />
+
+:::tip 📖 You don't need a modal window
+Nice article on [why you don't need a modal window](https://youdontneedamodalwindow.dev/).
+:::
+
 <!-- 👉 API -->
 ## API
 
