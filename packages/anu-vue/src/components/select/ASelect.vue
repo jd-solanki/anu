@@ -8,6 +8,7 @@ import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { AListPropItems } from '@/components/list'
 import { useDefaults } from '@/composables/useDefaults'
 import { extractItemValueFromItemOption } from '@/composables/useSelection'
+import { filterUsedSlots } from '@/utils/reactivity'
 
 // SECTION Meta
 export interface ObjectOption { label: string; value: string | number }
@@ -135,7 +136,7 @@ function middleware() {
     >
       <!-- ℹ️ Recursively pass down slots to child -->
       <template
-        v-for="(_, name) in aSelectCardSlots"
+        v-for="name in filterUsedSlots(aSelectCardSlots)"
         #[name]="slotProps"
       >
         <slot
@@ -144,7 +145,7 @@ function middleware() {
         />
       </template>
       <AList
-        :items="options"
+        :items="props.options"
         :model-value="props.modelValue"
         :emit-object="props.emitObject"
         class="a-select-options-list"
