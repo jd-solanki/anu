@@ -7,24 +7,15 @@ import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { AListPropItems } from '@/components/list'
 import { extractItemValueFromItemOption } from '@/composables/useSelection'
+import { filterUsedSlots } from '@/utils/reactivity'
 
 const props = defineProps(aSelectProps)
 const emit = defineEmits<ASelectEvents>()
-const slots = defineSlots<typeof aSelectSlots>()
+defineSlots<typeof aSelectSlots>()
 
 defineOptions({
   name: 'ASelect',
   inheritAttrs: false,
-})
-
-const cardSlots = computed(() => {
-  const result = {}
-  for (const key in aSelectCardSlots) {
-    if (aSelectCardSlots[key] && slots[key])
-      result[key] = slots[key]
-  }
-
-  return result
 })
 
 // const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
@@ -135,7 +126,7 @@ function middleware() {
     >
       <!-- ℹ️ Recursively pass down slots to child -->
       <template
-        v-for="(_, name) in cardSlots"
+        v-for="name in filterUsedSlots(aSelectCardSlots)"
         #[name]="slotProps"
       >
         <slot
