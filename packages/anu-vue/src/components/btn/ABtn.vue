@@ -2,14 +2,21 @@
 import type { aBtnSlots } from './meta'
 import { aBtnProps } from './meta'
 import { ASpinner } from '@/components/spinner'
+import { useDefaults } from '@/composables/useDefaults'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(aBtnProps)
+// SECTION Meta
+const _props = defineProps(aBtnProps)
+
 defineSlots<typeof aBtnSlots>()
 
 defineOptions({
   name: 'ABtn',
 })
+
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const { getLayerClasses } = useLayer()
 
@@ -22,13 +29,16 @@ const { styles, classes } = getLayerClasses(
 
 <template>
   <button
+    v-bind="defaultsAttrs"
     :tabindex="props.disabled ? -1 : 0"
-    :style="styles"
+    :style="[styles, defaultsStyle]"
+    type="button"
     class="inline-flex whitespace-nowrap justify-center items-center relative"
     :class="[
       props.iconOnly ? 'a-btn-icon-only' : 'a-btn',
       props.disabled && 'opacity-50 pointer-events-none',
       classes,
+      defaultsClass,
     ]"
     :disabled="props.disabled ? true : undefined"
   >

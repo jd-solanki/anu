@@ -2,8 +2,10 @@
 import type { ATextareaEvents, aTextareaSlots } from './meta'
 import { aTextareaBaseInputSlots, aTextareaProps } from './meta'
 import { ABaseInput, aBaseInputProps } from '@/components/base-input'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(aTextareaProps)
+// SECTION Meta
+const _props = defineProps(aTextareaProps)
 const emit = defineEmits<ATextareaEvents>()
 defineSlots<typeof aTextareaSlots>()
 
@@ -11,6 +13,9 @@ defineOptions({
   name: 'ATextarea',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const textareaValue = useVModel(props, 'modelValue', emit, { defaultValue: '', passive: true })
 
@@ -39,9 +44,13 @@ if (props.autoSize) {
   <ABaseInput
     ref="refBaseInput"
     v-bind="{ ..._baseInputProps, class: $attrs.class }"
-    :input-wrapper-classes="['overflow-hidden', props.height, props.inputWrapperClasses]"
+    :style="defaultsStyle"
     class="a-textarea !pointer-events-auto"
-    :class="[props.autoSize && 'a-textarea-auto-size']"
+    :class="[
+      props.autoSize && 'a-textarea-auto-size',
+      defaultsClass,
+    ]"
+    :input-wrapper-classes="['overflow-hidden', props.height, props.inputWrapperClasses]"
     @click:inputWrapper="handleInputWrapperClick"
   >
     <!-- ℹ️ Recursively pass down slots to child -->
@@ -56,7 +65,7 @@ if (props.autoSize) {
     </template>
     <template #default="slotProps">
       <textarea
-        v-bind="{ ...$attrs, ...slotProps }"
+        v-bind="{ ...defaultsAttrs, ...$attrs, ...slotProps }"
         ref="textarea"
         v-model="textareaValue"
         class="a-textarea-textarea bg-transparent resize-none"

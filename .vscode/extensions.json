@@ -14,6 +14,9 @@
         "streetsidesoftware.code-spell-checker",
         "matijao.vue-nuxt-snippets",
         "webhint.vscode-webhint",
-        "johnsoncodehk.vscode-tsconfig-helper"
+        "johnsoncodehk.vscode-tsconfig-helper",
+        "orta.vscode-twoslash-queries",
+        "antfu.smart-clicks",
+        "meganrogge.template-string-converter"
     ]
 }

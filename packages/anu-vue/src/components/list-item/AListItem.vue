@@ -4,15 +4,20 @@ import { aListItemProps } from './meta'
 import { AAvatar } from '@/components/avatar'
 import { ATypography } from '@/components/typography'
 import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { useDefaults } from '@/composables/useDefaults'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(aListItemProps)
+// SECTION Meta
+const _props = defineProps(aListItemProps)
 defineEmits<AListItemEvents>()
 defineSlots<typeof aListItemSlots>()
 
 defineOptions({
   name: 'AListItem',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const { getLayerClasses } = useLayer()
 
@@ -35,13 +40,15 @@ const { styles, classes } = getLayerClasses(
 
 <template>
   <li
-    :style="styles"
+    v-bind="defaultsAttrs"
+    :style="[styles, defaultsStyle]"
     class="a-list-item flex items-center"
     :class="[
       { 'opacity-50 pointer-events-none': props.disabled },
       props.value !== undefined || $attrs.onClick
         ? [...classes, 'cursor-pointer']
         : '',
+      defaultsClass,
     ]"
   >
     <slot :item="props">

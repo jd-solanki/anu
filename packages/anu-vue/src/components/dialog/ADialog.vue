@@ -4,9 +4,11 @@ import type { ADialogEvents } from './meta'
 import { aDialogProps, aDialogSlots } from './meta'
 import { ACard } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
+import { useDefaults } from '@/composables/useDefaults'
 import { useTeleport } from '@/composables/useTeleport'
 
-const props = defineProps(aDialogProps)
+// SECTION Meta
+const _props = defineProps(aDialogProps)
 const emit = defineEmits<ADialogEvents>()
 defineSlots<typeof aDialogSlots>()
 
@@ -14,6 +16,9 @@ defineOptions({
   name: 'ADialog',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
@@ -45,7 +50,9 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
             v-show="props.modelValue"
             ref="refCard"
             class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]"
-            v-bind="{ ...$attrs, ...props }"
+            :class="defaultsClass"
+            :style="defaultsStyle"
+            v-bind="{ ...$attrs, ...props, ...defaultsAttrs }"
           >
             <!-- ℹ️ Recursively pass down slots to child -->
             <template

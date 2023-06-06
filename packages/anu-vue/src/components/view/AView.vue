@@ -1,13 +1,17 @@
 <script lang="ts" setup>
 import { aViewProps } from './meta'
 import { ViewGroupModel } from '@/components/views/symbol'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(aViewProps)
+// SECTION Meta
+const _props = defineProps(aViewProps)
 
 defineOptions({
   name: 'AView',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
+// !SECTION
 // Inject `ActiveViewSymbol` so we can update active view
 const groupModel = inject(ViewGroupModel)
 
@@ -20,7 +24,10 @@ if (!groupModel)
   <!-- TODO: Fix type -->
   <div
     v-show="(groupModel.value as any).value === props.value"
+    v-bind="defaultsAttrs"
     class="a-view w-full transform"
+    :class="defaultsClass"
+    :style="defaultsStyle"
   >
     <slot />
   </div>

@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import type { ARadioEvents, aRadioSlots } from './meta'
 import { aRadioProps } from './meta'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(aRadioProps)
+// SECTION Meta
+const _props = defineProps(aRadioProps)
 const emit = defineEmits<ARadioEvents>()
 defineSlots<typeof aRadioSlots>()
 
@@ -10,6 +12,9 @@ defineOptions({
   name: 'ARadio',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const attrs = useAttrs()
 
@@ -21,14 +26,16 @@ const isChecked = computed(() => props.modelValue === attrs.value)
   <label
     :for="elementId"
     class="inline-flex items-center cursor-pointer"
+    :style="defaultsStyle"
     :class="[
       props.disabled && 'a-radio-disabled pointer-events-none',
       $attrs.class,
+      defaultsClass,
     ]"
   >
 
     <input
-      v-bind="{ ...$attrs, class: props.inputClasses }"
+      v-bind="{ ...defaultsAttrs, ...$attrs, class: props.inputClasses }"
       :id="elementId"
       :checked="isChecked"
       class="hidden"

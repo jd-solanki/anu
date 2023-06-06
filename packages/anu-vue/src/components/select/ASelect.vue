@@ -6,10 +6,14 @@ import { ACard, AList } from '@/components'
 import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { AListPropItems } from '@/components/list'
+import { useDefaults } from '@/composables/useDefaults'
 import { extractItemValueFromItemOption } from '@/composables/useSelection'
 import { filterUsedSlots } from '@/utils/reactivity'
 
-const props = defineProps(aSelectProps)
+// SECTION Meta
+export interface ObjectOption { label: string; value: string | number }
+
+const _props = defineProps(aSelectProps)
 const emit = defineEmits<ASelectEvents>()
 defineSlots<typeof aSelectSlots>()
 
@@ -17,6 +21,9 @@ defineOptions({
   name: 'ASelect',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 // const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
 const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as any)
@@ -82,10 +89,13 @@ function middleware() {
       ..._baseInputProps,
       inputWrapperClasses: ['!cursor-pointer', _baseInputProps.inputWrapperClasses],
       class: $attrs.class,
+      ...defaultsAttrs,
     }"
     ref="refReference"
     append-inner-icon="i-bx-chevron-down"
     class="a-select"
+    :class="defaultsClass"
+    :style="defaultsStyle"
     :input-wrapper-attrs="{
       onClick: handleInputClick,
     }"

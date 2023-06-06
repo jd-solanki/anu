@@ -2,14 +2,19 @@
 import type { AInputEvents } from './meta'
 import { aInputProps, aTextareaBaseInputSlots } from './meta'
 import { ABaseInput, aBaseInputProps } from '@/components/base-input'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(aInputProps)
+// SECTION Meta
+const _props = defineProps(aInputProps)
 defineEmits<AInputEvents>()
 
 defineOptions({
   name: 'AInput',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 // const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof AInputProps>)
 const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as any)
@@ -26,9 +31,10 @@ function handleInputWrapperClick() {
 
 <template>
   <ABaseInput
-    v-bind="{ ..._baseInputProps, class: $attrs.class }"
-    :class="[isInputTypeFile && 'a-input-type-file']"
+    v-bind="{ ..._baseInputProps, ...defaultsAttrs, class: $attrs.class }"
+    :class="[defaultsClass, isInputTypeFile && 'a-input-type-file']"
     class="a-input"
+    :style="defaultsStyle"
     @click:inputWrapper="handleInputWrapperClick"
   >
     <!-- ℹ️ Recursively pass down slots to child -->

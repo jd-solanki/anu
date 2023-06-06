@@ -3,8 +3,10 @@ import type { ACheckboxEvents, ACheckboxProps, aCheckboxSlots } from './meta'
 import { aCheckboxProps } from './meta'
 import { useCheckbox } from '@/composables'
 import type { ConfigurableValue } from '@/composables/useConfigurable'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(aCheckboxProps)
+// SECTION Meta
+const _props = defineProps(aCheckboxProps)
 const emit = defineEmits<ACheckboxEvents>()
 defineSlots<typeof aCheckboxSlots>()
 
@@ -12,7 +14,9 @@ defineOptions({
   name: 'ACheckbox',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
+// !SECTION
 const attrs = useAttrs()
 
 const _checkedValue = computed<Exclude<ACheckboxProps['checkedValue'], undefined>>(() => props.checkedValue || attrs.value as Exclude<ACheckboxProps['checkedValue'], undefined> || true)
@@ -35,10 +39,12 @@ const _icon = computed<ConfigurableValue>(() => {
     :class="[
       $attrs.class,
       props.disabled && 'a-checkbox-disabled pointer-events-none',
+      defaultsClass,
     ]"
+    :style="defaultsStyle"
   >
     <input
-      v-bind="{ ...$attrs, class: props.inputClasses }"
+      v-bind="{ ...$attrs, class: props.inputClasses, ...defaultsAttrs }"
       :id="elementId"
       :checked="isChecked"
       class="hidden"

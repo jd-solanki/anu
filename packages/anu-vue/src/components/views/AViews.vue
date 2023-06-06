@@ -5,15 +5,20 @@ import type { AViewsEvents } from './meta'
 import { aViewsProps } from './meta'
 import { ActiveViewSymbol, ViewGroupModel } from './symbol'
 import { numRange } from '@/utils/helpers'
+import { useDefaults } from '@/composables/useDefaults'
 import { useSelection } from '@/composables'
 import { AView } from '@/components/view'
 
-const props = defineProps(aViewsProps)
+// SECTION Meta
+const _props = defineProps(aViewsProps)
 const emit = defineEmits<AViewsEvents>()
 
 defineOptions({
   name: 'AViews',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const slots = useSlots()
 
@@ -47,8 +52,11 @@ watch(direction, value => {
 
 <template>
   <div
+    v-bind="defaultsAttrs"
     ref="refViews"
     class="a-views overflow-hidden"
+    :class="defaultsClass"
+    :style="defaultsStyle"
   >
     <TransitionGroup
       tag="div"
