@@ -32,6 +32,7 @@ const { styles, classes } = getLayerClasses(
     v-bind="defaultsAttrs"
     :tabindex="props.disabled ? -1 : 0"
     :style="[styles, defaultsStyle]"
+    type="button"
     class="inline-flex whitespace-nowrap justify-center items-center relative"
     :class="[
       props.iconOnly ? 'a-btn-icon-only' : 'a-btn',
