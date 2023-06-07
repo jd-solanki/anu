@@ -83,7 +83,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     // 👉 Card
     'a-card': 'em:spacing:rounded-lg shadow-lg em:[&_>_.a-loader_.a-spinner]-w-7',
     'a-card-typography-wrapper': 'a-card-padding next:pt-0 em:spacing:not-last:pb-4',
-    'a-card-padding': 'em:spacing:p-5',
+    'a-card-padding': 'em:spacing:p-$a-card-padding',
     'a-card-spacer': 'not-last-children-mb-$a-card-spacer',
     'a-card-body': 'a-card-padding',
 

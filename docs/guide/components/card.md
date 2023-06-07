@@ -25,7 +25,11 @@ If you pass `text` prop directly on `ACard` then `ACard` will add `text-sm` clas
 This way if you want 16px font for your card text instead of 14px you can omit adding `text-sm` to `p` tag;
 :::
 
-:::tip
+:::tip Adjusting card body padding
+You can adjust the padding to applied by `a-card-body` using `--a-card-padding` CSS variable.
+:::
+
+:::tip Adjusting card spacer margin
 You can customize the applied `margin-bottom` by configuring `--a-card-spacer` CSS variable.
 :::
 
