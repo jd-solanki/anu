@@ -105,6 +105,12 @@ If you are passing array of object that doesn't has `value` property to the `tab
 :::tip DX Improved 🚀
 Comparing other frameworks, You don't have to write a separate component for each tab. You can just use dynamic slot to render the tab content.
 :::
+
+:::details Dynamic Transition
+If you don't specify any transition `ATabs` component will assign dynamic transition based on visited tab. For example, if you visit any tab next to the active tab, `view-next` transition will trigger or else `view-previous`.
+
+If you want to use custom transition, you can use `transition` prop to override the dynamic transition.
+:::
 ::::
 
 :::::

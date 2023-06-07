@@ -24,7 +24,6 @@ const tabs = [
       <ATabs
         class="a-tabs-bordered"
         :tabs="tabs"
-        transition="view-next"
       >
         <!-- 👉 Account -->
         <template #account>

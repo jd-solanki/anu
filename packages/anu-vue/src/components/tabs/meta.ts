@@ -1,7 +1,6 @@
-import type { LiteralUnion } from 'type-fest'
 import type { ExtractPublicPropTypes } from 'vue'
 import type { ATabProps } from '@/components/tab'
-import type { Transitions } from '@/transitions'
+import { transition as transitionProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 
@@ -46,10 +45,7 @@ export const aTabsProps = {
   /**
    * Change tab transition
    */
-  transition: {
-    type: String as PropType<LiteralUnion<Transitions, string>>,
-    default: 'view-next',
-  },
+  transition: transitionProp,
 } as const
 export type ATabsProps = ExtractPublicPropTypes<typeof aTabsProps>
 

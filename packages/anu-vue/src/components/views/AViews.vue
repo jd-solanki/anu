@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue'
-import { h } from 'vue'
+import { TransitionGroup, h } from 'vue'
 import type { AViewsEvents } from './meta'
 import { aViewsProps } from './meta'
 import { ActiveViewSymbol, ViewGroupModel } from './symbol'
@@ -58,11 +58,11 @@ watch(direction, value => {
     :class="defaultsClass"
     :style="defaultsStyle"
   >
-    <TransitionGroup
-      tag="div"
-      :class="`${props.transition}-group`"
+    <Component
+      :is="props.transition ? TransitionGroup : 'div'"
+      :class="props.transition && `${props.transition}-group`"
       class="a-views-wrapper relative"
-      :name="props.transition"
+      v-bind="props.transition && { tag: 'div', name: props.transition || undefined }"
     >
       <slot>
         <template
@@ -74,6 +74,6 @@ watch(direction, value => {
           </slot>
         </template>
       </slot>
-    </TransitionGroup>
+    </Component>
   </div>
 </template>

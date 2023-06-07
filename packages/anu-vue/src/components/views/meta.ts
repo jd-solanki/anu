@@ -1,7 +1,6 @@
 import type { UseSwipeDirection } from '@vueuse/core'
-import type { LiteralUnion } from 'type-fest'
 import type { ExtractPublicPropTypes } from 'vue'
-import type { Transitions } from '@/transitions'
+import { transition as transitionProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 
@@ -19,7 +18,7 @@ export const aViewsProps = {
    * Transition to use
    */
   transition: {
-    type: String as PropType<LiteralUnion<Transitions, string>>,
+    ...transitionProp,
     default: 'fade',
   },
 } as const

@@ -70,6 +70,10 @@ const { options, select: selectTab, value: activeTab } = useSelection({
 provide(ActiveViewSymbol, activeTab)
 provide(ATabBindingsSymbol, refTabs)
 
+// 👉 Tabs dynamic transition
+const tabsDynamicTransition = ref<'view-next' | 'view-previous'>()
+const activeTabIndex = ref(-1)
+
 // Flag to check if tabs are overflowed (For showing arrows)
 const areTabsOverflowed = ref<boolean>()
 const shouldShowArrows = computed(() => !props.vertical && areTabsOverflowed.value)
@@ -149,6 +153,15 @@ function handleTabClick(tab: ATabProps | string, index: number) {
 
 const { trigger: triggerActiveTabWatcher } = watchTriggerable(activeTab, val => {
   const index = options.value.findIndex(option => option.value === val)
+
+  const previousActiveTabIndex = activeTabIndex.value
+  activeTabIndex.value = index
+
+  // ℹ️ Calculate dynamic transition for tabs
+  if (activeTabIndex.value > previousActiveTabIndex)
+    tabsDynamicTransition.value = 'view-next'
+  else
+    tabsDynamicTransition.value = 'view-previous'
 
   // Set active tab ref to set active indicator styles
   refActiveTab.value = refTabs.value[index]
@@ -336,7 +349,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
       <!-- 👉 Slot: Default => For rendering `AViews` -->
       <AViews
         v-model="activeTab"
-        :transition="transition"
+        :transition="props.transition === undefined ? tabsDynamicTransition : props.transition"
         @swipe="handleTabsContentSwipe"
       >
         <AView
