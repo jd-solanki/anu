@@ -1,9 +1,8 @@
 import type { Middleware, Placement, Strategy } from '@floating-ui/vue'
 import { flip, shift } from '@floating-ui/vue'
-import type { LiteralUnion } from 'type-fest'
 import type { ExtractPublicPropTypes, Ref } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
-import type { Transitions } from '@/transitions'
+import { transition as transitionProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 
@@ -69,7 +68,7 @@ export const aFloatingProps = {
    * Transition to add while showing/hiding floating element
    */
   transition: {
-    type: [String, null] as PropType<LiteralUnion<Transitions, string> | null>,
+    ...transitionProp,
     default: 'slide-y',
   },
 
