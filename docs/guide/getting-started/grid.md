@@ -78,6 +78,11 @@ However, with our grid, you can achieve the same by adding `justify-items-stretc
 
 :::
 
+<!-- 👉 Bootstrap Grid -->
+:::card Bootstrap Grid
+If you aren't comfortable with CSS grid based grid then you can use Bootstrap like grid via [`unocss-preset-grid`](https://github.com/StatuAgency/unocss-preset-grid) preset.
+:::
+
 <!-- 👉 Learning CSS Grid -->
 :::card Learning CSS Grid
 
