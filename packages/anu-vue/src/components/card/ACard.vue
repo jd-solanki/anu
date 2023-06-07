@@ -7,6 +7,7 @@ import { isTypographyUsed } from '@/components/typography/utils'
 import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useDefaults } from '@/composables/useDefaults'
 import { useLayer } from '@/composables/useLayer'
+import { filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
 const _props = defineProps(aCardProps)
@@ -77,7 +78,7 @@ else
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="(_, name) in aCardTypographySlots"
+          v-for="name in filterUsedSlots(aCardTypographySlots)"
           #[name]="slotProps"
         >
           <slot

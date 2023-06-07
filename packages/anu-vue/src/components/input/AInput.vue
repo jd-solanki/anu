@@ -3,6 +3,7 @@ import type { AInputEvents } from './meta'
 import { aInputProps, aTextareaBaseInputSlots } from './meta'
 import { ABaseInput, aBaseInputProps } from '@/components/base-input'
 import { useDefaults } from '@/composables/useDefaults'
+import { filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
 const _props = defineProps(aInputProps)
@@ -39,7 +40,7 @@ function handleInputWrapperClick() {
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="(_, name) in aTextareaBaseInputSlots"
+      v-for="name in filterUsedSlots(aTextareaBaseInputSlots)"
       #[name]="slotProps"
     >
       <slot

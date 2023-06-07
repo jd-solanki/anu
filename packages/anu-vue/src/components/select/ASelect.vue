@@ -8,7 +8,7 @@ import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
 import type { AListPropItems } from '@/components/list'
 import { useDefaults } from '@/composables/useDefaults'
 import { extractItemValueFromItemOption } from '@/composables/useSelection'
-import { filterUsedSlots } from '@/utils/reactivity'
+import { filterUsedRenamedSlots, filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
 export interface ObjectOption { label: string; value: string | number }
@@ -102,7 +102,7 @@ function middleware() {
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="(_, name) in aSelectBaseInputSlots"
+      v-for="name in filterUsedSlots(aSelectBaseInputSlots)"
       #[name]="slotProps"
     >
       <slot
@@ -154,7 +154,7 @@ function middleware() {
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in aSelectListSlotsWithPrefixMeta"
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in filterUsedRenamedSlots(aSelectListSlotsWithPrefixMeta)"
           #[originalSlotName]="slotProps"
         >
           <slot

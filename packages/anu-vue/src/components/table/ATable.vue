@@ -5,6 +5,7 @@ import type { ACardProps } from '@/components/card'
 import { aCardProps } from '@/components/card'
 import { useDefaults } from '@/composables/useDefaults'
 import { objectKeys } from '@/utils/typescripts'
+import { filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
 const _props = defineProps(aTableProps<Row>())
@@ -121,7 +122,7 @@ const _cols = computed<ATablePropColumn<Row>[]>(() => {
 
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="(_, name) in aTableCardSlots"
+      v-for="name in filterUsedSlots(aTableCardSlots)"
       #[name]="slotProps"
     >
       <slot

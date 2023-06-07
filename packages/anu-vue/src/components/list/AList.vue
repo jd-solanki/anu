@@ -4,6 +4,7 @@ import { aListListItemSlotsWithPrefixMeta, aListProps } from './meta'
 import { AListItem } from '@/components/list-item'
 import { useDefaults } from '@/composables/useDefaults'
 import { calculateSelectionItems, extractItemValueFromItemOption, useSelection } from '@/composables/useSelection'
+import { filterUsedRenamedSlots } from '@/utils/vue'
 
 // SECTION Meta
 const _props = defineProps(aListProps)
@@ -73,7 +74,7 @@ function handleListItemClick(item: AListPropItems[number]) {
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in aListListItemSlotsWithPrefixMeta"
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in filterUsedRenamedSlots(aListListItemSlotsWithPrefixMeta)"
           #[originalSlotName]="slotProps"
         >
           <slot

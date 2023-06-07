@@ -6,6 +6,7 @@ import { ACard } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useDefaults } from '@/composables/useDefaults'
 import { useTeleport } from '@/composables/useTeleport'
+import { filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
 const _props = defineProps(aDrawerProps)
@@ -92,7 +93,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
           >
             <!-- ℹ️ Recursively pass down slots to child -->
             <template
-              v-for="(_, name) in aDrawerSlots"
+              v-for="name in filterUsedSlots(aDrawerSlots)"
               #[name]="slotProps"
             >
               <slot

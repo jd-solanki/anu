@@ -7,6 +7,7 @@ import { isTypographyUsed } from '@/components/typography/utils'
 import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useDefaults } from '@/composables/useDefaults'
+import { filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
 const _props = defineProps(aLoaderProps)
@@ -74,7 +75,7 @@ if (props.fullPage) {
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="(_, name) in aLoaderTypographySlots"
+          v-for="name in filterUsedSlots(aLoaderTypographySlots)"
           #[name]="slotProps"
         >
           <slot

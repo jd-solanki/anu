@@ -11,6 +11,7 @@ import { useSearch } from '@/composables/useSearch'
 import type { typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
 import { objectKeys } from '@/utils/typescripts'
+import { filterUsedSlots } from '@/utils/vue'
 
 // TODO: Check usage with useDebounceFn. Can we limit the # of req to server?
 
@@ -372,8 +373,9 @@ const paginationMeta = computed(() => {
 
     <!-- TODO: If you are using child component props in component => Filter them out -->
     <!-- ℹ️ Recursively pass down slots to child -->
+    <!-- TODO: (types) Don't use type assertion -->
     <template
-      v-for="(_, name) in _aDataTableTableSlots"
+      v-for="name in filterUsedSlots(_aDataTableTableSlots as any)"
       #[name]="slotProps"
     >
       <slot
