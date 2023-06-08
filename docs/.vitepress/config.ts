@@ -63,6 +63,7 @@ export default defineConfig({
             { text: 'Spacing', link: '/guide/features/spacing' },
             { text: 'Theme', link: '/guide/features/theme' },
             { text: 'Transitions', link: '/guide/features/transitions' },
+            { text: 'Icons', link: '/guide/features/icons' },
           ],
         },
         {
