@@ -138,13 +138,16 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.unocss.presets = [
       ...(nuxt.options.unocss.presets || []), // Don't override existing presets.
       presetUno(),
-      presetIcons(
-        typeof nuxt.options.unocss.icons === 'boolean'
-          ? {
+
+      // Icons Preset
+      // ℹ️ `nuxt.options.unocss.icons` can also be `undefined`
+      nuxt.options.unocss.icons !== false && presetIcons(
+        typeof nuxt.options.unocss.icons === 'object'
+          ? nuxt.options.unocss.icons
+          : {
               scale: 1.2,
               extraProperties: presetIconExtraProperties,
-            }
-          : nuxt.options.unocss.icons,
+            },
       ),
       presetAnu(),
       enableDefaultPreset && presetThemeDefault(),
