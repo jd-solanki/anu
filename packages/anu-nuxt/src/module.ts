@@ -158,13 +158,15 @@ export default defineNuxtModule<ModuleOptions>({
       Inject preset icons extra properties into icons preset unocss options if icons preset isn't disabled.
     */
     if (nuxt.options.unocss.icons !== false) {
-      presetIcons(
-        typeof nuxt.options.unocss.icons === 'object'
-          ? nuxt.options.unocss.icons
-          : {
-              scale: 1.2,
-              extraProperties: presetIconExtraProperties,
-            },
+      nuxt.options.unocss.presets.push(
+        presetIcons(
+          typeof nuxt.options.unocss.icons === 'object'
+            ? nuxt.options.unocss.icons
+            : {
+                scale: 1.2,
+                extraProperties: presetIconExtraProperties,
+              },
+        ),
       )
     }
 
