@@ -9,6 +9,7 @@ import 'anu-vue/dist/style.css'
 
 import Api from '../../components/Api.vue'
 import Demo from '../../components/Demo.vue'
+import LinkGrid from '../../components/LinkGrid.vue'
 import { extractFileNameFromPath } from '../../utils'
 import './style.css'
 
@@ -35,6 +36,7 @@ export default {
     /* eslint-disable vue/multi-word-component-names */
     app.component('Demo', Demo)
     app.component('Api', Api)
+    app.component('LinkGrid', LinkGrid)
     /* eslint-enable */
   },
 }

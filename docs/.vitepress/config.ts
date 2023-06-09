@@ -54,6 +54,14 @@ export default defineConfig({
           ],
         },
         {
+          text: '🛠️&nbsp;&nbsp; Integrations',
+          collapsed: true,
+          items: [
+            { text: 'Vue', link: '/guide/getting-started/integrations/vue' },
+            { text: 'Nuxt', link: '/guide/getting-started/integrations/nuxt' },
+          ],
+        },
+        {
           text: '✨&nbsp;&nbsp; Features',
           collapsed: false,
           items: [
