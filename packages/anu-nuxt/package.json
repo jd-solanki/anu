@@ -1,12 +1,10 @@
 {
   "name": "@anu-vue/nuxt",
   "version": "0.14.0",
-  "description": "Nuxt 3 Anu UI library",
-  "author": "Mehmet - @productdevbook <hi@productdevbook.com>",
+  "description": "anu-vue - Nuxt 3 Module",
   "license": "MIT",
   "private": false,
-  "funding": "https://github.com/sponsors/productdevbook",
-  "homepage": "https://github.com/jd-solanki/anu/tree/main/packages/anu-nuxt#readme",
+  "homepage": "https://anu-vue.netlify.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jd-solanki/anu.git",
