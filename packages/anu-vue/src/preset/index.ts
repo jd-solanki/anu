@@ -1,13 +1,15 @@
 import type { Preset } from '@unocss/core'
 import { defu } from 'defu'
 
-export const defaultThemeColors = ['primary', 'success', 'info', 'warning', 'danger']
+export const anuDefaultThemeColors = ['primary', 'success', 'info', 'warning', 'danger']
 
 export const presetDefaults = {
-  colors: defaultThemeColors,
+  colors: anuDefaultThemeColors,
 }
 
-export function presetAnu(options: Partial<typeof presetDefaults> = {}): Preset {
+export type PresetAnuOptions = typeof presetDefaults
+
+export function presetAnu(options: Partial<PresetAnuOptions> = {}): Preset {
   const _options: typeof presetDefaults = defu(options, presetDefaults)
 
   return {

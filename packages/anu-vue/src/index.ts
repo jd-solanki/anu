@@ -14,7 +14,8 @@ export { plugin as anu } from './plugin'
 export type { PluginOptions, ThemeColors, ThemeOptions as ThemeOption } from './plugin'
 
 // Preset
-export { defaultThemeColors, presetAnu } from './preset'
+export { anuDefaultThemeColors as defaultThemeColors, presetAnu } from './preset'
+export type { PresetAnuOptions } from './preset'
 export { presetIconExtraProperties } from './preset/icons'
 
 // Other
