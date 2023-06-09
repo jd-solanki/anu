@@ -3,7 +3,7 @@ import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { variants } from './variants'
 
-interface PresetOptions {
+export interface PresetOptions {
   shortcutOverrides?: Exclude<Preset['shortcuts'], undefined>
 }
 
