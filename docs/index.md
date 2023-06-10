@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/getting-started/installation
+      link: /guide/getting-started/
     - theme: alt
       text: Why Anu?
       link: /guide/getting-started/
