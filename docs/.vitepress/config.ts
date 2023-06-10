@@ -131,6 +131,10 @@ export default defineConfig({
               link: '/ui/introduction',
             },
             {
+              text: 'User',
+              link: '/ui/user',
+            },
+            {
               text: 'Cards',
               link: '/ui/cards',
             },
