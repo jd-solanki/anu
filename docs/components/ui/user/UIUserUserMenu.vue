@@ -31,6 +31,7 @@ const items = [
       class="cursor-pointer"
     >
     <AMenu>
+      <!-- ℹ️ `model-value="null"` will be all list items clickable -->
       <AList
         :model-value="null"
         :items="items"

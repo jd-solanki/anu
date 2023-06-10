@@ -18,3 +18,13 @@
 :::
 
 ::::
+
+::::card Colored Actions Menu {bordered}
+
+<br>
+
+:::code UIMiscColoredActionsMenu
+<<< @/components/ui/misc/UIMiscColoredActionsMenu.vue
+:::
+
+::::

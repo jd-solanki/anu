@@ -31,7 +31,7 @@ else
 
 // useLayer
 const { styles, classes } = getLayerClasses(
-  computed(() => props.isActive ? (props.color || 'primary') : undefined),
+  computed(() => (props.color ?? props.isActive) ? (props.color || 'primary') : undefined),
   computed(() => props.isActive ? (props.variant || 'light') : 'text'),
   toRef(props, 'states'),
   { statesClass: 'states:10' },
@@ -59,7 +59,7 @@ const { styles, classes } = getLayerClasses(
       >
         <i
           v-if="props.icon && !props.iconAppend"
-          class="text-xl"
+          class="text-lg"
           :class="props.icon"
           @click="$emit('click:icon')"
         />

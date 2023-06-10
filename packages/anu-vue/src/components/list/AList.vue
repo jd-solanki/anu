@@ -64,7 +64,7 @@ function handleListItemClick(item: AListPropItems[number]) {
         v-bind="typeof item === 'string' ? {} : item"
         :avatar-append="props.avatarAppend"
         :icon-append="props.iconAppend"
-        :color="props.color"
+        :color="typeof item === 'object' ? item.color : props.color"
         :variant="props.variant"
         :states="props.states"
         :is-active="options[index]?.isSelected as unknown as boolean"
