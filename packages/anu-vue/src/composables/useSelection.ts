@@ -21,6 +21,8 @@ export interface ReturnValue<Item, Multi extends boolean> {
   options: Ref<OptionsOut<Item>[]>
 }
 
+const isEqual = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b)
+
 export function useSelection<const Item, Multi extends boolean, InitialValue extends Item>(params: Params<Item, Multi, InitialValue>): ReturnValue<Item, Multi> {
   const { items, multi = false, initialValue = undefined } = params
 
@@ -32,15 +34,18 @@ export function useSelection<const Item, Multi extends boolean, InitialValue ext
 
     // _initialValue.value,
 
-    (_items.value as Item[]).find(i => {
-      // ℹ️ If initial value is object compare using `JSON.stringify` else just use `===`
-      return (isObject(_initialValue.value) && isObject(i))
-        ? JSON.stringify(_initialValue.value) === JSON.stringify(i)
-        : _initialValue.value === i
-    }),
+    // (_items.value as Item[]).find(i => {
+    //   // ℹ️ If initial value is object compare using `JSON.stringify` else just use `===`
+    //   return (isObject(_initialValue.value) && isObject(i))
+    //     ? JSON.stringify(_initialValue.value) === JSON.stringify(i)
+    //     : _initialValue.value === i
+    // }),
+    (_items.value as Item[]).find(i => isEqual(_initialValue.value, i)),
   ) as ReturnValue<Item, Multi>['value']
 
   const select = (option: Item) => {
+    console.log('selecting...')
+
     // If multiple selection is enabled
     if (_multi.value) {
       // If value is not set (Means previously multi was false) => Initialize new set and assign it to value
@@ -68,7 +73,7 @@ export function useSelection<const Item, Multi extends boolean, InitialValue ext
     value: item,
     isSelected: _multi.value
       ? Array.isArray(_val.value) ? _val.value.includes(item) : false
-      : item === _val.value,
+      : isEqual(item, _val.value),
   }))) as ReturnValue<Item, Multi>['options']
 
   // Watch for external changes to initialValue aka modelValue

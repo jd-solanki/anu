@@ -27,7 +27,10 @@ const { options, select: selectListItem } = useSelection({
 // const isActive = computed(() => options.value[itemIndex].isSelected)
 function handleListItemClick(item: AListPropItems[number]) {
   const _val = props.emitObject ? item : extractItemValueFromItemOption(item)
-  selectListItem(_val)
+
+  // ℹ️ As we are updating the modelValue, we don't need to call `selectListItem` because it will be called by `useSelection`'s initial value watcher
+  // selectListItem(_val)
+
   emit('update:modelValue', _val)
 
   /*
