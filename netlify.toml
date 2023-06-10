@@ -21,4 +21,4 @@
 [build.environment]
   NPM_FLAGS = "--version"
   NODE_OPTIONS = "--max_old_space_size=4096"
-  NODE_VERSION = "18"
+  NODE_VERSION = "lts/*"
