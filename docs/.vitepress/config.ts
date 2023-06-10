@@ -131,6 +131,10 @@ export default defineConfig({
               link: '/ui/introduction',
             },
             {
+              text: 'Clones',
+              link: '/ui/clones',
+            },
+            {
               text: 'User',
               link: '/ui/user',
             },
