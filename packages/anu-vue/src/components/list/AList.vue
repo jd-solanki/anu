@@ -18,7 +18,7 @@ const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_prop
 
 // !SECTION
 
-const { options, select: selectListItem } = useSelection({
+const { options } = useSelection({
   items: calculateSelectionItems(toRef(() => props.items)),
   multi: toRef(() => props.multi),
   initialValue: toRef(() => props.modelValue),
