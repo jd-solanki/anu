@@ -1,23 +1,23 @@
 <script lang="ts" setup>
 const items = [
   {
-    title: 'Profile',
+    text: 'Profile',
     icon: 'i-bx-user',
   },
   {
-    title: 'Settings',
+    text: 'Settings',
     icon: 'i-bx-cog',
   },
   {
-    title: 'Billing',
+    text: 'Billing',
     icon: 'i-bx-credit-card',
   },
   {
-    title: 'Activity Log',
+    text: 'Activity Log',
     icon: 'i-bx-pulse',
   },
   {
-    title: 'Logout',
+    text: 'Logout',
     icon: 'i-bx-log-out',
   },
 ]
