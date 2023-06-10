@@ -68,7 +68,7 @@ function handleListItemClick(item: AListPropItems[number]) {
         :variant="props.variant"
         :states="props.states"
         :is-active="options[index]?.isSelected as unknown as boolean"
-        :value="props.modelValue !== undefined ? options[index] : undefined"
+        :value="props.modelValue !== undefined || (typeof item === 'object' ? item.value : undefined)"
         v-on="{
           click: props['onClick:item'] || (props.modelValue !== undefined)
             ? () => { handleListItemClick(item) }

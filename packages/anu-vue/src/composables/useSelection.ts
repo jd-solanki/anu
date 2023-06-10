@@ -44,8 +44,6 @@ export function useSelection<const Item, Multi extends boolean, InitialValue ext
   ) as ReturnValue<Item, Multi>['value']
 
   const select = (option: Item) => {
-    console.log('selecting...')
-
     // If multiple selection is enabled
     if (_multi.value) {
       // If value is not set (Means previously multi was false) => Initialize new set and assign it to value
@@ -88,6 +86,12 @@ export function useSelection<const Item, Multi extends boolean, InitialValue ext
   }
 }
 
+export function extractItemValueFromItemOption<T>(item: T): T extends { value: infer V } ? V : T {
+  return isObject(item) && 'value' in item
+    ? item.value
+    : item as any
+}
+
 export function calculateSelectionItems<T>(items: MaybeRefOrGetter<T[]>) {
   return computed(() => {
     const _items = toRef(items)
@@ -95,18 +99,6 @@ export function calculateSelectionItems<T>(items: MaybeRefOrGetter<T[]>) {
     if (_items.value.length === 0)
       return []
 
-    const firstItem = _items.value[0]
-    if (isObject(firstItem)) {
-      if ('value' in firstItem)
-        return _items.value.map(item => (item as { value: T }).value)
-    }
-
-    return _items.value
+    return _items.value.map(extractItemValueFromItemOption)
   })
-}
-
-export function extractItemValueFromItemOption<T>(item: T): T extends { value: infer V } ? V : T {
-  return isObject(item)
-    ? ('value' in item ? item.value : item)
-    : item as any
 }

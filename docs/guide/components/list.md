@@ -35,6 +35,44 @@ When you override the list item via CSS variable, it's up to you to handle `--a-
 For in library example you can check `.a-list-items-pill` class styles.
 :::
 
+:::details Make list items clickable
+If you want to make list item clickable (have cursor pointer), You can pass `value` property other than `undefined`.
+
+```ts{2}
+const items = [
+  { text: 'Donut jujubes', value: null }, // value other than `undefined`
+  { text: 'Sesame snaps' },
+  { text: 'I love jelly' },
+  { text: 'Cake gummi' },
+]
+```
+
+With above items, first item will be clickable (have cursor pointer) and rest of the items will have default pointer.
+
+In case if you want to make all the items clickable without adding `value` property to each item, you can use `:model-value="null"` prop to `AList`.
+
+```vue{13}
+<script lang="ts" setup>
+const items = [
+  { text: 'Donut jujubes' },
+  { text: 'Sesame snaps' },
+  { text: 'I love jelly' },
+  { text: 'Cake gummi' },
+]
+</script>
+
+<template>
+  <ACard>
+    <AList
+      :model-value="null"
+      :items="items"
+    />
+  </ACard>
+</template>
+```
+
+:::
+
 ::::
 
 :::::
@@ -83,8 +121,6 @@ Just like `avatar-append`, you can also use `icon-append` to render the action b
 :::::card `v-model` Support {bordered}
 
 `AList` also support `v-model`. Use any value other than `undefined` to enable the `v-model` support.
-
-If you use `items` prop on `AList` and don't provide `value` property to each list item, `AList` will emit list item's index as selected value.
 
 If you are using `AListItem` in default slot of `AList` you can use `handleListItemClick` slot prop function to select the item value. `handleListItemClick` accepts option item as parameter.
 
