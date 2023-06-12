@@ -1,6 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
 import { defu } from 'defu'
-import type { ComponentObjectPropsOptions } from 'vue'
+import type { ComponentObjectPropsOptions, ExtractPublicPropTypes } from 'vue'
 import { ref, unref, watch } from 'vue'
 import { isThemeColor } from '@/composables/useColor'
 import type { ColorProp } from '@/composables/useProps'
@@ -8,14 +8,29 @@ import { color } from '@/composables/useProps'
 import { useTypographyColor } from '@/composables/useTypographyColor'
 import { colord } from '@/utils/colord'
 
-export interface LayerProps {
-  color: ColorProp
-  variant: 'fill' | 'outline' | 'light' | 'text'
-  states: boolean
-}
+export type LayerVariant = 'fill' | 'outline' | 'light' | 'text'
 
-// Thanks: https://youtu.be/a_m7jxrTlaw
-// type LooseAutocomplete<T extends string> = T | Omit<string, T>
+export const aLayerProps = {
+  /**
+   * Layer color
+   */
+  color,
+
+  /**
+   * Layer variant
+   */
+  variant: {
+    type: String as PropType<LayerVariant>,
+    default: 'text',
+  },
+
+  /**
+   * Interaction states like hover & active
+   */
+  states: Boolean,
+} as const
+
+export type ALayerProps = ExtractPublicPropTypes<typeof aLayerProps>
 
 // TODO: Use `useColor` composable to removed the color calculation
 export function useProps(propOverrides?: Partial<ComponentObjectPropsOptions>) {
@@ -130,7 +145,7 @@ export function useLayer() {
         classes.push('border-width-1 border-solid border-current')
     }
     else if (propColor) {
-      const _colord = colord(propColor as string)
+      const _colord = colord(propColor)
 
       styles.push({ '--a-layer-c': _colord.toHslValue() })
 

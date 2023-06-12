@@ -1,34 +1,27 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
-import { ABaseInput, baseInputProps } from '@/components/base-input'
+import type { ATextareaEvents, aTextareaSlots } from './meta'
+import { aTextareaBaseInputSlots, aTextareaProps } from './meta'
+import { ABaseInput, aBaseInputProps } from '@/components/base-input'
+import { useDefaults } from '@/composables/useDefaults'
+import { filterUsedSlots } from '@/utils/vue'
 
-const props = defineProps(defu({
-  modelValue: String,
-
-  /**
-   * Textarea height. Provide valid CSS height class with `!` prefixed.
-   */
-  height: String,
-
-  /**
-   * Automatically update the height of a textarea depending on the content.
-   */
-  autoSize: Boolean,
-}, baseInputProps))
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+// SECTION Meta
+const _props = defineProps(aTextareaProps)
+const emit = defineEmits<ATextareaEvents>()
+defineSlots<typeof aTextareaSlots>()
 
 defineOptions({
   name: 'ATextarea',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const textareaValue = useVModel(props, 'modelValue', emit, { defaultValue: '', passive: true })
 
-const _baseInputProps = reactivePick(props, Object.keys(baseInputProps) as Array<keyof typeof baseInputProps>)
+// const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as Array<keyof ABaseInputProps>)
+const _baseInputProps = reactivePick(props, Object.keys(aBaseInputProps) as any)
 
 const textarea = ref<HTMLTextAreaElement>()
 
@@ -52,25 +45,28 @@ if (props.autoSize) {
   <ABaseInput
     ref="refBaseInput"
     v-bind="{ ..._baseInputProps, class: $attrs.class }"
-    :input-wrapper-classes="['overflow-hidden', props.height, props.inputWrapperClasses]"
+    :style="defaultsStyle"
     class="a-textarea !pointer-events-auto"
-    :class="[props.autoSize && 'a-textarea-auto-size']"
+    :class="[
+      props.autoSize && 'a-textarea-auto-size',
+      defaultsClass,
+    ]"
+    :input-wrapper-classes="['overflow-hidden', props.height, props.inputWrapperClasses]"
     @click:inputWrapper="handleInputWrapperClick"
   >
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+      v-for="name in filterUsedSlots(aTextareaBaseInputSlots)"
       #[name]="slotProps"
     >
       <slot
-        v-if="name !== 'default'"
         :name="name"
-        v-bind="slotProps || {}"
+        v-bind="slotProps"
       />
     </template>
     <template #default="slotProps">
       <textarea
-        v-bind="{ ...$attrs, ...slotProps }"
+        v-bind="{ ...defaultsAttrs, ...$attrs, ...slotProps }"
         ref="textarea"
         v-model="textareaValue"
         class="a-textarea-textarea bg-transparent resize-none"

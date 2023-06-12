@@ -7,7 +7,7 @@ const tabs = ref([
   { title: 'Settings', icon: 'i-bx-cog' },
 ])
 
-const activeTab = ref(0)
+const activeTab = ref(2)
 </script>
 
 <template>

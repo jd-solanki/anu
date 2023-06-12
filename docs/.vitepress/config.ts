@@ -1,5 +1,5 @@
-import Container from 'markdown-it-container'
 import { fileURLToPath } from 'node:url'
+import Container from 'markdown-it-container'
 import Unocss from 'unocss/vite'
 import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
@@ -24,10 +24,12 @@ export default defineConfig({
   title: 'Anu',
   description: 'DX focused utility based vue component library',
   head: [
-    ['link', { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap', rel: 'stylesheet' }],
-    ['link', { href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap', rel: 'stylesheet' }],
+    ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap' }],
+    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap' }],
   ],
   themeConfig: {
+    logo: '/logo.svg',
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2022-present JD Solanki',
@@ -47,7 +49,16 @@ export default defineConfig({
             { text: 'Installation', link: '/guide/getting-started/installation' },
             { text: 'Customization', link: '/guide/getting-started/customization' },
             { text: 'Grid', link: '/guide/getting-started/grid' },
+            { text: 'FAQ', link: '/guide/getting-started/faq' },
             { text: 'Edge Releases', link: '/guide/getting-started/edge-releases' },
+          ],
+        },
+        {
+          text: '🛠️&nbsp;&nbsp; Integrations',
+          collapsed: true,
+          items: [
+            { text: 'Vue', link: '/guide/getting-started/integrations/vue' },
+            { text: 'Nuxt', link: '/guide/getting-started/integrations/nuxt' },
           ],
         },
         {
@@ -60,6 +71,7 @@ export default defineConfig({
             { text: 'Spacing', link: '/guide/features/spacing' },
             { text: 'Theme', link: '/guide/features/theme' },
             { text: 'Transitions', link: '/guide/features/transitions' },
+            { text: 'Icons', link: '/guide/features/icons' },
           ],
         },
         {
@@ -105,7 +117,7 @@ export default defineConfig({
             // { text: 'useSearch', link: '/guide/composables/useSearch' },
             // { text: 'useSort', link: '/guide/composables/useSort' },
             { text: 'useAnu', link: '/guide/composables/useAnu' },
-            { text: 'useGroupModel', link: '/guide/composables/useGroupModel' },
+            { text: 'useSelection', link: '/guide/composables/useSelection' },
             { text: 'useIndeterminateCheckbox', link: '/guide/composables/useIndeterminateCheckbox' },
           ],
         },
@@ -117,6 +129,14 @@ export default defineConfig({
             {
               text: 'Introduction',
               link: '/ui/introduction',
+            },
+            {
+              text: 'Clones',
+              link: '/ui/clones',
+            },
+            {
+              text: 'User',
+              link: '/ui/user',
             },
             {
               text: 'Cards',

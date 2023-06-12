@@ -1,42 +1,24 @@
 <script lang="ts" setup>
-import type { UseSwipeDirection } from '@vueuse/core'
-import type { PropType, VNode } from 'vue'
-import { h } from 'vue'
+import type { VNode } from 'vue'
+import { TransitionGroup, h } from 'vue'
+import type { AViewsEvents } from './meta'
+import { aViewsProps } from './meta'
 import { ActiveViewSymbol, ViewGroupModel } from './symbol'
+import { numRange } from '@/utils/helpers'
+import { useDefaults } from '@/composables/useDefaults'
+import { useSelection } from '@/composables'
 import { AView } from '@/components/view'
-import { useGroupModel } from '@/composables'
-import type { Transitions } from '@/transitions'
-import type { LooseAutocomplete } from '@/utils/typescripts'
 
-const props = defineProps({
-  /**
-   * Active view value
-   */
-  modelValue: {
-    type: null,
-    default: 0,
-  },
-
-  /**
-   * Transition to use
-   */
-  transition: {
-    type: String as PropType<LooseAutocomplete<Transitions>>,
-    default: 'fade',
-  },
-})
-
-const emit = defineEmits<{
-
-  /**
-   * Emitted when the view is swiped
-   */
-  (e: 'swipe', direction: UseSwipeDirection): void
-}>()
+// SECTION Meta
+const _props = defineProps(aViewsProps)
+const emit = defineEmits<AViewsEvents>()
 
 defineOptions({
   name: 'AViews',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const slots = useSlots()
 
@@ -49,8 +31,8 @@ if (slots.default)
 const isValuePropUsedByView = childViews.some(vnode => vnode.props && vnode.props.value)
 
 const activeTab = ref(0)
-const groupModel = useGroupModel({
-  options: isValuePropUsedByView ? childViews.map(vnode => vnode.props && vnode.props.value) : childViews.length,
+const groupModel = useSelection({
+  items: isValuePropUsedByView ? childViews.map(vnode => vnode.props && vnode.props.value) : numRange(childViews.length),
 })
 groupModel.select(props.modelValue)
 watch(() => props.modelValue, value => groupModel.select(value))
@@ -70,14 +52,17 @@ watch(direction, value => {
 
 <template>
   <div
+    v-bind="defaultsAttrs"
     ref="refViews"
     class="a-views overflow-hidden"
+    :class="defaultsClass"
+    :style="defaultsStyle"
   >
-    <TransitionGroup
-      tag="div"
-      :class="`${props.transition}-group`"
+    <Component
+      :is="props.transition ? TransitionGroup : 'div'"
+      :class="props.transition && `${props.transition}-group`"
       class="a-views-wrapper relative"
-      :name="props.transition as string"
+      v-bind="props.transition && { tag: 'div', name: props.transition || undefined }"
     >
       <slot>
         <template
@@ -89,6 +74,6 @@ watch(direction, value => {
           </slot>
         </template>
       </slot>
-    </TransitionGroup>
+    </Component>
   </div>
 </template>

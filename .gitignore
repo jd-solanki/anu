@@ -4,5 +4,6 @@ dist
 
 # General
 .DS_Store
+.idea/
 
 packages/anu-vue/component-meta

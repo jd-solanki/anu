@@ -1,30 +1,26 @@
 <script lang="ts" setup>
-import type { ExtractPropTypes } from 'vue'
-import type { SwitchProps } from './props'
-import { switchProps } from './props'
+import type { ASwitchEvents, ASwitchProps, aSwitchSlots } from './meta'
+import { aSwitchProps } from './meta'
 import { useCheckbox } from '@/composables'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(switchProps)
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+// SECTION Meta
+const _props = defineProps(aSwitchProps)
+const emit = defineEmits<ASwitchEvents>()
 
 defineOptions({
   name: 'ASwitch',
   inheritAttrs: false,
 })
 
-defineSlots<{
+defineSlots<typeof aSwitchSlots>()
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-  /**
-   * Default slot for rendering switch label. If default slot is used `label` prop will be discarded.
-   */
-  default: {}
-}>()
+// !SECTION
 
 const attrs = useAttrs()
 
-const _onValue = computed<Exclude<SwitchProps['onValue'], undefined>>(() => props.onValue || attrs.value as Exclude<SwitchProps['onValue'], undefined> || true)
+const _onValue = computed<Exclude<ASwitchProps['onValue'], undefined>>(() => props.onValue || attrs.value as Exclude<ASwitchProps['onValue'], undefined> || true)
 const { isChecked, onChange } = useCheckbox(
   toRef(props, 'modelValue'),
   emit,
@@ -43,7 +39,9 @@ const dotPosition = computed(() => {
 
 <template>
   <label
+    v-bind="defaultsAttrs"
     :for="elementId"
+    :style="defaultsStyle"
     class="a-switch cursor-pointer rounded-full justify-between items-center"
     :class="[
       $attrs.class,
@@ -51,6 +49,7 @@ const dotPosition = computed(() => {
         ? 'flex'
         : 'inline-flex',
       props.disabled && 'a-switch-disabled pointer-events-none',
+      defaultsClass,
     ]"
   >
 

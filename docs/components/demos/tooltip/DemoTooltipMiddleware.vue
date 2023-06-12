@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const middleware = (referenceEl: HTMLElement, floatingEl: HTMLElement) => {
+import type { AFloatingMiddlewareFunc } from 'anu-vue'
+
+const middleware: AFloatingMiddlewareFunc = (referenceEl, floatingEl) => {
   // console.log('referenceEl :>> ', referenceEl)
   // console.log('floatingEl :>> ', floatingEl)
 

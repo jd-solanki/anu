@@ -1,24 +1,31 @@
 <script lang="ts" setup>
 import type { UseSwipeDirection } from '@vueuse/core'
-import type { TabsProps } from './props'
-import { tabsProps } from './props'
-import { TabBindingsSymbol } from './symbol'
-import type { TabProps } from '@/components/tab'
+import type { ATabsEvents } from './meta'
+import { aTabsProps } from './meta'
+import { ATabBindingsSymbol } from './symbol'
+import type { ATabProps } from '@/components/tab'
 import { ATab } from '@/components/tab'
 import { AView } from '@/components/view'
 import { AViews } from '@/components/views'
 import { ActiveViewSymbol } from '@/components/views/symbol'
-import { useGroupModel } from '@/composables'
+import { useSelection } from '@/composables'
+import { useDefaults } from '@/composables/useDefaults'
+import { numRange } from '@/utils/helpers'
 
-const props = defineProps(tabsProps)
+// import { aTabsSlots } from './meta';
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: TabsProps['modelValue']): void
-}>()
+// SECTION Meta
+const _props = defineProps(aTabsProps)
+const emit = defineEmits<ATabsEvents>()
+
+// defineSlots<typeof aTabsSlots>()
 
 defineOptions({
   name: 'ATabs',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 // DOM refs
 const refTabsWrapper = ref<HTMLElement>()
@@ -43,20 +50,29 @@ const groupModelOptions = computed(() => {
   }
 
   else {
-    if (firstTab.value)
-      return props.tabs.map(tab => (tab as TabProps).value)
+    if (firstTab?.value)
+      return props.tabs.map(tab => (tab as ATabProps).value)
 
-    return props.tabs.length
+    return numRange(props.tabs.length)
   }
 })
 
-const { options, select: selectTab, value: activeTab } = useGroupModel({
-  options: groupModelOptions.value,
+const { options, select: selectTab, value: activeTab } = useSelection({
+  items: groupModelOptions.value,
+  initialValue: toRef(() => {
+    const initialVal = props.modelValue || groupModelOptions.value[0]
+
+    return initialVal.value ?? initialVal
+  }),
 })
 
 // ℹ️ Inject active tab so we don't have to use `v-model` on `ATabs` and `AViews`
 provide(ActiveViewSymbol, activeTab)
-provide(TabBindingsSymbol, refTabs)
+provide(ATabBindingsSymbol, refTabs)
+
+// 👉 Tabs dynamic transition
+const tabsDynamicTransition = ref<'view-next' | 'view-previous'>()
+const activeTabIndex = ref(-1)
 
 // Flag to check if tabs are overflowed (For showing arrows)
 const areTabsOverflowed = ref<boolean>()
@@ -129,31 +145,48 @@ function calculateActiveIndicatorStyle() {
   }
 }
 
-function handleTabClick(tab: TabProps | string, index: number) {
-  const value = options.value[index].value
+function handleTabClick(tab: ATabProps | string, index: number) {
+  const value = options.value[index]?.value
   selectTab(value)
   emit('update:modelValue', value)
+}
+
+const { trigger: triggerActiveTabWatcher } = watchTriggerable(activeTab, val => {
+  const index = options.value.findIndex(option => option.value === val)
+
+  const previousActiveTabIndex = activeTabIndex.value
+  activeTabIndex.value = index
+
+  // ℹ️ Calculate dynamic transition for tabs
+  if (activeTabIndex.value > previousActiveTabIndex)
+    tabsDynamicTransition.value = 'view-next'
+  else
+    tabsDynamicTransition.value = 'view-previous'
 
   // Set active tab ref to set active indicator styles
   refActiveTab.value = refTabs.value[index]
 
-  refActiveTab.value.$el.scrollIntoView({
+  refActiveTab.value?.$el.scrollIntoView({
     behavior: 'smooth',
     block: 'nearest',
     inline: 'nearest',
   })
   calculateActiveIndicatorStyle()
-}
-
-onMounted(calculateActiveIndicatorStyle)
-
-// ℹ️ useGroupModel doesn't support initial value yet so we have to do it manually
-onMounted(() => {
-  if (props.modelValue)
-    handleTabClick(props.tabs[props.modelValue], props.modelValue)
-  else
-    handleTabClick(props.tabs[0], 0)
 })
+
+onMounted(triggerActiveTabWatcher)
+
+// ℹ️ useSelection doesn't support initial value yet so we have to do it manually
+// onMounted(() => {
+//   if (props.modelValue) {
+//     const tabToSelect = props.tabs[props.modelValue]
+//     tabToSelect && handleTabClick(tabToSelect, props.modelValue)
+//   }
+//   else {
+//     const tabToSelect = props.tabs[0]
+//     tabToSelect && handleTabClick(tabToSelect, 0)
+//   }
+// })
 
 // Arrow navigation & Scroll snapping
 const scrollSnapAlign = refAutoReset<'start' | 'end' | 'center' | undefined>(undefined, 1500)
@@ -219,7 +252,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
       const nextTabIndex = index + 1
       if (nextTabIndex < options.value.length) {
         nextTabFound = true
-        handleTabClick(props.tabs[nextTabIndex], nextTabIndex)
+        handleTabClick(props.tabs[nextTabIndex] as string | ATabProps, nextTabIndex)
       }
     }
 
@@ -227,7 +260,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
       const prevTabIndex = index - 1
       if (prevTabIndex >= 0) {
         nextTabFound = true
-        handleTabClick(props.tabs[prevTabIndex], prevTabIndex)
+        handleTabClick(props.tabs[prevTabIndex] as string | ATabProps, prevTabIndex)
       }
     }
   })
@@ -238,10 +271,13 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
 
 <template>
   <div
+    v-bind="defaultsAttrs"
+    :style="defaultsStyle"
     class="a-tabs"
     :class="[
       props.vertical ? 'a-tabs-vertical' : 'a-tabs-horizontal',
       shouldShowArrows && 'a-tabs-with-arrows',
+      defaultsClass,
     ]"
   >
     <div class="a-tabs-header relative">
@@ -275,7 +311,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
             ref="refTabs"
             v-bind="typeof tab === 'string' ? { title: tab } : tab"
             :class="[
-              options[i].isSelected && 'a-tab-active',
+              options[i]?.isSelected && 'a-tab-active',
               tabJustifyClasses.tabClasses,
             ]"
             :stacked="props.stackedTabs"
@@ -313,7 +349,7 @@ const handleTabsContentSwipe = useDebounceFn((direction: UseSwipeDirection) => {
       <!-- 👉 Slot: Default => For rendering `AViews` -->
       <AViews
         v-model="activeTab"
-        :transition="transition"
+        :transition="props.transition === undefined ? tabsDynamicTransition : props.transition"
         @swipe="handleTabsContentSwipe"
       >
         <AView

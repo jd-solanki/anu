@@ -1,2 +1,2 @@
 // Export tab binding symbol
-export const TabBindingsSymbol = Symbol('tabBindings')
+export const ATabBindingsSymbol = Symbol('aTabBindings')

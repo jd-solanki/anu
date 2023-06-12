@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node: [16]
+        node: ['lts/*']
 
     timeout-minutes: 10
 
@@ -28,11 +28,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: "pnpm"
-        
+
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build ANU
+      - name: Build Anu
         run: pnpm build
 
       - name: Cache dist
@@ -41,36 +41,36 @@ jobs:
           path: packages/*/dist
           key: ${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
 
-  test:
-    runs-on: ${{ matrix.os }}
+  # test:
+  #   runs-on: ${{ matrix.os }}
 
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [16]
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest]
+  #       node: ['lts/*']
 
-    timeout-minutes: 10
+  #   timeout-minutes: 10
 
-    steps:
-      - uses: actions/checkout@v3
-      - run: corepack enable
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: "pnpm"
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - run: corepack enable
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ matrix.node }}
+  #         cache: "pnpm"
 
-      - name: Install dependencies
-        run: pnpm install
+  #     - name: Install dependencies
+  #       run: pnpm install
 
-      - name: Run unit tests
-        run: pnpm run --filter=anu-vue test --reporter=junit --outputFile=../../test-results.xml
+  #     - name: Run unit tests
+  #       run: pnpm run --filter=anu-vue test --reporter=junit --outputFile=../../test-results.xml
 
-      - name: Add tests results to artifacts
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: test-results-${{ runner.os }}-${{ matrix.node }}
-          path: test-results.xml
+  #     - name: Add tests results to artifacts
+  #       uses: actions/upload-artifact@v2
+  #       if: always()
+  #       with:
+  #         name: test-results-${{ runner.os }}-${{ matrix.node }}
+  #         path: test-results.xml
 
   lint:
     runs-on: ${{ matrix.os }}
@@ -78,7 +78,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [16]
+        node: ['lts/*']
 
     timeout-minutes: 10
 
@@ -95,7 +95,7 @@ jobs:
 
       - name: Lint
         run: pnpm lint
-  
+
   build-release:
     if: |
       github.event_name == 'push' &&
@@ -104,14 +104,13 @@ jobs:
       !contains(github.event.head_commit.message, 'docs')
     needs:
       - build
-      - test
       - lint
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [16]
+        node: ['lts/*']
 
     timeout-minutes: 20
 

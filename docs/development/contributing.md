@@ -89,6 +89,13 @@ If you have Prettier installed in your editor, we recommend you disable it when 
 
 - Anu provides preset named "Theme Default" where all appearance related classes should be written. Idea is someone can create his own preset to totally customize the look & feel of Anu.
 - For structural & functional styles, you better write them in component itself.
+- If you are creating new component please make sure to follow the pattern we used in other components. Additionally, Make sure to use `as const` for slots like below:
+
+```ts{3}
+export const aTabsSlots = {
+  default: (_: { name: any }) => null as any,
+} as const
+```
 
 ### Optional
 

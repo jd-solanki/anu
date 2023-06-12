@@ -7,7 +7,7 @@ Anu's grid uses [CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/C
 
 UnoCSS provides various utility classes for creating CSS grid layout.
 
-For creating row, you need `grid`, `gap-4` & `place-items-start` classes. Anu's default theme preset provides `grid-row` [shortcut](https://github.com/unocss/unocss#shortcuts) for adding these classes.
+For creating row, you need `grid`, `gap-4` & `place-items-start` classes. Anu's default theme preset provides `grid-row` [shortcut](https://unocss.dev/config/shortcuts) for adding these classes.
 
 For columns you can use utility classes according to your column needs.
 
@@ -76,6 +76,11 @@ However, with our grid, you can achieve the same by adding `justify-items-stretc
 | xl         | 1280px        | `@media (min-width: 1280px) { ... }` |
 | 2xl        | 1536px        | `@media (min-width: 1536px) { ... }` |
 
+:::
+
+<!-- 👉 Bootstrap Grid -->
+:::card Bootstrap Grid
+If you aren't comfortable with CSS grid based grid then you can use Bootstrap like grid via [`unocss-preset-grid`](https://github.com/StatuAgency/unocss-preset-grid) preset.
 :::
 
 <!-- 👉 Learning CSS Grid -->

@@ -224,6 +224,11 @@
 /* ==========================
 👉 Home page
 ========================== */
+.VPImage.image-src {
+  width: 270px;
+  height: auto;
+}
+
 html:not(.dark) .VPContent.is-home {
   background: hsl(var(--a-surface-c));
 }
@@ -264,4 +269,10 @@ h2[id="api"] {
 .language-vue span[style="color:#FF5555;font-style:italic;text-decoration:underline;"] {
   color: #8BE9FD !important;
   text-decoration: none !important;
+}
+
+/* Fix code snippet overlaps on floating element (menu, select, etc) */
+.vp-doc .line-numbers-wrapper:not(:where(.vp-raw *)),
+.vp-doc [class*=language-] pre:not(:where(.vp-raw *)) {
+  z-index: 0;
 }

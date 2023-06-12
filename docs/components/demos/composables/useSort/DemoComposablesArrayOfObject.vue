@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useSort } from 'anu-vue'
-import { ref } from 'vue'
+import { useSort } from 'anu-vue';
+import { ref } from 'vue';
 
 const data = [
   {
@@ -96,15 +96,13 @@ const { results } = useSort(data, sortBy, isAsc)
 
 <template>
   <ASelect
-    v-slot="{ attrs }"
     v-model="sortBy"
     :hint="`value: ${sortBy}`"
     label="Sort by"
   >
     <li
       v-for="op in sortByOptions"
-      v-bind="attrs"
-      :key="op"
+      :key="JSON.stringify(op)"
       @click="sortBy = op"
     >
       {{ JSON.stringify(op) || typeof op }}

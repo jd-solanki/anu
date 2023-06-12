@@ -1,31 +1,26 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
-import { ACard, cardProps } from '@/components/card'
-import { onClickSameTarget } from '@/composables/onClickSameTarget'
+import type { ADialogEvents } from './meta'
+import { aDialogProps, aDialogSlots } from './meta'
+import { ACard } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
-import { defuProps } from '@/composables/useProps'
+import { useDefaults } from '@/composables/useDefaults'
 import { useTeleport } from '@/composables/useTeleport'
+import { onClickSameTarget } from '@/composables/onClickSameTarget'
+import { filterUsedSlots } from '@/utils/vue'
 
-const props = defineProps(defuProps({
-  /**
-   * Show/Hide menu base on v-model value
-   */
-  modelValue: Boolean,
-
-  /**
-   * Persistence of dialog when clicked outside of reference element
-   */
-  persistent: Boolean,
-}, cardProps))
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
+// SECTION Meta
+const _props = defineProps(aDialogProps)
+const emit = defineEmits<ADialogEvents>()
+defineSlots<typeof aDialogSlots>()
 
 defineOptions({
   name: 'ADialog',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
@@ -57,16 +52,18 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
           <ACard
             v-show="props.modelValue"
             class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]"
-            v-bind="{ ...$attrs, ...props }"
+            :class="defaultsClass"
+            :style="defaultsStyle"
+            v-bind="{ ...$attrs, ...props, ...defaultsAttrs }"
           >
             <!-- ℹ️ Recursively pass down slots to child -->
             <template
-              v-for="(_, name) in $slots"
+              v-for="name in filterUsedSlots(aDialogSlots)"
               #[name]="slotProps"
             >
               <slot
                 :name="name"
-                v-bind="slotProps || {}"
+                v-bind="slotProps"
               />
             </template>
           </ACard>

@@ -100,3 +100,7 @@ If you like this simple customization don't forget to give a **star on Github**.
 </a>
 
 ::::
+
+:::info
+Don't forget to checkout [theme](/guide/features/theme.md) documentation to learn more about theme customization.
+:::

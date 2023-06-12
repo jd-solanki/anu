@@ -1,85 +1,19 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
+import type { ARatingEvents } from './meta'
+import { aRatingProps } from './meta'
 import { useColor } from '@/composables'
-import { color as colorProp, disabled as disabledProp, readonly as readonlyProp } from '@/composables/useProps'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps({
-  /**
-   * Rating color
-   */
-  color: defu({ default: 'warning' }, colorProp),
-
-  /**
-   * Bind v-model value to rating
-   */
-  modelValue: Number,
-
-  /**
-   * Sets amount of rating items
-   */
-  length: {
-    type: [Number, String],
-    default: 5,
-  },
-
-  /**
-   * Allows the award of half a point
-   */
-  halve: Boolean,
-
-  /**
-   * Sets empty icon
-   */
-  emptyIcon: {
-    type: String,
-    default: 'i-bx:star',
-  },
-
-  /**
-   * Sets half-filled icon
-   */
-  halfIcon: {
-    type: String,
-    default: 'i-bx:bxs-star-half',
-  },
-
-  /**
-   * Sets filled icon
-   */
-  fullIcon: {
-    type: String,
-    default: 'i-bx:bxs-star',
-  },
-
-  /**
-   * Allows to see visual changes of value on hover
-   */
-  noHoverHint: Boolean,
-
-  /**
-   * Animate icon on hover
-   */
-  animate: Boolean,
-
-  /**
-   * Make rating component readonly
-   */
-  readonly: readonlyProp,
-
-  /**
-   * Disable rating selection
-   */
-  disabled: disabledProp,
-})
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+// SECTION Meta
+const _props = defineProps(aRatingProps)
+const emit = defineEmits<ARatingEvents>()
 
 defineOptions({
   name: 'ARating',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const { styles } = useColor(toRef(props, 'color'), 'rating-color')
 
@@ -128,12 +62,14 @@ function onMouseLeave() {
 
 <template>
   <div
-    :style="styles"
+    v-bind="defaultsAttrs"
+    :style="[styles, defaultsStyle]"
     class="a-rating flex"
     :class="[
       (props.animate && !props.readonly && !props.disabled) && 'a-rating-animated',
       props.readonly && 'a-rating-readonly pointer-events-none',
       props.disabled && 'a-rating-disabled pointer-events-none',
+      defaultsClass,
     ]"
   >
     <i

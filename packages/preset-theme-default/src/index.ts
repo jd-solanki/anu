@@ -3,7 +3,7 @@ import { rules } from './rules'
 import { shortcuts } from './shortcuts'
 import { variants } from './variants'
 
-interface PresetOptions {
+export interface PresetOptions {
   shortcutOverrides?: Exclude<Preset['shortcuts'], undefined>
 }
 
@@ -28,7 +28,7 @@ export function presetThemeDefault(options: PresetOptions = {}): Preset {
       ? shortcuts
       : Array.isArray(options.shortcutOverrides)
         ? [...options.shortcutOverrides, ...shortcuts]
-        : [...Object.entries(options.shortcutOverrides), ...shortcuts],
+        : [...shortcuts, ...Object.entries(options.shortcutOverrides)],
     variants,
   }
 }

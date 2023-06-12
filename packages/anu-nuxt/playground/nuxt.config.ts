@@ -1,6 +1,6 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
-import anu from '..'
+import anu from '../src/module'
 
 export default defineNuxtConfig({
   modules: [anu, '@unocss/nuxt', '@nuxt/devtools'],

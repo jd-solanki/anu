@@ -1,22 +1,27 @@
 <script lang="ts" setup>
-import { baseInputProps } from './props'
-import type { baseInputSlots } from './slots'
+import type { ABaseInputEvents, aBaseInputSlots } from './meta'
+import { aBaseInputProps } from './meta'
 import { ALoader } from '@/components/loader'
 import { useConfigurable } from '@/composables/useConfigurable'
+import { useDefaults } from '@/composables/useDefaults'
 import TransitionExpand from '@/transitions/TransitionExpand.vue'
 
-// TODO: Provide a way to attach classes to root element
-const props = defineProps(baseInputProps)
+// SECTION Meta
 
-defineEmits<{
-  (e: 'click:inputWrapper'): void
-}>()
+// TODO: Provide a way to attach classes to root element
+const _props = defineProps(aBaseInputProps)
+
+defineEmits<ABaseInputEvents>()
+
+defineSlots<typeof aBaseInputSlots>()
 
 defineOptions({
   name: 'ABaseInput',
 })
 
-defineSlots<typeof baseInputSlots>()
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const attrs = useAttrs()
 
@@ -46,7 +51,10 @@ defineExpose({
       props.disabled && 'a-base-input-disabled',
       (props.disabled || props.readonly) && 'pointer-events-none',
       !(props.disabled || props.readonly) && 'a-base-input-interactive',
+      defaultsClass,
     ]"
+    :style="defaultsStyle"
+    v-bind="defaultsAttrs"
   >
     <!-- 👉 Label -->
     <slot name="label">
@@ -65,7 +73,6 @@ defineExpose({
     <div
       ref="refInputContainer"
       class="a-base-input-input-container flex items-center"
-      v-bind="props.inputContainerAttrs"
     >
       <!-- 👉 Slot: Prepend -->
       <slot name="prepend">
@@ -79,6 +86,7 @@ defineExpose({
       <!-- ❗ relative class is required for loader on `.a-base-input-input-wrapper` -->
       <div
         ref="refInputWrapper"
+        v-bind="props.inputWrapperAttrs"
         :class="[props.inputWrapperClasses, props.error ? 'border-danger' : 'focus-within:border-primary']"
         class="a-base-input-input-wrapper cursor-text em:spacing:px-4 spacing:gap-x-2 relative i:focus-within:text-primary items-center border border-solid border-a-border w-full"
         @click="$emit('click:inputWrapper')"
@@ -98,8 +106,9 @@ defineExpose({
           :id="elementId"
           :readonly="props.readonly"
           :disabled="props.disabled"
-          class="a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent"
           :class="[
+            // eslint-disable-next-line vue/prefer-separate-static-class
+            'a-base-input-child w-full h-full inset-0 rounded-inherit bg-transparent',
             props.inputClasses,
             $slots['prepend-inner'] || props.prependInnerIcon
               ? 'a-base-input-w-prepend-inner'

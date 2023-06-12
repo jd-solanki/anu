@@ -1,41 +1,56 @@
-<script lang="ts" setup>
-import { defu } from 'defu'
-import type { PropColumn, TableProps } from './props'
-import { tableProps } from './props'
-import { ACard, cardProps } from '@/components/card'
+<script lang="ts" setup generic="Row extends Record<string, unknown>">
+import type { ATableEvents, ATablePropColumn } from './meta'
+import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
+import type { ACardProps } from '@/components/card'
+import { aCardProps } from '@/components/card'
+import { useDefaults } from '@/composables/useDefaults'
+import { objectKeys } from '@/utils/typescripts'
+import { filterUsedSlots } from '@/utils/vue'
 
-const props = defineProps(defu(tableProps, cardProps))
+// SECTION Meta
+const _props = defineProps(aTableProps<Row>())
 
 // TODO: We aren't getting type error for click:header
-defineEmits<{
-  (e: 'click:header', col: Exclude<TableProps['cols'], undefined>): void
-}>()
+defineEmits<ATableEvents>()
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _slots = aTableSlots<Row>(
+  objectKeys(_props.rows[0] || {}),
+)
+
+// TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
+defineSlots<any>()
 
 defineOptions({
   name: 'ATable',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-// TODO: What about spacing? Table & Card both support spacing 🤔
-const _cardProps = reactivePick(props, Object.keys(cardProps) as Array<keyof typeof cardProps>)
+// !SECTION
 
-const _cols = computed<PropColumn[]>(() => {
+const _cardProps = reactivePick(props, Object.keys(aCardProps) as Array<keyof ACardProps>)
+
+const _cols = computed<ATablePropColumn<Row>[]>(() => {
   // If custom cols are provided => Use them
   if (props.cols.length)
     return props.cols
 
   // if there's no rows => Don't generate col definition
-  if (!props.rows.length)
+  const firstRow = props.rows[0]
+  if (!firstRow)
     return []
 
   // Else generate cols from first row
-  return Object.keys(props.rows[0]).map(rowObjProperty => ({ name: rowObjProperty }))
+  return Object.keys(firstRow).map(rowObjProperty => ({ name: rowObjProperty }))
 })
 </script>
 
 <template>
   <ACard
-    v-bind="_cardProps"
+    v-bind="{ ..._cardProps, ...defaultsAttrs }"
+    :style="defaultsStyle"
     class="a-table"
+    :class="defaultsClass"
   >
     <slot name="before-table" />
     <div class="overflow-x-auto">
@@ -107,12 +122,12 @@ const _cols = computed<PropColumn[]>(() => {
 
     <!-- ℹ️ Recursively pass down slots to child -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+      v-for="name in filterUsedSlots(aTableCardSlots)"
       #[name]="slotProps"
     >
       <slot
         :name="name"
-        v-bind="slotProps || {}"
+        v-bind="slotProps"
       />
     </template>
   </ACard>

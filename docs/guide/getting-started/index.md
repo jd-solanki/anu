@@ -2,6 +2,15 @@
 
 > Anu means [Atom](https://en.wikipedia.org/wiki/Atom) in [Sanskrit](https://en.wikipedia.org/wiki/Sanskrit) ⚛️
 
+:::card What is Anu?
+Anu is Vue framework build using UnoCSS & VueUse. It provides ready to use components with great DX & flexibility. It is built with customization in mind.
+
+Anu provides component styles using UnoCSS preset so components are completely unstyled. This allows you to create the UI however you like and shape components according to your design.
+
+Don't forget to checkout the <a href="/guide/features/presets" target="_blank">features</a> section.
+
+:::
+
 :::card Why anu?
 
 - Yes, there's UnoCSS, TailwindCSS, etc but they don't provide ready to use components

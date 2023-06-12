@@ -1,23 +1,31 @@
 <script lang="ts" setup>
-import { typographyProps } from './props'
-import type { typographySlots } from './slots'
+import type { aTypographySlots } from './meta'
+import { aTypographyProps } from './meta'
 import { useConfigurable } from '@/composables/useConfigurable'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps(typographyProps)
+// SECTION Meta
+const _props = defineProps(aTypographyProps)
+defineSlots<typeof aTypographySlots>()
 
 defineOptions({
   name: 'ATypography',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-defineSlots<typeof typographySlots>()
-
+// !SECTION
 const title = useConfigurable(toRef(props, 'title'))
 const subtitle = useConfigurable(toRef(props, 'subtitle'))
 const text = useConfigurable(toRef(props, 'text'))
 </script>
 
 <template>
-  <div class="gap-4 flex flex-col">
+  <div
+    class="gap-4 flex flex-col"
+    :class="defaultsClass"
+    :style="defaultsStyle"
+    v-bind="defaultsAttrs"
+  >
     <!-- SECTION Typography header -->
     <div
       v-if="$slots.title || props.title || $slots.subtitle || props.subtitle || $slots['header-right']"

@@ -1,53 +1,20 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { ExtractPropTypes } from 'vue'
-import { color as colorProp, disabled as disabledProp } from '@/composables/useProps'
+import type { ARadioEvents, aRadioSlots } from './meta'
+import { aRadioProps } from './meta'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps({
-  /**
-   * Radio color
-   */
-  color: defu({
-    default: 'primary',
-  }, colorProp),
-
-  /**
-   * Bind v-model value to radio
-   */
-  modelValue: String,
-
-  /**
-   * Bind classes to input element
-   */
-  inputClasses: { type: null },
-
-  /**
-   * Define label text
-   */
-  label: String,
-
-  /**
-   * Disable radio
-   */
-  disabled: disabledProp,
-})
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-}>()
+// SECTION Meta
+const _props = defineProps(aRadioProps)
+const emit = defineEmits<ARadioEvents>()
+defineSlots<typeof aRadioSlots>()
 
 defineOptions({
   name: 'ARadio',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-defineSlots<{
-
-  /**
-   * Default slot for rendering radio label. If default slot is used `label` prop will be discarded.
-   */
-  default: {}
-}>()
+// !SECTION
 
 const attrs = useAttrs()
 
@@ -59,14 +26,16 @@ const isChecked = computed(() => props.modelValue === attrs.value)
   <label
     :for="elementId"
     class="inline-flex items-center cursor-pointer"
+    :style="defaultsStyle"
     :class="[
       props.disabled && 'a-radio-disabled pointer-events-none',
       $attrs.class,
+      defaultsClass,
     ]"
   >
 
     <input
-      v-bind="{ ...$attrs, class: props.inputClasses }"
+      v-bind="{ ...defaultsAttrs, ...$attrs, class: props.inputClasses }"
       :id="elementId"
       :checked="isChecked"
       class="hidden"

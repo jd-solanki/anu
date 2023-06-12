@@ -1,4 +1,4 @@
-import type { MaybeComputedRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from '@vueuse/core'
 import { resolveUnref } from '@vueuse/core'
 import type { ColorProp } from './useProps'
 import { colord } from '@/utils/colord'
@@ -23,7 +23,7 @@ function calculateColor(_isThemeColor: boolean, _color: ColorProp | null, _varia
       styles.push('--a-title-c: 0, 0%, 100%; --a-subtitle-c: 0, 0%, 100%') // white
   }
   else if (_color !== undefined) {
-    const typographyC = _color === null ? 'var(--a-base-c)' : colord(_color as string).toHslValue()
+    const typographyC = _color === null ? 'var(--a-base-c)' : colord(_color).toHslValue()
 
     styles.push(`--a-title-c: ${typographyC}; --a-subtitle-c: ${typographyC};`)
     classes.push(
@@ -39,7 +39,7 @@ function calculateColor(_isThemeColor: boolean, _color: ColorProp | null, _varia
   }
 }
 
-export function useTypographyColor(color: MaybeComputedRef<ColorProp | null>, variant: MaybeComputedRef<string>) {
+export function useTypographyColor(color: MaybeRefOrGetter<ColorProp | null>, variant: MaybeRefOrGetter<string>) {
   const typographyClasses = ref<string[]>([])
   const typographyStyles = ref<string[]>([])
 

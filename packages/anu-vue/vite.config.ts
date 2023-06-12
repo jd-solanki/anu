@@ -1,10 +1,7 @@
 import { resolve } from 'node:path'
-import { URL, fileURLToPath } from 'node:url'
-import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
-import VueMacros from 'unplugin-vue-macros/vite'
-import { defineConfig } from 'vitest/config'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig, mergeConfig } from 'vitest/config'
+import viteBaseConfig from '../../vite.config'
 
 const externals = [
   'vue',
@@ -14,7 +11,7 @@ const externals = [
 ]
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default mergeConfig(viteBaseConfig, defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -40,27 +37,11 @@ export default defineConfig({
     },
   },
   plugins: [
-    VueMacros({
-      plugins: {
-        vue: vue(),
-      },
-    }),
-    vueJsx(),
     AutoImport({
       imports: ['vue', '@vueuse/core'],
     }),
   ],
   resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
+    dedupe: ['vue'],
   },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./test/setup.vitest.ts'],
-    transformMode: {
-      web: [/.[tj]sx$/],
-    },
-  },
-})
+}))

@@ -1,53 +1,55 @@
 <script lang="ts" setup>
-import type { ExtractPropTypes } from 'vue'
-import type { ListPropItems } from './props'
-import { listProps } from './props'
-import type { listSlots } from './slots'
-import { listItemSlotsPrefix } from './slots'
-import { isObject, prefixObjectKeysWithMeta } from '@/utils/helpers'
-import { useGroupModel } from '@/composables'
-import { listItemSlots as listItemComponentSlots } from '@/components/list-item/slots'
+import type { AListEvents, AListPropItems, aListSlots } from './meta'
+import { aListListItemSlotsWithPrefixMeta, aListProps } from './meta'
 import { AListItem } from '@/components/list-item'
+import { useDefaults } from '@/composables/useDefaults'
+import { calculateSelectionItems, extractItemValueFromItemOption, useSelection } from '@/composables/useSelection'
+import { filterUsedRenamedSlots } from '@/utils/vue'
 
-const props = defineProps(listProps)
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: (ExtractPropTypes<typeof props>)['modelValue']): void
-
-  // ℹ️ Fix type => (e: 'click:item', value: (ExtractPropTypes<typeof props>)['items'][number]): void
-  (e: 'click:item', value: { item: ListPropItems[number]; value: any }): void
-}>()
+// SECTION Meta
+const _props = defineProps(aListProps)
+const emit = defineEmits<AListEvents>()
+defineSlots<typeof aListSlots>()
 
 defineOptions({
   name: 'AList',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-defineSlots<typeof listSlots>()
+// !SECTION
 
-function extractItemValueFromItemOption(item: ListPropItems[number]) {
-  return isObject(item) ? (item.value || item) : item
-}
-
-const { options, select: selectListItem, value } = useGroupModel({
-  options: props.items.map(i => extractItemValueFromItemOption(i)),
-  multi: props.multi,
+const { options } = useSelection({
+  items: calculateSelectionItems(toRef(() => props.items)),
+  multi: toRef(() => props.multi),
+  initialValue: toRef(() => props.modelValue),
 })
 
 // const isActive = computed(() => options.value[itemIndex].isSelected)
-function handleListItemClick(item: ListPropItems[number]) {
-  selectListItem(extractItemValueFromItemOption(item))
-  emit('update:modelValue', value.value)
-  emit('click:item', {
-    value: value.value,
-    item,
-  })
-}
+function handleListItemClick(item: AListPropItems[number]) {
+  const _val = props.emitObject ? item : extractItemValueFromItemOption(item)
 
-const listItemPrefixedSlots = prefixObjectKeysWithMeta(listItemComponentSlots, listItemSlotsPrefix)
+  // ℹ️ As we are updating the modelValue, we don't need to call `selectListItem` because it will be called by `useSelection`'s initial value watcher
+  // selectListItem(_val)
+
+  emit('update:modelValue', _val)
+
+  /*
+    ℹ️ This even is not triggered because we use accepting `onClick:item` as a prop
+    Hence we will trigger that prop instead of emitting this event
+  */
+  props['onClick:item']?.(_val)
+
+  // emit('click:item', { value: _val })
+}
 </script>
 
 <template>
-  <ul class="a-list grid">
+  <ul
+    v-bind="defaultsAttrs"
+    class="a-list grid"
+    :class="defaultsClass"
+    :style="defaultsStyle"
+  >
     <!-- 👉 Slot: before -->
     <li v-if="$slots.before">
       <slot name="before" />
@@ -62,26 +64,26 @@ const listItemPrefixedSlots = prefixObjectKeysWithMeta(listItemComponentSlots, l
         v-bind="typeof item === 'string' ? {} : item"
         :avatar-append="props.avatarAppend"
         :icon-append="props.iconAppend"
-        :color="props.color"
+        :color="typeof item === 'object' ? item.color : props.color"
         :variant="props.variant"
         :states="props.states"
         :is-active="options[index]?.isSelected as unknown as boolean"
-        :value="props.modelValue !== undefined ? options[index] : undefined"
+        :value="props.modelValue !== undefined || (typeof item === 'object' ? item.value : undefined)"
         v-on="{
           click: props['onClick:item'] || (props.modelValue !== undefined)
-            ? () => handleListItemClick(item)
+            ? () => { handleListItemClick(item) }
             : null,
         }"
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in listItemPrefixedSlots"
+          v-for="{ originalKey: originalSlotName, prefixedKey: updatedSlotName } in filterUsedRenamedSlots(aListListItemSlotsWithPrefixMeta)"
           #[originalSlotName]="slotProps"
         >
           <slot
             :name="updatedSlotName"
             :index="index"
-            v-bind="slotProps || {}"
+            v-bind="slotProps"
           />
         </template>
       </AListItem>

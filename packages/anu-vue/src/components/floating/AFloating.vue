@@ -2,13 +2,13 @@
 import { autoUpdate, useFloating } from '@floating-ui/vue'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
 import { ref } from 'vue'
-import type { FloatingEvents } from './events'
-import { floatingProps } from './props'
+import type { AFloatingEvents, aFloatingSlots } from './meta'
+import { aFloatingProps } from './meta'
 import { useTeleport } from '@/composables/useTeleport'
 
-const props = defineProps(floatingProps)
-
-const emit = defineEmits<FloatingEvents>()
+const props = defineProps(aFloatingProps)
+const emit = defineEmits<AFloatingEvents>()
+defineSlots<typeof aFloatingSlots>()
 
 defineOptions({
   name: 'AFloating',
@@ -37,7 +37,7 @@ const isFloatingElVisibleDebounced = refDebounced(isFloatingElVisible, _delay)
 // const props.referenceEl = ref()
 const refFloating = ref()
 
-const _middleware = computed(() => props.middleware(props.referenceEl, refFloating))
+const _middleware = computed(() => props.middleware(toRef(props, 'referenceEl'), refFloating))
 
 // Calculate position of floating element
 const { x, y, strategy } = useFloating(toRef(props, 'referenceEl'), refFloating, {
@@ -90,7 +90,7 @@ if (props.modelValue === undefined) {
     if (props.persist !== true) {
       onClickOutside(
         toRef(props, 'referenceEl'),
-        _event => {
+        () => {
           isFloatingElVisible.value = false
         },
         {
@@ -113,7 +113,7 @@ defineExpose({
     :to="teleportTarget"
   >
     <!-- ℹ️ Transition component don't accept null as value of name prop so we need `props.transition || undefined` -->
-    <Transition :name="props.transition as any || undefined">
+    <Transition :name="props.transition || undefined">
       <div
         v-show="isFloatingElVisibleDebounced"
         v-bind="$attrs"

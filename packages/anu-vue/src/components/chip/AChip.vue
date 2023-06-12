@@ -1,65 +1,20 @@
 <script lang="ts" setup>
-import type { PropType } from 'vue'
-import { useLayer, useProps as useLayerProps } from '@/composables/useLayer'
-import { configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
+import type { AChipEvents, aChipSlots } from './meta'
+import { aChipProps } from './meta'
+import { useDefaults } from '@/composables/useDefaults'
+import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps({
-  ...useLayerProps({
-    color: {
-      default: 'primary',
-    },
-    variant: {
-      default: 'light',
-    },
-  }),
-
-  /**
-   * Bind v-model value to show/hide the chip.
-   */
-  modelValue: {
-    type: Boolean as PropType<boolean>,
-    default: true,
-  },
-
-  /**
-   * Allow to close chip
-   */
-  closable: Boolean,
-
-  /**
-   * prepend icon
-   */
-  icon: configurableProp,
-
-  /**
-   * append icon
-   */
-  appendIcon: configurableProp,
-
-  /**
-   * Disable state of component
-   */
-  disabled: disabledProp,
-})
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-  (e: 'click:close'): void
-  (e: 'click:appendIcon'): void
-}>()
+// SECTION Meta
+const _props = defineProps(aChipProps)
+const emit = defineEmits<AChipEvents>()
+defineSlots<typeof aChipSlots>()
 
 defineOptions({
   name: 'AChip',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-defineSlots<{
-
-  /**
-   * Default slot for rendering chip content
-   */
-  default: {}
-}>()
-
+// !SECTION
 const attrs = useAttrs()
 
 const { getLayerClasses } = useLayer()
@@ -81,7 +36,8 @@ function closeChip() {
 <template>
   <div
     v-if="props.modelValue"
-    :style="styles"
+    v-bind="defaultsAttrs"
+    :style="[styles, defaultsStyle]"
     class="a-chip"
     :class="[
       {
@@ -89,6 +45,7 @@ function closeChip() {
         'cursor-pointer': isClickable,
       },
       classes,
+      defaultsClass,
     ]"
   >
     <!-- Prepend icon -->

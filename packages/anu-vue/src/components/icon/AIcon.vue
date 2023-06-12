@@ -1,27 +1,18 @@
 <script lang="ts" setup>
-import type { PropType } from 'vue'
+import { aIconProps } from './meta'
 import { useColor } from '@/composables'
-import { color as colorProp } from '@/composables/useProps'
+import { useDefaults } from '@/composables/useDefaults'
 
-const props = defineProps({
-  /**
-   * Icon name
-   */
-  icon: {
-    type: String as PropType<`i-${string}`>,
-    required: true,
-  },
-
-  /**
-   * Icon color
-   */
-  color: colorProp,
-})
+// SECTION Meta
+const _props = defineProps(aIconProps)
 
 defineOptions({
   name: 'AIcon',
+  inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
+// !SECTION
 const { styles } = useColor(toRef(props, 'color'), 'icon-color')
 </script>
 
@@ -34,8 +25,9 @@ const { styles } = useColor(toRef(props, 'color'), 'icon-color')
     <i
       aria-hidden="true"
       class="m-1"
-      :class="props.icon"
-      v-bind="$attrs"
+      :style="defaultsStyle"
+      :class="[props.icon, defaultsClass]"
+      v-bind="{ ...$attrs, ...defaultsAttrs }"
     />
   </button>
 </template>

@@ -1,98 +1,103 @@
 {
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "editor.linkedEditing": true,
-    // Markdown
-    "[markdown]": {
-        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.linkedEditing": true,
+  // Markdown
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "markdown.extension.completion.root": "../docs/",
+  // JS
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  // TypeScript
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.autoClosingBrackets": "always"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  // JSON
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  // Vue
+  "[vue]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  },
+  // Emmet
+  "emmet.includeLanguages": {
+    "markdown": "html",
+  },
+  // Extension: ESLint
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true,
+    "source.organizeImports": true,
+  },
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  // Extension: Comment Anchors
+  "commentAnchors.tags.displayLineNumber": false,
+  "commentAnchors.workspace.enabled": false,
+  "commentAnchors.showCursor": true,
+  "commentAnchors.tags.displayTagName": false,
+  "commentAnchors.tags.list": [
+    {
+      "tag": "ℹ️",
+      "scope": "hidden",
+      // This color is taken from "Better Comments" Extension (?)
+      "highlightColor": "#3498DB",
+      "styleComment": true,
+      "isItalic": false,
     },
-    // JS
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "[javascript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    {
+      "tag": "👉",
+      "scope": "file",
+      // This color is taken from "Better Comments" Extension (*)
+      "highlightColor": "#98C379",
+      "styleComment": true,
+      "isItalic": false
     },
-    // TypeScript
-    "[typescript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-        "editor.autoClosingBrackets": "always"
+    {
+      "tag": "❗",
+      "scope": "hidden",
+      // This color is taken from "Better Comments" Extension (*)
+      "highlightColor": "#FF2D00",
+      "styleComment": true,
+      "isItalic": false,
     },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    },
-    // JSON
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    // Vue
-    "[vue]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    },
-    // Emmet
-    "emmet.includeLanguages": {
-        "markdown": "html",
-        "vue": "html"
-    },
-    // Extension: ESLint
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
-        "source.fixAll.stylelint": true,
-        "source.organizeImports": true,
-    },
-    "eslint.format.enable": true,
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue"
-    ],
-    // Extension: Comment Anchors
-    "commentAnchors.tags.displayLineNumber": false,
-    "commentAnchors.workspace.enabled": false,
-    "commentAnchors.showCursor": true,
-    "commentAnchors.tags.displayTagName": false,
-    "commentAnchors.tags.list": [
-        {
-            "tag": "ℹ️",
-            "scope": "hidden",
-            // This color is taken from "Better Comments" Extension (?)
-            "highlightColor": "#3498DB",
-            "styleComment": true,
-            "isItalic": false,
-        },
-        {
-            "tag": "👉",
-            "scope": "file",
-            // This color is taken from "Better Comments" Extension (*)
-            "highlightColor": "#98C379",
-            "styleComment": true,
-            "isItalic": false
-        },
-        {
-            "tag": "❗",
-            "scope": "hidden",
-            // This color is taken from "Better Comments" Extension (*)
-            "highlightColor": "#FF2D00",
-            "styleComment": true,
-            "isItalic": false,
-        },
-    ],
-    // Extention: Code Spell Checker
-    "cSpell.words": [
-        "composables",
-        "defu",
-        "endregion",
-        "globby",
-        "nuxt",
-        "Vite",
-        "vitepress",
-        "Vuetify's"
-    ],
-    // Extension: UnoCSS
-    "unocss.root": "packages/documentation",
-    // Extension: Volar
-    "volar.vueserver.vitePress.processMdFile": true,
+  ],
+  // Extention: Code Spell Checker
+  "cSpell.words": [
+    "composables",
+    "deepmerge",
+    "defu",
+    "endregion",
+    "globby",
+    "nuxt",
+    "Vite",
+    "vitepress",
+    "vnode",
+    "Vuetify's",
+    "webdriverio"
+  ],
+  // Extension: UnoCSS
+  "unocss.root": "packages/documentation",
+  // Extension: Volar
+  "volar.vueserver.vitePress.processMdFile": true,
+  "references.preferredLocation": "peek",
+  "commentAnchors.tagHighlights.enabled": true,
 }

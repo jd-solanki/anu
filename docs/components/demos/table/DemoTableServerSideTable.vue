@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import type { ItemsFunctionParams } from 'anu-vue'
-import { fakeAPICall } from './data'
+import type { ADataTableItemsFunctionParams, ATablePropColumn } from 'anu-vue';
+import type { User } from './data';
+import { fakeAPICall } from './data';
 
 // 👉 Columns
-const cols = [
+const cols: ATablePropColumn<User>[] = [
   // ℹ️ We don't want to render all the columns from our rows so we are declaring those we want to get rendered
   { name: 'name' },
   { name: 'username' },
@@ -11,7 +12,7 @@ const cols = [
 ]
 
 // 👉 rows function
-const fetchItems = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
+function fetchItems({ q, currentPage, rowsPerPage, sortedCols }: ADataTableItemsFunctionParams<User>) {
   // ℹ️ You can use q, currentPage, rowsPerPage, sortedCols to fetch data from API
   // console.log('q :>> ', q, typeof q)
   // console.log('currentPage :>> ', currentPage)
@@ -26,9 +27,9 @@ const fetchItems = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionPa
   return fakeAPICall({ q, currentPage, rowsPerPage, sortedCols })
 
     // response.data => { rows: [...], total: 10 }
-    .then(response => response.data)
+    .then(response => (response as any).data)
     .catch(() => {
-      console.log('Error fetching rows...')
+      throw new Error('Error fetching rows...')
     })
 }
 </script>

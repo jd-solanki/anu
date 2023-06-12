@@ -1,38 +1,64 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
-        "lib": [
-            "esnext"
-        ],
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "strict": true,
-        "strictNullChecks": true,
-        "resolveJsonModule": true,
-        "skipDefaultLibCheck": true,
-        "skipLibCheck": true,
-        "noUncheckedIndexedAccess": true,
-        "jsx": "preserve",
-        "types": [
-            "node",
-            "unplugin-vue-macros/macros-global"
-        ]
-    },
-    "vueCompilerOptions": {
-        "target": 3,
-        "plugins": [
-            "@vue-macros/volar/define-model",
-            "@vue-macros/volar/define-props",
-            "@vue-macros/volar/define-props-refs",
-            "@vue-macros/volar/short-vmodel",
-            "@vue-macros/volar/define-slots",
-            "@vue-macros/volar/export-props"
-        ]
-    },
-    "exclude": [
-        "**/dist/**",
-        "**/node_modules/**",
-        "**/playground/**"
-    ]
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "jsx": "preserve",
+    "types": [
+      "node"
+    ],
+    "paths": {
+      "anu-vue": [
+        "./packages/anu-vue/src/index.ts"
+      ],
+      "@/*": [
+        "./packages/anu-vue/src/*"
+      ],
+      "@anu-vue/core": [
+        "./packages/anu-vue/src/index.ts"
+      ],
+      "@anu-vue/core/*": [
+        "./packages/anu-vue/src/*"
+      ],
+      "@anu-vue/preset-theme-default": [
+        "./packages/preset-theme-default/src/index.ts"
+      ],
+      "@anu-vue/preset-theme-default/*": [
+        "./packages/preset-theme-default/src/*"
+      ],
+      "@anu-vue/nuxt": [
+        "./packages/anu-nuxt/src/module.ts"
+      ]
+    }
+  },
+  "include": [
+    "./packages/*/src/**/*",
+    "./packages/anu-vue/auto-imports.d.ts",
+    "./packages/anu-vue/shims.d.ts",
+    "./packages/anu-vue/volar.d.ts",
+    "./docs/components/**/*",
+    // "./docs/components/Playground.vue",
+    "./docs/utils/*",
+    "./docs/.vitepress/shims.d.ts",
+    "./docs/.vitepress/theme/index.ts"
+  ],
+  "exclude": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "**/playground/**"
+  ]
 }

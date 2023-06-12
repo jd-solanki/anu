@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 'lts/*'
           check-latest: true
           cache: pnpm
           registry-url: 'https://registry.npmjs.org'
@@ -39,7 +39,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
       - name: Notify on Discord
-        uses: Ilshidur/action-discord@v3
+        uses: Ilshidur/action-discord@0.3.2
         env:
           DISCORD_EMBEDS: |
             [{

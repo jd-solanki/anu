@@ -3,6 +3,7 @@ import {
   defineConfig,
   presetIcons,
   presetUno,
+  presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
@@ -15,6 +16,12 @@ export default defineConfig({
       scale: 1.2,
       unit: 'em',
       extraProperties: presetIconExtraProperties,
+    }),
+    presetWebFonts({
+      fonts: {
+        sans: 'Inter',
+        mono: 'Jet Brains Mono',
+      },
     }),
 
     // anu-vue presets

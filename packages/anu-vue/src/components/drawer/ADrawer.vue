@@ -1,39 +1,26 @@
 <script lang="ts" setup>
-import { defu } from 'defu'
-import type { PropType, Ref } from 'vue'
-import { ACard, cardProps } from '@/components/card'
-import { onClickSameTarget } from '@/composables/onClickSameTarget'
+import type { Ref } from 'vue'
+import type { ADrawerEvents } from './meta'
+import { aDrawerProps, aDrawerSlots } from './meta'
+import { ACard } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
+import { useDefaults } from '@/composables/useDefaults'
 import { useTeleport } from '@/composables/useTeleport'
+import { onClickSameTarget } from '@/composables/onClickSameTarget'
+import { filterUsedSlots } from '@/utils/vue'
 
-const props = defineProps(defu({
-  /**
-   * Show/Hide drawer base on v-model value
-   */
-  modelValue: Boolean,
-
-  /**
-   * Persistence of drawer when clicked outside of reference element
-   */
-  persistent: Boolean,
-
-  /**
-   * Drawer anchor/position
-   */
-  anchor: {
-    type: String as PropType<'left' | 'right' | 'top' | 'bottom'>,
-    default: 'left',
-  },
-}, cardProps))
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
+// SECTION Meta
+const _props = defineProps(aDrawerProps)
+const emit = defineEmits<ADrawerEvents>()
+defineSlots<typeof aDrawerSlots>()
 
 defineOptions({
   name: 'ADrawer',
   inheritAttrs: false,
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
@@ -81,6 +68,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
       <div
         v-show="props.modelValue"
         ref="refMask"
+        v-bind="defaultsAttrs"
         class="a-drawer-wrapper flex fixed inset-0 bg-[hsla(var(--a-backdrop-c),var(--a-backdrop-opacity))]"
         :class="[
           `a-drawer-anchor-${props.anchor}`,
@@ -89,7 +77,9 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
 
           // set drawer to end of flex container of anchor is right or bottom
           ['right', 'bottom'].includes(props.anchor) && 'justify-end',
+          defaultsClass,
         ]"
+        :style="defaultsStyle"
       >
         <Transition
           :duration="30000"
@@ -104,12 +94,12 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
           >
             <!-- ℹ️ Recursively pass down slots to child -->
             <template
-              v-for="(_, name) in $slots"
+              v-for="name in filterUsedSlots(aDrawerSlots)"
               #[name]="slotProps"
             >
               <slot
                 :name="name"
-                v-bind="slotProps || {}"
+                v-bind="slotProps"
               />
             </template>
           </ACard>

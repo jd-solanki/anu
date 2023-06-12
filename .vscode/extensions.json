@@ -13,6 +13,10 @@
         "yzhang.markdown-all-in-one",
         "streetsidesoftware.code-spell-checker",
         "matijao.vue-nuxt-snippets",
-        "webhint.vscode-webhint"
+        "webhint.vscode-webhint",
+        "johnsoncodehk.vscode-tsconfig-helper",
+        "orta.vscode-twoslash-queries",
+        "antfu.smart-clicks",
+        "meganrogge.template-string-converter"
     ]
 }

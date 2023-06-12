@@ -1,22 +1,23 @@
 import '@/scss/index.scss'
 
+// Components
 export { AnuComponentResolver } from './componentResolver'
 export * from './components'
 export * as components from './components'
+
+// Composables
 export * from './composables'
 export * as composables from './composables'
+
+// Plugin
 export { plugin as anu } from './plugin'
 export type { PluginOptions, ThemeColors, ThemeOptions as ThemeOption } from './plugin'
-export { defaultThemeColors, presetAnu } from './preset'
+
+// Preset
+export { anuDefaultThemeColors as defaultThemeColors, presetAnu } from './preset'
+export type { PresetAnuOptions } from './preset'
+export { presetIconExtraProperties } from './preset/icons'
+
+// Other
 export * from './symbols'
-
-export const presetIconExtraProperties = {
-  'height': '1.2em',
-  'width': '1.2em',
-
-  // ℹ️ We also have to find a way to inject this without this config. (e.g. [class^=i-])
-  'vertical-align': 'text-top',
-  'flex-shrink': '0',
-  'display': 'inline-block',
-  'backface-visibility': 'hidden',
-}
+export { numRange } from './utils/helpers'

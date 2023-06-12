@@ -5,7 +5,7 @@ import api from '@anu/component-meta/AAvatar.json';
 # Avatar
 
 <!-- 👉 Default -->
-::::card Default
+:::::card Default
 
 Default variant for avatar is `light`.
 
@@ -15,7 +15,17 @@ Use `color` prop to change the avatar color.
 <<< @/components/demos/avatar/DemoAvatarDefault.vue
 :::
 
+::::after-demo
+
+:::details Using with `AMenu` component
+If you use `AMenu` component along with `AAvatar` then you will use default slot of `AAvatar` component to show menu. Hence, some of the props will get discarded in favor of default slot usage.
+
+You can refer to list of discarded props when default slot is used in API section.
+:::
+
 ::::
+
+:::::
 
 <!-- 👉 Fill -->
 ::::card Fill

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { rows } from './data'
+import type { ATablePropColumn } from 'anu-vue';
+import { rows } from './data';
 
-const cols = [
+const cols: ATablePropColumn<typeof rows[number]>[] = [
   { name: 'name' },
   { name: 'username' },
   { name: 'actions' },

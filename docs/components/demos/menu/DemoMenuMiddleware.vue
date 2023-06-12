@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { AFloatingMiddlewareFunc } from 'anu-vue'
+
 const items = [
   { text: 'Donut jujubes' },
   { text: 'Sesame snaps' },
@@ -6,7 +8,7 @@ const items = [
   { text: 'Cake gummi', disable: true },
 ]
 
-const middleware = (referenceEl: HTMLElement, floatingEl: HTMLElement) => {
+const middleware: AFloatingMiddlewareFunc = (referenceEl, floatingEl) => {
   // console.log('referenceEl :>> ', referenceEl)
   // console.log('floatingEl :>> ', floatingEl)
 

@@ -1,35 +1,51 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="Row extends Record<string, unknown>">
 import { defu } from 'defu'
 import type { Ref } from 'vue'
-import type { DataTablePropColumn, DataTableProps, ItemsFunction } from './props'
-import { dataTableColDefaults, dataTableProps } from './props'
+import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
+import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTableSlots } from './meta'
 import { ABtn, AInput, ASelect, ATable } from '@/components'
-import { tableProps } from '@/components/table'
+import type { ATableProps } from '@/components/table'
+import { aTableProps } from '@/components/table'
+import { useDefaults } from '@/composables/useDefaults'
 import { useSearch } from '@/composables/useSearch'
 import type { typeSortBy } from '@/composables/useSort'
 import { useSort } from '@/composables/useSort'
+import { objectKeys } from '@/utils/typescripts'
+import { filterUsedSlots } from '@/utils/vue'
 
-const props = defineProps(dataTableProps)
+// TODO: Check usage with useDebounceFn. Can we limit the # of req to server?
 
-// TODO: Check usage with usedebouncefn. Can we limit the # of req to server?
-const emit = defineEmits<{
+// SECTION Meta
+const _props = defineProps(aDataTableProps<Row>())
+const emit = defineEmits<ADataTableEvents>()
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-  // TODO: Duplicated from `ATable` because of import interface issue
-  (e: 'click:header', col: Exclude<DataTableProps['cols'], undefined>): void
+// !SECTION
 
-  // ---
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _slots = aDataTableSlots<Row>(
+  typeof props.rows === 'function'
+    ? []
+    : objectKeys(props.rows[0] || {}),
+)
 
-  (e: 'update:search', q: string): void
-}>()
+// TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
+defineSlots<any>()
+
+const _aDataTableTableSlots = aDataTableTableSlots<Row>(
+  typeof props.rows === 'function'
+    ? []
+    : objectKeys(props.rows[0] || {}),
+)
 
 defineOptions({
   name: 'ADataTable',
 })
 
 // TODO: https://twitter.com/mattpocockuk/status/1606656367078539264
-const _tableProps = reactivePick(props, Object.keys(tableProps).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof typeof tableProps>)
+const _tableProps = reactivePick(props, Object.keys(aTableProps<Row>()).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof ATableProps>)
 
-const _rows = ref<Record<string, unknown>[]>(typeof props.rows !== 'function' ? props.rows : [])
+const _rows = ref<Row[]>(typeof props.rows !== 'function' ? props.rows : []) as Ref<Row[]>
 watchDeep(() => props.rows, val => {
   if (Array.isArray(val))
     _rows.value = val
@@ -44,17 +60,21 @@ const _total = ref(typeof props.rows === 'function' ? 0 : props.rows.length)
 */
 
 // We are initializing with empty array to for calculating column headers manually
-const cols: Ref<DataTablePropColumn[]> = ref([])
+const cols: Ref<ADataTablePropColumn<Row>[]> = ref([])
 
 // This will handle assigning defaults to column on render & further prop updates
-watch(() => props.cols, _cols => {
-  cols.value = _cols.map(col => defu(col, dataTableColDefaults))
-}, { immediate: true })
+watch(
+  () => props.cols,
+  _cols => {
+    cols.value = _cols.map(col => defu(col, aDataTableColDefaults<Row>()))
+  },
+  { immediate: true },
+)
 
 // Little helper utility to generate columns from column names applying column defaults
 function genColsFromNames(names: string[]) {
   return names.map(rowProperty => {
-    return defu({ ...dataTableColDefaults, name: rowProperty }) as DataTablePropColumn
+    return defu({ ...aDataTableColDefaults, name: rowProperty }) as ADataTablePropColumn<Row>
   })
 }
 
@@ -67,7 +87,14 @@ function genColsFromNames(names: string[]) {
 if (!props.cols.length) {
   // If we have rows via prop => Get columns from first row.
   if (Array.isArray(props.rows) && props.rows.length) {
-    cols.value = genColsFromNames(Object.keys(props.rows[0]))
+    // ℹ️ We aren't watching for rows reactivity here
+
+    const firstRow = props.rows[0]
+
+    if (!firstRow)
+      console.warn('Unable to calculate headers for the table, Please add at least one row or use `cols` prop')
+    else
+      cols.value = genColsFromNames(Object.keys(firstRow))
   }
 
   /*
@@ -89,9 +116,9 @@ if (!props.cols.length) {
       Because when server side table is used we want to get headers when we get rows in _rows array after async request.
     */
     watchOnce(numOfRows, () => {
-      cols.value = genColsFromNames(
-        Object.keys((typeof props.rows === 'function' ? _rows.value : props.rows)[0]),
-      )
+      const firstRow = (typeof props.rows === 'function' ? _rows.value : props.rows)[0]
+      if (firstRow)
+        cols.value = genColsFromNames(Object.keys(firstRow))
     })
   }
 }
@@ -113,7 +140,7 @@ const sortedCols = computed(() => cols.value.filter(col => col.isSortable && col
 function fetchRows() {
   // Use type check instead of isSST to prevent type aliases further
   if (typeof props.rows === 'function') {
-    (props.rows as ItemsFunction)({
+    (props.rows as ADataTableItemsFunction<Row>)({
       q: q.value,
       /* eslint-disable @typescript-eslint/no-use-before-define */
       currentPage: currentPage.value,
@@ -189,7 +216,7 @@ fetchRows()
 // 👉 Handle header click
 function handleHeaderClick(clickedCol: any) {
   // TODO: Remove this and fix handler type error
-  clickedCol = clickedCol as DataTablePropColumn
+  clickedCol = clickedCol as ADataTablePropColumn<Row>
   const tableCol = cols.value.find(_col => clickedCol.name === _col.name)
 
   // If we can't find clicked column in table columns
@@ -261,10 +288,12 @@ const paginationMeta = computed(() => {
 
 <template>
   <ATable
-    v-bind="_tableProps"
+    v-bind="{ ..._tableProps, ...defaultsAttrs }"
     :cols="cols"
     :rows="_rows"
     class="a-data-table"
+    :style="defaultsStyle"
+    :class="defaultsClass"
     @click:header="handleHeaderClick"
   >
     <!-- 👉 Search -->
@@ -326,7 +355,7 @@ const paginationMeta = computed(() => {
             class="a-data-table-paginate-previous"
             icon="i-bx-left-arrow-alt"
             icon-only
-            variant="default"
+            variant="text"
             :disabled="isFirstPage"
             @click="goToPreviousPage"
           />
@@ -334,7 +363,7 @@ const paginationMeta = computed(() => {
             class="a-data-table-paginate-next"
             icon="i-bx-right-arrow-alt"
             icon-only
-            variant="default"
+            variant="text"
             :disabled="isLastPage"
             @click="goToNextPage"
           />
@@ -344,13 +373,14 @@ const paginationMeta = computed(() => {
 
     <!-- TODO: If you are using child component props in component => Filter them out -->
     <!-- ℹ️ Recursively pass down slots to child -->
+    <!-- TODO: (types) Don't use type assertion -->
     <template
-      v-for="name in Object.keys($slots).filter(slotName => !slotName.startsWith('header-'))"
+      v-for="name in filterUsedSlots(_aDataTableTableSlots as any)"
       #[name]="slotProps"
     >
       <slot
         :name="name"
-        v-bind="slotProps || {}"
+        v-bind="slotProps"
       />
     </template>
   </ATable>

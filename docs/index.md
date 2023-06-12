@@ -3,12 +3,13 @@ layout: home
 
 hero:
   name: Anu
+  image: /logo.svg
   text: Build better interfaces faster
   tagline: DX focused utility based Vue component library
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/getting-started/installation
+      link: /guide/getting-started/
     - theme: alt
       text: Why Anu?
       link: /guide/getting-started/

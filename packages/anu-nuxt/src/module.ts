@@ -1,4 +1,6 @@
+import type { PresetOptions as PresetThemeDefaultOptions } from '@anu-vue/preset-theme-default'
 import { presetThemeDefault } from '@anu-vue/preset-theme-default'
+import { addCustomTab } from '@nuxt/devtools-kit'
 import {
   addComponent,
   addImports,
@@ -9,8 +11,9 @@ import {
 } from '@nuxt/kit'
 import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-uno'
-import type { PluginOptions } from 'anu-vue'
+import type { PluginOptions, PresetAnuOptions } from 'anu-vue'
 import { components as AnuComponents, composables as AnuComposables, presetAnu, presetIconExtraProperties } from 'anu-vue'
+import type { PartialDeep } from 'type-fest'
 
 import type { UnocssNuxtOptions } from '@unocss/nuxt'
 
@@ -19,28 +22,21 @@ import { name, version } from '../package.json'
 const configKey = 'anu'
 
 /** Nuxt Module Options */
-interface PresetThemeOptions {
-
-  /**
-   * Import Anu Preset Theme with either CSS or SASS
-   * You can either import CSS which doesn't require any additional setup
-   * or SASS which requires you to install `sass` dependencies.
-   *
-   * @default 'css'
-   */
-  style?: 'css' | 'scss'
-}
-
+// TODO: (types) We don't get nested autocompletion for options
 export interface ModuleOptions {
 
   /**
-   * Import Anu Preset Theme Default | Source npm pkg: `@anu-vue/preset-theme-default`
-   * When enabled, it will automatically set up the default presets for Anu and Uno.
-   * We recommend to enable this option to get the best experience.
+   * Import Anu Preset Theme Default
+   * When enabled, it will automatically set up the default theme preset for Anu and Uno.
    *
    * @default true
    */
-  presetTheme?: PresetThemeOptions | boolean
+  presetThemeDefault?: PresetThemeDefaultOptions | boolean
+
+  /**
+   * Options for Anu Preset
+   */
+  presetAnuOptions?: PresetAnuOptions
 
   /**
    * Anu Vue Initial Theme | Source npm pkg: `anu-vue`
@@ -87,12 +83,17 @@ export interface ModuleOptions {
    * }
    * ```
    */
-  themes?: PluginOptions['themes']
+  themes?: PartialDeep<PluginOptions['themes']>
+
+  // TODO: Aliases doesn't work ATM because we JSON.stringify the options.
+  // aliases?: PluginOptions['aliases']
+
+  propsDefaults?: PluginOptions['propsDefaults']
 }
 
 export default defineNuxtModule<ModuleOptions>({
   defaults: {
-    presetTheme: true,
+    presetThemeDefault: true,
   },
   meta: {
     name,
@@ -104,6 +105,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   hooks: {
     'prepare:types': ({ tsConfig, references }) => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       tsConfig.compilerOptions!.types.push('anu-vue/volar')
       references.push({
         types: 'anu-vue/volar',
@@ -112,7 +114,6 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup(opts, nuxt) {
     const logger = useLogger('anu-vue')
-    const enableDefaultPreset = opts.presetTheme === true || typeof opts.presetTheme === 'object'
 
     // Disable module if '@unocss/nuxt' is not installed.
     if (nuxt.options.modules.includes('@unocss/nuxt') === false) {
@@ -130,17 +131,44 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.unocss.presets = [
       ...(nuxt.options.unocss.presets || []), // Don't override existing presets.
       presetUno(),
-      presetIcons(
-        typeof nuxt.options.unocss.icons === 'boolean'
-          ? {
-              scale: 1.2,
-              extraProperties: presetIconExtraProperties,
-            }
-          : nuxt.options.unocss.icons,
-      ),
-      presetAnu(),
-      enableDefaultPreset && presetThemeDefault(),
-    ] as any // Since unocss doesn't have runtime types for plugins yet.
+
+      // Anu Preset
+      presetAnu(opts.presetAnuOptions),
+    ]
+
+    /*
+      👉 Preset Theme Default
+
+      Inject preset theme default into the unocss options if isn't disabled.
+    */
+    const isPresetThemeDefaultEnabled = opts.presetThemeDefault !== false
+    if (isPresetThemeDefaultEnabled) {
+      nuxt.options.unocss.presets.push(
+        presetThemeDefault(
+          typeof opts.presetThemeDefault === 'object'
+            ? opts.presetThemeDefault
+            : undefined,
+        ),
+      )
+    }
+
+    /*
+      👉 Preset Icons
+
+      Inject preset icons extra properties into icons preset unocss options if icons preset isn't disabled.
+    */
+    if (nuxt.options.unocss.icons !== false) {
+      nuxt.options.unocss.presets.push(
+        presetIcons(
+          typeof nuxt.options.unocss.icons === 'object'
+            ? nuxt.options.unocss.icons
+            : {
+                scale: 1.2,
+                extraProperties: presetIconExtraProperties,
+              },
+        ),
+      )
+    }
 
     nuxt.options.unocss.include = [
       /.*\/anu-vue\.js(.*)?$/,
@@ -152,6 +180,9 @@ export default defineNuxtModule<ModuleOptions>({
     const pluginOptions = {
       initialTheme: opts.initialTheme,
       themes: opts.themes,
+
+      // aliases: opts.aliases,
+      propsDefaults: opts.propsDefaults,
     }
 
     addPluginTemplate({
@@ -164,10 +195,8 @@ export default defineNuxtModule<ModuleOptions>({
           })`,
         ]
 
-        if (enableDefaultPreset) {
-          const styleExt = typeof opts.presetTheme === 'object' ? opts.presetTheme.style : 'css'
-          lines.unshift(`import '@anu-vue/preset-theme-default/dist/style.${styleExt}'`)
-        }
+        if (isPresetThemeDefaultEnabled)
+          lines.unshift('import \'@anu-vue/preset-theme-default/dist/style.css\'')
 
         lines.unshift('import \'anu-vue/dist/style.css\'')
 
@@ -195,17 +224,15 @@ export default defineNuxtModule<ModuleOptions>({
         })
       })
 
-    // @ts-expect-error - This is a API that is exposed if the devtools module is installed or enabled globally.
-    nuxt.hook('devtools:customTabs', tabs => {
-      tabs.push({
-        name: 'anu-vue',
-        title: 'AnuVue',
-        icon: 'noto-v1:paintbrush',
-        view: {
-          type: 'iframe',
-          src: 'https://anu-vue.netlify.app/',
-        },
-      })
+    // Add devtools tab for Anu
+    addCustomTab({
+      name: 'anu-vue',
+      title: 'Anu',
+      icon: 'bx:atom',
+      view: {
+        type: 'iframe',
+        src: 'https://anu-vue.netlify.app/',
+      },
     })
 
     // Fixes auto-imports for Anu Composables

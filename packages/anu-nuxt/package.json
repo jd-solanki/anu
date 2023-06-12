@@ -1,12 +1,10 @@
 {
   "name": "@anu-vue/nuxt",
-  "version": "0.13.1",
-  "description": "Nuxt 3 Anu UI library",
-  "author": "Mehmet - @productdevbook <hi@productdevbook.com>",
+  "version": "0.14.0",
+  "description": "anu-vue - Nuxt 3 Module",
   "license": "MIT",
   "private": false,
-  "funding": "https://github.com/sponsors/productdevbook",
-  "homepage": "https://github.com/jd-solanki/anu/tree/main/packages/anu-nuxt#readme",
+  "homepage": "https://anu-vue.netlify.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jd-solanki/anu.git",
@@ -42,17 +40,17 @@
   },
   "dependencies": {
     "@anu-vue/preset-theme-default": "workspace:*",
-    "@floating-ui/dom": "^1.1.1",
+    "@floating-ui/dom": "^1.2.8",
     "@iconify-json/bx": "latest",
-    "@nuxt/kit": "^3.2.3",
+    "@nuxt/kit": "^3.5.0",
     "anu-vue": "workspace:*"
   },
   "devDependencies": {
-    "@nuxt/module-builder": "^0.2.1",
-    "@nuxt/devtools": "0.2.5",
-    "@nuxt/devtools-ui-kit": "0.2.5",
-    "@nuxt/schema": "^3.2.3",
-    "@unocss/nuxt": "^0.50.1",
-    "nuxt": "^3.2.3"
+    "@nuxt/devtools": "0.5.0",
+    "@nuxt/devtools-ui-kit": "0.5.0",
+    "@nuxt/module-builder": "^0.3.1",
+    "@nuxt/schema": "^3.5.0",
+    "@unocss/nuxt": "^0.51.13",
+    "nuxt": "^3.5.0"
   }
 }

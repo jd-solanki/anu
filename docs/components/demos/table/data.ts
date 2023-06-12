@@ -1,4 +1,4 @@
-import type { ItemsFunctionParams, typeSortBy } from 'anu-vue'
+import type { ADataTableItemsFunctionParams, typeSortBy } from 'anu-vue'
 import { useSearch, useSort } from 'anu-vue'
 
 export const rows = [
@@ -31,7 +31,7 @@ export const rows = [
 
 // 👉 For Server side table
 
-export interface User {
+export type User = {
   id: number
   name: string
   username: string
@@ -288,7 +288,7 @@ export const fakeDatabase: User[] = [
   },
 ]
 
-export const fakeAPICall = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFunctionParams) => {
+export function fakeAPICall({ q, currentPage, rowsPerPage, sortedCols }: ADataTableItemsFunctionParams<User>) {
   return new Promise(resolve => {
     // Added some timeout to delay the request response
     setTimeout(() => {
@@ -300,20 +300,22 @@ export const fakeAPICall = ({ q, currentPage, rowsPerPage, sortedCols }: ItemsFu
         'email',
         {
           name: 'address',
-          filterBy: (val: User['address'], q: string, item: User) => {
+          filterBy: (val, q) => {
             const _q = q.toLocaleLowerCase()
 
-            return val.street.toLocaleLowerCase().includes(_q) || val.street.toLocaleLowerCase().includes(_q)
+            // ℹ️ This type assertion is not required when we improve the types of useSearch composable
+            return (val as unknown as User['address']).street.toLocaleLowerCase().includes(_q) || (val as unknown as User['address']).street.toLocaleLowerCase().includes(_q)
           },
         },
         'phone',
         'website',
         {
           name: 'company',
-          filterBy: (val: User['company'], q: string, item: User) => {
+          filterBy: (val, q) => {
             const _q = q.toLocaleLowerCase()
 
-            return val.name.toLocaleLowerCase().includes(_q) || val.bs.toLocaleLowerCase().includes(_q)
+            // ℹ️ This type assertion is not required when we improve the types of useSearch composable
+            return (val as unknown as User['company']).name.toLocaleLowerCase().includes(_q) || (val as unknown as User['company']).bs.toLocaleLowerCase().includes(_q)
           },
         },
       ])

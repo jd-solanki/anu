@@ -1,23 +1,22 @@
 <script lang="ts" setup>
-import { tooltipProps } from './props'
+import type { aTooltipSlots } from './meta'
+import { aTooltipProps } from './meta'
 import { AFloating } from '@/components/floating'
 import { useParent } from '@/composables'
+import { useDefaults } from '@/composables/useDefaults'
 
 // import { arrow } from '@floating-ui/vue'
 
-const props = defineProps(tooltipProps)
-
-defineSlots<{
-
-  /**
-   * Default slot for rendering tooltip content. If default slot is used `text` prop will be discarded.
-   */
-  default: {}
-}>()
+// SECTION Meta
+const _props = defineProps(aTooltipProps)
+defineSlots<typeof aTooltipSlots>()
 
 defineOptions({
   name: 'ATooltip',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
+
+// !SECTION
 
 const parentEl = useParent()
 
@@ -26,9 +25,11 @@ const parentEl = useParent()
 
 <template>
   <AFloating
-    v-bind="props"
+    v-bind="{ ...props, ...defaultsAttrs }"
     :reference-el="parentEl"
     class="a-tooltip-wrapper"
+    :class="defaultsClass"
+    :style="defaultsStyle"
   >
     <div class="a-tooltip">
       <span class="a-tooltip-text">

@@ -1,25 +1,23 @@
 <script lang="ts" setup>
-import { listItemProps } from './props'
-import type { listItemSlots } from './slots'
+import type { AListItemEvents, aListItemSlots } from './meta'
+import { aListItemProps } from './meta'
 import { AAvatar } from '@/components/avatar'
 import { ATypography } from '@/components/typography'
-import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { useDefaults } from '@/composables/useDefaults'
 import { useLayer } from '@/composables/useLayer'
 
-const props = defineProps(listItemProps)
-
-defineEmits<{
-  (e: 'click:icon'): void
-  (e: 'click:avatar'): void
-  (e: 'click:iconAppend'): void
-  (e: 'click:avatarAppend'): void
-}>()
+// SECTION Meta
+const _props = defineProps(aListItemProps)
+defineEmits<AListItemEvents>()
+defineSlots<typeof aListItemSlots>()
 
 defineOptions({
   name: 'AListItem',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-defineSlots<typeof listItemSlots>()
+// !SECTION
 
 const { getLayerClasses } = useLayer()
 
@@ -33,7 +31,7 @@ else
 
 // useLayer
 const { styles, classes } = getLayerClasses(
-  computed(() => props.isActive ? (props.color || 'primary') : undefined),
+  computed(() => (props.color ?? props.isActive) ? (props.color || 'primary') : undefined),
   computed(() => props.isActive ? (props.variant || 'light') : 'text'),
   toRef(props, 'states'),
   { statesClass: 'states:10' },
@@ -42,28 +40,26 @@ const { styles, classes } = getLayerClasses(
 
 <template>
   <li
-    :style="styles"
+    v-bind="defaultsAttrs"
+    :style="[styles, defaultsStyle]"
     class="a-list-item flex items-center"
     :class="[
       { 'opacity-50 pointer-events-none': props.disabled },
       props.value !== undefined || $attrs.onClick
         ? [...classes, 'cursor-pointer']
         : '',
+      defaultsClass,
     ]"
   >
-    <slot
-      :item="props"
-      :attrs="$attrs"
-    >
+    <slot :item="props">
       <!-- 👉 Slot: prepend -->
       <slot
         name="prepend"
         :item="props"
-        :attrs="$attrs"
       >
         <i
           v-if="props.icon && !props.iconAppend"
-          class="text-xl"
+          class="text-lg"
           :class="props.icon"
           @click="$emit('click:icon')"
         />
@@ -77,7 +73,6 @@ const { styles, classes } = getLayerClasses(
       <slot
         name="content"
         :item="props"
-        :attrs="$attrs"
       >
         <ATypography
           class="flex-grow"
@@ -90,7 +85,6 @@ const { styles, classes } = getLayerClasses(
       <slot
         name="append"
         :item="props"
-        :attrs="$attrs"
       >
         <i
           v-if="props.icon && props.iconAppend"

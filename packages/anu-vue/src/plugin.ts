@@ -1,9 +1,12 @@
 import { defu } from 'defu'
 import type { PartialDeep } from 'type-fest'
 import type { App } from 'vue'
-import * as components from '@/components'
+import { defineComponent } from 'vue'
+import type { PluginOptionDefaults } from './pluginDefaults'
+import { ANU_CONFIG, ANU_DEFAULTS } from '@/symbols'
+import { useDefaults } from '@/composables/useDefaults'
 import { useAnu } from '@/composables/useAnu'
-import { ANU_CONFIG } from '@/symbols'
+import * as components from '@/components'
 
 export type ThemeColors = 'primary' | 'success' | 'info' | 'warning' | 'danger'
 export type DefaultThemes = 'light' | 'dark'
@@ -20,6 +23,8 @@ export interface PluginOptions {
   registerComponents: boolean
   initialTheme: keyof ConfigThemes
   themes: ConfigThemes
+  aliases: Record<string, any>
+  propsDefaults: PartialDeep<PluginOptionDefaults>
 }
 
 const configDefaults: PluginOptions = {
@@ -36,6 +41,7 @@ const configDefaults: PluginOptions = {
         danger: '358.3, 100%, 64.9%',
       },
       cssVars: {
+        'body-color': 'hsla(var(--a-base-c), 0.68)',
         'body-bg-c': '0,4.8%,95.9%',
 
         // ℹ️ Used for background on body like select options, card, etc
@@ -52,26 +58,48 @@ const configDefaults: PluginOptions = {
         danger: '358.3, 73%, 64.9%',
       },
       cssVars: {
+        'body-color': 'hsla(var(--a-base-c), 0.68)',
         'body-bg-c': 'var(--a-primary-hue), 15%, 5%',
         'surface-c': 'var(--a-primary-hue), 7%, 10%',
       },
     },
   },
+  aliases: {},
+  propsDefaults: {},
 }
 
 export const plugin = {
   install(app: App, options: PartialDeep<PluginOptions> = {}) {
-    const config = defu(options, configDefaults)
+    const config: PluginOptions = defu(options, configDefaults)
 
     if (config.registerComponents) {
       for (const prop in components) {
-      // @ts-expect-error: I want to index import using string
+        // @ts-expect-error: I want to index import using string
+        // eslint-disable-next-line import/namespace
         const component = components[prop]
         app.component(component.name, component)
       }
     }
 
+    for (const aliasComponentName in config.aliases) {
+      const baseComponent = config.aliases[aliasComponentName]
+
+      app.component(aliasComponentName, defineComponent({
+        ...baseComponent,
+        name: aliasComponentName,
+
+        // TODO: (types) Why we have to use ts-expect-error here?
+        // @ts-expect-error: TS/Vue unable to get types correctly
+        setup(props, ctx) {
+          const { props: modifiedProps, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(props)
+
+          return () => h(baseComponent, { ...modifiedProps, defaultsClass, defaultsStyle, defaultsAttrs }, ctx.slots)
+        },
+      }))
+    }
+
     app.provide(ANU_CONFIG, config)
+    app.provide(ANU_DEFAULTS, config.propsDefaults)
 
     // Initialize Anu instance with config values
     useAnu({

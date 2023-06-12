@@ -1,20 +1,25 @@
 <script lang="ts" setup>
 import { ATypography } from '../typography'
-import { cardProps } from './props'
-import type { cardSlots } from './slots'
-import { cardTypographySlots } from './slots'
+import type { aCardSlots } from './meta'
+import { aCardProps, aCardTypographySlots } from './meta'
 import { ALoader } from '@/components/loader'
 import { isTypographyUsed } from '@/components/typography/utils'
-import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { useDefaults } from '@/composables/useDefaults'
 import { useLayer } from '@/composables/useLayer'
+import { filterUsedSlots } from '@/utils/vue'
 
-const props = defineProps(cardProps)
+// SECTION Meta
+const _props = defineProps(aCardProps)
+
+defineSlots<typeof aCardSlots>()
 
 defineOptions({
   name: 'ACard',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-defineSlots<typeof cardSlots>()
+// !SECTION
 
 const slots = useSlots()
 
@@ -40,8 +45,9 @@ else
 <template>
   <div
     class="a-card relative overflow-hidden bg-[hsla(var(--a-surface-c),var(--un-bg-opacity,1))]"
-    :class="classes"
-    :style="styles"
+    :class="[classes, defaultsClass]"
+    :style="[styles, defaultsStyle]"
+    v-bind="defaultsAttrs"
   >
     <!-- 👉 Loader  -->
     <!--
@@ -72,12 +78,12 @@ else
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="name in Object.keys(cardTypographySlots)"
+          v-for="name in filterUsedSlots(aCardTypographySlots)"
           #[name]="slotProps"
         >
           <slot
             :name="name"
-            v-bind="slotProps || {}"
+            v-bind="slotProps"
           />
         </template>
       </ATypography>

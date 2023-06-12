@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { unrefElement } from '@vueuse/core'
-import { useGroupModel, useSearch } from 'anu-vue'
+import { useSearch, useSelection } from 'anu-vue'
 import { computed, onMounted, ref } from 'vue'
 
 import type { ComponentApi } from '../../scripts/gen-component-meta'
@@ -35,14 +35,10 @@ const { results: filteredEvents } = useSearch(q, props.api.events, (q: string, e
 // !SECTION
 
 // SECTION Tabs
-const tabs = ['props', 'slots', 'events']
-const { options: apiTabs, select, value: apiActiveTab } = useGroupModel({
-  options: tabs,
+const { options: apiTabs, select, value: apiActiveTab } = useSelection({
+  items: ['props', 'slots', 'events'],
+  initialValue: 'props',
 })
-
-// ℹ️ Set props as active tab. This is because ATM, useGroupModel does't support initial value.
-// Tracking: https://github.com/jd-solanki/anu/pull/77
-select(tabs[0] as string)
 
 const foundNumbers = computed(() => ({
   props: filteredProps.value.length,

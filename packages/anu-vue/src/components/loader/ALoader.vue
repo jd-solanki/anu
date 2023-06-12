@@ -1,25 +1,24 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
-import { loaderProps } from './props'
+import type { aLoaderSlots } from './meta'
+import { aLoaderProps, aLoaderTypographySlots } from './meta'
 import { ASpinner } from '@/components'
 import { isTypographyUsed } from '@/components/typography/utils'
-import { ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
+import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
+import { useDefaults } from '@/composables/useDefaults'
+import { filterUsedSlots } from '@/utils/vue'
 
-const props = defineProps(loaderProps)
+// SECTION Meta
+const _props = defineProps(aLoaderProps)
+defineSlots<typeof aLoaderSlots>()
 
 defineOptions({
   name: 'ALoader',
 })
+const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
-defineSlots<{
-
-  /**
-   * Default slot for rendering loader content.
-   * `ATypography` content like title & subtitle will be rendered along with this slot.
-   */
-  default: {}
-}>()
+// !SECTION
 
 const slots = useSlots()
 
@@ -54,8 +53,10 @@ if (props.fullPage) {
   <div
     v-if="isShownOnce"
     v-show="props.loading"
+    v-bind="defaultsAttrs"
+    :style="defaultsStyle"
     class="a-loader overlay flex items-center justify-center flex-col text-center gap-4"
-    :class="[props.loading && 'opacity-100', props.fullPage && 'a-loader-full-page fixed inset-0 z-54']"
+    :class="[props.loading && 'opacity-100', props.fullPage && 'a-loader-full-page fixed inset-0 z-54', defaultsClass]"
   >
     <!-- 👉 Slot: default -->
     <slot>
@@ -74,12 +75,12 @@ if (props.fullPage) {
       >
         <!-- ℹ️ Recursively pass down slots to child -->
         <template
-          v-for="name in Object.keys($slots).filter(slotName => slotName !== 'default')"
+          v-for="name in filterUsedSlots(aLoaderTypographySlots)"
           #[name]="slotProps"
         >
           <slot
             :name="name"
-            v-bind="slotProps || {}"
+            v-bind="slotProps"
           />
         </template>
       </ATypography>

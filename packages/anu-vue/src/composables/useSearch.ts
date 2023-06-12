@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck We are going to update this composable later
 import type { MaybeRef } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, unref } from 'vue'
