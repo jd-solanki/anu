@@ -142,6 +142,13 @@ With above naming convention, we can clearly know if we should wrap the CSS var 
 Don't forget to follow this convention when defining any CSS var for color, including background (`--a-something-bg-color: hsl(var(--a-surface-c))`)
 :::
 
+### [Template Refs](https://vuejs.org/guide/essentials/template-refs.html)
+
+In Anu, we follow below convention for template refs:
+
+- variable that holds template ref should be prefixed with `ref`. e.g. `refInput`, `refMenu`, etc.
+- Try to assign type for template ref variable. e.g. `refWrapper: Ref<HTMLDivElement | undefined> = ref()`
+
 ### Creating new component
 
 First of all, it is advisable to discuss the design & features of the component by opening the new [issue](https://github.com/jd-solanki/anu/issues/new). E.g. [New component: Menu](https://github.com/jd-solanki/anu/issues/26)
@@ -149,9 +156,10 @@ First of all, it is advisable to discuss the design & features of the component 
 For creating new component,
 
 1. Create new folder with the name of the component in `packages/anu-vue/src/components`
-2. Create component with `.tsx` extension
-3. Create `index.ts` file like other components and export from component from `.tsx` file
-4. Export newly created component in `packages/anu-vue/src/components/index.ts` file so it can be registered globally
+2. Create component with `.vue` extension (we'll only use `.ts` or `.tsx` in special cases)
+3. Create `meta.ts` file and define props, slots & events for the component.
+4. Create `index.ts` file like other components and export stuff like meta, component, etc. (You can check other component's `index.ts` file and update accordingly.)
+5. Export newly created component in `packages/anu-vue/src/components/index.ts` file so it can be registered globally
 
 Once you have this setup, create docs page for this component in `packages/documentation/docs/guide/components`
 
