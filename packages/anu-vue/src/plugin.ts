@@ -3,7 +3,7 @@ import type { PartialDeep } from 'type-fest'
 import type { App } from 'vue'
 import { defineComponent } from 'vue'
 import type { PluginOptionDefaults } from './pluginDefaults'
-import { ANU_CONFIG, ANU_DEFAULTS } from '@/symbols'
+import { ANU_CONFIG, ANU_PROPS_DEFAULTS } from '@/symbols'
 import { useDefaults } from '@/composables/useDefaults'
 import { useAnu } from '@/composables/useAnu'
 import * as components from '@/components'
@@ -23,7 +23,7 @@ export interface PluginOptions {
   registerComponents: boolean
   initialTheme: keyof ConfigThemes
   themes: ConfigThemes
-  aliases: Record<string, any>
+  componentAliases: Record<string, any>
   propsDefaults: PartialDeep<PluginOptionDefaults>
 }
 
@@ -64,7 +64,7 @@ const configDefaults: PluginOptions = {
       },
     },
   },
-  aliases: {},
+  componentAliases: {},
   propsDefaults: {},
 }
 
@@ -81,8 +81,8 @@ export const plugin = {
       }
     }
 
-    for (const aliasComponentName in config.aliases) {
-      const baseComponent = config.aliases[aliasComponentName]
+    for (const aliasComponentName in config.componentAliases) {
+      const baseComponent = config.componentAliases[aliasComponentName]
 
       app.component(aliasComponentName, defineComponent({
         ...baseComponent,
@@ -99,7 +99,7 @@ export const plugin = {
     }
 
     app.provide(ANU_CONFIG, config)
-    app.provide(ANU_DEFAULTS, config.propsDefaults)
+    app.provide(ANU_PROPS_DEFAULTS, config.propsDefaults)
 
     // Initialize Anu instance with config values
     useAnu({

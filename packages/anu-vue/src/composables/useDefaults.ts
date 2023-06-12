@@ -2,7 +2,7 @@ import { objectKeys, objectPick } from '@antfu/utils'
 import { deepmergeCustom } from 'deepmerge-ts'
 import type { Ref, StyleValue } from 'vue'
 import { toValue } from 'vue'
-import { ANU_DEFAULTS } from '@/symbols'
+import { ANU_PROPS_DEFAULTS } from '@/symbols'
 import type { PluginOptionDefaults } from '@/pluginDefaults'
 import type { PluginOptions } from '@/plugin'
 
@@ -26,13 +26,13 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
     throw new Error('Unable to identify the component name. Please define component name or use the `componentName` parameter while using `useDefaults` composable.')
 
   // Get defaults
-  const propsDefaults = inject(ANU_DEFAULTS, {})
+  const propsDefaults = inject(ANU_PROPS_DEFAULTS, {})
 
   // New defaults
-  const newDefaults = ref({}) as Ref<PluginOptions['propsDefaults']>
+  const newPropsDefaults = ref({}) as Ref<PluginOptions['propsDefaults']>
 
   // ℹ️ Pass new reactive value to avoid updates in upward tree
-  provide(ANU_DEFAULTS, newDefaults)
+  provide(ANU_PROPS_DEFAULTS, newPropsDefaults)
 
   // Return Values
   const propsRef = ref() as Ref<ReturnType<Props>['props']>
@@ -69,7 +69,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
      * Assume we have { AAlert: { ABtn: { color: 'info' } } } then below line will move ABtn on top and remove it from children of AAlert
      * To see the difference log the result of `mergePropsDefaults(...)` of below line and comment line above
      */
-    newDefaults.value = mergePropsDefaults({ ..._propsDefaults, [_componentName]: componentProps }, otherProps)
+    newPropsDefaults.value = mergePropsDefaults({ ..._propsDefaults, [_componentName]: componentProps }, otherProps)
 
     const explicitPropsNames = objectKeys(vm?.vnode.props || {}) as unknown as (keyof Props)[]
     const explicitProps = objectPick(definitionProps, explicitPropsNames)
