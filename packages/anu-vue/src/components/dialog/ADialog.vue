@@ -6,6 +6,7 @@ import { ACard } from '@/components/card'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useDefaults } from '@/composables/useDefaults'
 import { useTeleport } from '@/composables/useTeleport'
+import { onClickSameTarget } from '@/composables/onClickSameTarget'
 import { filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
@@ -24,8 +25,8 @@ const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_prop
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
 
-const refCard = ref()
-onClickOutside(refCard, () => {
+const refMask = ref<HTMLDivElement>()
+onClickSameTarget(refMask, () => {
   // If dialog is open & persistent prop is false => Close dialog
   if (props.modelValue && !props.persistent)
     emit('update:modelValue', false)
@@ -44,12 +45,12 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
     <Transition name="bg">
       <div
         v-show="props.modelValue"
+        ref="refMask"
         class="a-dialog-wrapper grid place-items-center fixed inset-0 bg-[hsla(var(--a-backdrop-c),var(--a-backdrop-opacity))]"
       >
         <Transition name="dialog">
           <ACard
             v-show="props.modelValue"
-            ref="refCard"
             class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]"
             :class="defaultsClass"
             :style="defaultsStyle"
