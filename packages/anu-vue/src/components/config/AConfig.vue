@@ -1,20 +1,25 @@
 <script lang="ts" setup>
-import { aConfigProps } from './meta'
-import { mergePropsDefaults } from '@/composables/useDefaults'
-import { ANU_DEFAULTS } from '@/symbols'
+import { mergePropsDefaults } from '@/composables/useDefaults';
+import { ANU_DEFAULTS } from '@/symbols';
+import { aConfigProps } from './meta';
 
 const props = defineProps(aConfigProps)
 defineOptions({
   name: 'AConfig',
 })
+
 const defaults = inject(ANU_DEFAULTS)
-watch(
-  () => props.props,
-  () => {
-    provide(ANU_DEFAULTS, mergePropsDefaults(defaults, props.props))
-  },
-  { immediate: true },
-)
+
+const result = computed(() => mergePropsDefaults(defaults, props.props))
+
+// watch(
+//   () => props.props,
+//   () => {
+//     provide(ANU_DEFAULTS, result)
+//   },
+//   { immediate: true },
+// )
+provide(ANU_DEFAULTS, result)
 </script>
 
 <template>

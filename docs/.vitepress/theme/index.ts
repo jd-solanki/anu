@@ -16,7 +16,26 @@ import './style.css'
 export default {
   ...DefaultTheme,
   enhanceApp({ app }: { app: App }) {
-    app.use(anu)
+    app.use(anu, {
+      propsDefaults: {
+        ACard: {
+          AAlert: {
+            ABtn: {
+              color: 'danger',
+            }
+          },
+          ABtn: {
+            color: 'info',
+          }
+        },
+        AAlert: {
+          color: 'warning',
+          ABtn: {
+            variant: 'outline',
+          }
+        }
+      }
+    })
 
     // Register demos as components
     const demos = import.meta.glob('../../components/demos/**/*.vue', { eager: true })

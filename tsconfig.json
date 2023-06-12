@@ -50,8 +50,8 @@
     "./packages/anu-vue/auto-imports.d.ts",
     "./packages/anu-vue/shims.d.ts",
     "./packages/anu-vue/volar.d.ts",
-    "./docs/components/**/*",
-    // "./docs/components/Playground.vue",
+    // "./docs/components/**/*",
+    "./docs/components/Playground.vue",
     "./docs/utils/*",
     "./docs/.vitepress/shims.d.ts",
     "./docs/.vitepress/theme/index.ts"
