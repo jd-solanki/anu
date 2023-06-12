@@ -1,52 +1,57 @@
 <script lang="ts" setup>
-import { AConfig } from 'anu-vue';
-import { ref } from 'vue';
+import { AConfig } from 'anu-vue'
+import { ref } from 'vue'
 
 const color = ref('danger')
+const scale = ref(1)
 
 setTimeout(() => {
-  console.log('updating...');
+  console.log('updating...')
   color.value = 'success'
-}, 2000);
+  scale.value = 1.1
+}, 2000)
 </script>
 
 <template>
-    <ACard
-      title="Playground"
-      class="m-8"
-    >
-      <a-alert>
+  <ACard
+    title="Playground"
+    class="m-8"
+  >
+    <AAlert>
       <p>This is alert</p>
-      <a-btn>Button</a-btn>
-    </a-alert>
-    <a-btn>Button</a-btn>
-    </ACard>
+      <ABtn>Button</ABtn>
+    </AAlert>
+    <ABtn>Button</ABtn>
+  </ACard>
 
-    <a-alert>
+  <AAlert>
+    <p>This is alert</p>
+    <ABtn>Button</ABtn>
+  </AAlert>
+  <ABtn>Button</ABtn>
+
+  <hr>
+
+  <ACard
+    title="Playground"
+    class="m-8"
+  >
+    <AAlert>
       <p>This is alert</p>
-      <a-btn>Button</a-btn>
-    </a-alert>
-    <a-btn>Button</a-btn>
-
-    <hr>
-
-    <ACard
-      title="Playground"
-      class="m-8"
-    >
-      <a-alert>
-      <p>This is alert</p>
+      <ABtn>before</ABtn>
       <AConfig :props="{ ABtn: { variant: 'light', color } }">
-      <a-btn>Button</a-btn>
+        <ABtn>Button</ABtn>
       </AConfig>
-    </a-alert>
-    <a-btn>Button</a-btn>
-    </ACard>
+      <ABtn>after</ABtn>
+    </AAlert>
+    <ABtn>Button</ABtn>
+  </ACard>
 
-    <a-alert>
+  <AConfig :props="{ ABtn: { variant: 'light', color: 'info', style: { scale } } }">
+    <AAlert>
       <p>This is alert</p>
-      <a-btn>Button</a-btn>
-    </a-alert>
-    <a-btn>Button</a-btn>
-
+      <ABtn>Button</ABtn>
+    </AAlert>
+    <ABtn>Button</ABtn>
+  </AConfig>
 </template>

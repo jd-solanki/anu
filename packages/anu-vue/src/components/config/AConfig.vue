@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { mergePropsDefaults } from '@/composables/useDefaults';
-import { ANU_DEFAULTS } from '@/symbols';
-import { aConfigProps } from './meta';
+import { aConfigProps } from './meta'
+import { mergePropsDefaults } from '@/composables/useDefaults'
+import { ANU_DEFAULTS } from '@/symbols'
 
 const props = defineProps(aConfigProps)
 defineOptions({
@@ -10,16 +10,11 @@ defineOptions({
 
 const defaults = inject(ANU_DEFAULTS)
 
-const result = computed(() => mergePropsDefaults(defaults, props.props))
-
-// watch(
-//   () => props.props,
-//   () => {
-//     provide(ANU_DEFAULTS, result)
-//   },
-//   { immediate: true },
-// )
-provide(ANU_DEFAULTS, result)
+// ℹ️ Pass new reactive value to avoid updates in upward tree
+provide(
+  ANU_DEFAULTS,
+  computed(() => mergePropsDefaults(defaults, props.props)),
+)
 </script>
 
 <template>

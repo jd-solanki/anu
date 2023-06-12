@@ -22,19 +22,19 @@ export default {
           AAlert: {
             ABtn: {
               color: 'danger',
-            }
+            },
           },
           ABtn: {
             color: 'info',
-          }
+          },
         },
         AAlert: {
           color: 'warning',
           ABtn: {
             variant: 'outline',
-          }
-        }
-      }
+          },
+        },
+      },
     })
 
     // Register demos as components
