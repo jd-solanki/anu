@@ -2,9 +2,9 @@
 import { defu } from 'defu'
 import type { PropType, Ref } from 'vue'
 import { ACard, cardProps } from '@/components/card'
+import { onClickSameTarget } from '@/composables/onClickSameTarget'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useTeleport } from '@/composables/useTeleport'
-import { onClickSameTarget } from '@/composables/onClickSameTarget'
 
 const props = defineProps(defu({
   /**
@@ -38,8 +38,8 @@ defineOptions({
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
 
-const maskRef = ref<HTMLDivElement>()
-onClickSameTarget(maskRef, () => {
+const refMask = ref<HTMLDivElement>()
+onClickSameTarget(refMask, () => {
 // If dialog is open & persistent prop is false => Close drawer
   if (props.modelValue && !props.persistent)
     emit('update:modelValue', false)
@@ -80,7 +80,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
     <Transition name="bg">
       <div
         v-show="props.modelValue"
-        ref="maskRef"
+        ref="refMask"
         class="a-drawer-wrapper flex fixed inset-0 bg-[hsla(var(--a-backdrop-c),var(--a-backdrop-opacity))]"
         :class="[
           `a-drawer-anchor-${props.anchor}`,
