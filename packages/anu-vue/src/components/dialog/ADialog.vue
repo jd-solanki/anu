@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 import { ACard, cardProps } from '@/components/card'
+import { onClickSameTarget } from '@/composables/onClickSameTarget'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { defuProps } from '@/composables/useProps'
 import { useTeleport } from '@/composables/useTeleport'
@@ -29,8 +30,8 @@ defineOptions({
 const { teleportTarget } = useTeleport()
 const isMounted = useMounted()
 
-const refCard = ref()
-onClickOutside(refCard, () => {
+const refMask = ref<HTMLDivElement>()
+onClickSameTarget(refMask, () => {
   // If dialog is open & persistent prop is false => Close dialog
   if (props.modelValue && !props.persistent)
     emit('update:modelValue', false)
@@ -49,12 +50,12 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
     <Transition name="bg">
       <div
         v-show="props.modelValue"
+        ref="refMask"
         class="a-dialog-wrapper grid place-items-center fixed inset-0 bg-[hsla(var(--a-backdrop-c),var(--a-backdrop-opacity))]"
       >
         <Transition name="dialog">
           <ACard
             v-show="props.modelValue"
-            ref="refCard"
             class="a-dialog backface-hidden transform translate-z-0 max-w-[calc(100vw-2rem)]"
             v-bind="{ ...$attrs, ...props }"
           >
