@@ -5,8 +5,8 @@ import type { CSSProperties } from 'vue'
 import { ref } from 'vue'
 import type { AFloatingEvents, aFloatingSlots } from './meta'
 import { aFloatingProps } from './meta'
-import { useTeleport } from '@/composables/useTeleport'
 import { useZIndex } from '@/composables/useZIndex'
+import { useTeleport } from '@/composables/useTeleport'
 
 const props = defineProps(aFloatingProps)
 const emit = defineEmits<AFloatingEvents>()
@@ -49,8 +49,8 @@ const { x, y, strategy } = useFloating(toRef(props, 'referenceEl'), refFloating,
   whileElementsMounted: autoUpdate,
 })
 
-const { nextZIndex } = useZIndex()
-const zIndex = nextZIndex()
+const { getNextZIndex } = useZIndex()
+const zIndex = getNextZIndex()
 
 const contentStyle = computed<CSSProperties>(() => {
   return {

@@ -3,10 +3,11 @@ import type { PartialDeep } from 'type-fest'
 import type { App } from 'vue'
 import { defineComponent } from 'vue'
 import type { PluginOptionDefaults } from './pluginDefaults'
-import { ANU_CONFIG, ANU_PROPS_DEFAULTS } from '@/symbols'
-import { useDefaults } from '@/composables/useDefaults'
-import { useAnu } from '@/composables/useAnu'
 import * as components from '@/components'
+import { useAnu } from '@/composables/useAnu'
+import { useDefaults } from '@/composables/useDefaults'
+import { useZIndex } from '@/composables/useZIndex'
+import { ANU_CONFIG, ANU_PROPS_DEFAULTS } from '@/symbols'
 
 export type ThemeColors = 'primary' | 'success' | 'info' | 'warning' | 'danger'
 export type DefaultThemes = 'light' | 'dark'
@@ -25,6 +26,7 @@ export interface PluginOptions {
   themes: ConfigThemes
   componentAliases: Record<string, any>
   propsDefaults: PartialDeep<PluginOptionDefaults>
+  baseZIndex: number
 }
 
 const configDefaults: PluginOptions = {
@@ -66,6 +68,7 @@ const configDefaults: PluginOptions = {
   },
   componentAliases: {},
   propsDefaults: {},
+  baseZIndex: 2000,
 }
 
 export const plugin = {
@@ -106,5 +109,8 @@ export const plugin = {
       initialTheme: config.initialTheme,
       themes: config.themes,
     })
+
+    // Initialize useZIndex composable
+    useZIndex(config.baseZIndex)
   },
 }

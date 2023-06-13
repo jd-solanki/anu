@@ -1,18 +1,18 @@
-import type { InjectionKey, Ref } from 'vue'
-import { computed, inject, ref, unref } from 'vue'
-import { isNumber } from '@vueuse/core'
+import { isNumber } from '@antfu/utils'
+import { computed, inject, ref } from 'vue'
 
-// TODO add Config Provider Component
-export const zIndexContextKey: InjectionKey<Ref<number | undefined>> = Symbol('zIndexContextKey')
+import { ANU_Z_INDEX } from '@/symbols'
 
 const zIndexCounter = ref(0)
-export const defaultBaseZIndex = 2000 as const
 
-export function useZIndex() {
-  const injectedZIndex = inject(zIndexContextKey)
+export const useZIndex = createGlobalState((defaultBaseZIndex?: number) => {
+  if (!defaultBaseZIndex)
+    throw new Error('[Anu] `useZIndex` composable must be initialized before usage.')
+
+  const injectedZIndex = inject(ANU_Z_INDEX)
 
   const baseZIndex = computed(() => {
-    const injectedZIndexValue = unref(injectedZIndex)
+    const injectedZIndexValue = injectedZIndex?.value
 
     return isNumber(injectedZIndexValue)
       ? injectedZIndexValue
@@ -21,7 +21,7 @@ export function useZIndex() {
 
   const activeZIndex = computed(() => baseZIndex.value + zIndexCounter.value)
 
-  const nextZIndex = () => {
+  const getNextZIndex = () => {
     zIndexCounter.value++
 
     return activeZIndex.value
@@ -30,6 +30,6 @@ export function useZIndex() {
   return {
     baseZIndex,
     activeZIndex,
-    nextZIndex,
+    getNextZIndex,
   }
-}
+})
