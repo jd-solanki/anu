@@ -85,6 +85,10 @@ If you have Prettier installed in your editor, we recommend you disable it when 
 
 ::::card ⌨️ Writing code
 
+:::tip
+Anu uses [`@antfu/utils`](https://github.com/antfu/utils) for utilities. You can use it to avoid reinventing the wheel.
+:::
+
 ### Required
 
 - Anu provides preset named "Theme Default" where all appearance related classes should be written. Idea is someone can create his own preset to totally customize the look & feel of Anu.
