@@ -10,26 +10,27 @@ loadUnocssPreset()
 await loadUnocss()
 
 // import anu styles and reset
-await loadStyle('#ANU_STYLE#'); // import 'anu-vue/dist/style.css'
-await loadStyle('#ANU_THEME_STYLE#'); // import '@anu-vue/preset-theme-default/dist/style.css'
-await loadStyle('#UNO_RESET#'); // @use '@unocss/reset/tailwind.css'
+await loadStyle('#ANU_STYLE#') // import 'anu-vue/dist/style.css'
+await loadStyle('#ANU_THEME_STYLE#') // import '@anu-vue/preset-theme-default/dist/style.css'
+await loadStyle('#UNO_RESET#') // @use '@unocss/reset/tailwind.css'
 
 export function setupAnu() {
-  if (installed) return
+  if (installed)
+    return
   const instance = getCurrentInstance()
   instance.appContext.app.use(anu)
   installed = true
 }
 
 function loadStyle(href) {
-    return new Promise((resolve, reject) => {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = href;
-      link.addEventListener('load', resolve);
-      link.addEventListener('error', reject);
-      document.body.append(link);
-    });
+  return new Promise((resolve, reject) => {
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = href
+    link.addEventListener('load', resolve)
+    link.addEventListener('error', reject)
+    document.body.append(link)
+  })
 }
 
 function loadUnocss() {
@@ -49,9 +50,12 @@ export function loadUnocssPreset() {
       presetIcons({
         scale: 1.2,
         extraProperties: presetIconExtraProperties,
+        cdn: 'https://fastly.jsdelivr.net/npm/',
       }),
+
       // anu-vue preset
       presetAnu(),
+
       // default theme preset
       presetThemeDefault(),
     ],
