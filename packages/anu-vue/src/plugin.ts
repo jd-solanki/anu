@@ -29,6 +29,9 @@ export interface PluginOptions {
   baseZIndex: number
 }
 
+// ℹ️ We are exporting this so that we can use it in tests
+export const defaultBaseZIndex = 2000
+
 const configDefaults: PluginOptions = {
   registerComponents: true,
   initialTheme: 'light',
@@ -68,7 +71,7 @@ const configDefaults: PluginOptions = {
   },
   componentAliases: {},
   propsDefaults: {},
-  baseZIndex: 2000,
+  baseZIndex: defaultBaseZIndex,
 }
 
 export const plugin = {

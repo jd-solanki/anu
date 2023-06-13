@@ -1,14 +1,17 @@
+import type { VueWrapper } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import type { ComponentPublicInstance } from 'vue'
 import { defineComponent, nextTick, ref } from 'vue'
-import type { VueWrapper } from '@vue/test-utils'
-import { mount } from '@vue/test-utils'
-import { defaultBaseZIndex, useZIndex, zIndexContextKey } from '../../src/composables/useZIndex'
+import { useZIndex } from '../../src/composables/useZIndex'
+import { defaultBaseZIndex } from '../../src/plugin'
+import { ANU_Z_INDEX } from '../../src/symbols'
 
 describe('useZIndex', () => {
   let wrapper: VueWrapper<ComponentPublicInstance>
 
   const mountComponent = (provideZIndex?: number) => mount(
+    // eslint-disable-next-line vue/require-name-property
     defineComponent({
       setup(_, { expose }) {
         const zIndex = useZIndex()
@@ -19,7 +22,7 @@ describe('useZIndex', () => {
     {
       global: {
         provide: {
-          [zIndexContextKey]: ref(provideZIndex),
+          [ANU_Z_INDEX as symbol]: ref(provideZIndex),
         },
       },
     },
