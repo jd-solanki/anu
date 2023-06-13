@@ -120,4 +120,17 @@ module.exports = {
       },
     },
   },
+  overrides: [
+    {
+      files: ['playground/**/*'],
+      settings: {
+        'import/resolver': {
+          typescript: {
+            alwaysTryTypes: true,
+            project: './playground/tsconfig.json',
+          },
+        },
+      },
+    },
+  ],
 }
