@@ -1,4 +1,4 @@
-import type { InjectionKey, MaybeRef } from 'vue'
+import type { InjectionKey, MaybeRef, Ref } from 'vue'
 import type { PluginOptions } from '@/plugin'
 
 export const ANU_CONFIG = Symbol('ANU_CONFIG') as InjectionKey<PluginOptions>
