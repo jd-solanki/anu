@@ -84,7 +84,7 @@ export function genImportMap({ vue, anuVue }: Partial<Versions> = {}): ImportMap
     },
     '@floating-ui/vue': {
       pkg: '@floating-ui',
-      path: '/vue@0.2.1/+esm',
+      path: '/vue/+esm',
     },
   }
 
