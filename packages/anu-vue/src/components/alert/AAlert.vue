@@ -69,7 +69,7 @@ const appendIconBindings = computed(() => {
       <i :class="props.icon" />
     </div>
     <div
-      class="flex-grow"
+      class="flex items-center flex-grow"
       data-no-reference
     >
       <slot />
