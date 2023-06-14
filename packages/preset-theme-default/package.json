@@ -1,6 +1,6 @@
 {
   "name": "@anu-vue/preset-theme-default",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "Default theme preset for Anu framework.",
   "type": "module",
   "private": false,

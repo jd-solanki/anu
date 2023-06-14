@@ -1,6 +1,6 @@
 {
   "name": "@anu-vue/nuxt",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "anu-vue - Nuxt 3 Module",
   "license": "MIT",
   "private": false,
