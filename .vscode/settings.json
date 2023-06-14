@@ -97,7 +97,7 @@
   // Extension: UnoCSS
   "unocss.root": "packages/documentation",
   // Extension: Volar
-  "volar.vueserver.vitePress.processMdFile": true,
+  "vue.server.vitePress.supportMdFile": true,
   "references.preferredLocation": "peek",
   "commentAnchors.tagHighlights.enabled": true,
 }
