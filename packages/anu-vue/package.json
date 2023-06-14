@@ -26,7 +26,7 @@
   "module": "./dist/anu-vue.js",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/types/packages/anu-vue/src/index.d.ts",
       "import": "./dist/anu-vue.js",
       "require": "./dist/anu-vue.umd.cjs"
     },
@@ -36,7 +36,7 @@
     "dist",
     "volar.d.ts"
   ],
-  "types": "./dist/types",
+  "types": "./dist/types/packages/anu-vue/src/index.d.ts",
   "scripts": {
     "dev": "pnpm gen-comp-meta && concurrently \"vite build --watch\" \"vue-tsc --declaration --emitDeclarationOnly --watch\"",
     "gen-comp-meta": "na tsx ../../scripts/gen-component-meta.ts",
