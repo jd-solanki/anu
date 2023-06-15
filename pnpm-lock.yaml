@@ -117,7 +117,7 @@ importers:
         version: link:../packages/anu-vue
       vee-validate:
         specifier: ^4.9.4
-        version: 4.9.4(typescript@5.1.3)(vue@3.3.4)
+        version: 4.9.4(vue@3.3.4)
       vue:
         specifier: 3.3.4
         version: 3.3.4
@@ -142,7 +142,7 @@ importers:
         version: 0.51.13
       '@vee-validate/zod':
         specifier: ^4.9.4
-        version: 4.9.4(typescript@5.1.3)(vue@3.3.4)
+        version: 4.9.4(vue@3.3.4)
       markdown-it:
         specifier: ^13.0.1
         version: 13.0.1
@@ -252,6 +252,9 @@ importers:
       sass:
         specifier: ^1.62.1
         version: 1.62.1
+      type-fest:
+        specifier: ^3.12.0
+        version: 3.12.0
       typescript:
         specifier: ^5.0.4
         version: 5.0.4
@@ -2867,14 +2870,13 @@ packages:
       - rollup
     dev: true
 
-  /@vee-validate/zod@4.9.4(typescript@5.1.3)(vue@3.3.4):
+  /@vee-validate/zod@4.9.4(vue@3.3.4):
     resolution: {integrity: sha512-gc9LeOFrzQd5S2z7ZlwB6vIFR9QnGGlXESYERd61UpE3kJ4/N0DkstSRzEYgPbwG1MENLYwO9WRZHj7O4NE7YQ==}
     dependencies:
-      type-fest: 3.10.0(typescript@5.1.3)
-      vee-validate: 4.9.4(typescript@5.1.3)(vue@3.3.4)
+      type-fest: 3.12.0
+      vee-validate: 4.9.4(vue@3.3.4)
       zod: 3.21.4
     transitivePeerDependencies:
-      - typescript
       - vue
     dev: true
 
@@ -3332,7 +3334,7 @@ packages:
       '@vueuse/core': 10.1.2(vue@3.3.4)
       '@vueuse/shared': 10.1.2(vue@3.3.4)
       focus-trap: 7.4.2
-      vue-demi: 0.14.1(vue@3.3.4)
+      vue-demi: 0.14.5(vue@3.3.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -10777,13 +10779,9 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  /type-fest@3.10.0(typescript@5.1.3):
-    resolution: {integrity: sha512-hmAPf1datm+gt3c2mvu0sJyhFy6lTkIGf0GzyaZWxRLnabQfPUqg6tF95RPg6sLxKI7nFLGdFxBcf2/7+GXI+A==}
+  /type-fest@3.12.0:
+    resolution: {integrity: sha512-qj9wWsnFvVEMUDbESiilKeXeHL7FwwiFcogfhfyjmvT968RXSvnl23f1JOClTHYItsi7o501C/7qVllscUP3oA==}
     engines: {node: '>=14.16'}
-    peerDependencies:
-      typescript: '>=4.7.0'
-    dependencies:
-      typescript: 5.1.3
 
   /typed-array-length@1.0.4:
     resolution: {integrity: sha512-KjZypGq+I/H7HI5HlOoGHkWUUGq+Q0TPhQurLbyrVrvnKTBgzLhIJ7j6J/XTQOi0d1RjyZ0wdas8bKs2p0x3Ng==}
@@ -10813,6 +10811,7 @@ packages:
     resolution: {integrity: sha512-XH627E9vkeqhlZFQuL+UsyAXEnibT0kWR2FWONlr4sTjvxyJYnyefgrkyECLzM5NenmKzRAy2rR/OlYLA1HkZw==}
     engines: {node: '>=14.17'}
     hasBin: true
+    dev: true
 
   /ua-parser-js@1.0.35:
     resolution: {integrity: sha512-fKnGuqmTBnIE+/KXSzCn4db8RTigUzw1AN0DmdU6hJovUTbYJKyqj+8Mt1c4VfRDnOVJnENmfYkIPZ946UrSAA==}
@@ -11303,16 +11302,14 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
-  /vee-validate@4.9.4(typescript@5.1.3)(vue@3.3.4):
+  /vee-validate@4.9.4(vue@3.3.4):
     resolution: {integrity: sha512-KksxOjLZ4s+Bo2UwDYoK4PNTOlGRquNLxHQAiEY6tw9MHrgkfefSjpmrysRSaSmv7Ny9ySINCfYryofuXC9n9Q==}
     peerDependencies:
       vue: ^3.3.0
     dependencies:
       '@vue/devtools-api': 6.5.0
-      type-fest: 3.10.0(typescript@5.1.3)
+      type-fest: 3.12.0
       vue: 3.3.4
-    transitivePeerDependencies:
-      - typescript
 
   /vite-node@0.31.1(@types/node@20.2.5)(sass@1.62.1):
     resolution: {integrity: sha512-BajE/IsNQ6JyizPzu9zRgHrBwczkAs0erQf/JRpgTIESpKvNj9/Gd0vxX905klLkb0I0SJVCKbdrl5c6FnqYKA==}
