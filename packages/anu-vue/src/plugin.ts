@@ -114,6 +114,6 @@ export const plugin = {
     })
 
     // Initialize useZIndex composable
-    useZIndex(config.baseZIndex)
+    useZIndex(config.baseZIndex, app)
   },
 }
