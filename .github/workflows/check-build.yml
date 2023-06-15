@@ -98,10 +98,15 @@ jobs:
 
   build-release:
     if: |
-      github.event_name == 'push' &&
-      !contains(github.event.head_commit.message, '[skip-release]') &&
-      !contains(github.event.head_commit.message, 'chore') &&
-      !contains(github.event.head_commit.message, 'docs')
+      github.event_name == 'push'
+      && (
+           (
+             !contains(github.event.head_commit.message, '[skip-release]')
+             && !contains(github.event.head_commit.message, 'chore')
+             && !contains(github.event.head_commit.message, 'docs')
+           )
+           || contains(github.event.head_commit.message, '[force-release]')
+      )
     needs:
       - build
       - lint
