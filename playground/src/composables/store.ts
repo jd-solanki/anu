@@ -51,7 +51,7 @@ export function useStore(initial: Initial) {
     resetFlip: false,
   })
 
-  const bultinImportMap = computed<ImportMap>(() =>
+  const builtinImportMap = computed<ImportMap>(() =>
     genImportMap(versions),
   )
 
@@ -71,7 +71,7 @@ export function useStore(initial: Initial) {
   })
 
   const importMap = computed<ImportMap>(() =>
-    mergeImportMap(bultinImportMap.value, userImportMap.value),
+    mergeImportMap(builtinImportMap.value, userImportMap.value),
   )
 
   // eslint-disable-next-line no-console
