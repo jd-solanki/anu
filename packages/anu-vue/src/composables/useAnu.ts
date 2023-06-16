@@ -45,7 +45,7 @@ export const useAnu = createGlobalState((options?: AnuComposableOptions) => {
   watch(activeThemeName, (newThemeName, oldThemeName) => {
     const newTheme = themes.value[newThemeName]
 
-    if (newTheme && newTheme.class)
+    if (newTheme && newTheme.class && typeof document !== 'undefined')
       document.documentElement.classList.toggle(newTheme.class)
 
     // ℹ️ Initially, `oldThemeName` will be undefined
