@@ -25,6 +25,7 @@
   /* --vp-z-index-nav: 52; */
 
   --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 40%);
+  --vp-code-line-height: 1.9;
 }
 
 :root.dark {
@@ -218,6 +219,18 @@
 
 .vp-doc [class*='language-'] pre:not(:where(.vp-raw *))::-webkit-scrollbar-corner {
   display: none;
+}
+
+.vp-doc [class*=language-] code:not(:where(.vp-raw *)) span {
+  font-style: initial !important;
+}
+
+/* Fix: Below style gets overridden by another style in production */
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--vp-font-family-mono) !important;
 }
 
 
