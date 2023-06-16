@@ -85,8 +85,7 @@ export interface ModuleOptions {
    */
   themes?: PartialDeep<PluginOptions['themes']>
 
-  // TODO: Aliases doesn't work ATM because we JSON.stringify the options.
-  // aliases?: PluginOptions['aliases']
+  componentAliases?: PluginOptions['componentAliases']
 
   propsDefaults?: PluginOptions['propsDefaults']
 }
@@ -181,17 +180,55 @@ export default defineNuxtModule<ModuleOptions>({
       initialTheme: opts.initialTheme,
       themes: opts.themes,
 
-      // aliases: opts.aliases,
+      // componentAliases: opts.componentAliases || {},
       propsDefaults: opts.propsDefaults,
     }
 
     addPluginTemplate({
       filename: 'anu-vue-plugin.mjs',
       getContents: () => {
+        let stringifiedPluginOptions = JSON.stringify(pluginOptions)
+        let componentAliasesImportStatement = ''
+
+        // ℹ️ Component aliases
+        if (opts.componentAliases) {
+          const componentAliases = opts.componentAliases || {}
+          const aliasedAnuComponentsNames = [] /* We need this adding imports */
+
+          for (const aliasComponentName in componentAliases) {
+            const sourceComponent = componentAliases[aliasComponentName]
+            const sourceComponentName = sourceComponent.name || sourceComponent.__name
+
+            if (!name)
+              throw new Error(`[Anu] Component you want to create alias of must have name. Unable to resolve component ${sourceComponentName}`)
+
+            aliasedAnuComponentsNames.push(sourceComponentName)
+            componentAliases[aliasComponentName] = sourceComponentName
+          }
+
+          // Stringify component aliases options and remove quotes from values (because values are imports)
+          // https://regex101.com/r/NqMqZ4/1
+          let stringifiedComponentAliases = JSON.stringify(componentAliases)
+            .replace(/(?<=:)"(\w+)"/g, '$1')
+
+          // Prepend component aliases partial option string with "componentAliases" key
+          stringifiedComponentAliases = `"componentAliases":${stringifiedComponentAliases}`
+
+          // Create stringified plugin options' replace string based on whether plugin options are empty or not
+          const replaceStr = stringifiedPluginOptions === '{}' ? `${stringifiedComponentAliases}}` : `,${stringifiedComponentAliases}}`
+
+          // Inject component aliases into plugin options
+          stringifiedPluginOptions = stringifiedPluginOptions.replace(/}$/g, replaceStr)
+
+          // Generate import statement for component aliases
+          componentAliasesImportStatement = `import { ${aliasedAnuComponentsNames.join(',')} } from 'anu-vue'`
+        }
+
         const lines = [
           'import { anu } from "anu-vue"',
+          componentAliasesImportStatement,
           `export default defineNuxtPlugin(nuxtApp => {
-            nuxtApp.vueApp.use(anu, ${JSON.stringify(pluginOptions)})
+            nuxtApp.vueApp.use(anu, ${stringifiedPluginOptions})
           })`,
         ]
 
