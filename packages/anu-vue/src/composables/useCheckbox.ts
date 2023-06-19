@@ -59,12 +59,12 @@ export function useCheckbox<Name extends string>(
   cycleIndeterminate: MaybeRefOrGetter<boolean> = false,
 ) {
   const handleModelValueChange = () => {
-    const _cycleIndeterminate = resolveUnref(cycleIndeterminate)
-    const _modelValue = resolveUnref(modelValue)
+    const _cycleIndeterminate = toValue(cycleIndeterminate)
+    const _modelValue = toValue(modelValue)
 
-    const _checkedValue = resolveUnref(checkedValue)
-    const _uncheckedValue = resolveUnref(uncheckedValue)
-    const _indeterminateValue = resolveUnref(indeterminateValue)
+    const _checkedValue = toValue(checkedValue)
+    const _uncheckedValue = toValue(uncheckedValue)
+    const _indeterminateValue = toValue(indeterminateValue)
 
     const cycleInitialValue = Array.isArray(_modelValue)
       ? (_modelValue.includes(_checkedValue) ? _checkedValue : _uncheckedValue)
@@ -96,8 +96,8 @@ export function useCheckbox<Name extends string>(
 
   const isChecked = computed({
     get: () => {
-      const _modelValue = resolveUnref(modelValue)
-      const _checkedValue = resolveUnref(checkedValue)
+      const _modelValue = toValue(modelValue)
+      const _checkedValue = toValue(checkedValue)
 
       if (Array.isArray(_modelValue))
         return _modelValue.includes(_checkedValue)
@@ -108,8 +108,8 @@ export function useCheckbox<Name extends string>(
   })
 
   const isIndeterminate = computed(() => {
-    const _modelValue = resolveUnref(modelValue)
-    const _indeterminateValue = resolveUnref(indeterminateValue)
+    const _modelValue = toValue(modelValue)
+    const _indeterminateValue = toValue(indeterminateValue)
 
     if (Array.isArray(_modelValue))
       return _modelValue.includes(_indeterminateValue)
