@@ -1,5 +1,5 @@
 import type { MaybeRef } from '@vueuse/core'
-import { resolveUnref } from '@vueuse/core'
+import { toValue } from '@vueuse/core'
 import { computed } from 'vue'
 
 // ℹ️ We might need generic here in future
@@ -12,7 +12,7 @@ export type ConfigurableValue = undefined | ContentType | [ContentType, ClassAtt
 
 export function useConfigurable(value: MaybeRef<ConfigurableValue>) {
   return computed(() => {
-    const _value = resolveUnref(value)
+    const _value = toValue(value)
 
     const [content, classes, attrs] = _value === undefined
       ? []
