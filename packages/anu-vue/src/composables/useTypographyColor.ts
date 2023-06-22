@@ -1,5 +1,5 @@
 import type { MaybeRefOrGetter } from '@vueuse/core'
-import { resolveUnref } from '@vueuse/core'
+import { toValue } from '@vueuse/core'
 import type { ColorProp } from './useProps'
 import { colord } from '@/utils/colord'
 import { isThemeColor } from '@/composables/useColor'
@@ -43,8 +43,8 @@ export function useTypographyColor(color: MaybeRefOrGetter<ColorProp | null>, va
   const typographyClasses = ref<string[]>([])
   const typographyStyles = ref<string[]>([])
 
-  const _color = resolveUnref(color)
-  const _variant = resolveUnref(variant)
+  const _color = toValue(color)
+  const _variant = toValue(variant)
   const _isThemeColor = isThemeColor(_color)
 
   watch([() => color, () => variant], () => {
