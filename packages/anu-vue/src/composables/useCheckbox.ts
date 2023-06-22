@@ -1,5 +1,6 @@
 import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { ComponentObjectPropsOptions, PropType } from 'vue'
+import { toValue } from 'vue'
 
 export type CheckboxModelValue = null | string | number | boolean | unknown[]
 
