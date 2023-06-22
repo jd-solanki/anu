@@ -35,7 +35,7 @@
 
 <br>
 
-[![Try now badge](https://img.shields.io/badge/Try%20Now-CodeSandbox-hsl(265%2C97%25%2C66%25)?style=for-the-badge&logo=codesandbox)](https://codesandbox.io/s/anu-demo-psqxec)
+[![Try now badge](https://img.shields.io/badge/Try%20Now-CodeSandbox-hsl(265%2C97%25%2C66%25)?style=for-the-badge&logo=codesandbox)](https://codesandbox.io/p/github/jd-solanki/anu-demo/master)
 
 <br>
 
