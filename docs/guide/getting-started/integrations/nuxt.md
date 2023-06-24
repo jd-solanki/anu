@@ -3,15 +3,13 @@
 :::card Installation
 
 1. Instead of installing `anu-vue` package, install `@anu-vue/nuxt`.
-
     ```bash
-    # pnpm
     pnpm add @anu-vue/nuxt && pnpm add -D @unocss/nuxt
-
-    # yarn
+    ```
+    ```bash
     yarn add @anu-vue/nuxt && yarn add -D @unocss/nuxt
-
-    # npm
+    ```
+    ```bash
     npm install @anu-vue/nuxt && npm install -D @unocss/nuxt
     ```
 
