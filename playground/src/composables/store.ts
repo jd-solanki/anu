@@ -12,18 +12,10 @@ import { IS_DEV } from '@/constants'
 export interface Initial {
   serializedState?: string
   versions?: Versions
-  userOptions?: UserOptions
-  pr?: string | null
 }
 export type VersionKey = 'vue' | 'anuVue'
 export type Versions = Record<VersionKey, string>
-export interface UserOptions {
-  styleSource?: string
-  showHidden?: boolean
-}
-export type SerializeState = Record<string, string> & {
-  _o?: UserOptions
-}
+export type SerializeState = Record<string, string>
 
 const MAIN_FILE = 'src/Main.vue'
 const APP_FILE = 'src/App.vue'
@@ -37,8 +29,7 @@ export function useStore(initial: Initial) {
   )
 
   const compiler = shallowRef<typeof import('vue/compiler-sfc')>(defaultCompiler)
-  const userOptions = ref<UserOptions>(initial.userOptions || {})
-  const hideFile = computed(() => !IS_DEV && !userOptions.value.showHidden)
+  const hideFile = computed(() => !IS_DEV)
 
   const files = initFiles(initial.serializedState || '')
 
@@ -80,7 +71,7 @@ export function useStore(initial: Initial) {
   )
 
   // eslint-disable-next-line no-console
-  console.log('Files:', files, 'Options:', userOptions.value)
+  console.log('Files:', files, 'Options:')
 
   const store: Store = reactive({
     init,
@@ -111,7 +102,7 @@ export function useStore(initial: Initial) {
     version => {
       const file = new File(
         ANU_FILE,
-        generateAnuVueCode(version, userOptions.value.styleSource).trim(),
+        generateAnuVueCode(version).trim(),
         hideFile.value,
       )
 
@@ -122,10 +113,8 @@ export function useStore(initial: Initial) {
     { immediate: true },
   )
 
-  function generateAnuVueCode(version: string, styleSource?: string) {
-    const style = styleSource
-      ? styleSource.replace('#VERSION#', version)
-      : genCdnLink('anu-vue', version, '/dist/style.css')
+  function generateAnuVueCode(version: string) {
+    const style = genCdnLink('anu-vue', version, '/dist/style.css')
     const themeStyle = genCdnLink('@anu-vue/preset-theme-default', version, '/dist/style.css')
     const resetStyle = 'https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.min.css'
 
@@ -167,7 +156,6 @@ export function useStore(initial: Initial) {
 
   function serialize() {
     const state: SerializeState = { ...getFiles() }
-    state._o = userOptions.value
 
     return utoa(JSON.stringify(state))
   }
@@ -181,15 +169,11 @@ export function useStore(initial: Initial) {
     if (serializedState) {
       const saved = deserialize(serializedState)
       for (let [filename, file] of Object.entries(saved)) {
-        if (filename === '_o')
-          continue
-
         if (!filename.startsWith('src/') && filename !== IMPORT_MAP)
           filename = `src/${filename}`
 
         files[filename] = new File(filename, file as string)
       }
-      userOptions.value = saved._o || {}
     }
     else {
       files[APP_FILE] = new File(APP_FILE, welcomeCode)
@@ -282,12 +266,10 @@ export function useStore(initial: Initial) {
     ...store,
 
     versions,
-    userOptions,
 
     init,
     serialize,
     setVersion,
-    pr: initial.pr,
   }
 }
 
