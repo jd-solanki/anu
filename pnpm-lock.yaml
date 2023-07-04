@@ -317,8 +317,8 @@ importers:
         specifier: npm:@anu-vue/preset-theme-default-edge@latest
         version: /@anu-vue/preset-theme-default-edge@0.13.2-rc.0-28025564.1da7fba
       '@vue/repl':
-        specifier: ^1.5.0
-        version: 1.5.0(vue@3.3.4)
+        specifier: ^2.4.0
+        version: 2.4.0
       '@vueuse/core':
         specifier: ^10.1.2
         version: 10.1.2(vue@3.3.4)
@@ -3455,12 +3455,8 @@ packages:
     dependencies:
       '@vue/shared': 3.3.4
 
-  /@vue/repl@1.5.0(vue@3.3.4):
-    resolution: {integrity: sha512-qFqKtvA2FM9viYXzbWrpGrL8mDGswsqDsEjfaibr/YOqeza7i49VmO0AKPrOdQDOS2qmq9uV+G6OPX1rGhUSIQ==}
-    peerDependencies:
-      vue: ^3.2.13
-    dependencies:
-      vue: 3.3.4
+  /@vue/repl@2.4.0:
+    resolution: {integrity: sha512-vXXEysYTCZdJo3kECwKDTxd6GI3F9RzJ3dkslY6fpdGn7q+aCizLqcWiEnWaeBjbqOh31rMsPPUxhhC3jhaiXQ==}
     dev: false
 
   /@vue/runtime-core@3.3.4:

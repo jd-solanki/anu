@@ -25,10 +25,10 @@ export type SerializeState = Record<string, string> & {
   _o?: UserOptions
 }
 
-const MAIN_FILE = 'Main.vue'
-const APP_FILE = 'App.vue'
-const ANU_FILE = 'anu-vue.js'
-const IMPORT_MAP = 'import-map.json'
+const MAIN_FILE = 'src/Main.vue'
+const APP_FILE = 'src/App.vue'
+const ANU_FILE = 'src/anu-vue.js'
+const IMPORT_MAP = 'src/import-map.json'
 export const USER_IMPORT_MAP = 'import_map.json'
 
 export function useStore(initial: Initial) {
@@ -41,10 +41,15 @@ export function useStore(initial: Initial) {
   const hideFile = computed(() => !IS_DEV && !userOptions.value.showHidden)
 
   const files = initFiles(initial.serializedState || '')
+
+  let activeFile = files[APP_FILE]
+  if (!activeFile)
+    activeFile = Object.values(files)[0]
+
   const state = reactive<StoreState>({
     mainFile: MAIN_FILE,
     files,
-    activeFile: files[APP_FILE],
+    activeFile,
     errors: [],
     vueRuntimeURL: '',
     vueServerRendererURL: '',
@@ -175,9 +180,13 @@ export function useStore(initial: Initial) {
     const files: StoreState['files'] = {}
     if (serializedState) {
       const saved = deserialize(serializedState)
-      for (const [filename, file] of Object.entries(saved)) {
+      for (let [filename, file] of Object.entries(saved)) {
         if (filename === '_o')
           continue
+
+        if (!filename.startsWith('src/') && filename !== IMPORT_MAP)
+          filename = `src/${filename}`
+
         files[filename] = new File(filename, file as string)
       }
       userOptions.value = saved._o || {}
@@ -261,6 +270,13 @@ export function useStore(initial: Initial) {
   function setAnuVueVersion(version: string) {
     versions.anuVue = version
   }
+
+  watch(
+    () => state.files[IMPORT_MAP].code,
+    () => {
+      state.resetFlip = !state.resetFlip
+    },
+  )
 
   return {
     ...store,
