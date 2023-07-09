@@ -9,6 +9,7 @@
     "build": "tsx ./scripts/build.ts",
     "docs:dev": "pnpm --filter @anu-vue/documentation dev",
     "docs:build": "pnpm --filter anu-vue build && pnpm --filter @anu-vue/preset-theme-default build && pnpm --filter @anu-vue/documentation build",
+    "play:dev": "pnpm --filter anu-playground dev",
     "clean": "rimraf packages/anu-vue/dist && rimraf packages/anu-vue/component-meta && rimraf packages/anu-nuxt/dist && rimraf packages/anu-nuxt/playground/.nuxt && rimraf packages/preset-theme-default/dist && rimraf docs/.vitepress/dist && rimraf packages/.vitepress/cache",
     "release": "bumpp package.json packages/**/package.json",
     "lint": "pnpm --filter anu-vue lint",
