@@ -1,5 +1,5 @@
+import { color as colorProp } from 'anu-vue/composables/useProps'
 import type { ExtractPublicPropTypes } from 'vue'
-import { color as colorProp } from '@/composables/useProps'
 
 export type AVerticalAnchor = 'top' | 'bottom'
 export type AHorizontalAnchor = 'left' | 'right'

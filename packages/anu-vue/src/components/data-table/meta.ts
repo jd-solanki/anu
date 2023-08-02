@@ -1,9 +1,9 @@
+import type { ATableEvents, ATablePropColumn, RowKey } from 'anu-vue/components/table'
+import { aTableProps, aTableSlots } from 'anu-vue/components/table'
+import type { CustomFilter } from 'anu-vue/composables/useSearch'
+import type { CustomSort } from 'anu-vue/composables/useSort'
+import { omitObjKeys } from 'anu-vue/utils/helpers'
 import type { ExtractPublicPropTypes } from 'vue'
-import type { ATableEvents, ATablePropColumn, RowKey } from '@/components/table'
-import { aTableProps, aTableSlots } from '@/components/table'
-import type { CustomFilter } from '@/composables/useSearch'
-import type { CustomSort } from '@/composables/useSort'
-import { omitObjKeys } from '@/utils/helpers'
 
 // ℹ️ Make sure to checkout meta definition rules
 

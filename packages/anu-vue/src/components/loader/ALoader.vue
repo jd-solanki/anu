@@ -1,21 +1,22 @@
 <script lang="ts" setup>
+import { ASpinner } from 'anu-vue/components'
+import { isTypographyUsed } from 'anu-vue/components/typography/utils'
+import { type ConfigurableValue, useConfigurable } from 'anu-vue/composables/useConfigurable'
+import { useDOMScrollLock } from 'anu-vue/composables/useDOMScrollLock'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { filterUsedSlots } from 'anu-vue/utils/vue'
 import type { Ref } from 'vue'
 import type { aLoaderSlots } from './meta'
 import { aLoaderProps, aLoaderTypographySlots } from './meta'
-import { ASpinner } from '@/components'
-import { isTypographyUsed } from '@/components/typography/utils'
-import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
-import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
-import { useDefaults } from '@/composables/useDefaults'
-import { filterUsedSlots } from '@/utils/vue'
+
+defineOptions({
+  name: 'ALoader',
+})
 
 // SECTION Meta
 const _props = defineProps(aLoaderProps)
 defineSlots<typeof aLoaderSlots>()
 
-defineOptions({
-  name: 'ALoader',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

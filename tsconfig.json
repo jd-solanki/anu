@@ -25,7 +25,7 @@
       "anu-vue": [
         "./packages/anu-vue/src/index.ts"
       ],
-      "@/*": [
+      "anu-vue/*": [
         "./packages/anu-vue/src/*"
       ],
       "@anu-vue/core": [

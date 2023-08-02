@@ -1,7 +1,7 @@
+import { aCardProps, aCardSlots } from 'anu-vue/components/card'
 import type { LiteralUnion } from 'type-fest'
 import type { ExtractPublicPropTypes } from 'vue'
 import type { NoUndefined } from './../../utils/typescripts'
-import { aCardProps, aCardSlots } from '@/components/card'
 
 // ℹ️ Make sure to checkout meta definition rules
 

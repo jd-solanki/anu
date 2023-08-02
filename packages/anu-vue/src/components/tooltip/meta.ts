@@ -1,7 +1,7 @@
 import { flip, offset, shift } from '@floating-ui/vue'
+import type { AFloatingMiddlewareFunc } from 'anu-vue/components/floating'
+import { aFloatingProps } from 'anu-vue/components/floating'
 import type { ExtractPublicPropTypes } from 'vue'
-import type { AFloatingMiddlewareFunc } from '@/components/floating'
-import { aFloatingProps } from '@/components/floating'
 
 // ℹ️ Make sure to checkout meta definition rules
 

@@ -1,19 +1,20 @@
 <script lang="ts" setup>
 import type { AListEvents, AListPropItems, aListSlots } from './meta'
 import { aListListItemSlotsWithPrefixMeta, aListProps } from './meta'
-import { AListItem } from '@/components/list-item'
-import { useDefaults } from '@/composables/useDefaults'
-import { calculateSelectionItems, extractItemValueFromItemOption, useSelection } from '@/composables/useSelection'
-import { filterUsedRenamedSlots } from '@/utils/vue'
+import { AListItem } from 'anu-vue/components/list-item'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { calculateSelectionItems, extractItemValueFromItemOption, useSelection } from 'anu-vue/composables/useSelection'
+import { filterUsedRenamedSlots } from 'anu-vue/utils/vue'
+
+defineOptions({
+  name: 'AList',
+})
 
 // SECTION Meta
 const _props = defineProps(aListProps)
 const emit = defineEmits<AListEvents>()
 defineSlots<typeof aListSlots>()
 
-defineOptions({
-  name: 'AList',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

@@ -1,10 +1,14 @@
 <script lang="ts" setup>
+import { ALoader } from 'anu-vue/components/loader'
+import { useConfigurable } from 'anu-vue/composables/useConfigurable'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import TransitionExpand from 'anu-vue/transitions/TransitionExpand.vue'
 import type { ABaseInputEvents, aBaseInputSlots } from './meta'
 import { aBaseInputProps } from './meta'
-import { ALoader } from '@/components/loader'
-import { useConfigurable } from '@/composables/useConfigurable'
-import { useDefaults } from '@/composables/useDefaults'
-import TransitionExpand from '@/transitions/TransitionExpand.vue'
+
+defineOptions({
+  name: 'ABaseInput',
+})
 
 // SECTION Meta
 
@@ -14,10 +18,6 @@ const _props = defineProps(aBaseInputProps)
 defineEmits<ABaseInputEvents>()
 
 defineSlots<typeof aBaseInputSlots>()
-
-defineOptions({
-  name: 'ABaseInput',
-})
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 

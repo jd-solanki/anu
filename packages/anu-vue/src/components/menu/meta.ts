@@ -1,5 +1,5 @@
+import { aFloatingProps } from 'anu-vue/components/floating'
 import type { ExtractPublicPropTypes } from 'vue'
-import { aFloatingProps } from '@/components/floating'
 
 // ℹ️ Make sure to checkout meta definition rules
 

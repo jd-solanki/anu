@@ -1,6 +1,6 @@
+import { aLayerProps } from 'anu-vue/composables/useLayer'
+import { configurable as configurableProp, disabled as disabledProp } from 'anu-vue/composables/useProps'
 import type { ExtractPublicPropTypes } from 'vue'
-import { aLayerProps } from '@/composables/useLayer'
-import { configurable as configurableProp, disabled as disabledProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 

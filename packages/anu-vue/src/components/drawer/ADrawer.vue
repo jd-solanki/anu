@@ -1,23 +1,24 @@
 <script lang="ts" setup>
+import { ACard } from 'anu-vue/components/card'
+import { onClickSameTarget } from 'anu-vue/composables/onClickSameTarget'
+import { useDOMScrollLock } from 'anu-vue/composables/useDOMScrollLock'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { useTeleport } from 'anu-vue/composables/useTeleport'
+import { filterUsedSlots } from 'anu-vue/utils/vue'
 import type { Ref } from 'vue'
 import type { ADrawerEvents } from './meta'
 import { aDrawerProps, aDrawerSlots } from './meta'
-import { ACard } from '@/components/card'
-import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
-import { useDefaults } from '@/composables/useDefaults'
-import { useTeleport } from '@/composables/useTeleport'
-import { onClickSameTarget } from '@/composables/onClickSameTarget'
-import { filterUsedSlots } from '@/utils/vue'
+
+defineOptions({
+  name: 'ADrawer',
+  inheritAttrs: false,
+})
 
 // SECTION Meta
 const _props = defineProps(aDrawerProps)
 const emit = defineEmits<ADrawerEvents>()
 defineSlots<typeof aDrawerSlots>()
 
-defineOptions({
-  name: 'ADrawer',
-  inheritAttrs: false,
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

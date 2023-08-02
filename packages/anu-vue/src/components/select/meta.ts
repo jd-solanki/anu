@@ -1,9 +1,9 @@
+import { aBaseInputProps, aBaseInputSlots } from 'anu-vue/components/base-input'
+import { aCardSlots } from 'anu-vue/components/card/meta'
+import type { AListProps } from 'anu-vue/components/list'
+import { aListSlots } from 'anu-vue/components/list'
+import { prefixObjectKeys, prefixObjectKeysWithMeta } from 'anu-vue/utils/helpers'
 import type { ExtractPublicPropTypes } from 'vue'
-import { aBaseInputProps, aBaseInputSlots } from '@/components/base-input'
-import { aCardSlots } from '@/components/card/meta'
-import type { AListProps } from '@/components/list'
-import { aListSlots } from '@/components/list'
-import { prefixObjectKeys, prefixObjectKeysWithMeta } from '@/utils/helpers'
 
 // ℹ️ Make sure to checkout meta definition rules
 

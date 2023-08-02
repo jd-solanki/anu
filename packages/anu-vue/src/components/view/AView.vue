@@ -1,14 +1,15 @@
 <script lang="ts" setup>
+import { ViewGroupModel } from 'anu-vue/components/views/symbol'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
 import { aViewProps } from './meta'
-import { ViewGroupModel } from '@/components/views/symbol'
-import { useDefaults } from '@/composables/useDefaults'
-
-// SECTION Meta
-const _props = defineProps(aViewProps)
 
 defineOptions({
   name: 'AView',
 })
+
+// SECTION Meta
+const _props = defineProps(aViewProps)
+
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

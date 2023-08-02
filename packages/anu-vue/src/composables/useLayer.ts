@@ -1,12 +1,12 @@
 import type { MaybeRef } from '@vueuse/core'
+import { isThemeColor } from 'anu-vue/composables/useColor'
+import type { ColorProp } from 'anu-vue/composables/useProps'
+import { color } from 'anu-vue/composables/useProps'
+import { useTypographyColor } from 'anu-vue/composables/useTypographyColor'
+import { colord } from 'anu-vue/utils/colord'
 import { defu } from 'defu'
 import type { ComponentObjectPropsOptions, ExtractPublicPropTypes } from 'vue'
 import { ref, unref, watch } from 'vue'
-import { isThemeColor } from '@/composables/useColor'
-import type { ColorProp } from '@/composables/useProps'
-import { color } from '@/composables/useProps'
-import { useTypographyColor } from '@/composables/useTypographyColor'
-import { colord } from '@/utils/colord'
 
 export type LayerVariant = 'fill' | 'outline' | 'light' | 'text'
 

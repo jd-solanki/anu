@@ -1,5 +1,5 @@
+import type { SortBy } from 'anu-vue/components/data-table'
 import type { ComputedRef, Ref, UnwrapRef } from 'vue'
-import type { SortBy } from '@/components/data-table'
 
 export function getComputedCols<PropColumn>(rows: Ref<Record<string, unknown>[]>, cols: Ref<PropColumn[]>) {
   return computed<PropColumn[]>(() => {

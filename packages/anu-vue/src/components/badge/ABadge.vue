@@ -1,17 +1,18 @@
 <script lang="ts" setup>
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { isNumeric } from 'anu-vue/utils/helpers'
 import type { aBadgeSlots } from './meta'
 import { aBadgeDefaultOffset, aBadgeDefaultOverlapOffset, aBadgeProps } from './meta'
-import { useDefaults } from '@/composables/useDefaults'
-import { isNumeric } from '@/utils/helpers'
-
-// SECTION Meta
-const _props = defineProps(aBadgeProps)
-defineSlots<typeof aBadgeSlots>()
 
 defineOptions({
   name: 'ABadge',
   inheritAttrs: false,
 })
+
+// SECTION Meta
+const _props = defineProps(aBadgeProps)
+defineSlots<typeof aBadgeSlots>()
+
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

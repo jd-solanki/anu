@@ -1,16 +1,17 @@
 <script lang="ts" setup>
+import { useColor } from 'anu-vue/composables'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
 import type { ARatingEvents } from './meta'
 import { aRatingProps } from './meta'
-import { useColor } from '@/composables'
-import { useDefaults } from '@/composables/useDefaults'
+
+defineOptions({
+  name: 'ARating',
+})
 
 // SECTION Meta
 const _props = defineProps(aRatingProps)
 const emit = defineEmits<ARatingEvents>()
 
-defineOptions({
-  name: 'ARating',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

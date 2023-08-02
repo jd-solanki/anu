@@ -1,23 +1,31 @@
 <script lang="ts" setup generic="Row extends Record<string, unknown>">
+import { ABtn, AInput, ASelect, ATable } from 'anu-vue/components'
+import type { ATableProps } from 'anu-vue/components/table'
+import { aTableProps } from 'anu-vue/components/table'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { useSearch } from 'anu-vue/composables/useSearch'
+import type { typeSortBy } from 'anu-vue/composables/useSort'
+import { useSort } from 'anu-vue/composables/useSort'
+import { objectKeys } from 'anu-vue/utils/typescripts'
+import { filterUsedSlots } from 'anu-vue/utils/vue'
 import { defu } from 'defu'
 import type { Ref } from 'vue'
 import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
 import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTableSlots } from './meta'
-import { ABtn, AInput, ASelect, ATable } from '@/components'
-import type { ATableProps } from '@/components/table'
-import { aTableProps } from '@/components/table'
-import { useDefaults } from '@/composables/useDefaults'
-import { useSearch } from '@/composables/useSearch'
-import type { typeSortBy } from '@/composables/useSort'
-import { useSort } from '@/composables/useSort'
-import { objectKeys } from '@/utils/typescripts'
-import { filterUsedSlots } from '@/utils/vue'
+
+defineOptions({
+  name: 'ADataTable',
+})
 
 // TODO: Check usage with useDebounceFn. Can we limit the # of req to server?
 
 // SECTION Meta
 const _props = defineProps(aDataTableProps<Row>())
 const emit = defineEmits<ADataTableEvents>()
+
+// TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
+defineSlots<any>()
+
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
@@ -29,18 +37,11 @@ const _slots = aDataTableSlots<Row>(
     : objectKeys(props.rows[0] || {}),
 )
 
-// TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
-defineSlots<any>()
-
 const _aDataTableTableSlots = aDataTableTableSlots<Row>(
   typeof props.rows === 'function'
     ? []
     : objectKeys(props.rows[0] || {}),
 )
-
-defineOptions({
-  name: 'ADataTable',
-})
 
 // TODO: https://twitter.com/mattpocockuk/status/1606656367078539264
 const _tableProps = reactivePick(props, Object.keys(aTableProps<Row>()).filter(k => !['rows', 'cols'].includes(k)) as Array<keyof ATableProps>)

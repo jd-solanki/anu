@@ -1,6 +1,6 @@
+import type { ATabProps } from 'anu-vue/components/tab'
+import { transition as transitionProp } from 'anu-vue/composables/useProps'
 import type { ExtractPublicPropTypes } from 'vue'
-import type { ATabProps } from '@/components/tab'
-import { transition as transitionProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 

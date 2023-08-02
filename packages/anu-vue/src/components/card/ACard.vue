@@ -1,22 +1,23 @@
 <script lang="ts" setup>
+import { ALoader } from 'anu-vue/components/loader'
+import { isTypographyUsed } from 'anu-vue/components/typography/utils'
+import { type ConfigurableValue, useConfigurable } from 'anu-vue/composables/useConfigurable'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { useLayer } from 'anu-vue/composables/useLayer'
+import { filterUsedSlots } from 'anu-vue/utils/vue'
 import { ATypography } from '../typography'
 import type { aCardSlots } from './meta'
 import { aCardProps, aCardTypographySlots } from './meta'
-import { ALoader } from '@/components/loader'
-import { isTypographyUsed } from '@/components/typography/utils'
-import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
-import { useDefaults } from '@/composables/useDefaults'
-import { useLayer } from '@/composables/useLayer'
-import { filterUsedSlots } from '@/utils/vue'
+
+defineOptions({
+  name: 'ACard',
+})
 
 // SECTION Meta
 const _props = defineProps(aCardProps)
 
 defineSlots<typeof aCardSlots>()
 
-defineOptions({
-  name: 'ACard',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

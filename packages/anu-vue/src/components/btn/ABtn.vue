@@ -1,18 +1,18 @@
 <script lang="ts" setup>
+import { ASpinner } from 'anu-vue/components/spinner'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { useLayer } from 'anu-vue/composables/useLayer'
 import type { aBtnSlots } from './meta'
 import { aBtnProps } from './meta'
-import { ASpinner } from '@/components/spinner'
-import { useDefaults } from '@/composables/useDefaults'
-import { useLayer } from '@/composables/useLayer'
+
+defineOptions({
+  name: 'ABtn',
+})
 
 // SECTION Meta
 const _props = defineProps(aBtnProps)
 
 defineSlots<typeof aBtnSlots>()
-
-defineOptions({
-  name: 'ABtn',
-})
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 

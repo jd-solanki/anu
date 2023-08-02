@@ -1,4 +1,4 @@
-import { createTransition } from '@/composables/createTransition'
+import { createTransition } from 'anu-vue/composables/createTransition'
 
 export const transitions = [
   'fade',

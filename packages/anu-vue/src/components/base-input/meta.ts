@@ -1,5 +1,5 @@
+import { configurable, disabled, readonly } from 'anu-vue/composables/useProps'
 import type { ExtractPublicPropTypes, HTMLAttributes, PropType } from 'vue'
-import { configurable, disabled, readonly } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout prop definition rules
 

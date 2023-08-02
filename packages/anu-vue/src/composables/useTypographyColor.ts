@@ -1,8 +1,8 @@
 import type { MaybeRefOrGetter } from '@vueuse/core'
 import { toValue } from '@vueuse/core'
+import { isThemeColor } from 'anu-vue/composables/useColor'
+import { colord } from 'anu-vue/utils/colord'
 import type { ColorProp } from './useProps'
-import { colord } from '@/utils/colord'
-import { isThemeColor } from '@/composables/useColor'
 
 function calculateColor(_isThemeColor: boolean, _color: ColorProp | null, _variant: string) {
   const classes = []

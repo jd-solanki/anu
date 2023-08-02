@@ -1,7 +1,7 @@
 import { isNumber } from '@antfu/utils'
 import { type App, computed, inject, ref } from 'vue'
 
-import { ANU_Z_INDEX } from '@/symbols'
+import { ANU_Z_INDEX } from 'anu-vue/symbols'
 
 const zIndexCounter = ref(0)
 

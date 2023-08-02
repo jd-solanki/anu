@@ -1,16 +1,17 @@
 <script lang="ts" setup>
 import { breakpointsTailwind } from '@vueuse/core'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
 import type { aTabSlots } from './meta'
 import { aTabProps } from './meta'
-import { useDefaults } from '@/composables/useDefaults'
+
+defineOptions({
+  name: 'ATab',
+})
 
 // SECTION Meta
 const _props = defineProps(aTabProps)
 defineSlots<typeof aTabSlots>()
 
-defineOptions({
-  name: 'ATab',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

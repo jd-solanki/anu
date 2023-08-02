@@ -1,9 +1,13 @@
 <script lang="ts" setup>
+import { AFloating } from 'anu-vue/components/floating'
+import { useParent } from 'anu-vue/composables'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
 import type { aTooltipSlots } from './meta'
 import { aTooltipProps } from './meta'
-import { AFloating } from '@/components/floating'
-import { useParent } from '@/composables'
-import { useDefaults } from '@/composables/useDefaults'
+
+defineOptions({
+  name: 'ATooltip',
+})
 
 // import { arrow } from '@floating-ui/vue'
 
@@ -11,9 +15,6 @@ import { useDefaults } from '@/composables/useDefaults'
 const _props = defineProps(aTooltipProps)
 defineSlots<typeof aTooltipSlots>()
 
-defineOptions({
-  name: 'ATooltip',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

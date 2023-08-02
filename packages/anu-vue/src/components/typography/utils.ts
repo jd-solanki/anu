@@ -1,6 +1,6 @@
+import type { ConfigurableValue } from 'anu-vue/composables/useConfigurable'
 import type { Ref, Slots, ToRef } from 'vue'
 import type { ATypographyProps } from './meta'
-import type { ConfigurableValue } from '@/composables/useConfigurable'
 
 export function isTypographyUsed(props: { [K in keyof ATypographyProps]: ToRef<ATypographyProps[K]> }, slots: Slots) {
   const { title, subtitle, text } = props

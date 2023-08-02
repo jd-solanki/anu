@@ -1,20 +1,21 @@
 <script lang="ts" setup>
+import { AAvatar } from 'anu-vue/components/avatar'
+import { ATypography } from 'anu-vue/components/typography'
+import { type ConfigurableValue, useConfigurable } from 'anu-vue/composables/useConfigurable'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { useLayer } from 'anu-vue/composables/useLayer'
 import type { AListItemEvents, aListItemSlots } from './meta'
 import { aListItemProps } from './meta'
-import { AAvatar } from '@/components/avatar'
-import { ATypography } from '@/components/typography'
-import { type ConfigurableValue, useConfigurable } from '@/composables/useConfigurable'
-import { useDefaults } from '@/composables/useDefaults'
-import { useLayer } from '@/composables/useLayer'
+
+defineOptions({
+  name: 'AListItem',
+})
 
 // SECTION Meta
 const _props = defineProps(aListItemProps)
 defineEmits<AListItemEvents>()
 defineSlots<typeof aListItemSlots>()
 
-defineOptions({
-  name: 'AListItem',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

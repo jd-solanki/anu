@@ -19,8 +19,7 @@ export default defineConfig({
   resolve: {
     dedupe: ['vue'],
     alias: {
-      // TODO: This should be `repoRoot`. We will update it in internal refactor task.
-      '@': anuVueSrc,
+      'anu-vue': anuVueSrc,
     },
   },
   optimizeDeps: {

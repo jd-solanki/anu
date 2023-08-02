@@ -1,5 +1,5 @@
+import { configurable } from 'anu-vue/composables/useProps'
 import type { ExtractPublicPropTypes } from 'vue'
-import { configurable } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 

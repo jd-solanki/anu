@@ -1,15 +1,14 @@
 <script lang="ts" setup>
+import { useLayer } from 'anu-vue/composables/useLayer'
 import { toRef } from 'vue'
 import type { aAvatarSlots } from './meta'
 import { aAvatarProps } from './meta'
-import { useLayer } from '@/composables/useLayer'
-
-const props = defineProps(aAvatarProps)
-defineSlots<typeof aAvatarSlots>()
 
 defineOptions({
   name: 'AAvatar',
 })
+const props = defineProps(aAvatarProps)
+defineSlots<typeof aAvatarSlots>()
 
 const { getLayerClasses } = useLayer()
 const { styles, classes } = getLayerClasses(

@@ -1,4 +1,4 @@
-import '@/scss/index.scss'
+import 'anu-vue/scss/index.scss'
 
 // Components
 export { AnuComponentResolver } from './componentResolver'

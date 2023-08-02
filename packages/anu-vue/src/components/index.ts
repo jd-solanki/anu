@@ -1,4 +1,4 @@
-export * from '@/transitions'
+export * from 'anu-vue/transitions'
 export { AAlert } from './alert'
 export { AAvatar } from './avatar'
 export { ABadge } from './badge'

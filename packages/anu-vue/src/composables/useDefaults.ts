@@ -1,10 +1,10 @@
 import { objectKeys, objectPick } from '@antfu/utils'
+import type { PluginOptions } from 'anu-vue/plugin'
+import type { PluginOptionDefaults } from 'anu-vue/pluginDefaults'
+import { ANU_PROPS_DEFAULTS } from 'anu-vue/symbols'
 import { deepmergeCustom } from 'deepmerge-ts'
 import type { Ref, StyleValue } from 'vue'
 import { toValue } from 'vue'
-import { ANU_PROPS_DEFAULTS } from '@/symbols'
-import type { PluginOptionDefaults } from '@/pluginDefaults'
-import type { PluginOptions } from '@/plugin'
 
 export const mergePropsDefaults = deepmergeCustom({
   mergeArrays: false,

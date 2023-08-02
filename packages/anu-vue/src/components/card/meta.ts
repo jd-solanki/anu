@@ -1,7 +1,7 @@
+import type { ALoaderProps } from 'anu-vue/components/loader'
+import { aTypographyProps, aTypographySlots } from 'anu-vue/components/typography'
+import { aLayerProps } from 'anu-vue/composables/useLayer'
 import type { ExtractPublicPropTypes } from 'vue'
-import type { ALoaderProps } from '@/components/loader'
-import { aTypographyProps, aTypographySlots } from '@/components/typography'
-import { aLayerProps } from '@/composables/useLayer'
 
 // ℹ️ Make sure to checkout meta definition rules
 

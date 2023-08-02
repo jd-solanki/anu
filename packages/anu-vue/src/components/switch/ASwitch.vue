@@ -1,17 +1,17 @@
 <script lang="ts" setup>
+import { useCheckbox } from 'anu-vue/composables'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
 import type { ASwitchEvents, ASwitchProps, aSwitchSlots } from './meta'
 import { aSwitchProps } from './meta'
-import { useCheckbox } from '@/composables'
-import { useDefaults } from '@/composables/useDefaults'
-
-// SECTION Meta
-const _props = defineProps(aSwitchProps)
-const emit = defineEmits<ASwitchEvents>()
 
 defineOptions({
   name: 'ASwitch',
   inheritAttrs: false,
 })
+
+// SECTION Meta
+const _props = defineProps(aSwitchProps)
+const emit = defineEmits<ASwitchEvents>()
 
 defineSlots<typeof aSwitchSlots>()
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)

@@ -1,11 +1,15 @@
 <script lang="ts" setup generic="Row extends Record<string, unknown>">
+import type { ACardProps } from 'anu-vue/components/card'
+import { aCardProps } from 'anu-vue/components/card'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { objectKeys } from 'anu-vue/utils/typescripts'
+import { filterUsedSlots } from 'anu-vue/utils/vue'
 import type { ATableEvents, ATablePropColumn } from './meta'
 import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
-import type { ACardProps } from '@/components/card'
-import { aCardProps } from '@/components/card'
-import { useDefaults } from '@/composables/useDefaults'
-import { objectKeys } from '@/utils/typescripts'
-import { filterUsedSlots } from '@/utils/vue'
+
+defineOptions({
+  name: 'ATable',
+})
 
 // SECTION Meta
 const _props = defineProps(aTableProps<Row>())
@@ -13,17 +17,14 @@ const _props = defineProps(aTableProps<Row>())
 // TODO: We aren't getting type error for click:header
 defineEmits<ATableEvents>()
 
+// TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
+defineSlots<any>()
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _slots = aTableSlots<Row>(
   objectKeys(_props.rows[0] || {}),
 )
 
-// TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
-defineSlots<any>()
-
-defineOptions({
-  name: 'ATable',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

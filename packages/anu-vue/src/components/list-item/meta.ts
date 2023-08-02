@@ -1,8 +1,8 @@
+import { configurable, disabled } from 'anu-vue/composables/useProps'
 import type { ExtractPublicPropTypes } from 'vue'
-import { configurable, disabled } from '@/composables/useProps'
 
-import { aTypographyProps } from '@/components/typography'
-import { aLayerProps } from '@/composables/useLayer'
+import { aTypographyProps } from 'anu-vue/components/typography'
+import { aLayerProps } from 'anu-vue/composables/useLayer'
 
 // ℹ️ Make sure to checkout meta definition rules
 

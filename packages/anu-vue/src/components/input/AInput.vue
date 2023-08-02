@@ -1,18 +1,19 @@
 <script lang="ts" setup>
+import { ABaseInput, aBaseInputProps } from 'anu-vue/components/base-input'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { filterUsedSlots } from 'anu-vue/utils/vue'
 import type { AInputEvents } from './meta'
 import { aInputProps, aTextareaBaseInputSlots } from './meta'
-import { ABaseInput, aBaseInputProps } from '@/components/base-input'
-import { useDefaults } from '@/composables/useDefaults'
-import { filterUsedSlots } from '@/utils/vue'
-
-// SECTION Meta
-const _props = defineProps(aInputProps)
-defineEmits<AInputEvents>()
 
 defineOptions({
   name: 'AInput',
   inheritAttrs: false,
 })
+
+// SECTION Meta
+const _props = defineProps(aInputProps)
+defineEmits<AInputEvents>()
+
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

@@ -1,8 +1,8 @@
 import type { Middleware, Placement, Strategy } from '@floating-ui/vue'
 import { flip, shift } from '@floating-ui/vue'
+import { transition as transitionProp } from 'anu-vue/composables/useProps'
 import type { ExtractPublicPropTypes, Ref } from 'vue'
 import { sameWidth as sameWidthMiddleware } from './middlewares'
-import { transition as transitionProp } from '@/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 

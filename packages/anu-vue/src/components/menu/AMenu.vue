@@ -1,18 +1,19 @@
 <script lang="ts" setup>
+import { ACard } from 'anu-vue/components'
+import { AFloating } from 'anu-vue/components/floating'
+import { useParent } from 'anu-vue/composables'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
 import type { aMenuSlots } from './meta'
 import { aMenuProps } from './meta'
-import { ACard } from '@/components'
-import { AFloating } from '@/components/floating'
-import { useParent } from '@/composables'
-import { useDefaults } from '@/composables/useDefaults'
+
+defineOptions({
+  name: 'AMenu',
+})
 
 // SECTION Meta
 const _props = defineProps(aMenuProps)
 defineSlots<typeof aMenuSlots>()
 
-defineOptions({
-  name: 'AMenu',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

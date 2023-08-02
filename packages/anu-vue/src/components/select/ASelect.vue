@@ -1,26 +1,26 @@
 <script lang="ts" setup>
 import { flip, offset, shift } from '@floating-ui/vue'
+import { ACard, AList } from 'anu-vue/components'
+import { ABaseInput, aBaseInputProps } from 'anu-vue/components/base-input'
+import { AFloating, sameWidthFloatingUIMiddleware } from 'anu-vue/components/floating'
+import type { AListPropItems } from 'anu-vue/components/list'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { extractItemValueFromItemOption } from 'anu-vue/composables/useSelection'
+import { filterUsedRenamedSlots, filterUsedSlots } from 'anu-vue/utils/vue'
 import type { ASelectEvents, aSelectSlots } from './meta'
 import { aSelectBaseInputSlots, aSelectCardSlots, aSelectListSlotsWithPrefixMeta, aSelectProps } from './meta'
-import { ACard, AList } from '@/components'
-import { ABaseInput, aBaseInputProps } from '@/components/base-input'
-import { AFloating, sameWidthFloatingUIMiddleware } from '@/components/floating'
-import type { AListPropItems } from '@/components/list'
-import { useDefaults } from '@/composables/useDefaults'
-import { extractItemValueFromItemOption } from '@/composables/useSelection'
-import { filterUsedRenamedSlots, filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
 export interface ObjectOption { label: string; value: string | number }
-
-const _props = defineProps(aSelectProps)
-const emit = defineEmits<ASelectEvents>()
-defineSlots<typeof aSelectSlots>()
 
 defineOptions({
   name: 'ASelect',
   inheritAttrs: false,
 })
+const _props = defineProps(aSelectProps)
+const emit = defineEmits<ASelectEvents>()
+defineSlots<typeof aSelectSlots>()
+
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

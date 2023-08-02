@@ -1,5 +1,5 @@
 import { objectKeys, objectMap } from '@antfu/utils'
-import type { prefixObjectKeysWithMeta } from '@/utils/helpers'
+import type { prefixObjectKeysWithMeta } from 'anu-vue/utils/helpers'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const filterUsedSlots = computed(() => <const T extends Record<string, any>>(slotsToUse: T): (keyof T)[] => {

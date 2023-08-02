@@ -1,21 +1,22 @@
 <script lang="ts" setup>
+import { AView } from 'anu-vue/components/view'
+import { useSelection } from 'anu-vue/composables'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { numRange } from 'anu-vue/utils/helpers'
 import type { VNode } from 'vue'
 import { TransitionGroup, h } from 'vue'
 import type { AViewsEvents } from './meta'
 import { aViewsProps } from './meta'
 import { ActiveViewSymbol, ViewGroupModel } from './symbol'
-import { numRange } from '@/utils/helpers'
-import { useDefaults } from '@/composables/useDefaults'
-import { useSelection } from '@/composables'
-import { AView } from '@/components/view'
+
+defineOptions({
+  name: 'AViews',
+})
 
 // SECTION Meta
 const _props = defineProps(aViewsProps)
 const emit = defineEmits<AViewsEvents>()
 
-defineOptions({
-  name: 'AViews',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

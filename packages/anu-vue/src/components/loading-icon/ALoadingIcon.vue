@@ -1,15 +1,16 @@
 <script lang="ts" setup>
+import { ASpinner } from 'anu-vue/components'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
 import { aLoadingIconProps } from './meta'
-import { ASpinner } from '@/components'
-import { useDefaults } from '@/composables/useDefaults'
-
-// SECTION Meta
-const _props = defineProps(aLoadingIconProps)
 
 defineOptions({
   name: 'ALoadingIcon',
   inheritAttrs: false,
 })
+
+// SECTION Meta
+const _props = defineProps(aLoadingIconProps)
+
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION

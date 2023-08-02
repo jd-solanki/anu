@@ -1,17 +1,18 @@
 <script lang="ts" setup>
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { useLayer } from 'anu-vue/composables/useLayer'
 import type { AChipEvents, aChipSlots } from './meta'
 import { aChipProps } from './meta'
-import { useDefaults } from '@/composables/useDefaults'
-import { useLayer } from '@/composables/useLayer'
+
+defineOptions({
+  name: 'AChip',
+})
 
 // SECTION Meta
 const _props = defineProps(aChipProps)
 const emit = defineEmits<AChipEvents>()
 defineSlots<typeof aChipSlots>()
 
-defineOptions({
-  name: 'AChip',
-})
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 
 // !SECTION
