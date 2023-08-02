@@ -1,12 +1,12 @@
 <script lang="ts" setup>
+import { aConfigProps } from './meta'
 import { mergePropsDefaults } from 'anu-vue/composables/useDefaults'
 import { ANU_PROPS_DEFAULTS } from 'anu-vue/symbols'
-import { aConfigProps } from './meta'
 
+const props = defineProps(aConfigProps)
 defineOptions({
   name: 'AConfig',
 })
-const props = defineProps(aConfigProps)
 const defaults = inject(ANU_PROPS_DEFAULTS)
 
 // ℹ️ Pass new reactive value to avoid updates in upward tree

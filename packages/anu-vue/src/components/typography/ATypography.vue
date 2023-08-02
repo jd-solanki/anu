@@ -1,15 +1,16 @@
 <script lang="ts" setup>
-import { useConfigurable } from 'anu-vue/composables/useConfigurable'
-import { useDefaults } from 'anu-vue/composables/useDefaults'
 import type { aTypographySlots } from './meta'
 import { aTypographyProps } from './meta'
+import { useConfigurable } from 'anu-vue/composables/useConfigurable'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+
+// SECTION Meta
+const _props = defineProps(aTypographyProps)
 
 defineOptions({
   name: 'ATypography',
 })
 
-// SECTION Meta
-const _props = defineProps(aTypographyProps)
 defineSlots<typeof aTypographySlots>()
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)

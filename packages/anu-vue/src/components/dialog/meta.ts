@@ -1,5 +1,5 @@
-import { aCardProps, aCardSlots } from 'anu-vue/components/card'
 import type { ExtractPublicPropTypes } from 'vue'
+import { aCardProps, aCardSlots } from 'anu-vue/components/card'
 
 // ℹ️ Make sure to checkout meta definition rules
 

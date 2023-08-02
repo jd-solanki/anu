@@ -1,19 +1,21 @@
 <script lang="ts" setup>
+import type { AListItemEvents, aListItemSlots } from './meta'
+import { aListItemProps } from './meta'
 import { AAvatar } from 'anu-vue/components/avatar'
 import { ATypography } from 'anu-vue/components/typography'
 import { type ConfigurableValue, useConfigurable } from 'anu-vue/composables/useConfigurable'
 import { useDefaults } from 'anu-vue/composables/useDefaults'
 import { useLayer } from 'anu-vue/composables/useLayer'
-import type { AListItemEvents, aListItemSlots } from './meta'
-import { aListItemProps } from './meta'
+
+// SECTION Meta
+const _props = defineProps(aListItemProps)
+
+defineEmits<AListItemEvents>()
 
 defineOptions({
   name: 'AListItem',
 })
 
-// SECTION Meta
-const _props = defineProps(aListItemProps)
-defineEmits<AListItemEvents>()
 defineSlots<typeof aListItemSlots>()
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)

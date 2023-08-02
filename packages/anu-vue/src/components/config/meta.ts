@@ -1,5 +1,5 @@
-import type { PluginOptions } from 'anu-vue/plugin'
 import type { ExtractPublicPropTypes } from 'vue'
+import type { PluginOptions } from 'anu-vue/plugin'
 
 // ℹ️ Make sure to checkout meta definition rules
 

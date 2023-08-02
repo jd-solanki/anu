@@ -1,6 +1,6 @@
+import type { ExtractPublicPropTypes } from 'vue'
 import { useCheckboxProps } from 'anu-vue/composables/useCheckbox'
 import { color as colorProp, disabled as disabledProp } from 'anu-vue/composables/useProps'
-import type { ExtractPublicPropTypes } from 'vue'
 
 // ℹ️ Make sure to checkout meta definition rules
 

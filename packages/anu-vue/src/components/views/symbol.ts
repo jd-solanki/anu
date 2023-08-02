@@ -1,5 +1,5 @@
-import type { useSelection } from 'anu-vue/composables/useSelection'
 import type { InjectionKey } from 'vue'
+import type { useSelection } from 'anu-vue/composables/useSelection'
 
 // Export active view symbol
 export const ActiveViewSymbol = Symbol('activeView')

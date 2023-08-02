@@ -1,18 +1,20 @@
 <script lang="ts" setup>
+import type { ATextareaEvents, aTextareaSlots } from './meta'
+import { aTextareaBaseInputSlots, aTextareaProps } from './meta'
 import { ABaseInput, aBaseInputProps } from 'anu-vue/components/base-input'
 import { useDefaults } from 'anu-vue/composables/useDefaults'
 import { filterUsedSlots } from 'anu-vue/utils/vue'
-import type { ATextareaEvents, aTextareaSlots } from './meta'
-import { aTextareaBaseInputSlots, aTextareaProps } from './meta'
+
+// SECTION Meta
+const _props = defineProps(aTextareaProps)
+
+const emit = defineEmits<ATextareaEvents>()
 
 defineOptions({
   name: 'ATextarea',
   inheritAttrs: false,
 })
 
-// SECTION Meta
-const _props = defineProps(aTextareaProps)
-const emit = defineEmits<ATextareaEvents>()
 defineSlots<typeof aTextareaSlots>()
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)

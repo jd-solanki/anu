@@ -1,16 +1,16 @@
 <script lang="ts" setup>
+import type { aBtnSlots } from './meta'
+import { aBtnProps } from './meta'
 import { ASpinner } from 'anu-vue/components/spinner'
 import { useDefaults } from 'anu-vue/composables/useDefaults'
 import { useLayer } from 'anu-vue/composables/useLayer'
-import type { aBtnSlots } from './meta'
-import { aBtnProps } from './meta'
+
+// SECTION Meta
+const _props = defineProps(aBtnProps)
 
 defineOptions({
   name: 'ABtn',
 })
-
-// SECTION Meta
-const _props = defineProps(aBtnProps)
 
 defineSlots<typeof aBtnSlots>()
 

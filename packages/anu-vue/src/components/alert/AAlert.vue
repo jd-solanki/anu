@@ -1,18 +1,18 @@
 <script lang="ts" setup>
+import type { AAlertEvents, aAlertSlots } from './meta'
+import { aAlertProps } from './meta'
 import { AIcon } from 'anu-vue/components'
 import { useDefaults } from 'anu-vue/composables/useDefaults'
 import { useLayer } from 'anu-vue/composables/useLayer'
-import type { AAlertEvents, aAlertSlots } from './meta'
-import { aAlertProps } from './meta'
-
-defineOptions({
-  name: 'AAlert',
-})
 
 // SECTION Meta
 const _props = defineProps(aAlertProps)
 
 const emit = defineEmits<AAlertEvents>()
+
+defineOptions({
+  name: 'AAlert',
+})
 
 defineSlots<typeof aAlertSlots>()
 

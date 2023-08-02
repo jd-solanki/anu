@@ -1,15 +1,15 @@
 <script lang="ts" setup>
+import { aIconProps } from './meta'
 import { useColor } from 'anu-vue/composables'
 import { useDefaults } from 'anu-vue/composables/useDefaults'
-import { aIconProps } from './meta'
+
+// SECTION Meta
+const _props = defineProps(aIconProps)
 
 defineOptions({
   name: 'AIcon',
   inheritAttrs: false,
 })
-
-// SECTION Meta
-const _props = defineProps(aIconProps)
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 

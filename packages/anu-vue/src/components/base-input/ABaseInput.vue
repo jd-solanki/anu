@@ -1,14 +1,10 @@
 <script lang="ts" setup>
+import type { ABaseInputEvents, aBaseInputSlots } from './meta'
+import { aBaseInputProps } from './meta'
 import { ALoader } from 'anu-vue/components/loader'
 import { useConfigurable } from 'anu-vue/composables/useConfigurable'
 import { useDefaults } from 'anu-vue/composables/useDefaults'
 import TransitionExpand from 'anu-vue/transitions/TransitionExpand.vue'
-import type { ABaseInputEvents, aBaseInputSlots } from './meta'
-import { aBaseInputProps } from './meta'
-
-defineOptions({
-  name: 'ABaseInput',
-})
 
 // SECTION Meta
 
@@ -16,6 +12,10 @@ defineOptions({
 const _props = defineProps(aBaseInputProps)
 
 defineEmits<ABaseInputEvents>()
+
+defineOptions({
+  name: 'ABaseInput',
+})
 
 defineSlots<typeof aBaseInputSlots>()
 

@@ -1,6 +1,6 @@
+import type { ExtractPublicPropTypes } from 'vue'
 import { aLayerProps } from 'anu-vue/composables/useLayer'
 import { configurable } from 'anu-vue/composables/useProps'
-import type { ExtractPublicPropTypes } from 'vue'
 
 // ℹ️ Make sure to checkout prop definition rules
 

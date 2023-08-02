@@ -1,16 +1,18 @@
 <script lang="ts" setup>
-import { useDefaults } from 'anu-vue/composables/useDefaults'
 import type { ARadioEvents, aRadioSlots } from './meta'
 import { aRadioProps } from './meta'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+
+// SECTION Meta
+const _props = defineProps(aRadioProps)
+
+const emit = defineEmits<ARadioEvents>()
 
 defineOptions({
   name: 'ARadio',
   inheritAttrs: false,
 })
 
-// SECTION Meta
-const _props = defineProps(aRadioProps)
-const emit = defineEmits<ARadioEvents>()
 defineSlots<typeof aRadioSlots>()
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)

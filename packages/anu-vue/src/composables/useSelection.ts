@@ -1,6 +1,6 @@
 import type { MaybeRefOrGetter } from '@vueuse/core'
-import { isObject } from 'anu-vue/utils/helpers'
 import type { Ref, UnwrapRef } from 'vue'
+import { isObject } from 'anu-vue/utils/helpers'
 
 type Nullable<T> = T | null | undefined
 

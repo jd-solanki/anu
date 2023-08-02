@@ -1,5 +1,5 @@
-import { color as colorProp, disabled as disabledProp, readonly as readonlyProp } from 'anu-vue/composables/useProps'
 import type { ExtractPublicPropTypes } from 'vue'
+import { color as colorProp, disabled as disabledProp, readonly as readonlyProp } from 'anu-vue/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 

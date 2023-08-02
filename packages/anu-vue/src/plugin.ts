@@ -1,13 +1,13 @@
-import * as components from 'anu-vue/components'
-import { useAnu } from 'anu-vue/composables/useAnu'
-import { useDefaults } from 'anu-vue/composables/useDefaults'
-import { useZIndex } from 'anu-vue/composables/useZIndex'
-import { ANU_CONFIG, ANU_PROPS_DEFAULTS } from 'anu-vue/symbols'
 import { defu } from 'defu'
 import type { PartialDeep } from 'type-fest'
 import type { App } from 'vue'
 import { defineComponent } from 'vue'
 import type { PluginOptionDefaults } from './pluginDefaults'
+import * as components from 'anu-vue/components'
+import { useAnu } from 'anu-vue/composables/useAnu'
+import { useDefaults } from 'anu-vue/composables/useDefaults'
+import { useZIndex } from 'anu-vue/composables/useZIndex'
+import { ANU_CONFIG, ANU_PROPS_DEFAULTS } from 'anu-vue/symbols'
 
 export type ThemeColors = 'primary' | 'success' | 'info' | 'warning' | 'danger'
 export type DefaultThemes = 'light' | 'dark'
@@ -81,7 +81,7 @@ export const plugin = {
     if (config.registerComponents) {
       for (const prop in components) {
         // @ts-expect-error: I want to index import using string
-
+        // eslint-disable-next-line import/namespace
         const component = components[prop]
         app.component(component.name, component)
       }

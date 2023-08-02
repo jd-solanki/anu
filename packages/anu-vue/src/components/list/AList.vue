@@ -6,13 +6,15 @@ import { useDefaults } from 'anu-vue/composables/useDefaults'
 import { calculateSelectionItems, extractItemValueFromItemOption, useSelection } from 'anu-vue/composables/useSelection'
 import { filterUsedRenamedSlots } from 'anu-vue/utils/vue'
 
+// SECTION Meta
+const _props = defineProps(aListProps)
+
+const emit = defineEmits<AListEvents>()
+
 defineOptions({
   name: 'AList',
 })
 
-// SECTION Meta
-const _props = defineProps(aListProps)
-const emit = defineEmits<AListEvents>()
 defineSlots<typeof aListSlots>()
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)

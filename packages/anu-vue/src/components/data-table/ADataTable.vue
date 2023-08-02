@@ -1,4 +1,8 @@
 <script lang="ts" setup generic="Row extends Record<string, unknown>">
+import { defu } from 'defu'
+import type { Ref } from 'vue'
+import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
+import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTableSlots } from './meta'
 import { ABtn, AInput, ASelect, ATable } from 'anu-vue/components'
 import type { ATableProps } from 'anu-vue/components/table'
 import { aTableProps } from 'anu-vue/components/table'
@@ -8,20 +12,17 @@ import type { typeSortBy } from 'anu-vue/composables/useSort'
 import { useSort } from 'anu-vue/composables/useSort'
 import { objectKeys } from 'anu-vue/utils/typescripts'
 import { filterUsedSlots } from 'anu-vue/utils/vue'
-import { defu } from 'defu'
-import type { Ref } from 'vue'
-import type { ADataTableEvents, ADataTableItemsFunction, ADataTablePropColumn } from './meta'
-import { aDataTableColDefaults, aDataTableProps, aDataTableSlots, aDataTableTableSlots } from './meta'
-
-defineOptions({
-  name: 'ADataTable',
-})
 
 // TODO: Check usage with useDebounceFn. Can we limit the # of req to server?
 
 // SECTION Meta
 const _props = defineProps(aDataTableProps<Row>())
+
 const emit = defineEmits<ADataTableEvents>()
+
+defineOptions({
+  name: 'ADataTable',
+})
 
 // TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
 defineSlots<any>()

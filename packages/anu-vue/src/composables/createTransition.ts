@@ -1,5 +1,5 @@
-import { capitalize } from 'anu-vue/utils/helpers'
 import { Transition, TransitionGroup, defineComponent, h } from 'vue'
+import { capitalize } from 'anu-vue/utils/helpers'
 
 export function createTransition(name: string) {
   return defineComponent({

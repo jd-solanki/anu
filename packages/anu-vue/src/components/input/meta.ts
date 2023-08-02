@@ -1,5 +1,5 @@
-import { aBaseInputProps, aBaseInputSlots } from 'anu-vue/components/base-input'
 import type { ExtractPublicPropTypes } from 'vue'
+import { aBaseInputProps, aBaseInputSlots } from 'anu-vue/components/base-input'
 
 // ℹ️ Make sure to checkout meta definition rules
 

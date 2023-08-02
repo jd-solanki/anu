@@ -1,6 +1,6 @@
 import type { UseSwipeDirection } from '@vueuse/core'
-import { transition as transitionProp } from 'anu-vue/composables/useProps'
 import type { ExtractPublicPropTypes } from 'vue'
+import { transition as transitionProp } from 'anu-vue/composables/useProps'
 
 // ℹ️ Make sure to checkout meta definition rules
 

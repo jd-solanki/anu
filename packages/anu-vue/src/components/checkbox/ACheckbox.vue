@@ -1,18 +1,20 @@
 <script lang="ts" setup>
+import type { ACheckboxEvents, ACheckboxProps, aCheckboxSlots } from './meta'
+import { aCheckboxProps } from './meta'
 import { useCheckbox } from 'anu-vue/composables'
 import type { ConfigurableValue } from 'anu-vue/composables/useConfigurable'
 import { useDefaults } from 'anu-vue/composables/useDefaults'
-import type { ACheckboxEvents, ACheckboxProps, aCheckboxSlots } from './meta'
-import { aCheckboxProps } from './meta'
+
+// SECTION Meta
+const _props = defineProps(aCheckboxProps)
+
+const emit = defineEmits<ACheckboxEvents>()
 
 defineOptions({
   name: 'ACheckbox',
   inheritAttrs: false,
 })
 
-// SECTION Meta
-const _props = defineProps(aCheckboxProps)
-const emit = defineEmits<ACheckboxEvents>()
 defineSlots<typeof aCheckboxSlots>()
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)

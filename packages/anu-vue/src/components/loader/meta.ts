@@ -1,5 +1,5 @@
-import { aTypographyProps, aTypographySlots } from 'anu-vue/components/typography'
 import type { ExtractPublicPropTypes } from 'vue'
+import { aTypographyProps, aTypographySlots } from 'anu-vue/components/typography'
 
 // ℹ️ Make sure to checkout meta definition rules
 

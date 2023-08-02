@@ -1,19 +1,19 @@
 <script lang="ts" setup>
 import { autoUpdate, useFloating } from '@floating-ui/vue'
 import { onClickOutside, useEventListener, useMounted } from '@vueuse/core'
-import { useTeleport } from 'anu-vue/composables/useTeleport'
-import { useZIndex } from 'anu-vue/composables/useZIndex'
 import type { CSSProperties } from 'vue'
 import { ref } from 'vue'
 import type { AFloatingEvents, aFloatingSlots } from './meta'
 import { aFloatingProps } from './meta'
+import { useZIndex } from 'anu-vue/composables/useZIndex'
+import { useTeleport } from 'anu-vue/composables/useTeleport'
 
+const props = defineProps(aFloatingProps)
+const emit = defineEmits<AFloatingEvents>()
 defineOptions({
   name: 'AFloating',
   inheritAttrs: false,
 })
-const props = defineProps(aFloatingProps)
-const emit = defineEmits<AFloatingEvents>()
 defineSlots<typeof aFloatingSlots>()
 
 const { teleportTarget } = useTeleport()

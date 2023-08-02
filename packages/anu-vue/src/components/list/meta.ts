@@ -1,7 +1,7 @@
+import type { ExtractPublicPropTypes } from 'vue'
 import type { AListItemProps } from 'anu-vue/components/list-item'
 import { aListItemProps, aListItemSlots } from 'anu-vue/components/list-item'
 import { prefixObjectKeys, prefixObjectKeysWithMeta } from 'anu-vue/utils/helpers'
-import type { ExtractPublicPropTypes } from 'vue'
 
 // ℹ️ Make sure to checkout meta definition rules
 

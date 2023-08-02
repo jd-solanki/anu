@@ -1,21 +1,21 @@
 <script lang="ts" setup generic="Row extends Record<string, unknown>">
+import type { ATableEvents, ATablePropColumn } from './meta'
+import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
 import type { ACardProps } from 'anu-vue/components/card'
 import { aCardProps } from 'anu-vue/components/card'
 import { useDefaults } from 'anu-vue/composables/useDefaults'
 import { objectKeys } from 'anu-vue/utils/typescripts'
 import { filterUsedSlots } from 'anu-vue/utils/vue'
-import type { ATableEvents, ATablePropColumn } from './meta'
-import { aTableCardSlots, aTableProps, aTableSlots } from './meta'
-
-defineOptions({
-  name: 'ATable',
-})
 
 // SECTION Meta
 const _props = defineProps(aTableProps<Row>())
 
 // TODO: We aren't getting type error for click:header
 defineEmits<ATableEvents>()
+
+defineOptions({
+  name: 'ATable',
+})
 
 // TODO: (types) Without any we get type error: https://github.com/vuejs/language-tools/issues/3141
 defineSlots<any>()

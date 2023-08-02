@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import type { UseSwipeDirection } from '@vueuse/core'
+import type { ATabsEvents } from './meta'
+import { aTabsProps } from './meta'
+import { ATabBindingsSymbol } from './symbol'
 import type { ATabProps } from 'anu-vue/components/tab'
 import { ATab } from 'anu-vue/components/tab'
 import { AView } from 'anu-vue/components/view'
@@ -8,21 +11,19 @@ import { ActiveViewSymbol } from 'anu-vue/components/views/symbol'
 import { useSelection } from 'anu-vue/composables'
 import { useDefaults } from 'anu-vue/composables/useDefaults'
 import { numRange } from 'anu-vue/utils/helpers'
-import type { ATabsEvents } from './meta'
-import { aTabsProps } from './meta'
-import { ATabBindingsSymbol } from './symbol'
+
+// import { aTabsSlots } from './meta';
+
+// SECTION Meta
+const _props = defineProps(aTabsProps)
+
+const emit = defineEmits<ATabsEvents>()
 
 // defineSlots<typeof aTabsSlots>()
 
 defineOptions({
   name: 'ATabs',
 })
-
-// import { aTabsSlots } from './meta';
-
-// SECTION Meta
-const _props = defineProps(aTabsProps)
-const emit = defineEmits<ATabsEvents>()
 
 const { props, defaultsClass, defaultsStyle, defaultsAttrs } = useDefaults(_props)
 

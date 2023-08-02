@@ -1,10 +1,10 @@
+import { createDefu } from 'defu'
+import type { LiteralUnion } from 'type-fest'
+import type { PropType } from 'vue'
 import type { ConfigurableValue } from 'anu-vue/composables/useConfigurable'
 import type { ThemeColors } from 'anu-vue/plugin'
 import type { Transitions } from 'anu-vue/transitions'
 import type { NamedColors } from 'anu-vue/utils/color'
-import { createDefu } from 'defu'
-import type { LiteralUnion } from 'type-fest'
-import type { PropType } from 'vue'
 
 export type ColorProp = LiteralUnion<ThemeColors | NamedColors, string> | undefined
 
