@@ -83,7 +83,6 @@ function handleListItemClick(item: AListPropItems[number]) {
         >
           <slot
             :name="updatedSlotName"
-            :index="index"
             v-bind="slotProps"
           />
         </template>

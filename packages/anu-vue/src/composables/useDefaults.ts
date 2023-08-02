@@ -1,10 +1,10 @@
 import { objectKeys, objectPick } from '@antfu/utils'
-import type { PluginOptions } from 'anu-vue/plugin'
-import type { PluginOptionDefaults } from 'anu-vue/pluginDefaults'
-import { ANU_PROPS_DEFAULTS } from 'anu-vue/symbols'
 import { deepmergeCustom } from 'deepmerge-ts'
 import type { Ref, StyleValue } from 'vue'
 import { toValue } from 'vue'
+import type { PluginOptions } from 'anu-vue/plugin'
+import type { PluginOptionDefaults } from 'anu-vue/pluginDefaults'
+import { ANU_PROPS_DEFAULTS } from 'anu-vue/symbols'
 
 export const mergePropsDefaults = deepmergeCustom({
   mergeArrays: false,
@@ -35,7 +35,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
   provide(ANU_PROPS_DEFAULTS, newPropsDefaults)
 
   // Return Values
-  const propsRef = ref() as Ref<ReturnType<Props>['props']>
+  let propsReactive = reactive({}) as ReturnType<Props>['props']
   const defaultsClass = ref() as ReturnType<Props>['defaultsClass']
   const defaultsStyle = ref() as ReturnType<Props>['defaultsStyle']
   const defaultsAttrs = ref() as ReturnType<Props>['defaultsAttrs']
@@ -74,7 +74,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
     const explicitPropsNames = objectKeys(vm?.vnode.props || {}) as unknown as (keyof Props)[]
     const explicitProps = objectPick(definitionProps, explicitPropsNames)
 
-    propsRef.value = mergePropsDefaults(definitionProps, componentProps, explicitProps) as Props
+    propsReactive = mergePropsDefaults(definitionProps, componentProps, explicitProps) as Props
   }
 
   watch(
@@ -90,7 +90,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
   )
 
   return {
-    props: toReactive(propsRef),
+    props: propsReactive,
     defaultsClass,
     defaultsStyle,
     defaultsAttrs,
