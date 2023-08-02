@@ -45,7 +45,7 @@
     "globby": "^13.1.4",
     "jiti": "^1.18.2",
     "pathe": "^1.1.1",
-    "pnpm": "^8.6.0",
+    "pnpm": "^8.6.8",
     "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^5.0.1",
     "semver": "^7.5.2",
