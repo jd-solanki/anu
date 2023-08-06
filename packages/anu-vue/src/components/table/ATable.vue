@@ -70,7 +70,7 @@ const _cols = computed<ATablePropColumn<Row>[]>(() => {
                 :name="`header-${col.name}`"
                 v-bind="{ col }"
               >
-                <span>{{ col.name }}</span>
+                <span>{{ col.title ?? col.name }}</span>
               </slot>
             </th>
           </tr>

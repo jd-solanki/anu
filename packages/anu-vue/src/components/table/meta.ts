@@ -10,6 +10,7 @@ export type RowKey<Row extends Record<string, unknown>> = keyof Row & string
 // 👉 Props
 export interface ATablePropColumn<Row extends Record<string, unknown>> {
   name: LiteralUnion<RowKey<Row>, string>
+  title?: string;
   classes?: any
   formatter?: (val: unknown) => unknown
 
