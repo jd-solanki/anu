@@ -32,6 +32,19 @@ In all table demos uses data for rows from below file.
 <<< @/components/demos/table/data.ts
 :::
 
+<!-- 👉 Different Column Name -->
+::::card Different Column Name {bordered}
+
+You can have a separate text specified for each column header (other than the data's key).
+
+Use the `title` prop of the column to specify the text for the column header.
+
+:::code DemoTableDifferentTableHeader
+<<< @/components/demos/table/DemoTableDifferentTableHeader.vue{7-8,15}
+:::
+
+::::
+
 <!-- 👉 Column Formatter -->
 ::::card Column Formatter {bordered}
 
