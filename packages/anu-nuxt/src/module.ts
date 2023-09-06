@@ -104,6 +104,8 @@ export default defineNuxtModule<ModuleOptions>({
   },
   hooks: {
     'prepare:types': ({ tsConfig, references }) => {
+      tsConfig.compilerOptions ||= {}
+      tsConfig.compilerOptions.types ||= []
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       tsConfig.compilerOptions!.types.push('anu-vue/volar')
       references.push({
