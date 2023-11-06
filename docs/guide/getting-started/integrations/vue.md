@@ -143,7 +143,7 @@ You can also follow À la carte fashion if you don't want to register all the co
     pnpm add -D unplugin-vue-components
 
     # yarn
-    pnpm add -D unplugin-vue-components
+    yarn add -D unplugin-vue-components
 
     # npm
     npm i -D unplugin-vue-components
