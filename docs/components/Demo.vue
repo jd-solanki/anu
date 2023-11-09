@@ -78,7 +78,7 @@ const showCode = ref(false)
   &.vp-demo-bordered {
     background: transparent !important;
     box-shadow: none !important;
-    border: 1px solid hsla(var(--a-base-c), var(--a-border-opacity)) !important;
+    border: 1px solid hsl(var(--a-base-c) / var(--a-border-opacity)) !important;
   }
 }
 

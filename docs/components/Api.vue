@@ -82,7 +82,7 @@ onMounted(() => {
           :key="tab.value"
           class="capitalize"
           :class="[!tab.isSelected && 'opacity-50']"
-          color="hsl(0,0%,50%)"
+          color="hsl(0 0% 50%)"
           :variant="tab.isSelected ? 'light' : 'text'"
           @click="select(tab.value)"
         >
@@ -98,11 +98,11 @@ onMounted(() => {
           :key="prop.name"
           class="not-last-mb-4"
         >
-          <span class="font-semibold text-[hsla(var(--a-title-c),var(--a-title-opacity))]">{{ prop.name.replace('?', '') }}</span>
-          <span class="text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))]"> : {{ prop.type.replace(/\s*\| (undefined)$/, '') }}</span>
+          <span class="font-semibold text-[hsl(var(--a-title-c) / var(--a-title-opacity))]">{{ prop.name.replace('?', '') }}</span>
+          <span class="text-[hsl(var(--a-base-c) / var(--a-text-emphasis-light-opacity))]"> : {{ prop.type.replace(/\s*\| (undefined)$/, '') }}</span>
           <span
             v-if="prop.default !== 'unknown'"
-            class="text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))]"
+            class="text-[hsl(var(--a-base-c) / var(--a-text-emphasis-light-opacity))]"
           > = {{ prop.default }}</span>
           <div
             class="!children-[p]-m-0"
@@ -118,8 +118,8 @@ onMounted(() => {
           :key="slot.name"
           class="not-last-mb-4"
         >
-          <span class="font-semibold text-[hsla(var(--a-title-c),var(--a-title-opacity))]">{{ slot.name }}</span>
-          <span class="text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))]"> : {{ slot.type }}</span>
+          <span class="font-semibold text-[hsl(var(--a-title-c) / var(--a-title-opacity))]">{{ slot.name }}</span>
+          <span class="text-[hsl(var(--a-base-c) / var(--a-text-emphasis-light-opacity))]"> : {{ slot.type }}</span>
           <div
             class="!children-[p]-m-0"
             v-html="slot.description"
@@ -134,8 +134,8 @@ onMounted(() => {
           :key="event.name"
           class="not-last-mb-4"
         >
-          <span class="font-semibold text-[hsla(var(--a-title-c),var(--a-title-opacity))]">{{ event.name }}</span>
-          <span class="text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))]"> => {{ event.type }}</span>
+          <span class="font-semibold text-[hsl(var(--a-title-c) / var(--a-title-opacity))]">{{ event.name }}</span>
+          <span class="text-[hsl(var(--a-base-c) / var(--a-text-emphasis-light-opacity))]"> => {{ event.type }}</span>
           <!-- <div
             class="!children-[p]-m-0"
             v-text="event.signature"

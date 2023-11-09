@@ -8,18 +8,18 @@ body {
 
 :root {
     // #region all-css-vars
-    --a-base-c: var(--a-primary-hue), 10%, 20%;
+    --a-base-c: var(--a-primary-hue) 10% 20%;
 
     --a-spacing: 1;
 
     // ℹ️ Represents theme color. light => white, dark => black. ATM, it's used for backdrop & badge outline color.
-    --a-theme-c: 0, 0%, 100%;
+    --a-theme-c: 0 0% 100%;
 
     --a-border-opacity: 0.12;
     --a-loader-overlay-bg-c: var(--a-theme-c);
     --a-loader-overlay-bg-opacity: 0.85;
 
-    --a-backdrop-c: 0, 0%, 0%;
+    --a-backdrop-c: 0 0% 0%;
     --a-backdrop-opacity: 0.35;
 
     // text emphasis
@@ -45,32 +45,32 @@ body {
     // 👉 Switch
     --a-switch-track-size: 3em;
     --a-switch-thumb-margin: .25em;
-    --a-switch-default-color: 220, 13%, 91%;
+    --a-switch-default-color: 220 13% 91%;
     /*
-      ℹ️ Value of this property is => hsla(var(--a-base-c), var(--a-text-emphasis-medium-opacity)).
+      ℹ️ Value of this property is => hsl(var(--a-base-c) / var(--a-text-emphasis-medium-opacity)).
       As this will be always on light background we will keep it static and choose color from light scheme
     */
-    --a-switch-icon-color: hsla(0, 10%, 20%, 0.68);
+    --a-switch-icon-color: hsl(0 10% 20% / 0.68);
 
-    --a-tooltip-bg-c: 0,0%,8%;
+    --a-tooltip-bg-c: 0 0% 8%;
     // #endregion all-css-vars
 
     // !SECTION
 }
 
 :root.dark {
-  --a-base-c: var(--a-primary-hue), 0%, 94%;
-  --a-theme-c: 0, 0%, 0%;
+  --a-base-c: var(--a-primary-hue) 0% 94%;
+  --a-theme-c: 0 0% 0%;
   --a-loader-overlay-bg-opacity: 0.75;
   --a-backdrop-opacity: 0.5;
 
   // SECTION Components
 
   // 👉 Switch
-    --a-switch-default-color: 0, 0%, 16%;
+    --a-switch-default-color: 0 0% 16%;
 
     // 👉 Tooltip
-    --a-tooltip-bg-c: 0,0%,25%;
+    --a-tooltip-bg-c: 0 0% 25%;
 
   // !SECTION
 }
@@ -91,7 +91,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: hsla(var(--a-base-c), 0.87);
+  color: hsl(var(--a-base-c) / 0.87);
 }
 
 // 👉 Misc
@@ -110,7 +110,7 @@ h6 {
 
 // Set default border-color for `hr` element for color scheme compatibility
 hr {
-  border-color: hsla(var(--a-base-c),var(--a-border-opacity))
+  border-color: hsl(var(--a-base-c) / var(--a-border-opacity))
 }
 
 // Remove outline

@@ -38,7 +38,7 @@ Below is the list of default colors. You can also [add new colors](/guide/featur
     <ACard variant="fill" color="danger" class="rounded-2xl shadow-2xl shadow-danger shadow-opacity-40 w-26 h-26 font-semibold grid place-items-center">Danger</ACard>
 </div>
 
-<ABtn class="mt-8" :class="isPrimaryChanged ? 'bg-[hsl(265,97.7%,66.3%)]' : 'bg-[hsl(235,97.7%,66.3%)]'" @click="updatePrimaryColor">{{ isPrimaryChanged ? 'Reset' : 'Change' }} primary</ABtn>
+<ABtn class="mt-8" :class="isPrimaryChanged ? 'bg-[hsl(265 97.7% 66.3%)]' : 'bg-[hsl(235 97.7% 66.3%)]'" @click="updatePrimaryColor">{{ isPrimaryChanged ? 'Reset' : 'Change' }} primary</ABtn>
 
 <br />
 <br />

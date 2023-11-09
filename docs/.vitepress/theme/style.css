@@ -8,36 +8,36 @@
   --vp-sidebar-bg-color: var(--vp-background);
 
   /* Text color */
-  --vp-c-text-1: hsla(var(--a-base-c), var(--a-text-emphasis-medium-opacity));
+  --vp-c-text-1: hsl(var(--a-base-c) / var(--a-text-emphasis-medium-opacity));
 
   /* Font family */
   --vp-font-family-base: 'Inter', sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', monospace;
 
   /* Branding */
-  --vp-c-brand-lighter: hsl(var(--a-primary-hue), 97%, 75%);
-  --vp-c-brand-light: hsl(var(--a-primary-hue), 97%, 70%);
-  --vp-c-brand: hsl(var(--a-primary-hue), 97%, 66%);
-  --vp-c-brand-dark: hsl(var(--a-primary-hue), 97%, 60%);
-  --vp-c-brand-darker: hsl(var(--a-primary-hue), 97%, 55%);
+  --vp-c-brand-lighter: hsl(var(--a-primary-hue) 97% 75%);
+  --vp-c-brand-light: hsl(var(--a-primary-hue) 97% 70%);
+  --vp-c-brand: hsl(var(--a-primary-hue) 97% 66%);
+  --vp-c-brand-dark: hsl(var(--a-primary-hue) 97% 60%);
+  --vp-c-brand-darker: hsl(var(--a-primary-hue) 97% 55%);
 
   /* We need this because menu component has 51 index which overlaps on navbar on scroll */
   /* --vp-z-index-nav: 52; */
 
-  --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 40%);
+  --vp-code-scrollbar-thumb-bg: hsl(0 0% 40%);
   --vp-code-line-height: 1.9;
 }
 
 :root.dark {
   /* Branding */
   --a-primary-hue: 261;
-  --vp-c-brand-lighter: hsl(var(--a-primary-hue), 73%, 75%);
-  --vp-c-brand-light: hsl(var(--a-primary-hue), 73%, 70%);
-  --vp-c-brand: hsl(var(--a-primary-hue), 73%, 66%);
-  --vp-c-brand-dark: hsl(var(--a-primary-hue), 73%, 60%);
-  --vp-c-brand-darker: hsl(var(--a-primary-hue), 73%, 55%);
+  --vp-c-brand-lighter: hsl(var(--a-primary-hue) 73% 75%);
+  --vp-c-brand-light: hsl(var(--a-primary-hue) 73% 70%);
+  --vp-c-brand: hsl(var(--a-primary-hue) 73% 66%);
+  --vp-c-brand-dark: hsl(var(--a-primary-hue) 73% 60%);
+  --vp-c-brand-darker: hsl(var(--a-primary-hue) 73% 55%);
 
-  --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 25%);
+  --vp-code-scrollbar-thumb-bg: hsl(0 0% 25%);
 }
 
 /* ==========================
@@ -51,7 +51,7 @@
 
 @media (min-width: 768px) {
   .VPNavBarSearch .DocSearch.DocSearch-Button {
-    background-color: hsla(var(--a-base-c), 0.045) !important;
+    background-color: hsl(var(--a-base-c) / 0.045) !important;
   }
 }
 
@@ -61,7 +61,7 @@
 
 /* Add border bottom instead of shadow */
 .VPNav {
-  border-bottom: thin solid hsla(var(--a-base-c), var(--a-border-opacity));
+  border-bottom: thin solid hsl(var(--a-base-c) / var(--a-border-opacity));
 }
 
 /* Remove shadow effect on scroll */
@@ -104,7 +104,7 @@
 
 /* Handle */
 .VPSidebar::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 90%);
+  background: hsl(0 0% 90%);
   border-radius: 0.5rem;
 }
 
@@ -114,7 +114,7 @@
 
 /* Add border on right */
 .VPSidebar {
-  border-right: thin solid hsla(var(--a-base-c), var(--a-border-opacity));
+  border-right: thin solid hsl(var(--a-base-c) / var(--a-border-opacity));
 }
 
 /* Make sidebar starts from bottom of navbar */
@@ -150,11 +150,11 @@
 
 :root.dark {
   --vp-c-bg-alt: var(--vp-background);
-  --vp-code-line-highlight-color: hsl(0, 0%, 12%);
+  --vp-code-line-highlight-color: hsl(0 0% 12%);
 }
 
 .dark .VPSidebar::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 10%);
+  background: hsl(0 0% 10%);
   border-radius: 0.5rem;
 }
 
@@ -164,7 +164,7 @@
 }
 
 .dark .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
-  border: 1px solid hsla(var(--a-base-c), var(--a-border-opacity));
+  border: 1px solid hsl(var(--a-base-c) / var(--a-border-opacity));
   opacity: 0.85;
   font-weight: 500;
 }
@@ -174,9 +174,9 @@
 ========================== */
 
 .cards-demo-container {
-  /* rounded-lg border-dashed border border-a-border p-8 bg-[hsla(var(--a-base-c), .05)] */
+  /* rounded-lg border-dashed border border-a-border p-8 bg-[hsl(var(--a-base-c) / .05)] */
   @apply rounded-lg border-dashed border border-a-border p-8;
-  background: hsla(var(--a-body-bg-c));
+  background: hsl(var(--a-body-bg-c));
 }
 
 /* ==========================
@@ -255,11 +255,11 @@ html:not(.dark) .VPContent.is-home+.VPFooter {
 }
 
 .VPHero.VPHomeHero .text {
-  color: hsla(var(--a-base-c), 0.87)
+  color: hsl(var(--a-base-c) / 0.87)
 }
 
 .VPFooter {
-  border-top: thin solid hsla(var(--a-base-c), var(--a-border-opacity)) !important;
+  border-top: thin solid hsl(var(--a-base-c) / var(--a-border-opacity)) !important;
 }
 
 
@@ -278,7 +278,7 @@ h2[id="api"] {
 }
 
 /* HACK: Vue components get red underlined text instead of blue */
-.language-vue span[style="color: rgb(255, 85, 85); font-style: italic; text-decoration: underline;"],
+.language-vue span[style="color: rgb(255 85 85); font-style: italic; text-decoration: underline;"],
 .language-vue span[style="color:#FF5555;font-style:italic;text-decoration:underline;"] {
   color: #8BE9FD !important;
   text-decoration: none !important;

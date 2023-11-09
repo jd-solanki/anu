@@ -132,18 +132,24 @@ At the moment, anu don't have any design system. Hence, we have full freedom to 
 
 ### CSS vars
 
-We follow naming convention for CSS color vars. As we have theme colors CSS vars that has just HSL value and not full color (e.g. `--a-primary: 265, 97.7%, 66.3%`) and some other colors that are full color (e.g. `--a-switch-icon-color: hsla(0, 10%, 20%, 0.68)`), it's confusing while using the CSS var to identify if it's full color or just HSL value.
+We follow naming convention for CSS color vars. As we have theme colors CSS vars that has just HSL value and not full color (e.g. `--a-primary: 265 97.7% 66.3%`) and some other colors that are full color (e.g. `--a-switch-icon-color: hsl(0 10% 20% / 0.68)`), it's confusing while using the CSS var to identify if it's full color or just HSL value.
 
 Due to this reason we follow below convention when deciding the name of CSS var that is color:
 
-- suffix `-c` => For just HSL value (`--a-base-c: 0, 10%, 20%;`)
-- suffix `-color` => For full color (`--a-switch-icon-color: hsla(0, 10%, 20%, 0.68)`)
-- Don't suffix anything => For theme color (`--a-primary: 265, 97.7%, 66.3%`)
+- suffix `-c` => For just HSL value (`--a-base-c: 0 10% 20%`)
+- suffix `-color` => For full color (`--a-switch-icon-color: hsl(0 10% 20% / 0.68)`)
+- Don't suffix anything => For theme color (`--a-primary: 265 97.7% 66.3%`)
 
 With above naming convention, we can clearly know if we should wrap the CSS var in `hsl()` or directly use it like a color value.
 
 :::warning
 Don't forget to follow this convention when defining any CSS var for color, including background (`--a-something-bg-color: hsl(var(--a-surface-c))`)
+:::
+
+:::warning
+Because comma-separated values are now [Legacy Syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl#legacy_syntax_comma-separated_values), it's no longer supported in Anu's `hsl()` notation to cope with UnoCSS v0.57.0's [breaking changes](https://github.com/unocss/unocss/releases/tag/v0.57.0).
+
+However the comma-separated values are still available in [`hsla()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl#legacy_syntax_hsla), which is a legacy alias for `hsl()`. E.g., `--a-switch-icon-color: hsla(0, 10%, 20%, 0.68)` should still work. That said, consider `hsl` over `hsla` wherever possible to avoid space-separated values mixing with comma-separated values that breaks Anu components' colors.
 :::
 
 ### [Template Refs](https://vuejs.org/guide/essentials/template-refs.html)

@@ -3,10 +3,10 @@ import type { Ref } from 'vue'
 import type { ADialogEvents } from './meta'
 import { aDialogProps, aDialogSlots } from './meta'
 import { ACard } from '@/components/card'
+import { onClickSameTarget } from '@/composables/onClickSameTarget'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useDefaults } from '@/composables/useDefaults'
 import { useTeleport } from '@/composables/useTeleport'
-import { onClickSameTarget } from '@/composables/onClickSameTarget'
 import { filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
@@ -46,7 +46,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
       <div
         v-show="props.modelValue"
         ref="refMask"
-        class="a-dialog-wrapper grid place-items-center fixed inset-0 bg-[hsla(var(--a-backdrop-c),var(--a-backdrop-opacity))]"
+        class="a-dialog-wrapper grid place-items-center fixed inset-0 bg-[hsl(var(--a-backdrop-c) / var(--a-backdrop-opacity))]"
       >
         <Transition name="dialog">
           <ACard

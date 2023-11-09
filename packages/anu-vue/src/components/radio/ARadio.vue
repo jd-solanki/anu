@@ -46,7 +46,7 @@ const isChecked = computed(() => props.modelValue === attrs.value)
       class="a-radio-circle after:w-full after:h-full after:rounded-full after:block after:content-empty after:transform after:transition after:transition-transform"
       :class="[
         `after:bg-${props.color}`,
-        isChecked ? `after:scale-full border-${props.color}` : 'after:scale-0 border-[hsla(var(--a-base-c),var(--a-border-opacity))]',
+        isChecked ? `after:scale-full border-${props.color}` : 'after:scale-0 border-[hsl(var(--a-base-c) / var(--a-border-opacity))]',
       ]"
     />
     <!-- 👉 Slot: default -->

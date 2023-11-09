@@ -104,7 +104,7 @@ export function useLayer() {
 
       if (propVariant === 'fill') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
+        styles.push({ background: 'hsl(var(--a-layer-c) / var(--a-layer-opacity))' })
         classes.push('[--a-layer-opacity:1]')
 
         // Text
@@ -114,7 +114,7 @@ export function useLayer() {
 
       else if (propVariant === 'light') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
+        styles.push({ background: 'hsl(var(--a-layer-c) / var(--a-layer-opacity))' })
         classes.push('[--a-layer-opacity:0.15]')
 
         // text
@@ -151,7 +151,7 @@ export function useLayer() {
 
       if (propVariant === 'fill') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
+        styles.push({ background: 'hsl(var(--a-layer-c) / var(--a-layer-opacity))' })
         classes.push('[--a-layer-opacity:1]')
 
         // Text
@@ -160,7 +160,7 @@ export function useLayer() {
       }
       else if (propVariant === 'light') {
         // Background
-        styles.push({ background: 'hsla(var(--a-layer-c),var(--a-layer-opacity))' })
+        styles.push({ background: 'hsl(var(--a-layer-c) / var(--a-layer-opacity))' })
         classes.push('[--a-layer-opacity:0.15]')
 
         // Text

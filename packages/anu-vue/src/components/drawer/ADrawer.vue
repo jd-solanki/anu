@@ -3,10 +3,10 @@ import type { Ref } from 'vue'
 import type { ADrawerEvents } from './meta'
 import { aDrawerProps, aDrawerSlots } from './meta'
 import { ACard } from '@/components/card'
+import { onClickSameTarget } from '@/composables/onClickSameTarget'
 import { useDOMScrollLock } from '@/composables/useDOMScrollLock'
 import { useDefaults } from '@/composables/useDefaults'
 import { useTeleport } from '@/composables/useTeleport'
-import { onClickSameTarget } from '@/composables/onClickSameTarget'
 import { filterUsedSlots } from '@/utils/vue'
 
 // SECTION Meta
@@ -69,7 +69,7 @@ useDOMScrollLock(toRef(props, 'modelValue') as Ref<boolean>)
         v-show="props.modelValue"
         ref="refMask"
         v-bind="defaultsAttrs"
-        class="a-drawer-wrapper flex fixed inset-0 bg-[hsla(var(--a-backdrop-c),var(--a-backdrop-opacity))]"
+        class="a-drawer-wrapper flex fixed inset-0 bg-[hsl(var(--a-backdrop-c) / var(--a-backdrop-opacity))]"
         :class="[
           `a-drawer-anchor-${props.anchor}`,
           // `flex-col` set full width for top & bottom anchored drawer

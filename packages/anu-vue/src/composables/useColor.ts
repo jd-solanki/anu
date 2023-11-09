@@ -24,7 +24,7 @@ export function useColor(color: MaybeRef<ColorProp>, cssVarName: MaybeRef<string
 
     const _styles = {
       [cssVar.value]: _isThemeColor.value ? `var(--a-${_color})` : _color,
-      [property]: `hsla(var(${cssVar.value}), var(${cssVar.value}-opacity, 1))`,
+      [property]: `hsl(var(${cssVar.value}) / var(${cssVar.value}-opacity, 1))`,
     } as StyleValue
 
     return _styles

@@ -25,7 +25,9 @@ export const contrastingPlugin: Plugin = ColordClass => {
   }
 
   ColordClass.prototype.toHslValue = function () {
-    return this.toHslString().replace(/hsla?\(([\d\s]+,[\d\s]+%,[\d\s]+%).*/gm, '$1')
+    const { h, s, l, a } = this.toHsl()
+
+    return `${h} ${s}% ${l}%${a !== 1 ? ` / ${a}` : ''}`
   }
 }
 
