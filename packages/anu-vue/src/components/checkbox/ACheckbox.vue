@@ -57,7 +57,7 @@ const _icon = computed<ConfigurableValue>(() => {
       :class="[(isChecked || isIndeterminate) && `bg-${props.color} border-${props.color} children:scale-full`]"
     >
       <i
-        class="a-checkbox-icon scale-0 text-white"
+        class="a-checkbox-icon text-white"
         :class="_icon"
       />
     </div>
