@@ -82,7 +82,7 @@ onMounted(() => {
           :key="tab.value"
           class="capitalize"
           :class="[!tab.isSelected && 'opacity-50']"
-          color="hsl(0,0%,50%)"
+          color="hsla(0,0%,50%)"
           :variant="tab.isSelected ? 'light' : 'text'"
           @click="select(tab.value)"
         >

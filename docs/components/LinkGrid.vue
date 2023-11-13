@@ -38,7 +38,7 @@ defineProps<{
   text-decoration: none !important;
   border: 1px solid var(--vp-c-bg-soft);
   border-radius: 12px;
-  background-color: hsl(var(--a-surface-c));
+  background-color: hsla(var(--a-surface-c));
   transition: border-color 0.25s, background-color 0.25s;
 }
 .Link:hover {

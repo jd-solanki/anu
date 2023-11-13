@@ -16,7 +16,7 @@ export function presetAnu(options: Partial<PresetAnuOptions> = {}): Preset {
     name: '@anu-vue/preset-core',
     theme: {
       colors: Object.fromEntries(
-        _options.colors.map(c => [c, `hsl(var(--a-${c}))`]),
+        _options.colors.map(c => [c, `hsla(var(--a-${c}))`]),
       ),
     },
     safelist: [

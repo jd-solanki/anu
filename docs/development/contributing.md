@@ -143,7 +143,13 @@ Due to this reason we follow below convention when deciding the name of CSS var 
 With above naming convention, we can clearly know if we should wrap the CSS var in `hsl()` or directly use it like a color value.
 
 :::warning
-Don't forget to follow this convention when defining any CSS var for color, including background (`--a-something-bg-color: hsl(var(--a-surface-c))`)
+Don't forget to follow this convention when defining any CSS var for color, including background (`--a-something-bg-color: hsla(var(--a-surface-c))`)
+:::
+
+:::warning
+Because comma-separated values are now [Legacy Syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl#legacy_syntax_comma-separated_values), it's no longer supported in Anu's `hsl()` notation to cope with UnoCSS v0.57.0's [breaking changes](https://github.com/unocss/unocss/releases/tag/v0.57.0).
+
+However the comma-separated values are still available in [`hsla()`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl#legacy_syntax_hsla), which is a legacy alias for `hsl()`. E.g., `--a-switch-icon-color: hsla(0, 10%, 20%, 0.68)` should still work.
 :::
 
 ### [Template Refs](https://vuejs.org/guide/essentials/template-refs.html)

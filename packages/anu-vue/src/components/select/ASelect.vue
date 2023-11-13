@@ -130,7 +130,7 @@ function middleware() {
     <ACard
       v-show="isOptionsVisible"
       ref="refFloating"
-      class="a-select-options-container bg-[hsl(var(--a-surface-c))]"
+      class="a-select-options-container bg-[hsla(var(--a-surface-c))]"
       :class="props.optionsWrapperClasses"
       @click="closeOptions"
     >

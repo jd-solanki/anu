@@ -38,5 +38,9 @@ export default defineConfig({
     '../packages/preset-theme-default/src/variants.ts',
     '../packages/preset-theme-default/src/index.ts',
   ],
-  include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
+  content: {
+    pipeline: {
+      include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
+    },
+  },
 })

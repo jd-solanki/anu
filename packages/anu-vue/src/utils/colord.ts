@@ -9,7 +9,7 @@ extend([a11yPlugin, namesPlugin, harmonies])
 declare module 'colord/colord' {
   interface Colord {
     contrasting(): Colord
-    toHslValue(): string
+    toHslaValue(): string
   }
 }
 
@@ -24,8 +24,10 @@ export const contrastingPlugin: Plugin = ColordClass => {
     return isLight ? colord('#000') : colord('#fff')
   }
 
-  ColordClass.prototype.toHslValue = function () {
-    return this.toHslString().replace(/hsla?\(([\d\s]+,[\d\s]+%,[\d\s]+%).*/gm, '$1')
+  ColordClass.prototype.toHslaValue = function () {
+    const { h, s, l, a } = this.toHsl()
+
+    return `${h},${s}%,${l}%${a !== 1 ? `,${a}` : ''}`
   }
 }
 

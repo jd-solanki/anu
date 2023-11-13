@@ -53,7 +53,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-badge-dot': 'spacing:min-w-[0.666666666666667em] spacing:h-[0.666666666666667em]',
 
     // with text-xs, outline: 0.166666666666667em => 2px
-    'a-badge-bordered': 'outline em:spacing:outline-width-[0.166666666666667em] outline-[hsl(var(--a-surface-c))]',
+    'a-badge-bordered': 'outline em:spacing:outline-width-[0.166666666666667em] outline-[hsla(var(--a-surface-c))]',
 
     // 👉 Base Input
     'a-base-input-root': 'em:spacing:gap-y-1',
@@ -190,7 +190,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // 👉 Tooltip
     'a-tooltip-wrapper': 'z-[54]',
-    'a-tooltip': 'bg-[hsl(var(--a-tooltip-bg-c))] em:px-2 em:py-1 em:rounded-lg',
+    'a-tooltip': 'bg-[hsla(var(--a-tooltip-bg-c))] em:px-2 em:py-1 em:rounded-lg',
     'a-tooltip-text': 'em:text-sm text-white text-center',
 
     // !SECTION Components

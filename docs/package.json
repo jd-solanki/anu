@@ -23,7 +23,7 @@
     "markdown-it": "^13.0.1",
     "markdown-it-container": "^3.0.0",
     "postcss-prefix-selector": "^1.16.0",
-    "unocss": "^0.51.13",
+    "unocss": "^0.57.3",
     "vitepress": "1.0.0-beta.1",
     "zod": "3.21.4"
   },
