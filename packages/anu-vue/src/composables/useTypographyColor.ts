@@ -23,7 +23,7 @@ function calculateColor(_isThemeColor: boolean, _color: ColorProp | null, _varia
       styles.push('--a-title-c: 0, 0%, 100%; --a-subtitle-c: 0, 0%, 100%') // white
   }
   else if (_color !== undefined) {
-    const typographyC = _color === null ? 'var(--a-base-c)' : colord(_color).toHslValue()
+    const typographyC = _color === null ? 'var(--a-base-c)' : colord(_color).toHslaValue()
 
     styles.push(`--a-title-c: ${typographyC}; --a-subtitle-c: ${typographyC};`)
     classes.push(

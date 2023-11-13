@@ -77,7 +77,7 @@ const dotPosition = computed(() => {
       class="a-switch-toggle flex rounded-inherit min-w-$a-switch-track-size"
       :class="isChecked
         ? `bg-${props.color}`
-        : 'bg-[hsl(var(--a-switch-default-color))]'"
+        : 'bg-[hsla(var(--a-switch-default-color))]'"
     >
       <div
         class="a-switch-dot grid place-items-center rounded-inherit m-$a-switch-thumb-margin"

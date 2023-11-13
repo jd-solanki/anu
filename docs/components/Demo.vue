@@ -5,7 +5,7 @@ const showCode = ref(false)
 </script>
 
 <template>
-  <div class="vp-demo rounded-lg shadow bg-[hsl(var(--a-surface-c))]">
+  <div class="vp-demo rounded-lg shadow bg-[hsla(var(--a-surface-c))]">
     <div
       v-if="$slots.title || $slots.code"
       class="vp-demo-header flex flex-wrap items-center justify-between"
