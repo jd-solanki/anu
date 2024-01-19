@@ -1,0 +1,32 @@
+{
+    "Add hand emoji": {
+        "prefix": "cm-hand-emoji",
+        "body": [
+            "👉"
+        ],
+        "description": "Add hand emoji"
+    },
+    "Add info emoji": {
+        "prefix": "cm-info-emoji",
+        "body": [
+            "ℹ️"
+        ],
+        "description": "Add info emoji"
+    },
+    "Add warning emoji": {
+        "prefix": "cm-warning-emoji",
+        "body": [
+            "❗"
+        ],
+        "description": "Add warning emoji"
+    },
+    "Create comment anchor SECTION": {
+        "prefix": "ca-html-section",
+        "body": [
+            "<!-- SECTION ${1:name} -->",
+            "  ${2}",
+            "<!-- !SECTION -->"
+        ],
+        "description": "Create comment anchor SECTION"
+    }
+}

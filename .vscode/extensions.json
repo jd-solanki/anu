@@ -1,0 +1,22 @@
+{
+    "recommendations": [
+        "mgmcdermott.vscode-language-babel",
+        "editorconfig.editorconfig",
+        "xabikos.javascriptsnippets",
+        "vue.volar",
+        "dbaeumer.vscode-eslint",
+        "usernamehw.errorlens",
+        "antfu.unocss",
+        "antfu.iconify",
+        "exodiusstudios.comment-anchors",
+        "davidanson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        "streetsidesoftware.code-spell-checker",
+        "matijao.vue-nuxt-snippets",
+        "webhint.vscode-webhint",
+        "johnsoncodehk.vscode-tsconfig-helper",
+        "orta.vscode-twoslash-queries",
+        "antfu.smart-clicks",
+        "meganrogge.template-string-converter"
+    ]
+}

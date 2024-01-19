@@ -1,0 +1,21 @@
+{
+  "name": "anu-vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf -g **/dist **/component-meta **/.nuxt **/cache",
+    "dev": "pnpm --filter @anu-vue/preset-theme-default stub && pnpm --filter anu-vue dev",
+    "docs:dev": "pnpm --filter @anu-vue/documentation dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.3",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "fs-extra": "^11.2.0",
+    "globby": "^14.0.0",
+    "rimraf": "^5.0.5"
+  }
+}

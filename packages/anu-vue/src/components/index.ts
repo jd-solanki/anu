@@ -1,0 +1,1 @@
+export { AAccordion } from './accordion';
