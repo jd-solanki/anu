@@ -1,4 +1,4 @@
-import { AnuComponentResolver } from 'anu-vue';
+import { AnuComponentResolver } from '@anu-vue/core';
 import Container from 'markdown-it-container';
 import path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';

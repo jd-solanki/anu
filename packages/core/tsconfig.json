@@ -16,5 +16,10 @@
       "esnext",
       "dom"
     ]
-  }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

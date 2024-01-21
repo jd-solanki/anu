@@ -28,7 +28,9 @@ const showCode = ref(false)
         v-if="$slots.demo"
         class="vp-raw"
       >
+      <!-- Demo -->
         <slot name="demo" />
+        <!-- /Demo -->
       </div>
       <div
         v-if="$slots['after-demo']"

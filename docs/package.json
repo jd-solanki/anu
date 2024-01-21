@@ -25,7 +25,7 @@
     "vitepress": "1.0.0-rc.39"
   },
   "dependencies": {
-    "anu-vue": "workspace:*",
+    "@anu-vue/core": "workspace:*",
     "vue": "^3.4.14"
   }
 }

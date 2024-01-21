@@ -1,5 +1,5 @@
 {
-  "name": "anu-vue",
+  "name": "@anu-vue/core",
   "version": "1.0.0",
   "description": "DX focused utility based component library",
   "author": "JD Solanki <https://github.com/jd-solanki>",
@@ -36,8 +36,8 @@
   ],
   "types": "./dist/types/index.d.ts",
   "scripts": {
-    "dev": "concurrently \"vite build --watch\" \"vue-tsc --declaration --emitDeclarationOnly --watch\"",
-    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly && pnpm gen-volar",
+    "dev": "concurrently \"vite build --watch\" \"vue-tsc --declaration --emitDeclarationOnly --noEmit false --watch\"",
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --noEmit false && pnpm gen-volar",
     "gen-volar": "na tsx ../../scripts/gen-volar.ts"
   },
   "license": "ISC",

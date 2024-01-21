@@ -1,4 +1,4 @@
-import { anu } from 'anu-vue'
+import { anu } from '@anu-vue/core'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'

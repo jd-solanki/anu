@@ -1,4 +1,5 @@
 {
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
@@ -21,14 +22,16 @@
       "node"
     ],
     "paths": {
-      "anu-vue": [
-        "./packages/anu-vue/src/index.ts"
+      "@anu-vue/core": [
+        "packages/core/src/index.ts"
       ]
     }
   },
   "include": [
     "./packages/*/src/**/*",
-    "./packages/anu-vue/auto-imports.d.ts",
+    "./packages/core/shims.d.ts",
+    "packages/core/auto-imports.d.ts",
+    "./docs/src/components/**/*",
   ],
   "exclude": [
     "**/dist/**",

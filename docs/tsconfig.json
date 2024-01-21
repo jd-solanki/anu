@@ -4,7 +4,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": [
-      "anu-vue/dist/types/volar"
+      "@anu-vue/core/dist/types/volar"
     ],
     "lib": [
       "esnext",
@@ -13,8 +13,4 @@
       "scripthost"
     ]
   },
-  "include": [
-    "**/*.md",
-    "./components.d.ts"
-  ]
 }

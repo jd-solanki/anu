@@ -5,7 +5,7 @@ export function AnuComponentResolver(): ComponentResolver {
     type: 'component',
     resolve: (name: string) => {
       if (name.match(/^A[A-Z]/))
-        return { name, from: 'anu-vue' }
+        return { name, from: '@anu-vue/core' }
     },
   }
 }

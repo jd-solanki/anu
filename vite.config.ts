@@ -12,7 +12,7 @@ export default defineConfig({
   resolve: {
     dedupe: ['vue'],
     alias: {
-      'anu-vue': anuVueSrc,
+      '@anu-vue/core': anuVueSrc,
     },
   },
 })
