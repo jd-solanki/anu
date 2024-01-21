@@ -20,7 +20,8 @@ defineOptions({
   <AccordionRoot v-model="modelValue" :default-value="props.defaultValue" :type="accordionType" class="a-accordion-root">
     <slot>
     <template v-for="(item, index) in props.items" :key="index">
-      <AAccordionItem v-bind="item">
+      <!-- ℹ️ If value prop is not provided fallback to index -->
+      <AAccordionItem v-bind="{ ...item, value: item.value ?? String(index) }">
 
         <!-- Consume default slot & rename it -->
         <template #default>

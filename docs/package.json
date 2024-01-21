@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@anu-vue/core": "workspace:*",
+    "@anu-vue/tailwind-skin-default": "workspace:*",
     "vue": "^3.4.14"
   }
 }

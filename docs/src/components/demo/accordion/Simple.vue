@@ -2,18 +2,18 @@
 import type { AAccordionProps } from '@anu-vue/core';
 
 const items: AAccordionProps['items'] = [
-    { title: 'awesome', value: 'awesome' },
-    { title: 'I like it', value: 'like' },
+    { title: 'How to purchase an Item' },
+    { title: 'How to download invoice for my purchase?' },
 ]
 </script>
 
 <template>
     <AAccordion :items="items">
-        <template #awesome-content>
+        <template #0-content>
             Awesome Content
         </template>
 
-        <template #like-content>
+        <template #1-content>
             I like it Content
         </template>
     </AAccordion>
