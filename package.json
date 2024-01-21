@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf -g **/dist **/component-meta **/.nuxt **/cache",
-    "dev": "pnpm --filter @anu-vue/preset-theme-default stub && pnpm --filter @anu-vue/core dev",
-    "docs:dev": "pnpm --filter @anu-vue/documentation dev"
+    "dev": "pnpm --filter @anu-vue/tailwind-skin-default dev && pnpm --filter @anu-vue/core dev",
+    "docs:dev": "pnpm --filter @anu-vue/documentation dev",
+    "build": "pnpm --filter @anu-vue/tailwind-skin-default build && pnpm --filter @anu-vue/core build",
+    "build:core": "pnpm --filter @anu-vue/core build",
+    "build:tw": "pnpm --filter @anu-vue/tailwind-skin-default build",
+    "docs:build": "pnpm build && pnpm --filter @anu-vue/documentation build"
   },
   "keywords": [],
   "author": "",
