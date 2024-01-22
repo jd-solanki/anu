@@ -80,7 +80,7 @@ const showCode = ref(false)
   &.vp-demo-bordered {
     background: transparent !important;
     box-shadow: none !important;
-    border: 1px solid #eee !important;
+    border: 1px solid var(--a-border-color) !important;
   }
 }
 

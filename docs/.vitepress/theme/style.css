@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ==========================
+👉 VitePress Styles
+========================== */
+
+:root {
+    /* Background Colors */
+    --vp-background: var(--a-body-bg);
+    --vp-c-bg: var(--vp-background);
+    --vp-c-bg-alt: var(--vp-background);
+    --vp-sidebar-bg-color: var(--vp-background);
+
+    /* Text Color */
+    --vp-c-text-1: var(--a-text-color);
+
+    /* Font family */
+    --vp-font-family-base: 'Inter', sans-serif;
+    --vp-font-family-mono: 'JetBrains Mono', monospace;
+
+    /* Other */
+    --vp-code-scrollbar-thumb-bg: oklch(40% 0 0);
+    --vp-code-line-height: 1.9;
+}
+
+/* ==========================
+👉 Navbar
+========================== */
+
+/* Add border bottom instead of shadow */
+.VPNav {
+    border-bottom: thin solid oklch(90% 0 0);
+}
+
+/* Remove additional border below navbar */
+.VPNav .divider {
+    display: none;
+}
+
+/* Remove border bottom from title in navbar */
+.VPNavBarTitle.has-sidebar .title {
+    border-bottom: none;
+}

@@ -1,0 +1,21 @@
+:root {
+    --a-body-bg: oklch(97% 0 0);
+
+    --a-text-color: oklch(63% 0 0);
+    --a-heading-color: oklch(30% 0 0);
+    --a-border-color: oklch(95% 0 0);
+}
+
+body {
+    background-color: var(--a-body-bg);
+    color: var(--a-text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--a-heading-color);
+}
