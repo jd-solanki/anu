@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf -g **/dist **/component-meta **/.nuxt **/cache",
+    "clean": "rimraf -g **/dist **/component-meta **/.nuxt **/cache **/.vitepress/cache",
     "dev": "pnpm --filter @anu-vue/tailwind-skin-default dev && pnpm --filter @anu-vue/core dev",
     "docs:dev": "pnpm --filter @anu-vue/documentation dev",
     "build": "pnpm --filter @anu-vue/tailwind-skin-default build && pnpm --filter @anu-vue/core build",
