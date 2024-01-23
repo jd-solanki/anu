@@ -1,9 +1,25 @@
 :root {
-    --a-body-bg: oklch(97% 0 0);
+    --a-primary-hue: 298;
 
-    --a-text-color: oklch(63% 0 0);
-    --a-heading-color: oklch(30% 0 0);
-    --a-border-color: oklch(95% 0 0);
+    --a-body-bg: oklch(97% 0 var(--a-primary-hue));
+
+    --a-text-color: oklch(63% 0 var(--a-primary-hue));
+    --a-heading-color: oklch(40% 0 var(--a-primary-hue));
+    --a-border-color: oklch(95% 0 var(--a-primary-hue));
+
+    /* For cards, dialogs, etc */
+    --a-surface-color: oklch(100% 0 var(--a-primary-hue));
+}
+
+:root.dark,
+.dark {
+    --a-body-bg: oklch(3% 0 var(--a-primary-hue));
+
+    --a-text-color: oklch(75% 0 var(--a-primary-hue));
+    --a-heading-color: oklch(100% 0 var(--a-primary-hue));
+    --a-border-color: oklch(5% 0 var(--a-primary-hue));
+
+    --a-surface-color: oklch(17% 0 var(--a-primary-hue));
 }
 
 body {

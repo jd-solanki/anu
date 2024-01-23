@@ -5,7 +5,7 @@ const showCode = ref(false)
 </script>
 
 <template>
-  <div class="vp-demo rounded-lg shadow bg-white">
+  <div class="vp-demo rounded-lg shadow">
     <div
       v-if="$slots.title || $slots.code"
       class="vp-demo-header flex flex-wrap items-center justify-between"
@@ -65,6 +65,7 @@ const showCode = ref(false)
 .vp-demo {
   padding: var(--vp-demo-card-padding);
   margin-top: var(--vp-demo-mt);
+  background-color: var(--a-surface-color);
 
   & + & {
     --vp-demo-mt: 3rem;

@@ -3,6 +3,7 @@ import Container from 'markdown-it-container';
 import path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
+import VueDevTools from 'vite-plugin-vue-devtools';
 import { defineConfig } from 'vitepress';
 
 const isDev = process.env.NODE_ENV !== 'production'
@@ -54,7 +55,10 @@ export default defineConfig({
   markdown: {
     // ℹ️ We only enabled this in development so that we can highlight code lines by seeing line number without calculating it in our editor.
     lineNumbers: isDev,
-    theme: 'dracula',
+    theme: {
+      light: 'vitesse-light',
+      dark: 'dracula',
+    },
     config: md => {
       md.use(Container, 'card', {
         render: (tokens, idx) => {
@@ -93,6 +97,7 @@ export default defineConfig({
   },
   vite: {
     plugins: [
+      VueDevTools(),
       Components({
         dirs: [
           path.resolve(__dirname, '../src/components/')

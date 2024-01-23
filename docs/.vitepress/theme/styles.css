@@ -34,6 +34,10 @@
     border-bottom: thin solid oklch(90% 0 0);
 }
 
+.dark .VPNav {
+    border-bottom: thin solid oklch(30% 0 0);
+}
+
 /* Remove additional border below navbar */
 .VPNav .divider {
     display: none;
