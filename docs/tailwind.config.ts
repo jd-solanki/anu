@@ -14,6 +14,6 @@ export default {
   },
   plugins: [
     iconsPlugin(),
-    pluginSkinDefault({}),
+    pluginSkinDefault({ /* options */ }),
   ],
 } satisfies Config

@@ -1,7 +1,17 @@
 import plugin from 'tailwindcss/plugin'
 
+interface PluginOptions {
+    updateThemeShadows?: boolean
+}
+
+const pluginOptionsDefaults: PluginOptions = {
+    updateThemeShadows: true,
+}
+
 export const pluginSkinDefault = plugin.withOptions(
-    function (options = {}) {
+    function (options: PluginOptions = {}) {
+        const _options = { ...pluginOptionsDefaults, ...options }
+
         return function ({ addComponents, theme, config }) {
 
             addComponents({
@@ -23,7 +33,11 @@ export const pluginSkinDefault = plugin.withOptions(
             })
         }
     },
-    function (options = {}) {
+    function (options: PluginOptions = {}) {
+        const _options = { ...pluginOptionsDefaults, ...options }
+
+        if (!_options.updateThemeShadows) return {}
+        
         return {
             theme: {
                 boxShadow: {
