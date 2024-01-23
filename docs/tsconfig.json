@@ -4,7 +4,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": [
-      "@anu-vue/core/dist/types/volar"
+      "@anu-vue/core/volar"
     ],
     "lib": [
       "esnext",

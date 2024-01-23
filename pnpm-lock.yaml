@@ -84,6 +84,9 @@ importers:
 
   packages/core:
     dependencies:
+      deepmerge-ts:
+        specifier: ^5.1.0
+        version: 5.1.0
       defu:
         specifier: ^6.1.4
         version: 6.1.4
@@ -94,6 +97,9 @@ importers:
         specifier: ^3.4.14
         version: 3.4.14(typescript@5.3.3)
     devDependencies:
+      '@antfu/utils':
+        specifier: ^0.7.7
+        version: 0.7.7
       '@types/node':
         specifier: ^20.11.5
         version: 20.11.5
@@ -2065,6 +2071,11 @@ packages:
     dependencies:
       type-detect: 4.0.8
     dev: true
+
+  /deepmerge-ts@5.1.0:
+    resolution: {integrity: sha512-eS8dRJOckyo9maw9Tu5O5RUi/4inFLrnoLkBe3cPfDMx3WZioXtmOew4TXQaxq7Rhl4xjDtR7c6x8nNTxOvbFw==}
+    engines: {node: '>=16.0.0'}
+    dev: false
 
   /deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}

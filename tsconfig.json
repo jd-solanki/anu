@@ -23,7 +23,10 @@
     ],
     "paths": {
       "@anu-vue/core": [
-        "packages/core/src/index.ts"
+        "./packages/core/src/index.ts"
+      ],
+      "@anu-vue/core/*": [
+        "./packages/core/src/*"
       ]
     }
   },
@@ -31,7 +34,9 @@
     "./packages/*/src/**/*",
     "./packages/core/shims.d.ts",
     "packages/core/auto-imports.d.ts",
+    "packages/core/volar.d.ts",
     "./docs/src/components/**/*",
+    "./docs/.vitepress/theme/index.ts"
   ],
   "exclude": [
     "**/dist/**",

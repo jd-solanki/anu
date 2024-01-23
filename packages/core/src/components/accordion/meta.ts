@@ -9,4 +9,9 @@ export interface AAccordionProps {
 
   defaultValue?: AccordionRootProps['defaultValue'],
   collapsible?: AccordionRootProps['collapsible'],
+
+  ui?: {
+    accordionRoot?: any,
+    accordionItem?: AAccordionItemProps['ui'],
+  }
 }

@@ -49,6 +49,17 @@
         "typescriptreact",
         "vue"
     ],
+    // Extension: Tailwind
+    "tailwindCSS.experimental.classRegex": [
+        [
+            "ui:\\s*{([^)]*)\\s*}",
+            "[\"'`]([^\"'`]*).*?[\"'`]"
+        ],
+        [
+            "/\\*ui\\*/\\s*{([^;]*)}",
+            ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"
+        ]
+    ],
     // Extension: Comment Anchors
     "commentAnchors.tags.displayLineNumber": false,
     "commentAnchors.workspace.enabled": false,

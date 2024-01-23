@@ -4,4 +4,11 @@ export interface AAccordionItemProps {
   title?: string
   value: AccordionItemProps['value']
   disabled?: AccordionItemProps['disabled']
+  ui?: {
+    accordionItem?: any,
+    accordionHeader?: any,
+    accordionTrigger?: any,
+    accordionTitle?: any,
+    accordionContent?: any,
+  }
 }

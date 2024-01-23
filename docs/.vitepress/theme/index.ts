@@ -8,7 +8,15 @@ export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
     app.use(anu, {
-      registerComponents: true,
+      registerComponentsGlobally: true,
+      propsDefaults: {
+        AAccordionItem: {
+          ui: {
+            accordionHeader: 'px-4 py-2 bg-gray-100 border-b border-gray-200',
+            accordionContent: 'px-4 py-2',
+          }
+        }
+      }
     })
   }
 } satisfies Theme

@@ -8,6 +8,7 @@ export default {
   content: [
     "./src/**/*.{vue,md,js,ts,jsx,tsx}",
     "**/anu-vue.js**",
+    "./.vitepress/theme/index.ts"
   ],
   theme: {
     extend: {},

@@ -2,7 +2,7 @@ import fs from 'fs-extra'
 import { globbySync } from 'globby'
 import path from 'path'
 import * as url from 'url'
-import { anuVueCorePkgRoot, anuVueDistDir } from './paths'
+import { anuVueCorePkgRoot } from './paths'
 import { indent } from './utils'
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
@@ -25,4 +25,4 @@ const imports = componentNames.map(c => genImportString(c))
 const volarDTSContent = content.replace('$components', imports.join('\n'))
 
 // Write files
-fs.writeFileSync(path.join(anuVueDistDir, 'types', 'volar.d.ts'), volarDTSContent, { encoding: 'utf-8' })
+fs.writeFileSync(path.join(anuVueCorePkgRoot, 'volar.d.ts'), volarDTSContent, { encoding: 'utf-8' })
