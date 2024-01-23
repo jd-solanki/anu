@@ -4,7 +4,9 @@ import { AccordionRoot } from 'radix-vue';
 import type { AAccordionProps } from './meta';
 
 
-const props = defineProps<AAccordionProps>()
+const props = withDefaults(defineProps<AAccordionProps>(), {
+  collapsible: true,
+})
 
 // ℹ️ Should Vue auto pass down modelValue as well as prop like other attrs?
 const modelValue = defineModel<string | string[]>()
@@ -17,7 +19,7 @@ defineOptions({
 </script>
 
 <template>
-  <AccordionRoot v-model="modelValue" :default-value="props.defaultValue" :type="accordionType" class="a-accordion-root">
+  <AccordionRoot :collapsible="props.collapsible" v-model="modelValue" :default-value="props.defaultValue" :type="accordionType" class="a-accordion-root">
     <slot>
     <template v-for="(item, index) in props.items" :key="index">
       <!-- ℹ️ If value prop is not provided fallback to index -->

@@ -6,5 +6,7 @@ export interface AAccordionProps {
 
   // TODO: Update it's type after this => https://github.com/radix-vue/radix-vue/issues/633
   type?: AccordionRootProps['type'],
+
   defaultValue?: AccordionRootProps['defaultValue'],
+  collapsible?: AccordionRootProps['collapsible'],
 }
