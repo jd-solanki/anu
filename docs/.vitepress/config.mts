@@ -22,6 +22,9 @@ export default defineConfig({
     logo: '/logo.svg',
     nav: [
       { text: 'Guide', link: '/guide/components/accordion', activeMatch: '/guide/' },
+
+      // Add playground only in development
+      ...(isDev ? [{ text: 'Playground', link: '/playground' }] : []),
     ],
     footer: {
       message: 'Released under the MIT License.',
