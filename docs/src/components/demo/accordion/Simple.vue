@@ -8,7 +8,7 @@ const items: AAccordionProps['items'] = [
 </script>
 
 <template>
-    <AAccordion :items="items" :ui="{ accordionRoot: 'shadow-xl', accordionItem: { accordionHeader: 'bg-red-200' } }">
+    <AAccordion :items="items">
         <template #0-content>
             Awesome Content
         </template>

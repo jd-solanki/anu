@@ -9,14 +9,14 @@ export default {
   enhanceApp({ app }) {
     app.use(anu, {
       registerComponentsGlobally: true,
-      propsDefaults: {
-        AAccordionItem: {
-          ui: {
-            accordionHeader: 'px-4 py-2 bg-gray-900 border-b border-gray-200',
-            accordionContent: 'px-4 py-2',
-          }
-        }
-      }
+      // propsDefaults: {
+      //   AAccordionItem: {
+      //     ui: {
+      //       accordionHeader: 'px-4 py-2',
+      //       accordionContent: 'px-4 py-2',
+      //     }
+      //   }
+      // }
     })
   }
 } satisfies Theme

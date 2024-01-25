@@ -1,38 +1,34 @@
 import { objectKeys, objectPick } from '@antfu/utils';
-import { createDefu } from "defu";
+import { deepmergeCustom } from 'deepmerge-ts';
+import { createDefu } from 'defu';
 import type { Ref, StyleValue } from 'vue';
 import { toValue } from 'vue';
 import type { PluginOptions } from '../plugin';
 import type { PluginOptionDefaults } from '../pluginDefaults';
 import { ANU_PROPS_DEFAULTS } from '../symbols';
 
-// export const mergePropsDefaults = deepmergeCustom({
-//   mergeArrays: false,
-// })
-
-// TODO: This needs to be optimized
-const uiMerger = createDefu((obj, key, val) => {
-  if (typeof obj[key] === 'string' && typeof val === 'string') {
-    obj[key] = [...new Set(val.split(' ')), ...new Set(obj[key].split(' '))].join(' ')
-    return true
-  }
+export const customDeepMerge = deepmergeCustom({
+  mergeArrays: false,
 })
 
-export const mergePropsDefaults = createDefu((obj, key, val) => {
-  // If it's array then replace it instead of merge
-  if (Array.isArray(obj[key]) && Array.isArray(val)) {
-    obj[key] = val
+const defuUi = createDefu((obj, key, value) => {
+  if (typeof obj[key] === 'string' && typeof value === 'string') {
+    obj[key] = `${obj[key]} ${value}` as typeof value
     return true
   }
+  return false
+})
 
-  // if it's ui prop then deep merge it
-  if (key === 'ui') {
-    // console.log('val :>> ', val);
-    // console.log('obj[key] :>> ', obj[key]);
-    obj[key] = uiMerger(val, obj[key])
-    // console.log('obj[key] :>> ', obj[key]);
-    // console.log('\n\n');
-    return true
+export const mergePropsDefaults = deepmergeCustom({
+  mergeArrays: false,
+  mergeRecords(values, utils, meta) {
+
+    if (meta?.key === 'ui' && Array.isArray(values)) {
+      // @ts-expect-error Can't able to understand that `values` is an array
+      return defuUi(...values)
+    }
+
+    return utils.actions.defaultMerge
   }
 })
 
@@ -91,18 +87,28 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
       })
 
     // Provide subProps to the nested component
-    // newDefaults.value = mergePropsDefaults(_propsDefaults, otherProps)
+    // newDefaults.value = customDeepMerge(_propsDefaults, otherProps)
     /**
      * ℹ️ This line optimizes object by removing nested component's defaults from the current component tree
      * Assume we have { AAlert: { ABtn: { color: 'info' } } } then below line will move ABtn on top and remove it from children of AAlert
-     * To see the difference log the result of `mergePropsDefaults(...)` of below line and comment line above
+     * To see the difference log the result of `customDeepMerge(...)` of below line and comment line above
      */
-    newPropsDefaults.value = mergePropsDefaults({ ..._propsDefaults, [_componentName]: componentProps }, otherProps)
+    newPropsDefaults.value = customDeepMerge({ ..._propsDefaults, [_componentName]: componentProps }, otherProps)
 
     const explicitPropsNames = objectKeys(vm?.vnode.props || {}) as unknown as (keyof Props)[]
     const explicitProps = objectPick(definitionProps, explicitPropsNames)
 
-    propsRef.value = mergePropsDefaults(definitionProps, componentProps, explicitProps) as Props
+    console.log('_componentName :>> ', _componentName);
+    console.log('definitionProps :>> ', toRaw(definitionProps));
+    console.log('componentProps :>> ', toRaw(componentProps));
+    console.log('explicitProps :>> ', toRaw(explicitProps));
+    console.log('otherProps :>> ', toRaw(otherProps));
+
+    const _compDefaults = customDeepMerge(definitionProps, explicitProps)
+    console.log('_compDefaults :>> ', _compDefaults);
+
+    propsRef.value = mergePropsDefaults(_compDefaults, componentProps) as Props
+    console.log('\n\n');
     // console.log('propsRef.value :>> ', toRaw(propsRef.value));
   }
 

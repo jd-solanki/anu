@@ -18,8 +18,6 @@ const accordionType = computed(() => props.type ?? Array.isArray(modelValue.valu
 defineOptions({
   name: 'AAccordion',
 })
-
-console.log('props.items :>> ', props.items);
 </script>
 
 <template>
