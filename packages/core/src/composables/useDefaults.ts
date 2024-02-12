@@ -98,17 +98,17 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
     const explicitPropsNames = objectKeys(vm?.vnode.props || {}) as unknown as (keyof Props)[]
     const explicitProps = objectPick(definitionProps, explicitPropsNames)
 
-    console.log('_componentName :>> ', _componentName);
-    console.log('definitionProps :>> ', toRaw(definitionProps));
-    console.log('componentProps :>> ', toRaw(componentProps));
-    console.log('explicitProps :>> ', toRaw(explicitProps));
-    console.log('otherProps :>> ', toRaw(otherProps));
+    // console.log('_componentName :>> ', _componentName);
+    // console.log('definitionProps :>> ', toRaw(definitionProps));
+    // console.log('componentProps :>> ', toRaw(componentProps));
+    // console.log('explicitProps :>> ', toRaw(explicitProps));
+    // console.log('otherProps :>> ', toRaw(otherProps));
 
     const _compDefaults = customDeepMerge(definitionProps, explicitProps)
-    console.log('_compDefaults :>> ', _compDefaults);
+    // console.log('_compDefaults :>> ', _compDefaults);
 
     propsRef.value = mergePropsDefaults(_compDefaults, componentProps) as Props
-    console.log('\n\n');
+    // console.log('\n\n');
     // console.log('propsRef.value :>> ', toRaw(propsRef.value));
   }
 
