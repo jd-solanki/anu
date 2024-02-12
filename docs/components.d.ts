@@ -9,7 +9,11 @@ declare module 'vue' {
   export interface GlobalComponents {
     AAccordion: typeof import('@anu-vue/core')['AAccordion']
     AAccordionItem: typeof import('@anu-vue/core')['AAccordionItem']
+    copy: typeof import('./src/components/demo/accordion/Simple copy.vue')['default']
     Demo: typeof import('./src/components/Demo.vue')['default']
     DemoAccordionSimple: typeof import('./src/components/demo/accordion/Simple.vue')['default']
+    DemoAccordionVModel: typeof import('./src/components/demo/accordion/VModel.vue')['default']
+    DemoAccordionVModelSupport: typeof import('./src/components/demo/accordion/VModelSupport.vue')['default']
+    Playground: typeof import('./src/components/Playground.vue')['default']
   }
 }

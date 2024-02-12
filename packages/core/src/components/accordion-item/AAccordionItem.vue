@@ -26,7 +26,9 @@ defineOptions({
             </AccordionTrigger>
         </AccordionHeader>
         <AccordionContent class="a-accordion-content" :class="props.ui?.accordionContent">
-            <slot></slot>
+            <div class="a-accordion-content-child" :class="props.ui?.accordionContentChild">
+                <slot></slot>
+            </div>
         </AccordionContent>
     </AccordionItem>
 </template>

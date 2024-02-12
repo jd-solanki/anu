@@ -10,5 +10,6 @@ export interface AAccordionItemProps {
     accordionTrigger?: any,
     accordionTitle?: any,
     accordionContent?: any,
+    accordionContentChild?: any
   }
 }

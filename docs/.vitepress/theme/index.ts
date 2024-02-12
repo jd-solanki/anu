@@ -9,14 +9,17 @@ export default {
   enhanceApp({ app }) {
     app.use(anu, {
       registerComponentsGlobally: true,
-      // propsDefaults: {
-      //   AAccordionItem: {
-      //     ui: {
-      //       accordionHeader: 'px-4 py-2',
-      //       accordionContent: 'px-4 py-2',
-      //     }
-      //   }
-      // }
+      propsDefaults: {
+        AAccordionItem: {
+          ui: {
+            accordionHeader: 'flex',
+            accordionTrigger: 'flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline',
+            accordionItem: 'border-b',
+            accordionContent: 'overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+            accordionContentChild: 'pb-4 pt-0',
+          }
+        }
+      }
     })
   }
 } satisfies Theme
