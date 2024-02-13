@@ -1,16 +1,16 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "types": [
-      "@anu-vue/core/volar"
-    ],
     "lib": [
       "esnext",
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
-  },
+    ],
+    "resolveJsonModule": true,
+    "types": [
+      "@anu-vue/core/volar"
+    ],
+    "esModuleInterop": true
+  }
 }

@@ -1,1 +1,1 @@
-export * from './useDefaults';
+export * from './useDefaults'

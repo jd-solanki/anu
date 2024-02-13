@@ -17,9 +17,9 @@ export default {
             accordionItem: 'border-b',
             accordionContent: 'overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
             accordionContentChild: 'pb-4 pt-0',
-          }
-        }
-      }
+          },
+        },
+      },
     })
-  }
+  },
 } satisfies Theme

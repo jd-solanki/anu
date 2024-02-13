@@ -1,7 +1,7 @@
+import path from 'node:path'
+import * as url from 'node:url'
 import fs from 'fs-extra'
 import { globbySync } from 'globby'
-import path from 'path'
-import * as url from 'url'
 import { anuVueCorePkgRoot } from './paths'
 import { indent } from './utils'
 

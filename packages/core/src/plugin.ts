@@ -1,10 +1,10 @@
-import { defu } from 'defu';
-import type { PartialDeep } from 'type-fest';
-import type { App } from 'vue';
-import * as components from './components';
-import { useDefaults } from './composables/useDefaults';
-import type { PluginOptionDefaults } from './pluginDefaults';
-import { ANU_PROPS_DEFAULTS } from './symbols';
+import { defu } from 'defu'
+import type { PartialDeep } from 'type-fest'
+import type { App } from 'vue'
+import * as components from './components'
+import { useDefaults } from './composables/useDefaults'
+import type { PluginOptionDefaults } from './pluginDefaults'
+import { ANU_PROPS_DEFAULTS } from './symbols'
 
 export interface PluginOptions {
   registerComponentsGlobally: boolean
@@ -26,7 +26,7 @@ export const plugin = {
     if (config.registerComponentsGlobally) {
       for (const prop in components) {
         // @ts-expect-error: I want to index import using string
-        // eslint-disable-next-line import/namespace
+
         const component = components[prop]
         app.component(component.name, component)
       }

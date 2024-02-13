@@ -1,26 +1,15 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "esnext",
-    "module": "esnext",
+    "jsx": "preserve",
     "lib": [
       "esnext",
       "DOM"
     ],
+    "baseUrl": ".",
+    "module": "esnext",
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "noUncheckedIndexedAccess": true,
-    "jsx": "preserve",
-    "types": [
-      "node"
-    ],
     "paths": {
       "@anu-vue/core": [
         "./packages/core/src/index.ts"
@@ -28,15 +17,31 @@
       "@anu-vue/core/*": [
         "./packages/core/src/*"
       ]
-    }
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "node"
+    ],
+    "strict": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
   "include": [
     "./packages/*/src/**/*",
     "./packages/core/shims.d.ts",
     "packages/core/auto-imports.d.ts",
     "packages/core/volar.d.ts",
+    "./docs/tailwind.config.ts",
     "./docs/src/components/**/*",
-    "./docs/.vitepress/theme/index.ts"
+    "./docs/.vitepress/**/*.ts",
+    "./docs/.vitepress/config.mts",
+    "**/vite.config.ts",
+    "./scripts/*",
+    "packages/tailwind-skin-default/build.config.ts"
   ],
   "exclude": [
     "**/dist/**",

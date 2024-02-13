@@ -2,15 +2,20 @@
   "name": "@anu-vue/documentation",
   "version": "1.0.0",
   "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "@anu-vue/core": "workspace:*",
+    "@anu-vue/tailwind-skin-default": "workspace:*",
+    "vue": "^3.4.14"
+  },
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.7.2",
     "@iconify-json/iconoir": "^1.1.39",
@@ -24,10 +29,5 @@
     "unplugin-vue-components": "^0.26.0",
     "vite-plugin-vue-devtools": "^7.0.11",
     "vitepress": "1.0.0-rc.39"
-  },
-  "dependencies": {
-    "@anu-vue/core": "workspace:*",
-    "@anu-vue/tailwind-skin-default": "workspace:*",
-    "vue": "^3.4.14"
   }
 }

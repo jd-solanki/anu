@@ -1,5 +1,5 @@
-import fs from 'fs-extra';
-import { defineBuildConfig } from "unbuild";
+import fs from 'fs-extra'
+import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
   entries: [
@@ -10,10 +10,10 @@ export default defineBuildConfig({
   rollup: {
     emitCJS: true,
   },
-  externals: ["tailwindcss/plugin"],
+  externals: ['tailwindcss/plugin'],
   hooks: {
     'mkdist:done': async () => {
-      await fs.copy('./src/styles.css', './dist/styles.css');
-    }
-  }
-});
+      await fs.copy('./src/styles.css', './dist/styles.css')
+    },
+  },
+})

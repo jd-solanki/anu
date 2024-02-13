@@ -1,11 +1,11 @@
-import { objectKeys, objectPick } from '@antfu/utils';
-import { deepmergeCustom } from 'deepmerge-ts';
-import { createDefu } from 'defu';
-import type { Ref, StyleValue } from 'vue';
-import { toValue } from 'vue';
-import type { PluginOptions } from '../plugin';
-import type { PluginOptionDefaults } from '../pluginDefaults';
-import { ANU_PROPS_DEFAULTS } from '../symbols';
+import { objectKeys, objectPick } from '@antfu/utils'
+import { deepmergeCustom } from 'deepmerge-ts'
+import { createDefu } from 'defu'
+import type { Ref, StyleValue } from 'vue'
+import { toValue } from 'vue'
+import type { PluginOptions } from '../plugin'
+import type { PluginOptionDefaults } from '../pluginDefaults'
+import { ANU_PROPS_DEFAULTS } from '../symbols'
 
 export const customDeepMerge = deepmergeCustom({
   mergeArrays: false,
@@ -22,19 +22,17 @@ const defuUi = createDefu((obj, key, value) => {
 export const mergePropsDefaults = deepmergeCustom({
   mergeArrays: false,
   mergeRecords(values, utils, meta) {
-
     if (meta?.key === 'ui' && Array.isArray(values)) {
       // @ts-expect-error Can't able to understand that `values` is an array
       return defuUi(...values)
     }
 
     return utils.actions.defaultMerge
-  }
+  },
 })
 
 interface ReturnType<Props> {
   props: Props
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultsClass: Ref<any>
   defaultsStyle: Ref<StyleValue | undefined>
   defaultsAttrs: Ref<Record<string, unknown> | undefined>
@@ -58,9 +56,9 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
 
   // Return Values
   const propsRef = ref() as Ref<ReturnType<Props>['props']>
-  const defaultsClass = ref() as ReturnType<Props>['defaultsClass']
+  const defaultsClass = ref()
   const defaultsStyle = ref() as ReturnType<Props>['defaultsStyle']
-  const defaultsAttrs = ref() as ReturnType<Props>['defaultsAttrs']
+  const defaultsAttrs = ref()
 
   const calculateProps = () => {
     const _propsDefaults = toValue(propsDefaults)
@@ -73,7 +71,6 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const componentProps = {} as any
     const otherProps = {} as any
-    /* eslint-enable */
 
     Object.entries(restProps)
       .forEach(([key, value]) => {
@@ -82,8 +79,7 @@ export function useDefaults<Props extends Record<string, unknown>>(definitionPro
           // console.log('value :>> ', toRaw(value));
           componentProps[key] = value
         }
-        else
-          otherProps[key] = value
+        else { otherProps[key] = value }
       })
 
     // Provide subProps to the nested component

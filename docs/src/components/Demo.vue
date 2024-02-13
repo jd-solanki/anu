@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const showCode = ref(false)
 </script>
@@ -19,7 +19,9 @@ const showCode = ref(false)
         <div
           class="i-iconoir-code cursor-pointer"
           @click="showCode = !showCode"
-        >Show Code</div>
+        >
+          Show Code
+        </div>
       </div>
     </div>
     <div class="vp-demo-body">
@@ -28,7 +30,7 @@ const showCode = ref(false)
         v-if="$slots.demo"
         class="vp-raw"
       >
-      <!-- Demo -->
+        <!-- Demo -->
         <slot name="demo" />
         <!-- /Demo -->
       </div>

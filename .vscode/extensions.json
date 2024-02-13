@@ -1,20 +1,20 @@
 {
-    "recommendations": [
-        "editorconfig.editorconfig",
-        "xabikos.javascriptsnippets",
-        "vue.volar",
-        "dbaeumer.vscode-eslint",
-        "usernamehw.errorlens",
-        "antfu.unocss",
-        "antfu.iconify",
-        "exodiusstudios.comment-anchors",
-        "davidanson.vscode-markdownlint",
-        "streetsidesoftware.code-spell-checker",
-        "matijao.vue-nuxt-snippets",
-        "johnsoncodehk.vscode-tsconfig-helper",
-        "orta.vscode-twoslash-queries",
-        "antfu.smart-clicks",
-        "meganrogge.template-string-converter",
-        "antfu.goto-alias"
-    ]
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "xabikos.javascriptsnippets",
+    "vue.volar",
+    "dbaeumer.vscode-eslint",
+    "usernamehw.errorlens",
+    "antfu.unocss",
+    "antfu.iconify",
+    "exodiusstudios.comment-anchors",
+    "davidanson.vscode-markdownlint",
+    "streetsidesoftware.code-spell-checker",
+    "matijao.vue-nuxt-snippets",
+    "johnsoncodehk.vscode-tsconfig-helper",
+    "orta.vscode-twoslash-queries",
+    "antfu.smart-clicks",
+    "meganrogge.template-string-converter",
+    "antfu.goto-alias"
+  ]
 }

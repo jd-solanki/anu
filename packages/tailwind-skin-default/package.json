@@ -1,9 +1,12 @@
 {
   "name": "@anu-vue/tailwind-skin-default",
-  "private": false,
-  "version": "0.0.0",
-  "description": "Default skin for Anu based on TailwindCSS",
   "type": "module",
+  "version": "0.0.0",
+  "private": false,
+  "description": "Default skin for Anu based on TailwindCSS",
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -20,9 +23,6 @@
     "dev": "unbuild --stub",
     "build": "unbuild"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "peerDependencies": {
     "tailwindcss": "^3.4.1"
   },

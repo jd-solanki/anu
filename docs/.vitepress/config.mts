@@ -1,10 +1,11 @@
-import { AnuComponentResolver } from '@anu-vue/core';
-import Container from 'markdown-it-container';
-import path from 'path';
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
-import VueDevTools from 'vite-plugin-vue-devtools';
-import { defineConfig } from 'vitepress';
+import path from 'node:path'
+import process from 'node:process'
+import { AnuComponentResolver } from '@anu-vue/core'
+import Container from 'markdown-it-container'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import VueDevTools from 'vite-plugin-vue-devtools'
+import { defineConfig } from 'vitepress'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -53,7 +54,7 @@ export default defineConfig({
     //   apiKey: '20424a4612bfde26fb4920f451c19cbc',
     //   indexName: 'anu-vue',
     // },
-    
+
   },
   markdown: {
     // ℹ️ We only enabled this in development so that we can highlight code lines by seeing line number without calculating it in our editor.
@@ -62,7 +63,7 @@ export default defineConfig({
       light: 'vitesse-light',
       dark: 'dracula',
     },
-    config: md => {
+    config: (md) => {
       md.use(Container, 'card', {
         render: (tokens, idx) => {
           const token = tokens[idx]
@@ -103,7 +104,7 @@ export default defineConfig({
       VueDevTools(),
       Components({
         dirs: [
-          path.resolve(__dirname, '../src/components/')
+          path.resolve(__dirname, '../src/components/'),
         ],
         deep: true,
         directoryAsNamespace: true,

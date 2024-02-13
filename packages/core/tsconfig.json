@@ -2,20 +2,20 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
+    "jsx": "preserve",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "jsx": "preserve",
-    "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
     "outDir": "dist/types",
-    "lib": [
-      "esnext",
-      "dom"
-    ]
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
   },
   "references": [
     {

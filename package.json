@@ -1,7 +1,11 @@
 {
   "name": "anu-vue",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
   "main": "index.js",
   "scripts": {
     "clean": "rimraf -g **/dist **/component-meta **/.nuxt **/cache **/.vitepress/cache",
@@ -10,17 +14,18 @@
     "build": "pnpm --filter @anu-vue/tailwind-skin-default build && pnpm --filter @anu-vue/core build",
     "build:core": "pnpm --filter @anu-vue/core build",
     "build:tw": "pnpm --filter @anu-vue/tailwind-skin-default build",
-    "docs:build": "pnpm build && pnpm --filter @anu-vue/documentation build"
+    "docs:build": "pnpm build && pnpm --filter @anu-vue/documentation build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "devDependencies": {
+    "@antfu/eslint-config": "^2.6.4",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.5",
     "@vitejs/plugin-vue": "^5.0.3",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/tsconfig": "^0.5.1",
+    "eslint": "^8.56.0",
     "fs-extra": "^11.2.0",
     "globby": "^14.0.0",
     "rimraf": "^5.0.5"
