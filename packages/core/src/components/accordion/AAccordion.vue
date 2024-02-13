@@ -21,7 +21,16 @@ const accordionType = computed(() => props.type ?? (Array.isArray(modelValue.val
 </script>
 
 <template>
-  <AccordionRoot v-bind="defaultsAttrs" v-model="modelValue" :style="defaultsStyle" :class="[defaultsClass, props.ui?.accordionRoot]" :collapsible="props.collapsible" :default-value="props.defaultValue" :type="accordionType" class="a-accordion-root">
+  <AccordionRoot
+    v-bind="defaultsAttrs"
+    v-model="modelValue"
+    :style="defaultsStyle"
+    :class="[defaultsClass, props.ui?.accordionRoot]"
+    :collapsible="props.collapsible"
+    :default-value="props.defaultValue"
+    :type="accordionType"
+    class="a-accordion-root"
+  >
     <slot />
   </AccordionRoot>
 </template>
