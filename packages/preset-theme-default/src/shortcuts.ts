@@ -33,12 +33,12 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'grid-row': 'grid gap-6 place-items-start w-full',
 
     // 👉 Typography
-    'a-title': 'font-medium block em:text-lg text-[hsla(var(--a-title-c),var(--a-title-opacity))] whitespace-nowrap',
-    'a-subtitle': 'block em:text-sm text-[hsla(var(--a-subtitle-c),var(--a-subtitle-opacity))]',
-    'a-text': '',
-    'text-high-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-high-opacity))]',
-    'text-medium-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-medium-opacity))]',
-    'text-light-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))]',
+    'a-title': 'font-medium block em:text-lg text-[hsla(var(--a-title-c),var(--a-title-opacity))] whitespace-nowrap rtl:text-right',
+    'a-subtitle': 'block em:text-sm text-[hsla(var(--a-subtitle-c),var(--a-subtitle-opacity))] rtl:text-right',
+    'a-text': 'rtl:text-right',
+    'text-high-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-high-opacity))] rtl:text-right',
+    'text-medium-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-medium-opacity))] rtl:text-right',
+    'text-light-emphasis': 'text-[hsla(var(--a-base-c),var(--a-text-emphasis-light-opacity))] rtl:text-right',
 
     // SECTION Components
     // 👉 Alert
@@ -71,7 +71,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 
     // ℹ️ We have to add important before `bg-` because textarea has `bg-transparent` class
     'a-base-input-disabled': '!all-[.a-base-input-input-wrapper]-bg-[hsla(var(--a-base-c),0.12)] opacity-50',
-    'a-base-input-interactive': 'all-[.a-base-input-child]-placeholder:transition all-[.a-base-input-child]-placeholder:duration-250 all-[.a-base-input-child]-placeholder:ease all-[.a-base-input-child:focus]-placeholder-translate-x-1',
+    'a-base-input-interactive': 'all-[.a-base-input-child]-placeholder:transition all-[.a-base-input-child]-placeholder:duration-250 all-[.a-base-input-child]-placeholder:ease all-[.a-base-input-child:focus]-placeholder-translate-x-1 rtl:all-[.a-base-input-child:focus]-placeholder--translate-x-1',
 
     // 'a-base-input-child': 'autofill-bg-transparent',
 
@@ -88,7 +88,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-card-body': 'a-card-padding',
 
     // 👉 Checkbox
-    'a-checkbox-box': 'border-solid h-5 w-5 border-(2 a-border rounded) transition duration-200 mr-2',
+    'a-checkbox-box': 'border-solid h-5 w-5 border-(2 a-border rounded) transition duration-200 ltr:mr-2 rtl:ml-2',
     'a-checkbox-disabled': 'opacity-50',
     'a-checkbox-icon': 'transition duration-150 delay-100 ease-[cubic-bezier(.57,1.48,.87,1.09)]',
 
@@ -138,11 +138,11 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-rating-disabled': 'opacity-50',
 
     // 👉 Radio
-    'a-radio-circle': 'border-solid h-5 w-5 border-(2 a-border) rounded-full mr-2 p-1 after:(duration-250 ease-in-out)', // ℹ️ :after is inner dot
+    'a-radio-circle': 'border-solid h-5 w-5 border-(2 a-border) rounded-full ltr:mr-2 rtl:ml-2 p-1 after:(duration-250 ease-in-out)', // ℹ️ :after is inner dot
     'a-radio-disabled': 'opacity-50',
 
     // 👉 Select
-    'a-select-floating': '[--slide-y-translateY:6px]',
+    'a-select-floating': '[--slide-y-translateY:6px] rtl:text-right',
     'a-select-options-container': 'z-10',
     'a-select-options-list': 'spacing-75',
 
@@ -158,7 +158,7 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
     'a-table-table': 'all-[tbody_tr]-border-t all-[tr]-border-a-border',
 
     // With 1em (14px), 1.1428571429em => 16px & 3.5em => 49px
-    'a-table-table-th': 'capitalize em:spacing:px-[1.1428571429em] spacing:h-[3.5em] text-left em:text-sm',
+    'a-table-table-th': 'capitalize em:spacing:px-[1.1428571429em] spacing:h-[3.5em] text-left rtl:text-right em:text-sm',
 
     'a-table-table-td': 'em:spacing:px-[1.1428571429em] spacing:h-[3.5em] text-sm',
 
@@ -202,3 +202,4 @@ const shortcuts: Exclude<Preset['shortcuts'], undefined | StaticShortcutMap> = [
 ]
 
 export { shortcuts }
+
