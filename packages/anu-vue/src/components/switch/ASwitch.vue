@@ -29,12 +29,6 @@ const { isChecked, onChange } = useCheckbox(
 )
 
 const elementId = `a-switch-${attrs.id || attrs.value}-${Math.random().toString(36).slice(2, 7)}`
-
-const dotPosition = computed(() => {
-  if (!isChecked.value)
-    return { transform: 'translateX(0)' }
-  else return { transform: 'translateX(calc(var(--a-switch-track-size) - 100% - (var(--a-switch-thumb-margin) *2 )))' }
-})
 </script>
 
 <template>
@@ -81,7 +75,7 @@ const dotPosition = computed(() => {
     >
       <div
         class="a-switch-dot grid place-items-center rounded-inherit m-$a-switch-thumb-margin"
-        :style="dotPosition"
+        :class="isChecked ? 'translate-x-[calc(var(--a-switch-track-size)-100%-(var(--a-switch-thumb-margin)*2))] rtl:translate-x-[calc(100%-var(--a-switch-track-size)+(var(--a-switch-thumb-margin)*2))]' : 'translate-x-0'"
       >
         <div
           class="a-switch-icon color-$a-switch-icon-color"
