@@ -2,6 +2,7 @@ import '@anu-vue/preset-theme-default/dist/style.css'
 import { anu } from 'anu-vue'
 import DefaultTheme from 'vitepress/theme'
 import type { App } from 'vue'
+import { h } from 'vue'
 
 import 'uno.css'
 
@@ -14,7 +15,12 @@ import { extractFileNameFromPath } from '../../utils'
 import './style.css'
 
 export default {
-  ...DefaultTheme,
+  extends: DefaultTheme,
+  Layout() {
+    return h(DefaultTheme.Layout, null, {
+      'nav-bar-title-after': () => h('small', { class: 'bg-danger bg-opacity-35 rounded-xl text-danger', style: { padding: '0 0.4rem', marginInlineStart: '0.85rem' } }, 'UNMAINTAINED'),
+    })
+  },
   enhanceApp({ app }: { app: App }) {
     app.use(anu)
 

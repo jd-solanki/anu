@@ -1,3 +1,6 @@
+> [!CAUTION]
+> This library isn't maintained anymore. We recommend checking out other libraries like [shadcn-vue](https://www.shadcn-vue.com/) or [Nuxt UI](https://ui.nuxt.com/).
+
 <h1 align="center">
    <a href="https://anu-vue.netlify.app/" target="_blank" align="center">
       Anu
