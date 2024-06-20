@@ -60,7 +60,7 @@ if (props.fullPage) {
   >
     <!-- 👉 Slot: default -->
     <slot>
-      <ASpinner class="a-loader-spinner text-[hsl(var(--a-layer-c))]" />
+      <ASpinner class="a-loader-spinner text-[hsla(var(--a-layer-c))]" />
     </slot>
     <!-- 👉 Typography -->
     <div

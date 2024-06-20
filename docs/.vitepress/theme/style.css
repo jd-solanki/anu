@@ -2,7 +2,7 @@
 :root {
 
   /* Background colors */
-  --vp-background: hsl(var(--a-body-bg-c));
+  --vp-background: hsla(var(--a-body-bg-c));
   --vp-c-bg: var(--vp-background);
   --vp-c-bg-alt: var(--vp-background);
   --vp-sidebar-bg-color: var(--vp-background);
@@ -15,29 +15,29 @@
   --vp-font-family-mono: 'JetBrains Mono', monospace;
 
   /* Branding */
-  --vp-c-brand-lighter: hsl(var(--a-primary-hue), 97%, 75%);
-  --vp-c-brand-light: hsl(var(--a-primary-hue), 97%, 70%);
-  --vp-c-brand: hsl(var(--a-primary-hue), 97%, 66%);
-  --vp-c-brand-dark: hsl(var(--a-primary-hue), 97%, 60%);
-  --vp-c-brand-darker: hsl(var(--a-primary-hue), 97%, 55%);
+  --vp-c-brand-lighter: hsla(var(--a-primary-hue), 97%, 75%);
+  --vp-c-brand-light: hsla(var(--a-primary-hue), 97%, 70%);
+  --vp-c-brand: hsla(var(--a-primary-hue), 97%, 66%);
+  --vp-c-brand-dark: hsla(var(--a-primary-hue), 97%, 60%);
+  --vp-c-brand-darker: hsla(var(--a-primary-hue), 97%, 55%);
 
   /* We need this because menu component has 51 index which overlaps on navbar on scroll */
   /* --vp-z-index-nav: 52; */
 
-  --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 40%);
+  --vp-code-scrollbar-thumb-bg: hsla(0, 0%, 40%);
   --vp-code-line-height: 1.9;
 }
 
 :root.dark {
   /* Branding */
   --a-primary-hue: 261;
-  --vp-c-brand-lighter: hsl(var(--a-primary-hue), 73%, 75%);
-  --vp-c-brand-light: hsl(var(--a-primary-hue), 73%, 70%);
-  --vp-c-brand: hsl(var(--a-primary-hue), 73%, 66%);
-  --vp-c-brand-dark: hsl(var(--a-primary-hue), 73%, 60%);
-  --vp-c-brand-darker: hsl(var(--a-primary-hue), 73%, 55%);
+  --vp-c-brand-lighter: hsla(var(--a-primary-hue), 73%, 75%);
+  --vp-c-brand-light: hsla(var(--a-primary-hue), 73%, 70%);
+  --vp-c-brand: hsla(var(--a-primary-hue), 73%, 66%);
+  --vp-c-brand-dark: hsla(var(--a-primary-hue), 73%, 60%);
+  --vp-c-brand-darker: hsla(var(--a-primary-hue), 73%, 55%);
 
-  --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 25%);
+  --vp-code-scrollbar-thumb-bg: hsla(0, 0%, 25%);
 }
 
 /* ==========================
@@ -104,7 +104,7 @@
 
 /* Handle */
 .VPSidebar::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 90%);
+  background: hsla(0, 0%, 90%);
   border-radius: 0.5rem;
 }
 
@@ -150,11 +150,11 @@
 
 :root.dark {
   --vp-c-bg-alt: var(--vp-background);
-  --vp-code-line-highlight-color: hsl(0, 0%, 12%);
+  --vp-code-line-highlight-color: hsla(0, 0%, 12%);
 }
 
 .dark .VPSidebar::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 10%);
+  background: hsla(0, 0%, 10%);
   border-radius: 0.5rem;
 }
 
@@ -243,11 +243,11 @@ samp {
 }
 
 html:not(.dark) .VPContent.is-home {
-  background: hsl(var(--a-surface-c));
+  background: hsla(var(--a-surface-c));
 }
 
 html:not(.dark) .VPContent.is-home+.VPFooter {
-  background: hsl(var(--a-surface-c));
+  background: hsla(var(--a-surface-c));
 }
 
 .VPHome {

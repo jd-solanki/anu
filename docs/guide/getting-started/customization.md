@@ -38,7 +38,7 @@ Below is the list of default colors. You can also [add new colors](/guide/featur
     <ACard variant="fill" color="danger" class="rounded-2xl shadow-2xl shadow-danger shadow-opacity-40 w-26 h-26 font-semibold grid place-items-center">Danger</ACard>
 </div>
 
-<ABtn class="mt-8" :class="isPrimaryChanged ? 'bg-[hsl(265,97.7%,66.3%)]' : 'bg-[hsl(235,97.7%,66.3%)]'" @click="updatePrimaryColor">{{ isPrimaryChanged ? 'Reset' : 'Change' }} primary</ABtn>
+<ABtn class="mt-8" :class="isPrimaryChanged ? 'bg-[hsla(265,97.7%,66.3%)]' : 'bg-[hsla(235,97.7%,66.3%)]'" @click="updatePrimaryColor">{{ isPrimaryChanged ? 'Reset' : 'Change' }} primary</ABtn>
 
 <br />
 <br />
@@ -59,7 +59,7 @@ Below is CSS vars defined for preset theme default's light theme:
 <<< @/../packages/preset-theme-default/src/scss/index.scss#all-css-vars
 :::
 
-Moreover, It's recommended that you [learn](/development/contributing.html#css-vars) CSS vars naming convention for color to know when you should wrap `hsl()` or use CSS var directly.
+Moreover, It's recommended that you [learn](/development/contributing.html#css-vars) CSS vars naming convention for color to know when you should wrap `hsla()` or use CSS var directly.
 
 Additionally, theme can also [add](/guide/features/theme.html#adding-theme-based-css-variables) CSS variables based on the theme.
 ::::
